@@ -1,10 +1,17 @@
-# TOPA Current Status
+# TOPA Current Scientific Status
 
-This document is a human-readable map of the current imported TOPA lineage. Exact authority remains in the versioned JSON receipts and their source-bound evidence.
+This document is a human-readable map. Exact authority remains in source-bound records, versioned receipts, checkable derivations and frozen experimental/statistical protocols.
 
 ## Foundation
 
-**TOPA Foundation v1.2 — ACTIVE_CANONICAL_EPISTEMIC_FOUNDATION**
+**TOPA Foundation v1.3 — ACTIVE_CANONICAL_EPISTEMIC_AND_SCIENTIFIC_FOUNDATION**
+
+Canonical authority:
+
+```text
+protocols/TOPA_FOUNDATION.json
+data/TOPA_STRICT_SCIENCE_GATE_V1_0.json
+```
 
 Core boundary:
 
@@ -14,97 +21,129 @@ UNKNOWN_IS_NOT_SUPERNATURAL
 REPORT_IS_NOT_OBSERVATION
 OBSERVATION_IS_NOT_INTERPRETATION
 INTERPRETATION_IS_NOT_FACT
+HYPOTHESIS_IS_NOT_EVIDENCE
+UNCALIBRATED_CONFIDENCE_IS_NOT_EVIDENCE
+HEURISTIC_SCORE_IS_NOT_EVIDENCE
+SURVIVOR_LABEL_IS_NOT_EVIDENCE
 ```
 
-The foundation requires preserved raw provenance, provenance-channel classification, firsthand/hearsay separation, competing hypotheses, falsification routes, frozen predictions before scoring, negative-result preservation and confidence that can decrease.
+Active scientific authority is restricted to:
+
+```text
+SOURCE_FACT
+FORMAL_DERIVATION
+REPRODUCIBLE_EXPERIMENT
+STATISTICAL_INFERENCE
+HYPOTHESIS_ONLY   # generates tests; zero evidentiary authority
+```
+
+Historical v1.2 confidence/survivor fields remain in Git and archived receipts as provenance only. They cannot support a new active claim.
 
 ## Art Bell corpus
 
-**Current canonical archive: v1.2**
+The archived caller corpus remains a provenance dataset. A sourceable broadcast establishes that a report was made; it does not establish the reported extraordinary interpretation.
 
-- 136 sourceable caller records at adoption into the TOPA foundation.
-- `CALLER_CASE`, `LISTENER_EMAIL`, `GUEST_CLAIM` and `HOST_STATEMENT` are distinct provenance classes.
-- Broadcast occurrence establishes that a report was made; it does not establish the extraordinary content of the report.
-- Failed frozen predictions are allowed to count against the relevant claim.
-- The corpus remains open/living rather than declared complete.
+Legacy confidence/ranking fields, where present, are historical metadata only. Active re-analysis must produce explicit source facts, hypotheses, frozen prediction scores or specified statistical inference.
 
-The `Prey (2006)` Art Bell sequence is preserved separately as a **fictional information-handling design pattern** and carries no empirical authority.
+The `Prey (2006)` Art Bell sequence remains a fictional information-handling design pattern with zero empirical authority.
 
 ## Donald E. Keyhoe / historical UAP audit
 
-The Keyhoe dossier preserves his real historical role while separating that role from the truth of his preferred interpretations.
+Historical role, witness status, classification and secrecy are provenance/context rather than truth authority.
 
-Canonical method inherited from the dossier:
+Current scientific rule:
 
 ```text
 TAKE THE REPORT SERIOUSLY
-→ TAKE THE EXPLANATION SKEPTICALLY
-→ FORCE BOTH THROUGH THE SAME GATE
+→ IDENTIFY THE EXACT SOURCE OBJECT
+→ SEPARATE OBSERVATION FROM INTERPRETATION
+→ FREEZE COMPETING TESTABLE HYPOTHESES
+→ APPLY THE SAME ADMISSIBILITY GATE TO EACH
 ```
-
-The evidence audit includes major historical cases and a dedicated Egypt cross-reference pass. High-status witnesses, classification, secrecy, institutional roles and ancient-anomaly motifs are treated as provenance/context rather than automatic proof.
 
 ## Forensic triad
 
 ### RB-47H — 1957-07-17
 
-The forensic pass treated the event as a high-value multi-channel military report. It preserved the difference between passive ELINT bearing, visual report, written ground-radar summaries and unavailable raw sensor recordings.
+Historical lineage includes an earlier pass that used the legacy label `HARD_SURVIVOR_A_MINUS`. That label is now explicitly **deprecated scientific metadata**, not an active evidence state.
 
-A first falsification sweep promoted RB-47 to `HARD_SURVIVOR_A_MINUS` because no demonstrated conventional reconstruction then reproduced the full reported correlated sequence.
+A later source audit found:
 
-**That status was later revoked.** The dedicated RB-47 kill pass found that:
+- conflict between Duncanville/UTAH sensor-owner reporting and a downstream Wing summary about ground-radar confirmation;
+- no established active airborne-radar contact;
+- compatibility of much of the approximately 3 GHz passive ELINT sequence with terrestrial S-band radar families and geometry;
+- no preserved basis for treating the reported three-way sequence as three independent raw sensor streams.
 
-- the Duncanville/UTAH sensor-owner report conflicts with a downstream Wing summary about ground-radar confirmation;
-- active airborne radar contact was not established;
-- much of the approximately 3 GHz passive ELINT sequence is compatible with terrestrial S-band radar families and geometry;
-- the claimed three-way causal synchronization is not preserved as three independent raw sensor streams.
-
-Current classification from the kill pass:
+Current strict state:
 
 ```text
-DOCUMENTED_EVENT
-EXTRAORDINARY_INTERPRETATION = NOT_ESTABLISHED
-CONVENTIONAL_RESOLUTION = NOT_FULLY_CLOSED
-SURVIVOR_CLASS = UNRESOLVED_NONEXOTIC_HIGH_VALUE
-PROMOTION_ALLOWED = false
+SOURCE_FACT: documented historical event/report chain exists
+EXTRAORDINARY_INTERPRETATION: NOT_ESTABLISHED
+COMPLETE_CONVENTIONAL_RECONSTRUCTION: NOT_ESTABLISHED
+STATUS: UNRESOLVED
 ```
 
-This demotion is one of the strongest demonstrations of TOPA's intended behavior: the method must be able to injure its own favorite candidate.
+The scientific lesson is not that an old score decreased; it is that a later source-bound audit invalidated an earlier inference.
 
 ### Kinross F-89C disappearance — 1953-11-23
 
-Current bounded state:
+Current strict state:
 
 ```text
-UNRESOLVED_FATAL_AVIATION_DISAPPEARANCE
-EXTRAORDINARY_INTERACTION_NOT_ESTABLISHED
+SOURCE_FACT: fatal aviation disappearance is documented
+EXTRAORDINARY_INTERACTION: NOT_ESTABLISHED
+STATUS: UNRESOLVED
 ```
 
-The radar-return merge is not treated as physical collision evidence. Current high-value gates are trajectory reconciliation, RCAF/USAF record alignment, weather/fuel/mechanical context and precise target identity.
+A radar-return merge is not promoted to physical collision evidence without the required measurement/source chain. Open tests remain trajectory reconstruction, record alignment, weather/fuel/mechanical context and target identity.
 
 ### Ras el-Kanayis — 1957-12-01 report
 
-A bright descending-cylinder report near Egypt was compared against the Sputnik-launch rocket-body reentry hypothesis.
+The report/source chain and time-standard mapping remain incompletely frozen. The conventional rocket-body reentry explanation is therefore:
 
-TOPA then found that the source genealogy and **time standard itself** were insufficiently frozen. A later reverse pass corrected an earlier correction: the reported `01:30` appears in a later source as Central European Time, not securely Egypt-local time.
+```text
+HYPOTHESIS_ONLY
+```
 
-Current rule learned from the case:
+not a preferred/probable answer.
+
+Current learned rule:
 
 ```text
 CLOCK_VALUE_WITHOUT_TIME_STANDARD != UTC_EVENT_TIME
 ```
 
-The conventional reentry hypothesis remains a candidate rather than a protected answer until primary 1957 reporting, Swissair flight records and terminal orbital timing are reconciled.
+Promotion requires primary reporting, flight records and authoritative orbital/decay timing under an explicit time conversion.
+
+## Hessdalen HUNT-0001
+
+K1 uses blind complete-day selection, hashes, full-rate source-stream requirements and a holdout discipline.
+
+Classification has been tightened to:
+
+```text
+TRACK -> UNCLASSIFIED
+UNCLASSIFIED -> CLASS only by frozen rule ID + measurements + reference data + tolerances + reproducible receipt
+```
+
+`Visual resemblance`, `human confidence`, `model label without validation`, and `no match found` cannot classify a track or support an extraordinary claim.
+
+Current state:
+
+```text
+VIDEO_INGEST = IMPLEMENTED
+RAW_DAY_MEMBERSHIP = OPEN
+K1_REPLAY = NOT_YET_EXECUTED
+K2_TRIANGULATION = BLOCKED_PENDING_BASELINE_AND_CALIBRATION
+```
 
 ## Tesla Sweep / TOPA Hunt
 
-The `Janus-Cosmos` branch `janus-tesla-sweep` is imported under `research/tesla-sweep/`.
-
-It contains the TOPA/Tesla preregistration, canonical memory, hunt/training state, signal-mining pass, inputs and results. The purpose is to search open signal archives without turning anomaly ranking into a technosignature claim.
+The imported `Janus-Cosmos` Tesla Sweep material is provenance and research lineage. An anomaly rank or interesting signal is not a technosignature claim.
 
 ### J1832 long-period source handoff
 
-Current synthesis:
+The composite
 
 ```text
 FALLBACK_DISC_BRAKING
@@ -112,47 +151,97 @@ FALLBACK_DISC_BRAKING
 MAGNETAR_LIKE_TWIST_DRIVEN_PAIR_CASCADES
 ```
 
-This is the current best natural composite in the handoff, **not a proven mechanism**. The key conceptual delta is to separate the mechanism that produced the very long spin period from the mechanism that powers the source's present coherent plasma emission.
+is classified here as:
 
-Important current gate:
+```text
+HYPOTHESIS_ONLY
+```
+
+It is not called the “best” mechanism without a frozen model-comparison procedure and data sufficient to execute it.
+
+Current admissible gate:
 
 ```text
 OBTAIN CALIBRATED FAST MJD60559 TIME-FREQUENCY-STOKES DATA
-→ REPLAY THE ~0.2 s PULSE WITH FROZEN FEATURES
-→ COMPARE AGAINST LONG-PERIOD TRANSIENT / NULLING-PULSAR / FRB CONTROLS
+→ FREEZE FEATURE EXTRACTION / MODEL-COMPARISON RULE
+→ REPLAY THE ~0.2 s STRUCTURE
+→ COMPARE AGAINST DECLARED CONTROLS
+→ REPORT EFFECTS / UNCERTAINTY / MODEL ASSUMPTIONS
 ```
 
-No technosignature is admitted by the current handoff.
+No technosignature is admitted.
+
+## Mathematics / hidden exponent audit
+
+Canonical audit:
+
+```text
+research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md
+```
+
+Fundamentum tracking issue: `#222 — C025-X: hidden exponent firewall and total complexity accounting`.
+
+Critical rule:
+
+```text
+T(N) IS POLYNOMIAL
+ONLY IF
+T(N) <= C*N^c
+WITH FIXED UNIVERSAL C,c
+INDEPENDENT OF INPUT AND GROWING FAMILY PARAMETERS
+```
+
+In particular:
+
+```text
+S_local <= S^((q+5)!)
+S_local <= S^(7*(b+2)^(d+1))
+```
+
+are not called unconditional polynomial simulations when `q`, `b` or `d` grow with `N`. Their growing exponent is the structural resource under study.
+
+Current exact mathematical front:
+
+```text
+F3-D = SEMANTIC RESTRICTION SURVIVAL
+```
+
+Original syntactic `(b,d)` may collapse after NW restrictions through constants, aliases or localization, so a quantitative theorem must concern the surviving semantic residual functions.
+
+`P_VS_NP = OPEN`.
 
 ## Kenshi × 17 Scouts
 
-TOPA is integrated into the JANUS Scout architecture with the rule:
+All 17 Scouts are now bound to TOPA v1.3 strict-science semantics. Shared state is routing/memory, not independent replication or empirical authority.
 
 ```text
-SYNC STATE, NOT IDENTITY.
+SYNC_STATE_NOT_IDENTITY
+MODEL_OUTPUT_NOT_EVIDENCE
+MODEL_CONSENSUS_NOT_WORLD_TRUTH
 ```
 
-All 17 Scouts share epistemic protocol/state routes while retaining sender identity, raw provenance and source independence. Seeing the same payload through many agents does not become independent replication.
-
-The last frozen foundation receipt records repository-snapshot and transport health separately from external model-synthesis availability. Model quota degradation is not treated as failure of deterministic repository observation.
+The Swarm runtime router and Scout protocol have been updated to reject uncalibrated confidence and heuristic survivor authority. Their provider CI receipt is not yet claimed until retrieved from an actual workflow run.
 
 ## Current priority gates
 
-The most valuable open gates carried by the present corpus are:
-
-1. RB-47 — reconcile Duncanville/UTAH primary records, Wing summary and any surviving onboard data product.
-2. Ras el-Kanayis — recover the original 1957 newspaper/source chain, Swissair flight log and authoritative rocket-body terminal orbit/decay timing.
-3. Kinross — reconstruct F-89 / C-47 trajectories with uncertainty envelopes rather than prose-only identity claims.
-4. J1832 — acquire and replay calibrated FAST time-frequency/full-Stokes data for the sub-second structure.
-5. Art Bell corpus — continue collapsing claim-only records toward the much smaller subset with independent falsifiable hooks.
+1. **F3-D:** prove or refute quantitative semantic survival of the crossing/inversion structure under the exact NW restrictions.
+2. **Complexity accounting:** freeze `L(N), M(N), K(N)`, portable bytes, bit complexity and deterministic discovery costs.
+3. **Hessdalen:** freeze a complete raw-day manifest and exact class-specific decision rules before holdout scoring.
+4. **RB-47:** reconcile primary sensor-owner records and any surviving onboard data without legacy survivor rankings.
+5. **Ras el-Kanayis:** freeze primary source/time-standard/orbit chain.
+6. **Kinross:** reconstruct trajectories with uncertainty rather than prose identity claims.
+7. **J1832:** obtain calibrated data and freeze model comparison before choosing a mechanism.
 
 ## Global boundary
 
-TOPA currently establishes a **research method and preserved corpus**, not the reality of a paranormal category.
+TOPA is a method, corpus and set of checkable research gates. It does not establish a paranormal category or resolve P versus NP.
 
 ```text
-UNIDENTIFIED != EXTRAORDINARY
-FAILED_MUNDANE_MODEL != EXTRAORDINARY_SUCCESS
-HARD_SURVIVOR != PARANORMAL_CONFIRMATION
+UNCLASSIFIED != EXTRAORDINARY
+FAILED_HYPOTHESIS != RIVAL_HYPOTHESIS_PROVED
+SOURCE_PROVENANCE != CONTENT_TRUTH
+FINITE_PASS != UNIVERSAL_THEOREM
+HYPOTHESIS != EVIDENCE
 MODEL_SYNTHESIS != MECHANISM_PROOF
+P_VS_NP = OPEN
 ```
