@@ -1,0 +1,77 @@
+{
+  "artifact_id": "TOPA-P-VS-NP-ISSUE-211-RESOLUTION-SINK-COUNTERFAMILY-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:18:00+03:00",
+  "target": "JANUS_FUNDAMENTUM_C024_ISSUE_211_UNIVERSAL_POLYNOMIAL_RESIDUAL_COUNT",
+  "status": "STRONG_FORMAL_REFUTATION_CANDIDATE_PENDING_IMPLEMENTATION_PARITY_AND_INDEPENDENT_REPLAY",
+  "claim_ceiling": {
+    "refutes_if_replay_passes": "UNIVERSAL_POLYNOMIAL_RESIDUAL_COUNT_FOR_CURRENT_POLICY0A",
+    "does_not_establish": [
+      "P_EQUALS_NP",
+      "P_NOT_EQUALS_NP",
+      "NO_POLYNOMIAL_SAT_ALGORITHM_EXISTS",
+      "NO_OTHER_JANUS_CALCULUS_CAN_CLOSE_THE_BRIDGE"
+    ]
+  },
+  "external_theorem": {
+    "paper": "Beame, Impagliazzo, Pitassi, Segerlind — Formula Caching in DPLL, ACM TOCT 2010",
+    "source_definition": "Definition 4.24: theorem-matched directed GT_n",
+    "source_lower_bound": "Theorem 4.28: every FCWS refutation of GT_n requires at least 2^(n-2) nodes; proof identifies 2^(n-2) distinct residual formulas at novelty level n-2",
+    "url": "https://www.cs.toronto.edu/~toni/Papers/memoization.pdf"
+  },
+  "construction": {
+    "family": "H_n = GT_n AND BOOST_n AND RESOLUTION_SINK_n",
+    "n_min": 3,
+    "core_variables": "V = n(n-1)",
+    "booster_count_per_core_variable": "B = 256*n^2",
+    "sink_side_count": "p = 64*n^2",
+    "boost_clause": "(x OR b[x,r]) with private b[x,r]",
+    "sink_positive_clause": "(d OR a OR u_r)",
+    "sink_negative_clause": "(~d OR ~a OR v_s)",
+    "variable_order_constraint": "d has the smallest variable id"
+  },
+  "proved_mechanics": {
+    "sink_pair_count": "p^2 = 4096*n^4",
+    "root_literal_upper_bound": "L0 <= 512*n^4 + 3*n^3 + 384*n^2",
+    "attempt_budget_upper_bound": "4*L0 < p^2 for n>=1",
+    "sink_resolvent": "(a OR u_r OR ~a OR v_s) = TAUTOLOGY",
+    "resolution_additions_from_sink": 0,
+    "resolution_core_reached": false,
+    "reason_core_not_reached": "the attempt budget is exhausted inside the first pivot d",
+    "core_frequency_floor": "B = 256*n^2",
+    "max_sink_frequency": "2p = 128*n^2",
+    "branch_selection": "while a core variable remains, Policy-0A must branch on a GT-core variable",
+    "projection": "delete clauses containing padding variables; the resulting residual equals unitprop(GT_n restricted by the accumulated core assignment)",
+    "cache_collision_rule": "equal augmented keys imply equal projected core residuals"
+  },
+  "asymptotic_transfer": {
+    "projected_system": "exact Formula Caching on theorem-matched GT_n",
+    "projected_distinct_residual_lower_bound": "2^(n-2)",
+    "augmented_unique_state_lower_bound": "S(H_n) >= 2^(n-2)",
+    "input_bit_length": "N_n = O(n^4 log n)",
+    "conclusion": "2^(n-2) is superpolynomial in N_n; therefore no fixed c can satisfy S(F)<=N^c for every CNF if the implementation-parity gates pass"
+  },
+  "replay_gates": [
+    "R1_EXACT_POLICY0A_LIMITED_RESOLUTION_PARITY",
+    "R2_SINK_EXHAUSTS_ATTEMPT_BUDGET_WITH_ZERO_ADDITIONS_ON_FROZEN_SMALL_N",
+    "R3_BRANCH_VARIABLE_ALWAYS_CORE_ON_FROZEN_REPLAY",
+    "R4_CORE_PROJECTION_REPLAY",
+    "R5_INDEPENDENT_GT_THEOREM_SCOPE_REVIEW",
+    "R6_PARAMETER_N_TO_INPUT_BIT_LENGTH_REVIEW"
+  ],
+  "topa_repo_artifacts": {
+    "proof": "research/mathematics/p-vs-np/C024_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md",
+    "probe": "research/mathematics/p-vs-np/policy0a_padded_gt_counterfamily.py",
+    "math_mode": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json"
+  },
+  "parent": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "pr": 210,
+    "issue": 211
+  },
+  "mathematical_verdict": {
+    "ISSUE_211": "STRONG_REFUTATION_CANDIDATE",
+    "ISSUE_212": "OPEN",
+    "POLYNOMIAL_RESIDUAL_CACHE_BRIDGE_FOR_CURRENT_POLICY0A": "CONDITIONAL_THEOREM_WITH_FIRST_PREMISE_UNDER_DIRECT_ATTACK",
+    "P_VS_NP": "OPEN"
+  }
+}
