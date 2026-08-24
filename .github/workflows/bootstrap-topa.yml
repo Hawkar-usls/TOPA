@@ -95,6 +95,7 @@ jobs:
           from pathlib import Path
 
           roots = [
+              Path('data'),
               Path('protocols'),
               Path('corpus/meta-registry'),
               Path('research/tesla-sweep'),
@@ -103,6 +104,11 @@ jobs:
           ]
 
           source_map = {
+              'data': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'role': 'NATIVE_TOPA_ARTIFACT',
+              },
               'protocols': {
                   'repository': 'Hawkar-usls/Janus_Genesis',
                   'branch': 'main',
@@ -134,7 +140,7 @@ jobs:
           for root in roots:
               if not root.exists():
                   continue
-              for path in sorted(p for p in root.rglob('*') if p.is_file()):
+              for path in sorted(p for p in root.rglob('*') if p.is_file() and p.name != '.keep'):
                   raw = path.read_bytes()
                   rel = path.as_posix()
                   item = {
@@ -176,6 +182,12 @@ jobs:
               'schema': 'janus.topa.upstream-snapshot.v1',
               'repository': 'Hawkar-usls/TOPA',
               'sources': {
+                  'TOPA-native-data': {
+                      'repository': 'Hawkar-usls/TOPA',
+                      'branch': 'main',
+                      'import': 'data/',
+                      'mode': 'NATIVE_NOT_UPSTREAM_COPY',
+                  },
                   'janus-meta-registry': {
                       'repository': 'Hawkar-usls/janus-meta-registry',
                       'branch': 'main',
@@ -234,5 +246,5 @@ jobs:
             echo "TOPA snapshot already current."
             exit 0
           fi
-          git commit -m "Import complete TOPA corpus from JANUS lineage"
+          git commit -m "Refresh complete TOPA corpus index"
           git push
