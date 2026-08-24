@@ -1,0 +1,136 @@
+{
+  "schema": "topa.sacred_scriptures.control_admission_success_receipt.v0.1",
+  "date": "2026-08-24",
+  "status": "TEN_CONTROL_SLOT_PREREQUISITES_FROZEN_DOUBLE_CODING_AUTHORIZED",
+  "authority_branch": "topa-sacred-scriptures",
+  "control_freeze": {
+    "path": "CONTROL_CANDIDATE_FREEZE.v0.1.json",
+    "sha256": "3cecb8722c4e33067e556f88d2705a12194551535d96273de55e1c46e83ff53e",
+    "identities_frozen_before_scoring": true,
+    "loci_frozen_before_scoring": true
+  },
+  "negative_predecessor": {
+    "path": "execution/CONTROL_ADMISSION_ATTEMPT_1.v0.1.json",
+    "status": "FAIL_CLOSED_SEVEN_OF_EIGHT_WITH_TOC_COLLISION_AUDIT",
+    "preserved": true,
+    "repair_scope": "PARSER_ONLY_MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN",
+    "control_identities_changed": false,
+    "loci_changed": false
+  },
+  "real_controls": {
+    "status": "EIGHT_OF_EIGHT_REAL_CONTROLS_SEALED",
+    "parser_version": "0.2_MAX_VALID_SPAN_TOC_DISAMBIGUATION",
+    "sealed_count": 8,
+    "required": 8,
+    "receipts": [
+      {
+        "slot": "C01",
+        "id": "C01_ZIUSUDRA_KING_1918",
+        "source_bytes": 459069,
+        "source_sha256": "63937f747553ff842d71d2a5ec6a98f599e7c54fbef55201b72de25c8530dc1e",
+        "slice_bytes": 41060,
+        "slice_sha256": "5f7ab824c1a462b3d8c81c746eac713553e58feea0832077624b9db2cf32328e"
+      },
+      {
+        "slot": "C02",
+        "id": "C02_BEROSSUS_XISUTHRUS_BUDGE",
+        "source_bytes": 125179,
+        "source_sha256": "dee938b91f866f48206049d4872b18bb5892ec2c35187f6066e08621d1f9972a",
+        "slice_bytes": 2901,
+        "slice_sha256": "43a2ad8dac564937e57e84fae96ad6b2e6d520488bd909e5d156a9cb3eedad25"
+      },
+      {
+        "slot": "C03",
+        "id": "C03_BERGELMIR_PROSE_EDDA",
+        "source_bytes": 535611,
+        "source_sha256": "e0f3bf75f0bde2548c96aaa5c9ec960e724891c7dc1abe338848fa9621464270",
+        "slice_bytes": 600,
+        "slice_sha256": "6c25cc6ef2e838453cc1c13345c44b9c72d0c32bd2924b929d671f8f6bb0eecc"
+      },
+      {
+        "slot": "C04",
+        "id": "C04_DEUCALION_OVid_BOOK1",
+        "source_bytes": 951289,
+        "source_sha256": "5ab9c90dee54d817ef5f6b9fe9f212c17af31c392a243cfc610c1c939c15e6af",
+        "slice_bytes": 15226,
+        "slice_sha256": "bfeb5b027b489803362fd2f48a4aec80c3430e0b21aa59502f8995ea8e24ce71"
+      },
+      {
+        "slot": "C05",
+        "id": "C05_PHAETON_BULFINCH",
+        "source_bytes": 2048049,
+        "source_sha256": "c2b8e85b3c298225917054b122f38aa5e67712659ad4838f786d598a733f4286",
+        "slice_bytes": 15998,
+        "slice_sha256": "b8a0b7215a5b4096d134df6175dca464eeeef72a40ed3ae4c898cde2529ac669"
+      },
+      {
+        "slot": "C06",
+        "id": "C06_VESUVIUS_PLINY_LXV",
+        "source_bytes": 713525,
+        "source_sha256": "1e27774d19ff1f604f8e507c22797e2902ef759ee985e5b98986717acf71496d",
+        "slice_bytes": 8358,
+        "slice_sha256": "d81d28480f32a838d8b9d75ed49dc52c5ab4e71c61083f42ae1219452a209d64"
+      },
+      {
+        "slot": "C07",
+        "id": "C07_MISSISSIPPI_FLOOD_1874",
+        "source_bytes": 42468,
+        "source_sha256": "00af3d24a32483377b4c7fa4fc67cb9f56d92ad23ebbc677ab7e996f593867cd",
+        "slice_bytes": 12534,
+        "slice_sha256": "5fa0f0e06cac34bbe5f11acfeb8f0f74096b3c89aed51bf0304e9a28cb2c7ad5"
+      },
+      {
+        "slot": "C08",
+        "id": "C08_JOHNSTOWN_FLOOD_1889",
+        "source_bytes": 81559,
+        "source_sha256": "2b611f0779a68bdc6ee4542ef5f610382b403cfdef058faabe3f487e8bdf591d",
+        "slice_bytes": 10737,
+        "slice_sha256": "0862b546d0fd755ab9aa241b40149949fda4dbff9c3afc7e31a7803846ef9ec7"
+      }
+    ]
+  },
+  "synthetic_nulls": {
+    "status": "TWO_OF_TWO_GENERATOR_AND_SEED_COMMITMENTS_FROZEN",
+    "generator_version": "topa-sacred-scriptures-nullgen-v0.1",
+    "generator_sha256": "0c197a2f8eb89ff7b6d64913bee7f846302793b1b29c6dcbf7e23d97d60694e5",
+    "input_schema_sha256": "31c1e8561a53d775202509111bc013770c5b71355269678226c7f76a67cf9e0f",
+    "feature_count": 28,
+    "slots": [
+      {
+        "slot": "C09",
+        "id": "C09_WITHIN_PACKET_FEATURE_SHUFFLE",
+        "seed_commitment": "49cc9d08172d21758246dbced492cad9712de0b50fe9ed37b73eb8c19241b48f",
+        "actual_output_state": "NOT_GENERATED_BEFORE_DOUBLE_CODED_MATRIX_FREEZE"
+      },
+      {
+        "slot": "C10",
+        "id": "C10_ACROSS_PACKET_FEATURE_SHUFFLE",
+        "seed_commitment": "5618412536a1caff2703bdaa15e1c728cbce8c358991d515ca307003973608ff",
+        "actual_output_state": "NOT_GENERATED_BEFORE_DOUBLE_CODED_MATRIX_FREEZE"
+      }
+    ],
+    "actual_synthetic_outputs_exist": false
+  },
+  "gate": {
+    "ten_control_slots_prerequisites_frozen": true,
+    "independent_double_coding_permission": true,
+    "genuine_independence_required": true,
+    "single_reasoning_instance_may_count_as_two_coders": false,
+    "final_blind_packets_complete": false,
+    "score_permission": false,
+    "epistemic_effect": "CONTROL_AND_NULL_METHOD_PERMISSION_ONLY_NO_SCORE_NO_WORLD_TRUTH_CREDIT"
+  },
+  "authority_receipts": [
+    "execution/CONTROL_ADMISSION_ATTEMPT_1.v0.1.json",
+    "execution/CONTROL_SEAL_RUN.v0.1.json",
+    "execution/SYNTHETIC_NULL_FREEZE.v0.1.json",
+    "execution/CONTROL_ADMISSION_GATE.v0.1.json"
+  ],
+  "next_legal_action": "BEGIN_GENUINELY_INDEPENDENT_DOUBLE_CODING_FOR_F01_F05_AND_C01_C08",
+  "forbidden_until_later_gate": [
+    "SCORE",
+    "RANK",
+    "GENERATE_C09_C10_OUTPUTS_BEFORE_DOUBLE_CODED_MATRIX_FREEZE",
+    "INTERPRET_MATCH_AS_TRUTH"
+  ]
+}
