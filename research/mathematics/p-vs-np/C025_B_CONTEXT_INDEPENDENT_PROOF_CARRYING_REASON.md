@@ -1,66 +1,71 @@
 # C025-B — Context-Independent Proof-Carrying Reason
 
-**Status:** reason semantics and soundness route frozen; standalone verifier/probe required for promotion.
+**Status:** portable reason semantics and soundness theorem closed on paper; provider replay PASS; TOPA portable-v1 replay active.
 
-**Claim ceiling:** this closes a soundness/interface problem for returned UNSAT reasons. It does **not** prove polynomial-time SAT, polynomial proof search, polynomial cache lookup, polynomial state size, `P=NP`, or `P!=NP`.
+**Claim ceiling:** this closes the **soundness and portability interface** for returned UNSAT reasons. It does **not** prove polynomial-time SAT, polynomial proof search, polynomial cache discovery, polynomial total certificate size, `P=NP`, or `P!=NP`.
 
 ## 1. Why a Boolean cache is insufficient
 
-An exact cache entry of the form
+An exact cache entry
 
 ```text
 residual K -> UNSAT
 ```
 
-is sound only for that exact residual key. C025 needs a reusable object that remains valid under a different decision context without relying on residual similarity, hash collisions, or an unproved subsumption heuristic.
+is sound only for the exact residual key. C025 needs a reusable object that remains valid under a different decision context without residual similarity, hash coincidence, or an unproved subsumption rule.
 
-The first Policy-0B reason language is deliberately stricter than the formula-level returned reasons used by `FCW_reason` in Beame–Impagliazzo–Pitassi–Segerlind. The paper proves that `FCW_reason` can p-simulate regular Resolution, but C025 does not import that power automatically. We first freeze a smaller object whose reuse theorem is transparent.
+The C025 reason language is deliberately stricter than the formula-level `FCW_reason` object in Beame–Impagliazzo–Pitassi–Segerlind. The literature result is motivation only until a formal simulation is proved.
 
-## 2. Frozen reason object
+## 2. Frozen portable reason object
 
-Let `F0` be the canonical root CNF. A Policy-0B proof-carrying reason is
+Let `F0` be the canonical root CNF. A returned Policy-0B reason is a **self-contained immutable certificate**
 
 ```text
-R = (root_fingerprint, clause C, resolution_DAG pi)
+R = (
+  root_fingerprint,
+  advertised_clause C,
+  final_node,
+  reachable_resolution_DAG pi
+)
 ```
 
-with the following requirements.
+with:
 
-1. `C` is a canonical, non-tautological clause over variables of `F0`.
-2. `pi` is a DAG derivation whose leaves are indexed clauses of `F0`.
-3. Every internal node is an exact Resolution step.
-4. The final node of `pi` is exactly `C`.
-5. `root_fingerprint` binds the certificate to the canonical encoding of `F0`.
+1. `C` canonical and non-tautological;
+2. every `AXIOM` leaf indexed into `F0` and checked byte-for-byte against that root clause;
+3. every internal node an exact Resolution step;
+4. `final_node` equal to `C`;
+5. every serialized proof node reachable from `final_node` — unrelated proof garbage is rejected;
+6. no decision assumption may appear as a proof axiom;
+7. `root_fingerprint` binds provenance, while leaf verification against the supplied `F0` supplies the logical binding.
 
-No decision assumption is an axiom of `pi`.
+A verifier needs only `(F0,R)`. It shares **no producer `ProofStore`, node numbering, or mutable cache**.
 
-This last rule is the context-independence firewall.
+This repairs the store-aliasing gap found after the first green C025-B replay: a reason reference of the form `(root_hash, local_node_number)` was sound inside one ledger but was not genuinely portable.
 
 ## 3. Applicability
 
-For a partial assignment `rho`, define
+For partial assignment `rho`:
 
 ```text
-APPLIES(R, rho)
+APPLIES(R,rho)
 ```
 
-iff `rho` assigns every variable appearing in `C` and makes every literal of `C` false.
+iff `rho` assigns every variable in `C` and makes every literal of `C` false.
 
-Equivalently, `rho` falsifies `C`.
+The context need not equal, extend, or resemble the context where the reason was discovered.
 
-A reason may be reused at any context satisfying this predicate. The new context does not need to equal, extend, or resemble the context in which the reason was first discovered.
+## 4. Certificate and reuse theorems
 
-## 4. Soundness theorem
+### Theorem B1 — certificate soundness
 
-### Lemma B1 — certificate soundness
-
-If the standalone verifier accepts `pi` against root formula `F0` and final clause `C`, then
+If `VERIFY(F0,R)=PASS`, then
 
 ```text
 F0 |= C.
 ```
 
-**Proof.** Every leaf is a clause of `F0`. Resolution preserves logical consequence. Induction over the topological order of the proof DAG gives that every derived node is implied by `F0`, in particular the final clause `C`. □
+**Proof.** Each accepted leaf is an actual clause of `F0`; exact Resolution preserves logical consequence. Induction over the topological proof order gives the advertised final clause. □
 
 ### Theorem B2 — context-independent reuse
 
@@ -70,128 +75,143 @@ If `VERIFY(F0,R)=PASS` and `APPLIES(R,rho)`, then
 UNSAT(F0 | rho).
 ```
 
-**Proof.** By Lemma B1 every model of `F0` satisfies `C`. But `rho` falsifies every literal of `C`, so no model of `F0` can extend `rho`. □
+**Proof.** Every model of `F0` satisfies `C`, while every total assignment extending `rho` falsifies `C`. □
 
-This is the core C025-B property.
+This theorem is independent of how `R` was found.
 
-## 5. Branch-composition theorem
+## 5. Branch composition
 
-Let `rho` be a parent context and `x` an unassigned branch variable. Suppose the false child returns certified reason `C0` applicable to `rho ∪ {x=0}`, and the true child returns certified reason `C1` applicable to `rho ∪ {x=1}`.
+Let `x` be unassigned in parent context `rho`. Let `R0,R1` be certified clauses applicable to `rho+x=0` and `rho+x=1`.
 
-Exactly one of the following safe cases applies.
+- if `rho` already falsifies one child clause, reuse that certificate unchanged;
+- otherwise the false-child clause must contain `x` and cannot contain `~x`;
+- the true-child clause must contain `~x` and cannot contain `x`;
+- resolving them on `x` gives a globally implied clause falsified by `rho`.
 
-1. `rho` already falsifies `C0`: return `C0` unchanged.
-2. `rho` already falsifies `C1`: return `C1` unchanged.
-3. Otherwise `C0` must contain literal `x`, and `C1` must contain literal `~x`. Resolve the two certified clauses on `x` and return the resolvent `C`.
+### Theorem B3 — logical branch-composition overhead
 
-### Lemma B3 — parent reason is certified and applicable
+In a **shared proof DAG**, composition requires at most one new Resolution node. □
 
-In case 3, the new proof is obtained by adding one Resolution node whose parents are the final proof nodes for `C0` and `C1`. The parent assignment `rho` falsifies every remaining literal of the resolvent.
+### Representation correction exposed by TOPA
 
-**Proof.** A clause falsified by `rho ∪ {x=0}` but not by `rho` can depend on the new assignment only through literal `x`; it cannot contain `~x`, which would be true in the false child. Symmetrically, the true-child reason can depend on the branch only through `~x`. Removing the complementary branch literals leaves only literals already false under `rho`. Resolution soundness gives the certificate. □
+A **portable materialized certificate** cannot count the child DAGs as free. A simple self-contained export has size
 
-Thus recursive UNSAT reasons can be lifted toward the root without embedding the decision context into the proof axioms.
+```text
+|R_parent| <= |R0| + |R1| + O(size(new_resolution_node)).
+```
+
+With content-addressed/global DAG sharing the physical duplication may be reduced, but that is a representation theorem to be proved, not assumed.
+
+Therefore the earlier phrase “branch composition costs one node” is valid only for logical extension of an already-shared DAG, **not** for standalone serialized byte size. This cost is routed to C025-E/#212.
 
 ## 6. Unit-propagation conflict lifting
 
-Every propagated literal `l` must carry an antecedent clause
+Each propagated literal `l` carries a globally certified antecedent
 
 ```text
 (l OR A)
 ```
 
-that is itself an original clause or an already certified global reason, with all literals of `A` false immediately before propagating `l`.
+that was unit under the propagation prefix. Starting from a globally certified conflict clause, traverse propagations in reverse order and resolve away `~l` with the antecedent of `l` whenever it occurs.
 
-If a certified conflict clause `K` becomes false, process propagated literals in reverse propagation order. Whenever current conflict clause contains `~l`, resolve it with the antecedent of `l`. This removes that propagated variable while preserving a globally certified clause.
+### Theorem B4 — decision-only lifted reason
 
-### Lemma B4 — reverse propagation produces a decision-only reason
+The final clause is derivable from `F0` and is falsified by the decision assignment alone. At most one new logical Resolution node is added per eliminated propagated variable in a shared producer DAG. □
 
-After eliminating all propagated literals that occur in the conflict clause, the remaining clause is falsified by the decision assignment alone and is derivable from `F0` by the appended Resolution steps.
+Again, portable export must include the reachable antecedent/conflict proof sub-DAG and is charged by its actual encoded size.
 
-The number of added Resolution nodes is at most the number of propagated assignments participating in the conflict chain.
+## 7. Standalone verifier
 
-This is a deterministic local extraction procedure **given the propagation trace**.
-
-## 7. Standalone verifier model
-
-The verifier accepts only a canonical root CNF and a proof DAG with nodes of two forms:
+Portable nodes have exactly two forms:
 
 ```text
 AXIOM(source_clause_index)
 RESOLVE(left_node, right_node, pivot)
 ```
 
-For every Resolution node it recomputes the exact canonical resolvent. Tautological derived clauses are rejected in the first reason language because they cannot be falsified by a context and provide no reusable conflict reason.
+The verifier:
 
-The final node must equal the advertised reason clause and the root fingerprint must match.
+1. canonicalizes the supplied root CNF;
+2. checks root provenance binding;
+3. checks every axiom against the indexed root clause;
+4. recomputes every exact canonical resolvent;
+5. rejects tautological derived reason clauses in v1;
+6. checks final node = advertised clause;
+7. checks all serialized nodes are reachable from the final node.
 
-### Lemma B5 — verification cost is polynomial in certificate size
+### Theorem B5 — verification cost
 
-Let `M` be the total encoded size of the proof DAG, including all stored clauses and indices. A deterministic verifier using sorted canonical clauses can check each axiom and merge each Resolution pair in time polynomial in `M` (linear in parent-clause length up to integer/identifier comparison costs).
+For encoded certificate size `M`, deterministic verification is polynomial in `M` (with sorted canonical clauses, each Resolution merge is polynomial in its parent encodings).
 
-This is a certificate-size bound, **not** a proof that `M` is polynomial in the original CNF size.
+This is **not** a theorem that `M = poly(N)` for original input size `N`.
 
-## 8. Cost firewall
+## 8. Replays and negative tests
 
-C025-B deliberately separates four quantities:
+The provider implementation in `Janus-Fundamentum` has already passed the first C025-B replay for:
 
 ```text
-REASON_VALIDITY
-REASON_LOCAL_CONSTRUCTION
-REASON_DISCOVERY_IN_CACHE
-TOTAL_REASON_DAG_SIZE
+DIRECT_REASON
+CROSS_CONTEXT_REUSE
+BRANCH_COMPOSITION
+UNIT_CONFLICT_LIFT
+MALFORMED_CERTIFICATE_REJECTION
+ROOT_FINGERPRINT_REJECTION
 ```
 
-What B can establish:
-
-- validity/reuse soundness;
-- branch composition with at most one new Resolution node;
-- unit-conflict lifting with at most one Resolution node per eliminated propagated variable;
-- standalone verification polynomial in certificate size.
-
-What remains open:
-
-- finding an applicable reason among a large cache;
-- proving the accumulated reason DAG is polynomial in original input length;
-- proving the solver reaches useful conflicts/reasons in polynomial total search;
-- proving this clause-only reason language has the same proof-system strength as the paper's formula-level `FCW_reason`.
-
-Therefore
+TOPA then reattacked the interface and found the store-local reference gap. Portable v1 adds explicit tests for:
 
 ```text
-SHORT_REASON_EXISTS != POLICY0B_FINDS_IT_IN_POLYTIME
+STANDALONE_PORTABLE_CERTIFICATE
+STORE_ALIAS_INDEPENDENCE
+ADVERTISED_CLAUSE_TAMPER_REJECTION
+PROOF_TAMPER_REJECTION
+UNREACHABLE_GARBAGE_REJECTION
+```
+
+No prior PASS is erased; it is preserved as an earlier, narrower in-store result.
+
+## 9. Cost firewall and the now-smaller frontier
+
+Keep these five quantities separate:
+
+```text
+REASON_VALIDITY                 = solved in C025-B scope
+REASON_PORTABILITY              = solved in C025-B semantics; replay required
+REASON_LOCAL_CONSTRUCTION       = bounded in supplied trace/shared-DAG size
+REASON_DISCOVERY_IN_CACHE       = OPEN C025-C
+TOTAL_REASON_DAG_SIZE           = OPEN C025-E / #212
+GLOBAL_DETERMINISTIC_PROOF_SEARCH = OPEN C025-C/D
+```
+
+Hard laws:
+
+```text
 CHEAP_REASON_CHECK != CHEAP_REASON_DISCOVERY
-POLY_VERIFY_IN_CERTIFICATE_SIZE != POLY_CERTIFICATE_SIZE_IN_INPUT
+SHORT_REASON_EXISTS != POLICY_FINDS_IT_IN_POLYTIME
+POLY_LOCAL_WORK_IN_TRACE_SIZE != POLY_WORK_IN_ORIGINAL_INPUT_N
+DAG_SHARING != POLY_TOTAL_DAG_SIZE_WITHOUT_A_BOUND
 ```
 
-## 9. Literature boundary
+## 10. Literature boundary
 
-Beame, Impagliazzo, Pitassi, and Segerlind, *Formula Caching in DPLL*, ACM TOCT 1(3), 2010, define `FCW_reason`, show returned reasons are strengthenings of the recursive formula, and prove that their system p-simulates regular Resolution.
+Beame, Impagliazzo, Pitassi, and Segerlind, *Formula Caching in DPLL*, ACM TOCT 1(3), 2010, define formula-level `FCW_reason` and prove that system p-simulates regular Resolution.
 
-C025 uses that result only as motivation. No theorem transfer is allowed until equivalence or a proved simulation between the exact C025 clause-reason calculus and the literature system is established.
+C025 clause reasons are intentionally stricter. No regular-Resolution simulation or polynomial-search consequence is imported without a separate proof.
 
-## 10. Promotion gates
-
-C025-B may be promoted to `PROVED_IN_SCOPE` only after:
-
-1. standalone verifier implementation;
-2. positive replay of direct reason verification;
-3. cross-context reuse replay;
-4. branch-composition replay;
-5. unit-propagation conflict-lifting replay;
-6. malformed certificate rejection tests;
-7. root-fingerprint mismatch rejection;
-8. independent derivation review.
-
-Current status:
+## 11. Exact frontier
 
 ```text
-C025_B_REASON_SEMANTICS               = FROZEN
-C025_B_CONTEXT_INDEPENDENT_REUSE      = PROVED_ON_PAPER
-C025_B_BRANCH_COMPOSITION             = PROVED_ON_PAPER
-C025_B_UNIT_CONFLICT_LIFT             = PROVED_ON_PAPER
-C025_B_STANDALONE_VERIFIER            = NEXT
-C025_C_REASON_DISCOVERY_SEARCH_COST   = OPEN
-C025_E_TOTAL_REASON_SIZE              = OPEN
-P_VS_NP                               = OPEN
+C025_B_REASON_SEMANTICS                 = FROZEN_PORTABLE_V1
+C025_B_CERTIFICATE_SOUNDNESS            = PROVED
+C025_B_CONTEXT_INDEPENDENT_REUSE        = PROVED
+C025_B_BRANCH_COMPOSITION_LOGIC         = PROVED
+C025_B_UNIT_CONFLICT_LIFT_LOGIC         = PROVED
+C025_B_VERIFY_COST_IN_CERTIFICATE_SIZE  = PROVED
+C025_B_FIRST_PROVIDER_REPLAY            = PASS
+C025_B_PORTABLE_V1_REPLAY               = PENDING
+
+C025_C_REASON_DISCOVERY                 = OPEN
+C025_C_DETERMINISTIC_PROOF_SEARCH       = OPEN
+C025_E_TOTAL_REASON_AND_STATE_SIZE      = OPEN
+P_VS_NP                                 = OPEN
 ```
