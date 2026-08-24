@@ -1,0 +1,65 @@
+{
+  "schema": "janus.topa.hunt.source-ledger.v1",
+  "hunt_id": "HUNT-0001",
+  "created_at_local": "2026-08-24T09:32:00+03:00",
+  "status": "ACTIVE_SOURCE_LEDGER",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Project Hessdalen 1984 — Final Technical Report",
+      "url": "https://old.hessdalen.org/reports/hpreport84.shtml",
+      "class": "PRIMARY_PROJECT_TECHNICAL_REPORT",
+      "use": "Historical instrument setup, event reports, radar counts, magnetometer discussion, explicit methodological limitations and conclusion.",
+      "authority_boundary": "Primary for what the 1984 project recorded and concluded; not independent validation of the physical cause."
+    },
+    {
+      "id": "S2",
+      "title": "Project Hessdalen — Current Activities / Stream Stacker",
+      "url": "https://web.hessdalen.org/current-activities",
+      "class": "CURRENT_PROJECT_TECHNICAL_DESCRIPTION",
+      "use": "Modern camera configuration, stack-processing method, public stack availability, raw-video availability and documented artifacts.",
+      "authority_boundary": "Primary for current project workflow; individual detections still require event-level raw replay."
+    },
+    {
+      "id": "S3",
+      "title": "Project Hessdalen — Scientific literature index",
+      "url": "https://www.hessdalen.org/papers",
+      "class": "PROJECT_LITERATURE_INDEX",
+      "use": "Maps major published/archival research threads and provides provenance routes.",
+      "authority_boundary": "Indexing source, not independent scientific validation."
+    },
+    {
+      "id": "S4",
+      "title": "Investigation & analysis of transient luminous phenomena in the low atmosphere of Hessdalen valley, Norway",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0094576510000329",
+      "doi": "10.1016/j.actaastro.2010.01.019",
+      "class": "PEER_REVIEWED_RESEARCH_ARTICLE",
+      "use": "Published instrumented-research interpretation and natural-process hypothesis context.",
+      "authority_boundary": "A published model/result does not establish that all Hessdalen-labelled events share one cause."
+    },
+    {
+      "id": "S5",
+      "title": "Contribution of VLF electromagnetic survey to the investigation of Hessdalen lights (Norway)",
+      "url": "https://old.hessdalen.org/reports/Geophysics-2024.pdf",
+      "class": "GEOPHYSICAL_SURVEY_PAPER",
+      "use": "Subsurface/VLF environmental context and one route for testing geophysical hypotheses.",
+      "authority_boundary": "Environmental correlation or structure is not causal proof of a luminous event."
+    },
+    {
+      "id": "S6",
+      "title": "Project Hessdalen — Pictures and Videos",
+      "url": "https://www.hessdalen.org/pictures-and-videos",
+      "class": "PROJECT_PUBLIC_VISUAL_ARCHIVE_ENTRY",
+      "use": "Entry point to automated-camera products and historical visual archive.",
+      "authority_boundary": "Gallery inclusion is not anomaly confirmation."
+    }
+  ],
+  "source_rules": [
+    "PROJECT_SELF_REPORT != INDEPENDENT_REPLICATION",
+    "PUBLISHED_MODEL != COMMON_CAUSE_PROOF",
+    "GALLERY_ENTRY != ANOMALY_VALIDATION",
+    "STACKED_IMAGE != RAW_VIDEO",
+    "RADAR_RETURN != OBJECT_IDENTITY",
+    "UNRESOLVED_EVENT != EXTRAORDINARY_CAUSE"
+  ]
+}
