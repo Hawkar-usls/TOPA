@@ -1,0 +1,22 @@
+{
+  "schema": "topa.sacred_scriptures.correction_receipt.v0.1",
+  "date": "2026-08-24",
+  "artifact": "GRETIL_SATAPATHA_BOOK1_INPUT_ATTRIBUTION",
+  "status": "CORRECTED_WITH_CONFLICT_PRESERVED",
+  "superseded_statement": "PHILOLOGY_BASELINE.v0.1 initially described the GRETIL Madhyamdina Satapatha-Brahmana as input by John Robert Gardner without noting a conflict.",
+  "evidence": [
+    {
+      "layer": "GRETIL catalogue",
+      "statement": "Satapatha-Brahmana, Madhyamdina recension (input by John Robert Gardner)",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil.html"
+    },
+    {
+      "layer": "actual Book 1 electronic file header",
+      "statement": "Data input by H.S. Ananthanarayana and W. P. Lehman.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm"
+    }
+  ],
+  "decision": "Do not choose one attribution by convenience. Freeze the exact Book 1 file and locus, preserve both provenance statements, and keep the attribution conflict open until independently resolved.",
+  "scientific_effect": "No change to the Sanskrit wording of the frozen 1.8.1.[1]-[10] locus; provenance confidence is lowered until the metadata conflict is resolved.",
+  "lesson": "CATALOGUE_METADATA != FILE_INTERNAL_PROVENANCE; correction before SCORE is a successful gate, not a failure to hide."
+}
