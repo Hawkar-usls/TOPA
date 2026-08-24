@@ -2,6 +2,12 @@
   "schema": "janus.topa.upstream-snapshot.v1",
   "repository": "Hawkar-usls/TOPA",
   "sources": {
+    "TOPA-native-data": {
+      "repository": "Hawkar-usls/TOPA",
+      "branch": "main",
+      "import": "data/",
+      "mode": "NATIVE_NOT_UPSTREAM_COPY"
+    },
     "janus-meta-registry": {
       "repository": "Hawkar-usls/janus-meta-registry",
       "branch": "main",

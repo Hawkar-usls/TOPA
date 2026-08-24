@@ -2,14 +2,27 @@
   "schema": "janus.topa.corpus-index.v1",
   "repository": "Hawkar-usls/TOPA",
   "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
-  "file_count": 54,
+  "file_count": 55,
   "counts_by_top_level": {
+    "data": 1,
     "protocols": 1,
     "corpus": 12,
     "research": 36,
     "integrations": 5
   },
   "files": [
+    {
+      "path": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
+      "bytes": 3258,
+      "sha256": "136b10a3ff25dfe0de6629feedfcd3a156b3e98283df5959bd4d3bf82328dcb5",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "role": "NATIVE_TOPA_ARTIFACT"
+      },
+      "artifact_id": "TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1",
+      "status": "ACTIVE_GENERAL_MATHEMATICAL_RESEARCH_MODE"
+    },
     {
       "path": "protocols/TOPA_FOUNDATION.json",
       "bytes": 12101,
