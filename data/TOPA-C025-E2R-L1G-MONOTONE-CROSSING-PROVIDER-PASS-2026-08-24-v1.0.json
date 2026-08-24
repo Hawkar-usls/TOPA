@@ -1,0 +1,52 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1G-MONOTONE-CROSSING-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1G",
+  "status": "PROVED_IN_RESTRICTED_SCOPE__PROVIDER_PASS",
+  "results": {
+    "generic_poly_elimination": "REFUTED_BY_PARITY",
+    "crossing_monotone_flattening": "PROVED",
+    "er3_macro_clause_expansion": "POLYNOMIAL_UPPER_BOUND_PROVED",
+    "crossing_macro_pivot_simulation": "PROVED",
+    "restricted_consequence": "no polynomial-size crossing-monotone ER3/B2 refutation exists for the frozen existential NW-parity hard family",
+    "escape_condition": "any polynomial-size unrestricted escape must contain at least one negative dependency edge between crossing macros"
+  },
+  "preserved_failed_replay": {
+    "run": 32747919279,
+    "job": 97497745879,
+    "conclusion": "FAILURE",
+    "cause": "fixture incorrectly treated product of overlapping macro leaf counts as an exact distinct-clause count; 11 clauses were produced instead of 24",
+    "repair": "replace equality with the correct product upper bound and explicitly replay overlap canonicalization"
+  },
+  "authoritative_provider": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run": 32748097836,
+    "job": 97498313316,
+    "conclusion": "SUCCESS"
+  },
+  "provider_gates": [
+    "C025_E2R_L1G_PARITY_LINEAR_B2_GATE_COUNT",
+    "C025_E2R_L1G_PARITY_EXACT_CNF_EXPONENTIAL",
+    "C025_E2R_L1G_GENERIC_POLY_ELIMINATION_ROUTE=REFUTED",
+    "C025_E2R_L1G_CROSSING_MONOTONE_ADMISSION",
+    "C025_E2R_L1G_MONOTONE_FLATTENING",
+    "C025_E2R_L1G_OVERLAP_CANONICALIZATION",
+    "C025_E2R_L1G_ER3_MACRO_CLAUSE_POLY_UPPER_BOUND",
+    "C025_E2R_L1G_FLATTENED_PIVOT_CHAIN",
+    "C025_E2R_L1G_NEGATIVE_CROSSING_DEPENDENCY_REJECTION"
+  ],
+  "claim_ceiling": [
+    "the result is restricted to crossing-monotone escape structure on the established NW hard family",
+    "it proves existence of at least one polarity-inverting crossing edge in any polynomial-size escape, not a lower bound on the number of such edges",
+    "expansion entropy alone is not a circuit-size lower-bound measure",
+    "Issue #217, ER p-boundedness, NP versus coNP, and P versus NP remain open"
+  ],
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_L1G_EXPANSION_ENTROPY_AND_MONOTONE_CROSSING.md",
+    "research/mathematics/p-vs-np/expansion_entropy_monotone_crossing_probe.py",
+    "data/TOPA-C025-E2R-L1G-FIRST-CI-FAILURE-REPAIR-2026-08-24-v1.0.json"
+  ]
+}
