@@ -1,0 +1,83 @@
+{
+  "artifact_id": "TOPA-C025-B-PROOF-CARRYING-REASON-2026-08-24-v1.1",
+  "supersedes": "TOPA-C025-B-PROOF-CARRYING-REASON-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:57:15+03:00",
+  "target": "C025_B_CONTEXT_INDEPENDENT_PROOF_CARRYING_REASON",
+  "status": "PROVED_IN_SCOPE__PORTABLE_V1_PROVIDER_REPLAY_PASS",
+  "portable_reason": {
+    "shape": "R = (root_fingerprint, advertised_clause_C, final_node, reachable_resolution_DAG_pi)",
+    "standalone": true,
+    "root_axioms_only": true,
+    "decision_assumptions_as_axioms": false,
+    "producer_store_required_for_verification": false,
+    "reuse_condition": "current partial assignment falsifies advertised_clause_C",
+    "unreachable_serialized_nodes": "REJECT"
+  },
+  "proved": [
+    "ACCEPTED_CERTIFICATE_IMPLIES_F0_ENTAILS_C",
+    "CERTIFIED_C_FALSIFIED_BY_CONTEXT_IMPLIES_UNSAT_RESTRICTION",
+    "BRANCH_CHILD_REASONS_LIFT_TO_PARENT_BY_REUSE_OR_RESOLUTION",
+    "UNIT_PROPAGATION_CONFLICT_LIFTS_TO_DECISION_ONLY_GLOBAL_REASON",
+    "VERIFICATION_IS_DETERMINISTIC_POLYNOMIAL_IN_ENCODED_CERTIFICATE_SIZE"
+  ],
+  "topa_attack_repair": {
+    "gap": "STORE_LOCAL_REASON_REFERENCE_WAS_NOT_GENUINELY_PORTABLE",
+    "old_shape": "(root_fingerprint, local_final_node_id) interpreted inside producer ProofStore",
+    "repair": "self-contained reachable proof DAG with local indices internal to the certificate",
+    "additional_cost_gap_exposed": "ONE_NEW_LOGICAL_DAG_NODE_DOES_NOT_MEAN_CONSTANT_PORTABLE_CERTIFICATE_BYTES"
+  },
+  "provider_ci": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "pr": 214,
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32699409560,
+    "job_id": 97347723829,
+    "conclusion": "SUCCESS",
+    "markers": [
+      "C025_B_STANDALONE_PORTABLE_CERTIFICATE = PASS",
+      "C025_B_CONTEXT_REUSE = PASS",
+      "C025_B_STORE_ALIAS_REJECTION_BY_DESIGN = PASS",
+      "C025_B_BRANCH_COMPOSITION = PASS",
+      "C025_B_UNIT_CONFLICT_LIFT = PASS",
+      "C025_B_ROOT_FINGERPRINT_REJECTION = PASS",
+      "C025_B_ADVERTISED_CLAUSE_TAMPER_REJECTION = PASS",
+      "C025_B_PROOF_TAMPER_REJECTION = PASS",
+      "C025_B_UNREACHABLE_GARBAGE_REJECTION = PASS"
+    ]
+  },
+  "cost_firewall": {
+    "reason_validity": "PROVED_IN_SCOPE",
+    "reason_portability": "PROVED_IN_SCOPE",
+    "reason_local_construction": "BOUNDED_IN_SUPPLIED_TRACE_OR_SHARED_DAG_SIZE",
+    "portable_materialization": "CHARGED_BY_REACHABLE_CERTIFICATE_BYTES",
+    "reason_discovery_in_cache": "OPEN_C025_C",
+    "total_reason_DAG_and_cache_size_in_input_N": "OPEN_C025_E_ISSUE_212",
+    "deterministic_global_proof_search": "OPEN_C025_C_D"
+  },
+  "hard_boundaries": [
+    "CHEAP_REASON_CHECK != CHEAP_REASON_DISCOVERY",
+    "SHORT_REASON_EXISTS != DETERMINISTIC_POLICY_FINDS_IT_IN_POLYTIME",
+    "ONE_NEW_LOGICAL_DAG_NODE != CONSTANT_PORTABLE_CERTIFICATE_BYTES",
+    "DAG_SHARING != POLYNOMIAL_TOTAL_DAG_SIZE_WITHOUT_A_BOUND",
+    "POLY_VERIFY_IN_CERTIFICATE_SIZE != POLY_CERTIFICATE_SIZE_IN_INPUT_N"
+  ],
+  "canonical_artifacts": {
+    "repo": "Hawkar-usls/TOPA",
+    "proof": "research/mathematics/p-vs-np/C025_B_CONTEXT_INDEPENDENT_PROOF_CARRYING_REASON.md",
+    "verifier": "research/mathematics/p-vs-np/proof_carrying_reason.py",
+    "migration_policy": "registry/TOPA-CANONICAL-HOME-MIGRATION-2026-08-24-v1.0.json"
+  },
+  "next_front": {
+    "primary": "C025_C_DETERMINISTIC_REASON_DISCOVERY_AND_PROOF_SEARCH",
+    "coupled": "C025_E_TOTAL_REASON_CACHE_AND_PROOF_DAG_SIZE__ISSUE_212"
+  },
+  "mathematical_verdict": {
+    "C025_B": "PROVED_IN_SCOPE",
+    "C025_C": "OPEN",
+    "C025_E_ISSUE_212": "OPEN",
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
