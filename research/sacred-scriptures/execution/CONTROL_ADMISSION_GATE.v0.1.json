@@ -1,0 +1,18 @@
+{
+  "schema": "topa.sacred_scriptures.control_admission_gate.v0.1",
+  "executed_at_utc": "2026-08-24T15:21:01.706468+00:00",
+  "status": "CONTROL_ADMISSION_BLOCKED",
+  "real_control_receipt_present": true,
+  "real_control_status": "CONTROL_SEAL_FAILURE",
+  "real_controls_sealed": 7,
+  "synthetic_null_receipt_present": true,
+  "synthetic_null_status": "TWO_OF_TWO_SYNTHETIC_NULL_GENERATORS_FROZEN",
+  "synthetic_null_generators_frozen": 2,
+  "actual_synthetic_outputs_exist": false,
+  "ten_control_slots_prerequisites_frozen": false,
+  "independent_double_coding_permission": false,
+  "final_blind_packets_complete": false,
+  "score_permission": false,
+  "failure_semantics": "Any missing/failed/unreadable real-control seal or null-generator commitment blocks double coding admission. Actual synthetic null outputs remain forbidden until the coded matrix is frozen.",
+  "epistemic_effect": "CONTROL_AND_NULL_METHOD_PERMISSION_ONLY_NO_SCORE_NO_WORLD_TRUTH_CREDIT"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "topa.sacred_scriptures.synthetic_null_freeze.v0.1",
+  "executed_at_utc": "2026-08-24T15:21:01.658444+00:00",
+  "status": "TWO_OF_TWO_SYNTHETIC_NULL_GENERATORS_FROZEN",
+  "generator_version": "topa-sacred-scriptures-nullgen-v0.1",
+  "generator_sha256": "0c197a2f8eb89ff7b6d64913bee7f846302793b1b29c6dcbf7e23d97d60694e5",
+  "blind_test_sha256": "0912ecf88b3d6a778aa545e16f8c130b447f96bcd1cd7406f6633c0f1cad0e25",
+  "input_schema_sha256": "31c1e8561a53d775202509111bc013770c5b71355269678226c7f76a67cf9e0f",
+  "feature_count": 28,
+  "prescore_success_receipt_sha256": "4cb8673638c68cda8d6dbaec707304d4c2aea9b7ac84655596519b8970d40c31",
+  "nulls": [
+    {
+      "slot": "C09",
+      "independent_control_id": "C09_WITHIN_PACKET_FEATURE_SHUFFLE",
+      "control_class": "FEATURE_SHUFFLED_SYNTHETIC_NULL",
+      "generator_version": "topa-sacred-scriptures-nullgen-v0.1",
+      "generator_sha256": "0c197a2f8eb89ff7b6d64913bee7f846302793b1b29c6dcbf7e23d97d60694e5",
+      "seed_commitment": "49cc9d08172d21758246dbced492cad9712de0b50fe9ed37b73eb8c19241b48f",
+      "input_schema_sha256": "31c1e8561a53d775202509111bc013770c5b71355269678226c7f76a67cf9e0f",
+      "input_matrix_state": "BLOCKED_UNTIL_DOUBLE_CODED_MATRIX_FREEZE",
+      "shuffle_constraints": [
+        "Operate only on scorer-visible feature values after opaque packet IDs are assigned",
+        "Never ingest source identity, tradition, language, chronology, geography, control class or contact graph",
+        "Preserve PRESENT/ABSENT/UNKNOWN/NOT_APPLICABLE value vocabulary exactly",
+        "Preserve each packet's count of UNKNOWN and NOT_APPLICABLE values",
+        "Shuffle eligible PRESENT/ABSENT assignments only among type-compatible non-missing feature positions within each packet",
+        "Use deterministic Fisher-Yates driven by the committed seed derivation after matrix freeze",
+        "Emit a full permutation receipt and reject a no-op shuffle"
+      ],
+      "leakage_check": "Generator input schema explicitly rejects all scorer-forbidden metadata keys before permutation.",
+      "output_state": "NOT_GENERATED_BEFORE_DOUBLE_CODING",
+      "status": "GENERATOR_AND_SEED_COMMITMENT_FROZEN"
+    },
+    {
+      "slot": "C10",
+      "independent_control_id": "C10_ACROSS_PACKET_FEATURE_SHUFFLE",
+      "control_class": "FEATURE_SHUFFLED_SYNTHETIC_NULL",
+      "generator_version": "topa-sacred-scriptures-nullgen-v0.1",
+      "generator_sha256": "0c197a2f8eb89ff7b6d64913bee7f846302793b1b29c6dcbf7e23d97d60694e5",
+      "seed_commitment": "5618412536a1caff2703bdaa15e1c728cbce8c358991d515ca307003973608ff",
+      "input_schema_sha256": "31c1e8561a53d775202509111bc013770c5b71355269678226c7f76a67cf9e0f",
+      "input_matrix_state": "BLOCKED_UNTIL_DOUBLE_CODED_MATRIX_FREEZE",
+      "shuffle_constraints": [
+        "Operate only on scorer-visible feature values after opaque packet IDs are assigned",
+        "Never ingest source identity, tradition, language, chronology, geography, control class or contact graph",
+        "For each feature independently, permute eligible values across opaque packets",
+        "Preserve each feature's marginal PRESENT/ABSENT counts and preserve UNKNOWN/NOT_APPLICABLE positions",
+        "Use deterministic Fisher-Yates driven by the committed seed derivation after matrix freeze",
+        "Emit a full permutation receipt and reject a no-op global permutation"
+      ],
+      "leakage_check": "Cross-packet permutation is feature-column local and cannot access hidden source-family labels.",
+      "output_state": "NOT_GENERATED_BEFORE_DOUBLE_CODING",
+      "status": "GENERATOR_AND_SEED_COMMITMENT_FROZEN"
+    }
+  ],
+  "frozen_count": 2,
+  "required_count": 2,
+  "actual_null_outputs_exist": false,
+  "double_coding_permission_from_null_freeze": true,
+  "score_permission": false,
+  "anti_peeking_rule": "Actual shuffled matrices are generated only after the double-coded, arbitrated scorer matrix is frozen. Generator identity, constraints and seed commitments are frozen now so null behavior cannot be tuned to results.",
+  "epistemic_effect": "NULL_METHOD_COMMITMENT_ONLY_NO_SCORE_NO_RESULT_CREDIT"
+}
