@@ -108,3 +108,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python nw_local_er3_transfer_probe.py
+
+      - name: Replay C025-E2R-L1F crossing-extension elimination mechanics
+        run: |
+          cd research/mathematics/p-vs-np
+          python crossing_elimination_tradeoff_probe.py
