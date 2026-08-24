@@ -1,0 +1,48 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_commoncrawl_exact_url_negative.v0.16",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_COMMON_CRAWL_EXACT_URL_DISCOVERY_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32760923237,
+    "github_actions_job_id": 97539315074,
+    "artifact_id": 9532638260,
+    "artifact_sha256": "77e8ae7034fb90144d2a0c0e144dcc69079a95934e43685412fa6f8dced17197"
+  },
+  "targets": [
+    "https://www.scribd.com/document/462138503/The-Texts-of-the-Battle-of-Kadesh",
+    "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh"
+  ],
+  "indexes_checked": [
+    "CC-MAIN-2026-34", "CC-MAIN-2026-30", "CC-MAIN-2026-25", "CC-MAIN-2026-21",
+    "CC-MAIN-2026-17", "CC-MAIN-2026-12", "CC-MAIN-2026-08", "CC-MAIN-2026-04"
+  ],
+  "result": {
+    "exact_url_cdx_records": 0,
+    "warc_candidates": 0,
+    "strong_warc_candidates": 0,
+    "classification": "NO_EXACT_URL_CAPTURE_IN_CHECKED_2026_COMMON_CRAWL_INDEXES",
+    "note": "Most empty exact queries returned CDX HTTP 404; one returned 400/502. No WARC filename/offset/length was emitted, so no source payload was inferred or fabricated."
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Query only URL-prefix/canonical variants containing the same Scribd numeric document IDs across a broader historical archive window, and query Wayback CDX for those same IDs. A capture may be inspected only if it yields a versioned archival record; no new document identity is permitted.",
+  "laws": [
+    "NO_EXACT_URL_CAPTURE != NO_ARCHIVED_VARIANT",
+    "NO_CDX_RECORD_MEANS_NO_WARC_PAYLOAD_CLAIM",
+    "URL_VARIANT_SEARCH_MUST_PRESERVE_DOCUMENT_ID",
+    "ARCHIVE_COPY != INDEPENDENT_WITNESS",
+    "FAIL_IS_PRESERVED_BEFORE_PREFIX_SEARCH"
+  ]
+}
