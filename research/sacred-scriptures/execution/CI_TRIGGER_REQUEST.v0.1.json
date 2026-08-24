@@ -1,0 +1,18 @@
+{
+  "schema": "topa.sacred_scriptures.ci_trigger_request.v0.1",
+  "date": "2026-08-24",
+  "attempt": 6,
+  "purpose": "Trigger a visible pull-request Actions run for the matched-control admission phase without merging into main or unlocking scoring.",
+  "base_branch": "topa-sacred-scriptures",
+  "phase": "MATCHED_CONTROL_AND_SYNTHETIC_NULL_FREEZE",
+  "frozen_control_identities_changed_after_scoring": false,
+  "requested_checks": [
+    "EIGHT_OF_EIGHT_REAL_CONTROL_SOURCE_AND_SLICE_SEALS",
+    "TWO_OF_TWO_SYNTHETIC_NULL_GENERATOR_AND_SEED_COMMITMENTS",
+    "CONTROL_ADMISSION_DOUBLE_CODING_PERMISSION_GATE"
+  ],
+  "actual_synthetic_null_outputs_requested": false,
+  "double_coding_started": false,
+  "score_permission": false,
+  "claim_effect": "NONE"
+}
