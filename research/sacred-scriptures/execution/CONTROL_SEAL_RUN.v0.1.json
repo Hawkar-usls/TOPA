@@ -1,9 +1,10 @@
 {
   "schema": "topa.sacred_scriptures.control_seal_run.v0.1",
-  "executed_at_utc": "2026-08-24T15:21:53.966658+00:00",
-  "status": "CONTROL_SEAL_FAILURE",
+  "executed_at_utc": "2026-08-24T15:23:30.817990+00:00",
+  "status": "EIGHT_OF_EIGHT_REAL_CONTROLS_SEALED",
   "control_freeze_path": "research/sacred-scriptures/CONTROL_CANDIDATE_FREEZE.v0.1.json",
   "control_freeze_sha256": "3cecb8722c4e33067e556f88d2705a12194551535d96273de55e1c46e83ff53e",
+  "parser_version": "0.2_MAX_VALID_SPAN_TOC_DISAMBIGUATION",
   "required_slots": [
     "C01",
     "C02",
@@ -34,14 +35,17 @@
       "source_download_bytes": 459069,
       "source_sha256": "63937f747553ff842d71d2a5ec6a98f599e7c54fbef55201b72de25c8530dc1e",
       "source_content_type": "text/html; charset=utf-8",
-      "slice_bytes": 84,
-      "slice_sha256": "bda9fb81fdcf583d6eb6c471791c254c8469c09f4f3e156dfec8da7352da775f",
+      "slice_bytes": 41060,
+      "slice_sha256": "5f7ab824c1a462b3d8c81c746eac713553e58feea0832077624b9db2cf32328e",
       "slice_seal_type": "NFC_UTF8_FLOW_NORMALIZED_VISIBLE_TEXT_SHA256",
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 2,
-        "selected_start_offset_flow_chars": 1949,
-        "selected_end_offset_flow_chars": 2033,
+        "valid_start_end_candidates": 2,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 41040,
+        "selected_start_offset_flow_chars": 184757,
+        "selected_end_offset_flow_chars": 225797,
         "canonical_start_marker": "IV. THE DREAM-WARNING",
         "canonical_end_marker": "VI. THE PROPITIATION OF THE ANGRY GODS, AND ZIUSUDU'S IMMORTALITY"
       },
@@ -72,6 +76,9 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 2901,
         "selected_start_offset_flow_chars": 33342,
         "selected_end_offset_flow_chars": 36243,
         "canonical_start_marker": "The Legend of the Deluge According to Berosus.",
@@ -104,6 +111,9 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 600,
         "selected_start_offset_flow_chars": 59488,
         "selected_end_offset_flow_chars": 60088,
         "canonical_start_marker": "7. Ganglere asked: How could these keep peace with Ymer, or who was the stronger?",
@@ -136,6 +146,9 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 15169,
         "selected_start_offset_flow_chars": 55477,
         "selected_end_offset_flow_chars": 70646,
         "canonical_start_marker": "FABLE VIII. Jupiter, not thinking the punishment of Lycaon sufficient",
@@ -168,10 +181,48 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 15980,
         "selected_start_offset_flow_chars": 93410,
         "selected_end_offset_flow_chars": 109390,
         "canonical_start_marker": "CHAPTER V PHAETON",
         "canonical_end_marker": "CHAPTER VI"
+      },
+      "status": "SEALED"
+    },
+    {
+      "slot": "C06",
+      "independent_control_id": "C06_VESUVIUS_PLINY_LXV",
+      "control_class": "NON_FLOOD_CATASTROPHE_GENRE_MATCH",
+      "source_root": "Pliny the Younger's eyewitness-family account of the AD 79 Vesuvius eruption",
+      "source": "Letters of Pliny, letter LXV to Tacitus in the Project Gutenberg edition",
+      "edition_or_document_identifier": "Project Gutenberg eBook 2811; LXV — To TACITUS",
+      "source_url": "https://www.gutenberg.org/files/2811/2811-h/2811-h.htm",
+      "exact_text_locus": "Letter LXV — To TACITUS, account of Pliny the Elder's death during the Vesuvius eruption; stop before LXVI",
+      "language": "English translation of Latin",
+      "provenance": "Ancient epistolary historical witness in a public-domain English edition hosted by Project Gutenberg",
+      "rights_or_permission_state": "PUBLIC_DOMAIN_TRANSLATION_PROJECT_GUTENBERG",
+      "root_independence_note": "Historical non-flood catastrophe control; not a sacred or mythic flood source root.",
+      "known_or_plausible_contact_note": "No flood-family ancestry is posited; generic disaster/rescue narrative overlap is an expected null mechanism.",
+      "genre_match_note": "Detailed catastrophe, warning/observation, evacuation/rescue and death narrative without flood structure.",
+      "falsifier": "If this clusters with flood sources under broad warning/rescue features, those features are too generic and must lose specificity weight.",
+      "source_download_bytes": 713525,
+      "source_sha256": "1e27774d19ff1f604f8e507c22797e2902ef759ee985e5b98986717acf71496d",
+      "source_content_type": "text/html",
+      "slice_bytes": 8358,
+      "slice_sha256": "d81d28480f32a838d8b9d75ed49dc52c5ab4e71c61083f42ae1219452a209d64",
+      "slice_seal_type": "NFC_UTF8_FLOW_NORMALIZED_VISIBLE_TEXT_SHA256",
+      "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
+      "extraction_receipt": {
+        "start_occurrences_in_source": 2,
+        "valid_start_end_candidates": 2,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 8354,
+        "selected_start_offset_flow_chars": 216677,
+        "selected_end_offset_flow_chars": 225031,
+        "canonical_start_marker": "LXV — To TACITUS",
+        "canonical_end_marker": "LXVI — To CORNELIUS TACITUS"
       },
       "status": "SEALED"
     },
@@ -200,6 +251,9 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 12486,
         "selected_start_offset_flow_chars": 1276,
         "selected_end_offset_flow_chars": 13762,
         "canonical_start_marker": "MAYORALTY OF NEW ORLEANS.",
@@ -232,6 +286,9 @@
       "normalization": "HTML visible text only; script/style/noscript removed; NFC; all Unicode whitespace collapsed to one ASCII space; final LF",
       "extraction_receipt": {
         "start_occurrences_in_source": 1,
+        "valid_start_end_candidates": 1,
+        "selection_rule": "MAXIMUM_VALID_PREREGISTERED_HEADING_SPAN_TO_AVOID_TOC_ECHO",
+        "selected_span_flow_chars": 10679,
         "selected_start_offset_flow_chars": 731,
         "selected_end_offset_flow_chars": 11410,
         "canonical_start_marker": "THE JOHNSTOWN DISASTER WHICH ECLIPSED HISTORY.",
@@ -240,16 +297,11 @@
       "status": "SEALED"
     }
   ],
-  "sealed_count": 7,
+  "sealed_count": 8,
   "required_count": 8,
-  "errors": [
-    {
-      "slot": "C06",
-      "error": "RuntimeError: implausibly short visible-text locus: 16 chars"
-    }
-  ],
+  "errors": [],
   "rights_policy": "Receipts store source identity, rights state and hashes only; downloaded source texts are not mirrored by this artifact.",
-  "double_coding_permission_from_real_controls": false,
+  "double_coding_permission_from_real_controls": true,
   "score_permission": false,
   "epistemic_effect": "CONTROL_PROVENANCE_AND_IMMUTABILITY_ONLY_NO_RESEARCH_RESULT_CREDIT"
 }
