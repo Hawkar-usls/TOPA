@@ -1,0 +1,54 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_scribd_shell_negative.v0.14",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_EXACT_SCAN_MIRROR_DISCOVERY_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32760295207,
+    "github_actions_job_id": 97537281543,
+    "artifact_id": 9532392612,
+    "artifact_sha256": "1c8ff79eac0710c669902318320fbf4ed26a5c305d5144d58b6af2de40389d84"
+  },
+  "documents": [
+    "https://www.scribd.com/document/462138503/The-Texts-of-the-Battle-of-Kadesh",
+    "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh"
+  ],
+  "result": {
+    "strong_landings": 0,
+    "strong_pdfs": 0,
+    "strong_text_representations": 0,
+    "mirror_admission_review_eligible": false,
+    "both_document_responses": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 3038,
+      "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"
+    },
+    "cross_lane_observation": "The exact same 3038-byte SHA-256 was previously returned by JSTOR client-shell routes. This is treated only as evidence that the hosted HTTP environment is receiving a generic/client shell rather than document bytes; it is not source identity evidence.",
+    "classification": "SEARCH_INDEX_VISIBLE_BUT_HOSTED_RUNNER_RETURNS_NON_CONTENT_SHELL"
+  },
+  "admission": {
+    "scribd_is_source_authority": false,
+    "scribd_is_independent_witness": false,
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Search for an exact DOI/JSTOR-stable-object copy in institutional repositories or version-pinned archival/CDN transports. Require exact Wilson/AJSL identity and the frozen p.266/p.278 boundary; do not promote search snippets or alternate Kadesh editions.",
+  "laws": [
+    "HTTP_200_3038_BYTE_SHELL != SOURCE_CONTENT",
+    "SAME_SHELL_HASH_ACROSS_DOMAINS != SAME_SOURCE",
+    "SEARCH_INDEX_VISIBILITY != RETRIEVAL",
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "MIRROR_COPY != INDEPENDENT_WITNESS",
+    "FAIL_IS_PRESERVED_BEFORE_NEXT_DISCOVERY_LAYER"
+  ]
+}
