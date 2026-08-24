@@ -173,15 +173,93 @@
         "score_permission": false
       },
       "claim_effect": "EXECUTION_TRACE_ONLY"
+    },
+    {
+      "seq": 12,
+      "date": "2026-08-24",
+      "event": "PRESCORE_ATTEMPT_3_TRANSPORT_SUPERSEDED",
+      "status": "STALE_FULL_BHSA_CHECKOUT_RUN_PRESERVED",
+      "workflow_run_id": 32740381447,
+      "last_observed_state": "IN_PROGRESS_AT_EXACT_BHSA_CHECKOUT",
+      "reason_for_supersession": "Full ETCBC/bhsa checkout was operationally slow and unnecessary for sealing the frozen TF substrate; later attempts retained the same full commit authority while fetching exact required files only.",
+      "frozen_loci_changed": false,
+      "gate_effect": {
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "claim_effect": "NEGATIVE_INFRASTRUCTURE_TRACE_ONLY"
+    },
+    {
+      "seq": 13,
+      "date": "2026-08-24",
+      "event": "PRESCORE_ATTEMPT_4_REACHED_FOUR_OF_FIVE",
+      "status": "FOUR_OF_FOUR_CANARIES_FOUR_OF_FIVE_SOURCES",
+      "workflow_run_id": 32741104814,
+      "artifact_id": 9525183505,
+      "artifact_digest": "sha256:69cd29167cf457aa426481541e728cdec6f23bfb49c3f0005221de6e53853d66",
+      "results": {
+        "canaries": "4/4 PASS",
+        "sources": "4/5 SEALED",
+        "sealed": ["F01_ATRAHASIS", "F02_GILGAMESH_XI", "F04_QURAN_NOAH", "F05_SATAPATHA_MANU"],
+        "failed": {"F03_GENESIS_6_9": "Text-Fabric dependency closure missing g_cons"}
+      },
+      "repair": "Derive every text-format feature dependency directly from frozen BHSA otext.tf, fetch each dependency at the same full commit, and SHA-256 seal each file before loading.",
+      "frozen_loci_changed": false,
+      "gate_effect": {
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "claim_effect": "METHOD_EXECUTION_ONLY"
+    },
+    {
+      "seq": 14,
+      "date": "2026-08-24",
+      "event": "PRESCORE_ATTEMPT_5_FULL_GATE_PASS",
+      "status": "FOUR_OF_FOUR_CANARIES_AND_FIVE_OF_FIVE_SOURCES_PASS",
+      "workflow_run_id": 32741347834,
+      "workflow_job_id": 97476300081,
+      "artifact_id": 9525305433,
+      "artifact_digest": "sha256:020cd7f2789d99d20c8f2c5eb3dbcabdf234ab24a6c4a80466e87a28307ffd17",
+      "results": {
+        "canaries": "4/4 PASS",
+        "sources": "5/5 SEALED",
+        "source_slice_sha256": {
+          "F01_ATRAHASIS": "225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0",
+          "F02_GILGAMESH_XI": "5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee",
+          "F03_GENESIS_6_9": "2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2",
+          "F04_QURAN_NOAH": "b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c",
+          "F05_SATAPATHA_MANU": "8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6"
+        },
+        "bhsa": {
+          "commit": "b112c161cfd21eae403d51a2733740d8743460e7",
+          "substrate_sha256": "97d258176ebbbc3e49dd3e5060cef61df8d8daf63e474cbc4ea4639e36920b3a",
+          "dependency_policy": "Derived from frozen otext.tf and individually sealed"
+        }
+      },
+      "authority_artifacts": [
+        "execution/CANARY_RUN.v0.1.json",
+        "execution/SOURCE_SEAL_RUN.v0.1.json",
+        "execution/PRESCORE_EXECUTION_GATE.v0.1.json",
+        "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json"
+      ],
+      "gate_effect": {
+        "blind_packet_build_permission": true,
+        "score_permission": false
+      },
+      "frozen_loci_changed": false,
+      "claim_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"
     }
   ],
   "current_snapshot": {
-    "phase": "HASH_AND_CANARY_EXECUTION",
-    "source_seals": "3/5 AUTHORITATIVE CI RECEIPT OBSERVED IN RUN 32737902520",
-    "canaries": "4/4 PASS AUTHORITATIVE CI RECEIPT OBSERVED IN RUN 32737902520",
-    "attempt_3": "RUN 32740381447 IN_PROGRESS",
-    "guardrail_ci": "RUN 32740381473 PASS",
-    "blind_packet_build_permission": false,
-    "score_permission": false
+    "phase": "BLIND_PACKET_CONSTRUCTION_AUTHORIZED",
+    "source_seals": "5/5 SEALED",
+    "canaries": "4/4 PASS",
+    "prescore_gate": "PASS",
+    "successful_workflow_run_id": 32741347834,
+    "authority_receipt": "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json",
+    "blind_packet_build_permission": true,
+    "score_permission": false,
+    "next_legal_action": "BUILD_FINAL_BLIND_PACKETS_WITH_ANONYMIZATION_DOUBLE_CODING_MATCHED_CONTROLS_AND_NULL_FIXTURES",
+    "forbidden_until_later_gate": ["SCORE", "RANK", "INTERPRET_MATCH_AS_TRUTH"]
   }
 }
