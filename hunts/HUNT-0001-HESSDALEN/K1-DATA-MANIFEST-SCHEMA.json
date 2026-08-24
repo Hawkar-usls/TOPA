@@ -1,0 +1,14 @@
+{
+  "schema": "janus.topa.hunt.raw-day-manifest.v1",
+  "hunt_id": "HUNT-0001",
+  "state": "TEMPLATE_BEFORE_ACQUISITION",
+  "selected_day": null,
+  "selection_rule": "lexicographically earliest complete public raw day",
+  "camera_segments": [],
+  "expected_segment_duration_min": 20,
+  "continuity_verified": false,
+  "all_files_hashed": false,
+  "labels_inspected_before_selection": false,
+  "notes": "Fill only after deterministic blind day selection. Preserve missing/corrupt segments explicitly.",
+  "world_truth": false
+}
