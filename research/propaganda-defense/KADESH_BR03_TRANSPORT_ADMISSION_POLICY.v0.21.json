@@ -1,0 +1,87 @@
+{
+  "schema": "topa.propaganda_defense.kadesh_br03_transport_admission_policy.v0.21",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_V0_21_EXECUTION",
+  "purpose": "Decide whether the already frozen Wilson 1927 scholarly source authority plus the two-time Wayback transport representation provide a reproducible coding substrate for BR03 without inflating source roots or treating mirror infrastructure as evidence authority.",
+  "source_authority": {
+    "author": "John A. Wilson",
+    "title": "The Texts of the Battle of Kadesh",
+    "publication": "The American Journal of Semitic Languages and Literatures",
+    "publication_year": 1927,
+    "publisher_root": "University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; p.278 retained as THE RECORD exclusion boundary"
+  },
+  "transport_representation": {
+    "transport_document_id": "493951399",
+    "wayback_timestamps": ["20250825141753", "20260111160515"],
+    "original_url": "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh",
+    "scribd_evidence_authority": 0,
+    "wayback_evidence_authority": 0,
+    "transport_adds_independent_source_root": false,
+    "source_root_count": 1
+  },
+  "mandatory_replay_checks": {
+    "both_exact_wayback_if_replays_retrievable": true,
+    "both_snapshots_pass_KADESH_TRANSPORT_OBJECT_IDENTITY_GATE_v0_20_with_v0_20_1_correction": true,
+    "all_journal_page_labels_266_287_present_in_both": true,
+    "required_section_markers_present_and_ordered_in_both": true,
+    "page_marker_geometry_pass_in_both": true,
+    "poem_span_wordset_jaccard_min": 0.90,
+    "expected_poem_span_sha256": {
+      "20250825141753": "df2076467ac7bf47249bb9ef35e2b69121c59747c797214350910d26d33f030d",
+      "20260111160515": "7e148f78bd566f38a816a02eff872170ba301e778bbed668a3243f9dee45d67c"
+    },
+    "expected_poem_span_sha_must_match_exactly": true,
+    "full_wayback_wrapper_sha_is_not_a_source_seal": true,
+    "reason": "Whole replay wrappers drift across retrievals while the normalized Poem span remained stable; admission binds the stable content span and its internal geometry, not dynamic UI bytes."
+  },
+  "rights_gate": {
+    "jurisdictional_claim": "UNITED_STATES_ONLY",
+    "publication_year": 1927,
+    "rule": "A work published in the United States before January 1, 1931 is in the public domain in the United States because copyright protection has expired.",
+    "authority": "U.S. Copyright Office",
+    "global_public_domain_claim": false,
+    "repository_storage_policy": "Do not mirror source prose merely because U.S. public-domain status permits use; retain locators, hashes and derived coding evidence unless a later corpus policy explicitly authorizes text storage."
+  },
+  "anti_pseudoreplication": {
+    "two_wayback_timestamps_count_as_two_independent_sources": false,
+    "scribd_and_wayback_count_as_additional_source_roots": false,
+    "publisher_metadata_plus_mirror_count_as_two_attestations": false,
+    "transport_replication_role": "REPRODUCIBILITY_OF_THE_SAME_SOURCE_ONLY"
+  },
+  "state_integrity": {
+    "semantic_values_populated_before_review_must_equal": 0,
+    "x01_x35_schema_must_remain_frozen": true,
+    "zero_value_packet_must_remain_frozen": true,
+    "sacred_flood_coder_A": "UNASSIGNED",
+    "sacred_flood_coder_B": "UNASSIGNED",
+    "sacred_flood_lane_must_not_receive_X01_X35_results": true
+  },
+  "promotion_if_all_checks_pass": {
+    "BR03_RETRIEVAL_PASS": true,
+    "ancient_base_rate_external_retrieval": "8/8_CANDIDATE_PENDING_GLOBAL_CONSISTENCY_REVIEW",
+    "base_rate_coding_permission": false,
+    "semantic_values_populated": 0,
+    "score_permission": false,
+    "next_required_gate": "BASE_RATE_8_OF_8_RETRIEVAL_REVERSE_CONSISTENCY_AND_CODING_UNLOCK_REVIEW"
+  },
+  "promotion_if_any_check_fails": {
+    "BR03_RETRIEVAL_PASS": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "laws": [
+    "SCHOLARLY_AUTHORITY != TRANSPORT_HOST",
+    "TRANSPORT_REPLICATION != INDEPENDENT_ATTESTATION",
+    "WRAPPER_BYTES != SOURCE_TEXT_BYTES",
+    "STABLE_NORMALIZED_CONTENT_SPAN_CAN_BE_SEALED_WHEN_REPLAY_WRAPPER_DRIFTS",
+    "PUBLIC_DOMAIN_US != PUBLIC_DOMAIN_EVERYWHERE",
+    "BR03_RETRIEVAL_PASS != BASE_RATE_CODING_UNLOCK",
+    "NO_SEMANTIC_VALUES_BEFORE_SEPARATE_UNLOCK",
+    "NO_SACRED_FLOOD_A_B_CONTAMINATION",
+    "NO_SCORE"
+  ]
+}
