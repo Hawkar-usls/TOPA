@@ -5,17 +5,18 @@
   "coverage_claim": "NOT_EXHAUSTIVE",
   "purpose": "Index for a defensive technique atlas from low-tech recurring social influence mechanisms through generative-AI manipulation, with explicit anachronism and sacred-text false-positive controls.",
   "technique_total": 138,
+  "registry": "MANIPULATION_TECHNIQUE_REGISTRY_COMPACT.v0.1.json",
   "families": [
-    {"id": "E0_LOW_TECH_RECURRING_SOCIAL_MECHANISMS", "technique_count": 16, "path": "atlas/E0_LOW_TECH_RECURRING_SOCIAL_MECHANISMS.v0.1.json", "sha256": "ef04e6c11dcdad8ecb93b674ae75e9beded02f1f2bc72f67496325facbaf38c0"},
-    {"id": "E1_ANCIENT_LITERATE_STATE_AND_CLASSICAL_RHETORIC", "technique_count": 14, "path": "atlas/E1_ANCIENT_LITERATE_STATE_AND_CLASSICAL_RHETORIC.v0.1.json", "sha256": "d6c5d0b0ba4a491369023c4ec53f950cbb7072dc702932795e3fc4c71e97a4f1"},
-    {"id": "E2_MANUSCRIPT_RELIGIOUS_AND_MEDIEVAL_INFORMATION_ORDERS", "technique_count": 10, "path": "atlas/E2_MANUSCRIPT_RELIGIOUS_AND_MEDIEVAL_INFORMATION_ORDERS.v0.1.json", "sha256": "bb419d78d093058352960190f8e3ea79884217e0c2bc07a46bb8c83798971ffc"},
-    {"id": "E3_PRINT_AGE_AND_EARLY_MASS_PERSUASION", "technique_count": 10, "path": "atlas/E3_PRINT_AGE_AND_EARLY_MASS_PERSUASION.v0.1.json", "sha256": "7ac81f4e4ce239c1be34442a9ff17fa3b4c306c3ef29f95d58f117ec935752c0"},
-    {"id": "E4_INDUSTRIAL_MASS_MEDIA_WWI_TO_INTERWAR", "technique_count": 10, "path": "atlas/E4_INDUSTRIAL_MASS_MEDIA_WWI_TO_INTERWAR.v0.1.json", "sha256": "7c474d5768b6ac9310aef16e2aba35157405fd2754890eef1f5152492d70e3e1"},
-    {"id": "E5_RADIO_FILM_TOTALITARIAN_AND_HIGH_CONTROL_MEDIA", "technique_count": 10, "path": "atlas/E5_RADIO_FILM_TOTALITARIAN_AND_HIGH_CONTROL_MEDIA.v0.1.json", "sha256": "b7a82f2e0943ef5a0284760dd4f906d9b14364e5ac696100a0bef2e6f6ac0d8a"},
-    {"id": "E6_COLD_WAR_COVERT_INFLUENCE_AND_ACTIVE_MEASURES", "technique_count": 12, "path": "atlas/E6_COLD_WAR_COVERT_INFLUENCE_AND_ACTIVE_MEASURES.v0.1.json", "sha256": "195848294c4846ca108012c8242ab97b21fb2a9859d9ed1d03cb12c54d0f3713"},
-    {"id": "E7_BROADCAST_PR_ADVERTISING_AND_POLITICAL_COMMUNICATION", "technique_count": 10, "path": "atlas/E7_BROADCAST_PR_ADVERTISING_AND_POLITICAL_COMMUNICATION.v0.1.json", "sha256": "1e5ed8fa1d075e0d21fa8527f381f6a2171cc710c73a275d872a2fafcaf5ee95"},
-    {"id": "E8_INTERNET_SOCIAL_MEDIA_COMPUTATIONAL_PROPAGANDA", "technique_count": 28, "path": "atlas/E8_INTERNET_SOCIAL_MEDIA_COMPUTATIONAL_PROPAGANDA.v0.1.json", "sha256": "298caee80fd6914bec3c8b5f8d85e0136b0097a69530095a45d38b1dff3b43c5"},
-    {"id": "E9_GENERATIVE_AI_AND_SYNTHETIC_INFORMATION_ECOSYSTEM", "technique_count": 18, "path": "atlas/E9_GENERATIVE_AI_AND_SYNTHETIC_INFORMATION_ECOSYSTEM.v0.1.json", "sha256": "02e5e154b5ad8e2c9e83f25711ccbd5f2706f2e9c9595ea7843b50fd0fcfe005"}
+    {"id":"E0_LOW_TECH_RECURRING_SOCIAL_MECHANISMS","technique_count":16},
+    {"id":"E1_ANCIENT_LITERATE_STATE_AND_CLASSICAL_RHETORIC","technique_count":14},
+    {"id":"E2_MANUSCRIPT_RELIGIOUS_AND_MEDIEVAL_INFORMATION_ORDERS","technique_count":10},
+    {"id":"E3_PRINT_AGE_AND_EARLY_MASS_PERSUASION","technique_count":10},
+    {"id":"E4_INDUSTRIAL_MASS_MEDIA_WWI_TO_INTERWAR","technique_count":10},
+    {"id":"E5_RADIO_FILM_TOTALITARIAN_AND_HIGH_CONTROL_MEDIA","technique_count":10},
+    {"id":"E6_COLD_WAR_COVERT_INFLUENCE_AND_ACTIVE_MEASURES","technique_count":12},
+    {"id":"E7_BROADCAST_PR_ADVERTISING_AND_POLITICAL_COMMUNICATION","technique_count":10},
+    {"id":"E8_INTERNET_SOCIAL_MEDIA_COMPUTATIONAL_PROPAGANDA","technique_count":28},
+    {"id":"E9_GENERATIVE_AI_AND_SYNTHETIC_INFORMATION_ECOSYSTEM","technique_count":18}
   ],
   "hard_firewall": [
     "DESCRIPTION_OF_TECHNIQUE != AUTHORIZATION_TO_DEPLOY",
@@ -36,11 +37,11 @@
     "intent_rule": "Intent and audience effect are separate evidence gates."
   },
   "sacred_text_screening_ladder": [
-    {"level": "S0_FORM_ONLY", "meaning": "Observable form only."},
-    {"level": "S1_MANIPULATION_CANDIDATE", "meaning": "Form plus plausible pressure/asymmetry; alternatives open."},
-    {"level": "S2_PROPAGANDA_CANDIDATE", "meaning": "Institutional/collective persuasive purpose and audience direction supported."},
-    {"level": "S3_MANIPULATIVE_PROPAGANDA_SUPPORTED", "meaning": "Multiple context signals support strategic manipulation, concealment, coercion or systematic distortion."},
-    {"level": "S4_EFFECT_EVIDENCE", "meaning": "Independent evidence supports actual audience belief/behavior effect; reach alone is insufficient."}
+    {"level":"S0_FORM_ONLY","meaning":"Observable rhetorical/social form only."},
+    {"level":"S1_MANIPULATION_CANDIDATE","meaning":"Form plus plausible pressure/asymmetry; alternative genre explanations remain open."},
+    {"level":"S2_PROPAGANDA_CANDIDATE","meaning":"Institutional/collective persuasive purpose and audience direction are supported."},
+    {"level":"S3_MANIPULATIVE_PROPAGANDA_SUPPORTED","meaning":"Multiple context signals support strategic manipulation, concealment, coercive asymmetry or systematic distortion."},
+    {"level":"S4_EFFECT_EVIDENCE","meaning":"Independent evidence supports actual audience belief/behavior effect; reach/repetition alone is insufficient."}
   ],
   "base_rate_controls": [
     "contemporary law/treaty/royal inscription",
