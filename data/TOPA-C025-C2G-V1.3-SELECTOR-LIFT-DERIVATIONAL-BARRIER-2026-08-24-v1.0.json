@@ -1,0 +1,32 @@
+{
+  "schema": "topa.c025.c2g_v1_3_selector_lift_derivational_barrier.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "SHORT_LAMINAR_REASON_GEOMETRY_DOES_NOT_REMOVE_DERIVATIONAL_HARDNESS",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_C025_C2G_V1_3_SELECTOR_LIFT_DERIVATIONAL_BARRIER.md",
+  "provider_issue": 224,
+  "construction": "Sel_s(H)={s OR C : C in H}",
+  "theorems": {
+    "unit_implicate_equivalence": "Sel_s(H) |= s iff H is UNSAT",
+    "unit_implicate_recognition": "coNP-complete",
+    "plain_resolution_translation": "refutation(H) <-> derivation(Sel_s(H) |- s) with linear/polynomial overhead",
+    "b2_er_translation": "same derivational resource up to frozen polynomial encodings",
+    "poly_total_exact_selector_discovery_implication": "would decide CNF-UNSAT in P and imply P=NP=coNP"
+  },
+  "resource_separation": [
+    "SHORT_REASON_WIDTH != SHORT_REASON_PROOF",
+    "SHORT_REASON_PROOF != CHEAP_REASON_DISCOVERY",
+    "LAMINAR_GEOMETRY != DERIVATIONAL_PROGRESS"
+  ],
+  "open": [
+    "UNIVERSAL_POLY_B2_ER_REASON_PROOF_SIZE",
+    "UNIVERSAL_DETERMINISTIC_REASON_DISCOVERY",
+    "POLY_TOTAL_LEDGER_BYTES",
+    "POLY_TOTAL_POLICY_RUNTIME"
+  ],
+  "claim_ceiling": [
+    "POLY_DISCOVERY_WOULD_IMPLY_PNP != POLY_DISCOVERY_EXISTS",
+    "SELECTOR_REDUCTION != P_EQUALS_NP_PROOF",
+    "P_VS_NP = OPEN"
+  ],
+  "p_vs_np": "OPEN"
+}
