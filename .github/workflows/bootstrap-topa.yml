@@ -22,6 +22,38 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate TOPA Habitat contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = [
+              Path('.janus/HABITAT_LINK.json'),
+              Path('.janus/TOPA_NODE_MANIFEST.json'),
+              Path('registry/ACCOUNT-WIDE-TOPA-MAP.json'),
+              Path('registry/TOPA-AUDIT-STATE.json'),
+          ]
+          missing = [str(p) for p in required if not p.is_file()]
+          if missing:
+              raise SystemExit(f'Missing TOPA Habitat files: {missing}')
+
+          habitat = json.loads(Path('.janus/HABITAT_LINK.json').read_text(encoding='utf-8'))
+          if habitat.get('habitat_command_authority_granted') is not False:
+              raise SystemExit('Habitat command authority must remain false')
+          if habitat.get('write_back_default') != 'DENY':
+              raise SystemExit('Habitat write-back default must remain DENY')
+          if habitat.get('private_content_may_be_mirrored_to_public_habitat') is not False:
+              raise SystemExit('Private-to-public mirroring must remain false')
+
+          node = json.loads(Path('.janus/TOPA_NODE_MANIFEST.json').read_text(encoding='utf-8'))
+          if node.get('world_truth_authority') is not False:
+              raise SystemExit('TOPA world-truth authority must remain false')
+          print('TOPA_HABITAT_CONTRACT=PASS')
+          PY
+
       - name: Clone TOPA upstream lineage
         shell: bash
         run: |
@@ -54,7 +86,7 @@ jobs:
             | sort -z \
             | while IFS= read -r -d '' src; do cp "$src" corpus/meta-registry/; done
 
-          # Canonical foundation.
+          # Canonical foundation (upstream exact snapshot takes precedence over local bootstrap copy).
           cp .upstream/genesis/.janus/TOPA_FOUNDATION.json protocols/TOPA_FOUNDATION.json
 
           # Distributed-swarm implementation and its local foundation snapshot.
@@ -95,11 +127,12 @@ jobs:
           from pathlib import Path
 
           roots = [
+              Path('.janus'),
               Path('protocols'),
               Path('corpus/meta-registry'),
               Path('research/tesla-sweep'),
-              Path('integrations/Janus-Demiurge'),
-              Path('integrations/janus-distributed-ai-swarm'),
+              Path('integrations'),
+              Path('registry'),
           ]
 
           source_map = {
@@ -163,17 +196,18 @@ jobs:
               counts[top] = counts.get(top, 0) + 1
 
           index = {
-              'schema': 'janus.topa.corpus-index.v1',
+              'schema': 'janus.topa.corpus-index.v1.1',
               'repository': 'Hawkar-usls/TOPA',
               'motto': 'NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.',
               'file_count': len(files),
               'counts_by_top_level': counts,
               'files': files,
+              'copy_is_independent_replication': False,
               'world_truth': False,
           }
 
           snapshot = {
-              'schema': 'janus.topa.upstream-snapshot.v1',
+              'schema': 'janus.topa.upstream-snapshot.v1.1',
               'repository': 'Hawkar-usls/TOPA',
               'sources': {
                   'janus-meta-registry': {
@@ -207,6 +241,7 @@ jobs:
                       'import': 'research/tesla-sweep/',
                   },
               },
+              'local_habitat_and_method_integrations_are_topa_authored': True,
               'copy_is_independent_replication': False,
               'world_truth': False,
           }
@@ -229,7 +264,7 @@ jobs:
           rm -rf .upstream
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add protocols corpus research integrations registry
+          git add .janus protocols corpus research integrations registry
           if git diff --cached --quiet; then
             echo "TOPA snapshot already current."
             exit 0
