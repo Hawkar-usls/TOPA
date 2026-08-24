@@ -1,0 +1,30 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1-SUPPORT-LOCALITY-FRONTIER-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1",
+  "status": "OPEN_RESTRICTED_FRONTIER",
+  "restriction": {
+    "support_root_literal": "{root_variable}",
+    "support_extension": "support(left_literal) union support(right_literal)",
+    "kappa_local": "every extension support size <= kappa",
+    "initial_kappa_regime": "O(log N)"
+  },
+  "gates": {
+    "L1_A_support_calculator_verifier": "IMPLEMENTED_PENDING_CI",
+    "L1_B_restriction_stability_under_partial_assignments": "OPEN",
+    "L1_C_relation_to_NW_functional_encodings": "OPEN",
+    "L1_D_heavy_width_transfer_or_transfer_refutation": "OPEN",
+    "L1_E_explicit_restricted_counterfamily": "OPEN"
+  },
+  "literature_templates": [
+    "Sokolov 2022 heavy-width lower bounds for Resolution with local extension variables in functional Nisan-Wigderson encodings",
+    "Impagliazzo-Mouli-Pitassi 2023 and follow-up locality/arity lower bounds for Polynomial Calculus with extension variables"
+  ],
+  "transfer_status": "NOT_ESTABLISHED",
+  "claim_ceiling": "Any lower bound for ER3[kappa-local] is restriction-only until a theorem transfers it to unrestricted ER3. P vs NP remains open.",
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_LOCALITY_FRONTIER.md",
+    "research/mathematics/p-vs-np/support_locality_probe.py"
+  ]
+}
