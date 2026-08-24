@@ -1,4 +1,4 @@
-name: Bootstrap TOPA corpus
+name: Bootstrap TOPA provenance mirrors
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone TOPA upstream lineage
+      - name: Clone upstream lineage
         shell: bash
         run: |
           set -euo pipefail
@@ -34,19 +34,26 @@ jobs:
           git clone --depth 1 https://github.com/Hawkar-usls/janus-distributed-ai-swarm.git .upstream/swarm
           git clone --depth 1 --single-branch --branch janus-tesla-sweep https://github.com/Hawkar-usls/Janus-Cosmos.git .upstream/cosmos
 
-      - name: Rebuild managed TOPA snapshot
+      - name: Refresh provenance mirrors without overwriting TOPA-native authority
         shell: bash
         run: |
           set -euo pipefail
 
-          rm -rf corpus/meta-registry research/tesla-sweep protocols integrations/Janus-Demiurge integrations/janus-distributed-ai-swarm registry/TOPA-CORPUS-INDEX.json registry/UPSTREAM-SNAPSHOT.json
+          # IMPORTANT: protocols/, data/, docs/ and the TOPA-native strict router are
+          # canonical TOPA state. They are intentionally NOT removed or overwritten.
+          rm -rf \
+            corpus/meta-registry \
+            corpus/upstream-foundations \
+            research/tesla-sweep \
+            integrations/Janus-Demiurge/upstream \
+            integrations/janus-distributed-ai-swarm/upstream
 
           mkdir -p \
             corpus/meta-registry \
+            corpus/upstream-foundations \
             research/tesla-sweep \
-            protocols \
-            integrations/Janus-Demiurge \
-            integrations/janus-distributed-ai-swarm \
+            integrations/Janus-Demiurge/upstream \
+            integrations/janus-distributed-ai-swarm/upstream \
             registry
 
           # Exact archival TOPA receipts/corpora.
@@ -54,197 +61,148 @@ jobs:
             | sort -z \
             | while IFS= read -r -d '' src; do cp "$src" corpus/meta-registry/; done
 
-          # Canonical foundation.
-          cp .upstream/genesis/.janus/TOPA_FOUNDATION.json protocols/TOPA_FOUNDATION.json
+          # Upstream foundations are provenance mirrors only. They do NOT replace
+          # protocols/TOPA_FOUNDATION.json or data/TOPA_STRICT_SCIENCE_GATE_V1_0.json.
+          cp .upstream/genesis/.janus/TOPA_FOUNDATION.json \
+            corpus/upstream-foundations/Janus_Genesis_TOPA_FOUNDATION.json
 
-          # Distributed-swarm implementation and its local foundation snapshot.
           if [[ -f .upstream/swarm/.janus/TOPA_FOUNDATION.json ]]; then
-            cp .upstream/swarm/.janus/TOPA_FOUNDATION.json integrations/janus-distributed-ai-swarm/TOPA_FOUNDATION.json
+            cp .upstream/swarm/.janus/TOPA_FOUNDATION.json \
+              integrations/janus-distributed-ai-swarm/upstream/TOPA_FOUNDATION.json
           fi
-          cp .upstream/swarm/tools/topa_epistemic_router.py integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
+          cp .upstream/swarm/tools/topa_epistemic_router.py \
+            integrations/janus-distributed-ai-swarm/upstream/topa_epistemic_router.py
 
-          # Demiurge / 17-Scout integration.
           if [[ -f .upstream/demiurge/.janus/TOPA_FOUNDATION.json ]]; then
-            cp .upstream/demiurge/.janus/TOPA_FOUNDATION.json integrations/Janus-Demiurge/TOPA_FOUNDATION.json
+            cp .upstream/demiurge/.janus/TOPA_FOUNDATION.json \
+              integrations/Janus-Demiurge/upstream/TOPA_FOUNDATION.json
           fi
-          cp .upstream/demiurge/scout_swarm/orchestrator/TOPA_SCOUT_EPISTEMIC_PROTOCOL-v1.json integrations/Janus-Demiurge/TOPA_SCOUT_EPISTEMIC_PROTOCOL-v1.json
+          cp .upstream/demiurge/scout_swarm/orchestrator/TOPA_SCOUT_EPISTEMIC_PROTOCOL-v1.json \
+            integrations/Janus-Demiurge/upstream/TOPA_SCOUT_EPISTEMIC_PROTOCOL-v1.json
           if [[ -f .upstream/demiurge/scout_swarm/SCOUT_SWARM_MANIFEST-v1.json ]]; then
-            cp .upstream/demiurge/scout_swarm/SCOUT_SWARM_MANIFEST-v1.json integrations/Janus-Demiurge/SCOUT_SWARM_MANIFEST-v1.json
+            cp .upstream/demiurge/scout_swarm/SCOUT_SWARM_MANIFEST-v1.json \
+              integrations/Janus-Demiurge/upstream/SCOUT_SWARM_MANIFEST-v1.json
           fi
 
-          # Full dedicated Tesla Sweep/TOPA Hunt data tree from its research branch.
           cp -a .upstream/cosmos/data/tesla-sweep/. research/tesla-sweep/
 
-      - name: Build deterministic provenance indexes
+      - name: Validate TOPA-native strict science authority
         shell: bash
         run: |
           set -euo pipefail
-          META_SHA="$(git -C .upstream/meta rev-parse HEAD)"
-          GENESIS_SHA="$(git -C .upstream/genesis rev-parse HEAD)"
-          DEMIURGE_SHA="$(git -C .upstream/demiurge rev-parse HEAD)"
-          SWARM_SHA="$(git -C .upstream/swarm rev-parse HEAD)"
-          COSMOS_SHA="$(git -C .upstream/cosmos rev-parse HEAD)"
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-          export META_SHA GENESIS_SHA DEMIURGE_SHA SWARM_SHA COSMOS_SHA
+          required = [
+              Path('protocols/TOPA_FOUNDATION.json'),
+              Path('data/TOPA_STRICT_SCIENCE_GATE_V1_0.json'),
+              Path('integrations/janus-distributed-ai-swarm/topa_epistemic_router.py'),
+              Path('research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md'),
+          ]
+          missing = [str(p) for p in required if not p.exists()]
+          assert not missing, f'MISSING_TOPA_NATIVE_AUTHORITY={missing}'
+
+          foundation = json.loads(Path('protocols/TOPA_FOUNDATION.json').read_text())
+          gate = json.loads(Path('data/TOPA_STRICT_SCIENCE_GATE_V1_0.json').read_text())
+          assert foundation['version'] == '1.3'
+          assert foundation['id'] == 'JANUS_TOPA_FOUNDATION_V1_3_STRICT_SCIENCE'
+          assert gate['id'] == 'TOPA_STRICT_SCIENCE_GATE_V1_0'
+          assert gate['heuristic_quarantine']['active_evidence_graph'] == 'FORBIDDEN'
+          print('TOPA_NATIVE_STRICT_SCIENCE_AUTHORITY=PASS')
+          PY
+          python integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
+
+      - name: Build deterministic provenance snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          export META_SHA="$(git -C .upstream/meta rev-parse HEAD)"
+          export GENESIS_SHA="$(git -C .upstream/genesis rev-parse HEAD)"
+          export DEMIURGE_SHA="$(git -C .upstream/demiurge rev-parse HEAD)"
+          export SWARM_SHA="$(git -C .upstream/swarm rev-parse HEAD)"
+          export COSMOS_SHA="$(git -C .upstream/cosmos rev-parse HEAD)"
 
           python - <<'PY'
           from __future__ import annotations
-          import hashlib
-          import json
-          import os
+          import hashlib, json, os
           from pathlib import Path
 
-          roots = [
-              Path('data'),
-              Path('protocols'),
+          managed_roots = [
               Path('corpus/meta-registry'),
+              Path('corpus/upstream-foundations'),
               Path('research/tesla-sweep'),
-              Path('integrations/Janus-Demiurge'),
-              Path('integrations/janus-distributed-ai-swarm'),
+              Path('integrations/Janus-Demiurge/upstream'),
+              Path('integrations/janus-distributed-ai-swarm/upstream'),
           ]
-
-          source_map = {
-              'data': {
-                  'repository': 'Hawkar-usls/TOPA',
-                  'branch': 'main',
-                  'role': 'NATIVE_TOPA_ARTIFACT',
-              },
-              'protocols': {
-                  'repository': 'Hawkar-usls/Janus_Genesis',
-                  'branch': 'main',
-                  'commit': os.environ['GENESIS_SHA'],
-              },
-              'corpus/meta-registry': {
-                  'repository': 'Hawkar-usls/janus-meta-registry',
-                  'branch': 'main',
-                  'commit': os.environ['META_SHA'],
-              },
-              'research/tesla-sweep': {
-                  'repository': 'Hawkar-usls/Janus-Cosmos',
-                  'branch': 'janus-tesla-sweep',
-                  'commit': os.environ['COSMOS_SHA'],
-              },
-              'integrations/Janus-Demiurge': {
-                  'repository': 'Hawkar-usls/Janus-Demiurge',
-                  'branch': 'main',
-                  'commit': os.environ['DEMIURGE_SHA'],
-              },
-              'integrations/janus-distributed-ai-swarm': {
-                  'repository': 'Hawkar-usls/janus-distributed-ai-swarm',
-                  'branch': 'main',
-                  'commit': os.environ['SWARM_SHA'],
-              },
-          }
-
           files = []
-          for root in roots:
+          for root in managed_roots:
               if not root.exists():
                   continue
-              for path in sorted(p for p in root.rglob('*') if p.is_file() and p.name != '.keep'):
+              for path in sorted(p for p in root.rglob('*') if p.is_file()):
                   raw = path.read_bytes()
-                  rel = path.as_posix()
-                  item = {
-                      'path': rel,
+                  files.append({
+                      'path': path.as_posix(),
                       'bytes': len(raw),
                       'sha256': hashlib.sha256(raw).hexdigest(),
-                  }
-                  for prefix, source in source_map.items():
-                      if rel == prefix or rel.startswith(prefix + '/'):
-                          item['source'] = source
-                          break
-                  if path.suffix.lower() == '.json':
-                      try:
-                          obj = json.loads(raw.decode('utf-8'))
-                      except Exception:
-                          obj = None
-                      if isinstance(obj, dict):
-                          for key in ('artifact_id', 'id', 'title', 'version', 'status', 'canonical_current'):
-                              if key in obj:
-                                  item[key] = obj[key]
-                  files.append(item)
-
-          counts = {}
-          for item in files:
-              top = item['path'].split('/', 1)[0]
-              counts[top] = counts.get(top, 0) + 1
-
-          index = {
-              'schema': 'janus.topa.corpus-index.v1',
-              'repository': 'Hawkar-usls/TOPA',
-              'motto': 'NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.',
-              'file_count': len(files),
-              'counts_by_top_level': counts,
-              'files': files,
-              'world_truth': False,
-          }
+                  })
 
           snapshot = {
-              'schema': 'janus.topa.upstream-snapshot.v1',
+              'schema': 'janus.topa.upstream-snapshot.v2',
               'repository': 'Hawkar-usls/TOPA',
-              'sources': {
-                  'TOPA-native-data': {
-                      'repository': 'Hawkar-usls/TOPA',
-                      'branch': 'main',
-                      'import': 'data/',
-                      'mode': 'NATIVE_NOT_UPSTREAM_COPY',
-                  },
-                  'janus-meta-registry': {
-                      'repository': 'Hawkar-usls/janus-meta-registry',
-                      'branch': 'main',
-                      'commit': os.environ['META_SHA'],
-                      'import': 'corpus/meta-registry/JANUS-TOPA-*.json',
-                  },
-                  'Janus_Genesis': {
-                      'repository': 'Hawkar-usls/Janus_Genesis',
-                      'branch': 'main',
-                      'commit': os.environ['GENESIS_SHA'],
-                      'import': 'protocols/TOPA_FOUNDATION.json',
-                  },
-                  'Janus-Demiurge': {
-                      'repository': 'Hawkar-usls/Janus-Demiurge',
-                      'branch': 'main',
-                      'commit': os.environ['DEMIURGE_SHA'],
-                      'import': 'integrations/Janus-Demiurge/',
-                  },
-                  'janus-distributed-ai-swarm': {
-                      'repository': 'Hawkar-usls/janus-distributed-ai-swarm',
-                      'branch': 'main',
-                      'commit': os.environ['SWARM_SHA'],
-                      'import': 'integrations/janus-distributed-ai-swarm/',
-                  },
-                  'Janus-Cosmos-tesla-sweep': {
-                      'repository': 'Hawkar-usls/Janus-Cosmos',
-                      'branch': 'janus-tesla-sweep',
-                      'commit': os.environ['COSMOS_SHA'],
-                      'import': 'research/tesla-sweep/',
-                  },
+              'authority_rule': 'UPSTREAM_MIRROR_IS_PROVENANCE_NOT_TOPA_NATIVE_AUTHORITY',
+              'topa_native_authority': {
+                  'foundation': 'protocols/TOPA_FOUNDATION.json',
+                  'strict_science_gate': 'data/TOPA_STRICT_SCIENCE_GATE_V1_0.json',
+                  'router': 'integrations/janus-distributed-ai-swarm/topa_epistemic_router.py',
               },
+              'sources': {
+                  'janus-meta-registry': os.environ['META_SHA'],
+                  'Janus_Genesis': os.environ['GENESIS_SHA'],
+                  'Janus-Demiurge': os.environ['DEMIURGE_SHA'],
+                  'janus-distributed-ai-swarm': os.environ['SWARM_SHA'],
+                  'Janus-Cosmos-tesla-sweep': os.environ['COSMOS_SHA'],
+              },
+              'mirrored_files': files,
               'copy_is_independent_replication': False,
               'world_truth': False,
           }
-
-          Path('registry/TOPA-CORPUS-INDEX.json').write_text(
-              json.dumps(index, indent=2, ensure_ascii=False) + '\n', encoding='utf-8'
-          )
           Path('registry/UPSTREAM-SNAPSHOT.json').write_text(
               json.dumps(snapshot, indent=2, ensure_ascii=False) + '\n', encoding='utf-8'
           )
           PY
 
-      - name: Validate imported TOPA router
-        run: python integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
+      - name: Assert bootstrap cannot overwrite native authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff -- protocols/TOPA_FOUNDATION.json \
+            data/TOPA_STRICT_SCIENCE_GATE_V1_0.json \
+            integrations/janus-distributed-ai-swarm/topa_epistemic_router.py > /tmp/native.diff
+          if [[ -s /tmp/native.diff ]]; then
+            cat /tmp/native.diff
+            echo 'BOOTSTRAP_ATTEMPTED_TO_MUTATE_TOPA_NATIVE_AUTHORITY' >&2
+            exit 1
+          fi
+          echo 'BOOTSTRAP_NATIVE_AUTHORITY_IMMUTABILITY=PASS'
 
-      - name: Commit consolidated snapshot
+      - name: Commit refreshed provenance mirrors
         shell: bash
         run: |
           set -euo pipefail
           rm -rf .upstream
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add protocols corpus research integrations registry
+          git add \
+            corpus/meta-registry \
+            corpus/upstream-foundations \
+            research/tesla-sweep \
+            integrations/Janus-Demiurge/upstream \
+            integrations/janus-distributed-ai-swarm/upstream \
+            registry/UPSTREAM-SNAPSHOT.json
           if git diff --cached --quiet; then
-            echo "TOPA snapshot already current."
+            echo "TOPA provenance mirrors already current."
             exit 0
           fi
-          git commit -m "Refresh complete TOPA corpus index"
+          git commit -m "Refresh TOPA provenance mirrors without authority overwrite"
           git push
