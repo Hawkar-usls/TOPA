@@ -1,0 +1,42 @@
+{
+  "schema": "topa.propaganda_defense.kadesh_transport_identity_implementation_correction.v0.20.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_RERUN",
+  "parent_gate": "KADESH_TRANSPORT_OBJECT_IDENTITY_GATE.v0.20.json",
+  "parent_fail": "BASE_RATE_KADESH_TRANSPORT_IDENTITY_FAIL.v0.20.json",
+  "scope": "IMPLEMENTATION_ONLY_NO_THRESHOLD_OR_SOURCE_CHANGE",
+  "correction": {
+    "field": "cross_timestamp_mandatory.same_marker_vector",
+    "incorrect_implementation": "Equality of raw occurrence counts for each marker in two complete Scribd UI replays.",
+    "correct_implementation": "Equality of the boolean presence/absence vector for the four mandatory textual markers after each snapshot has already passed its per-snapshot geometry gate.",
+    "mandatory_vector": ["the_poem", "council_urges_peace", "the_record", "comment_on_the_texts"],
+    "raw_marker_multiplicity_retained_as_diagnostic": true,
+    "raw_marker_multiplicity_has_semantic_authority": false
+  },
+  "unchanged": {
+    "source_authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "transport_document_id": "493951399",
+    "wayback_timestamps": ["20250825141753", "20260111160515"],
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "all_per_snapshot_thresholds": true,
+    "jaccard_threshold": 0.90,
+    "page_geometry_thresholds": true,
+    "promotion_ceiling": "TRANSPORT_ADMISSION_REVIEW_ELIGIBLE_ONLY",
+    "br03_retrieval_pass": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "rationale": "The frozen gate used the term marker vector and separately required each marker's presence and geometry. Counting duplicated UI occurrences is representation-level noise and was never frozen as a semantic cross-timestamp invariant. The correction aligns code with the pre-existing gate rather than weakening the gate after seeing data.",
+  "laws": [
+    "IMPLEMENTATION_MUST_MATCH_FROZEN_GATE_SEMANTICS",
+    "BOOLEAN_MARKER_VECTOR != RAW_UI_OCCURRENCE_COUNTS",
+    "NO_THRESHOLD_CHANGE",
+    "NO_SOURCE_OR_LOCUS_CHANGE",
+    "FAILED_V0_20_REMAINS_PRESERVED",
+    "RERUN_CANNOT_DIRECTLY_PROMOTE_BR03",
+    "NO_CODING",
+    "NO_SCORE"
+  ]
+}
