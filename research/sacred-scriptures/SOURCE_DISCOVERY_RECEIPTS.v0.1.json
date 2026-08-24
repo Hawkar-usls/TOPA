@@ -11,6 +11,13 @@
       "reuse_state": "CHECK_VERSION_LICENSE"
     },
     {
+      "tradition": "Judaism",
+      "source": "Sefaria",
+      "url": "https://www.sefaria.org/Genesis.6.9",
+      "verified": "Genesis 6 is exposed with Hebrew text and version-specific translation metadata; use the Hebrew layer for the flood blind-test and preserve exact version identity.",
+      "reuse_state": "ORIGINAL_LANGUAGE_ANALYSIS_ALLOWED_AS_SOURCE_REFERENCE; CHECK_VERSION_LICENSE_BEFORE_MIRROR"
+    },
+    {
       "tradition": "Christianity",
       "source": "BibleGateway KJV",
       "url": "https://www.biblegateway.com/versions/King-James-Version-KJV-Bible/",
@@ -38,6 +45,27 @@
       "url": "https://gretil.sub.uni-goettingen.de/",
       "verified": "Electronic text register includes Vedic and epic materials, including Mahabharata files and edition/inputter metadata.",
       "reuse_state": "PRESERVE_ELECTRONIC_EDITION_PROVENANCE"
+    },
+    {
+      "tradition": "Ancient Mesopotamian",
+      "source": "British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/W_1889-0426-236",
+      "verified": "Museum object 1889,0426.236 is an Old Babylonian tablet from an Atrahasis flood-text set; the museum dates it to 1635 BC and identifies Sippar as findspot.",
+      "reuse_state": "OBJECT_METADATA_VERIFIED; TEXT_EDITION_STILL_REQUIRED"
+    },
+    {
+      "tradition": "Ancient Mesopotamian",
+      "source": "British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/W_K-3375",
+      "verified": "Museum object K.3375 is the Flood Tablet / Gilgamesh Tablet XI, Neo-Assyrian, from Kouyunjik; the museum dates it to the 7th century BC.",
+      "reuse_state": "OBJECT_METADATA_VERIFIED; PHILOLOGICAL_EDITION_STILL_REQUIRED"
+    },
+    {
+      "tradition": "Ancient Mesopotamian",
+      "source": "British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/W_DT-42",
+      "verified": "Museum object DT.42 is a Neo-Assyrian bilingual fragment identified as a copy of the Atrahasis myth and an account of the Flood.",
+      "reuse_state": "MANUSCRIPT_WITNESS; COLLAPSE_TO_TEXTUAL_FAMILY_FOR_INDEPENDENCE_COUNTS"
     },
     {
       "tradition": "Tibetan Buddhism",
@@ -70,6 +98,10 @@
   ],
   "rule": "SOURCE_VERIFIED != MIRROR_RIGHTS_VERIFIED",
   "next_source_discovery": [
+    "philologically reliable Atrahasis transliteration/edition",
+    "philologically reliable Gilgamesh Tablet XI transliteration/edition",
+    "exact Sanskrit locus and critical/electronic edition for Manu flood",
+    "exact Qur'anic Noah passage set and Arabic text source receipt",
     "Guru Granth Sahib authoritative edition",
     "Avesta scholarly/original-language source",
     "Jain Agama authoritative digital source",
