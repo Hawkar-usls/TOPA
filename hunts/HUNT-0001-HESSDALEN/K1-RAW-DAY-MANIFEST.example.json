@@ -1,0 +1,63 @@
+{
+  "schema": "janus.topa.hunt.raw-day-manifest.v1.1-example",
+  "hunt_id": "HUNT-0001",
+  "state": "EXAMPLE_NOT_DATA",
+  "selected_day": null,
+  "selection_rule": "lexicographically earliest complete public raw day",
+  "selection_frozen_before_anomaly_labels": true,
+  "timezone": null,
+  "clock_basis": null,
+  "clock_sync_method": null,
+  "known_clock_offset_ms": null,
+  "known_clock_drift_ms_per_hour": null,
+  "cameras": [
+    {
+      "camera_id": null,
+      "station_id": null,
+      "latitude": null,
+      "longitude": null,
+      "altitude_m": null,
+      "orientation": {
+        "azimuth_deg": null,
+        "elevation_deg": null,
+        "roll_deg": null
+      },
+      "field_of_view": {
+        "horizontal_deg": null,
+        "vertical_deg": null
+      },
+      "intrinsic_calibration": null,
+      "extrinsic_calibration": null,
+      "segments": [
+        {
+          "segment_index": 0,
+          "source_url": null,
+          "source_filename": null,
+          "expected_start": null,
+          "expected_end": null,
+          "actual_start_from_container": null,
+          "actual_end_from_container": null,
+          "bytes": null,
+          "sha256": null,
+          "missing": false,
+          "corrupt": false,
+          "notes": null
+        }
+      ]
+    }
+  ],
+  "expected_segment_duration_min": 20,
+  "continuity_verified": false,
+  "all_files_hashed": false,
+  "labels_inspected_before_selection": false,
+  "stereo_baseline_gate": {
+    "surveyed_separated_positions": false,
+    "overlapping_fov": false,
+    "clock_sync_bounded": false,
+    "intrinsics_known": false,
+    "extrinsics_known": false,
+    "triangulation_allowed": false
+  },
+  "note": "Example schema only. Null fields must stay null until source-bound metadata is obtained; do not infer missing calibration or clock values.",
+  "world_truth": false
+}
