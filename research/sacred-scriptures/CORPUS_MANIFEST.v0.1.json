@@ -1,0 +1,548 @@
+{
+  "schema": "topa.sacred_scriptures.corpus_manifest.v0.1",
+  "created_utc": "2026-08-24T11:30:00Z",
+  "status": "OPEN_ENDED_SEED_CORPUS",
+  "coverage_claim": "NOT_EXHAUSTIVE",
+  "target": "Build a provenance-bound corpus of sacred, canonical, liturgical, foundational and historically religious texts across traditions without flattening different concepts of scripture into one category.",
+  "laws": [
+    "TEXT_EXISTS != EVENT_TRUTH",
+    "CANONICAL_STATUS != EMPIRICAL_TRUTH",
+    "TRANSLATION != ORIGINAL",
+    "COMMENTARY != PRIMARY_SCRIPTURE",
+    "SHARED_MOTIF != SHARED_SOURCE",
+    "MODEL_CONSENSUS != INDEPENDENT_CONFIRMATION",
+    "ORAL_TRADITION != FREE_SCRAPING_PERMISSION",
+    "MISSING_FROM_CORPUS != MISSING_FROM_WORLD"
+  ],
+  "classes": [
+    "PRIMARY_CANON",
+    "SECONDARY_SACRED",
+    "CONTESTED_CANON",
+    "HISTORICAL_RELIGIOUS_TEXT",
+    "ORAL_COMMUNITY_CONTROLLED"
+  ],
+  "verified_source_roots": [
+    {
+      "name": "Sefaria",
+      "url": "https://www.sefaria.org/texts",
+      "scope": "Jewish textual library; version-specific licenses must be preserved",
+      "ingest_rule": "CHECK_VERSION_LICENSE"
+    },
+    {
+      "name": "BibleGateway KJV",
+      "url": "https://www.biblegateway.com/versions/King-James-Version-KJV-Bible/",
+      "scope": "KJV Old and New Testaments",
+      "ingest_rule": "PUBLIC_DOMAIN_US_SOURCE_REPORTED"
+    },
+    {
+      "name": "Tanzil",
+      "url": "https://tanzil.net/download/",
+      "scope": "Arabic Qur'an text and metadata",
+      "ingest_rule": "VERBATIM_ONLY_WITH_ATTRIBUTION_AND_SOURCE_LINK"
+    },
+    {
+      "name": "SuttaCentral",
+      "url": "https://suttacentral.net/",
+      "scope": "Early Buddhist texts, parallels and translations",
+      "ingest_rule": "CHECK_PER_TEXT_LICENSE; ORIGINAL_LANGUAGE_TEXTS_PUBLIC_DOMAIN"
+    },
+    {
+      "name": "GRETIL",
+      "url": "https://gretil.sub.uni-goettingen.de/",
+      "scope": "Electronic texts in Indian languages including Vedic, epic and other Sanskrit materials",
+      "ingest_rule": "PRESERVE_EDITION_PROVENANCE_AND_REUSE_TERMS"
+    },
+    {
+      "name": "84000",
+      "url": "https://84000.co/",
+      "scope": "Translations from the Tibetan Buddhist canon",
+      "ingest_rule": "METADATA_BY_DEFAULT; CHECK_TRANSLATION_LICENSE_AND_NO_DERIVATIVES"
+    }
+  ],
+  "traditions": [
+    {
+      "id": "JUDAISM_RABBINIC",
+      "label": "Judaism / Rabbinic tradition",
+      "works": [
+        ["Torah / Pentateuch", "PRIMARY_CANON"],
+        ["Nevi'im / Prophets", "PRIMARY_CANON"],
+        ["Ketuvim / Writings", "PRIMARY_CANON"],
+        ["Mishnah", "SECONDARY_SACRED"],
+        ["Tosefta", "SECONDARY_SACRED"],
+        ["Jerusalem Talmud", "SECONDARY_SACRED"],
+        ["Babylonian Talmud", "SECONDARY_SACRED"],
+        ["Midrash collections", "SECONDARY_SACRED"],
+        ["Targumim", "SECONDARY_SACRED"]
+      ],
+      "source_status": "SOURCE_ROOT_AVAILABLE_SEFARIA"
+    },
+    {
+      "id": "SAMARITANISM",
+      "label": "Samaritan tradition",
+      "works": [
+        ["Samaritan Pentateuch", "PRIMARY_CANON"],
+        ["Samaritan liturgical and exegetical corpus", "SECONDARY_SACRED"]
+      ],
+      "source_status": "SOURCE_DISCOVERY_PENDING"
+    },
+    {
+      "id": "CHRISTIANITY_WESTERN",
+      "label": "Christianity / Western canons",
+      "works": [
+        ["Old Testament / Hebrew Bible books", "PRIMARY_CANON"],
+        ["New Testament", "PRIMARY_CANON"],
+        ["Catholic Deuterocanon", "PRIMARY_CANON"],
+        ["Protestant Apocrypha", "CONTESTED_CANON"],
+        ["Didache", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Apostolic Fathers", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "KJV_SOURCE_ROOT_VERIFIED; OTHER_CANONS_REQUIRE_EDITION_SPECIFIC_SOURCES"
+    },
+    {
+      "id": "CHRISTIANITY_EASTERN_ORTHODOX",
+      "label": "Eastern Orthodox Christianity",
+      "works": [
+        ["Septuagint Old Testament tradition", "PRIMARY_CANON"],
+        ["New Testament", "PRIMARY_CANON"],
+        ["1 Esdras", "PRIMARY_CANON"],
+        ["Prayer of Manasseh", "PRIMARY_CANON"],
+        ["Psalm 151", "PRIMARY_CANON"],
+        ["3 Maccabees", "PRIMARY_CANON"],
+        ["4 Maccabees", "CONTESTED_CANON"]
+      ],
+      "source_status": "SOURCE_DISCOVERY_PENDING"
+    },
+    {
+      "id": "CHRISTIANITY_ETHIOPIAN_ORTHODOX",
+      "label": "Ethiopian Orthodox Tewahedo tradition",
+      "works": [
+        ["Old Testament broader canon", "PRIMARY_CANON"],
+        ["New Testament broader canon", "PRIMARY_CANON"],
+        ["1 Enoch", "PRIMARY_CANON"],
+        ["Jubilees", "PRIMARY_CANON"],
+        ["Meqabyan books", "PRIMARY_CANON"],
+        ["Kebra Nagast", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "CANON_AND_EDITION_MAPPING_REQUIRED"
+    },
+    {
+      "id": "ISLAM",
+      "label": "Islam",
+      "works": [
+        ["Qur'an", "PRIMARY_CANON"],
+        ["Hadith collections", "SECONDARY_SACRED"],
+        ["Sahih al-Bukhari", "SECONDARY_SACRED"],
+        ["Sahih Muslim", "SECONDARY_SACRED"],
+        ["al-Kafi", "SECONDARY_SACRED"],
+        ["Nahj al-Balagha", "SECONDARY_SACRED"]
+      ],
+      "source_status": "QURAN_ARABIC_SOURCE_ROOT_VERIFIED_TANZIL; HADITH_PROVENANCE_PENDING"
+    },
+    {
+      "id": "DRUZE",
+      "label": "Druze tradition",
+      "works": [
+        ["Epistles of Wisdom / Rasa'il al-Hikma", "PRIMARY_CANON"]
+      ],
+      "source_status": "RESTRICTED_CONTEXT; METADATA_ONLY_UNTIL_ACCESS_AND_COMMUNITY_RULES_CHECKED"
+    },
+    {
+      "id": "BAHAI",
+      "label": "Bahá'í Faith",
+      "works": [
+        ["Kitab-i-Aqdas", "PRIMARY_CANON"],
+        ["Kitab-i-Iqan", "PRIMARY_CANON"],
+        ["Hidden Words", "PRIMARY_CANON"],
+        ["Seven Valleys", "PRIMARY_CANON"],
+        ["Gleanings from the Writings of Baha'u'llah", "PRIMARY_CANON"]
+      ],
+      "source_status": "OFFICIAL_REFERENCE_LIBRARY_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "LDS",
+      "label": "Latter-day Saint tradition",
+      "works": [
+        ["Bible", "PRIMARY_CANON"],
+        ["Book of Mormon", "PRIMARY_CANON"],
+        ["Doctrine and Covenants", "PRIMARY_CANON"],
+        ["Pearl of Great Price", "PRIMARY_CANON"]
+      ],
+      "source_status": "OFFICIAL_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "MANDAEISM",
+      "label": "Mandaeism",
+      "works": [
+        ["Ginza Rabba", "PRIMARY_CANON"],
+        ["Mandaean Book of John", "PRIMARY_CANON"],
+        ["Qolasta", "PRIMARY_CANON"]
+      ],
+      "source_status": "SOURCE_DISCOVERY_AND_TRANSLATION_RIGHTS_PENDING"
+    },
+    {
+      "id": "YAZIDISM",
+      "label": "Yazidism",
+      "works": [
+        ["Qewls / sacred hymns", "ORAL_COMMUNITY_CONTROLLED"],
+        ["Mishafa Resh / Black Book", "CONTESTED_CANON"],
+        ["Kitêba Cilwe / Book of Revelation", "CONTESTED_CANON"]
+      ],
+      "source_status": "AUTHENTICITY_AND_COMMUNITY_PROVENANCE_GATE_REQUIRED"
+    },
+    {
+      "id": "HINDU_VEDIC",
+      "label": "Vedic / Hindu traditions",
+      "works": [
+        ["Rigveda", "PRIMARY_CANON"],
+        ["Samaveda", "PRIMARY_CANON"],
+        ["Yajurveda", "PRIMARY_CANON"],
+        ["Atharvaveda", "PRIMARY_CANON"],
+        ["Brahmanas", "PRIMARY_CANON"],
+        ["Aranyakas", "PRIMARY_CANON"],
+        ["Principal Upanishads", "PRIMARY_CANON"],
+        ["Bhagavad Gita", "PRIMARY_CANON"],
+        ["Mahabharata", "SECONDARY_SACRED"],
+        ["Ramayana", "SECONDARY_SACRED"],
+        ["Puranas", "SECONDARY_SACRED"],
+        ["Dharmaśāstra corpus", "SECONDARY_SACRED"]
+      ],
+      "source_status": "GRETIL_SOURCE_ROOT_AVAILABLE_FOR_MANY_SANSKRIT_TEXTS"
+    },
+    {
+      "id": "HINDU_AGAMIC",
+      "label": "Shaiva, Vaishnava and Shakta Agamic/Tantric traditions",
+      "works": [
+        ["Shaiva Agamas", "PRIMARY_CANON"],
+        ["Pancharatra Samhitas", "PRIMARY_CANON"],
+        ["Vaikhanasa texts", "PRIMARY_CANON"],
+        ["Shakta Tantras", "PRIMARY_CANON"],
+        ["Devi Mahatmya", "PRIMARY_CANON"]
+      ],
+      "source_status": "TEXT_BY_TEXT_PROVENANCE_REQUIRED"
+    },
+    {
+      "id": "BUDDHISM_THERAVADA",
+      "label": "Theravāda Buddhism",
+      "works": [
+        ["Vinaya Pitaka", "PRIMARY_CANON"],
+        ["Sutta Pitaka", "PRIMARY_CANON"],
+        ["Abhidhamma Pitaka", "PRIMARY_CANON"],
+        ["Dhammapada", "PRIMARY_CANON"],
+        ["Jataka collection", "PRIMARY_CANON"]
+      ],
+      "source_status": "SUTTACENTRAL_SOURCE_ROOT_AVAILABLE; LICENSE_PER_VERSION"
+    },
+    {
+      "id": "BUDDHISM_MAHAYANA",
+      "label": "Mahāyāna Buddhism",
+      "works": [
+        ["Prajnaparamita corpus", "PRIMARY_CANON"],
+        ["Heart Sutra", "PRIMARY_CANON"],
+        ["Diamond Sutra", "PRIMARY_CANON"],
+        ["Lotus Sutra", "PRIMARY_CANON"],
+        ["Avatamsaka Sutra", "PRIMARY_CANON"],
+        ["Vimalakirti Sutra", "PRIMARY_CANON"],
+        ["Lankavatara Sutra", "PRIMARY_CANON"],
+        ["Pure Land sutras", "PRIMARY_CANON"],
+        ["Mahaparinirvana Sutra", "PRIMARY_CANON"]
+      ],
+      "source_status": "MULTI_CANON_LANGUAGE_ALIGNMENT_REQUIRED"
+    },
+    {
+      "id": "BUDDHISM_TIBETAN",
+      "label": "Tibetan Buddhist traditions",
+      "works": [
+        ["Kangyur", "PRIMARY_CANON"],
+        ["Tengyur", "SECONDARY_SACRED"],
+        ["Bardo Thodol", "SECONDARY_SACRED"]
+      ],
+      "source_status": "84000_AVAILABLE_FOR_MANY_KANGYUR_TRANSLATIONS; LICENSE_PER_TEXT"
+    },
+    {
+      "id": "BON",
+      "label": "Bön",
+      "works": [
+        ["Bön Kanjur", "PRIMARY_CANON"],
+        ["Bön Tenjur", "SECONDARY_SACRED"]
+      ],
+      "source_status": "SPECIALIST_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "JAINISM",
+      "label": "Jain traditions",
+      "works": [
+        ["Śvetāmbara Āgamas", "PRIMARY_CANON"],
+        ["Acharanga Sutra", "PRIMARY_CANON"],
+        ["Sutrakritanga", "PRIMARY_CANON"],
+        ["Kalpa Sutra", "PRIMARY_CANON"],
+        ["Tattvartha Sutra", "SECONDARY_SACRED"]
+      ],
+      "source_status": "SECTARIAN_CANON_DIFFERENCE_GATE_REQUIRED"
+    },
+    {
+      "id": "SIKHISM",
+      "label": "Sikhism",
+      "works": [
+        ["Guru Granth Sahib", "PRIMARY_CANON"],
+        ["Dasam Granth", "CONTESTED_CANON"],
+        ["Sarbloh Granth", "CONTESTED_CANON"]
+      ],
+      "source_status": "AUTHORITATIVE_EDITION_AND_TRANSLATION_SOURCE_PENDING"
+    },
+    {
+      "id": "ZOROASTRIANISM",
+      "label": "Zoroastrianism",
+      "works": [
+        ["Avesta", "PRIMARY_CANON"],
+        ["Yasna", "PRIMARY_CANON"],
+        ["Gathas", "PRIMARY_CANON"],
+        ["Visperad", "PRIMARY_CANON"],
+        ["Vendidad", "PRIMARY_CANON"],
+        ["Yashts", "PRIMARY_CANON"],
+        ["Khordeh Avesta", "PRIMARY_CANON"],
+        ["Bundahishn", "SECONDARY_SACRED"],
+        ["Denkard", "SECONDARY_SACRED"]
+      ],
+      "source_status": "SPECIALIST_ARCHIVE_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "MANICHAEISM",
+      "label": "Manichaeism",
+      "works": [
+        ["Shabuhragan fragments", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Kephalaia", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Manichaean Psalm-Book", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Cologne Mani Codex", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "FRAGMENTARY_MULTI_LANGUAGE_CORPUS"
+    },
+    {
+      "id": "DAOISM",
+      "label": "Daoist traditions",
+      "works": [
+        ["Dao De Jing", "PRIMARY_CANON"],
+        ["Zhuangzi", "SECONDARY_SACRED"],
+        ["Daozang / Daoist Canon", "PRIMARY_CANON"],
+        ["Taiping Jing", "PRIMARY_CANON"],
+        ["Huangting Jing", "PRIMARY_CANON"]
+      ],
+      "source_status": "EDITION_AND_CANON_LAYER_MAPPING_REQUIRED"
+    },
+    {
+      "id": "CONFUCIAN",
+      "label": "Confucian traditions",
+      "works": [
+        ["Book of Changes / Yijing", "PRIMARY_CANON"],
+        ["Book of Documents", "PRIMARY_CANON"],
+        ["Book of Songs", "PRIMARY_CANON"],
+        ["Book of Rites", "PRIMARY_CANON"],
+        ["Spring and Autumn Annals", "PRIMARY_CANON"],
+        ["Analects", "PRIMARY_CANON"],
+        ["Mencius", "PRIMARY_CANON"],
+        ["Great Learning", "PRIMARY_CANON"],
+        ["Doctrine of the Mean", "PRIMARY_CANON"]
+      ],
+      "source_status": "CLASSICAL_CANON; CATEGORY_SCRIPTURE_MUST_NOT_BE_FORCED"
+    },
+    {
+      "id": "SHINTO",
+      "label": "Shinto traditions",
+      "works": [
+        ["Kojiki", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Nihon Shoki", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Norito", "PRIMARY_CANON"],
+        ["Engishiki ritual texts", "SECONDARY_SACRED"]
+      ],
+      "source_status": "RITUAL_AND_HISTORIOGRAPHIC_CATEGORIES_SEPARATE"
+    },
+    {
+      "id": "TENRIKYO",
+      "label": "Tenrikyo",
+      "works": [
+        ["Ofudesaki", "PRIMARY_CANON"],
+        ["Mikagura-uta", "PRIMARY_CANON"],
+        ["Osashizu", "PRIMARY_CANON"]
+      ],
+      "source_status": "OFFICIAL_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "CAO_DAI",
+      "label": "Caodaism",
+      "works": [
+        ["Thánh Ngôn Hiệp Tuyển", "PRIMARY_CANON"],
+        ["Pháp Chánh Truyền", "PRIMARY_CANON"]
+      ],
+      "source_status": "LANGUAGE_AND_EDITION_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "ANCIENT_EGYPTIAN",
+      "label": "Ancient Egyptian religion",
+      "works": [
+        ["Pyramid Texts", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Coffin Texts", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Book of the Dead / Book of Going Forth by Day", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Amduat", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Book of Gates", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Litany of Re", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Book of Caverns", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "EDITION_MANUSCRIPT_AND_TRANSLATION_PROVENANCE_REQUIRED"
+    },
+    {
+      "id": "MESOPOTAMIAN",
+      "label": "Sumerian / Akkadian / Babylonian / Assyrian religious literature",
+      "works": [
+        ["Enuma Elish", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Atrahasis", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Epic of Gilgamesh", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Eridu Genesis", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Descent of Inanna / Ishtar", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Enki and Ninhursag", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Sumerian temple hymns", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "TABLET_EDITION_AND_FRAGMENT_ID_REQUIRED"
+    },
+    {
+      "id": "UGARITIC_CANAANITE",
+      "label": "Ugaritic / Canaanite religion",
+      "works": [
+        ["Baal Cycle", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Kirta Epic", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Aqhat Epic", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "TABLET_PROVENANCE_REQUIRED"
+    },
+    {
+      "id": "ANCIENT_GREEK",
+      "label": "Ancient Greek religious traditions",
+      "works": [
+        ["Homeric Hymns", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Orphic Hymns", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Orphic gold-tablet texts", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Hesiodic Theogony", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "GENRE_NOT_EQUIVALENT_TO_SCRIPTURE"
+    },
+    {
+      "id": "MAYA_KICHE",
+      "label": "K'iche' Maya tradition",
+      "works": [
+        ["Popol Vuh", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "MANUSCRIPT_TRANSLATION_AND_COLONIAL_TRANSMISSION_PROVENANCE_REQUIRED"
+    },
+    {
+      "id": "MAYA_YUCATEC",
+      "label": "Yucatec Maya traditions",
+      "works": [
+        ["Books of Chilam Balam", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "MULTIPLE_MANUSCRIPTS; PROVENANCE_REQUIRED"
+    },
+    {
+      "id": "NAHUA",
+      "label": "Nahua / Mexica religious traditions",
+      "works": [
+        ["Cantares Mexicanos sacred songs", "HISTORICAL_RELIGIOUS_TEXT"],
+        ["Florentine Codex religious books", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "COLONIAL_MEDIATION_AND_TRANSLATION_GATE_REQUIRED"
+    },
+    {
+      "id": "YORUBA_IFA",
+      "label": "Yoruba Ifá traditions",
+      "works": [
+        ["Odu Ifa corpus", "ORAL_COMMUNITY_CONTROLLED"]
+      ],
+      "source_status": "DO_NOT_TREAT_TRANSCRIPTIONS_AS_COMPLETE_OR_FREE; COMMUNITY_CONTEXT_REQUIRED"
+    },
+    {
+      "id": "HAWAIIAN",
+      "label": "Hawaiian sacred genealogical tradition",
+      "works": [
+        ["Kumulipo", "HISTORICAL_RELIGIOUS_TEXT"]
+      ],
+      "source_status": "LANGUAGE_AND_COMMUNITY_CONTEXT_REQUIRED"
+    },
+    {
+      "id": "MAORI",
+      "label": "Māori sacred/oral traditions",
+      "works": [
+        ["Whakapapa, karakia and tribal creation traditions", "ORAL_COMMUNITY_CONTROLLED"]
+      ],
+      "source_status": "IWI_HAPU_SPECIFIC; NO_GENERIC_SCRAPE"
+    },
+    {
+      "id": "INDIGENOUS_NORTH_AMERICA",
+      "label": "Indigenous North American traditions",
+      "works": [
+        ["Community-specific sacred narratives, songs and ceremonial texts", "ORAL_COMMUNITY_CONTROLLED"]
+      ],
+      "source_status": "PLACEHOLDER_ONLY; MUST_SPLIT_BY_NATION_AND_PERMISSION_CONTEXT"
+    },
+    {
+      "id": "RASTAFARI",
+      "label": "Rastafari",
+      "works": [
+        ["Bible", "PRIMARY_CANON"],
+        ["Kebra Nagast", "SECONDARY_SACRED"],
+        ["Holy Piby", "SECONDARY_SACRED"]
+      ],
+      "source_status": "INTERNAL_DIVERSITY_GATE_REQUIRED"
+    },
+    {
+      "id": "AYYAVAZHI",
+      "label": "Ayyavazhi",
+      "works": [
+        ["Akilattirattu Ammanai", "PRIMARY_CANON"],
+        ["Arul Nool", "PRIMARY_CANON"]
+      ],
+      "source_status": "SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "SWAMINARAYAN",
+      "label": "Swaminarayan traditions",
+      "works": [
+        ["Shikshapatri", "PRIMARY_CANON"],
+        ["Vachanamrut", "PRIMARY_CANON"]
+      ],
+      "source_status": "OFFICIAL_SOURCE_DISCOVERY_REQUIRED"
+    },
+    {
+      "id": "THELEMA",
+      "label": "Thelema",
+      "works": [
+        ["Liber AL vel Legis / The Book of the Law", "PRIMARY_CANON"]
+      ],
+      "source_status": "EDITION_AND_RIGHTS_CHECK_REQUIRED"
+    },
+    {
+      "id": "WICCA_AND_MODERN_PAGAN",
+      "label": "Wiccan and modern Pagan traditions",
+      "works": [
+        ["Lineage-specific Books of Shadows", "ORAL_COMMUNITY_CONTROLLED"],
+        ["Published ritual/theological texts", "SECONDARY_SACRED"]
+      ],
+      "source_status": "COPYRIGHT_AND_LINEAGE_PERMISSION_GATE_REQUIRED"
+    },
+    {
+      "id": "SCIENTOLOGY",
+      "label": "Scientology",
+      "works": [
+        ["Dianetics and designated religious works", "PRIMARY_CANON"]
+      ],
+      "source_status": "COPYRIGHTED_METADATA_ONLY_UNLESS_LICENSED"
+    }
+  ],
+  "next_expansion_targets": [
+    "Separate every umbrella oral-tradition placeholder into named communities with permission context",
+    "Add Syriac Christian, Armenian, Coptic and Church of the East canon mappings",
+    "Add Chinese Buddhist Canon / Taisho and CBETA identifiers",
+    "Add full Tibetan Kangyur/Tengyur catalog identifiers",
+    "Add Jaina Digambara canonical and post-canonical mapping",
+    "Add African traditional-religion corpora without collapsing distinct peoples",
+    "Add Oceanic and Australian Aboriginal community-specific sacred corpora only with appropriate access rules",
+    "Add Indigenous American corpora nation by nation",
+    "Add manuscript witnesses and earliest securely dated attestations for every historical text"
+  ]
+}
