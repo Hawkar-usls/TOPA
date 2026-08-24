@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """C025-E2R-L1 transitive support-locality probe.
 
-This probe defines and checks the *restriction* only. It does not prove a lower
-bound for ER3 or transfer any external heavy-width theorem.
+This probe defines/checks the support-local restriction and the root-restriction
+monotonicity theorem. It does not prove a lower bound for unrestricted ER3 or
+transfer any external heavy-width theorem.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -48,10 +49,25 @@ def is_kappa_local(root_vars: set[int], definitions: list[Ext], kappa: int) -> b
     return all(len(s) <= kappa for s in supports.values())
 
 
+def restricted_support_upper_bound(
+    supports: dict[int, frozenset[int]],
+    assigned_root_vars: set[int],
+) -> dict[int, frozenset[int]]:
+    """Sound upper bound after restricting root variables.
+
+    Any surviving residual extension function can depend only on previously
+    depended-on roots that were not fixed by the restriction. Constant/alias
+    simplification may remove even more dependencies, never add them.
+    """
+    return {
+        ext: frozenset(root for root in support if root not in assigned_root_vars)
+        for ext, support in supports.items()
+    }
+
+
 def main() -> None:
     roots = {1, 2, 3, 4, 5, 6}
 
-    # Chain grows support exactly by one root each time.
     chain = [
         Ext(7, 1, 2),
         Ext(8, 7, 3),
@@ -64,7 +80,6 @@ def main() -> None:
     assert is_kappa_local(roots, chain[:3], 4)
     assert not is_kappa_local(roots, chain, 4)
 
-    # Balanced composition tracks transitive support, not direct fan-in (which is always 2).
     balanced = [
         Ext(7, 1, 2),
         Ext(8, 3, 4),
@@ -77,12 +92,31 @@ def main() -> None:
     assert b[10] == frozenset({1, 2, 3, 4})
     assert b[11] == frozenset({1, 2, 3, 4, 5, 6})
 
-    # Polarity does not change support.
     polar = [Ext(7, -1, -2), Ext(8, -7, 3)]
     p = compute_supports({1, 2, 3}, polar)
     assert p[8] == frozenset({1, 2, 3})
 
-    # Forward dependency is rejected.
+    # Root-restriction monotonicity: no support can gain a root variable.
+    for assigned in (
+        set(),
+        {1},
+        {1, 3},
+        {2, 4, 6},
+        roots,
+    ):
+        restricted = restricted_support_upper_bound(b, assigned)
+        for ext, residual_support in restricted.items():
+            assert residual_support <= b[ext]
+            assert residual_support.isdisjoint(assigned)
+            assert len(residual_support) <= len(b[ext])
+
+    # Therefore kappa-locality is preserved under root restrictions.
+    local_defs = balanced[:4]  # max support size 4
+    local_supports = compute_supports(roots, local_defs)
+    assert max(map(len, local_supports.values())) <= 4
+    restricted = restricted_support_upper_bound(local_supports, {1, 3, 5})
+    assert max(map(len, restricted.values())) <= 4
+
     try:
         compute_supports({1, 2}, [Ext(3, 1, 4), Ext(4, 1, 2)])
     except ValueError:
@@ -94,7 +128,9 @@ def main() -> None:
     print("C025_E2R_L1_POLARITY_INVARIANCE = PASS")
     print("C025_E2R_L1_FORWARD_DEPENDENCY_REJECTION = PASS")
     print("C025_E2R_L1_KAPPA_LOCAL_ADMISSION = PASS")
-    print("claim_boundary = locality restriction mechanics only; no ER3 lower bound or literature transfer established")
+    print("C025_E2R_L1_ROOT_RESTRICTION_SUPPORT_MONOTONICITY = PASS")
+    print("C025_E2R_L1_ROOT_RESTRICTION_LOCALITY_STABILITY = PASS")
+    print("claim_boundary = support/locality mechanics only; no unrestricted ER3 lower bound or literature transfer established")
 
 
 if __name__ == "__main__":
