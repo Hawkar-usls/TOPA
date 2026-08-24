@@ -18,6 +18,9 @@ MANIFEST = BASE / "CORPUS_MANIFEST.v0.1.json"
 PROTOCOL = BASE / "JANUS_COUNCIL_PROTOCOL.v0.1.json"
 FIRST_PASS = BASE / "TOPA_FIRST_PASS.v0.1.json"
 LINEAGE = BASE / "JANUS_EXISTING_LINEAGE.v0.1.json"
+RESIDUAL_PROTOCOL = BASE / "INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json"
+FLOOD_TEST = BASE / "FLOOD_STEMMA_BLIND_TEST.v0.1.json"
+SOURCE_RECEIPTS = BASE / "SOURCE_DISCOVERY_RECEIPTS.v0.1.json"
 
 ALLOWED_CLASSES = {
     "PRIMARY_CANON",
@@ -32,6 +35,22 @@ REQUIRED_LAWS = {
     "CANONICAL_STATUS != EMPIRICAL_TRUTH",
     "SHARED_MOTIF != SHARED_SOURCE",
     "MODEL_CONSENSUS != INDEPENDENT_CONFIRMATION",
+}
+
+REQUIRED_RESIDUAL_LAWS = {
+    "TEXTUAL_SIMILARITY != INDEPENDENT_DISCOVERY",
+    "INDEPENDENT_DISCOVERY != SUPERNATURAL_CAUSE",
+    "RESIDUAL != REVELATION",
+    "MODEL_CONSENSUS != INDEPENDENT_CONFIRMATION",
+    "UNKNOWN = VALID_RESULT",
+}
+
+FORBIDDEN_METAPHYSICAL_PROMOTIONS = {
+    "SUPERNATURAL_PROVEN",
+    "REVELATION_PROVEN",
+    "ONE_RELIGION_TRUE",
+    "PROPHECY_PROVEN",
+    "ANCIENT_GLOBAL_NETWORK_PROVEN",
 }
 
 
@@ -165,8 +184,85 @@ def validate_lineage(data: dict) -> None:
         fail("Lineage must contain discovered upstream artifacts")
 
 
+def validate_residual_protocol(data: dict) -> None:
+    if data.get("status") != "FROZEN_METHOD_V0_1":
+        fail("Independent residual protocol must remain frozen for v0.1")
+
+    laws = set(data.get("core_laws", []))
+    missing = REQUIRED_RESIDUAL_LAWS - laws
+    if missing:
+        fail(f"Residual protocol missing laws: {sorted(missing)}")
+
+    stages = [s.get("stage") for s in data.get("subtraction_pipeline", [])]
+    required_stages = {
+        "R0_SOURCE_ROOT_COLLAPSE",
+        "R1_TRANSLATION_AND_SEMANTIC_CONTROL",
+        "R2_HISTORICAL_CONTACT_GRAPH",
+        "R3_EXPECTED_CONVERGENCE_NULL",
+        "R4_BLIND_RARE_BUNDLE_TEST",
+        "R5_ADVERSARIAL_REATTACK",
+    }
+    if not required_stages.issubset(set(stages)):
+        fail("Residual subtraction pipeline is incomplete")
+
+    if any(s.get("fail_closed") is not True for s in data.get("subtraction_pipeline", [])):
+        fail("Every residual subtraction stage must fail closed")
+
+    ceiling = data.get("promotion_ceiling", {})
+    if ceiling.get("from_texts_alone") != "UNRESOLVED_INDEPENDENT_RESIDUAL":
+        fail("Texts-alone promotion ceiling was weakened")
+    forbidden = set(ceiling.get("forbidden_promotions", []))
+    if not FORBIDDEN_METAPHYSICAL_PROMOTIONS.issubset(forbidden):
+        fail("Required metaphysical promotion prohibitions are missing")
+
+
+def validate_flood_test(data: dict) -> None:
+    if data.get("status") != "PREREGISTERED_NOT_YET_SCORED":
+        fail("Flood test v0.1 must remain preregistered and unscored until execution")
+    if data.get("parent_protocol") != "INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json":
+        fail("Flood test must bind to the frozen residual protocol")
+
+    features = data.get("frozen_feature_schema", [])
+    if len(features) < 20 or len(features) != len(set(features)):
+        fail("Flood feature schema must be sufficiently broad and non-duplicated")
+
+    controls = set(data.get("control_design", {}).get("minimum_groups", []))
+    required_controls = {
+        "non-flood catastrophe narratives matched for genre",
+        "feature-shuffled synthetic controls",
+    }
+    if not required_controls.issubset(controls):
+        fail("Flood test lacks mandatory negative controls")
+
+    if data.get("residual_interpretation") != "UNRESOLVED_INDEPENDENT_RESIDUAL only. It is a target for another spiral, not evidence of revelation or supernatural causation.":
+        fail("Flood residual interpretation boundary changed")
+
+
+def validate_source_receipts(data: dict) -> None:
+    if data.get("status") != "PARTIAL_VERIFIED_SOURCE_MAP":
+        fail("Source map must remain partial, not exhaustive")
+    if data.get("rule") != "SOURCE_VERIFIED != MIRROR_RIGHTS_VERIFIED":
+        fail("Source verification / reuse-rights separation is mandatory")
+    receipts = data.get("receipts", [])
+    if not receipts:
+        fail("Source receipts cannot be empty")
+    for receipt in receipts:
+        if not receipt.get("url", "").startswith("https://"):
+            fail("Every source receipt requires HTTPS URL")
+        if not receipt.get("reuse_state"):
+            fail("Every source receipt requires reuse_state")
+
+
 def main() -> int:
-    required_paths = [MANIFEST, PROTOCOL, FIRST_PASS, LINEAGE]
+    required_paths = [
+        MANIFEST,
+        PROTOCOL,
+        FIRST_PASS,
+        LINEAGE,
+        RESIDUAL_PROTOCOL,
+        FLOOD_TEST,
+        SOURCE_RECEIPTS,
+    ]
     missing = [str(p.relative_to(ROOT)) for p in required_paths if not p.exists()]
     if missing:
         print("TOPA_SACRED_SCRIPTURES_CHECK=FAIL")
@@ -178,10 +274,16 @@ def main() -> int:
         protocol = load(PROTOCOL)
         first_pass = load(FIRST_PASS)
         lineage = load(LINEAGE)
+        residual = load(RESIDUAL_PROTOCOL)
+        flood = load(FLOOD_TEST)
+        receipts = load(SOURCE_RECEIPTS)
         validate_manifest(manifest)
         validate_protocol(protocol)
         validate_first_pass(first_pass)
         validate_lineage(lineage)
+        validate_residual_protocol(residual)
+        validate_flood_test(flood)
+        validate_source_receipts(receipts)
     except (json.JSONDecodeError, AssertionError, OSError) as exc:
         print("TOPA_SACRED_SCRIPTURES_CHECK=FAIL")
         print(type(exc).__name__ + ":", exc)
@@ -191,12 +293,18 @@ def main() -> int:
     work_count = sum(len(t["works"]) for t in manifest["traditions"])
     node_count = len(protocol["nodes"])
     motif_count = len(first_pass.get("motif_families_for_content_pass", []))
+    residual_stage_count = len(residual.get("subtraction_pipeline", []))
+    flood_feature_count = len(flood.get("frozen_feature_schema", []))
+    receipt_count = len(receipts.get("receipts", []))
 
     print("TOPA_SACRED_SCRIPTURES_CHECK=PASS")
     print(f"TRADITIONS={tradition_count}")
     print(f"WORK_ENTRIES={work_count}")
     print(f"JANUS_NODES={node_count}")
     print(f"MOTIF_FAMILIES={motif_count}")
+    print(f"RESIDUAL_SUBTRACTION_STAGES={residual_stage_count}")
+    print(f"FLOOD_FROZEN_FEATURES={flood_feature_count}")
+    print(f"SOURCE_RECEIPTS={receipt_count}")
     print("PASS_SCOPE=STRUCTURE_RIGHTS_AND_EPISTEMIC_GUARDRAILS_ONLY")
     return 0
 
