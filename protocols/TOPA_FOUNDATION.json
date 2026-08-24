@@ -6,7 +6,7 @@
   "status": "ACTIVE_CANONICAL_EPISTEMIC_AND_SCIENTIFIC_FOUNDATION",
   "name": "TOPA",
   "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
-  "strict_science_gate": "protocols/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+  "strict_science_gate": "Hawkar-usls/TOPA:data/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
   "purpose": "Provide JANUS/TOPA with a falsification-first, provenance-preserving scientific method in which active claims may be supported only by source-bound facts, checkable formal derivations, reproducible experiments, or specified statistical inference. Hypotheses remain test generators and never become evidence by ranking, intuition, model vote, survivor status or uncalibrated confidence.",
   "historical_lineage": {
     "v1_2_preserved_in_git_history": true,
@@ -200,7 +200,7 @@
       "POLY_IN_PROOF_SIZE_IS_NOT_POLY_PROOF_DISCOVERY",
       "SHARED_DAG_IS_NOT_POLY_PORTABLE_BYTES_WITHOUT_BOUND"
     ],
-    "hidden_exponent_audit": "research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md"
+    "hidden_exponent_audit": "Hawkar-usls/TOPA:research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md"
   },
   "scout_requirements": {
     "required_actions": [
@@ -225,16 +225,17 @@
   },
   "runtime_enforcement": {
     "documented_policy": "ACTIVE",
-    "existing_router": "integrations/janus-distributed-ai-swarm/topa_epistemic_router.py",
-    "strict_science_v1_3_runtime_update": "REQUIRED",
-    "runtime_conformance_status": "NOT_YET_CLAIMED_COMPLETE",
-    "rule": "DOCUMENTATION_PROMOTION_DOES_NOT_IMPLY_RUNTIME_ENFORCEMENT_PASS"
+    "topa_router": "Hawkar-usls/TOPA:integrations/janus-distributed-ai-swarm/topa_epistemic_router.py",
+    "swarm_router": "Hawkar-usls/janus-distributed-ai-swarm:tools/topa_epistemic_router.py",
+    "strict_science_v1_3_runtime_update": "IMPLEMENTED",
+    "runtime_conformance_status": "SELF_TEST_DEFINED__PROVIDER_CI_NOT_YET_VERIFIED",
+    "rule": "IMPLEMENTATION_COMMIT_IS_NOT_PROVIDER_PASS"
   },
   "repository_bindings": {
     "Hawkar-usls/TOPA": "CANONICAL_TOPA_RESEARCH_AND_PROCESS_HOME",
     "Hawkar-usls/Janus-Fundamentum": "MATHEMATICAL_PROVIDER_PROOFS_IMPLEMENTATIONS_AND_CI",
-    "Hawkar-usls/Janus_Genesis": "HISTORICAL_FOUNDATION_AND_INTEGRATION_LINEAGE",
-    "Hawkar-usls/janus-distributed-ai-swarm": "RUNTIME_CONSUMER_REQUIRING_V1_3_CONFORMANCE_UPDATE",
+    "Hawkar-usls/Janus_Genesis": "FOUNDATION_LINEAGE_MIRROR_REQUIRED_TO_MATCH_V1_3",
+    "Hawkar-usls/janus-distributed-ai-swarm": "PRIMARY_RUNTIME_CONSUMER_V1_3_IMPLEMENTED_PENDING_CI",
     "Hawkar-usls/Janus-Demiurge": "SCOUT_ORCHESTRATOR_WITH_NO_INDEPENDENT_EVIDENCE_AUTHORITY"
   },
   "claim_ceiling": "TOPA v1.3 is a scientific admissibility and provenance protocol. It does not assert extraordinary phenomena are real, does not convert a model hypothesis into evidence, and does not by itself establish any mathematical complexity theorem or resolve P versus NP."
