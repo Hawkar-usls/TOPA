@@ -1,0 +1,29 @@
+name: Validate TOPA Retina video bridge
+
+on:
+  push:
+    paths:
+      - "tools/topa_retina_video.py"
+      - "docs/RETINA_VIDEO_BRIDGE.md"
+      - ".github/workflows/validate-retina-video.yml"
+  pull_request:
+    paths:
+      - "tools/topa_retina_video.py"
+      - "docs/RETINA_VIDEO_BRIDGE.md"
+      - ".github/workflows/validate-retina-video.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile Retina video bridge
+        run: python -m py_compile tools/topa_retina_video.py
+
+      - name: Run dependency-free self-test
+        run: python tools/topa_retina_video.py --self-test
