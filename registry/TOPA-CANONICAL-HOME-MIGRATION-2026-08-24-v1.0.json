@@ -1,0 +1,35 @@
+{
+  "schema": "janus.topa.canonical-home.v1",
+  "artifact_id": "TOPA-CANONICAL-HOME-MIGRATION-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:45:00+03:00",
+  "canonical_repository": "Hawkar-usls/TOPA",
+  "status": "ACTIVE_CANONICAL_HOME",
+  "policy": {
+    "native_TOPA_research": "WRITE_CANONICALLY_TO_TOPA",
+    "TOPA_process_receipts": "WRITE_CANONICALLY_TO_TOPA_DATA_OR_RESEARCH",
+    "historical_TOPA_artifacts_from_other_repos": "PRESERVE_AS_EXACT_PROVENANCE_BOUND_SNAPSHOTS",
+    "janus_meta_registry": "KEEP_LINEAGE_POINTERS_AND_EXISTING_HISTORICAL_COPIES; DO_NOT_DELETE_HISTORY",
+    "Janus_Fundamentum": "KEEP_ONLY_MATHEMATICAL_PROVIDER_PROOFS_IMPLEMENTATIONS_AND_CI_NEEDED_FOR_PROVIDER_AUTHORITY",
+    "Janus_Cosmos": "KEEP_DOMAIN_EXECUTION_SOURCES; TOPA_MAY_MIRROR_SNAPSHOTS_WITH_SOURCE_COMMIT",
+    "Genesis_Demiurge_Swarm": "KEEP_ORIGINAL_INTEGRATION_AUTHORITIES; TOPA_MAY_MIRROR_WITH_PROVENANCE"
+  },
+  "already_consolidated": [
+    "corpus/meta-registry/JANUS-TOPA-*.json",
+    "protocols/TOPA_FOUNDATION.json",
+    "integrations/Janus-Demiurge/",
+    "integrations/janus-distributed-ai-swarm/",
+    "research/tesla-sweep/",
+    "research/mathematics/",
+    "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
+    "data/TOPA-P-VS-NP-ISSUE-211-REFUTATION-FINAL-2026-08-24-v1.0.json"
+  ],
+  "current_canonical_front": {
+    "path": "research/mathematics/p-vs-np/",
+    "target": "C025_B_CONTEXT_INDEPENDENT_PROOF_CARRYING_REASON",
+    "provider_repo": "Hawkar-usls/Janus-Fundamentum",
+    "provider_issue": 213,
+    "provider_pr": 214
+  },
+  "provenance_law": "MIGRATION_DOES_NOT_ERASE_OR_REWRITE_SOURCE_HISTORY; COPY_DOES_NOT_CREATE_INDEPENDENT_EVIDENCE_OR_PROOF_AUTHORITY",
+  "future_default": "TOPA_SPECIFIC_NEW_ARTIFACTS_GO_TO_Hawkar-usls/TOPA_FIRST"
+}
