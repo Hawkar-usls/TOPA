@@ -21,7 +21,9 @@
     "Tesla Sweep / TOPA Hunt research snapshot import",
     "general mathematical research mode v1.1 with theorem/counterexample, encoding, parameter and full-cost gates",
     "native hunt framework with preregistration, source ledger, pass receipts, status, hunt index and CI structure validation",
-    "HUNT-0001 Hessdalen archival/adversarial PASS-001"
+    "HUNT-0001 Hessdalen archival/adversarial PASS-001",
+    "C024 Issue 211 resolution-sink counterfamily, exact-policy CI and second-derivation review",
+    "C025 Policy-0B fair non-starvable scheduler research lane"
   ],
   "established_in_stated_scope": [
     "TOPA repository architecture and machine-readable rules exist",
@@ -29,7 +31,9 @@
     "the validator can reject specified provenance and prediction-rule violations",
     "case status is allowed to decrease after later falsification",
     "mathematical candidates can be typed and routed through explicit proof, counterexample, encoding and parameter checks",
-    "HUNT-0001 establishes a source-bound recurrent Hessdalen report/instrument corpus worthy of raw-data replication while refusing single-common-cause or extraordinary promotion"
+    "HUNT-0001 establishes a source-bound recurrent Hessdalen report/instrument corpus worthy of raw-data replication while refusing single-common-cause or extraordinary promotion",
+    "the current Policy-0A universal polynomial residual-count premise is refuted by a polynomial-size padded directed-GT resolution-sink family under the frozen canonical encoding",
+    "a complete frozen-layer complementary-pair scheduler has at most L^2/4 pair attempts in current representation size and removes the specific global early-pivot starvation mechanism"
   ],
   "not_established": [
     "paranormal causation",
@@ -43,12 +47,18 @@
     "a single common physical cause for the Hessdalen event family",
     "an extraordinary cause for Hessdalen events",
     "P versus NP resolution",
+    "a universal polynomial residual-count theorem for Policy-0B",
+    "a universal polynomial active-state-size theorem",
+    "deterministic polynomial-time discovery of short returned reasons",
     "a universal theorem from finite mathematical experiments",
     "world truth from model or Scout consensus"
   ],
   "current_authority": {
     "foundation": "protocols/TOPA_FOUNDATION.json",
     "mathematical_mode": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
+    "mathematics_index": "research/mathematics/README.md",
+    "issue_211_final_receipt": "data/TOPA-P-VS-NP-ISSUE-211-REFUTATION-FINAL-2026-08-24-v1.0.json",
+    "c025_design": "research/mathematics/p-vs-np/C025_POLICY0B_FAIR_REASON_CALCULUS.md",
     "native_hunts": "hunts/README.md",
     "hunt_index": "registry/TOPA-HUNT-INDEX.json",
     "hunt_0001_status": "hunts/HUNT-0001-HESSDALEN/STATUS.json",
@@ -68,7 +78,17 @@
     "RECURRENT_REPORTS_ARE_NOT_ONE_PHENOMENON",
     "MULTI_CHANNEL_IS_NOT_INDEPENDENT_COMMON_CAUSE",
     "MATHEMATICAL_PROMOTION_REQUIRES_CHECKABLE_DERIVATION_OR_COUNTEREXAMPLE",
-    "FINITE_EXPERIMENT_IS_NOT_UNIVERSAL_ASYMPTOTIC_THEOREM"
+    "FINITE_EXPERIMENT_IS_NOT_UNIVERSAL_ASYMPTOTIC_THEOREM",
+    "THEOREM_TRANSFER_REQUIRES_OBJECT_IDENTITY_OR_PROVED_REDUCTION",
+    "SHORT_PROOF_EXISTS_IS_NOT_DETERMINISTIC_POLYTIME_PROOF_SEARCH"
   ],
+  "current_mathematical_front": {
+    "c024_conditional_bridge": "PROVED",
+    "c024_issue_211": "REFUTED_FOR_CURRENT_POLICY0A",
+    "c024_issue_212": "OPEN",
+    "c025_issue_213": "OPEN_ACTIVE",
+    "c025_first_lemma": "FAIR_FROZEN_LAYER_PAIR_ATTEMPTS_LE_L2_OVER_4_PROVED",
+    "p_vs_np": "OPEN"
+  },
   "world_truth": false
 }
