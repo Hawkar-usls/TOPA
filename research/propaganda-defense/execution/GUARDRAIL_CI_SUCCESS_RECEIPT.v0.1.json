@@ -1,0 +1,30 @@
+{
+  "schema": "topa.propaganda_defense.guardrail_ci_success_receipt.v0.1",
+  "date": "2026-08-24",
+  "status": "GUARDRAIL_CI_PASS",
+  "authority_branch": "topa-propaganda-defense",
+  "technical_harness": {
+    "draft_pr": 3,
+    "base": "topa-propaganda-defense",
+    "head": "topa-propaganda-defense-ci-run",
+    "merge_intent": false
+  },
+  "workflow": {
+    "run_id": 32748620165,
+    "job_id": 97499995344,
+    "name": "propaganda-defense-guardrails",
+    "conclusion": "success"
+  },
+  "validator_output": {
+    "TOPA_PROPAGANDA_DEFENSE_CHECK": "PASS",
+    "SEED_SOURCES": 36,
+    "SOURCE_CLASSES": 6,
+    "WEB_VERIFIED_RECEIPTS": 14,
+    "OPERATIONAL_FIREWALL": "PASS",
+    "SOURCE_SYMMETRY_GATE": "PASS",
+    "SACRED_TEXT_A_B_GATE": "UNCHANGED",
+    "SCORE_PERMISSION": false
+  },
+  "claim_effect": "METHOD_AND_GUARDRAIL_VALIDATION_ONLY_NO_PROPAGANDA_ATTRIBUTION_OR_EFFECT_CLAIM",
+  "epistemic_boundary": "A green validator shows that the frozen corpus structure and defensive firewalls satisfy machine-readable rules. It does not validate every source claim or prove that any observed communication is propaganda."
+}
