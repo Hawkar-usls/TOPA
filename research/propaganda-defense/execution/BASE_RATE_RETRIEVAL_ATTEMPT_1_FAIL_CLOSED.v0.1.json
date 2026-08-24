@@ -1,0 +1,41 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_retrieval_attempt.v0.1",
+  "date": "2026-08-24",
+  "attempt": 1,
+  "status": "PARTIAL_FAIL_CLOSED",
+  "workflow": {
+    "run_id": 32753188959,
+    "job_id": 97514673769,
+    "artifact_id": 9529827093,
+    "artifact_digest": "sha256:ffdc1b70079a34ed0e526ac03c0d9d2f6ea2fce8ed75df9adbae89747a8d9ea5",
+    "head_sha": "66db5bed05939883563dce9b546f9eef27d69cd6",
+    "draft_pr": 6
+  },
+  "frozen_inputs_unchanged": true,
+  "summary": {
+    "content_sufficient": "2/8",
+    "sufficient_ids": ["BR01_HAMMURABI", "BR02_BEHISTUN"],
+    "blocked_or_partial_ids": ["BR03_KADESH", "BR04_NEO_ASSYRIAN_ANNALS", "BR05_HITTITE_TREATY", "BR06_THUCYDIDES", "BR07_RES_GESTAE", "BR08_PTAHHOTEP"],
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "controls": [
+    {"id":"BR01_HAMMURABI","class":"SOURCE_BYTES","status":"PASS","source_sha256":"93410a95441d28fd498df423ec7860ae5ee821df3811989bb469838075c9eb12","aggregate_sha256":"fdaacc57ead6fb5321f6e0645d317c6dedec94505c345c406ccfe7315e772893"},
+    {"id":"BR02_BEHISTUN","class":"SOURCE_BYTES","status":"PASS","aggregate_sha256":"132dfd09fd975b77aad6dfe84010d5d786f1660c093588d2d9b48f77fb4aad71","component_sha256":["049e9046c12f1f078c3a91e6704803671e5fda09c1b68b32de297870c33a4be1","94d48655e9b2e8c2c21613971816816fefb11754fbed3afab56130f7b45cbd08","13e7de2d4d9faf1ccb1dc285e9cb62b0a7f98a60d17229c3ec56b61ec5b35436"]},
+    {"id":"BR03_KADESH","class":"BLOCKED","status":"FAIL","reason":"publisher HTML and PDF both returned HTTP 403; frozen DOI/locus unchanged","aggregate_sha256":"0b8093e733c35e82413180f026dacc01cb5852ef42cd40b20347f5800f85a80d"},
+    {"id":"BR04_NEO_ASSYRIAN_ANNALS","class":"BLOCKED","status":"FAIL","reason":"ORACC TLS certificate verification failed on hosted runner; frozen Q003475 locus unchanged","aggregate_sha256":"847751f7d4ff08e8a01889ed94b510c07c8ce192cb4b5242c18f8cd3f9dc538b"},
+    {"id":"BR05_HITTITE_TREATY","class":"PARTIAL","status":"FAIL","reason":"Devecchi PDF bytes retrieved and sealed but HethPort query redirected to index shell and marker validation failed","pdf_sha256":"51ff66d1ceb7268e0a9022ae4328b7f1ccfe9774a8ea9d3756fb18c3ecf30bc0","aggregate_sha256":"8b6ccfaf00380186ee2acac5a1186115ba734bf6a3a7ea7e987abab103eb6025"},
+    {"id":"BR06_THUCYDIDES","class":"PARTIAL","status":"FAIL","reason":"13/13 Scaife chapter URLs returned the same JS shell bytes; server HTML is not a reproducible chapter-text representation","aggregate_sha256":"e25c575c0f6fd1911eb9491c9e5af44846a2ae54c729c06d2d5ab84dd35cf305"},
+    {"id":"BR07_RES_GESTAE","class":"PARTIAL","status":"FAIL","reason":"5/5 Perseus pages retrieved, but literal marker set did not match rendered text; parser/representation validation must be repaired without changing sections","aggregate_sha256":"6bf75cd4c1c5ade58e415582e374c27f6c4bc334dcfb9afe2ae98d06846d0eed"},
+    {"id":"BR08_PTAHHOTEP","class":"METADATA_ONLY","status":"FAIL","reason":"TLA root metadata validated but exposed zero token links in server representation; whole Text ID content not yet reproducibly sealed","root_sha256":"baf12392a73f55ecadf05a26b7ad40ca95838ead046f1f2e48ee5f0a7d432b0d","aggregate_sha256":"f91f366df13023d674981dcd67b91c1f4c6bd40f8ab733eae312f232103ed4e8"}
+  ],
+  "repair_policy": [
+    "DO_NOT_CHANGE_FROZEN_SOURCE_AUTHORITIES",
+    "DO_NOT_CHANGE_FROZEN_LOCI",
+    "REPAIR_TRANSPORT_OR_VALIDATION_ONLY",
+    "PRESERVE_THIS_FAIL_RECEIPT",
+    "NO_SEMANTIC_CODING",
+    "NO_SCORE"
+  ]
+}
