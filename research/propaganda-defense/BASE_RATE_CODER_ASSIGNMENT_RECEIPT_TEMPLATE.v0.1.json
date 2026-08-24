@@ -1,0 +1,49 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coder_assignment_receipt_template.v0.1",
+  "date": "2026-08-24",
+  "status": "TEMPLATE_ONLY_NOT_AN_ASSIGNMENT",
+  "policy": "BASE_RATE_CODER_QUALIFICATION_ASSIGNMENT_POLICY.v0.1.json",
+  "required_bundle_sha256": "9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa",
+  "coder_slot": null,
+  "coder_identity_or_independent_path_id": null,
+  "independence_basis": null,
+  "assigned_at": null,
+  "qualification": {
+    "Q01_UNKNOWN_IS_VALID": null,
+    "Q02_FORM_INTENT_EFFECT_SEPARATION": null,
+    "Q03_GENRE_FALSE_POSITIVE_CONTROL": null,
+    "Q04_TRANSLATION_FIREWALL": null,
+    "Q05_SOURCE_ROOT_COLLAPSE": null,
+    "Q06_INTENT_FROM_STYLE_FORBIDDEN": null,
+    "Q07_EFFECT_FROM_TEXT_FORBIDDEN": null,
+    "Q08_EVIDENCE_POINTER_REQUIRED": null,
+    "Q09_COMPETENCE_BOUNDARY": null,
+    "Q10_NO_TARGET_TRAINING": null
+  },
+  "domain_competence_BR01_BR08": {
+    "BR01_HAMMURABI": null,
+    "BR02_BEHISTUN": null,
+    "BR03_KADESH": null,
+    "BR04_NEO_ASSYRIAN_ANNALS": null,
+    "BR05_HITTITE_TREATY": null,
+    "BR06_THUCYDIDES": null,
+    "BR07_RES_GESTAE": null,
+    "BR08_PTAHHOTEP": null
+  },
+  "attestations": {
+    "no_prior_view_of_other_coder_values": null,
+    "no_sacred_target_result_exposure": null,
+    "same_reasoning_instance_as_other_coder": null,
+    "understands_unknown_is_valid": null
+  },
+  "valid_assignment": false,
+  "semantic_coding_permission_effect": false,
+  "score_permission": false,
+  "laws": [
+    "TEMPLATE != ASSIGNMENT",
+    "NULL_FIELDS_FAIL_CLOSED",
+    "NO_SELF_DUPLICATION_AS_TWO_CODERS",
+    "NO_SEMANTIC_CODING_FROM_TEMPLATE",
+    "NO_SCORE"
+  ]
+}
