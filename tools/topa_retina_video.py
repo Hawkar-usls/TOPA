@@ -145,10 +145,12 @@ def acquire_google_drive(url: str, out_dir: Path) -> list[Path]:
         if result is None:
             raise TopaVideoError("gdown could not enumerate/download the public Drive folder")
     else:
-        target = out_dir / "drive-file"
+        # A directory output lets gdown preserve the remote filename/extension.
+        # Keeping the original extension matters because downstream video
+        # detection must not depend on guessed MIME types.
         result = gdown.download(
             url=url,
-            output=str(target),
+            output=str(out_dir) + os.sep,
             quiet=False,
             fuzzy=True,
             use_cookies=False,
