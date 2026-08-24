@@ -1,0 +1,32 @@
+{
+  "schema": "topa.sacred_scriptures.current_sprint.v0.1",
+  "date": "2026-08-24",
+  "status": "ACTIVE_PRE_SCORE",
+  "objective": "Reach SHAREABILITY_GATE S1_METHOD_REVIEWABLE without scoring or interpreting a residual prematurely.",
+  "done": [
+    "independent residual subtraction protocol frozen",
+    "Flood stemma blind test preregistered",
+    "residual hunt queue frozen",
+    "source/philology gates recorded",
+    "preferred philology baselines recorded",
+    "scholarly outreach watchlist recorded",
+    "shareability levels frozen",
+    "reviewer packet template frozen"
+  ],
+  "next": [
+    "freeze exact Wasserman Akkadian line ranges for Atrahasis and Gilgamesh XI",
+    "freeze one explicit ETCBC BHSA version for Genesis 6:5-9:17",
+    "freeze Tanzil Uthmani 1.1 Q 11:25-49 and secondary Noah loci as immutable source layer",
+    "freeze GRETIL Madhyamdina Satapatha Brahmana 1.8.1",
+    "build matched controls and permission-cleared distant controls",
+    "build anonymized feature packets",
+    "implement deterministic scoring plus shuffled-label and shuffled-feature nulls",
+    "run first blind score only after the above are frozen"
+  ],
+  "blocked": [
+    "NO_BLIND_SCORE_YET",
+    "NO_EXTERNAL_CONTACT_YET",
+    "NO_INDEPENDENT_RESIDUAL_CLAIM_YET"
+  ],
+  "promotion_ceiling": "METHOD_READY_ONLY until blind scoring and controls are complete"
+}
