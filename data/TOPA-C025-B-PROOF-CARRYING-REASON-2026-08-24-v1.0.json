@@ -1,0 +1,72 @@
+{
+  "artifact_id": "TOPA-C025-B-PROOF-CARRYING-REASON-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:45:00+03:00",
+  "target": "C025_B_CONTEXT_INDEPENDENT_PROOF_CARRYING_REASON",
+  "status": "SEMANTICS_FROZEN__VERIFIER_IMPLEMENTED__CI_PENDING",
+  "reason_object": {
+    "shape": "R = (root_fingerprint, clause_C, resolution_DAG_pi)",
+    "root_axioms_only": true,
+    "decision_assumptions_allowed_as_proof_axioms": false,
+    "reuse_condition": "current partial assignment falsifies every literal of clause_C",
+    "cross_root_reuse": "FORBIDDEN_BY_ROOT_FINGERPRINT"
+  },
+  "proved_on_paper": [
+    "ACCEPTED_RESOLUTION_CERTIFICATE_IMPLIES_F0_ENTAILS_C",
+    "F0_ENTAILS_C_AND_CONTEXT_FALSIFIES_C_IMPLIES_UNSAT_RESTRICTION",
+    "TWO_CHILD_REASONS_CAN_BE_LIFTED_TO_PARENT_BY_ZERO_OR_ONE_RESOLUTION_STEP",
+    "UNIT_PROPAGATION_CONFLICT_CAN_BE_LIFTED_BY_REVERSE_ANTECEDENT_RESOLUTION",
+    "STANDALONE_VERIFICATION_IS_POLYNOMIAL_IN_CERTIFICATE_SIZE"
+  ],
+  "implementation": {
+    "repo": "Hawkar-usls/TOPA",
+    "path": "research/mathematics/p-vs-np/proof_carrying_reason.py",
+    "document": "research/mathematics/p-vs-np/C025_B_CONTEXT_INDEPENDENT_PROOF_CARRYING_REASON.md",
+    "self_tests": [
+      "DIRECT_REASON",
+      "CROSS_CONTEXT_REUSE",
+      "BRANCH_COMPOSITION",
+      "UNIT_CONFLICT_LIFT",
+      "MALFORMED_CERTIFICATE_REJECTION",
+      "ROOT_FINGERPRINT_MISMATCH_REJECTION"
+    ]
+  },
+  "cost_firewall": {
+    "reason_validity": "CLOSED_IN_SCOPE_AFTER_REPLAY",
+    "reason_local_construction": "POLYNOMIAL_IN_GIVEN_PROPAGATION_OR_BRANCH_TRACE",
+    "reason_discovery_in_cache": "OPEN",
+    "total_reason_DAG_size_in_original_input_N": "OPEN",
+    "deterministic_global_proof_search": "OPEN"
+  },
+  "new_holes_exposed": [
+    {
+      "id": "C025_C1_REASON_DISCOVERY",
+      "statement": "Cheap verification of a supplied reason does not imply cheap discovery of an applicable reason among a large cache."
+    },
+    {
+      "id": "C025_C2_TRACE_RELATIVE_VS_INPUT_RELATIVE_COST",
+      "statement": "Polynomial reason construction in explored trace size does not imply polynomial construction in original input length."
+    },
+    {
+      "id": "C025_E1_REASON_DAG_ACCUMULATION",
+      "statement": "DAG sharing prevents naive proof copying but does not itself prove total certificate storage is polynomial in input length."
+    },
+    {
+      "id": "C025_B_LITERATURE_TRANSFER",
+      "statement": "C025 clause reasons are intentionally stricter than the formula-level FCW_reason object; no p-simulation theorem is transferred without a proved simulation."
+    }
+  ],
+  "literature": {
+    "paper": "Paul Beame, Russell Impagliazzo, Toniann Pitassi, Nathan Segerlind — Formula Caching in DPLL, ACM TOCT 1(3), 2010",
+    "relevant_scope": "FCW_reason returns reasons and p-simulates regular Resolution",
+    "transfer_status": "MOTIVATION_ONLY__NO_EQUIVALENCE_CLAIM"
+  },
+  "next_gate": "RUN_TOPA_AND_FUNDAMENTUM_CI_THEN_INDEPENDENT_DERIVATION_REVIEW",
+  "mathematical_verdict": {
+    "C025_B": "PROVED_ON_PAPER_IMPLEMENTED_REPLAY_PENDING",
+    "C025_C_REASON_SEARCH": "OPEN",
+    "C025_E_STATE_AND_REASON_SIZE": "OPEN",
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
