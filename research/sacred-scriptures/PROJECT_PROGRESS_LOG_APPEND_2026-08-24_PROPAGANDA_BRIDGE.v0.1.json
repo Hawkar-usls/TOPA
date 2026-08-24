@@ -1,0 +1,55 @@
+{
+  "schema": "topa.sacred_scriptures.project_progress_log_append.v0.1",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_REVERSE_SPIRAL.v0.1.json",
+    "previous_max_seq": 23
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "parallel_lane_cannot_mutate_flood_preregistration": true,
+    "no_cross_lane_result_leak_before_freeze": true
+  },
+  "entries": [
+    {
+      "seq": 24,
+      "event": "PROPAGANDA_ATLAS_PARALLEL_SCREEN_REGISTERED",
+      "status": "BRIDGE_FROZEN_NO_FLOOD_GATE_EFFECT",
+      "artifact": "PROPAGANDA_ATLAS_PARALLEL_SCREEN_BRIDGE.v0.1.json",
+      "propaganda_branch_commit": "456a1571dc09203b388b880d964c057373ed1e85",
+      "parallel_assets": ["138-technique atlas", "35-dimension cross-epoch schema", "8-control ancient non-sacred base-rate protocol"],
+      "claim_effect": "PARALLEL_METHOD_REGISTRATION_ONLY"
+    },
+    {
+      "seq": 25,
+      "event": "FLOOD_BLIND_CONTAMINATION_FIREWALL_FROZEN",
+      "status": "ACTIVE",
+      "rules": [
+        "Do not expose Flood Coder A/B to manipulation-atlas outputs before both Flood receipts freeze.",
+        "Do not modify the frozen Flood 28-feature schema from the propaganda lane.",
+        "Do not unlock Flood SCORE from rhetoric/manipulation findings.",
+        "Do not tune propaganda thresholds using Flood clusters before propaganda controls freeze."
+      ],
+      "claim_effect": "BLINDNESS_PROTECTION_ONLY"
+    },
+    {
+      "seq": 26,
+      "event": "SACRED_MANIPULATION_SCREEN_CEILING_SET",
+      "status": "S0_FORM_ONLY_UNTIL_NON_SACRED_BASE_RATE_FREEZE",
+      "reason": "Ancient law, royal inscriptions, treaties, wisdom texts and political speeches can share authority, fear, identity, repetition and sanction forms without thereby being equivalent to manipulative propaganda.",
+      "claim_effect": "ANTI_FALSE_POSITIVE_CEILING_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "flood_phase": "ORIGIN_PRIME_INDEPENDENT_CODER_ASSIGNMENT",
+    "flood_coder_A": "UNASSIGNED",
+    "flood_coder_B": "UNASSIGNED",
+    "flood_semantic_feature_cells": 0,
+    "flood_disagreement_manifest": "BLOCKED",
+    "flood_score_permission": false,
+    "parallel_manipulation_lane": "REGISTERED_BASE_RATE_SOURCE_FREEZE_REQUIRED",
+    "parallel_manipulation_current_ceiling": "S0_FORM_ONLY"
+  }
+}
