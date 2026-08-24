@@ -1,0 +1,82 @@
+{
+  "schema": "topa.sacred_scriptures.shareability_gate.v0.1",
+  "date": "2026-08-24",
+  "status": "S0_INTERNAL_BUILD",
+  "purpose": "Define when a TOPA sacred-text result becomes mature enough to send to external scholars without overstating it.",
+  "levels": [
+    {
+      "level": "S0_INTERNAL_BUILD",
+      "allowed": ["internal corpus work", "source verification", "method preregistration"],
+      "external_outreach": false,
+      "exit_requirements": [
+        "exact focal text loci frozen",
+        "edition/manuscript identity recorded",
+        "feature schema preregistered",
+        "contact/dependence nulls stated",
+        "matched-control plan frozen"
+      ]
+    },
+    {
+      "level": "S1_METHOD_REVIEWABLE",
+      "allowed": ["ask a method specialist to criticize preregistered design"],
+      "external_outreach": true,
+      "claim_ceiling": "METHOD_ONLY_NO_RESULT_CLAIM",
+      "exit_requirements": [
+        "anonymized coding packet exists",
+        "scoring code is reproducible",
+        "at least one shuffled/null test implemented",
+        "no source labels leak into scoring"
+      ]
+    },
+    {
+      "level": "S2_DOMAIN_REVIEWABLE",
+      "allowed": ["send source-specific result packet to relevant philologist or textual scholar"],
+      "external_outreach": true,
+      "claim_ceiling": "TEXTUAL_OR_METHOD_RESULT_ONLY",
+      "exit_requirements": [
+        "blind scoring completed",
+        "source-root collapse completed",
+        "translation sensitivity completed",
+        "leave-one-feature-family-out completed",
+        "all negative results preserved",
+        "exact evidence loci included"
+      ]
+    },
+    {
+      "level": "S3_CROSS_DISCIPLINARY_REVIEWABLE",
+      "allowed": ["send cross-tradition synthesis to cultural-transmission/comparative-method scholars"],
+      "external_outreach": true,
+      "claim_ceiling": "UNRESOLVED_INDEPENDENT_RESIDUAL_OR_LOWER",
+      "exit_requirements": [
+        "Q01 calibration is complete",
+        "Q02 expected-convergence positive control is complete",
+        "method does not promote generic reciprocity or other low-specificity motifs",
+        "at least two independent specialist criticisms have been logged and answered or left open"
+      ]
+    },
+    {
+      "level": "S4_PUBLIC_RESEARCH_NOTE",
+      "allowed": ["public preprint/research note/repository release"],
+      "external_outreach": true,
+      "claim_ceiling": "BOUNDED_EMPIRICAL_OR_TEXTUAL_FINDING",
+      "exit_requirements": [
+        "reproducible data/code packet",
+        "clear limitations section",
+        "rights/community permissions cleared",
+        "review history or adversarial audit attached",
+        "no metaphysical promotion from textual evidence"
+      ]
+    }
+  ],
+  "current_state_reason": "Flood source gates remain open and the preregistered test has not yet been scored.",
+  "next_transition_target": "S1_METHOD_REVIEWABLE",
+  "next_transition_work": [
+    "freeze exact Akkadian editions/line ranges",
+    "freeze Hebrew and Arabic base editions",
+    "freeze full Sanskrit edition/recension",
+    "build permission-cleared controls",
+    "generate anonymized coding packets",
+    "implement deterministic scoring and null tests"
+  ],
+  "rule": "OUTREACH_READINESS != RESULT_TRUTH; a negative result can be more shareable than a positive result if the negative result is reproducible and well bounded."
+}
