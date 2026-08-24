@@ -1,0 +1,67 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coding_packet_template.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_ZERO_SEMANTIC_VALUES_NOT_ISSUED",
+  "feature_authority": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+  "source_authority": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.2.json",
+  "purpose": "Freeze the exact representation used to code ancient non-sacred base-rate controls before any feature values are observed or entered.",
+  "packet_version": "BR_X35_v0.1",
+  "allowed_values": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"],
+  "required_item_binding": [
+    "control_id",
+    "source_root_id",
+    "edition_or_corpus_id",
+    "exact_locus",
+    "source_language",
+    "translation_id_if_used",
+    "source_or_metadata_hash_receipt",
+    "genre",
+    "date_band",
+    "institutional_context"
+  ],
+  "feature_cell_contract": {
+    "feature_id": "X01-X35",
+    "value": null,
+    "evidence_pointer": null,
+    "evidence_mode": null,
+    "genre_context": null,
+    "alternative_nonmanipulative_explanation": null,
+    "uncertainty_note": null,
+    "coder_confidence": null
+  },
+  "feature_ids": [
+    "X01","X02","X03","X04","X05","X06","X07","X08","X09","X10",
+    "X11","X12","X13","X14","X15","X16","X17","X18","X19","X20",
+    "X21","X22","X23","X24","X25","X26","X27","X28","X29","X30",
+    "X31","X32","X33","X34","X35"
+  ],
+  "evidence_modes": [
+    "PRIMARY_SOURCE_DIRECT",
+    "PRIMARY_SOURCE_WITH_PHILOLOGICAL_NOTE",
+    "SOURCE_LANGUAGE_PLUS_TRANSLATION",
+    "TRANSLATION_ONLY_STRUCTURE_ALLOWED_NO_LEXICAL_CREDIT",
+    "MATERIAL_OR_PLACEMENT_CONTEXT",
+    "EXTERNAL_HISTORICAL_CONTEXT",
+    "INSUFFICIENT"
+  ],
+  "locks": [
+    "NO_EMPTY_VALUE_DEFAULT_TO_ABSENT",
+    "NO_TRANSLATION_ONLY_LEXICAL_CORRESPONDENCE",
+    "NO_INTENT_INFERENCE_FROM_STYLE_ALONE",
+    "NO_PROPAGANDA_LABEL_FROM_SINGLE_PRESENT_FEATURE",
+    "NO_AUDIENCE_EFFECT_FROM_TEXT_ONLY",
+    "NO_SACRED_TARGET_CODING_BEFORE_BASE_RATE_FREEZE",
+    "NO_FLOOD_A_B_EXPOSURE",
+    "NO_SCORE"
+  ],
+  "current_state": {
+    "template_feature_count": 35,
+    "semantic_values_populated": 0,
+    "issued_to_coders": false,
+    "BR05_source_gate": "OPEN",
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "unlock_condition": "BR01-BR08 all have admissible frozen source/locus receipts and the packet template hash is committed before first feature value is entered.",
+  "epistemic_effect": "REPRESENTATION_FREEZE_ONLY"
+}
