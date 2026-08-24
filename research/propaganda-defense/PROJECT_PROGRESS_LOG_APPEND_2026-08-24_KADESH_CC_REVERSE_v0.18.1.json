@@ -1,0 +1,29 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.kadesh_cc_reverse.v0.18.1",
+  "date": "2026-08-24",
+  "append_only": true,
+  "event": "COMMON_CRAWL_QUERY_AUDIT_SELF_CORRECTED_BY_REVERSE",
+  "authority_receipt": "BASE_RATE_KADESH_CC_AUDIT_CORRECTION.v0.18.1.json",
+  "run_id": 32774268355,
+  "result": {
+    "exact_positive_control": "PASS",
+    "historical_health": "0/8",
+    "historical_common_crawl_classification": "MEASUREMENT_INFRASTRUCTURE_INCONCLUSIVE",
+    "exact_only_target_fallback": "INVALID_QUERY_CONSTRUCTION_DISCOVERED",
+    "wayback_493951399_exact_captures": 2,
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "spiral_delta": {
+    "origin": "Validate archive query grammar before negative inference.",
+    "reverse_findings": [
+      "A single positive exact control does not validate historical sampling when every historical health control fails.",
+      "The EXACT_ONLY fallback omitted the frozen slug and therefore generated non-evidentiary target zeroes."
+    ],
+    "origin_prime": "Common Crawl is paused as infrastructure-inconclusive; two exact Wayback coordinates for frozen ID 493951399 become the next bounded test surface."
+  },
+  "next_legal_action": "WAYBACK_493951399_TWO_SNAPSHOT_LOCUS_INTEGRITY_PROBE_V0_19",
+  "preservation": "The raw run is retained. Its printed QUERY_BUILDER_VALIDATED flag is not promoted to authority because the reverse audit identified narrower validity conditions."
+}
