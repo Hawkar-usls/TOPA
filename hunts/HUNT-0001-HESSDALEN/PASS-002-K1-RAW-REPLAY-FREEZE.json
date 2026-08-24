@@ -1,0 +1,93 @@
+{
+  "schema": "janus.topa.hunt.pass.v1",
+  "hunt_id": "HUNT-0001",
+  "pass_id": "PASS-002-K1-RAW-REPLAY-FREEZE",
+  "created_at_local": "2026-08-24T13:43:00+03:00",
+  "status": "PREREGISTERED_ACQUISITION_OPEN",
+  "purpose": "Freeze the modern raw-day replay before inspecting anomaly labels or selecting attractive events.",
+  "public_data_facts": {
+    "camera_count_operational": 2,
+    "camera_model": "Dahua N85EFN2",
+    "resolution": "3840x2160",
+    "fps": 25,
+    "cam1_view": "west",
+    "cam2_view": "south",
+    "segment_duration_min": 20,
+    "approx_gb_per_camera_day": 45,
+    "approx_total_gb_per_two_camera_day": 90,
+    "stack_archive_since": "2024-09",
+    "raw_video_available_since": "2024-11_on_request",
+    "full_public_raw_day_claimed_available": true,
+    "source": "https://web.hessdalen.org/current-activities"
+  },
+  "blind_selection_rule": {
+    "rule": "Use the lexicographically earliest complete full raw day that is publicly accessible from the Project Hessdalen data surface at execution time and contains all expected 20-minute segments for at least one operational camera. If multiple complete days tie, choose the earliest date. Do not inspect recent-findings, anomaly labels, Discord discussion, thumbnails selected as interesting, or event commentary before freezing the day.",
+    "reason": "Prevent selection on outcome and attractive-event cherry-picking.",
+    "fallback": "If no full public day can be enumerated/downloaded, request or recover the exact public full-day folder path and preserve the failure as ACQUISITION_BLOCKED rather than substituting hand-picked clips."
+  },
+  "frozen_pipeline": [
+    "ACQUIRE_COMPLETE_DAY",
+    "HASH_EACH_SEGMENT",
+    "VERIFY_SEGMENT_COUNT_AND_TIME_CONTINUITY",
+    "DECODE_WITHOUT_EVENT_SELECTION",
+    "CALIBRATE_STATIC_CAMERA_GEOMETRY",
+    "BUILD_BRIGHT_AND_DARK_MOTION_CANDIDATES",
+    "CROSSMATCH_STARS",
+    "CROSSMATCH_SATELLITES",
+    "CROSSMATCH_AIRCRAFT",
+    "CLASSIFY_METEORS",
+    "CLASSIFY_BIRDS_AND_INSECTS",
+    "ATTACK_LENS_REFLECTIONS",
+    "ATTACK_H264_COMPRESSION_ARTIFACTS",
+    "ATTACK_STACKING_ARTIFACTS",
+    "PRESERVE_UNCLASSIFIED_RESIDUALS",
+    "RUN_HOLDOUT_RECHECK"
+  ],
+  "admission_rules": {
+    "stack_only_candidate_can_be_residual": false,
+    "raw_frames_required_for_residual": true,
+    "single_frame_only_without_motion_context": "QUARANTINE",
+    "known_object_match": "REMOVE_FROM_RESIDUAL_QUEUE_BUT_PRESERVE_CLASSIFICATION_RECEIPT",
+    "ambiguous_mundane_fit": "UNRESOLVED_NONEXOTIC_NOT_RESIDUAL_PROMOTION",
+    "no_counterexample_found": "NOT_EVIDENCE_OF_EXTRAORDINARY_ORIGIN"
+  },
+  "minimum_candidate_fields": [
+    "candidate_id",
+    "camera_id",
+    "segment_hash",
+    "utc_or_local_timestamp_with_timezone_basis",
+    "pixel_track",
+    "duration",
+    "brightness_or_contrast_trace",
+    "known_object_crossmatches",
+    "artifact_tests",
+    "classification",
+    "confidence",
+    "falsifier"
+  ],
+  "candidate_classes": [
+    "STAR_OR_PLANET",
+    "SATELLITE_OR_SPACECRAFT",
+    "AIRCRAFT",
+    "METEOR",
+    "BIRD_OR_INSECT",
+    "LENS_OR_INTERNAL_REFLECTION",
+    "H264_OR_CODEC_ARTIFACT",
+    "STACKING_ARTIFACT",
+    "OTHER_CONVENTIONAL_OR_UNCERTAIN",
+    "RESIDUAL_UNCLASSIFIED"
+  ],
+  "promotion_gate": {
+    "RESIDUAL_UNCLASSIFIED": "May enter the next TOPA queue only after raw-frame verification and all frozen mundane/artifact attacks are recorded.",
+    "extraordinary": "NOT_AVAILABLE_AS_A_PASS_002_OUTPUT"
+  },
+  "current_execution_state": {
+    "public_full_day_exists_per_project_documentation": true,
+    "exact_folder_and_day_enumerated_in_this_pass": false,
+    "raw_day_downloaded": false,
+    "raw_replay_executed": false,
+    "reason": "The public web surface confirms a full day is available but does not expose the Drive directory listing through the current retrieval path. Selection therefore remains frozen before data inspection rather than being replaced by curated clips."
+  },
+  "next_gate": "ENUMERATE_AND_ACQUIRE_BLINDLY_SELECTED_COMPLETE_RAW_DAY_THEN_EXECUTE_FROZEN_PIPELINE",
+  "world_truth": false
+}
