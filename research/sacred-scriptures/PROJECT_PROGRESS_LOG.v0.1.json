@@ -1,0 +1,70 @@
+{
+  "schema": "topa.sacred_scriptures.project_progress_log.v0.1",
+  "created_at": "2026-08-24T16:58:00+03:00",
+  "status": "ACTIVE_APPEND_ONLY",
+  "branch": "topa-sacred-scriptures",
+  "policy": {
+    "append_only_semantics": true,
+    "corrections_create_new_entries": true,
+    "negative_results_preserved": true,
+    "ci_pass_is_method_receipt_not_truth": true,
+    "no_entry_may_raise_metaphysical_claim_ceiling": true
+  },
+  "entries": [
+    {
+      "seq": 1,
+      "date": "2026-08-24",
+      "event": "SACRED_SCRIPTURES_BRANCH_ESTABLISHED",
+      "status": "DONE",
+      "artifacts": ["CORPUS_MANIFEST.v0.1.json", "JANUS_COUNCIL_PROTOCOL.v0.1.json"],
+      "claim_effect": "METHOD_AND_CORPUS_STRUCTURE_ONLY"
+    },
+    {
+      "seq": 2,
+      "date": "2026-08-24",
+      "event": "INDEPENDENT_RESIDUAL_PROTOCOL_FROZEN",
+      "status": "DONE",
+      "artifacts": ["INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json", "FLOOD_STEMMA_BLIND_TEST.v0.1.json"],
+      "claim_effect": "PREREGISTRATION_ONLY"
+    },
+    {
+      "seq": 3,
+      "date": "2026-08-24",
+      "event": "PHILOLOGY_AND_SOURCE_LOCI_FROZEN",
+      "status": "DONE_WITH_OPEN_HASH_GATE",
+      "artifacts": ["PHILOLOGY_BASELINE.v0.1.json", "PRESCORE_SOURCE_FREEZE.v0.2.json", "FLOOD_SOURCE_GATES.v0.2.json"],
+      "claim_effect": "SOURCE_IDENTITY_AND_LOCUS_ONLY"
+    },
+    {
+      "seq": 4,
+      "date": "2026-08-24",
+      "event": "LINEAR_A_AND_EGYPT_METHOD_LINEAGE_IMPORTED",
+      "status": "DONE",
+      "artifacts": ["ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json"],
+      "notes": [
+        "Linear A *900 representation failure preserved as canary",
+        "Linear A v2.32 KU-RO 8/10 support-floor non-admission preserved as canary",
+        "Egypt TLA lemma IDs kept distinct",
+        "Pyramid Text utterance IDs kept distinct from paragraph/section IDs"
+      ],
+      "claim_effect": "METHOD_CONTROL_ONLY"
+    },
+    {
+      "seq": 5,
+      "date": "2026-08-24",
+      "event": "SOURCE_SEAL_AND_CANARY_EXECUTION_SPRINT_OPENED",
+      "status": "IN_PROGRESS",
+      "targets": {"immutable_source_seals": 5, "canary_passes_required": 4},
+      "gates": {"blind_packet_build_permission": false, "score_permission": false},
+      "next_receipts": ["SOURCE_SEAL_RUN.v0.1.json", "CANARY_RUN.v0.1.json"],
+      "claim_effect": "NONE_UNTIL_EXECUTED"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "HASH_AND_CANARY_EXECUTION",
+    "source_seals": "0/5 EXECUTED_RECEIPTS_IN_REPO",
+    "canaries": "0/4 EXECUTED_RECEIPTS_IN_REPO",
+    "blind_packet_build_permission": false,
+    "score_permission": false
+  }
+}
