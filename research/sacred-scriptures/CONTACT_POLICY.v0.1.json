@@ -1,0 +1,9 @@
+{
+  "schema": "topa.sacred_scriptures.contact_policy.v0.1",
+  "date": "2026-08-24",
+  "status": "HOLD",
+  "rule": "Do not contact watchlist scholars until SHAREABILITY_GATE permits the specific class of outreach.",
+  "current_permission": "NONE",
+  "reason": "The first Flood calibration remains pre-score and source gates are still open.",
+  "future_mode": "CRITIQUE_REQUEST_NOT_ENDORSEMENT_REQUEST"
+}
