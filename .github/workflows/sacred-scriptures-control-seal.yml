@@ -1,0 +1,131 @@
+name: sacred-scriptures-control-seal
+
+on:
+  push:
+    branches:
+      - topa-sacred-scriptures
+    paths:
+      - 'research/sacred-scriptures/CONTROL_CANDIDATE_FREEZE.v0.1.json'
+      - 'research/sacred-scriptures/FLOOD_STEMMA_BLIND_TEST.v0.1.json'
+      - 'research/sacred-scriptures/execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json'
+      - 'tools/sacred_scripture_control_seal.py'
+      - 'tools/sacred_scripture_synthetic_null_freeze.py'
+      - '.github/workflows/sacred-scriptures-control-seal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  control-seal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA authority branch
+        uses: actions/checkout@v4
+        with:
+          ref: topa-sacred-scriptures
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Seal eight real control sources and loci
+        id: real_controls
+        continue-on-error: true
+        run: |
+          mkdir -p receipts
+          python tools/sacred_scripture_control_seal.py \
+            --out receipts/CONTROL_SEAL_RUN.v0.1.json
+
+      - name: Freeze C09-C10 synthetic-null generators
+        id: null_freeze
+        continue-on-error: true
+        run: |
+          mkdir -p receipts
+          python tools/sacred_scripture_synthetic_null_freeze.py \
+            --out receipts/SYNTHETIC_NULL_FREEZE.v0.1.json
+
+      - name: Build combined control admission gate
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          def read(path):
+              p=Path(path)
+              if not p.exists():
+                  return None
+              try:
+                  return json.loads(p.read_text(encoding='utf-8'))
+              except Exception as e:
+                  return {'status':'UNREADABLE_RECEIPT','error':f'{type(e).__name__}: {e}'}
+          real=read('receipts/CONTROL_SEAL_RUN.v0.1.json')
+          nulls=read('receipts/SYNTHETIC_NULL_FREEZE.v0.1.json')
+          rpass=bool(real and real.get('status')=='EIGHT_OF_EIGHT_REAL_CONTROLS_SEALED' and real.get('sealed_count')==8)
+          npass=bool(nulls and nulls.get('status')=='TWO_OF_TWO_SYNTHETIC_NULL_GENERATORS_FROZEN' and nulls.get('frozen_count')==2 and nulls.get('actual_null_outputs_exist') is False)
+          ok=rpass and npass
+          gate={
+              'schema':'topa.sacred_scriptures.control_admission_gate.v0.1',
+              'executed_at_utc':datetime.now(timezone.utc).isoformat(),
+              'status':'TEN_CONTROL_SLOTS_PREREQUISITES_FROZEN' if ok else 'CONTROL_ADMISSION_BLOCKED',
+              'real_control_receipt_present':real is not None,
+              'real_control_status':None if real is None else real.get('status'),
+              'real_controls_sealed':None if real is None else real.get('sealed_count'),
+              'synthetic_null_receipt_present':nulls is not None,
+              'synthetic_null_status':None if nulls is None else nulls.get('status'),
+              'synthetic_null_generators_frozen':None if nulls is None else nulls.get('frozen_count'),
+              'actual_synthetic_outputs_exist':None if nulls is None else nulls.get('actual_null_outputs_exist'),
+              'ten_control_slots_prerequisites_frozen':ok,
+              'independent_double_coding_permission':ok,
+              'final_blind_packets_complete':False,
+              'score_permission':False,
+              'failure_semantics':'Any missing/failed/unreadable real-control seal or null-generator commitment blocks double coding admission. Actual synthetic null outputs remain forbidden until the coded matrix is frozen.',
+              'epistemic_effect':'CONTROL_AND_NULL_METHOD_PERMISSION_ONLY_NO_SCORE_NO_WORLD_TRUTH_CREDIT'
+          }
+          Path('receipts/CONTROL_ADMISSION_GATE.v0.1.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(f"REAL_CONTROLS={gate['real_controls_sealed']}/8")
+          print(f"NULL_GENERATORS={gate['synthetic_null_generators_frozen']}/2")
+          print(f"DOUBLE_CODING_PERMISSION={str(ok).lower()}")
+          print('SCORE_PERMISSION=false')
+          PY
+
+      - name: Upload control receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sacred-scriptures-control-receipts
+          path: receipts/*.json
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: Persist control receipts to authority branch
+        if: always() && github.event_name == 'push'
+        run: |
+          mkdir -p research/sacred-scriptures/execution
+          shopt -s nullglob
+          files=(receipts/*.json)
+          if [ ${#files[@]} -gt 0 ]; then
+            cp receipts/*.json research/sacred-scriptures/execution/
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research/sacred-scriptures/execution/*.json
+            git diff --cached --quiet || git commit -m "Record sacred-scriptures control admission receipts"
+            git push origin HEAD:topa-sacred-scriptures
+          fi
+
+      - name: Enforce fail-closed control status
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('receipts/CONTROL_ADMISSION_GATE.v0.1.json')
+          if not p.exists():
+              raise SystemExit('control admission gate receipt missing')
+          g=json.loads(p.read_text(encoding='utf-8'))
+          if g.get('independent_double_coding_permission') is not True:
+              raise SystemExit(2)
+          if g.get('score_permission') is not False:
+              raise SystemExit('score permission must remain locked')
+          PY
