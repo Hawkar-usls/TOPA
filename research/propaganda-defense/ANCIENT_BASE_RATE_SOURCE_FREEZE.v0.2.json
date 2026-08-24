@@ -1,0 +1,55 @@
+{
+  "schema": "topa.propaganda_defense.ancient_base_rate_source_freeze.v0.2",
+  "date": "2026-08-24",
+  "status": "SEVEN_OF_EIGHT_SOURCE_LOCUS_ROOTS_FROZEN_ONE_OPEN",
+  "supersedes": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.1.json",
+  "unchanged_frozen_controls_from_v0_1": ["BR01_HAMMURABI","BR02_BEHISTUN","BR04_NEO_ASSYRIAN_ANNALS","BR06_THUCYDIDES","BR07_RES_GESTAE"],
+  "promotions": [
+    {
+      "id":"BR03_KADESH",
+      "previous_status":"PROVISIONAL_NOT_ADMITTED",
+      "new_status":"LOCUS_ROOT_FROZEN_LEGACY_SCHOLARLY_EDITION_HASH_PENDING",
+      "text_source":"James Henry Breasted, Ancient Records of Egypt, vol. III / Chicago digitized copy",
+      "source_url":"https://storage.lib.uchicago.edu/pres/2008/pres2008-0334.pdf",
+      "exact_locus":"Kadesh Record campaign approach plus Poem witness passages identified in Breasted's Battle of Kadesh discussion; initial coding packet must bind exact PDF page/section coordinates before semantic coding",
+      "witness_note":"Breasted identifies hieroglyphic temple copies and Poem/Record line references; exact witness-level variation remains a sensitivity gate.",
+      "genre_corrective_source":"https://www.ucl.ac.uk/museums-static/digitalegypt/foreignrelations/war.html",
+      "genre_corrective":"UCL warns against treating the Egyptian Kadesh account as modern journalistic reportage; it is embedded in royal praise/ideological genre.",
+      "quality_flag":"LEGACY_1906_EDITION_REQUIRES_MODERN_SENSITIVITY_CHECK",
+      "admission_ceiling":"GENRE_AND_RHETORICAL_BASE_RATE_NO_HISTORICAL_TRUTH_CREDIT"
+    },
+    {
+      "id":"BR08_PTAHHOTEP",
+      "previous_status":"OPEN_SOURCE_GATE",
+      "new_status":"LOCUS_ROOT_FROZEN_TLA_HASH_PENDING",
+      "source":"Thesaurus Linguae Aegyptiae (TLA), Die Lehre des Ptahhotep",
+      "text_id":"C6KGH3XC7RGU3DSL7HKYY2K3WM",
+      "source_url":"https://thesaurus-linguae-aegyptiae.de/text/C6KGH3XC7RGU3DSL7HKYY2K3WM",
+      "corpus_authority":"TLA Corpus edition 20 / web app 2.5.x; Peter Dils with contributors; hieroglyphs, transliteration, lemmatization and grammatical annotation available",
+      "exact_locus_policy":"Freeze selected maxim/sentence token IDs before coding; no whole-text cherry-picking after feature inspection.",
+      "language_layer":"EGYPTIAN_HIEROGLYPHS_TRANSLITERATION_LEMMATIZATION_WITH_TRANSLATION",
+      "rights_state":"CITE_TLA_PERSISTENT_IDS_AND_TERMS; DO_NOT_MIRROR_FULL_CORPUS_WITHOUT_LICENSE_CHECK",
+      "admission_ceiling":"WISDOM_INSTRUCTION_BASE_RATE"
+    }
+  ],
+  "remaining_open": {
+    "id":"BR05_HITTITE_TREATY",
+    "status":"OPEN_MODERN_EDITION_GATE",
+    "candidate":"Treaty between Mursili II and Duppi-Tessub of Amurru",
+    "known_textual_anchors":["KBo 3.4","KUB III 14 and related fragments"],
+    "legacy_online_translation":"https://jewishchristianlit.com/treat01/",
+    "modern_scholarly_support":"Chicago Hittite Dictionary cites Duppi-Tessub treaty passages and tablet/line references but is not itself a complete treaty edition.",
+    "blocker":"Need one stable modern provenance-clear edition/transliteration with a frozen oath/witness/sanction locus before X01-X35 coding.",
+    "policy":"DO_NOT_DOWNGRADE_SOURCE_REQUIREMENT_TO_FORCE_8_OF_8"
+  },
+  "summary": {
+    "locus_roots_frozen_hash_pending": 7,
+    "open_source_gate": 1,
+    "total": 8,
+    "semantic_X01_X35_cells_populated": 0,
+    "sacred_targets_coded": 0,
+    "score_permission": false
+  },
+  "next_legal_action": "Resolve BR05 modern Hittite treaty authority; then freeze exact sub-loci for all seven already admitted controls and build immutable/hash receipts plus a zero-value X01-X35 coding packet.",
+  "epistemic_effect": "SOURCE_AND_LOCUS_AUTHORITY_ADVANCE_ONLY_NO_MANIPULATION_CLASSIFICATION"
+}
