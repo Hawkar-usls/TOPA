@@ -1,0 +1,78 @@
+{
+  "schema": "topa.math.frontier-receipt.v1",
+  "id": "TOPA-C025-E2-ER-P-BOUNDEDNESS-FRONTIER-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "repository": "Hawkar-usls/TOPA",
+  "target": "C025-E2",
+  "status": "E2A_EQUIVALENCE_PROVED__E2B_OPEN_MAJOR_EXTERNAL_FRONTIER",
+  "frozen_b2_language": {
+    "extension_rule": "e <-> (a AND b)",
+    "operands": "literals over root or earlier extension variables",
+    "definition_clauses": [
+      "(~e OR a)",
+      "(~e OR b)",
+      "(e OR ~a OR ~b)"
+    ],
+    "inference": "exact Resolution",
+    "root_refutation_output": "empty clause"
+  },
+  "proved_in_this_pass": [
+    "standard literal-AND Extended Resolution normalizes directly into B2",
+    "OR-literal extension presentations normalize via De Morgan and polarity renaming",
+    "strictly increasing extension ids are obtained by introduction-order renaming",
+    "unused proof nodes and unused extension definitions can be pruned without increasing proof size",
+    "B2 refutations are ordinary Extended Resolution refutations after dropping portability metadata",
+    "B2 and Extended Resolution are polynomially equivalent on UNSAT CNF refutations"
+  ],
+  "frontier_equivalence": {
+    "statement": "Every UNSAT CNF has a polynomial-size B2 certificate iff Extended Resolution is p-bounded on CNF refutations, up to standard polynomial encoding translations.",
+    "status": "PROVED"
+  },
+  "complexity_consequences": {
+    "if_positive": "Polynomial-size B2 certificates plus polynomial verification imply UNSAT in NP and hence NP = coNP. This does not establish P = NP without deterministic polynomial proof discovery.",
+    "if_negative": "A superpolynomial B2 lower bound yields an Extended Resolution / Extended Frege lower-bound breakthrough up to p-equivalence. ER non-p-boundedness is not currently known by itself to imply NP != coNP."
+  },
+  "external_status": {
+    "extended_resolution_p_boundedness": "OPEN",
+    "extended_frege_strong_lower_bounds": "OPEN_MAJOR_PROOF_COMPLEXITY_PROBLEM"
+  },
+  "new_split": {
+    "C025_E2A_B2_ER_P_EQUIVALENCE": "PROVED",
+    "C025_E2B_GLOBAL_ER_P_BOUNDEDNESS": "OPEN_MAJOR_EXTERNAL_FRONTIER",
+    "C025_E2R_POLICY0B_RESTRICTED_PROOF_SIZE": "NEXT_TRACTABLE_ATTACK",
+    "C025_C2_DETERMINISTIC_PROOF_SEARCH": "DEFERRED_UNTIL_E2R",
+    "ISSUE_212_ACTIVE_REPRESENTATION": "OPEN"
+  },
+  "hard_boundaries": [
+    "B2_SOUNDNESS != B2_P_BOUNDEDNESS",
+    "B2_P_BOUNDEDNESS != DETERMINISTIC_PROOF_SEARCH",
+    "ER_P_BOUNDEDNESS != P_EQUALS_NP",
+    "ER_LOWER_BOUND != KNOWN_NP_NOT_EQUAL_CONP",
+    "SHORT_ER_PROOF_EXISTS != POLICY0B_FINDS_IT_IN_POLYTIME"
+  ],
+  "canonical_note": "research/mathematics/p-vs-np/C025_E2_ER_P_BOUNDEDNESS_EQUIVALENCE.md",
+  "literature_checked": [
+    {
+      "title": "Proof Complexity I",
+      "author": "Sam Buss",
+      "fact": "standard ER binary extension rule and ER/EF p-simulation"
+    },
+    {
+      "title": "Propositional Proof Complexity: Past, Present, and Future",
+      "authors": "Paul Beame and Toniann Pitassi",
+      "fact": "extended Resolution is p-equivalent to extended Frege"
+    },
+    {
+      "title": "The case of ER",
+      "author": "Jan Krajicek",
+      "fact": "ER equivalent to EF; non-p-boundedness remains a major open frontier and does not currently imply NP != coNP"
+    }
+  ],
+  "claim_ceiling": {
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "NP_EQUALS_CONP": "NOT_ESTABLISHED",
+    "ER_P_BOUNDED": "NOT_ESTABLISHED",
+    "ER_NOT_P_BOUNDED": "NOT_ESTABLISHED"
+  }
+}
