@@ -1,0 +1,3 @@
+# Optional transport dependency for public Google Drive file/folder acquisition.
+# ffmpeg and ffprobe are system executables and are not installed by pip.
+gdown>=5.2
