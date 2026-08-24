@@ -1,0 +1,118 @@
+{
+  "schema": "topa.propaganda_defense.sacred_base_rate_control_protocol.v0.1",
+  "date": "2026-08-24",
+  "status": "PREREGISTERED_BEFORE_SACRED_MANIPULATION_SCORING",
+  "purpose": "Estimate the baseline prevalence of influence-like rhetorical forms in non-sacred texts of comparable era, genre and institutional setting before interpreting sacred texts as manipulation or propaganda.",
+  "authority": {
+    "observable_schema": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+    "atlas": "MANIPULATION_ATLAS_INDEX.v0.1.json",
+    "sacred_screen": "SACRED_TEXT_MANIPULATION_SCREEN.v0.1.json"
+  },
+  "central_null": "A rhetorical mechanism observed in a sacred text may be ordinary for the period, genre or institution rather than evidence of distinctive manipulative propaganda.",
+  "hard_rules": [
+    "NO_SACRED_SPECIFICITY_WITHOUT_NON_SACRED_BASE_RATE",
+    "GENRE_MATCH_BEFORE_INTERPRETATION",
+    "ERA_MATCH_BEFORE_MODERN_LABEL",
+    "TRANSLATION_MATCHES_DO_NOT_COUNT_AS_ORIGINAL_LEXICAL_MATCHES",
+    "INSTITUTIONAL_AUTHORITY != MANIPULATION_BY_ITSELF",
+    "RITUAL != PROPAGANDA_BY_DEFAULT",
+    "LAW_SANCTION != FEAR_PROPAGANDA_BY_DEFAULT",
+    "ROYAL_TITULATURE != CULT_MANIPULATION_BY_DEFAULT",
+    "EPIC_EMOTION != EMOTIONAL_MANIPULATION_BY_DEFAULT",
+    "SCORE_PERMISSION=false"
+  ],
+  "control_deck": [
+    {
+      "id":"BR01_HAMMURABI",
+      "class":"ANCIENT_LAW_AND_ROYAL_LEGITIMATION",
+      "target":"Code of Hammurabi prologue and epilogue",
+      "functions_to_control":["divine/authority legitimation","justice claim","reward/punishment","royal self-presentation"],
+      "admission_state":"SOURCE_AND_EXACT_LOCUS_FREEZE_REQUIRED"
+    },
+    {
+      "id":"BR02_BEHISTUN",
+      "class":"ROYAL_INSCRIPTION_AND_REBELLION_NARRATIVE",
+      "target":"Behistun inscription selected Old Persian sections",
+      "functions_to_control":["dynastic legitimacy","divine favor","enemy delegitimation","truth/lie binary","victory narrative"],
+      "admission_state":"SOURCE_AND_EXACT_LOCUS_FREEZE_REQUIRED"
+    },
+    {
+      "id":"BR03_KADESH",
+      "class":"ROYAL_VICTORY_INSCRIPTION",
+      "target":"Ramesses II Kadesh Poem/Bulletin selected version",
+      "functions_to_control":["heroization","divine aid","enemy framing","battle self-presentation","monumentality"],
+      "admission_state":"SOURCE_AND_EXACT_LOCUS_FREEZE_REQUIRED"
+    },
+    {
+      "id":"BR04_NEO_ASSYRIAN_ANNALS",
+      "class":"ROYAL_MILITARY_ANNALS",
+      "target":"One frozen annalistic campaign account from an open scholarly edition",
+      "functions_to_control":["terror language","victory repetition","enemy degradation","royal authority","punitive example"],
+      "admission_state":"SCHOLARLY_OPEN_TEXT_AND_LOCUS_REQUIRED"
+    },
+    {
+      "id":"BR05_HITTITE_TREATY",
+      "class":"INTERNATIONAL_TREATY",
+      "target":"One frozen Hittite treaty with witnesses, oath and sanctions",
+      "functions_to_control":["oath","divine witness","curse/blessing","loyalty pressure","legal sanction"],
+      "admission_state":"SCHOLARLY_OPEN_TEXT_AND_LOCUS_REQUIRED"
+    },
+    {
+      "id":"BR06_THUCYDIDES",
+      "class":"POLITICAL_MILITARY_SPEECH_HISTORIOGRAPHY",
+      "target":"One preregistered political or military speech passage",
+      "functions_to_control":["fear/honor/interest appeals","in-group identity","enemy framing","forced choice","collective duty"],
+      "admission_state":"PUBLIC_DOMAIN_GREEK_OR_OPEN_CRITICAL_TEXT_PREFERRED"
+    },
+    {
+      "id":"BR07_RES_GESTAE",
+      "class":"POLITICAL_SELF_PRESENTATION",
+      "target":"Res Gestae Divi Augusti selected sections",
+      "functions_to_control":["selective achievement display","public benefaction","consensus display","authority legitimation"],
+      "admission_state":"OPEN_LATIN_TEXT_AND_LOCUS_REQUIRED"
+    },
+    {
+      "id":"BR08_PTAHHOTEP",
+      "class":"WISDOM_INSTRUCTION",
+      "target":"Instruction of Ptahhotep selected maxims from a source with explicit manuscript/edition provenance",
+      "functions_to_control":["authority transfer","social hierarchy","obedience norms","repetition/instruction"],
+      "admission_state":"EGYPTOLOGICAL_SOURCE_AND_TRANSLATION_PROVENANCE_REQUIRED"
+    }
+  ],
+  "matching_axes": [
+    "date_band",
+    "writing_system_and_medium",
+    "institutional_sponsor",
+    "genre",
+    "public_vs_restricted_audience",
+    "oral_vs_written_transmission_state",
+    "translation_distance",
+    "surviving-manuscript distance from composition",
+    "legal/ritual/political function",
+    "monumental/private portability"
+  ],
+  "promotion_logic": {
+    "S0_FORM_ONLY": "Any observable X01-X35 form may be recorded with evidence.",
+    "S1_MANIPULATION_CANDIDATE": "Requires pressure/asymmetry plus non-manipulative alternatives explicitly tested.",
+    "S2_PROPAGANDA_CANDIDATE": "Requires evidence of institutional or collective persuasive purpose directed at an audience, beyond genre baseline.",
+    "S3_MANIPULATIVE_PROPAGANDA_SUPPORTED": "Requires multiple convergent context signals for systematic distortion, concealment, coercive pressure or strategically managed information, and elevated prevalence relative to controls where meaningful.",
+    "S4_EFFECT_EVIDENCE": "Requires independent evidence of actual audience belief/behavior effect. Textual form alone can never reach S4."
+  },
+  "analysis_plan": [
+    "Freeze exact source/edition/locus for BR01-BR08 before coding sacred targets.",
+    "Code BR01-BR08 under X01-X35 with PRESENT/ABSENT/UNKNOWN/NOT_APPLICABLE.",
+    "Preserve genre-specific false-positive notes for every PRESENT.",
+    "Estimate dimension-wise base rates and co-occurrence bundles without treating eight controls as universal historical frequency estimates.",
+    "Only after base-rate freeze may sacred-text parallel screen compare observed bundles.",
+    "Any sacred excess must be sensitivity-tested against alternative matching subsets and translation choices.",
+    "Reverse pass asks whether the same conclusion would be reached if sacred/non-sacred labels were hidden."
+  ],
+  "blindness_and_contamination": {
+    "flood_test_A_B_must_not_see_this_control_result_before_their_receipts_freeze": true,
+    "this_protocol_may_not_change_flood_28_feature_schema": true,
+    "parallel_screen_results_do_not_unlock_flood_SCORE": true
+  },
+  "claim_ceiling": "BASE_RATE_AND_RHETORICAL_SPECIFICITY_ONLY",
+  "score_permission": false,
+  "next_gate": "Freeze exact open scholarly sources and immutable loci for BR01-BR08, then build a zero-semantic-value coding packet before any coding begins."
+}
