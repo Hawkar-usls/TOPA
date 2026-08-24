@@ -24,10 +24,7 @@ TANZIL_URL = ("https://tanzil.net/pub/download/index.php?"
 GRETIL_URL = "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm"
 BHSA_FULL_SHA = "b112c161cfd21eae403d51a2733740d8743460e7"
 BHSA_RAW_BASE = f"https://raw.githubusercontent.com/ETCBC/bhsa/{BHSA_FULL_SHA}/tf/2021"
-BHSA_FILES = [
-    "otype.tf", "oslots.tf", "otext.tf", "book.tf", "chapter.tf", "verse.tf",
-    "g_word_utf8.tf", "trailer_utf8.tf"
-]
+BHSA_CORE_FILES = ["otype.tf", "oslots.tf", "otext.tf", "book.tf", "chapter.tf", "verse.tf"]
 
 def h(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
@@ -77,13 +74,23 @@ def seal_akkadian():
          "status":"SEALED"},
     ]
 
-def prepare_bhsa_tf(bhsa_dir: Path | None):
-    """Return exact BHSA 2021 TF directory plus transport metadata.
+def bhsa_required_files_from_otext(otext_bytes: bytes):
+    """Derive exact feature dependencies declared by frozen otext.tf formats."""
+    text = otext_bytes.decode("utf-8")
+    features = set()
+    for expr in re.findall(r"\{([^}]+)\}", text):
+        for feature in expr.split("/"):
+            feature = feature.strip()
+            if feature:
+                features.add(f"{feature}.tf")
+    return sorted(set(BHSA_CORE_FILES) | features)
 
-    A full checkout is accepted when supplied, but CI defaults to fetching only
-    the eight required TF files from raw.githubusercontent.com at the full
-    frozen commit SHA. This avoids a large repository checkout while preserving
-    exact source identity.
+def prepare_bhsa_tf(bhsa_dir: Path | None):
+    """Return exact BHSA 2021 TF directory, transport metadata and fetched files.
+
+    CI fetches only exact files at the full frozen commit. Feature dependencies
+    are derived from that commit's own otext.tf so Text-Fabric cannot silently
+    depend on an unsealed auxiliary feature.
     """
     if bhsa_dir is not None:
         import subprocess
@@ -94,19 +101,30 @@ def prepare_bhsa_tf(bhsa_dir: Path | None):
         if head != BHSA_FULL_SHA:
             raise RuntimeError(f"BHSA wrong commit: {head}")
         tfdir = (root / "tf" / "2021").resolve()
-        return tfdir, "GIT_CHECKOUT_FULL_COMMIT", head
+        files = bhsa_required_files_from_otext((tfdir / "otext.tf").read_bytes())
+        return tfdir, "GIT_CHECKOUT_FULL_COMMIT", head, files
 
     tfdir = Path(".source-cache/bhsa-raw/tf/2021").resolve()
     tfdir.mkdir(parents=True, exist_ok=True)
-    for name in BHSA_FILES:
+
+    # Bootstrap from immutable otext.tf, then derive every format dependency.
+    bootstrap = {}
+    for name in BHSA_CORE_FILES:
+        data = fetch(f"{BHSA_RAW_BASE}/{name}")
+        bootstrap[name] = data
+        (tfdir / name).write_bytes(data)
+    files = bhsa_required_files_from_otext(bootstrap["otext.tf"])
+    for name in files:
+        if name in bootstrap:
+            continue
         data = fetch(f"{BHSA_RAW_BASE}/{name}")
         (tfdir / name).write_bytes(data)
-    return tfdir, "RAW_GITHUB_FULL_COMMIT_FILES", BHSA_FULL_SHA
+    return tfdir, "RAW_GITHUB_FULL_COMMIT_FILES_OTEXT_DERIVED", BHSA_FULL_SHA, files
 
 def seal_bhsa(bhsa_dir: Path | None):
-    tfdir, transport, head = prepare_bhsa_tf(bhsa_dir)
+    tfdir, transport, head, files = prepare_bhsa_tf(bhsa_dir)
     manifest = []
-    for name in BHSA_FILES:
+    for name in files:
         p = tfdir / name
         b = p.read_bytes()
         manifest.append({
@@ -143,6 +161,7 @@ def seal_bhsa(bhsa_dir: Path | None):
         "id":"F03_GENESIS_6_9", "source":"ETCBC BHSA Text-Fabric 2021",
         "source_repository":"ETCBC/bhsa", "source_commit":head,
         "source_transport":transport,
+        "source_dependency_policy":"All Text-Fabric format dependencies are derived from frozen otext.tf and individually SHA-256 sealed.",
         "source_substrate_manifest":manifest, "source_substrate_sha256":substrate_sha,
         "frozen_locus_descriptor":"Genesis 6:5-9:17",
         "slice_seal_type":"NFC_UTF8_TEXT_SLICE_SHA256", "slice_bytes":len(slice_bytes),
