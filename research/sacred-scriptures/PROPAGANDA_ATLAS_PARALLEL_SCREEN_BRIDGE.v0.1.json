@@ -1,0 +1,48 @@
+{
+  "schema": "topa.sacred_scriptures.propaganda_atlas_parallel_screen_bridge.v0.1",
+  "date": "2026-08-24",
+  "status": "PARALLEL_SCREEN_REGISTERED_FLOOD_BLINDNESS_UNCHANGED",
+  "propaganda_branch_authority": {
+    "branch": "topa-propaganda-defense",
+    "commit": "456a1571dc09203b388b880d964c057373ed1e85",
+    "atlas_index": "research/propaganda-defense/MANIPULATION_ATLAS_INDEX.v0.1.json",
+    "cross_epoch_schema": "research/propaganda-defense/CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+    "base_rate_protocol": "research/propaganda-defense/SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json"
+  },
+  "purpose": "Permit a later independent rhetoric/manipulation analysis of sacred texts while preserving the already-preregistered Flood stemma blind experiment and preventing expectation leakage into Coder A/B.",
+  "non_contamination_contract": [
+    "Flood Coder A and Flood Coder B must not receive propaganda-atlas classifications, X01-X35 coding results, sacred manipulation hypotheses or base-rate results before both independent Flood coding receipts are frozen.",
+    "The propaganda atlas may not modify, add, delete or reinterpret the frozen 28-feature FLOOD_STEMMA_BLIND_TEST schema.",
+    "No propaganda/manipulation result may unlock Flood SCORE or count as a Flood feature observation.",
+    "No Flood clustering result may be used to tune the propaganda-atlas classification thresholds before its own preregistered controls are frozen.",
+    "Cross-lane comparison is permitted only after both lanes have independently frozen their relevant receipts."
+  ],
+  "parallel_lane": {
+    "name": "SACRED_TEXT_MANIPULATION_PARALLEL_SCREEN",
+    "current_stage": "BASE_RATE_CONTROL_SOURCE_FREEZE",
+    "sacred_screen_levels": ["S0_FORM_ONLY","S1_MANIPULATION_CANDIDATE","S2_PROPAGANDA_CANDIDATE","S3_MANIPULATIVE_PROPAGANDA_SUPPORTED","S4_EFFECT_EVIDENCE"],
+    "current_ceiling": "S0_FORM_ONLY_UNTIL_NON_SACRED_BASE_RATE_FREEZE",
+    "current_controls": ["BR01_HAMMURABI","BR02_BEHISTUN","BR03_KADESH","BR04_NEO_ASSYRIAN_ANNALS","BR05_HITTITE_TREATY","BR06_THUCYDIDES","BR07_RES_GESTAE","BR08_PTAHHOTEP"]
+  },
+  "flood_lane_snapshot": {
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_feature_cells_populated": 0,
+    "disagreement_manifest": "BLOCKED",
+    "C09_C10_actual_outputs": "NOT_GENERATED",
+    "score_permission": false
+  },
+  "epistemic_laws": [
+    "RHETORICAL_FORM != MANIPULATION",
+    "MANIPULATION_CANDIDATE != PROPAGANDA",
+    "PROPAGANDA_CANDIDATE != DECEPTION",
+    "TEXTUAL_FORM != AUDIENCE_EFFECT",
+    "SACRED != IMMUNE_FROM_MANIPULATION_ANALYSIS",
+    "SACRED != MANIPULATIVE_BY_DEFAULT",
+    "NON_SACRED_CONTROL != UNIVERSAL_HISTORICAL_BASE_RATE",
+    "PARALLEL_ANALYSIS != INDEPENDENT_REPLICATION"
+  ],
+  "next_legal_action": "Keep Flood A/B untouched; in propaganda lane freeze BR01-BR08 exact sources/loci and zero-value X01-X35 packet before any sacred manipulation coding.",
+  "flood_gate_effect": "NONE",
+  "score_permission": false
+}
