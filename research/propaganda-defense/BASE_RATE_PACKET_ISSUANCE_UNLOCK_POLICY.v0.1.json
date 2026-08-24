@@ -1,0 +1,72 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_packet_issuance_unlock_policy.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_UNLOCK_EXECUTION",
+  "purpose": "Run a reverse-consistency audit over the assembled ancient base-rate substrate. A PASS may authorize issuing one identical hash-bound zero-value packet to two genuinely independent coders. It may not assign coders, populate cells, compare coders, analyze sacred targets or unlock SCORE.",
+  "required_authorities": {
+    "retrieval_map": "BASE_RATE_8_OF_8_RETRIEVAL_AUTHORITY_MAP.v0.1.json",
+    "exact_loci": "ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json",
+    "descriptors": "ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS.v0.1.json",
+    "schema": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+    "packet": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.3.json",
+    "packet_git_blob_sha": "a514bb77bac6c283ca60c771ab3ac46eb8bf416b",
+    "independence_contract": "BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1.json",
+    "independence_contract_git_blob_sha": "e397f3dfcf30ab8a23163df868c1de8452ed5395",
+    "sacred_firewall": "SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json"
+  },
+  "mandatory_checks": {
+    "retrieval_map_status_contains_EIGHT_OF_EIGHT": true,
+    "retrieval_map_has_exactly_8_unique_PASS_controls": true,
+    "every_control_source_root_count_equals_1": true,
+    "transport_mirrors_add_zero_independent_roots": true,
+    "exact_locus_summary_is_8_of_8": true,
+    "descriptor_summary_is_8_of_8": true,
+    "cross_epoch_schema_has_exactly_35_dimensions": true,
+    "packet_has_exactly_8_controls_and_35_features": true,
+    "packet_semantic_values_populated_equals_0": true,
+    "packet_issued_to_coders_is_false": true,
+    "packet_coder_A_is_UNASSIGNED": true,
+    "packet_coder_B_is_UNASSIGNED": true,
+    "independence_contract_required_coders_equals_2": true,
+    "same_reasoning_instance_may_count_as_two_is_false": true,
+    "arbitration_is_prefrozen_before_disagreements": true,
+    "sacred_firewall_blocks_flood_A_B_exposure": true,
+    "sacred_protocol_score_permission_is_false": true,
+    "no_semantic_coding_receipt_may_preexist": true
+  },
+  "reverse_questions": [
+    "Does any transport mirror/archive timestamp accidentally inflate an evidence root?",
+    "Does any stale packet field contradict the current authority state?",
+    "Could the same reasoning instance be counted twice?",
+    "Could a coder see the other coder result or sacred target result before own freeze?",
+    "Could UNKNOWN silently become ABSENT?",
+    "Could translation wording receive lexical credit without source-language support?",
+    "Could a PASS here be mistaken for a semantic result or SCORE permission?"
+  ],
+  "promotion_if_pass": {
+    "ancient_base_rate_external_retrieval": "8/8_FROZEN",
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_values_populated": 0,
+    "sacred_target_coding_permission": false,
+    "score_permission": false,
+    "next_required_gate": "RECORD_TWO_GENUINE_INDEPENDENT_CODER_ASSIGNMENTS_AND_ISSUE_IDENTICAL_PACKET_HASH"
+  },
+  "promotion_if_fail": {
+    "base_rate_packet_issuance_permission": false,
+    "base_rate_semantic_coding_permission": false,
+    "score_permission": false
+  },
+  "laws": [
+    "EIGHT_OF_EIGHT_RETRIEVAL != SEMANTIC_EVIDENCE",
+    "PACKET_ISSUANCE_PERMISSION != CODING_PERMISSION",
+    "CODER_ASSIGNMENT_PRECEDES_SEMANTIC_CODING",
+    "TWO_LABELS != TWO_INDEPENDENT_CODERS",
+    "NO_SOURCE_ROOT_INFLATION",
+    "NO_STALE_STATE_DRIFT",
+    "NO_SACRED_CONTAMINATION",
+    "NO_SCORE"
+  ]
+}
