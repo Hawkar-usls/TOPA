@@ -1,0 +1,11 @@
+{
+  "schema": "janus.topa.hunt.next-gate.v1",
+  "hunt_id": "HUNT-0001",
+  "updated_at_local": "2026-08-24T13:43:00+03:00",
+  "active_gate": "K1_MODERN_RAW_DAY_REPLAY",
+  "state": "ACQUISITION_OPEN",
+  "blocked_on": "Exact enumeration/download path for the public full raw day",
+  "after_k1": "K2_STEREO_BASELINE_GATE",
+  "k2_note": "Do not use the two co-mounted Blue Box mast cameras as a stereo parallax pair without a nontrivial surveyed baseline.",
+  "world_truth": false
+}
