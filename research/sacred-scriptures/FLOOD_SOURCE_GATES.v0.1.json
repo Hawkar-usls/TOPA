@@ -1,0 +1,131 @@
+{
+  "schema": "topa.sacred_scriptures.flood_source_gates.v0.1",
+  "date": "2026-08-24",
+  "status": "PARTIAL_SOURCE_FREEZE_WITH_OPEN_PHILOLOGY_GATES",
+  "purpose": "Freeze exact textual loci and source-model uncertainties before any blind scoring.",
+  "global_rules": [
+    "NO_SCORING_FROM_MEMORY",
+    "TRANSLATION_MATCH_HAS_ZERO_LEXICAL_WEIGHT_UNLESS_ORIGINAL_LANGUAGE_SUPPORTS_IT",
+    "MANUSCRIPT_WITNESS_COUNT != CULTURAL_SOURCE_ROOT_COUNT",
+    "DISPUTED_SOURCE_MODEL_MUST_BE_SENSITIVITY_TESTED",
+    "UNKNOWN_OR_DAMAGED != ABSENT"
+  ],
+  "texts": [
+    {
+      "id": "F01_ATRAHASIS",
+      "text_family": "Atra-hasis",
+      "language": "Akkadian",
+      "frozen_locus": "OPEN_PENDING_CRITICAL_EDITION_FREEZE",
+      "anchor_witness": {
+        "institution": "British Museum",
+        "object_id": "1889,0426.236",
+        "note": "Old Babylonian Atra-hasis witness; British Museum dates this object to 1635 BCE.",
+        "url": "https://www.britishmuseum.org/collection/object/W_1889-0426-236"
+      },
+      "source_model": "MANUSCRIPT_WITNESSES_COLLAPSE_TO_ATRAHASIS_TEXT_FAMILY_FOR_INDEPENDENCE_COUNTS",
+      "open_gates": [
+        "FREEZE_CRITICAL_EDITION",
+        "FREEZE_EXACT_FLOOD_LINES",
+        "MAP_VARIANTS_AND_DAMAGE",
+        "ADD_EBL_OR_EQUIVALENT_PHILOLOGICAL_RECEIPT"
+      ]
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "text_family": "Standard Babylonian Epic of Gilgamesh, Tablet XI",
+      "language": "Akkadian",
+      "frozen_locus": "TABLET_XI_FLOOD_SECTION_PENDING_EXACT_EDITION_LINE_NUMBERS",
+      "anchor_witness": {
+        "institution": "British Museum",
+        "object_id": "K.3375",
+        "note": "Neo-Assyrian witness to Gilgamesh Tablet XI from the Library of Ashurbanipal; British Museum dates it to the 7th century BCE.",
+        "url": "https://www.britishmuseum.org/collection/object/W_K-3375"
+      },
+      "source_model": "MANUSCRIPT_LEVEL_VARIANTS_PRESERVED_BUT_COLLAPSED_TO_GILGAMESH_XI_TEXT_FAMILY_FOR_INDEPENDENCE_COUNTS",
+      "open_gates": [
+        "FREEZE_ANDREW_GEORGE_OR_EQUIVALENT_CRITICAL_EDITION",
+        "FREEZE_EXACT_LINE_RANGE",
+        "MAP_RELATION_TO_UTNAPISHTIIM_FLOOD_TRADITION",
+        "ADD_EBL_RECEIPT_WHERE_AVAILABLE"
+      ]
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "text_family": "Genesis flood narrative",
+      "language": "Biblical Hebrew",
+      "frozen_locus": "Genesis 6:5-9:17",
+      "source_surface": "Use Hebrew base text with edition/version identity frozen before coding.",
+      "source_model": "DUAL_SENSITIVITY_MODE",
+      "sensitivity_modes": [
+        "RECEIVED_TEXT_AS_COMPOSITE_FINAL_FORM",
+        "SOURCE_STRATIFIED_MODEL_WITH_P_AND_NON_P_OR_OTHER_DEFENSIBLE_PARTITION"
+      ],
+      "reason": "Genesis 6-9 is a classic source-critical test case, but the exact decomposition and explanatory value of source criticism remain debated. TOPA must not bake one model into the result.",
+      "method_rule": "Any cross-tradition residual that survives only one Genesis source model is demoted to MODEL_DEPENDENT.",
+      "scholarly_method_receipt": "Oxford Academic and Bar-Ilan publications explicitly treat Genesis 6-9 as a debated source-criticism test case.",
+      "open_gates": [
+        "FREEZE_HEBREW_EDITION",
+        "FREEZE_SOURCE_PARTITION_ALTERNATIVES",
+        "RUN_FINAL_FORM_VS_STRATIFIED_SENSITIVITY",
+        "AUDIT_DUPLICATE_FEATURES_CREATED_BY_COMPOSITION"
+      ]
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "text_family": "Qur'anic Noah narratives",
+      "language": "Qur'anic Arabic",
+      "primary_frozen_locus": "Q 11:25-49",
+      "secondary_context_loci": [
+        "Q 7:59-64",
+        "Q 23:23-30",
+        "Q 26:105-122",
+        "Q 54:9-17",
+        "Q 71"
+      ],
+      "source_surface": "Arabic text first; translations only as secondary aids.",
+      "source_model": "LATE_ANTIQUE_CONTACT_NULL_ACTIVE",
+      "reason": "Qur'anic parallels with Jewish and Christian traditions occur in a historically connected Late Antique environment and cannot be treated as independent ancient confirmation by default.",
+      "current_source_receipts": [
+        "https://tanzil.net/download/",
+        "https://corpuscoranicum.org/en/about",
+        "https://quran.com/11/25-49"
+      ],
+      "open_gates": [
+        "FREEZE_ARABIC_EDITION_AND_NORMALIZATION",
+        "FREEZE_PASSAGE_BOUNDARIES",
+        "MAP_BIBLICAL_AND_LATE_ANTIQUE_CONTACT_CANDIDATES",
+        "RUN_PRIMARY_LOCUS_VS_ALL_NOAH_PASSAGES_SENSITIVITY"
+      ]
+    },
+    {
+      "id": "F05_MANU_FLOOD",
+      "text_family": "Manu flood tradition",
+      "language": "Vedic Sanskrit",
+      "primary_frozen_locus": "Satapatha Brahmana 1.8.1",
+      "source_surface": "Original Sanskrit required for scoring; Julius Eggeling translation may be used only as a historical secondary aid.",
+      "source_model": "SATAPATHA_ROOT_FIRST; LATER_MATSA_MANU_RETELLINGS_NOT_INDEPENDENT_BY_DEFAULT",
+      "current_source_receipts": [
+        "https://titus.uni-frankfurt.de/didact/idg/indi/sbbeispn.htm",
+        "https://www.sacred-texts.com/hin/sbr/sbe12/sbe1234.htm"
+      ],
+      "open_gates": [
+        "FREEZE_FULL_SANSKRIT_DIGITAL_EDITION",
+        "FREEZE_RECENSION_IDENTITY",
+        "MAP_LATER_RETELLINGS_TO_ROOT",
+        "DATE_RANGE_AND_TRANSMISSION_UNCERTAINTY_RECEIPT"
+      ]
+    }
+  ],
+  "control_gate": {
+    "status": "OPEN",
+    "requirements": [
+      "At least two controls per focal source root",
+      "At least one non-flood catastrophe control matched for genre",
+      "At least one non-sacred flood narrative where provenance permits",
+      "At least one geographically distant flood narrative with independent provenance",
+      "Feature-shuffled synthetic controls",
+      "No community-controlled oral material without permission/provenance clearance"
+    ]
+  },
+  "next_action": "Close exact edition/locus gates for Akkadian and Sanskrit witnesses, freeze Hebrew and Arabic base editions, then build anonymized coding packets."
+}
