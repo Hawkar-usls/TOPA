@@ -88,3 +88,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python extension_reason_v0_negative_replay.py
+
+      - name: Replay C025-E2R class-count and parity-compression barrier
+        run: |
+          cd research/mathematics/p-vs-np
+          python extension_class_count_barrier_probe.py
