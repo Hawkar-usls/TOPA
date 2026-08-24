@@ -1,0 +1,112 @@
+{
+  "schema": "topa.sacred_scriptures.ancient_writing_method_bridge.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_METHOD_BRIDGE_V0_1",
+  "purpose": "Reuse already-built JANUS safeguards from Linear A and Egyptian-record work as mandatory prescore canaries for the sacred-text pipeline. These corpora are method controls, not additional witnesses for the Flood hypothesis.",
+  "linear_a": {
+    "role": "REPRESENTATION_AND_FALSE_POSITIVE_CANARY",
+    "upstream": [
+      {
+        "repository": "Hawkar-usls/Linear-A-decipherment-programme",
+        "role": "external/program baseline",
+        "note": "NTU-origin comparison program; includes GORILA 1-5 transcriptions and comparison dictionaries. It is not JANUS decipherment evidence."
+      },
+      {
+        "repository": "Hawkar-usls/janus-meta-registry",
+        "path": "research/linear_a/",
+        "role": "JANUS executable research lineage"
+      }
+    ],
+    "frozen_same_corpus_baseline_from_upstream": {
+      "repository": "mwenge/lineara.xyz",
+      "commit": "43fe7cf1abc8e6bb1ea3228c3a1bd5938709620a",
+      "inscriptions_blob": "ef41c58802a3135f295072ba60fc0df39450a10c",
+      "numeric_inventory_blob": "a17b8922297795a90ea6761f32f6ea020b733a6d"
+    },
+    "lessons_imported": [
+      "PIN_SOURCE_VERSION_BEFORE_SCORING",
+      "TYPE_PUNCTUATION_NUMERIC_AND_SEMANTIC_OBJECTS_BEFORE_ANY_MEANING_SCORE",
+      "PRESERVE_REPRESENTATION_FAILURES_AS_SCIENTIFIC_RESULTS",
+      "USE_TRUE_HOLDOUTS_AND_RELATION_DESTROYING_NULLS",
+      "DO_NOT_LOWER_FROZEN_SUPPORT_THRESHOLDS_TO_RESCUE_A_NEAR_MISS",
+      "SAME_CORPUS_MULTI_IMPLEMENTATION_AGREEMENT_IS_NOT_EXTERNAL_REPLICATION"
+    ],
+    "historical_canary": {
+      "case": "STAR_900_PUNCTUATION_FAILURE",
+      "meaning": "An apparently strong structural survivor was later identified as Aegean word-separator punctuation. The response was to repair representation policy, not preserve the interpretation.",
+      "topa_test": "Inject punctuation/numeric/format markers into anonymized sacred-text packets. The scorer must assign zero semantic evidence and must not manufacture a rare bundle from formatting."
+    },
+    "current_claim_ceiling_observed_in_upstream_v2_31": {
+      "KU_RO_probable_region_scoped_structural_function": "ROW-OPENING-LIKE",
+      "scope": "HT",
+      "independent_refinement_replication": false,
+      "exact_word_meaning_established": false,
+      "translation_established": false,
+      "language_family_established": false,
+      "decipherment_established": false
+    },
+    "firewall": [
+      "LINEAR_A_STRUCTURAL_FUNCTION != WORD_TRANSLATION",
+      "STRUCTURAL_SURVIVOR != DECIPHERMENT",
+      "FORMAT_MARKER != SEMANTIC_TOKEN",
+      "METHOD_ANCESTOR != CONTENT_EVIDENCE"
+    ]
+  },
+  "egyptian_records": {
+    "role": "IDENTIFIER_PROVENANCE_AND_ONTOLOGY_CANARY",
+    "upstream_repository": "Hawkar-usls/janus-meta-registry",
+    "anchor_artifacts": [
+      "data/JANUS-EGYPT-OSIRIS-JSON-INVENTORY-2026-08-20-v1.0.json",
+      "data/JANUS-EGYPTIAN-PYRAMID-WALL-PLACEMENT-AND-TEXT-ID-AUDIT-2026-08-18-v1.0.json",
+      "data/JANUS-SAH-ORION-LEXICAL-GATE-AUDIT-2026-08-18-v1.0.json",
+      "data/JANUS-MENDES-TOMB-TEXTUAL-STRATIGRAPHY-FORWARD-REVERSE-CONCORDANCE-2026-08-20-v1.0.json"
+    ],
+    "lessons_imported": [
+      "UTTERANCE_NUMBER_MUST_NOT_BE_CONFUSED_WITH_PARAGRAPH_OR_SECTION_NUMBER",
+      "RECORD_MONUMENT_ROOM_WALL_AND_SEQUENCE_WHERE_RELEVANT",
+      "DISTINCT_LEMMA_IDS_MUST_NOT_BE_MERGED_BY_VISUAL_OR_PHONETIC_SIMILARITY",
+      "OCR_GAP_STAYS_OPEN_AND_MUST_NOT_BE_RECONSTRUCTED_FROM_EXPECTATION",
+      "ICONOGRAPHY_TEXT_OBJECT_IDENTITY_AND_MODERN_INTERPRETATION_ARE_SEPARATE_LAYERS",
+      "A_MISSING_TEXTUAL_BRIDGE_REMAINS_MISSING"
+    ],
+    "lexical_canary": {
+      "distinct_items": [
+        {"form": "Sꜣḥ", "TLA_lemma_id": 127020, "class": "Orion constellation name"},
+        {"form": "sꜣḫ", "TLA_lemma_id": 127110, "class": "verb: glorify/make excellent"},
+        {"form": "sꜣḫ", "TLA_lemma_id": 127120, "class": "noun: spiritual/glorified state"}
+      ],
+      "topa_test": "The ontology layer must keep these identities distinct unless a separately evidenced relation is supplied. Orthographic/phonetic resemblance alone must not create an equivalence edge."
+    },
+    "text_id_canary": {
+      "examples": [
+        {"label": "PT355", "utterance": 355, "section_range": "§§572-574"},
+        {"label": "PT366", "utterance": 366, "section_range": "§§626-633"},
+        {"label": "PT222", "utterance": 222, "section_start": "§199", "full_source_recheck": true},
+        {"label": "PT477", "utterance": 477, "section_start": "§956", "prior_modern_interpretation_failed": true}
+      ],
+      "topa_test": "Shuffle utterance numbers and section numbers as adversarial distractors. The scorer must never infer a semantic relationship from numeric coincidence."
+    },
+    "mendes_provenance_canary": {
+      "rule": "A printed/OCR-corrupted hieroglyphic gap remains UNKNOWN even when surrounding funerary context makes a reconstruction tempting.",
+      "example": "The lower protected gold sheet has two vertical inscription lines confirmed, but exact hieroglyphs/translation remain open in the recovered source pass; CG 53469 surface inscription remains not established."
+    },
+    "firewall": [
+      "EGYPTIAN_PROJECT_GRAPH != ANCIENT_SOURCE_TEXT",
+      "ICONOGRAPHIC_SIMILARITY != LEXICAL_IDENTITY",
+      "WALL_ORDER != ALGORITHMIC_ORDER_UNLESS_PREREGISTERED",
+      "PHYSICAL_PLACEMENT != CAUSATION",
+      "MISSING_BRIDGE != NEGATIVE_PROOF",
+      "METHOD_CONTROL != FLOOD_WITNESS"
+    ]
+  },
+  "prescore_gate": {
+    "required_before_flood_score": [
+      "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "EGYPT_LEMMA_ID_CANARY_PASS",
+      "EGYPT_TEXT_ID_CANARY_PASS",
+      "NO_CONTROL_CORPUS_CONTENT_LEAK_INTO_FLOOD_LABELS"
+    ],
+    "failure_action": "BLOCK_FLOOD_SCORE_AND_REPAIR_PIPELINE",
+    "success_effect": "METHOD_PERMISSION_ONLY; NO_INCREASE_IN_WORLD_TRUTH_CONFIDENCE"
+  }
+}
