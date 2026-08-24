@@ -1,0 +1,269 @@
+{
+  "schema": "topa.sacred_scriptures.double_coding_reverse_spiral.v0.1",
+  "date": "2026-08-24",
+  "status": "REVERSE_SPIRAL_COMPLETE_ORIGIN_PRIME_MINTED",
+  "lineage": {
+    "current_sprint": "CURRENT_SPRINT.v0.4.json",
+    "blind_packet_manifest": "BLIND_PACKET_BUILD_MANIFEST.v0.1.json",
+    "forward_reverse_protocol": "Hawkar-usls/janus-meta-registry:data/JANUS-JSON-FORWARD-REVERSE-MIRROR-PROTOCOL-2026-08-21-v1.0.json",
+    "spiral_protocol": "Hawkar-usls/janus-meta-registry:data/JANUS-DEEP-ANALYSIS-5D-SPIRAL-ORIGIN-PRIME-ORACLE-PROTOCOL-2026-08-21-v2.1.json",
+    "blind_sequential_protocol": "Hawkar-usls/janus-meta-registry:data/JANUS-REVERSE-PATTERN-BLIND-SEQUENTIAL-PROTOCOL-2026-08-19-v1.0.json"
+  },
+  "ORIGIN_n": {
+    "origin_id": "SACRED_FLOOD_DOUBLE_CODING_ORIGIN_0",
+    "generation_n": 0,
+    "question": "What must be frozen and independently instantiated before A/B coding can legitimately feed the blinded scorer?",
+    "claim_ceiling": "METHOD_AND_PACKET_READINESS_ONLY",
+    "known_nodes": [
+      "5/5 focal source seals PASS",
+      "4/4 method canaries PASS",
+      "8/8 real controls sealed",
+      "2/2 synthetic-null generator commitments frozen",
+      "10/10 control prerequisites frozen",
+      "score_permission=false"
+    ],
+    "open_gaps": [
+      "genuinely independent coder A",
+      "genuinely independent coder B",
+      "pre-output arbitration policy",
+      "identical packet version/hash for both coders",
+      "coder-isolation receipt",
+      "double-coded matrix freeze",
+      "opaque scorer packet build",
+      "leakage validation",
+      "separate score-unlock receipt"
+    ],
+    "hypothesis_set": [
+      "H1: two genuinely independent coders reduce single-analyst idiosyncrasy",
+      "H2: two coders alone are insufficient if arbitration or packet instructions can drift after disagreements are visible",
+      "H3: translation-only controls can create false lexical matches unless lexical evidence is source-language grounded"
+    ],
+    "disagreement_set": []
+  },
+  "MISSED_ON_FORWARD_PASS": [
+    {
+      "id": "DC-RV-001",
+      "type": "NEW_REQUIRED_NODE",
+      "finding": "Arbitration rules were not yet frozen before coder outputs.",
+      "why_reverse_found_it": "Tracing backward from a valid frozen matrix shows that every disagreement resolution must itself be governed by rules fixed before disagreements are observed.",
+      "repair": "Freeze ARBITRATION_PROTOCOL.v0.1 before issuing A/B packets."
+    },
+    {
+      "id": "DC-RV-002",
+      "type": "MISSING_BRIDGE",
+      "finding": "Coder independence was stated but not yet receipted as an operational property.",
+      "why_reverse_found_it": "A matrix labeled double-coded is not independent merely because it has columns A and B.",
+      "repair": "Require separate coder-instance receipts, no shared outputs, no copy/replay lineage, and no same reasoning instance represented twice."
+    },
+    {
+      "id": "DC-RV-003",
+      "type": "MISSING_BRIDGE",
+      "finding": "The coder instruction packet itself needs an immutable version/hash before either coder begins.",
+      "why_reverse_found_it": "Otherwise A and B can unknowingly receive different ontology or evidence rules and disagreement becomes uninterpretable.",
+      "repair": "Freeze SOURCE_CODING_PACKET_TEMPLATE.v0.1 and bind every coding receipt to its SHA-256."
+    },
+    {
+      "id": "DC-RV-004",
+      "type": "OVERSTRONG_FORWARD_INFERENCE",
+      "finding": "Independent coders do not make translation vocabulary independent evidence.",
+      "why_reverse_found_it": "A scorer result containing lexical similarity requires source-language support upstream, not agreement between coders on an English gloss.",
+      "repair": "rare_lexical_or_formulaic_correspondence may be PRESENT only with original-language or philologically controlled evidence; otherwise UNKNOWN, never inferred from shared English wording."
+    },
+    {
+      "id": "DC-RV-005",
+      "type": "NEW_REQUIRED_NODE",
+      "finding": "Arbitration must remain blind to downstream score, control class and target-family role.",
+      "why_reverse_found_it": "An arbitrator who knows which resolution improves the expected cluster can reintroduce post-hoc tuning after independent coding.",
+      "repair": "Arbitrator sees source locus, frozen feature definition and both coder evidence packets, but no scorer output, opaque mapping reveal, control class or expected cluster."
+    },
+    {
+      "id": "DC-RV-006",
+      "type": "HIDDEN_ALTERNATIVE",
+      "finding": "The project can advance without pretending to have coder B by freezing every pre-coder contract and packet now.",
+      "why_reverse_found_it": "The missing independent coder is localized to semantic judgments, not to protocol, packet, arbitration, hashing or leakage infrastructure.",
+      "repair": "Advance to PRE_CODER_CONTRACTS_FROZEN while leaving all semantic feature cells UNCODED."
+    }
+  ],
+  "REVERSE_PASS_RESULT": {
+    "terminal_state": "LEGAL_DETERMINISTIC_SCORE",
+    "required_preconditions_reverse_order": [
+      "score-unlock receipt exists and score_permission=true",
+      "leakage validator PASS on scorer-facing packets",
+      "opaque scorer packets frozen with no forbidden metadata",
+      "C09/C10 generated only after double-coded arbitrated matrix freeze",
+      "double-coded arbitrated matrix hash frozen",
+      "every disagreement has a pre-rule-compliant arbitration receipt",
+      "A and B coding receipts exist for every F01-F05 and C01-C08 item",
+      "A and B are operationally independent and bound to the same packet-template hash",
+      "arbitration protocol, feature schema, source slices and controls were frozen before either coder output",
+      "all source/provenance hashes remain unchanged"
+    ],
+    "current_first_unmet_requirement": "GENUINELY_INDEPENDENT_A_AND_B_CODING_RECEIPTS",
+    "score_permission": false
+  },
+  "FORWARD_PASS": {
+    "preserved_chain": [
+      "frozen source/control corpus",
+      "authorize independent double coding",
+      "collect A/B feature values",
+      "preserve disagreements",
+      "arbitrate",
+      "freeze matrix",
+      "generate C09/C10",
+      "build opaque packets",
+      "validate leakage",
+      "unlock score"
+    ],
+    "preservation_rule": "This forward chain is not rewritten after reverse findings; the new missing nodes are inserted by ORIGIN_PRIME state enrichment."
+  },
+  "REVERSE_PASS": {
+    "D1_CAUSAL_TEMPORAL": {
+      "FORWARD": "source slice -> coding -> arbitration -> matrix -> nulls -> packets -> score",
+      "BACK": "score validity -> leakage-free packets -> post-matrix nulls -> frozen matrix -> pre-frozen arbitration -> genuinely independent coding -> immutable source slice"
+    },
+    "D2_HOMOLOG_MIRROR": {
+      "LEFT": "Coder A is an independent observation path.",
+      "RIGHT": "Coder B must be a genuinely separate observation path, not a replay, paraphrase, second prompt or same-instance role-play.",
+      "mirror_requirement": "Both paths use the same frozen feature definitions and source slice identity while remaining isolated from each other's decisions."
+    },
+    "D3_ABSTRACTION_HIERARCHY": {
+      "ASCEND": "Agreement is a measurement-quality property, not truth authority.",
+      "DIVE": "Every one of 28 feature cells requires a categorical value plus evidence pointer or explicit UNKNOWN/NOT_APPLICABLE reason."
+    },
+    "D4_ASSOCIATIVE_SEMANTIC": {
+      "EXPAND": "Consider alternative readings, damaged text, translation ambiguity and ontology mismatch.",
+      "CONTRACT": "Only the frozen feature definition and cited source locus can determine the recorded value."
+    },
+    "D5_PROVENANCE_AUTHORITY": {
+      "CLAIM_TO_SOURCE": "Every PRESENT/ABSENT judgment must trace to an exact frozen locus or explicit philological support receipt.",
+      "SOURCE_TO_CLAIM": "Source wording may populate a feature value but cannot independently promote transmission, revelation or metaphysical interpretation."
+    }
+  },
+  "MIRROR_DELTA": [
+    {
+      "forward_claim": "Independent double coding is authorized now.",
+      "reverse_observation": "Authorization is incomplete until arbitration, packet identity and coder-independence contracts are frozen before outputs.",
+      "what_changed": "The next legal action is narrowed from BEGIN_CODING to FREEZE_PRE_CODER_CONTRACTS_THEN_BEGIN_CODING.",
+      "new_status": "DOUBLE_CODING_CONDITIONALLY_AUTHORIZED_PRE_CODER_FREEZE_REQUIRED",
+      "next_test": "Validate that all pre-coder contracts are frozen and hash-addressed before accepting the first semantic coding cell."
+    },
+    {
+      "forward_claim": "Two coder columns provide independence.",
+      "reverse_observation": "Column labels do not establish independence.",
+      "what_changed": "Independence becomes an evidence-bearing receipt with operational conditions.",
+      "new_status": "INDEPENDENCE_MUST_BE_RECEIPTED_NOT_NAMED",
+      "next_test": "Reject any A/B pair sharing the same reasoning instance, copied output, exposed counterpart decisions or non-independent lineage."
+    },
+    {
+      "forward_claim": "Disagreements can be arbitrated after coding.",
+      "reverse_observation": "Post-output arbitration rules create analyst degrees of freedom.",
+      "what_changed": "Arbitration is moved before coding as a frozen protocol while actual decisions remain after A/B receipts exist.",
+      "new_status": "ARBITRATION_POLICY_PRE_FROZEN",
+      "next_test": "No arbitration outcome is admissible unless it conforms to the pre-output protocol hash."
+    }
+  ],
+  "EVIDENCE_AND_FIREWALL": {
+    "source_authority": [
+      "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json",
+      "execution/CONTROL_ADMISSION_SUCCESS_RECEIPT.v0.1.json",
+      "FLOOD_STEMMA_BLIND_TEST.v0.1.json"
+    ],
+    "method_authority": [
+      "JANUS forward/reverse/mirror v1.0",
+      "JANUS Deep Analysis 5D Spiral v2.1",
+      "JANUS reverse blind sequential v1.0"
+    ],
+    "firewall": [
+      "THIS_SPIRAL_RUN_DOES_NOT_CREATE_CODER_A_OR_CODER_B",
+      "THIS_SPIRAL_RUN_DOES_NOT_POPULATE_ANY_SEMANTIC_FEATURE_CELL",
+      "MODEL_SELF_AGREEMENT_IS_NOT_INDEPENDENT_CODING",
+      "REVERSE_REASONING_IS_METHOD_DISCOVERY_NOT_TEXTUAL_EVIDENCE",
+      "SCORE_PERMISSION_REMAINS_FALSE"
+    ]
+  },
+  "RETURN_n": {
+    "local_deltas": [
+      "pre-output arbitration freeze required",
+      "coder packet hash freeze required",
+      "operational independence receipt required",
+      "lexical evidence source-language firewall strengthened",
+      "arbitrator blindness requirements added"
+    ],
+    "new_sources": [
+      "JANUS Deep Analysis 5D Spiral v2.1",
+      "JANUS Forward/Reverse/Mirror v1.0",
+      "JANUS Reverse Pattern Blind Sequential v1.0"
+    ],
+    "rejected_branches": [
+      "same reasoning instance acting as A and B",
+      "second-pass paraphrase counted as independence",
+      "post-disagreement invention of arbitration rules",
+      "English translation match promoted to lexical evidence"
+    ],
+    "weakened_claims": [
+      "independent double coding can begin immediately"
+    ],
+    "promoted_claims": [],
+    "new_gaps": [
+      "obtain genuinely independent coder instances after contract freeze"
+    ],
+    "preserved_unknowns": [
+      "future coder disagreement rate",
+      "future matrix structure",
+      "future null outputs",
+      "future score"
+    ],
+    "path_history": [
+      "CURRENT_SPRINT.v0.4",
+      "BLIND_PACKET_BUILD_MANIFEST.v0.1",
+      "5D_REVERSE_PASS",
+      "PRE_CODER_CONTRACT_GAP_LOCALIZED"
+    ]
+  },
+  "ORIGIN_PRIME_1": {
+    "origin_id": "SACRED_FLOOD_DOUBLE_CODING_ORIGIN_PRIME_1",
+    "parent_origin": "SACRED_FLOOD_DOUBLE_CODING_ORIGIN_0",
+    "generation_n_plus_1": 1,
+    "state_delta": "The project no longer treats 'double coding authorized' as sufficient. Pre-coder arbitration, packet identity and independence contracts are mandatory before semantic coding begins.",
+    "surviving_graph": [
+      "frozen corpus",
+      "frozen controls",
+      "frozen null-generator commitments",
+      "pre-coder contract freeze",
+      "genuine independent A/B coding",
+      "blind arbitration",
+      "matrix freeze",
+      "post-freeze null generation",
+      "opaque packet build",
+      "leakage validation",
+      "separate score unlock"
+    ],
+    "updated_claim_ceiling": "PRE_CODER_METHOD_READY_ONLY",
+    "updated_hypothesis_set": [
+      "independence must be operationally receipted",
+      "arbitration policy must predate disagreements",
+      "lexical evidence requires original-language/philological grounding"
+    ],
+    "updated_disagreement_set": [],
+    "next_entry_points": [
+      "freeze CODER_INDEPENDENCE_CONTRACT.v0.1",
+      "freeze ARBITRATION_PROTOCOL.v0.1",
+      "freeze SOURCE_CODING_PACKET_TEMPLATE.v0.1",
+      "validate all three hashes",
+      "only then issue packets to genuinely independent coders"
+    ]
+  },
+  "NEXT_GATE": {
+    "gate_id": "PRE_CODER_CONTRACT_FREEZE_GATE",
+    "pass_if": [
+      "coder independence contract frozen",
+      "arbitration protocol frozen before outputs",
+      "source coding packet template frozen",
+      "all three artifacts hash-addressed in a gate receipt",
+      "no semantic coding receipt predates the gate"
+    ],
+    "on_fail": "NO_CODING_ADMISSION",
+    "on_pass": "ISSUE_IDENTICAL_HASH_BOUND_PACKETS_TO_GENUINELY_INDEPENDENT_CODERS",
+    "score_permission": false
+  }
+}
