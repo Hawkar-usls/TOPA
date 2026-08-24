@@ -1,0 +1,51 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_archived_url_variant_negative.v0.17",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_SAME_DOCUMENT_ID_ARCHIVE_VARIANT_DIAGNOSTIC",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32761220151,
+    "github_actions_job_id": 97540274888,
+    "artifact_id": 9532774697,
+    "artifact_sha256": "1d51e18f86009dfb3b11bc89d4d1f8df954edcc9119fb20935bc973955c095cf"
+  },
+  "result": {
+    "strong_candidates": 0,
+    "archived_transport_admission_review_eligible": false,
+    "br03_retrieval_pass": false,
+    "wayback": {
+      "document_id_462138503_capture_count": 6,
+      "classification": "LANDING_PAGE_CAPTURES_WITHOUT_FROZEN_LOCUS_CONTENT",
+      "note": "Captured snapshots preserve the same numeric Scribd document ID but do not expose the required Wilson locus geometry or text markers."
+    },
+    "common_crawl": {
+      "recent_indexes_tested": 8,
+      "strong_candidates": 0,
+      "classification": "NO_RECORDS_FROM_CURRENT_PREFIX_QUERY",
+      "interpretation": "NOT_YET_ADMISSIBLE_AS_ABSENCE because query semantics have not yet been positive-control validated and only recent 2026 indexes were sampled."
+    }
+  },
+  "admission": {
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Reverse-audit the Common Crawl query builder with a known positive URL, compare exact/prefix/wildcard query forms, explicitly sample historical indexes spanning 2019-2026 for the same two numeric Scribd document IDs, and separately retry Wayback CDX for document ID 493951399. No new document identity or locus is permitted.",
+  "laws": [
+    "WAYBACK_CAPTURE != LOCUS_CONTENT",
+    "COMMON_CRAWL_404_BEFORE_POSITIVE_CONTROL != PROOF_OF_ABSENCE",
+    "QUERY_BUILDER_MUST_PASS_POSITIVE_CONTROL_BEFORE_NEGATIVE_INFERENCE",
+    "NUMERIC_DOCUMENT_ID_FROZEN_SLUG_MAY_VARY",
+    "ARCHIVE_COPY != INDEPENDENT_WITNESS",
+    "FAIL_IS_PRESERVED_BEFORE_QUERY_REPAIR",
+    "NO_SEMANTIC_CODING_BEFORE_RETRIEVAL_GATE",
+    "NO_SCORE"
+  ]
+}
