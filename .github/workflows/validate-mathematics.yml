@@ -1,0 +1,51 @@
+name: Validate TOPA mathematics
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/**'
+      - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
+      - 'data/TOPA-P-VS-NP-*.json'
+      - '.github/workflows/validate-mathematics.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/**'
+      - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
+      - 'data/TOPA-P-VS-NP-*.json'
+      - '.github/workflows/validate-mathematics.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON receipts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          targets = sorted(Path('data').glob('TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'))
+          targets += sorted(Path('data').glob('TOPA-P-VS-NP-*.json'))
+          if not targets:
+              raise SystemExit('no mathematical JSON receipts found')
+          for path in targets:
+              json.loads(path.read_text(encoding='utf-8'))
+              print(f'JSON_PASS {path}')
+          PY
+
+      - name: Compile mathematical probes
+        run: |
+          python -m py_compile research/mathematics/p-vs-np/*.py
+
+      - name: Replay Issue 211 finite mechanics
+        run: |
+          python research/mathematics/p-vs-np/policy0a_padded_gt_counterfamily.py
