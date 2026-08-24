@@ -1,0 +1,34 @@
+{
+  "schema": "topa.c025.policy0b1_resolution_lower_bound_route_closure.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "POLICY0B1_POLYTIME_ROUTE_REFUTED_BY_RESOLUTION_LOWER_BOUND",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_POLICY0B1_RESOLUTION_LOWER_BOUND_ROUTE_CLOSURE.md",
+  "provider_branch": "Hawkar-usls/Janus-Fundamentum:c025-policy0b-fair-reason",
+  "compilation_theorem": {
+    "input": "complete UNSAT execution of frozen Policy-0B.1",
+    "output": "ordinary Resolution refutation of root CNF",
+    "proof_size_upper_bound": "execution_states * N^O(1)",
+    "ingredients": [
+      "retained Resolution strengthenings",
+      "restriction/lift for context conflicts",
+      "branch reason Resolution composition"
+    ]
+  },
+  "lower_bound_source": {
+    "family": "standard pigeonhole principle PHP_{n+1}^n",
+    "result": "Resolution size 2^Omega(n)",
+    "reference": "A. Haken, The intractability of resolution, TCS 39 (1985)"
+  },
+  "consequence": {
+    "policy0b1_state_work": "2^Omega(n)/n^O(1)",
+    "input_relative": "SUPERPOLYNOMIAL",
+    "universal_polytime_baseline": "REFUTED"
+  },
+  "nontransfer": [
+    "POLICY0B1_LOWER_BOUND != P_NOT_EQUAL_NP",
+    "RESOLUTION_LOWER_BOUND != B2_ER_LOWER_BOUND",
+    "BASELINE_ROUTE_CLOSED != PROJECT_CLOSED"
+  ],
+  "next_required_escape": "Policy-0B.2 must add stronger proof/discovery power plus global progress theorem",
+  "p_vs_np": "OPEN"
+}
