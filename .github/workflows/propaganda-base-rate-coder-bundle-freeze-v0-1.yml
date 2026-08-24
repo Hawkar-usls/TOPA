@@ -1,0 +1,30 @@
+name: propaganda-base-rate-coder-bundle-freeze-v0-1
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_base_rate_coder_bundle_freeze_v0_1.py'
+      - '.github/workflows/propaganda-base-rate-coder-bundle-freeze-v0-1.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Freeze exact dependency bundle before any coder assignment
+        run: python tools/propaganda_base_rate_coder_bundle_freeze_v0_1.py
+      - name: Upload bundle receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-rate-coder-bundle-freeze-v0-1
+          path: research/propaganda-defense/execution/BASE_RATE_CODER_BUNDLE_FREEZE_RUN.v0.1.json
+          if-no-files-found: error
+          retention-days: 30
