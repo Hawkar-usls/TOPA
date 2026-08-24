@@ -1,0 +1,57 @@
+{
+  "schema": "hawkar.project-status.v1",
+  "project": "TOPA",
+  "repository": "Hawkar-usls/TOPA",
+  "maturity": "ACTIVE_PROTOTYPE",
+  "status": "ACTIVE_RESEARCH",
+  "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
+  "purpose": "Evidence-bounded investigation of anomalous, paranormal-labelled and unexplained reports using provenance preservation, competing hypotheses, falsification, prediction freezing and explicit unresolved states.",
+  "implemented": [
+    "canonical epistemic foundation v1.2",
+    "provenance/channel classification",
+    "firsthand-versus-hearsay separation",
+    "observation-versus-interpretation split",
+    "competing-hypothesis requirement",
+    "falsification-first promotion gate",
+    "prediction freeze and post-deadline scoring rules",
+    "closed-belief-loop warning",
+    "distributed Scout protocol",
+    "executable claim-envelope validator",
+    "archival case corpus and adversarial receipts",
+    "Tesla Sweep / TOPA Hunt research snapshot import"
+  ],
+  "established_in_stated_scope": [
+    "TOPA repository architecture and machine-readable rules exist",
+    "historical source/provenance records can be preserved and reclassified without erasing lineage",
+    "the validator can reject specified provenance and prediction-rule violations",
+    "case status is allowed to decrease after later falsification"
+  ],
+  "not_established": [
+    "paranormal causation",
+    "extraterrestrial origin of any archived case",
+    "prophecy or precognition",
+    "physical retrocausality",
+    "time travel",
+    "supernatural entities",
+    "technosignatures in the Tesla Sweep corpus",
+    "the favored J1832 natural-mechanism synthesis",
+    "world truth from model or Scout consensus"
+  ],
+  "current_authority": {
+    "foundation": "protocols/TOPA_FOUNDATION.json",
+    "method": "docs/METHOD.md",
+    "case_status": "docs/STATUS.md",
+    "corpus_index": "registry/TOPA-CORPUS-INDEX.json",
+    "upstream_snapshot": "registry/UPSTREAM-SNAPSHOT.json"
+  },
+  "core_rules": [
+    "ANOMALY_IS_A_QUESTION_NOT_A_CONCLUSION",
+    "UNKNOWN_IS_NOT_SUPERNATURAL",
+    "NOT_REFUTED_IS_NOT_TRUE",
+    "MISSING_DATA_STAYS_MISSING",
+    "FAILED_TESTS_MUST_BE_ABLE_TO_LOWER_CONFIDENCE",
+    "UNRESOLVED_IS_A_VALID_TERMINAL_STATE",
+    "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT"
+  ],
+  "world_truth": false
+}
