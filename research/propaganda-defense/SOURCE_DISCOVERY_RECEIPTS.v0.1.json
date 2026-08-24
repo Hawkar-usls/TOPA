@@ -1,0 +1,28 @@
+{
+  "schema": "topa.propaganda_defense.source_discovery_receipts.v0.1",
+  "date": "2026-08-24",
+  "status": "WEB_VERIFIED_SEED_RECEIPTS",
+  "verified": [
+    {"id":"WEB-001","source":"EEAS FIMI hub","finding":"EEAS describes FIMI as intentional/coordinated manipulative behavior and organizes response around situational awareness, resilience, disruption/regulation and external action; current page includes the annual FIMI-report lineage.","url":"https://www.eeas.europa.eu/eeas/information-integrity-and-countering-foreign-information-manipulation-interference-fimi_en"},
+    {"id":"WEB-002","source":"4th EEAS FIMI Report","finding":"Published 12 March 2026; builds on the Response Framework, FIMI Toolbox and Deterrence Playbook.","url":"https://www.eeas.europa.eu/eeas/4th-eeas-annual-report-foreign-information-manipulation-and-interference-threats_en"},
+    {"id":"WEB-003","source":"NATO StratCom COE Nordic-Baltic report","finding":"Published 22 January 2026; maps and compares national capabilities for countering information influence operations.","url":"https://stratcomcoe.org/publications/countering-information-influence-operations-in-the-nordic-baltic-region/327"},
+    {"id":"WEB-004","source":"NATO StratCom COE Counter-FIMI","finding":"Published 31 July 2026; reviews disruptive and non-disruptive counter-FIMI measures, notes limited evidence for many interventions beyond fact-checking/media literacy, and emphasizes situational awareness and multi-stakeholder response.","url":"https://stratcomcoe.org/publications/counter-fimi-the-case-for-disrupting-hostile-actors/346"},
+    {"id":"WEB-005","source":"DISARM Framework","finding":"Open framework for describing influence-operation TTPs and defender countermeasures; exact repository license must be preserved for reused assets.","url":"https://github.com/DISARMFoundation/DISARMframeworks/"},
+    {"id":"WEB-006","source":"RAND Firehose of Falsehood","finding":"Descriptive model emphasizes high-volume, multichannel, rapid/repetitive messaging and limited commitment to consistency/truth, with defensive options discussed.","url":"https://www.rand.org/content/dam/rand/pubs/perspectives/PE100/PE198/RAND_PE198.pdf"},
+    {"id":"WEB-007","source":"Nature Medicine misinformation review","finding":"2022 review separates susceptibility, spread and inoculation; summarizes evidence for debunking/prebunking while highlighting open questions and waning effects.","url":"https://www.nature.com/articles/s41591-022-01713-6"},
+    {"id":"WEB-008","source":"Debunking Handbook 2020","finding":"Consensus-oriented handbook for correcting misinformation; admitted as a defensive intervention source, not an automatic-effect guarantee.","url":"https://www.climatechangecommunication.org/wp-content/uploads/2023/09/DebunkingHandbook2020.pdf"},
+    {"id":"WEB-009","source":"UNESCO Journalism, Fake News & Disinformation handbook","finding":"Educational handbook covering trust, disinformation, media literacy, fact-checking and social-media verification.","url":"https://www.unesco.org/sites/default/files/journalism_fake_news_disinformation_print_friendly_0.pdf"},
+    {"id":"WEB-010","source":"Ukraine CPD Manual on Countering Disinformation","finding":"Defensive handbook developed with EUAM Ukraine; CPD site states its site content is available under CC BY 4.0.","url":"https://cpd.gov.ua/en/manuals/manual-on-countering-disinformation/"},
+    {"id":"WEB-011","source":"Ukraine CPD Weapons of Information Warfare","finding":"2025 handbook systematizes tactics/mechanisms of destructive information influence and practical countermeasures.","url":"https://cpd.gov.ua/en/events-en/with-the-support-of-euam-ukraine-the-center-has-prepared-a-guide-entitled-weapons-of-information-warfare/"},
+    {"id":"WEB-012","source":"OSCE / Ukraine media-literacy handbook","finding":"2025 guide covers professional standards, propaganda/disinformation counteraction, hate speech and media literacy.","url":"https://www.osce.org/osce-secretariat-exb-support-programme-for-ukraine/600307"},
+    {"id":"WEB-013","source":"StopFake methodology","finding":"StopFake describes its defensive MAD method as monitoring, archiving and debunking and maintains a long-running Ukraine-focused disinformation archive.","url":"https://www.stopfake.org/en/about-us/"},
+    {"id":"WEB-014","source":"Media Center Ukraine White Book","finding":"2026 analytical guide maps propaganda mechanisms, channels, actors, evolution and Ukrainian counter-disinformation approaches.","url":"https://mediacenter.org.ua/white-book/"}
+  ],
+  "verification_boundary": "Web verification establishes publication identity, current accessibility and stated scope, not correctness of every claim inside each source.",
+  "next_receipt_targets": [
+    "exact licenses and stable hashes for open PDFs/framework snapshots",
+    "historical archive provenance for WWI/WWII sources",
+    "current NATO/US doctrine identifiers and supersession status",
+    "cross-national and non-Western academic corpus"
+  ]
+}
