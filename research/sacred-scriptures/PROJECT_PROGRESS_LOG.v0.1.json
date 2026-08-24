@@ -84,7 +84,7 @@
       "seq": 7,
       "date": "2026-08-24",
       "event": "REPRODUCIBLE_SOURCE_SEAL_AND_NEGATIVE_RECEIPT_CI_ADDED",
-      "status": "EXECUTION_RECEIPT_NOT_YET_OBSERVED_IN_BRANCH",
+      "status": "DONE",
       "artifacts": [
         "tools/sacred_scripture_source_seal.py",
         "tools/sacred_scripture_canaries.py",
@@ -92,25 +92,19 @@
       ],
       "design": [
         "Seal five frozen source loci using SHA-256 receipts without mirroring source texts into the repository",
-        "Pin ETCBC BHSA to commit b112c16",
+        "Pin ETCBC BHSA to exact frozen commit",
         "Use fully parameterized Tanzil Uthmani v1.1 export",
         "Hash GRETIL Book 1 and the frozen ŚB 1.8.1.[1]-[10] visible-text slice",
         "Hash Wasserman 2020 PDF bytes and cryptographically bind distinct exact Akkadian line-locus descriptors",
         "Persist PASS or FAIL receipts before fail-closed workflow termination"
       ],
-      "gate_effect": {
-        "source_seals_admitted": 0,
-        "source_seals_required": 5,
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
       "claim_effect": "INFRASTRUCTURE_ONLY"
     },
     {
       "seq": 8,
       "date": "2026-08-24",
       "event": "VISIBLE_PRESCORE_CI_HARNESS_STARTED",
-      "status": "PRESCORE_SEAL_RUN_IN_PROGRESS",
+      "status": "DONE",
       "technical_review_surface": {
         "draft_pr": 2,
         "base": "topa-sacred-scriptures",
@@ -118,13 +112,63 @@
         "merge_intent": false,
         "purpose": "Expose PR-triggered Actions run, logs and artifacts without targeting main."
       },
-      "workflow_runs": {
-        "guardrail_validator": {"run_id": 32737662981, "status": "COMPLETED_SUCCESS"},
-        "prescore_seal": {"run_id": 32737662999, "status": "IN_PROGRESS", "last_observed_step": "Checkout exact BHSA source"}
+      "claim_effect": "EXECUTION_TRACE_ONLY"
+    },
+    {
+      "seq": 9,
+      "date": "2026-08-24",
+      "event": "PRESCORE_ATTEMPT_1_FAIL_CLOSED",
+      "status": "INFRASTRUCTURE_FAIL_PRESERVED",
+      "workflow_run_id": 32737662999,
+      "failure": "actions/checkout interpreted short BHSA ref b112c16 as branch/tag rather than exact commit",
+      "combined_gate": {
+        "canaries": null,
+        "sources": null,
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "repair": "Pin BHSA with full commit b112c161cfd21eae403d51a2733740d8743460e7.",
+      "frozen_loci_changed": false,
+      "claim_effect": "NEGATIVE_EXECUTION_TRACE_ONLY"
+    },
+    {
+      "seq": 10,
+      "date": "2026-08-24",
+      "event": "PRESCORE_ATTEMPT_2_PARTIAL_SEAL",
+      "status": "FOUR_OF_FOUR_CANARIES_THREE_OF_FIVE_SOURCES",
+      "workflow_run_id": 32737902520,
+      "artifact_id": 9523988952,
+      "artifact_digest": "sha256:ac2673d51676386242e4bad0f94364f8d2fa90b06ec595c7dc3bcee9b287758a",
+      "results": {
+        "canaries": "4/4 PASS",
+        "sources": "3/5 SEALED",
+        "sealed": ["F01_ATRAHASIS", "F02_GILGAMESH_XI", "F04_QURAN_NOAH"],
+        "failed": {
+          "F03_GENESIS_6_9": "BHSA Text-Fabric loader/path API mismatch",
+          "F05_SATAPATHA_MANU": "GRETIL visible marker parser mismatch"
+        }
       },
       "gate_effect": {
-        "source_seals_admitted": 0,
-        "canary_combined_ci_admitted": false,
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "frozen_loci_changed": false,
+      "claim_effect": "METHOD_EXECUTION_ONLY"
+    },
+    {
+      "seq": 11,
+      "date": "2026-08-24",
+      "event": "PARSER_ONLY_REPAIRS_AND_PRESCORE_ATTEMPT_3_LAUNCHED",
+      "status": "IN_PROGRESS",
+      "repairs": [
+        "BHSA loader resolves exact tf/2021 directory, verifies full commit SHA, and reads API through TF.api after load",
+        "GRETIL parser uses visible markers 1.8.1.[1] through before 1.8.1.[11] while preserving frozen locus 1.8.1.[1]-[10]"
+      ],
+      "workflow_run_id": 32740381447,
+      "guardrail_run_id": 32740381473,
+      "guardrail_status": "PASS",
+      "frozen_loci_changed": false,
+      "gate_effect": {
         "blind_packet_build_permission": false,
         "score_permission": false
       },
@@ -133,10 +177,10 @@
   ],
   "current_snapshot": {
     "phase": "HASH_AND_CANARY_EXECUTION",
-    "source_seals": "0/5 AUTHORITATIVE EXECUTION RECEIPTS OBSERVED",
-    "canary_precheck": "4/4 PASS LOCAL_DETERMINISTIC_PRECHECK",
-    "combined_ci_canary_receipt": "PRESCORE RUN 32737662999 IN_PROGRESS",
-    "guardrail_ci": "RUN 32737662981 PASS",
+    "source_seals": "3/5 AUTHORITATIVE CI RECEIPT OBSERVED IN RUN 32737902520",
+    "canaries": "4/4 PASS AUTHORITATIVE CI RECEIPT OBSERVED IN RUN 32737902520",
+    "attempt_3": "RUN 32740381447 IN_PROGRESS",
+    "guardrail_ci": "RUN 32740381473 PASS",
     "blind_packet_build_permission": false,
     "score_permission": false
   }
