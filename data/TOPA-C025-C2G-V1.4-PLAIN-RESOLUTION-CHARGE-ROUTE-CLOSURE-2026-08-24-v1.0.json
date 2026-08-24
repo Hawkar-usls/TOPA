@@ -1,0 +1,25 @@
+{
+  "schema": "topa.c025.c2g_v1_4_plain_resolution_charge_route_closure.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "PLAIN_RESOLUTION_FORK_CHARGE_POLY_ROUTE_REFUTED",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_C025_C2G_V1_4_PLAIN_RESOLUTION_CHARGE_ROUTE_CLOSURE.md",
+  "provider_issue": 224,
+  "family": "selector lift of standard PHP_{n+1}^n",
+  "construction": "F_n={s OR C : C in PHP_n}, selector s is minimum root id",
+  "theorems": {
+    "selector_reason": "F_n |= s",
+    "plain_resolution_reason_proof_size": "2^Omega(n) by restriction to Haken PHP refutation lower bound",
+    "root_preprocessing_cannot_derive_s_in_poly_work": "for sufficiently large n",
+    "actual_root_fork": "s=0 first child UNSAT; s=1 second child SAT",
+    "unique_nonempty_context_falsified_root_clause": "(s)",
+    "plain_reason_poly_proof_bytes": "REFUTED",
+    "plain_reason_poly_discovery": "REFUTED"
+  },
+  "nontransfer": [
+    "PLAIN_RESOLUTION_ROUTE_CLOSED != B2_ER_ROUTE_CLOSED",
+    "PHP_RESOLUTION_LOWER_BOUND != ER_LOWER_BOUND",
+    "PLAIN_REASON_FAILURE != P_NOT_EQUAL_NP"
+  ],
+  "next": "B2/ER extension-aware fork-reason discovery with global progress accounting",
+  "p_vs_np": "OPEN"
+}
