@@ -1,0 +1,23 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.kadesh_archived_variant.v0.17",
+  "date": "2026-08-24",
+  "append_only": true,
+  "event": "BR03_KADESH_ARCHIVED_URL_VARIANT_PROBE_COMPLETED_FAIL_CLOSED",
+  "authority_receipt": "BASE_RATE_KADESH_ARCHIVED_URL_VARIANT_NEGATIVE.v0.17.json",
+  "run_id": 32761220151,
+  "result": {
+    "wayback_exact_document_id_462138503_captures": 6,
+    "wayback_locus_sufficient": false,
+    "common_crawl_recent_prefix_strong_candidates": 0,
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "spiral_delta": {
+    "forward_assumption_removed": "A 404-heavy Common Crawl prefix pass can be interpreted as absence without first proving the query builder against a positive control.",
+    "new_origin_prime": "Validate query semantics and historical index coverage before making any negative Common Crawl inference."
+  },
+  "next_legal_action": "COMMON_CRAWL_QUERY_BUILDER_POSITIVE_CONTROL_AND_HISTORICAL_REPLAY_V0_18",
+  "preservation": "Earlier Kadesh transport failures remain valid historical nodes and are not superseded as if they never occurred."
+}
