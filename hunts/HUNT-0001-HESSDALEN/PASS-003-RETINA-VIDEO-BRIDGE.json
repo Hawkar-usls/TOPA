@@ -1,0 +1,95 @@
+{
+  "schema": "janus.topa.hunt.pass.v1",
+  "hunt_id": "HUNT-0001",
+  "pass_id": "PASS-003-RETINA-VIDEO-BRIDGE",
+  "created_at_local": "2026-08-24T13:55:00+03:00",
+  "status": "IMPLEMENTED_TOOLING_GATE__LIVE_RAW_DAY_REPLAY_NOT_YET_EXECUTED",
+  "question": "Can TOPA remove the browser-only video-access blocker by reusing JANUS Retina/Telegram vision principles without importing Telegram transport or weakening K1 provenance requirements?",
+  "recovered_lineage": {
+    "retina": {
+      "artifact": "mod_retina.py",
+      "reused_principles": [
+        "IMAGE_BYTES_TO_BASE64_VISION_INPUT",
+        "SOURCE_BOUND_VISUAL_ANALYSIS",
+        "RETINA_AS_VISUAL_CORTEX_NOT_WORLD_TRUTH"
+      ],
+      "intentional_change": "TOPA preserves raw media and derived frames instead of deleting them after analysis because hunt reproducibility requires an auditable evidence trail."
+    },
+    "telegram_vision": {
+      "source_family": "JANUS Telegram Bot Hub",
+      "reused_principles": [
+        "TRANSPORT_SEPARATE_FROM_PERCEPTION",
+        "GROUNDED_VISION_RESULT_NORMALIZATION",
+        "STRUCTURED_LOGGING",
+        "GRACEFUL_BACKEND_FALLBACK"
+      ],
+      "not_imported": [
+        "Telegram tokens",
+        "chat/user identifiers",
+        "getUpdates transport",
+        "runtime config",
+        "live databases",
+        "group engagement policy"
+      ],
+      "exact_legacy_video_parser_recovered": false,
+      "note": "The recovered JANUS materials establish Retina image analysis and Telegram media/vision architecture, but not a source-complete historical handle_janus_video implementation. TOPA therefore implements a new transport-agnostic video bridge from those verified contracts instead of inventing missing legacy code."
+    }
+  },
+  "implemented": {
+    "tool": "tools/topa_retina_video.py",
+    "documentation": "docs/RETINA_VIDEO_BRIDGE.md",
+    "ci": ".github/workflows/validate-retina-video.yml",
+    "capabilities": [
+      "LOCAL_FILE_OR_DIRECTORY_ACQUISITION",
+      "GENERIC_HTTP_VIDEO_ACQUISITION",
+      "PUBLIC_GOOGLE_DRIVE_FILE_OR_FOLDER_ACQUISITION_VIA_OPTIONAL_GDOWN",
+      "SHA256_ACQUISITION_SNAPSHOT",
+      "FFPROBE_MEDIA_METADATA",
+      "DETERMINISTIC_INTERVAL_FRAME_EXTRACTION_WITH_PTS",
+      "DERIVED_FRAME_SHA256",
+      "CONTACT_SHEET_GENERATION",
+      "OPTIONAL_RETINA_FRAME_ANALYSIS_WITH_SOURCE_HASH_BINDING",
+      "FROZEN_SOURCE_MANIFEST_MODE"
+    ],
+    "source_mutation": false,
+    "raw_deletion": false,
+    "browser_folder_ui_is_evidence_authority": false
+  },
+  "drive_blocker_update": {
+    "old_state": "CURRENT_WEB_CHANNEL_CANNOT_PRODUCE_REPRODUCIBLE_GOOGLE_DRIVE_FOLDER_LISTING",
+    "new_tooling_state": "TOPA_HAS_PUBLIC_DRIVE_ACQUISITION_AND_HASH_FREEZE_PATH",
+    "remaining_scientific_state": "COMPLETE_RAW_DAY_MEMBERSHIP_STILL_REQUIRES_EXACT_DATASET_POINTER_OR_REPRODUCIBLE_SEGMENT_MANIFEST",
+    "rule": "ABLE_TO_DOWNLOAD_FOLDER != COMPLETE_RAW_DAY_PROVEN"
+  },
+  "scientific_boundaries": [
+    "SAMPLED_FRAMES_ARE_VISUAL_ACCESS_AND_QC_NOT_FULL_RATE_ANOMALY_DETECTION",
+    "RETINA_RECOGNITION_IS_NOT_CAUSAL_IDENTIFICATION",
+    "UNRECOGNIZED_IS_NOT_EXTRAORDINARY",
+    "STACK_ONLY_FEATURE_CANNOT_BECOME_TOPA_RESIDUAL",
+    "TWO_VIDEOS_DO_NOT_CREATE_A_STEREO_BASELINE"
+  ],
+  "validation_state": {
+    "python_compile_ci_added": true,
+    "dependency_free_self_test_ci_added": true,
+    "live_google_drive_folder_replay_performed": false,
+    "live_hessdalen_raw_video_replay_performed": false,
+    "ffmpeg_runtime_on_target_machine_verified": false,
+    "retina_api_live_call_performed": false
+  },
+  "external_request": {
+    "recipient": "Fred Pallesen / Project Hessdalen",
+    "public_contact": "fred@hessdalen.org",
+    "status": "SENT_AWAITING_REPLY",
+    "requested": [
+      "exact complete public raw-day location",
+      "segment manifest and missing/corrupt segment information",
+      "camera timestamp basis/timezone and clock synchronization/drift",
+      "exact camera coordinates, identifiers, orientation and field of view",
+      "intrinsic/extrinsic or lens/camera calibration parameters",
+      "third remote/test camera status, location, surveyed baseline and FOV overlap"
+    ]
+  },
+  "next_gate": "RECEIVE_OR_INDEPENDENTLY_RESOLVE_EXACT_RAW_DAY_DATASET_POINTER_THEN_ACQUIRE_HASH_AND_RUN_K1",
+  "compact_result": "The perception/tooling blocker is no longer represented as a generic inability to view video. TOPA now has a native evidence-preserving bridge from local/HTTP/public Drive media to hashes, metadata, deterministic frames, contact sheets and optional Retina inspection. What remains open is the scientific dataset boundary: identifying exactly which files constitute one complete blind raw day and freezing their camera/time/calibration metadata before K1 execution.",
+  "world_truth": false
+}
