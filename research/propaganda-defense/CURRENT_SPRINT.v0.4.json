@@ -1,0 +1,41 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.4",
+  "date": "2026-08-24",
+  "status": "ACTIVE_EXACT_SUB_LOCUS_AND_COMMITMENT_FREEZE",
+  "supersedes": "CURRENT_SPRINT.v0.3.json",
+  "why_state_changed": "BR05 Hittite treaty source authority was closed using a current Hethitologie-Portal CTH 62 witness/catalog bundle plus open modern scholarly transliteration of CTH 62.II A i 19′–28′. Coding remains locked because source authority is not the same as exact sub-locus/hash readiness.",
+  "entry_gates": {
+    "guardrail_ci_previous_state": "PASS",
+    "manipulation_atlas": "138 TECHNIQUES / 10 FAMILIES",
+    "cross_epoch_schema": "35 DIMENSIONS FROZEN",
+    "ancient_control_slots": "8/8 PREREGISTERED",
+    "ancient_source_authorities": "8/8 FROZEN",
+    "zero_value_packet_template": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.2.json / 35 FEATURES / 0 VALUES / NOT ISSUED",
+    "exact_sub_locus_commitments": "INCOMPLETE",
+    "base_rate_coding_permission": false,
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  },
+  "objective": "Freeze exact sub-loci and immutable source-or-metadata commitments for BR01-BR08, cryptographically bind the zero-value X01-X35 packet, and validate the new ORIGIN_PRIME state before any rhetorical feature is coded.",
+  "ordered_next": [
+    "freeze BR03 Kadesh exact PDF page/section coordinates within the already admitted Breasted substrate",
+    "freeze BR08 Ptahhotep exact TLA sentence/token identifiers within Text ID C6KGH3XC7RGU3DSL7HKYY2K3WM",
+    "freeze exact sub-locus descriptors for BR01, BR02, BR04, BR05, BR06 and BR07 and record source-language/translation dependencies",
+    "hash stable lawful source bytes where reproducible; otherwise hash canonical metadata/locus descriptors and retain retrieval receipts",
+    "SHA-256 bind BASE_RATE_CODING_PACKET_TEMPLATE.v0.2 published bytes",
+    "run updated fail-closed validator against 8/8 authority + 0 values + coding=false",
+    "only after exact commitment gate PASS consider issuing base-rate coding packets",
+    "keep sacred Flood A/B isolated from all propaganda-atlas outputs until their own receipts freeze"
+  ],
+  "hard_locks": [
+    "NO_SOURCE_AUTHORITY_TO_CODING_READY_SHORTCUT",
+    "NO_FEATURE_VALUES_BEFORE_EXACT_SUB_LOCUS_COMMITMENTS",
+    "NO_SACRED_TARGET_CODING_BEFORE_BASE_RATE_CONTROLS",
+    "NO_FLOOD_A_B_CONTAMINATION",
+    "NO_OPERATIONAL_PROPAGANDA_GUIDANCE",
+    "NO_SCORE"
+  ],
+  "current_first_unmet_requirement": "BR01_BR08_EXACT_SUB_LOCUS_AND_SOURCE_OR_METADATA_COMMITMENTS",
+  "promotion_ceiling": "SOURCE_SUB_LOCUS_AND_PACKET_COMMITMENT_READINESS_ONLY",
+  "score_permission": false
+}
