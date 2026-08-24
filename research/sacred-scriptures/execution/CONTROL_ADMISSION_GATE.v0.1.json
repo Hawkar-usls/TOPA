@@ -1,6 +1,6 @@
 {
   "schema": "topa.sacred_scriptures.control_admission_gate.v0.1",
-  "executed_at_utc": "2026-08-24T15:21:01.706468+00:00",
+  "executed_at_utc": "2026-08-24T15:21:54.081237+00:00",
   "status": "CONTROL_ADMISSION_BLOCKED",
   "real_control_receipt_present": true,
   "real_control_status": "CONTROL_SEAL_FAILURE",

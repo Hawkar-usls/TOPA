@@ -1,6 +1,6 @@
 {
   "schema": "topa.sacred_scriptures.control_seal_run.v0.1",
-  "executed_at_utc": "2026-08-24T15:21:01.588256+00:00",
+  "executed_at_utc": "2026-08-24T15:21:53.966658+00:00",
   "status": "CONTROL_SEAL_FAILURE",
   "control_freeze_path": "research/sacred-scriptures/CONTROL_CANDIDATE_FREEZE.v0.1.json",
   "control_freeze_sha256": "3cecb8722c4e33067e556f88d2705a12194551535d96273de55e1c46e83ff53e",
