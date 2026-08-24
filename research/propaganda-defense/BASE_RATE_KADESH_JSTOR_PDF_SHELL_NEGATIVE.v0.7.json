@@ -1,0 +1,39 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_jstor_pdf_shell_negative.v0.7",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_JSTOR_STABLE_PDF_TRANSPORT_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32758183583,
+    "github_actions_job_id": 97530474415,
+    "artifact_id": 9531641494,
+    "artifact_sha256": "a0128b4c9091c6117ace1f69ffd9b459765923af96e827c6a9f791c97bf4fdc1"
+  },
+  "result": {
+    "stable_landing": {"status": 200, "content_type": "text/html; charset=utf-8", "bytes": 3038, "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"},
+    "pdf_variants_tested": 4,
+    "pdf_variants_result": "All returned the same 3038-byte HTML shell as the stable landing; zero %PDF responses.",
+    "classification": "JSTOR_CLIENT_LAYER_REQUIRED_FOR_PDF"
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Probe the official JSTOR XML link exposed by the issue page for the same stable object: https://www.jstor.org/doi/xml/10.2307/528771. Admit only machine-readable article content with page-boundary evidence; do not infer content from the PDF shell.",
+  "laws": [
+    "HTTP_200_HTML_SHELL != PDF",
+    "SAME_HASH_ACROSS_PDF_URLS_MEANS_NO_PDF_BYTES",
+    "JSTOR_XML_IS_SAME_SOURCE_ROOT_IF_IDENTITY_MATCHES",
+    "TRANSPORT_REPAIR != LOCUS_CHANGE",
+    "FAIL_IS_PRESERVED_BEFORE_NEXT_REPAIR"
+  ]
+}
