@@ -1,0 +1,43 @@
+{
+  "schema": "topa.sacred_scriptures.current_sprint.v0.2",
+  "date": "2026-08-24",
+  "status": "ACTIVE_PRE_SCORE_HASH_CONTROL_AND_CANARY_PHASE",
+  "supersedes": "CURRENT_SPRINT.v0.1.json",
+  "objective": "Reach S1_METHOD_REVIEWABLE with source bytes/hash receipts, executable canaries, anonymized packets and null-capable deterministic scoring while keeping result scoring locked.",
+  "newly_done": [
+    "Akkadian critical baseline narrowed to Wasserman 2020 plus George crosscheck",
+    "Atrahasis C1 exact feature blocks frozen",
+    "Gilgamesh XI 8-203 and sub-blocks frozen",
+    "ETCBC BHSA v1.8.1 / commit b112c16 / TF data version 2021 frozen for Genesis 6:5-9:17",
+    "Tanzil Uthmani v1.1 Q 11:25-49 frozen as primary Qur'anic Noah locus",
+    "GRETIL Madhyamdina Book 1 ŚB 1.8.1.[1]-[10] frozen",
+    "GRETIL catalogue-versus-file-header input attribution conflict preserved in correction receipt",
+    "Linear A v2.32 current canonical state discovered and imported as representation/support-floor canary authority",
+    "Egyptian TLA lemma-ID and Pyramid Text utterance/section-ID controls imported as canaries",
+    "prescore validator and CI lock added"
+  ],
+  "next": [
+    "materialize immutable source bytes and compute source/slice hashes for all five focal sources",
+    "implement Linear A representation and support-floor canaries as executable fixtures",
+    "implement Egyptian lemma-ID and text-ID canaries as executable fixtures",
+    "build at least two matched controls per focal source root",
+    "build anonymized feature packets with UNKNOWN distinct from ABSENT",
+    "implement deterministic scorer",
+    "implement shuffled-label and shuffled-feature nulls",
+    "double-code or independently review feature values",
+    "run canaries before any Flood score"
+  ],
+  "blocked": [
+    "NO_FLOOD_SCORE_YET",
+    "NO_EXTERNAL_RESULT_CONTACT_YET",
+    "NO_INDEPENDENT_RESIDUAL_CLAIM_YET",
+    "NO_HASHLESS_SOURCE_PACKET_ADMISSION"
+  ],
+  "current_authorities": {
+    "source_gate": "FLOOD_SOURCE_GATES.v0.2.json",
+    "source_freeze": "PRESCORE_SOURCE_FREEZE.v0.2.json",
+    "method_bridge": "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json",
+    "philology": "PHILOLOGY_BASELINE.v0.1.json"
+  },
+  "promotion_ceiling": "METHOD_READY_ONLY until blind scoring and controls are complete"
+}
