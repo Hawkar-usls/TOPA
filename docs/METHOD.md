@@ -1,16 +1,16 @@
-# TOPA Method
+# TOPA Method — Strict Science Edition
 
 > **ANOMALY IS A QUESTION, NOT A CONCLUSION.**
 
-TOPA is designed for reports that arrive already wrapped in emotionally or culturally loaded labels: *UFO*, *ghost*, *time traveler*, *prophecy*, *entity*, *secret technology*, *impossible signal*, *paranormal event*, and similar language.
+TOPA preserves unusual reports without granting their labels evidentiary authority. The active method is now governed by `protocols/TOPA_STRICT_SCIENCE_GATE_V1_0.json`.
 
-The method strips the label away from the evidentiary core without discarding the report itself.
+Historical heuristic labels remain in Git history and archived receipts for provenance, but they are **not valid upstream evidence for new active claims**.
 
 ## 1. Preserve before interpreting
 
-For every case, preserve the raw report and its provenance before normalization.
+For every case preserve the raw report and provenance before normalization.
 
-Minimum useful fields are:
+Minimum active fields:
 
 ```text
 claim_id
@@ -25,13 +25,32 @@ event_time
 event_location
 alternative_hypotheses
 falsification_tests
+evidence_objects
+evidence_class
 status
-confidence
 ```
 
-A model may summarize or normalize a claim, but the raw ledger remains immutable evidence context.
+Optional probability/confidence fields are allowed only when accompanied by a defined, reproducible statistical or probabilistic model and its calibration/validation method.
 
-## 2. Separate channel from content
+A model may normalize a claim, but the raw ledger remains immutable.
+
+## 2. Scientific authority classes
+
+Every active evidentiary object must be one of:
+
+```text
+SOURCE_FACT
+FORMAL_DERIVATION
+REPRODUCIBLE_EXPERIMENT
+STATISTICAL_INFERENCE
+HYPOTHESIS_ONLY
+```
+
+`HYPOTHESIS_ONLY` has zero evidentiary authority. It exists only to generate falsifiable tests.
+
+Uncalibrated scores, rankings, model votes, narrative coherence, visual impressiveness and survivor labels are not evidence classes.
+
+## 3. Separate channel from content
 
 TOPA distinguishes at least:
 
@@ -47,47 +66,35 @@ SYMBOLIC_CONTEXT
 MODEL_INFERENCE
 ```
 
-The same sentence can have radically different evidentiary weight depending on channel. A guest saying that a radar operator saw something is not the same object as the radar operator's log. A model repeating a report is not a new witness.
+A report being well sourced proves that the report occurred; it does not prove the report's interpretation. A model repeating a source is not a new witness.
 
-## 3. Observation ladder
+The former ordinal observation ladder `O0..O5` is deprecated as an active scientific weight. Historical records may retain it, but no numerical or ordinal evidentiary inference may be derived from it without a separately validated measurement model.
 
-```text
-O0 = claim/report exists
-O1 = firsthand report + time/location
-O2 = multiple witnesses; independence unclear
-O3 = independent contemporaneous witnesses or external record
-O4 = physical/digital/instrument record
-O5 = controlled reproducibility
-```
-
-The ladder describes evidence strength only. It does not choose the explanation.
-
-## 4. Split event, observation and interpretation
+## 4. Split report, measurement and interpretation
 
 Example:
 
 ```text
 REPORT: "A red object followed the aircraft."
-OBSERVATION: red light reported at relative bearing X during interval Y.
-INTERPRETATION A: another aircraft.
-INTERPRETATION B: astronomical or atmospheric source.
-INTERPRETATION C: sensor/perceptual artifact.
-INTERPRETATION D: unknown physical aerial source.
+SOURCE-BOUND OBSERVATION: source S reports a red light at bearing X during interval Y.
+MEASUREMENT: instrument record R contains values Z with stated calibration/uncertainty.
+HYPOTHESIS A: another aircraft.
+HYPOTHESIS B: astronomical/atmospheric source.
+HYPOTHESIS C: sensor/perceptual artifact.
+HYPOTHESIS D: unknown physical aerial source.
 ```
 
-TOPA never allows interpretation D to inherit truth merely because A, B or C fail.
+Failure of A, B or C does not establish D. Exhausting a list of hypotheses is not proof that an unlisted explanation is impossible.
 
-## 5. Attack the strongest mundane model
+## 5. Test tractable conventional explanations early — without heuristic priors
 
-`MUNDANE_FIRST` means ordinary explanations are tested early because they usually have higher prior probability and are often more directly testable.
+TOPA may test ordinary mechanisms early when they are directly measurable, source-checkable or inexpensive to falsify.
 
-It does **not** mean ordinary explanations are protected from falsification.
+The method no longer uses an undefined statement such as "usually higher prior probability" as scientific evidence. A prior probability may be used only inside an explicit probabilistic model with a defined reference class and calibration/validation assumptions.
 
-A conventional model that misses the timing, geometry, sensor characteristics or source record must be weakened or rejected exactly like an extraordinary model.
+Every conventional and extraordinary hypothesis remains equally vulnerable to falsification at the level of its actual predictions.
 
 ## 6. Force causal independence
-
-TOPA distinguishes:
 
 ```text
 MULTI_CHANNEL != MULTI_SOURCE
@@ -95,13 +102,11 @@ PUBLICATION_COUNT != SOURCE_COUNT
 SAME_PAYLOAD_MULTI_AGENT != INDEPENDENT_REPLICATION
 ```
 
-Three reports can still reduce to one witness. Three sensors can still depend on one upstream emitter, operator interpretation or downstream summary. A later narrative about a radar return is not the same evidence object as the radar-owner record.
-
-When possible, build a causal graph for each evidentiary leg.
+When independence matters, construct an explicit provenance/causal dependency graph. Independence is a property to establish, not a score to assign by impression.
 
 ## 7. Freeze predictions before outcomes
 
-If a claim predicts a future event, freeze before the deadline:
+When a claim predicts a future testable outcome, freeze:
 
 ```text
 claim_text
@@ -110,9 +115,10 @@ deadline_or_window
 success_criterion
 failure_criterion
 allowed_tolerance
+analysis_rule
 ```
 
-After the deadline, score only against the frozen criteria:
+After the deadline use only the frozen rule:
 
 ```text
 PASS
@@ -124,65 +130,120 @@ UNRESOLVED_MISSING_OUTCOME_DATA
 
 Post-hoc redefinition is prohibited.
 
-## 8. Closed-belief-loop alarm
+## 8. Closed-belief-loop gate
 
-If no possible observation, source result or test is named that could lower confidence in the favored interpretation, TOPA raises:
+If no possible observation, source result or test is named that could disconfirm a hypothesis, raise:
 
 ```text
 CLOSED_BELIEF_LOOP_WARNING
 ```
 
-This does not prove the claim false. It means the current belief structure is not falsifiable enough for promotion.
+Effect: the object remains `HYPOTHESIS_ONLY` or `UNRESOLVED`. No uncalibrated "confidence lowering" operation is required or permitted as a substitute for falsifiability.
 
-## 9. Adversarial classification
+## 9. Active scientific statuses
 
-The current falsification layer uses these practical classes:
+The active status vocabulary is:
 
 ```text
+SOURCE_BOUND_FACT
+PROVED_IN_SCOPE
 REFUTED
+CONDITIONAL
+REPRODUCED_FINITE_MECHANICS
+SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL
+HYPOTHESIS_ONLY
+UNRESOLVED
+INSUFFICIENT_DATA
+```
+
+Historical statuses such as
+
+```text
 PROBABLE_CONVENTIONAL
 UNRESOLVED_NONEXOTIC
 DATA_POOR_SURVIVOR
 HARD_SURVIVOR
-```
-
-`HARD_SURVIVOR` means only that adequate evidence survived several relevant attacks. It is **not** paranormal confirmation. A hard survivor becomes the first target of the next spiral.
-
-## 10. Spiral policy
-
-```text
-TURN 0 — attack the extraordinary interpretation
-TURN 1 — attack the strongest conventional explanation
-TURN 2 — attack the surviving evidence itself:
-         provenance, clock, sensor, geometry, independence
-TURN 3 — attempt a predictive or archival killer test
-ASCEND — update state, preserve receipts, reattack
-```
-
-The goal is not to protect a conclusion. The goal is to make each pass more difficult to fool.
-
-## 11. Supersession is a feature
-
-TOPA preserves previous classifications even when later work changes them.
-
-The RB-47 sequence is canonical: one adversarial pass temporarily classified it as a strong survivor; a later kill pass found enough contradictory sensor-owner documentation and terrestrial-radar compatibility to revoke that status. The historical pass remains in the archive so reviewers can see exactly **why confidence moved**.
-
-## 12. Valid terminal states
-
-TOPA explicitly permits:
-
-```text
-FALSIFIED
-RESOLVED
 LIKELY_CONVENTIONAL
-SUPPORTED_WITHIN_BOUND
-WEAKENED
+```
+
+are deprecated for new active scientific claims. They may remain only as provenance describing what an earlier pass said.
+
+## 10. Spiral policy without heuristic promotion
+
+```text
+TURN 0 — freeze the exact claim and admissible evidence classes
+TURN 1 — verify provenance/object identity/measurement semantics
+TURN 2 — construct competing falsifiable hypotheses
+TURN 3 — run the strongest reproducible source, experiment or derivation attack available
+TURN 4 — audit alternative explanations and negative controls
+TURN 5 — audit representation, selection, multiplicity and hidden-cost assumptions
+ASCEND — preserve receipts, classify by strict status, reattack
+```
+
+No turn may promote a claim because it "looks strongest". Selection of the next test may be pragmatic, but test selection itself is not evidence.
+
+## 11. Supersession and negative results
+
+TOPA preserves all earlier states. A later source, derivation or experiment may supersede a previous status, but the earlier receipt remains visible with its exact failure mode.
+
+Failed preregistered runs remain failed. Negative results are not deleted. A later successful run does not rewrite the earlier run.
+
+## 12. Mathematics-specific firewall
+
+A mathematical promotion requires one of:
+
+```text
+CHECKABLE_DERIVATION
+CHECKABLE_COUNTEREXAMPLE_OR_COUNTERFAMILY
+PROVED_REDUCTION_OR_SIMULATION
+CONDITIONAL_THEOREM_WITH_ALL_OPEN_PREMISES_NAMED
+```
+
+Executable CI can validate finite mechanics and implementation parity. It cannot by itself establish a universal asymptotic theorem.
+
+Every polynomial-time statement must identify original encoded input length `N`. If a result is only polynomial in current state/cache/proof size `L`, `M`, `K`, `S` or `|pi|`, the missing bound to `N` stays explicit.
+
+A statement `S^f(N)` is not called polynomial unless `f(N)` is bounded by a universal fixed constant.
+
+See:
+
+```text
+research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md
+```
+
+## 13. Statistical claims
+
+A statistical claim must state, as applicable:
+
+```text
+population/sample
+sampling or acquisition process
+estimand/test target
+model and assumptions
+effect size
+uncertainty interval or exact test quantity
+multiple-testing/selection handling
+calibration/validation procedure
+```
+
+A bare probability, confidence percentage or model score is not a scientific result.
+
+## 14. Valid terminal states
+
+```text
+REFUTED
+PROVED_IN_SCOPE
+CONDITIONAL
+SOURCE_BOUND_FACT
+REPRODUCED_FINITE_MECHANICS
+SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL
+HYPOTHESIS_ONLY
 UNRESOLVED
 INSUFFICIENT_DATA
 I_DO_NOT_KNOW
 ```
 
-A mystery does not need to be converted into a story.
+A mystery does not need to become a story, and a useful hypothesis does not need to become evidence.
 
 ## Machine enforcement
 
@@ -192,4 +253,4 @@ The distributed JANUS implementation includes an executable claim-envelope valid
 integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
 ```
 
-Its self-test checks rule enforcement such as provenance requirements, hearsay boundaries and frozen-prediction semantics. A validator pass is a software result, **not world-truth evidence**.
+That validator now requires a follow-on update to enforce the Strict Science Gate vocabulary and reject uncalibrated heuristic authority. Until that update is provider-replayed, the **documented gate is canonical policy but runtime enforcement is not yet claimed complete**.
