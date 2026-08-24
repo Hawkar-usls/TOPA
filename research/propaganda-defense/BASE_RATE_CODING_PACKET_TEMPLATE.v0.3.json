@@ -1,0 +1,106 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coding_packet_template.v0.3",
+  "date": "2026-08-24",
+  "status": "FROZEN_ZERO_SEMANTIC_VALUES_EIGHT_OF_EIGHT_RETRIEVAL_ASSEMBLED_NOT_ISSUED",
+  "supersedes": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.2.json",
+  "feature_authority": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+  "source_authority": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.3.json",
+  "exact_locus_authority": "ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json",
+  "descriptor_authority": "ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS.v0.1.json",
+  "retrieval_authority": "BASE_RATE_8_OF_8_RETRIEVAL_AUTHORITY_MAP.v0.1.json",
+  "purpose": "Synchronize the coding packet with the post-retrieval authority state before any X01-X35 semantic value is entered. This is a representation contract only, not a coding result.",
+  "packet_version": "BR_X35_v0.3",
+  "controls": [
+    "BR01_HAMMURABI",
+    "BR02_BEHISTUN",
+    "BR03_KADESH",
+    "BR04_NEO_ASSYRIAN_ANNALS",
+    "BR05_HITTITE_TREATY",
+    "BR06_THUCYDIDES",
+    "BR07_RES_GESTAE",
+    "BR08_PTAHHOTEP"
+  ],
+  "feature_ids": [
+    "X01","X02","X03","X04","X05","X06","X07","X08","X09","X10",
+    "X11","X12","X13","X14","X15","X16","X17","X18","X19","X20",
+    "X21","X22","X23","X24","X25","X26","X27","X28","X29","X30",
+    "X31","X32","X33","X34","X35"
+  ],
+  "allowed_values": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"],
+  "feature_cell_contract": {
+    "feature_id": "X01-X35",
+    "value": null,
+    "evidence_pointer": null,
+    "evidence_mode": null,
+    "genre_context": null,
+    "alternative_nonmanipulative_explanation": null,
+    "uncertainty_note": null,
+    "coder_confidence": null
+  },
+  "required_item_binding": [
+    "control_id",
+    "source_root_id",
+    "edition_or_corpus_id",
+    "exact_sub_locus",
+    "source_language",
+    "translation_id_if_used",
+    "descriptor_sha256",
+    "retrieval_receipt_and_content_hashes",
+    "genre",
+    "date_band",
+    "institutional_context"
+  ],
+  "evidence_modes": [
+    "PRIMARY_SOURCE_DIRECT",
+    "PRIMARY_SOURCE_WITH_PHILOLOGICAL_NOTE",
+    "SOURCE_LANGUAGE_PLUS_TRANSLATION",
+    "TRANSLATION_ONLY_STRUCTURE_ALLOWED_NO_LEXICAL_CREDIT",
+    "MATERIAL_OR_PLACEMENT_CONTEXT",
+    "EXTERNAL_HISTORICAL_CONTEXT",
+    "INSUFFICIENT"
+  ],
+  "source_root_firewall": {
+    "translations_count_as_independent_roots": false,
+    "transport_mirrors_count_as_independent_roots": false,
+    "archive_timestamps_count_as_independent_roots": false,
+    "BR03_wayback_source_root_effect": 0,
+    "BR04_github_mirror_source_root_effect": 0
+  },
+  "sacred_firewall": {
+    "may_change_flood_28_feature_schema": false,
+    "may_be_shown_to_flood_coder_A_before_A_receipt_freeze": false,
+    "may_be_shown_to_flood_coder_B_before_B_receipt_freeze": false,
+    "may_unlock_flood_SCORE": false
+  },
+  "locks": [
+    "NO_EMPTY_VALUE_DEFAULT_TO_ABSENT",
+    "UNKNOWN != ABSENT",
+    "NO_TRANSLATION_ONLY_LEXICAL_CORRESPONDENCE",
+    "NO_INTENT_INFERENCE_FROM_STYLE_ALONE",
+    "NO_PROPAGANDA_LABEL_FROM_SINGLE_PRESENT_FEATURE",
+    "NO_AUDIENCE_EFFECT_FROM_TEXT_ONLY",
+    "NO_CODING_BY_UNASSIGNED_OR_NONINDEPENDENT_CODER_PATHS",
+    "NO_COMPARE_BEFORE_EACH_CODER_RECEIPT_FREEZE",
+    "NO_SACRED_TARGET_CODING_BEFORE_BASE_RATE_MATRIX_FREEZE",
+    "NO_FLOOD_A_B_EXPOSURE",
+    "NO_SCORE"
+  ],
+  "current_state": {
+    "control_count": 8,
+    "feature_count": 35,
+    "semantic_matrix_cells_possible": 280,
+    "semantic_values_populated": 0,
+    "source_authorities": "8/8 FROZEN",
+    "exact_sub_locus_commitments": "8/8 FROZEN",
+    "canonical_descriptor_commitments": "8/8 FROZEN",
+    "external_retrieval_authorities": "8/8 ASSEMBLED_PENDING_GLOBAL_CONSISTENCY_GATE",
+    "issued_to_coders": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "base_rate_packet_issuance_permission": false,
+    "base_rate_semantic_coding_permission": false,
+    "score_permission": false
+  },
+  "next_gate": "Hash this exact published v0.3 packet, freeze genuine coder-independence and arbitration rules, then run the 8/8 retrieval reverse-consistency/packet-issuance unlock review.",
+  "epistemic_effect": "SYNCHRONIZED_ZERO_VALUE_REPRESENTATION_FREEZE_ONLY"
+}
