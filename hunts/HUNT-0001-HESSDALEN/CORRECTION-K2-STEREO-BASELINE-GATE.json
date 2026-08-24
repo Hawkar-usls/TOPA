@@ -1,0 +1,41 @@
+{
+  "schema": "janus.topa.hunt.correction.v1",
+  "hunt_id": "HUNT-0001",
+  "correction_id": "CORR-K2-STEREO-BASELINE-001",
+  "created_at_local": "2026-08-24T13:43:00+03:00",
+  "status": "ACTIVE_CORRECTION",
+  "supersedes_wording": "K2_TWO_CAMERA_PARALLAX as if the two currently operational 4K Blue Box cameras formed a useful separated stereo pair.",
+  "finding": "Project Hessdalen's current public documentation says the two operational Dahua cameras are attached to the same Blue Box mast and point west and south. Co-mounted cameras do not provide the surveyed spatial baseline required for useful long-range triangulation merely because an event appears in both fields of view.",
+  "sources": [
+    "https://web.hessdalen.org/current-activities",
+    "https://www.hessdalen.org/bluebox",
+    "https://web.hessdalen.org/the-blue-box"
+  ],
+  "public_station_state": {
+    "operational_cameras_on_blue_box_mast": 2,
+    "third_camera_status_is_not_frozen": "Public pages describe a third camera as being tested near Oyungen or planned/tested away from the Blue Box; exact operational status, position, clock discipline, overlap and calibration are not established in this pass.",
+    "historical_upper_station_context": "Older Project Hessdalen documentation describes an upper camera station about 171 m from the Blue Box, but that legacy geometry must not be silently transferred to the 2024-2026 camera system."
+  },
+  "new_rule": "TWO_CAMERAS != PARALLAX_PAIR; PARALLAX_REQUIRES_SURVEYED_NONTRIVIAL_BASELINE + OVERLAPPING_FOV + SYNCHRONIZED_CLOCKS + CALIBRATED_INTRINSICS_EXTRINSICS",
+  "replacement_gate": {
+    "id": "K2_STEREO_BASELINE_GATE",
+    "requirements": [
+      "At least two simultaneously operational cameras at distinct surveyed positions.",
+      "Baseline coordinates and uncertainty preserved.",
+      "Overlapping field of view for the candidate event.",
+      "Clock offset and drift measured with uncertainty bounds.",
+      "Camera intrinsics and lens distortion calibrated.",
+      "Camera extrinsics/boresight orientation calibrated against stars or surveyed landmarks.",
+      "Candidate independently visible in raw frames from both stations.",
+      "Triangulation residual is physically consistent under uncertainty propagation."
+    ],
+    "fail_closed": "If any required stereo condition is missing, no distance, physical speed, altitude or local-atmosphere inference may be promoted from apparent angular motion alone."
+  },
+  "effect_on_hunt": {
+    "K1_MODERN_RAW_DAY_REPLAY": "UNCHANGED_AND_ACTIVE",
+    "K2_TWO_CAMERA_PARALLAX": "REPLACED_BY_K2_STEREO_BASELINE_GATE",
+    "current_distance_inference": "BLOCKED_UNTIL_SEPARATED_CALIBRATED_PAIR_IS_VERIFIED"
+  },
+  "lesson": "TOPA must attack its own experimental design before attacking the anomaly.",
+  "world_truth": false
+}
