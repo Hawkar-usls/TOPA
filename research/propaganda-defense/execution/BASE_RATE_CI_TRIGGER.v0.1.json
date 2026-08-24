@@ -1,0 +1,16 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_ci_trigger.v0.1",
+  "date": "2026-08-24",
+  "purpose": "Technical PR-only trigger to expose the current fail-closed base-rate prescore validator run.",
+  "base_branch": "topa-propaganda-defense",
+  "base_commit": "f9720be4f67f116d951fc7927570c63b106f0eeb",
+  "expected_state": {
+    "atlas_techniques": 138,
+    "cross_epoch_dimensions": 35,
+    "ancient_source_roots": "7/8_FROZEN_BR05_OPEN",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "merge_intent": false
+}
