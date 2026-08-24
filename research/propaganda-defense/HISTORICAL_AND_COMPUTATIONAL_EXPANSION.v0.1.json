@@ -1,0 +1,46 @@
+{
+  "schema": "topa.propaganda_defense.historical_and_computational_expansion.v0.1",
+  "date": "2026-08-24",
+  "status": "EXPANSION_SEED_NOT_EXHAUSTIVE",
+  "purpose": "Extend the literature surface from historical war propaganda and primary archives through Cold War active-measures records to organized social-media manipulation and AI-enabled influence threats.",
+  "sources": [
+    {"id":"HIST-001","class":"PRIMARY_ARCHIVE_ARTIFACT","title":"World War I Posters Collection","institution":"Library of Congress","coverage":"approximately 1,900 online posters, 1914-1920, from multiple belligerent countries","url":"https://www.loc.gov/collections/world-war-i-posters/about-this-collection/","rights":"ITEM_LEVEL_RIGHTS_APPLY; LOC also provides a free-to-use/reuse selection","use":"MULTI_SIDE_VISUAL_PROPAGANDA_CONTROL_CORPUS"},
+    {"id":"HIST-002","class":"PRIMARY_ARCHIVE_ARTIFACT","title":"World War I Posters — Free to Use and Reuse selection","institution":"Library of Congress","coverage":"curated rights-cleared WWI poster subset","url":"https://www.loc.gov/free-to-use/wwi-posters/","rights":"FREE_TO_USE_AND_REUSE_SELECTION","use":"HASHABLE_VISUAL_CONTROL_CANDIDATES"},
+    {"id":"HIST-003","class":"PRIMARY_ARCHIVE_ARTIFACT","title":"Powers of Persuasion: Poster Art of World War II","institution":"U.S. National Archives","coverage":"WWII US government poster and persuasion exhibit with archival identifiers","url":"https://www.archives.gov/exhibits/powers-of-persuasion","rights":"NARA_ITEM_LEVEL_TERMS","use":"WARTIME_DOMESTIC_PROPAGANDA_PRIMARY_CORPUS"},
+    {"id":"HIST-004","class":"ACADEMIC_MUSEUM_REFERENCE","title":"Nazi Propaganda","institution":"United States Holocaust Memorial Museum","coverage":"educational synthesis linking propaganda to mobilization, persecution, war and genocide","url":"https://encyclopedia.ushmm.org/content/en/article/nazi-propaganda","rights":"USHMM_TERMS","use":"HISTORICAL_CASE_CONTEXT_AND_HARM_MODEL"},
+    {"id":"HIST-005","class":"GOVERNMENT_THREAT_ASSESSMENT_OR_DECLASSIFIED_REPORT","title":"Soviet Active Measures: Forgery, Disinformation, Political Operations — Special Report No. 88","institution":"U.S. Department of State, archived in CIA Reading Room","year":1981,"url":"https://www.cia.gov/readingroom/docs/CIA-RDP84B00274R000100040004-8.pdf","rights":"DECLASSIFIED_PUBLIC_RECORD","use":"COLD_WAR_PRIMARY_ASSESSMENT_WITH_INSTITUTIONAL_BIAS_RECEIPT"},
+    {"id":"HIST-006","class":"GOVERNMENT_THREAT_ASSESSMENT_OR_DECLASSIFIED_REPORT","title":"Declassified US assessments of Soviet active measures and disinformation","institution":"CIA Reading Room","year":"1980s","url":"https://www.cia.gov/readingroom/docs/CIA-RDP88G01116R000400410020-1.pdf","rights":"DECLASSIFIED_PUBLIC_RECORD","use":"COMPARE_CLAIMS_METHODS_AND_KNOWN_LIMITATIONS_NOT_EXCLUSIVE_TRUTH"},
+    {"id":"COMP-001","class":"ACADEMIC_EMPIRICAL_INVENTORY","title":"Troops, Trolls and Troublemakers: Global Inventory of Organized Social Media Manipulation","institution":"Oxford Internet Institute / Computational Propaganda Project","year":2017,"url":"https://www.oii.ox.ac.uk/troops-trolls-and-troublemakers-a-global-inventory-of-organized-social-media-manipulation/","rights":"OII_PUBLICATION_TERMS","use":"COMPUTATIONAL_PROPAGANDA_BASELINE"},
+    {"id":"COMP-002","class":"ACADEMIC_EMPIRICAL_INVENTORY","title":"Challenging Truth and Trust: Global Inventory of Organized Social Media Manipulation","institution":"Oxford Internet Institute / DemTech","year":2018,"url":"https://demtech.oii.ox.ac.uk/research/posts/challenging-truth-and-trust-a-global-inventory-of-organized-social-media-manipulation/","rights":"OII_PUBLICATION_TERMS","use":"LONGITUDINAL_COMPUTATIONAL_PROPAGANDA"},
+    {"id":"COMP-003","class":"ACADEMIC_EMPIRICAL_INVENTORY","title":"The Global Disinformation Order: 2019 Global Inventory","institution":"Oxford Internet Institute","year":2019,"url":"https://www.oii.ox.ac.uk/news-events/reports/the-global-disinformation-order-2019-global-inventory-of-organised-social-media-manipulation/","rights":"OII_PUBLICATION_TERMS","use":"LONGITUDINAL_COMPUTATIONAL_PROPAGANDA"},
+    {"id":"COMP-004","class":"ACADEMIC_EMPIRICAL_INVENTORY","title":"Industrialized Disinformation: 2020 Global Inventory of Organized Social Media Manipulation","institution":"Oxford Internet Institute / DemTech","year":2021,"url":"https://demtech.oii.ox.ac.uk/research/posts/industrialized-disinformation/","rights":"OII_PUBLICATION_TERMS","use":"CROSS_NATIONAL_COMPUTATIONAL_PROPAGANDA_AND_PRIVATE_FIRM_LAYER"},
+    {"id":"COMP-005","class":"PLATFORM_SELF_REPORT","title":"Meta influence-operations / coordinated inauthentic behavior disclosures","institution":"Meta","year":"ongoing","url":"https://about.fb.com/news/2024/02/how-meta-is-preparing-for-the-eus-2024-parliament-elections/","rights":"META_SITE_TERMS","use":"PLATFORM_DETECTION_CASES_WITH_SELF_REPORT_BIAS_RECEIPT"},
+    {"id":"AI-001","class":"INDUSTRY_THREAT_REPORT","title":"Microsoft Digital Defense Report 2025 — AI and influence operations","institution":"Microsoft","year":2025,"url":"https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/security/Microsoft-Digital-Defense-Report-2025.pdf","rights":"MICROSOFT_PUBLICATION_TERMS","use":"AI_ENABLED_INFLUENCE_THREAT_OBSERVATIONS_WITH_VENDOR_BIAS_RECEIPT"}
+  ],
+  "cross_epoch_test": {
+    "question": "Which manipulation mechanisms persist across poster, print, radio, television, web/social and generative-AI eras after channel-specific affordances are removed?",
+    "candidate_invariants": [
+      "repetition/familiarity",
+      "authority borrowing",
+      "social proof/bandwagon",
+      "selective evidence/card stacking",
+      "outgroup threat/scapegoating",
+      "emotional arousal",
+      "source laundering",
+      "coordination/amplification",
+      "context stripping",
+      "identity/legitimacy fabrication"
+    ],
+    "anti_overreach": "A recurring mechanism is a communication regularity candidate, not evidence that all historical actors, goals or moral contexts are equivalent."
+  },
+  "next_targets": [
+    "BBC/shortwave/radio propaganda and counter-propaganda archives",
+    "Imperial War Museums multilingual war-poster holdings",
+    "Soviet and Eastern Bloc primary propaganda archives from non-US repositories",
+    "PRC propaganda/history sources and contemporary influence scholarship",
+    "Japanese wartime propaganda primary sources",
+    "Global South and post-colonial propaganda scholarship",
+    "platform threat reports from Google, Microsoft, Meta and others as explicitly non-independent self-reports",
+    "generative-AI deepfake and synthetic-persona defensive research"
+  ]
+}
