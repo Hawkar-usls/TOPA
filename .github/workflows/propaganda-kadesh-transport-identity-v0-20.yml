@@ -1,0 +1,30 @@
+name: propaganda-kadesh-transport-identity-v0-20
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_transport_identity_gate_v0_20.py'
+      - '.github/workflows/propaganda-kadesh-transport-identity-v0-20.yml'
+      - 'research/propaganda-defense/KADESH_TRANSPORT_OBJECT_IDENTITY_GATE.v0.20.json'
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute pre-frozen transport-object identity/content gate
+        run: python tools/propaganda_kadesh_transport_identity_gate_v0_20.py
+      - name: Upload gate receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-transport-identity-v0-20
+          path: research/propaganda-defense/execution/KADESH_TRANSPORT_OBJECT_IDENTITY_RUN.v0.20.json
+          if-no-files-found: error
+          retention-days: 30
