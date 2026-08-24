@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ETCBC/bhsa
-          ref: b112c16
+          ref: b112c161cfd21eae403d51a2733740d8743460e7
           path: .source-cache/bhsa
           fetch-depth: 1
 
