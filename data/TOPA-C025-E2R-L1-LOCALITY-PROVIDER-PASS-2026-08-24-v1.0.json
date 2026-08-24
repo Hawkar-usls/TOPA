@@ -1,0 +1,39 @@
+{
+  "schema": "hawkar.topa.provider-receipt.v1",
+  "id": "TOPA-C025-E2R-L1-LOCALITY-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1",
+  "provider": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "pull_request": 214,
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32728789959,
+    "job_id": 97436024608,
+    "conclusion": "success"
+  },
+  "passed": [
+    "semantic signature ceiling mechanics",
+    "parity B2 compression fixture",
+    "transitive support computation",
+    "support polarity invariance",
+    "forward-dependency rejection",
+    "kappa-local admission",
+    "root-restriction support monotonicity",
+    "root-restriction locality stability",
+    "same-neighborhood NW extension closure"
+  ],
+  "refuted_routes": [
+    "pure semantic class-count as a superpolynomial extension-count method",
+    "flat CNF/DNF case-count as an extension-count invariant",
+    "cardinality kappa-locality as sufficient for direct NW-neighborhood locality transfer"
+  ],
+  "still_open": [
+    "full B2/NW-neighborhood-local proof transfer into the functional encoding",
+    "heavy-width theorem transfer",
+    "explicit restricted local-ER3 counterfamily",
+    "global Issue #217 universal ER3 extension-count bound",
+    "P versus NP"
+  ],
+  "claim_ceiling": "Provider PASS validates the listed mechanics and refutations only. It is not an unrestricted ER3 lower bound."
+}
