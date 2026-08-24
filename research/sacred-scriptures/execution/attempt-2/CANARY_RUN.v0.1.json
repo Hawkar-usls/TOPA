@@ -1,0 +1,18 @@
+{
+  "schema": "topa.sacred_scriptures.canary_run.v0.1",
+  "executed_at_utc": "2026-08-24T14:20:04.457394+00:00",
+  "status": "FOUR_OF_FOUR_PASS",
+  "method_bridge": "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json",
+  "results": [
+    {"id":"LINEAR_A_REPRESENTATION_CANARY_PASS","status":"PASS","fixture_sha256":"ef0016be2639ac01e04defea840aadeeb884a4a31ee61908dd503335cd333539"},
+    {"id":"LINEAR_A_SUPPORT_FLOOR_CANARY_PASS","status":"PASS","fixture_sha256":"15effa188c8e40bddc94a51d78d562c8579187edf80595261a2ebce3962ef9ce"},
+    {"id":"EGYPT_LEMMA_ID_CANARY_PASS","status":"PASS","fixture_sha256":"6ba38691f52c7cb33803a465debca2569e5bd7c7d1016f1a369fcfed6163547e"},
+    {"id":"EGYPT_TEXT_ID_CANARY_PASS","status":"PASS","fixture_sha256":"945a1f15ffce645cb9f2588a0cb5628f2d0d540b06eda31720595736e1552811"}
+  ],
+  "pass_count": 4,
+  "required_pass_count": 4,
+  "blind_packet_permission_from_canaries": true,
+  "score_permission": false,
+  "epistemic_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT",
+  "receipt_scope_note": "Compact persistence of the exact CI verdict and fixture hashes; full CI artifact 9523988952 retains detailed fixture evidence."
+}
