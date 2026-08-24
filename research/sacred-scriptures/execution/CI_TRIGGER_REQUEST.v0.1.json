@@ -1,13 +1,13 @@
 {
   "schema": "topa.sacred_scriptures.ci_trigger_request.v0.1",
   "date": "2026-08-24",
-  "attempt": 4,
+  "attempt": 5,
   "purpose": "Trigger a visible pull-request Actions run for prescore source sealing and canary verification without merging into main or changing claim authority.",
   "base_branch": "topa-sacred-scriptures",
-  "repairs_since_attempt_3": [
-    "Removed the full ETCBC/bhsa repository checkout from the prescore workflow.",
-    "BHSA now fetches only the exact required Text-Fabric files from raw.githubusercontent.com at full frozen commit b112c161cfd21eae403d51a2733740d8743460e7 and hashes every fetched file.",
-    "GRETIL marker syntax was independently verified against the public source; the source's malformed paragraph-3 numbering is preserved verbatim rather than corrected."
+  "repairs_since_attempt_4": [
+    "Attempt 4 reached 4/5 source seals; only BHSA failed with missing Text-Fabric dependency g_cons.",
+    "BHSA loader now derives every text-format feature dependency directly from the frozen commit's exact otext.tf and fetches plus SHA-256 seals each dependency before loading.",
+    "No frozen locus, canary, source edition, or scoring rule changed."
   ],
   "frozen_loci_changed": false,
   "requested_checks": [
