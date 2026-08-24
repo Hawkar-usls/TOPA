@@ -113,3 +113,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python crossing_elimination_tradeoff_probe.py
+
+      - name: Replay C025-E2R-L1G expansion entropy and monotone-crossing mechanics
+        run: |
+          cd research/mathematics/p-vs-np
+          python expansion_entropy_monotone_crossing_probe.py
