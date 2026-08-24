@@ -1,0 +1,67 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1E-NW-LOCAL-ER3-LOWER-BOUND-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1E",
+  "status": "RESTRICTED_EXISTENTIAL_SUPERPOLY_EXTENSION_COUNT_PROVED_FROM_SOURCE_THEOREM",
+  "scope": "NW-neighborhood-local ER3 only",
+  "source_theorem": {
+    "work": "Dmitry Sokolov, Pseudorandom Generators, Resolution and Heavy Width, CCC 2022",
+    "role": "external Resolution lower bound for the full functional Nisan-Wigderson encoding",
+    "parameter_regime": "m=n^(2-delta), Delta=log^(2-delta)n, balanced base functions, suitable random NW graph with high probability",
+    "lower_bound": "exp(n^Omega(delta))"
+  },
+  "direct_family": {
+    "name": "DIRPARITY(G,b)",
+    "base_functions": "PARITY_Delta",
+    "root_variables": "x_1,...,x_n",
+    "outside_image_condition": "b not in image(F_G)",
+    "clauses_per_output": "2^(Delta-1)",
+    "input_bit_length": "N_n = O(m * 2^Delta * Delta * log n)",
+    "parameter_map": "log N_n = O(log^(2-delta)n), hence exp(n^Omega(delta)) is superpolynomial in N_n"
+  },
+  "restricted_proof_system": {
+    "name": "NW-neighborhood-local B2/ER3",
+    "admission": "for every extension e<->(a AND b), support(a) union support(b) is contained in one fixed NW neighborhood Vars_i",
+    "er3": "every Resolution-derived non-axiom clause has width <=3"
+  },
+  "transfer": {
+    "root_variable_map": "x_j -> y_projection_j",
+    "extension_variable_map": "e -> y_g_e for the recursively computed local Boolean function g_e",
+    "semantic_aliasing": "allowed; ordinary Resolution is polynomially closed under literal substitutions/variable identification",
+    "root_axiom_inclusion": "PROVED",
+    "extension_axiom_inclusion": "PROVED",
+    "resolution_transfer": "PROVED_USING_STANDARD_P_CLOSURE_UNDER_LITERAL_SUBSTITUTION"
+  },
+  "derived_theorems": {
+    "L1E_1": "Every NW-neighborhood-local B2 refutation of the direct parity-NW family has superpolynomial size in the actual direct input length N_n.",
+    "L1E_2": "For every fixed c, all sufficiently large family members require K>N_n^c extension variables in every NW-neighborhood-local ER3 refutation."
+  },
+  "provider_replay": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "pull_request": 214,
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32729767369,
+    "job_id": 97439124404,
+    "conclusion": "success",
+    "finite_mechanics": [
+      "outside-image fixture PASS",
+      "direct parity CNF UNSAT PASS",
+      "direct root-axiom semantic inclusion PASS",
+      "same-neighborhood extension-axiom inclusion PASS",
+      "cross-neighborhood rejection PASS"
+    ]
+  },
+  "not_proved": [
+    "deterministic explicit hard graph family",
+    "superpolynomial extension count for unrestricted ER3",
+    "Extended Resolution lower bound",
+    "Extended Frege lower bound",
+    "NP != coNP",
+    "P != NP"
+  ],
+  "next_escape_resource": "cross-neighborhood mixing",
+  "hard_boundary": "NW_LOCAL_ER3_SUPERPOLY_K != FULL_ER3_SUPERPOLY_K",
+  "claim_ceiling": "This is a derived restriction-only theorem using an external heavy-width lower bound plus an internal proof transfer and input-length map. Global Issue #217 and P vs NP remain open."
+}
