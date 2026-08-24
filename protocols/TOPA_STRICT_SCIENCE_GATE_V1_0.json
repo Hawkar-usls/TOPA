@@ -1,0 +1,148 @@
+{
+  "schema": "hawkar.topa.strict-science-gate.v1",
+  "id": "TOPA_STRICT_SCIENCE_GATE_V1_0",
+  "created_at_local": "2026-08-24T21:00:00+03:00",
+  "status": "ACTIVE_CANONICAL_SCIENCE_GATE",
+  "canonical_home": "Hawkar-usls/TOPA",
+  "purpose": "Remove heuristic authority from active TOPA research while preserving historical lineage and exploratory hypotheses as explicitly non-evidentiary objects.",
+  "core_law": "NO_ACTIVE_CLAIM_MAY_GAIN_STATUS_FROM_AN_UNCALIBRATED_SCORE_HEURISTIC_RANK_INTUITION_MODEL_VOTE_OR_SURVIVOR_LABEL.",
+  "scientific_authority_classes": {
+    "SOURCE_FACT": {
+      "requirements": [
+        "immutable or retrievable source pointer",
+        "exact source-bound statement",
+        "provenance and channel classification",
+        "no causal or semantic inflation beyond what the source establishes"
+      ],
+      "may_support_claim": true
+    },
+    "FORMAL_DERIVATION": {
+      "requirements": [
+        "frozen definitions and target statement",
+        "explicit premises",
+        "checkable derivation or independently checkable counterexample",
+        "parameter and representation accounting",
+        "theorem-transfer identity or proved reduction/simulation when external results are used"
+      ],
+      "may_support_claim": true
+    },
+    "REPRODUCIBLE_EXPERIMENT": {
+      "requirements": [
+        "frozen protocol before outcome inspection when feasible",
+        "versioned code and input data or exact acquisition procedure",
+        "controls appropriate to the claim",
+        "preserved negative and failed runs",
+        "reported measurement uncertainty and known instrument limits when applicable",
+        "finite-result claim ceiling"
+      ],
+      "may_support_claim": true
+    },
+    "STATISTICAL_INFERENCE": {
+      "requirements": [
+        "defined population/sample and sampling process",
+        "frozen estimand or test target",
+        "specified statistical model and assumptions",
+        "effect size and uncertainty interval or exact test quantity",
+        "multiplicity/selection accounting where relevant",
+        "calibration or validation for probabilistic scores used as claims"
+      ],
+      "may_support_claim": true
+    },
+    "HYPOTHESIS_ONLY": {
+      "requirements": [
+        "explicitly labeled hypothesis",
+        "at least one falsification/disconfirmation route",
+        "no evidentiary weight from model preference or narrative coherence"
+      ],
+      "may_support_claim": false,
+      "role": "generate tests only"
+    }
+  },
+  "heuristic_quarantine": {
+    "active_evidence_graph": "FORBIDDEN",
+    "allowed_locations": [
+      "historical lineage",
+      "explicit scratch/exploration notes marked NON_EVIDENTIARY"
+    ],
+    "forbidden_as_authority": [
+      "uncalibrated confidence number",
+      "confidence update without a defined statistical/Bayesian model",
+      "hard survivor or probable label used as evidence",
+      "observation ladder ordinal used as a quantitative weight",
+      "model consensus or agent vote",
+      "manual importance score",
+      "plausibility score without a calibrated reference class",
+      "visual pattern match without preregistered measurable criterion",
+      "post-hoc threshold selection",
+      "best-looking seed or run selection",
+      "finite benchmark extrapolated to asymptotic complexity",
+      "human intuition used as a proof premise"
+    ]
+  },
+  "confidence_rule": {
+    "uncalibrated_numeric_confidence": "FORBIDDEN_IN_ACTIVE_CLAIMS",
+    "qualitative_confidence_as_evidence": "FORBIDDEN",
+    "probability_allowed_only_if": [
+      "a probability model is explicitly defined",
+      "conditioning information is explicit",
+      "estimation/calibration method is reproducible",
+      "uncertainty and validation are reported"
+    ]
+  },
+  "mathematics_gate": {
+    "allowed_promotion_objects": [
+      "proved theorem in stated scope",
+      "proved reduction/simulation",
+      "rigorous counterexample or infinite counterfamily",
+      "conditional theorem with all open premises named",
+      "finite executable replay labeled finite mechanics only"
+    ],
+    "forbidden_promotions": [
+      "empirical scaling fit to universal asymptotic theorem",
+      "provider CI PASS to mathematical truth",
+      "short proof existence to efficient proof search",
+      "polynomial work in derived state/cache/proof size to polynomial work in original input length",
+      "proof-system p-simulation to deterministic algorithmic simulation",
+      "big-O statement whose hidden constant or exponent depends on the input instance or growing family parameter"
+    ]
+  },
+  "hidden_exponent_firewall": {
+    "every_complexity_claim_must_name": [
+      "original encoded input length N",
+      "all derived size parameters",
+      "the variable with respect to which polynomiality is claimed",
+      "whether exponent and constants are universal fixed constants independent of input/family",
+      "serialization and bit-complexity model",
+      "generation/search cost as distinct from verification cost"
+    ],
+    "banned_shortcuts": [
+      "POLY_IN_L therefore POLY_IN_N without L<=poly(N)",
+      "POLY_IN_M therefore POLY_IN_N without M<=poly(N)",
+      "K<=poly(N) assumed from width-bounded clause universe",
+      "shared DAG therefore polynomial bytes",
+      "polynomial recursion depth therefore polynomial tree size",
+      "finite observed scaling therefore fixed universal exponent",
+      "expected or high-probability construction therefore deterministic efficient construction without an algorithm/certificate"
+    ]
+  },
+  "status_vocabulary": [
+    "PROVED_IN_SCOPE",
+    "REFUTED",
+    "CONDITIONAL",
+    "REPRODUCED_FINITE_MECHANICS",
+    "SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL",
+    "SOURCE_BOUND_FACT",
+    "HYPOTHESIS_ONLY",
+    "UNRESOLVED",
+    "INSUFFICIENT_DATA"
+  ],
+  "deprecated_as_active_scientific_status": [
+    "PROBABLE_CONVENTIONAL",
+    "UNRESOLVED_NONEXOTIC",
+    "DATA_POOR_SURVIVOR",
+    "HARD_SURVIVOR",
+    "LIKELY_CONVENTIONAL"
+  ],
+  "provenance_policy": "Deprecated heuristic labels remain in historical records and may be quoted as historical states, but they cannot be upstream dependencies of a newly promoted active claim.",
+  "claim_ceiling": "The strict science gate strengthens admissibility and accounting. It does not itself prove any scientific hypothesis, complexity bound, P=NP, P!=NP, or other world-level conclusion."
+}
