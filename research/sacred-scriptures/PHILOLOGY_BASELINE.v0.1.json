@@ -1,7 +1,7 @@
 {
   "schema": "topa.sacred_scriptures.philology_baseline.v0.1",
   "date": "2026-08-24",
-  "status": "SOURCE_BASELINE_PARTIAL_FREEZE",
+  "status": "SOURCE_BASELINE_PARTIAL_FREEZE_WITH_GRETIL_PROVENANCE_CONFLICT",
   "purpose": "Record the preferred machine-readable and critical-edition baselines for the first Flood calibration before feature extraction.",
   "baselines": [
     {
@@ -15,32 +15,38 @@
     {
       "tradition": "Gilgamesh",
       "preferred_critical_baseline": "Andrew R. George, The Babylonian Gilgamesh Epic: Introduction, Critical Edition and Cuneiform Texts, 2003",
-      "reason": "Critical edition collecting known cuneiform sources; SOAS repository identifies it as peer-reviewed and publicly available.",
-      "source": "https://soas-repository.worktribe.com/output/446254/the-babylonian-gilgamesh-epic-introduction-critical-edition-and-cuneiform-texts",
+      "reason": "Critical edition collecting known cuneiform sources; SOAS BAPLAR reproduces Tablet XI transcription/translation from George with permission and is useful as a public line-number crosscheck.",
+      "source": "https://www.soas.ac.uk/about/andrew-george",
       "topa_use": "Cross-check Wasserman's Flood-specific synoptic treatment against George's Gilgamesh edition for Tablet XI."
     },
     {
       "tradition": "Biblical Hebrew / Genesis",
-      "preferred_machine_baseline": "ETCBC BHSA (Biblia Hebraica Stuttgartensia Amstelodamensis) frozen Text-Fabric version",
-      "reason": "Machine-readable Hebrew Bible with linguistic annotations and versioned fixed datasets; suited to reproducible extraction and syntax-aware controls.",
-      "source": "https://github.com/ETCBC/bhsa",
-      "license": "CC BY-NC 4.0 for the data; attribution required; commercial use restricted.",
-      "topa_use": "Freeze one explicit BHSA version before extraction; preserve the received-text reading and run separate source-partition sensitivity rather than modifying the base text."
+      "preferred_machine_baseline": "ETCBC BHSA release v1.8.1, commit b112c16, Text-Fabric data version 2021",
+      "reason": "The v1.8.1 release explicitly retains the 2021 TF feature data and provides versioned fixed data suitable for reproducible extraction.",
+      "source": "https://github.com/ETCBC/bhsa/releases/tag/v1.8.1",
+      "data_path": "tf/2021",
+      "license_note": "Repository README governs data reuse; commercial restrictions/attribution requirements must be respected independently of code licensing.",
+      "topa_use": "Freeze Genesis 6:5-9:17 from data version 2021 as the received-text baseline; source-critical partitions are sensitivity models and may not rewrite the base packet."
     },
     {
       "tradition": "Qur'anic Arabic",
       "preferred_machine_baseline": "Tanzil Uthmani Quran Text, Version 1.1",
+      "release_date": "2021-02-12",
       "reason": "Versioned UTF-8 Arabic text with explicit distribution terms and a stable download surface.",
-      "source": "https://tanzil.net/docs/download",
+      "source": "https://tanzil.net/download/",
       "license": "Creative Commons Attribution 3.0 with verbatim-copy requirement; changing the text is not allowed.",
-      "topa_use": "Store verbatim source text if mirrored; normalization/tokenization must be a derived analysis layer, never a replacement of the canonical source file."
+      "topa_use": "Freeze Q 11:25-49 from the verbatim Uthmani v1.1 source. Any normalization/tokenization is a separately hashed derived layer."
     },
     {
       "tradition": "Vedic Sanskrit / Satapatha Brahmana",
-      "preferred_machine_baseline": "GRETIL Satapatha-Brahmana, Madhyamdina recension (input by John Robert Gardner)",
-      "reason": "GRETIL explicitly lists a UTF-8 electronic text for the Madhyamdina recension, allowing the exact recension to be frozen rather than using only an English translation.",
-      "source": "https://gretil.sub.uni-goettingen.de/gretilbk.htm",
-      "topa_use": "Freeze the Madhyamdina recension and exact 1.8.1 locus before coding; later Manu/Matsya retellings remain separate descendants unless independence is demonstrated."
+      "preferred_machine_baseline": "GRETIL Satapatha-Brahmana, Madhyamdina recension, Book 1 file sb_01_u.htm",
+      "catalogue_attribution": "GRETIL catalogue entry says input by John Robert Gardner.",
+      "file_header_attribution": "The actual Book 1 file says: Data input by H.S. Ananthanarayana and W. P. Lehman.",
+      "provenance_state": "CONFLICT_RECORDED_DO_NOT_SILENTLY_RESOLVE",
+      "reason": "The catalogue and actual file header disagree on input attribution. The exact file and locus can still be frozen, but provenance must preserve both statements until resolved.",
+      "catalogue_source": "https://gretil.sub.uni-goettingen.de/gretil.html",
+      "book1_source": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm",
+      "topa_use": "Freeze Madhyamdina 1.8.1.[1]-[10] as the focal Manu-flood narrative; preserve 1.8.1.[11]+ as adjacent ritual exposition, not automatically part of the flood feature packet."
     }
   ],
   "anti_bias_rules": [
@@ -48,13 +54,15 @@
     "Machine-readable convenience does not outrank critical philology.",
     "Derived normalization layers must be hash-linked to the immutable source text.",
     "No cross-language lexical score is permitted from English/Russian/Ukrainian translations alone.",
-    "If two defensible editions materially change a feature, mark the feature EDITION_SENSITIVE rather than choosing the favorable reading."
+    "If two defensible editions materially change a feature, mark the feature EDITION_SENSITIVE rather than choosing the favorable reading.",
+    "If catalogue metadata and file-internal provenance disagree, preserve both and block silent attribution repair."
   ],
   "next_work": [
-    "freeze exact Wasserman sections/line numbers for Atrahasis and Gilgamesh XI",
-    "freeze a specific BHSA version and extract Genesis 6:5-9:17",
-    "freeze Tanzil 1.1 Uthmani Q 11:25-49 plus secondary Noah loci",
-    "freeze GRETIL Madhyamdina Satapatha Brahmana 1.8.1",
-    "produce immutable source hashes and derived-analysis hashes"
+    "freeze exact Wasserman/George Akkadian narrative blocks",
+    "materialize/hash BHSA v1.8.1 data-version-2021 Genesis 6:5-9:17 slice",
+    "materialize/hash Tanzil 1.1 Uthmani Q 11:25-49 verbatim slice with license notice",
+    "materialize/hash GRETIL sb_01_u.htm and extract Madhyamdina 1.8.1.[1]-[10] without normalizing the source layer",
+    "resolve or retain open the GRETIL catalogue-versus-file-header attribution conflict",
+    "produce separate hashes for source bytes and every derived analysis layer"
   ]
 }
