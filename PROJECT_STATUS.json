@@ -5,7 +5,7 @@
   "maturity": "ACTIVE_PROTOTYPE",
   "status": "ACTIVE_RESEARCH",
   "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
-  "purpose": "Evidence-bounded investigation of anomalous, paranormal-labelled and unexplained reports using provenance preservation, competing hypotheses, falsification, prediction freezing and explicit unresolved states.",
+  "purpose": "Evidence-bounded investigation of anomalous, paranormal-labelled and unexplained reports, plus a falsification-first mathematical research mode, using provenance preservation, competing hypotheses, explicit proof obligations, prediction freezing and unresolved states.",
   "implemented": [
     "canonical epistemic foundation v1.2",
     "provenance/channel classification",
@@ -18,13 +18,15 @@
     "distributed Scout protocol",
     "executable claim-envelope validator",
     "archival case corpus and adversarial receipts",
-    "Tesla Sweep / TOPA Hunt research snapshot import"
+    "Tesla Sweep / TOPA Hunt research snapshot import",
+    "general mathematical research mode v1.1 with theorem/counterexample, encoding, parameter and full-cost gates"
   ],
   "established_in_stated_scope": [
     "TOPA repository architecture and machine-readable rules exist",
     "historical source/provenance records can be preserved and reclassified without erasing lineage",
     "the validator can reject specified provenance and prediction-rule violations",
-    "case status is allowed to decrease after later falsification"
+    "case status is allowed to decrease after later falsification",
+    "mathematical candidates can be typed and routed through explicit proof, counterexample, encoding and parameter checks"
   ],
   "not_established": [
     "paranormal causation",
@@ -35,10 +37,13 @@
     "supernatural entities",
     "technosignatures in the Tesla Sweep corpus",
     "the favored J1832 natural-mechanism synthesis",
+    "P versus NP resolution",
+    "a universal theorem from finite mathematical experiments",
     "world truth from model or Scout consensus"
   ],
   "current_authority": {
     "foundation": "protocols/TOPA_FOUNDATION.json",
+    "mathematical_mode": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
     "method": "docs/METHOD.md",
     "case_status": "docs/STATUS.md",
     "corpus_index": "registry/TOPA-CORPUS-INDEX.json",
@@ -51,7 +56,9 @@
     "MISSING_DATA_STAYS_MISSING",
     "FAILED_TESTS_MUST_BE_ABLE_TO_LOWER_CONFIDENCE",
     "UNRESOLVED_IS_A_VALID_TERMINAL_STATE",
-    "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT"
+    "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT",
+    "MATHEMATICAL_PROMOTION_REQUIRES_CHECKABLE_DERIVATION_OR_COUNTEREXAMPLE",
+    "FINITE_EXPERIMENT_IS_NOT_UNIVERSAL_ASYMPTOTIC_THEOREM"
   ],
   "world_truth": false
 }
