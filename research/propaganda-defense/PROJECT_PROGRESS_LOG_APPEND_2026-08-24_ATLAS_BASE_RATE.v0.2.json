@@ -1,0 +1,80 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.2",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_CORPUS_GUARDRAIL.v0.1.json",
+    "previous_max_seq": 12
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "corrections_create_new_entries": true,
+    "method_pass_is_not_world_truth": true,
+    "sacred_text_parallel_lane_must_remain_uncontaminated": true
+  },
+  "entries": [
+    {
+      "seq": 13,
+      "event": "MANIPULATION_TECHNIQUE_ATLAS_FROZEN",
+      "status": "138_TECHNIQUES_10_HISTORICAL_TECHNOLOGICAL_FAMILIES",
+      "artifacts": ["MANIPULATION_ATLAS_INDEX.v0.1.json", "MANIPULATION_TECHNIQUE_REGISTRY_COMPACT.v0.1.json"],
+      "claim_effect": "DEFENSIVE_TAXONOMY_ONLY"
+    },
+    {
+      "seq": 14,
+      "event": "CROSS_EPOCH_OBSERVABLE_SCHEMA_PREREGISTERED",
+      "status": "35_DIMENSIONS_FROZEN_BEFORE_SCORING",
+      "artifact": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+      "state_change": "138 named techniques now map to era-neutral observable dimensions while preserving implementation differences and genre false-positive controls",
+      "claim_effect": "MEASUREMENT_SCHEMA_ONLY"
+    },
+    {
+      "seq": 15,
+      "event": "NONWESTERN_MULTILINGUAL_SOURCE_EXPANSION",
+      "status": "12_SOURCE_ROOTS_DISCOVERED_NOT_YET_HASH_SEALED",
+      "artifact": "NONWESTERN_MULTILINGUAL_EXPANSION.v0.1.json",
+      "regions": ["Japan", "China", "Taiwan", "South Africa", "Sub-Saharan Africa", "Latin America", "Australia"],
+      "claim_effect": "SOURCE_DISCOVERY_AND_BIAS_REDUCTION_ONLY"
+    },
+    {
+      "seq": 16,
+      "event": "SACRED_NON_SACRED_BASE_RATE_PROTOCOL_FROZEN",
+      "status": "8_ANCIENT_NON_SACRED_CONTROL_SLOTS_PREREGISTERED",
+      "artifact": "SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json",
+      "controls": ["Hammurabi", "Behistun", "Kadesh", "Neo-Assyrian annals", "Hittite treaty", "Thucydides", "Res Gestae", "Ptahhotep"],
+      "state_change": "Sacred-text manipulation classification above S0 now requires non-sacred genre/era base-rate calibration.",
+      "claim_effect": "FALSE_POSITIVE_CONTROL_METHOD_ONLY"
+    },
+    {
+      "seq": 17,
+      "event": "FLOOD_BLIND_CONTAMINATION_FIREWALL_REAFFIRMED",
+      "status": "UNCHANGED_EXTERNAL_LANE",
+      "rules": [
+        "Propaganda atlas outputs may not be shown to Flood Coder A/B before both receipts freeze.",
+        "X01-X35 may not modify the preregistered Flood 28-feature schema.",
+        "Parallel manipulation screening cannot unlock Flood SCORE."
+      ],
+      "claim_effect": "NO_FLOOD_GATE_CHANGE"
+    },
+    {
+      "seq": 18,
+      "event": "PROPAGANDA_DEFENSE_SPRINT_V0_2_FROZEN",
+      "status": "ACTIVE_CROSS_EPOCH_SCHEMA_BASE_RATE_AND_MULTILINGUAL_SOURCE_FREEZE",
+      "artifact": "CURRENT_SPRINT.v0.2.json",
+      "next_legal_action": "FREEZE_BR01_BR08_EXACT_SOURCES_AND_RIGHTS_BUILD_ZERO_VALUE_CODING_PACKET_THEN_BASE_RATE_CODE_NON_SACRED_CONTROLS",
+      "claim_effect": "PROJECT_STATE_ADVANCE_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "CROSS_EPOCH_SCHEMA_BASE_RATE_AND_MULTILINGUAL_SOURCE_FREEZE",
+    "atlas_techniques": 138,
+    "atlas_families": 10,
+    "cross_epoch_dimensions": 35,
+    "nonwestern_multilingual_roots": 12,
+    "ancient_base_rate_controls": "8/8 SLOTS PREREGISTERED; 0/8 HASH SEALED",
+    "sacred_flood_lane": "A_B_UNASSIGNED_GATE_OPEN",
+    "operational_firewall": "ACTIVE",
+    "score_permission": false
+  }
+}
