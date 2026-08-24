@@ -1,0 +1,72 @@
+{
+  "schema": "topa.sacred_scriptures.janus_existing_lineage.v0.1",
+  "status": "DISCOVERED_UPSTREAM_LINEAGE",
+  "purpose": "Connect the sacred-scripture corpus to already-existing JANUS religious/mythological research without treating those artifacts as primary scripture or independent evidence.",
+  "upstream_repo": "Hawkar-usls/janus-meta-registry",
+  "discovered_artifacts": [
+    {
+      "path": "data/JANUS-ARMOR-OF-GOD-FAITH-CRISIS-RETURN-MECHANISM-v2.0.json",
+      "role": "Existing faith/crisis semantic mechanism; use only as a JANUS interpretation layer, never as scripture."
+    },
+    {
+      "path": "data/JANUS-ARMOR-OF-GOD-DOGMA-HOLY-COOLNESS-SCENE-MECHANISM-v1.1.json",
+      "role": "Existing DOGMA/Armor-of-God narrative mechanism; fictional/media-derived context must remain separated from sacred-text evidence."
+    },
+    {
+      "path": "data/JANUS-DOGMA-DIVINE-KEVIN-SMITH-CROSS-REFERENCES-v1.2.json",
+      "role": "Cross-reference surface for religious narrative motifs in creative media; control for modern cultural reuse."
+    },
+    {
+      "path": "data/JANUS-NOT-ANTICHRIST-FALSE-FAITH-RETURN-TO-GOD-SIGNAL-v1.1.json",
+      "role": "Existing bounded religious-language signal; semantic lineage only."
+    },
+    {
+      "path": "docs/JANUS-NOT-PREDICTION-CASEBOOK-v1.0.md",
+      "role": "Critical anti-prophecy/prediction control: pattern recognition must not be relabeled as prediction after the fact."
+    },
+    {
+      "path": "data/OSIRIS_SEMANTIC_TEXT_CORE_CURRENT.json",
+      "role": "Existing Osiris semantic-text node; can be compared against primary Egyptian witnesses only after source provenance is restored."
+    },
+    {
+      "path": "data/JANUS-EGYPT-OSIRIS-JSON-INVENTORY-2026-08-20-v1.0.json",
+      "role": "Inventory bridge into JANUS Egypt work; identifies existing research objects but is not a primary ancient text."
+    },
+    {
+      "path": "data/JANUS-OSIRIS-HRAIN-INVERSE-BRIDGE-2026-08-16-v0.7.json",
+      "role": "Existing reverse/HRain method lineage relevant to passage-to-source backtracking."
+    },
+    {
+      "path": "data/JANUS-OSIRIS-REVERSE-TRACE-C-TO-A-2026-08-18-v1.0.json",
+      "role": "Existing reverse-trace pattern reusable for textual stemma work."
+    },
+    {
+      "path": "data/JANUS-AURA-OSIRIS-OFFLINE-BLIND-SEED-2026-08-16-v1.9.json",
+      "role": "Existing blind-seed pattern; method reusable, Aura interpretation retains zero evidence authority."
+    },
+    {
+      "path": "data/JANUS-AURA-OSIRIS-INFORMED-PASS-2026-08-16-v2.0.json",
+      "role": "Existing informed-pass lineage useful for separating blind and informed stages."
+    },
+    {
+      "path": "data/JANUS-GENESIS-GUARDIAN-MESH-ARMOR-OF-GOD-RUNTIME-BINDING-v1.4.json",
+      "role": "Existing Genesis/DemiHead guardrail lineage for bounded review and authority separation."
+    }
+  ],
+  "adjacent_repo_controls": [
+    {
+      "repo": "Hawkar-usls/DIVINE_REALM",
+      "role": "Creative symbolic control corpus",
+      "scientific_evidence_authority": false,
+      "theological_authority": false,
+      "rule": "DIVINE_REALM_SYMBOLISM_MAY_GENERATE_SEARCH_TERMS_BUT_CANNOT_VALIDATE_SCRIPTURE_CLAIMS"
+    }
+  ],
+  "lineage_law": [
+    "JANUS_INTERPRETATION_ARTIFACT != PRIMARY_SCRIPTURE",
+    "MODERN_MEDIA_REFERENCE != ANCIENT_WITNESS",
+    "SYMBOLIC_RESONANCE != HISTORICAL_DEPENDENCE",
+    "REVERSE_SEARCH_METHOD_CAN_TRANSFER_WITHOUT_TRANSFERRING_OLD_CONCLUSIONS",
+    "BLIND_AND_INFORMED_PASSES_MUST_REMAIN_DISTINGUISHABLE"
+  ]
+}
