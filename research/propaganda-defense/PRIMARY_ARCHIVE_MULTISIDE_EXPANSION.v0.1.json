@@ -1,0 +1,92 @@
+{
+  "schema": "topa.propaganda_defense.primary_archive_multiside_expansion.v0.1",
+  "date": "2026-08-24",
+  "status": "MULTISIDE_PRIMARY_ARCHIVE_SEED_NOT_EXHAUSTIVE",
+  "purpose": "Reduce actor/geography bias by grounding future propaganda-mechanism coding in primary archival artifacts from multiple countries, eras and conflict roles.",
+  "sources": [
+    {
+      "id": "PA-001",
+      "institution": "Library of Congress",
+      "collection": "World War I Posters",
+      "scope": "Approximately 1,900 digitized posters, 1914-1920, including US, Australia, Austria, Belgium, Canada, Germany, Great Britain, Italy, Netherlands and Russia.",
+      "url": "https://www.loc.gov/pictures/collection/wwipos/",
+      "rights": "ITEM_LEVEL_RIGHTS; LOC provides rights statements and many items have no known restrictions",
+      "defensive_use": "cross-country visual mechanism coding and source-controlled historical comparison"
+    },
+    {
+      "id": "PA-002",
+      "institution": "Library of Congress Geography and Map Division",
+      "collection": "1928 Soviet Russian Civil War pictorial propaganda map series",
+      "scope": "Ten Soviet pictorial propaganda maps published by the State Publishing House, Military Literature division, narrating Bolshevik victory in the Civil War.",
+      "url": "https://www.loc.gov/item/2016585552/",
+      "rights": "LOC Geography and Map Division digitized content generally free to use/reuse unless a Rights Advisory says otherwise; verify item statement",
+      "defensive_use": "Soviet primary visual-narrative control corpus"
+    },
+    {
+      "id": "PA-003",
+      "institution": "U.S. National Archives",
+      "collection": "Powers of Persuasion: Poster Art of World War II",
+      "scope": "US wartime poster archive/exhibit with catalog identifiers and primary artifacts.",
+      "url": "https://www.archives.gov/exhibits/powers-of-persuasion",
+      "rights": "NARA item-level terms",
+      "defensive_use": "Allied/domestic wartime propaganda primary control"
+    },
+    {
+      "id": "PA-004",
+      "institution": "National Diet Library, Japan",
+      "collection": "Wartime handbills and psychological-warfare materials",
+      "scope": "NDL materials include handbills dropped by US Army Air Forces over Japan in 1945 and Japanese bibliographic holdings on wartime propaganda.",
+      "url": "https://dl.ndl.go.jp/view/download/digidepo_11045344_po_NDL-Newsletter202_20201.pdf?alternativeNo=&contentNo=1",
+      "rights": "NDL item/access terms; metadata may be open while image reuse/access varies",
+      "defensive_use": "Pacific-war leaflet/psychological-warfare primary context; no operational execution guidance"
+    },
+    {
+      "id": "PA-005",
+      "institution": "National Diet Library, Japan",
+      "collection": "大戦ポスター集 / War Posters (1921)",
+      "scope": "55 plates plus 122 pages; Japanese bibliographic/digitized record of wartime poster material.",
+      "url": "https://ndlsearch.ndl.go.jp/en/books/R100000039-I1908864",
+      "rights": "digitized access subject to NDL transmission/access conditions",
+      "defensive_use": "Japanese archival/bibliographic counterweight; metadata-first unless reuse is cleared"
+    },
+    {
+      "id": "PA-006",
+      "institution": "United States Holocaust Memorial Museum",
+      "collection": "Nazi Propaganda educational/archival synthesis",
+      "scope": "Source-grounded educational corpus on Nazi propaganda, mobilization, persecution and genocide.",
+      "url": "https://encyclopedia.ushmm.org/content/en/article/nazi-propaganda",
+      "rights": "USHMM terms; citation/reference unless item reuse is cleared",
+      "defensive_use": "historical harm and mechanism context, not symmetry-by-moral-equivalence"
+    },
+    {
+      "id": "PA-007",
+      "institution": "CIA Reading Room / U.S. Department of State",
+      "collection": "Soviet Active Measures: Forgery, Disinformation, Political Operations — Special Report No. 88",
+      "scope": "October 1981 declassified US government assessment of Soviet active measures.",
+      "url": "https://www.cia.gov/readingroom/docs/CIA-RDP84B00274R000100040004-8.pdf",
+      "rights": "declassified public record",
+      "defensive_use": "primary institutional assessment with mandatory US-government bias/collection receipt; not exclusive truth"
+    },
+    {
+      "id": "PA-008",
+      "institution": "CIA Reading Room",
+      "collection": "Additional declassified Soviet active-measures assessments",
+      "scope": "1980s US intelligence-community records describing alleged front groups, forgeries, media manipulation and influence campaigns.",
+      "url": "https://www.cia.gov/readingroom/docs/CIA-RDP88G01116R000400410020-1.pdf",
+      "rights": "declassified public record",
+      "defensive_use": "compare claims across declassified assessments and external scholarship; preserve institutional incentives and unknowns"
+    }
+  ],
+  "symmetry_rule": "Primary artifacts from one side do not become the moral or factual baseline for another side. Each artifact is coded by the same observable-feature schema, and institutional assessments are never counted as independent confirmation merely because they are declassified.",
+  "next_archive_targets": [
+    "Imperial War Museums multilingual propaganda collections",
+    "German Bundesarchiv propaganda holdings",
+    "French and British national archive wartime information collections",
+    "Russian/Soviet archival sources where lawful and accessible",
+    "Chinese propaganda poster/history archives and scholarship",
+    "Japanese home-front primary posters and broadcasts",
+    "radio/shortwave propaganda and counter-propaganda archives",
+    "Global South and decolonization-era primary propaganda corpora"
+  ],
+  "operational_firewall": "Archive study is for recognition, historical comparison and defensive countermeasure science; no audience-targeting or deployable influence campaign construction."
+}
