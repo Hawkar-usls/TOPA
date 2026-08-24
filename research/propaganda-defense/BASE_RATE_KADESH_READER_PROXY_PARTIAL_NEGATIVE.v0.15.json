@@ -1,0 +1,79 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_reader_proxy_partial_negative.v0.15",
+  "date": "2026-08-24",
+  "status": "PARTIAL_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_BROWSER_RENDERING_TRANSPORT_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32760614230,
+    "github_actions_job_id": 97538301244,
+    "artifact_id": 9532522446,
+    "artifact_sha256": "6be6b09fdd8c63df726f3ce21fba5dc8db97017926e12eb004d949d6f21a323a"
+  },
+  "transport_firewall": {
+    "jina_reader_evidence_authority": 0,
+    "scribd_evidence_authority": 0,
+    "proxy_adds_independent_source_root": false,
+    "mirror_adds_independent_source_root": false,
+    "source_root_count_if_admitted": 1
+  },
+  "results": {
+    "UCHICAGO_DOI": {
+      "bytes": 777,
+      "sha256": "382357ac310707ea850ddaa622d2f65a5a9da08adb511b004ad2c6410ffd670e",
+      "classification": "INSUFFICIENT_METADATA_OR_ERROR_REPRESENTATION"
+    },
+    "JSTOR_STABLE_528771": {
+      "bytes": 18221,
+      "sha256": "c5b892f4f5fdc2599442890c4eaceb840d050992b6df7644d06965f40c012853",
+      "normalized_chars": 17561,
+      "normalized_sha256": "e3282c4f46c9031b15f7dba3808c32ed5f7efd25a11ff65b9428574634d9fd46",
+      "identity_ok": true,
+      "page_numbers_seen_266_287": [266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287],
+      "page_coverage_count": 22,
+      "the_poem": false,
+      "council_urges_peace": false,
+      "the_record": false,
+      "comment_on_the_texts": false,
+      "classification": "PAGE_NAVIGATION_OR_METADATA_REPRESENTATION_NOT_LOCUS_CONTENT"
+    },
+    "SCRIBD_462138503": {
+      "bytes": 55607,
+      "sha256": "a59da2c61403efd6187ebe67c3cd745252fb17558855c8bb7fc12279836d6069",
+      "normalized_chars": 54053,
+      "identity_ok": false,
+      "page_coverage_count": 3,
+      "classification": "SUBSTANTIAL_PAGE_RENDER_BUT_NOT_EXACT_DOCUMENT_REPRESENTATION"
+    },
+    "SCRIBD_493951399": {
+      "bytes": 51836,
+      "sha256": "b035aa46b39a1a8f5d3c70f0a620bdd93899a22a5f3e214f9ae1e489216648f7",
+      "normalized_chars": 50455,
+      "identity_ok": false,
+      "page_coverage_count": 1,
+      "classification": "SUBSTANTIAL_PAGE_RENDER_BUT_NOT_EXACT_DOCUMENT_REPRESENTATION"
+    }
+  },
+  "admission": {
+    "strong_candidates": 0,
+    "transport_admission_review_eligible": false,
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Query versioned Common Crawl indexes for the two exact Scribd URLs. If an archived WARC payload contains the full exact Wilson scan representation, bind crawl timestamp, WARC filename, offset, length, Common Crawl digest, raw payload SHA-256, and frozen p.266/p.278 boundary markers before any transport admission review.",
+  "laws": [
+    "PAGE_NAVIGATION_COVERAGE != LOCUS_CONTENT",
+    "SUBSTANTIAL_RENDER_SIZE != DOCUMENT_IDENTITY",
+    "RENDERING_PROXY != SOURCE_AUTHORITY",
+    "ARCHIVED_WARC_PAYLOAD_MAY_BE_TESTED_AS_TRANSPORT_NOT_AS_WITNESS",
+    "FAIL_IS_PRESERVED_BEFORE_ARCHIVAL_PROXY_TEST"
+  ]
+}
