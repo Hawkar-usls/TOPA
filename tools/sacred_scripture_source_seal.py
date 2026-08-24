@@ -22,6 +22,7 @@ TANZIL_URL = ("https://tanzil.net/pub/download/index.php?"
               "quranType=uthmani&outType=txt-2&agree=true&marks=true&"
               "sajdah=true&rub=true&stanween=true")
 GRETIL_URL = "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm"
+BHSA_FULL_SHA = "b112c161cfd21eae403d51a2733740d8743460e7"
 
 def h(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
@@ -72,13 +73,14 @@ def seal_akkadian():
     ]
 
 def seal_bhsa(bhsa_dir: Path):
+    bhsa_dir = bhsa_dir.resolve()
     if not bhsa_dir.exists():
         raise RuntimeError(f"BHSA checkout missing: {bhsa_dir}")
     import subprocess
     head = subprocess.check_output(["git", "-C", str(bhsa_dir), "rev-parse", "HEAD"], text=True).strip()
-    if not head.startswith("b112c16"):
+    if head != BHSA_FULL_SHA:
         raise RuntimeError(f"BHSA wrong commit: {head}")
-    tfdir = bhsa_dir / "tf" / "2021"
+    tfdir = (bhsa_dir / "tf" / "2021").resolve()
     files = ["otype.tf","oslots.tf","book.tf","chapter.tf","verse.tf","g_word_utf8.tf","trailer_utf8.tf"]
     manifest = []
     for name in files:
@@ -88,10 +90,11 @@ def seal_bhsa(bhsa_dir: Path):
     manifest_raw = "\n".join(f"{x['path']}\0{x['sha256']}" for x in manifest).encode()
     substrate_sha = h(manifest_raw)
     from tf.fabric import Fabric
-    TF = Fabric(locations=str(bhsa_dir / "tf"), modules="2021", silent="deep")
-    api = TF.load("g_word_utf8 trailer_utf8", silent="deep")
-    if api is None:
-        raise RuntimeError("Text-Fabric failed to load BHSA")
+    TF = Fabric(locations=str(tfdir), silent="deep")
+    loaded = TF.load("g_word_utf8 trailer_utf8", silent="deep")
+    if loaded is False or getattr(TF, "api", None) is None:
+        raise RuntimeError("Text-Fabric failed to load BHSA 2021 features")
+    api = TF.api
     F, L, T = api.F, api.L, api.T
     ranges = {6:(5,22), 7:(1,24), 8:(1,22), 9:(1,17)}
     rows = []
@@ -141,10 +144,12 @@ def seal_gretil():
     text = raw.decode("utf-8", errors="strict")
     import html
     plain = html.unescape(re.sub(r"<[^>]+>", "", text))
-    start = plain.find("<1.8.1.1>")
-    end = plain.find("<1.8.1.11>")
+    start_marker = "1.8.1.[1]"
+    end_marker = "1.8.1.[11]"
+    start = plain.find(start_marker)
+    end = plain.find(end_marker, start + len(start_marker)) if start >= 0 else -1
     if start < 0 or end <= start:
-        raise RuntimeError("GRETIL ŚB 1.8.1.[1]-[10] markers not found")
+        raise RuntimeError("GRETIL ŚB 1.8.1.[1]-[10] visible-text markers not found")
     slice_bytes = nfc_lf(plain[start:end].strip() + "\n")
     return {
         "id":"F05_SATAPATHA_MANU", "source":"GRETIL Satapatha-Brahmana, Madhyamdina, Book 1",
@@ -152,7 +157,7 @@ def seal_gretil():
         "frozen_locus_descriptor":"Śatapatha-Brāhmaṇa 1.8.1.[1]-[10]",
         "slice_seal_type":"NFC_UTF8_VISIBLE_TEXT_SHA256", "slice_bytes":len(slice_bytes),
         "slice_sha256":h(slice_bytes),
-        "normalization":"HTML tags removed; entities unescaped; marker 1.8.1.1 through before 1.8.1.11; NFC; LF",
+        "normalization":"HTML tags removed; entities unescaped; visible marker 1.8.1.[1] through before 1.8.1.[11]; NFC; LF",
         "status":"SEALED"}
 
 def main():
