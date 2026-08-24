@@ -78,3 +78,13 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python reason_cache_index.py
+
+      - name: Replay C025-B2 extension-aware reason verifier
+        run: |
+          cd research/mathematics/p-vs-np
+          python extension_reason_v0.py
+
+      - name: Replay C025-B2 adversarial negative suite
+        run: |
+          cd research/mathematics/p-vs-np
+          python extension_reason_v0_negative_replay.py
