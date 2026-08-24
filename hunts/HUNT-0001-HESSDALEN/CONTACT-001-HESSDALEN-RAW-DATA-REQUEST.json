@@ -1,0 +1,24 @@
+{
+  "schema": "janus.topa.hunt.external-contact.v1",
+  "hunt_id": "HUNT-0001",
+  "contact_id": "CONTACT-001-HESSDALEN-RAW-DATA-REQUEST",
+  "sent_at_local": "2026-08-24T13:55:00+03:00",
+  "recipient_name": "Fred Pallesen",
+  "recipient_role": "CEO / Project Hessdalen",
+  "recipient_public_email": "fred@hessdalen.org",
+  "subject": "Request for one complete raw camera day + calibration metadata for reproducible Hessdalen replay",
+  "status": "SENT_AWAITING_REPLY",
+  "request_fields": [
+    "exact public location/link for one complete raw camera day",
+    "segment manifest or naming scheme including missing/corrupt segments",
+    "camera timestamp basis/timezone, synchronization and known drift/offsets",
+    "exact camera coordinates, identifiers, orientation and field of view",
+    "intrinsic/extrinsic calibration or lens/camera model parameters",
+    "current status/location of the third remote/test camera and whether a surveyed stereo baseline/FOV overlap exists"
+  ],
+  "declared_method": "raw video -> provenance/hash -> deterministic frame/track extraction -> conventional classes -> processing/artifact classes -> residuals",
+  "triangulation_boundary": "Physical distance/altitude/speed will only be attempted for genuinely separated calibrated synchronized stations; otherwise angular motion only.",
+  "privacy_boundary": "No private account identifiers, Gmail message IDs, tokens or non-public contact data are stored in this receipt.",
+  "reply_received": false,
+  "world_truth": false
+}
