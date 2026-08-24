@@ -1,0 +1,31 @@
+name: propaganda-kadesh-archive-volume-probe-v0-11
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_archive_volume_probe_v0_11.py'
+      - '.github/workflows/propaganda-kadesh-archive-volume-probe-v0-11.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Search whole-volume archival scans for AJSL v43
+        run: python tools/propaganda_kadesh_archive_volume_probe_v0_11.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-archive-volume-probe-v0-11
+          path: research/propaganda-defense/execution/KADESH_ARCHIVE_VOLUME_PROBE.v0.11.json
+          if-no-files-found: error
+          retention-days: 30
