@@ -1,0 +1,32 @@
+{
+  "schema": "janus.topa.audit_state.v1",
+  "repository": "Hawkar-usls/TOPA",
+  "status": "ACTIVE_ACCOUNT_WIDE_INGEST",
+  "audit_principle": "NO_100_PERCENT_CLAIM_BEFORE_EVERY_PATH_IS_ACCOUNTED_OR_EXPLICITLY_BLOCKED",
+  "account_baseline": {
+    "owner": "Hawkar-usls",
+    "repository_count_before_TOPA_creation": 46,
+    "repository_count_after_TOPA_creation_observed": 47,
+    "baseline_tree_coverage_before_TOPA": "46/46",
+    "full_file_content_coverage": "IN_PROGRESS"
+  },
+  "completed_special_surfaces": {
+    "tranception": {"snapshot":"e786ca75ac30afb14e45edffc92aa49a05a9da4f","coverage":"42/42","classification":"METHODOLOGICAL_DONOR_ONLY"},
+    "JanusMMORPG": {"current_surface":"2_BLOBS_ACCOUNTED","classification":"GAME_RUNTIME_GATEWAY"}
+  },
+  "janus_meta_registry": {
+    "historical_frozen_audit_base": "d30b3993f9df12471b3ecce7f269cfff12e39c34",
+    "later_checked_main_tree": "3f71cb98cc9ff98d4b44414a7cd861716524a999",
+    "status": "FILE_LEVEL_RECONCILIATION_IN_PROGRESS",
+    "linear_a": {
+      "canonical_v2_16_to_v2_32": "REVIEWED",
+      "R7": "REVIEWED_WORKFLOW_LINEAGE",
+      "SIGLA": "REVIEWED_CLAIM_BEARING_LINEAGE",
+      "R3C": "SUBSTANTIALLY_REVIEWED_WITH_MANIFEST_RECONCILIATION",
+      "R3D": "SOURCE_LINEAGE_IDENTIFIED_BYTES_NOT_RECOVERED"
+    },
+    "binary_blockers": ["AVIF_OR_OTHER_BINARY_OBJECTS_NOT_COUNTED_AS_TEXT_READ_WITHOUT_SUPPORTED_INSPECTION"]
+  },
+  "audit_laws": ["TREE_COVERAGE != FILE_CONTENT_COVERAGE","SEARCH_HIT != CASE","SEARCH_ZERO != PROOF_OF_CORPUS_ABSENCE_WITHOUT_METHOD_VALIDATION","IDENTICAL_BLOB_SHA_MAY_BE_REUSED_BUT_EVERY_PATH_MUST_BE_ACCOUNTED","BINARY_FILE_REQUIRES_EXPLICIT_INSPECTION_OR_BLOCKER","UPSTREAM_MIRROR_CONTENT_MUST_RETAIN_PROVENANCE_CLASS","REPAIR != REWRITE","NEGATIVE_RESULTS_REMAIN_SEARCHABLE"],
+  "world_truth": false
+}
