@@ -1,0 +1,61 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coder_bundle_freeze_policy.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_BUNDLE_HASH_EXECUTION",
+  "trigger": "Reverse audit after packet-issuance PASS found that the v0.3 packet SHA binds the template file but not all separately stored authority dependencies that a coder must use.",
+  "purpose": "Create one immutable dependency-bundle identity for delivery to both independent coders without adding semantic values. The bundle is a manifest of hashes and paths; it does not mirror external source prose.",
+  "required_files_in_order": [
+    "research/propaganda-defense/BASE_RATE_CODING_PACKET_TEMPLATE.v0.3.json",
+    "research/propaganda-defense/CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+    "research/propaganda-defense/ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.3.json",
+    "research/propaganda-defense/ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json",
+    "research/propaganda-defense/ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS.v0.1.json",
+    "research/propaganda-defense/BASE_RATE_8_OF_8_RETRIEVAL_AUTHORITY_MAP.v0.1.json",
+    "research/propaganda-defense/BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1.json",
+    "research/propaganda-defense/SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json"
+  ],
+  "canonical_bundle_algorithm": {
+    "per_file": "SHA-256 of exact repository bytes plus Git blob SHA",
+    "aggregate_input": "UTF-8 canonical JSON array ordered exactly as required_files_in_order; each element contains path, sha256, git_blob_sha, byte_length",
+    "canonical_json": "ensure_ascii=false, sort_keys=true, separators=(',', ':')",
+    "aggregate": "SHA-256 of canonical aggregate_input bytes"
+  },
+  "mandatory_checks": {
+    "all_required_files_exist": true,
+    "all_files_are_json": true,
+    "packet_semantic_values_populated_equals_0": true,
+    "packet_issued_to_coders_equals_false": true,
+    "packet_coder_A_equals_UNASSIGNED": true,
+    "packet_coder_B_equals_UNASSIGNED": true,
+    "retrieval_map_is_8_of_8": true,
+    "schema_dimensions_equal_35": true,
+    "independence_contract_requires_two_real_coders": true,
+    "same_reasoning_instance_cannot_count_twice": true,
+    "sacred_flood_firewall_is_closed": true,
+    "score_permission_remains_false": true
+  },
+  "promotion_if_pass": {
+    "coder_bundle_hash_frozen": true,
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_values_populated": 0,
+    "score_permission": false,
+    "next_required_gate": "TWO_GENUINE_CODER_ASSIGNMENT_RECEIPTS_BOUND_TO_BUNDLE_HASH"
+  },
+  "promotion_if_fail": {
+    "coder_bundle_hash_frozen": false,
+    "base_rate_semantic_coding_permission": false,
+    "score_permission": false
+  },
+  "laws": [
+    "TEMPLATE_HASH_ALONE != COMPLETE_DEPENDENCY_BUNDLE_IDENTITY",
+    "DEPENDENCIES_MUST_BE_HASH_BOUND_BEFORE_DISTRIBUTION",
+    "BUNDLE_HASH != SEMANTIC_RESULT",
+    "BUNDLE_FREEZE_CANNOT_ASSIGN_CODERS",
+    "NO_EXTERNAL_SOURCE_PROSE_MIRRORING_REQUIRED",
+    "NO_SEMANTIC_VALUES",
+    "NO_SCORE"
+  ]
+}
