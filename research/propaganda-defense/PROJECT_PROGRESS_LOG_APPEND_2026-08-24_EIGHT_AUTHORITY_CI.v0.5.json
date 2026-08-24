@@ -1,0 +1,72 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.5",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_BASE_RATE_CI.v0.4.json",
+    "previous_max_seq": 24
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "source_authority_complete_does_not_equal_coding_ready": true,
+    "ci_pass_is_method_state_validation_not_scientific_result": true
+  },
+  "entries": [
+    {
+      "seq": 25,
+      "event": "BR05_HITTITE_SOURCE_AUTHORITY_CLOSED",
+      "status": "CTH62_AUTHORITY_BUNDLE_FROZEN",
+      "artifact": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.3.json",
+      "primary_locus": "CTH 62.II A column I lines 19′–28′",
+      "authority_bundle": [
+        "Hethitologie-Portal Mainz CTH 62 catalog/concordance and witness identities",
+        "Wilhelm-Fuscagni online edition lineage cited by the concordance",
+        "Devecchi 2012 open scholarly transliteration/discussion",
+        "Christiansen-Devecchi open scholarly context"
+      ],
+      "state_change": "ancient source authorities 7/8 -> 8/8; coding permission remains false",
+      "claim_effect": "SOURCE_AND_LOCUS_AUTHORITY_ONLY"
+    },
+    {
+      "seq": 26,
+      "event": "ZERO_VALUE_X35_PACKET_V0_2_FROZEN",
+      "status": "35_FEATURES_ZERO_VALUES_NOT_ISSUED",
+      "artifact": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.2.json",
+      "sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+      "semantic_values_populated": 0,
+      "base_rate_coding_permission": false,
+      "claim_effect": "REPRESENTATION_FREEZE_ONLY"
+    },
+    {
+      "seq": 27,
+      "event": "EIGHT_AUTHORITY_BASE_RATE_CI_EXECUTED",
+      "status": "PASS_LOCKED_STATE",
+      "artifact": "execution/BASE_RATE_EIGHT_AUTHORITY_CI_SUCCESS_RECEIPT.v0.2.json",
+      "workflow_run_id": 32751571486,
+      "workflow_job_id": 97509504992,
+      "results": {
+        "ancient_source_authorities": "8/8 FROZEN",
+        "zero_value_packet_sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+        "exact_sub_locus_commitments": "INCOMPLETE",
+        "semantic_values_populated": 0,
+        "base_rate_coding_permission": false,
+        "sacred_flood_A_B_contamination": "BLOCKED",
+        "score_permission": false
+      },
+      "claim_effect": "METHOD_STATE_VALIDATION_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "EXACT_SUB_LOCUS_AND_COMMITMENT_FREEZE",
+    "atlas_techniques": 138,
+    "cross_epoch_dimensions": 35,
+    "ancient_source_authorities": "8/8 FROZEN",
+    "exact_sub_locus_commitments": "INCOMPLETE",
+    "zero_value_packet_sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  }
+}
