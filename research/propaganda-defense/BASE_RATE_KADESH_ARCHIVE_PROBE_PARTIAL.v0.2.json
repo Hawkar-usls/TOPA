@@ -1,0 +1,67 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_archive_probe_partial.v0.2",
+  "date": "2026-08-24",
+  "status": "PARTIAL_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_RETRIEVAL_LAYER_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp. 266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32755451446,
+    "artifact_id": 9530680741,
+    "artifact_sha256": "a0f37fa021acae7488dd4f4ffe4234540e80e1716fdbb8d4a2d3a762a865e8b9"
+  },
+  "results": {
+    "internet_archive": {
+      "status": "NO_MATCH_FROM_FROZEN_TITLE_YEAR_QUERY",
+      "num_found": 0,
+      "request_sha256": "20261e5c0b84c6d6fd5f7aec97ac99814638525b56ee90859093859c50a652d8"
+    },
+    "hathitrust_bibliographic_api": {
+      "status": "THREE_FULL_VIEW_V43_CANDIDATES_FOUND",
+      "issn": "1062-0516",
+      "request_sha256": "7ca1b4c054d90083681ba3bc525e8822b33992dad6eb300787b049f4c36a09ae",
+      "candidates": [
+        {"htid": "uc1.b3604224", "orig": "University of California", "enumcron": "v.43", "usRightsString": "Full view"},
+        {"htid": "coo.31924066155205", "orig": "Cornell University", "enumcron": "v.43-44 1926-1928", "usRightsString": "Full view"},
+        {"htid": "mdp.39015024059043", "orig": "University of Michigan", "enumcron": "v.43 1926-1927", "usRightsString": "Full view"}
+      ]
+    },
+    "hathitrust_data_api": {
+      "status": "BLOCKED_FOR_UNAUTHENTICATED_RUNNER",
+      "detail": "meta and structure endpoints returned HTTP 403 for all three candidates",
+      "interpretation": "This is a transport/authentication failure, not evidence that the full-view volume is absent."
+    },
+    "google_in_volume": {
+      "status": "RESPONSE_RECEIVED_PARSER_FAILED",
+      "http_status": 200,
+      "content_type": "application/json; charset=ISO-8859-1",
+      "bytes": 8336,
+      "response_sha256": "aa1825d1a3362772767d191c33788cd1c8deafec900fa8b6783d6aedddeb879a",
+      "failure": "v0.2 diagnostic decoded as UTF-8 despite ISO-8859-1 response",
+      "repair_class": "PARSER_ONLY"
+    }
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "base_rate_coding_permission": false,
+    "semantic_values_populated": 0,
+    "score_permission": false
+  },
+  "next_legal_actions": [
+    "Probe public HathiTrust PageTurner/imgsrv/search endpoints for the same full-view v.43 item IDs without using protected Data API credentials.",
+    "Decode Google SearchWithinVolume2 using declared charset and preserve page-level results as transport diagnostics only.",
+    "Probe additional University of Chicago same-DOI PDF endpoint forms with browser-compatible headers; do not weaken TLS verification.",
+    "Promote BR03 only if the exact Wilson article/locus can be reconstructed and hashed reproducibly."
+  ],
+  "laws": [
+    "FULL_VIEW_METADATA != RETRIEVED_CONTENT",
+    "HTTP_403 != SOURCE_ABSENT",
+    "SEARCH_SNIPPET != LOCUS_CONTENT",
+    "TRANSPORT_REPAIR_MUST_NOT_CHANGE_FROZEN_LOCUS",
+    "PARTIAL_FAIL_IS_A_RESULT"
+  ]
+}
