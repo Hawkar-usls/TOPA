@@ -1,0 +1,65 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.6",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_EIGHT_AUTHORITY_CI.v0.5.json",
+    "previous_max_seq": 27
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "descriptor_hash_never_relabeled_as_source_byte_hash": true,
+    "no_semantic_values_before_retrieval_gate": true
+  },
+  "entries": [
+    {
+      "seq": 28,
+      "event": "ANCIENT_BASE_RATE_EXACT_SUBLOCI_FROZEN",
+      "status": "EIGHT_OF_EIGHT_EXACT_PRIMARY_LOCI",
+      "artifact": "ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json",
+      "notable_choices": {
+        "BR03_KADESH":"Wilson 1927 THE POEM, journal pp. 266-278; Record excluded",
+        "BR08_PTAHHOTEP":"entire persistent TLA Text ID C6KGH3XC7RGU3DSL7HKYY2K3WM selected as anti-cherry-pick whole-object control"
+      },
+      "semantic_values_populated": 0,
+      "claim_effect": "LOCUS_PREREGISTRATION_ONLY"
+    },
+    {
+      "seq": 29,
+      "event": "ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS_FROZEN",
+      "status": "EIGHT_OF_EIGHT_DESCRIPTOR_SHA256_COMMITMENTS",
+      "artifact": "ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS.v0.1.json",
+      "boundary":"Descriptor hashes bind authority/locus/language intent but are not external source-content hashes.",
+      "claim_effect": "ANTI_CHERRY_PICK_COMMITMENT_ONLY"
+    },
+    {
+      "seq": 30,
+      "event": "BASE_RATE_REVERSE_DISTINCTION_SOURCE_AUTHORITY_VS_RETRIEVAL_SEAL",
+      "status": "NEW_REQUIRED_NODE_LOCALIZED",
+      "finding":"8/8 authority and 8/8 exact loci still do not prove that future coders will see the exact same external bytes/versioned corpus representation.",
+      "repair":"Require SOURCE_BYTES or VERSIONED_CORPUS_REPRESENTATION retrieval receipts before coding unlock; metadata-only retrieval is insufficient if the frozen textual locus cannot be independently reconstructed.",
+      "claim_effect": "SPIRAL_METHOD_STATE_ENRICHMENT"
+    },
+    {
+      "seq": 31,
+      "event": "PROPAGANDA_DEFENSE_SPRINT_V0_5_FROZEN",
+      "status": "ACTIVE_EXTERNAL_SOURCE_RETRIEVAL_AND_VERSION_SEAL_PHASE",
+      "artifact": "CURRENT_SPRINT.v0.5.json",
+      "next_legal_action":"RETRIEVE_AND_HASH_OR_VERSION_BIND_BR01_BR08_THEN_RUN_SEPARATE_CODING_UNLOCK_REVIEW",
+      "claim_effect": "PROJECT_STATE_ADVANCE_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "EXTERNAL_SOURCE_RETRIEVAL_AND_VERSION_SEAL",
+    "ancient_source_authorities": "8/8 FROZEN",
+    "ancient_exact_loci": "8/8 FROZEN",
+    "descriptor_commitments": "8/8 FROZEN",
+    "external_retrieval_seals": "PENDING",
+    "zero_value_packet_sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_flood_A_B_gate": "UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  }
+}
