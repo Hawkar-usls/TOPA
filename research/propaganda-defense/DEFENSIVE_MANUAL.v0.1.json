@@ -1,0 +1,89 @@
+{
+  "schema": "topa.propaganda_defense.defensive_manual.v0.1",
+  "date": "2026-08-24",
+  "status": "DEFENSIVE_ANALYTIC_MANUAL_NO_OPERATIONAL_INFLUENCE_EXECUTION",
+  "title": "TOPA Propaganda & Information Influence Defensive Manual v0.1",
+  "mission": "Understand how propaganda and influence operations function well enough to recognize, investigate, falsify and counter them while preserving evidence, rights and uncertainty.",
+  "non_goal": "This manual is not a guide for designing persuasion campaigns, microtargeting populations, covert influence, deception, or psychological operations against real audiences.",
+  "core_model": {
+    "formula": "ACTOR/INCENTIVE -> NARRATIVE -> CONTENT/CLAIM -> CHANNEL/AMPLIFICATION -> AUDIENCE EXPOSURE -> COGNITIVE/SOCIAL MECHANISM -> BEHAVIOR/ATTITUDE EFFECT -> FEEDBACK/ADAPTATION",
+    "analysis_layers": [
+      {"id":"L0","name":"ARTIFACT","question":"What exact claim, image, video, phrase, statistic or omission exists?"},
+      {"id":"L1","name":"PROVENANCE","question":"Who first published it, when, where, through which account/domain/document, and can the chain be reproduced?"},
+      {"id":"L2","name":"CONTENT_TECHNIQUE","question":"Which observable rhetorical or evidentiary techniques appear without inferring intent from style alone?"},
+      {"id":"L3","name":"DISTRIBUTION_BEHAVIOR","question":"Is amplification organic, coordinated, paid, automated, cross-platform, recycled or source-root duplicated?"},
+      {"id":"L4","name":"NARRATIVE_GRAPH","question":"Which repeated frames/claims are related, and which are merely semantically similar?"},
+      {"id":"L5","name":"AUDIENCE_EFFECT","question":"Is there evidence of actual belief/behavior change rather than reach, views or engagement?"},
+      {"id":"L6","name":"ATTRIBUTION","question":"What evidence links the activity to an actor? Infrastructure, timing, assets, documents, admissions, platform takedowns or independent investigations?"},
+      {"id":"L7","name":"COUNTERMEASURE","question":"Which response has evidence, what are side effects, and what would falsify claimed effectiveness?"}
+    ]
+  },
+  "common_observable_mechanisms": [
+    {"name":"REPETITION_AND_FAMILIARITY","defensive_read":"Repeated exposure can increase familiarity and perceived truth; log first-seen time and source-root count rather than raw repetition count."},
+    {"name":"HIGH_VOLUME_MULTI_CHANNEL","defensive_read":"Volume can overwhelm verification capacity; collapse duplicated source roots and prioritize claims by harm, reach and evidence."},
+    {"name":"CARD_STACKING_OR_SELECTIVE_EVIDENCE","defensive_read":"Check omitted base rates, denominators, time windows, comparison classes and contrary evidence."},
+    {"name":"EMOTIONAL_AROUSAL","defensive_read":"Fear, anger, disgust, pride or urgency can reduce reflective checking; separate emotional cue from factual proposition."},
+    {"name":"FALSE_AUTHORITY_OR_TESTIMONIAL","defensive_read":"Verify identity, expertise, quote context and whether authority actually supports the specific claim."},
+    {"name":"BANDWAGON_OR_SOCIAL_PROOF","defensive_read":"Engagement metrics and apparent consensus are not independent evidence; check coordinated amplification and inauthentic patterns."},
+    {"name":"SCAPEGOATING_AND_OUTGROUP_FRAMING","defensive_read":"Decompose group-level claims into specific falsifiable propositions and watch for dehumanization or identity-based manipulation."},
+    {"name":"FALSE_DILEMMA_AND_FORCED_BINARY","defensive_read":"Enumerate plausible third options and mixed explanations before accepting a binary frame."},
+    {"name":"CONSPIRATORIAL_SELF_SEALING","defensive_read":"Ask what evidence could disconfirm the claim; if every contrary observation is reinterpreted as proof, flag CLOSED_BELIEF_LOOP."},
+    {"name":"IMPOSTOR_OR_FORGED_SOURCE","defensive_read":"Check original domain/account, archive snapshots, document metadata, visual provenance and official source confirmation."},
+    {"name":"CONTEXT_STRIPPING","defensive_read":"Recover surrounding video/text, date, place, original language and prior publication history."},
+    {"name":"LAUNDERING_THROUGH_INTERMEDIARIES","defensive_read":"Trace citations backward until the earliest accessible root; many outlets may still be one source."},
+    {"name":"COORDINATED_INAUTHENTIC_AMPLIFICATION","defensive_read":"Look for synchronized timing, repeated assets, shared infrastructure, identical phrasing and account-network anomalies; coordination is not inferred from agreement alone."},
+    {"name":"AI_GENERATED_OR_SYNTHETIC_MEDIA","defensive_read":"Use provenance, reverse search, metadata, source continuity and independent event records; detector scores alone are weak evidence."}
+  ],
+  "defensive_response_ladder": [
+    {"stage":"R0_PRESERVE","actions":["archive exact artifact and URL","hash locally where lawful","record timestamp/timezone","capture claimed source and source-root"],"claim_ceiling":"OBSERVATION_ONLY"},
+    {"stage":"R1_VERIFY","actions":["lateral reading","primary-source check","reverse image/video search","original-language/context recovery","independent-source collapse"],"claim_ceiling":"VERIFIED_OR_FALSIFIED_COMPONENTS"},
+    {"stage":"R2_CLASSIFY_BEHAVIOR","actions":["map observable tactics using FIMI/DISARM-like taxonomy","separate content truth from manipulation behavior","record UNKNOWN"],"claim_ceiling":"TACTIC_OR_BEHAVIOR_CANDIDATE"},
+    {"stage":"R3_ASSESS_HARM_AND_REACH","actions":["distinguish views from persuasion","estimate affected surface with uncertainty","prioritize harmful/high-reach claims"],"claim_ceiling":"RISK_ESTIMATE"},
+    {"stage":"R4_PREBUNK","actions":["teach general manipulation technique before exposure where evidence supports it","use weakened examples rather than live persuasion optimization","include correction and uncertainty"],"claim_ceiling":"DEFENSIVE_INTERVENTION"},
+    {"stage":"R5_DEBUNK","actions":["lead with fact when possible","state false claim only as needed","explain why it is wrong and provide an alternative causal account","cite primary evidence","avoid unnecessary amplification"],"claim_ceiling":"CORRECTIVE_RESPONSE"},
+    {"stage":"R6_SYSTEM_RESPONSE","actions":["platform/reporting escalation where appropriate","support independent journalism","share indicators and TTPs with defenders","legal/policy response only under rights and proportionality constraints"],"claim_ceiling":"COORDINATED_DEFENSE"},
+    {"stage":"R7_EVALUATE","actions":["predefine outcome measure","compare against baseline/control where possible","measure durability and unintended effects","retain null/negative results"],"claim_ceiling":"MEASURED_COUNTERMEASURE_EFFECT"}
+  ],
+  "minimum_claim_packet": {
+    "required": ["artifact_id","first_seen","source_root","exact_claim","language","translation_id_if_any","evidence_links","independence_map","distribution_observations","alternative_explanations","falsifier","status"],
+    "forbidden_shortcuts": [
+      "SOURCE_IS_HOSTILE_THEREFORE_CLAIM_IS_FALSE",
+      "CLAIM_IS_TRUE_THEREFORE_NOT_PROPAGANDA",
+      "CLAIM_IS_FALSE_THEREFORE_PROPAGANDA_INTENT_PROVEN",
+      "MANY_REPOSTS_EQUAL_MANY_SOURCES",
+      "VIRALITY_EQUAL_PERSUASION",
+      "ENGAGEMENT_EQUAL_BEHAVIOR_CHANGE",
+      "MODEL_CLASSIFIER_EQUAL_ATTRIBUTION",
+      "GOVERNMENT_LABEL_EQUAL_EXCLUSIVE_TRUTH",
+      "FACT_CHECK_EQUAL_CAUSAL_EFFECT_ON_AUDIENCE"
+    ]
+  },
+  "countermeasure_evidence_notes": [
+    "Debunking and fact-checking often reduce misperceptions, but effects vary by context and do not guarantee behavioral change.",
+    "Prebunking/inoculation has evidence for improving recognition of manipulation techniques, but protection can wane and should be evaluated.",
+    "Accuracy prompts show replicable average effects on sharing discernment in experimental work, but platform/context generalization should be tested.",
+    "No single intervention should be assumed sufficient; combined approaches and whole-of-society resilience may be more robust.",
+    "Countermeasures can backfire through amplification, censorship perceptions, reactance or loss of trust; these are explicit falsifiers and side effects."
+  ],
+  "red_team_firewall": {
+    "allowed": "Use red-team taxonomies to recognize observable tactics and generate defensive tests.",
+    "not_allowed": [
+      "create deployable propaganda messages",
+      "optimize emotional triggers for a real target group",
+      "select vulnerable demographic audiences for influence",
+      "design covert personas or fake grassroots campaigns",
+      "advise on evasion of platform moderation or attribution",
+      "plan deceptive military influence operations"
+    ]
+  },
+  "janus_spiral": "ARTIFACT_0 -> PROVENANCE -> TACTIC -> DISTRIBUTION -> EFFECT_EVIDENCE -> COUNTERMEASURE -> REVERSE_NECESSITY -> ARTIFACT_PRIME_1",
+  "reverse_questions": [
+    "If the claimed influence effect were real, what observable audience evidence must exist upstream?",
+    "If attribution were correct, what infrastructure/provenance evidence must pre-exist?",
+    "If a countermeasure worked, what baseline/control or behavioral signal must change?",
+    "Which forward node is merely assumed because the story is coherent?",
+    "What alternative non-propaganda explanation fits the same artifact/distribution pattern?"
+  ],
+  "score_permission": false,
+  "epistemic_ceiling": "DEFENSIVE_ANALYSIS_AND_METHOD_ONLY"
+}
