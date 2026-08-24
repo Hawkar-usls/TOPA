@@ -1,0 +1,78 @@
+{
+  "schema": "janus.topa.hunt.preregistration.v1",
+  "hunt_id": "HUNT-0001",
+  "slug": "HESSDALEN",
+  "title": "HUNT-0001 — Hessdalen Lights: event-family reality before explanation",
+  "created_at_local": "2026-08-24T09:31:00+03:00",
+  "status": "FROZEN_BEFORE_TOPA_PASS_001",
+  "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
+  "why_first_native_hunt": "Hessdalen is recurrent, instrumented, publicly documented and still interpretation-sensitive. It is therefore a strong first native TOPA test because the method can succeed by resolving, demoting or preserving uncertainty rather than by finding an extraordinary answer.",
+  "frozen_question": "Does the public Hessdalen record establish a recurring source-bound event family that survives known-light, instrument, processing and source-dependence attacks strongly enough to justify a dedicated raw-data replication program?",
+  "claim_ceiling": "This hunt may establish documentation quality, event-level residuals, failures of specific explanations and requirements for future measurements. It may not infer paranormal, extraterrestrial, intelligent, wormhole or unknown-physics causation merely from an unresolved light or instrument return.",
+  "observation_targets": [
+    "historical visual reports with exact time/location when available",
+    "historical radar returns and their visual overlap",
+    "historical spectral, magnetic, RF, IR, radiation and seismic measurements",
+    "modern Blue Box camera products and stated processing artifacts",
+    "availability of raw video and cross-sensor timing",
+    "source independence and sensor independence"
+  ],
+  "competing_hypotheses": {
+    "H0_HETEROGENEOUS_CONVENTIONAL": "Most or all Hessdalen-labelled events are a mixture of aircraft, satellites, stars/planets, meteors, local lights, atmospheric effects, optical artifacts, processing artifacts and classification error rather than one phenomenon.",
+    "H1_RECURRENT_LOCAL_NATURAL": "A subset is a recurrent local natural luminous/atmospheric/geophysical phenomenon with repeatable measurable properties.",
+    "H2_INSTRUMENT_PROCESSING": "Some apparently anomalous modern events are caused or amplified by camera geometry, lens reflections, compression, stacking, triggering or other instrument/processing effects.",
+    "H3_ENGINEERED_ORDINARY": "A subset is caused by ordinary engineered systems such as aircraft, drones, satellites, searchlights or other terrestrial emitters.",
+    "H4_EXTRAORDINARY": "A subset requires an extraordinary physical or intelligent explanation. This lane is admitted only as a falsifiable competitor and receives no default prior advantage."
+  },
+  "frozen_gates": [
+    {
+      "id": "G1_EVENT_OCCURRENCE",
+      "pass": "At least one event has source-bound contemporaneous documentation with enough time/location information to distinguish occurrence from later retelling.",
+      "fail": "Only retrospective unsourced narrative remains."
+    },
+    {
+      "id": "G2_MULTI_CHANNEL",
+      "pass": "At least one event has temporally compatible observations on two physically distinct channels, with each channel's limitations preserved.",
+      "guard": "MULTI_CHANNEL != MULTI_SOURCE and does not by itself establish common cause."
+    },
+    {
+      "id": "G3_COMMON_CAUSE",
+      "pass": "Repeated events show a stable measurable feature set across sessions after known-source and artifact exclusion.",
+      "fail": "Residuals remain heterogeneous or are too data-poor to justify one phenomenon label."
+    },
+    {
+      "id": "G4_RAW_REPLAY",
+      "pass": "Raw or minimally processed data plus calibration/timing metadata are available for independent replay of at least one high-value event.",
+      "fail": "Only screenshots, stacks, summaries or witness prose are available."
+    },
+    {
+      "id": "G5_EXTRAORDINARY_PROMOTION",
+      "pass": "A specific extraordinary model makes a frozen prediction that outperforms conventional competitors on independent holdout data.",
+      "fail": "Unresolved data are used as the argument."
+    }
+  ],
+  "mandatory_attacks": [
+    "KNOWN_LIGHT_CATALOG_AND_AIR_TRAFFIC",
+    "ASTRONOMICAL_OBJECT_AND_METEOR",
+    "SATELLITE_AND_REENTRY",
+    "LENS_REFLECTION_AND_COMPRESSION",
+    "STACKING_AND_TRIGGER_ARTIFACT",
+    "RADAR_FALSE_RETURN_AND_PROPAGATION",
+    "CLOCK_ALIGNMENT_AND_TIME_STANDARD",
+    "SOURCE_DEPENDENCE",
+    "SELECTION_BIAS",
+    "POST_HOC_CLUSTERING",
+    "STRONGEST_NATURAL_MODEL",
+    "STRONGEST_EXTRAORDINARY_MODEL"
+  ],
+  "terminal_states_allowed": [
+    "RESOLVED_CONVENTIONAL",
+    "MIXED_EVENT_FAMILY",
+    "UNRESOLVED_NONEXOTIC",
+    "DATA_POOR",
+    "REPLICATION_WORTHY",
+    "FALSIFIED",
+    "I_DO_NOT_KNOW"
+  ],
+  "world_truth": false
+}
