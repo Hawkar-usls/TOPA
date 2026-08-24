@@ -1,0 +1,49 @@
+{
+  "artifact_id": "TOPA-C025-E1-RESOLUTION-CERTIFICATE-SIZE-BARRIER-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T10:05:00+03:00",
+  "target": "C025_E1_UNIVERSAL_POLYNOMIAL_SIZE_FOR_PORTABLE_RESOLUTION_ROOT_REASONS",
+  "status": "REFUTED_FOR_C025_B_V1",
+  "language": {
+    "reason": "R = (root_fingerprint, advertised_clause_C, final_node, reachable_Resolution_DAG_pi)",
+    "root_axioms_only": true,
+    "decision_assumptions_as_axioms": false
+  },
+  "proof": {
+    "lemma_E1": "At the empty root context, an applicable clause reason must advertise the empty clause because the empty assignment cannot falsify a nonempty clause.",
+    "corollary_E2": "A root-applicable C025-B-v1 reason is therefore exactly a Resolution DAG refutation of the root CNF.",
+    "external_lower_bound": "Explicit polynomial-size pigeonhole CNFs require superpolynomial/exponential Resolution refutations; Haken 1985 is the classical source and its abstract explicitly notes polynomial extended-resolution proofs for these formulas.",
+    "conclusion": "No fixed exponent a can bound every C025-B-v1 portable root reason by N^a in original input bit length N."
+  },
+  "effect": {
+    "C025_B_SOUNDNESS": "SURVIVES_PROVED_IN_SCOPE",
+    "C025_B_PORTABILITY": "SURVIVES_PROVED_IN_SCOPE",
+    "C025_C1_CACHE_QUERY": "SURVIVES_PROVED_RELATIVE_TO_EXPLICIT_CACHE_VOLUME",
+    "C025_E1_POLY_RESOLUTION_ROOT_CERTIFICATE_SIZE": "FALSE",
+    "CURRENT_RESOLUTION_ONLY_UNIVERSAL_PROOF_CARRYING_ROUTE": "DEAD",
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  },
+  "important_note": "The lower bound is on Resolution DAG proof size, so ordinary DAG sharing does not remove this obstruction.",
+  "design_constraints": [
+    "KEEP_PLAIN_RESOLUTION_REASONS_AS_A_SOUND_LOCAL_LAYER",
+    "DO_NOT_REQUIRE_PLAIN_RESOLUTION_AS_THE_ONLY_UNIVERSAL_ROOT_CERTIFICATE_LANGUAGE",
+    "NEXT_LANGUAGE_MUST_BE_STRONGER_OR_HETEROGENEOUS_AND_STANDALONE_VERIFIABLE",
+    "STRONGER_PROOF_SYSTEM_DOES_NOT_IMPLY_UNIVERSAL_POLY_PROOF_SIZE",
+    "STRONGER_PROOF_SYSTEM_DOES_NOT_IMPLY_DETERMINISTIC_POLY_PROOF_SEARCH"
+  ],
+  "candidate_next_language": {
+    "name": "C025_B2_EXTENSION_AWARE_REASON_V0",
+    "motivation": "Extended Resolution removes the known pigeonhole obstruction: Haken's abstract states polynomial-length extended-resolution proofs exist for the pigeonhole formulas used for the Resolution lower bound.",
+    "claim_ceiling": "This only removes one known lower-bound family; universal proof size and deterministic proof search remain open."
+  },
+  "canonical_artifacts": {
+    "proof": "research/mathematics/p-vs-np/C025_E_RESOLUTION_CERTIFICATE_SIZE_BARRIER.md",
+    "c025_b_receipt": "data/TOPA-C025-B-PROOF-CARRYING-REASON-2026-08-24-v1.1.json",
+    "c025_c1_receipt": "data/TOPA-C025-C1-REASON-CACHE-QUERY-2026-08-24-v1.0.json"
+  },
+  "references": [
+    "Armin Haken, The intractability of resolution, Theoretical Computer Science 39 (1985), 297-308, DOI 10.1016/0304-3975(85)90144-6",
+    "Stephen Cook and Robert Reckhow, The Relative Efficiency of Propositional Proof Systems / extended proof-system framework"
+  ]
+}
