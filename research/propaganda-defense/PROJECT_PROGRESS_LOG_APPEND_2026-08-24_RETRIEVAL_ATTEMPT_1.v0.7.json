@@ -1,0 +1,55 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.7",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_EXACT_LOCI.v0.6.json",
+    "previous_max_seq": 31
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "retrieval_failures_are_project_state": true,
+    "no_frozen_source_or_locus_substitution": true
+  },
+  "entries": [
+    {
+      "seq": 32,
+      "event": "BASE_RATE_EXTERNAL_RETRIEVAL_ATTEMPT_1_EXECUTED",
+      "status": "PARTIAL_FAIL_CLOSED_2_OF_8",
+      "artifact": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_1_FAIL_CLOSED.v0.1.json",
+      "workflow_run_id": 32753188959,
+      "workflow_job_id": 97514673769,
+      "workflow_artifact_id": 9529827093,
+      "sufficient": ["BR01_HAMMURABI", "BR02_BEHISTUN"],
+      "blocked_or_partial": ["BR03_KADESH", "BR04_NEO_ASSYRIAN_ANNALS", "BR05_HITTITE_TREATY", "BR06_THUCYDIDES", "BR07_RES_GESTAE", "BR08_PTAHHOTEP"],
+      "semantic_values_populated": 0,
+      "base_rate_coding_permission": false,
+      "score_permission": false,
+      "claim_effect": "RETRIEVAL_DIAGNOSTIC_ONLY"
+    },
+    {
+      "seq": 33,
+      "event": "RETRIEVAL_FAILURE_CLASSES_LOCALIZED",
+      "status": "TRANSPORT_AND_VALIDATION_REPAIR_ONLY",
+      "findings": {
+        "BR03_KADESH": "publisher 403 on HTML/PDF",
+        "BR04_NEO_ASSYRIAN_ANNALS": "hosted-runner TLS certificate chain failure",
+        "BR05_HITTITE_TREATY": "PDF bytes retrieved but HethPort query redirected to index shell",
+        "BR06_THUCYDIDES": "13 Scaife URLs returned identical JS shell rather than chapter text",
+        "BR07_RES_GESTAE": "Perseus bytes retrieved but literal marker validation failed",
+        "BR08_PTAHHOTEP": "TLA metadata page validated but whole-text token representation not exposed"
+      },
+      "repair_boundary": "Do not change BR01-BR08 identity, genre, authority or frozen exact locus; repair only transport/representation validation.",
+      "claim_effect": "SPIRAL_LOCALIZATION_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "external_retrieval_seals": "2/8 CONTENT_SUFFICIENT",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_flood_A_B_gate": "UNASSIGNED_UNCHANGED",
+    "score_permission": false,
+    "next_legal_action": "REPAIR_ONLY_BR03_BR08_RETRIEVAL_TRANSPORT_OR_VALIDATION_THEN_REPLAY_FROZEN_INPUTS"
+  }
+}
