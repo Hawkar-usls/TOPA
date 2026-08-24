@@ -1,0 +1,30 @@
+name: propaganda-retrieval-probe
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_retrieval_probe_v0_1.py'
+      - '.github/workflows/propaganda-retrieval-probe.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe same-source transports only
+        run: python tools/propaganda_retrieval_probe_v0_1.py
+      - name: Upload diagnostic receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: propaganda-retrieval-transport-probe-v0-1
+          path: research/propaganda-defense/execution/RETRIEVAL_TRANSPORT_PROBE.v0.1.json
+          if-no-files-found: error
+          retention-days: 30
