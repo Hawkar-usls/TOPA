@@ -1,0 +1,79 @@
+{
+  "artifact_id": "TOPA-P-VS-NP-ISSUE-211-REFUTATION-FINAL-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:35:08+03:00",
+  "target": "JANUS_FUNDAMENTUM_C024_ISSUE_211_UNIVERSAL_POLYNOMIAL_RESIDUAL_COUNT",
+  "status": "REFUTED_FOR_CURRENT_POLICY0A",
+  "parent_issue": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "issue": 211,
+    "state": "CLOSED_COMPLETED",
+    "closed_at_utc": "2026-08-24T06:35:08Z"
+  },
+  "counterfamily": {
+    "name": "PADDED_DIRECTED_GT_WITH_RESOLUTION_SINK",
+    "formula": "H_n = GT_n AND BOOST_n AND SINK_n",
+    "n_min": 3,
+    "B": "256*n^2",
+    "p": "64*n^2",
+    "residual_lower_bound": "S(H_n) >= 2^(n-2)",
+    "input_bit_length": "N_n = O(n^4 log n)",
+    "conclusion": "S(H_n) is superpolynomial in N_n"
+  },
+  "closed_gates": {
+    "R0_ROOT_AFFINE_BYPASS": "PROVED_IMPOSSIBLE_BY_3_POINT_NONAFFINE_BOOSTER_RELATION",
+    "R1_REGISTERED_POLICY_PARITY": "PASS",
+    "R2_SINK_ATTEMPT_BUDGET_STARVATION": "PROVED_AND_REPLAY_PASS",
+    "R3_ZERO_LOCAL_ADDITIONS": "PROVED_AND_REPLAY_PASS",
+    "R4_CORE_ONLY_BRANCHING": "PROVED_AND_REPLAY_PASS",
+    "R5_CORE_PROJECTION": "PROVED_AND_FINITE_REPLAY_PASS",
+    "R6_SOURCE_GT_THEOREM_SCOPE": "PRIMARY_SOURCE_RECHECKED",
+    "R7_PARAMETER_n_TO_INPUT_BITS": "PROVED_UNDER_FROZEN_SIGNED_BINARY_LITERAL_LIST_ENCODING"
+  },
+  "ci": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "workflow": "Validate C024 Resolution Sink",
+    "run_id": 32697547130,
+    "conclusion": "SUCCESS",
+    "frozen_n3": {
+      "literal_count": 31140,
+      "attempt_budget": 124560,
+      "sink_pair_attempts_available": 331776,
+      "resolution_attempts": 124560,
+      "resolution_additions": 0,
+      "branch_variable": 1155,
+      "branch_variable_class": "GT_CORE"
+    }
+  },
+  "primary_reference": {
+    "paper": "Paul Beame, Russell Impagliazzo, Toniann Pitassi, Nathan Segerlind — Formula Caching in DPLL, ACM TOCT 1(3), 2010",
+    "definition": "4.24",
+    "theorem": "4.28",
+    "scope": "directed GT_n; every FCWS refutation requires at least 2^(n-2) nodes; proof exhibits exponentially many distinct residual formulas and explicitly treats unit propagation"
+  },
+  "topa_artifacts": [
+    "research/mathematics/p-vs-np/source_gt.py",
+    "research/mathematics/p-vs-np/C024_A1_ANNOTATED_PRUNE_INVARIANT.md",
+    "research/mathematics/p-vs-np/C024_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md",
+    "research/mathematics/p-vs-np/C024_ISSUE_211_SECOND_DERIVATION_REVIEW.md",
+    "research/mathematics/p-vs-np/policy0a_padded_gt_counterfamily.py",
+    "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json"
+  ],
+  "fundamentum_artifacts": [
+    "proof_attempts/C024/C024_A_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md",
+    "proof_attempts/C024/C024_A_ISSUE_211_SECOND_DERIVATION_REVIEW.md",
+    "experiments/direct/janus_tear_policy0a_source_gt.py",
+    "experiments/direct/janus_tear_policy0a_padded_gt_counterfamily.py",
+    ".github/workflows/validate-c024-resolution-sink.yml"
+  ],
+  "mathematical_effect": {
+    "CONDITIONAL_POLYNOMIAL_RESIDUAL_CACHE_BRIDGE": "STILL_PROVED",
+    "FIRST_PREMISE_FOR_CURRENT_POLICY0A": "FALSE",
+    "CURRENT_POLICY0A_POSITIVE_P_EQUALS_NP_ROUTE": "DEAD",
+    "ISSUE_212_STATE_SIZE": "REMAINS_VALID_INDEPENDENT_DESIGN_AND_ANALYSIS_GATE",
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  },
+  "design_constraint_extracted": "LOCAL_INFERENCE_SCHEDULING_MUST_NOT_BE_ADVERSARIALLY_STARVABLE_BY_IRRELEVANT_EARLY_PIVOTS",
+  "next_calculus_target": "POLICY0B_FAIR_PROOF_CARRYING_REASON_CALCULUS"
+}
