@@ -1,0 +1,46 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_google_runner_block_negative.v0.6",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_GOOGLE_FULL_VIEW_PAGE_TRANSPORT_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; p.278 is THE RECORD exclusion boundary",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32757874979,
+    "github_actions_job_id": 97529493902,
+    "artifact_id": 9531538154,
+    "artifact_sha256": "5400056e4a5d9886c9ce8c7f2de8883582ef7b540d6d58541d24113f084a3277"
+  },
+  "result": {
+    "google_books_volume_id": "2l5uKJXiO70C",
+    "viewability_prior": "FULL_VIEW_CONFIRMED",
+    "printed_pages_probed": "PA266-PA278",
+    "transport_variants_per_page": ["jscmd=click2&output=text", "alternate click2 ordering", "output=html_text"],
+    "content_pages_retrieved": "0/12",
+    "distinct_page_hashes": 0,
+    "page_266_title_author": false,
+    "page_277_end_poem": false,
+    "page_278_record_boundary": false,
+    "failure_mode": "HTTP 403 FOR ALL THREE PAGE-SPECIFIC VARIANTS ON GITHUB-HOSTED RUNNER",
+    "classification": "RUNNER_ACCESS_BLOCKED"
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Search for a pinned transport mirror of the exact Wilson 1927 JSTOR/UChicago scan or another reproducible archival byte representation of that same publication. Any mirror must retain AUTHORITY=Wilson/UChicago/JSTOR source root, count as zero additional independent witness roots, reproduce the frozen p.266 title/start and p.278 THE RECORD boundary, and be hashed before admission.",
+  "laws": [
+    "RUNNER_ACCESS_BLOCKED != SOURCE_ABSENT",
+    "FULL_VIEW != RUNNER_RETRIEVABLE",
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "MIRROR_COPY != INDEPENDENT_WITNESS",
+    "NEGATIVE_RESULT_STOPS_REDUNDANT_ENDPOINT_TUNING"
+  ]
+}
