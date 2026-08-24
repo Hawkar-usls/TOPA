@@ -1,0 +1,114 @@
+{
+  "schema": "topa.sacred_scriptures.manipulation_screen.v0.1",
+  "date": "2026-08-24",
+  "status": "PARALLEL_NONSCORING_SCREEN_PROTOCOL_FROZEN",
+  "purpose": "Use the TOPA propaganda-defense manipulation atlas to detect ordinary rhetorical, institutional and social influence mechanisms in sacred and religious texts without equating rhetoric with propaganda or contaminating the preregistered Flood blind experiment.",
+  "atlas_authority": {
+    "repository": "Hawkar-usls/TOPA",
+    "branch": "topa-propaganda-defense",
+    "commit_observed": "4954af9307c67a0729a54187bcf00276bd00ee6a",
+    "index": "research/propaganda-defense/MANIPULATION_ATLAS_INDEX.v0.1.json",
+    "compact_registry": "research/propaganda-defense/MANIPULATION_TECHNIQUE_REGISTRY_COMPACT.v0.1.json",
+    "technique_total": 138
+  },
+  "hard_separation_firewall": [
+    "THIS_SCREEN_DOES_NOT_MODIFY_FLOOD_STEMMA_BLIND_TEST_V0_1",
+    "THIS_SCREEN_DOES_NOT_POPULATE_FLOOD_28_FEATURE_CELLS",
+    "THIS_SCREEN_DOES_NOT_COUNT_AS_CODER_A_OR_CODER_B",
+    "FUTURE_FLOOD_A_B_CODERS_MUST_NOT_BE_BRIEFED_WITH_MANIPULATION_SCREEN_RESULTS_BEFORE_THEIR_OWN_RECEIPTS_FREEZE",
+    "NO_DISAGREEMENT_MANIFEST_BEFORE_GENUINELY_INDEPENDENT_A_B_RECEIPTS",
+    "SCORE_PERMISSION_REMAINS_FALSE"
+  ],
+  "screening_ladder": [
+    {"level":"S0_FORM_ONLY","requirements":["exact passage locator","original-language/edition identity","observable form from atlas"],"claim":"Rhetorical/social form observed only."},
+    {"level":"S1_MANIPULATION_CANDIDATE","requirements":["S0","plausible pressure/asymmetry mechanism","at least one named non-manipulative alternative"],"claim":"Manipulation hypothesis may be tested; intent not established."},
+    {"level":"S2_PROPAGANDA_CANDIDATE","requirements":["S1","evidence of organized/institutional persuasive purpose","audience or target direction supported","genre controls passed"],"claim":"Propaganda candidate; deception is not required and effect not established."},
+    {"level":"S3_MANIPULATIVE_PROPAGANDA_SUPPORTED","requirements":["S2","multiple independent context indicators of concealment/coercive asymmetry/systematic distortion/source control","alternative explanations attacked"],"claim":"Manipulative propaganda interpretation supported within historical evidence ceiling."},
+    {"level":"S4_EFFECT_EVIDENCE","requirements":["S3 or independently supported persuasive program","independent reception/use/behavior evidence"],"claim":"Audience effect supported; textual presence or later popularity alone is insufficient."}
+  ],
+  "required_context_before_promotion": [
+    "genre",
+    "date_range",
+    "language",
+    "edition_or_manuscript",
+    "source_root",
+    "redaction_or_composition_uncertainty",
+    "audience_if_known",
+    "institutional_context_if_known",
+    "power_asymmetry_if_known",
+    "alternative_non_manipulative_function",
+    "contemporary_non_sacred_base_rate_control",
+    "translation_drift_check",
+    "falsifier"
+  ],
+  "ancient_text_anachronism_gate": {
+    "rule": "A modern mechanism label may only be used as an analytic analogy when the underlying observable structure exists in the ancient source; modern technological/institutional assumptions must not be imported.",
+    "examples": [
+      "REPETITION_AND_FAMILIARITY may be screened in oral/liturgical material.",
+      "BOT_AMPLIFICATION may not be projected onto an ancient corpus.",
+      "INFORMATION_LAUNDERING requires an actual traceable intermediary/source chain, not merely multiple manuscripts.",
+      "SOCIAL_PROOF may be described from explicit consensus claims, but actual audience consensus requires separate evidence."
+    ]
+  },
+  "base_rate_control_families": [
+    "contemporary royal inscriptions and victory texts",
+    "law codes and treaties",
+    "epic and praise poetry",
+    "wisdom and philosophical instruction",
+    "military/political speeches",
+    "funerary and ritual texts",
+    "administrative decrees and civic inscriptions"
+  ],
+  "first_pass_priority_techniques_for_ancient_sacred_texts": [
+    "REPETITION_AND_FAMILIARITY",
+    "AUTHORITY_TRANSFER",
+    "SOCIAL_PROOF_BANDWAGON",
+    "IN_GROUP_IDENTITY_FUSION",
+    "OUT_GROUP_SCAPEGOATING",
+    "THREAT_AND_FEAR_AMPLIFICATION",
+    "REWARD_AND_PUNISHMENT_FRAMING",
+    "HONOR_SHAME_PRESSURE",
+    "TABOO_AND_FORBIDDEN_QUESTION",
+    "MYTHIC_GENEALOGY_AND_LEGITIMACY",
+    "HEROIZATION_AND_SELECTIVE_MEMORY",
+    "DEHUMANIZATION",
+    "SACRED_OR_COSMIC_LEGITIMATION",
+    "ROYAL_TITULARY_AND_SELF_EXALTATION",
+    "LAW_AS_AUTHORITY_DISPLAY",
+    "OMEN_PROPHECY_LEGITIMATION",
+    "COURT_CHRONICLE_SELECTION",
+    "PANEGYRIC",
+    "ETHOS_PATHOS_OVER_EVIDENCE",
+    "FALSE_DILEMMA",
+    "STRAW_MAN",
+    "AD_HOMINEM_AND_NAME_CALLING",
+    "CANON_SELECTION_AND_VISIBILITY_CONTROL",
+    "PSEUDONYMOUS_OR_BORROWED_ATTRIBUTION",
+    "PROOFTEXTING_AND_SELECTIVE_QUOTATION",
+    "MIRACLE_OR_TESTIMONIAL_AUTHORITY",
+    "HERESY_OR_DEVIANCE_LABELING",
+    "SERMONIC_EMOTIONAL_AROUSAL",
+    "REPETITIVE_CATECHESIS",
+    "CONTROLLED_ACCESS_TO_LANGUAGE_OR_TEXT",
+    "CURSE_BLESSING_ENFORCEMENT",
+    "SELECTIVE_TRANSLATION",
+    "QUOTE_MINING_CONTEXTOMY",
+    "CENSORSHIP_AND_SUPPRESSION"
+  ],
+  "parallel_run_order": [
+    "freeze a non-sacred ancient control deck by genre and period",
+    "estimate technique base rates in controls",
+    "screen sacred passages as S0_FORM_ONLY without intent labels",
+    "run reverse pass asking whether the same form is ordinary for genre/period",
+    "only then consider S1/S2 promotion",
+    "keep results hidden from Flood A/B coders until their independent coding receipts freeze",
+    "after A/B freeze, compare manipulation-screen results to Flood structural results as a separate cross-analysis"
+  ],
+  "current_flood_gate": {
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "disagreement_manifest": "BLOCKED",
+    "score_permission": false
+  },
+  "epistemic_ceiling": "RHETORICAL_AND_MANIPULATION_HYPOTHESIS_SCREEN_ONLY_NO_THEOLOGICAL_OR_METAPHYSICAL_VERDICT"
+}
