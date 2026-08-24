@@ -1,0 +1,33 @@
+{
+  "schema": "hawkar.topa.strict-science-gate.v1",
+  "id": "TOPA_STRICT_SCIENCE_GATE_V1_0",
+  "created_at_local": "2026-08-24T21:00:00+03:00",
+  "status": "ACTIVE_CANONICAL_SCIENCE_GATE",
+  "canonical_home": "Hawkar-usls/TOPA",
+  "purpose": "Remove heuristic authority from active TOPA research while preserving historical lineage and exploratory hypotheses as explicitly non-evidentiary objects.",
+  "core_law": "NO_ACTIVE_CLAIM_MAY_GAIN_STATUS_FROM_AN_UNCALIBRATED_SCORE_HEURISTIC_RANK_INTUITION_MODEL_VOTE_OR_SURVIVOR_LABEL.",
+  "scientific_authority_classes": {
+    "SOURCE_FACT": {"may_support_claim": true},
+    "FORMAL_DERIVATION": {"may_support_claim": true},
+    "REPRODUCIBLE_EXPERIMENT": {"may_support_claim": true},
+    "STATISTICAL_INFERENCE": {"may_support_claim": true},
+    "HYPOTHESIS_ONLY": {"may_support_claim": false, "role": "generate tests only"}
+  },
+  "heuristic_quarantine": {
+    "active_evidence_graph": "FORBIDDEN",
+    "uncalibrated_numeric_confidence": "FORBIDDEN",
+    "survivor_or_probability_label_without_model": "FORBIDDEN",
+    "model_consensus_as_truth": "FORBIDDEN",
+    "finite_scaling_fit_as_asymptotic_theorem": "FORBIDDEN"
+  },
+  "mathematics_firewall": [
+    "FINITE_REPLAY_IS_NOT_UNIVERSAL_THEOREM",
+    "SHORT_PROOF_EXISTS_IS_NOT_DETERMINISTIC_PROOF_SEARCH",
+    "POLY_IN_DERIVED_SIZE_IS_NOT_POLY_IN_ORIGINAL_INPUT_WITHOUT_BOUND",
+    "A_POLYNOMIAL_EXPONENT_MUST_BE_A_UNIVERSAL_FIXED_CONSTANT",
+    "THEOREM_TRANSFER_REQUIRES_OBJECT_IDENTITY_OR_PROVED_REDUCTION_SIMULATION"
+  ],
+  "full_contract_mirror": "protocols/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+  "bootstrap_safety": "This native data copy is intentionally outside bootstrap-managed protocols/ so strict-science authority survives upstream snapshot refreshes.",
+  "claim_ceiling": "This gate changes admissibility only; it proves no world claim or complexity theorem."
+}
