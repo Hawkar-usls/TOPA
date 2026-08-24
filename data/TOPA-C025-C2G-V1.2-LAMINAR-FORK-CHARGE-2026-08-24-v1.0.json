@@ -1,0 +1,41 @@
+{
+  "schema": "topa.c025.c2g_v1_2_laminar_fork_charge.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "V1_1_PAIRWISE_DISJOINT_FORK_RULE_REFUTED__V1_2_LAMINAR_COUNT_THEOREM_PROVED",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_C025_C2G_V1_2_LAMINAR_FORK_CHARGE.md",
+  "provider_issue": 224,
+  "v1_1_refutation": {
+    "statement": "ancestor and descendant fork reasons falsified by nested first-child contexts cannot have disjoint falsifying cubes",
+    "analytic_status": "PROVED",
+    "finite_machine_witness": "odd-charge K4 Tseitin on frozen Policy-0B.1",
+    "finite_witness_scope": "MECHANICS_ONLY"
+  },
+  "laminar_relation": {
+    "allowed": ["DISJOINT", "STRICT_SUBSET", "STRICT_SUPERSET"],
+    "disjoint_test": "opposite signs on some shared root variable",
+    "containment_test": "Q(C) subseteq Q(D) iff literal_set(D) subseteq literal_set(C)",
+    "semantic_oracle_required": false
+  },
+  "theorems": {
+    "strict_nesting_chain_length": "<=w+1",
+    "minimal_cubes": "pairwise disjoint and count <=2^w",
+    "total_laminar_charge_count": "<= (w+1)*2^w",
+    "log_width_consequence": "w<=c*log2(N) => charges=N^O(1)",
+    "fork_to_total_nodes": "TOTAL_NODES <= (n+1)(B+1)",
+    "combined_state_bound": "POLYNOMIAL_IF_EVERY_FORK_HAS_FRESH_WIDTH_O(logN)_LAMINAR_CHARGE"
+  },
+  "remaining_killer_gate": "SHORT_LAMINAR_GENERALIZATION_OF_DEEP_CONFLICT",
+  "open": [
+    "UNIVERSAL_SHORT_LAMINAR_REASON_EXISTENCE",
+    "POLYTIME_DETERMINISTIC_DISCOVERY",
+    "POLY_TOTAL_REASON_PROOF_BYTES",
+    "COUPLING_TO_TOTAL_POLICY_RUNTIME"
+  ],
+  "forbidden_promotions": [
+    "K4_FINITE_WITNESS_AS_ASYMPTOTIC_THEOREM",
+    "LAMINAR_COUNT_BOUND_AS_UNIVERSAL_REASON_EXISTENCE",
+    "SHORT_CONTEXT_REASON_AS_CHEAP_DISCOVERY",
+    "C2G_V1_2_AS_P_EQUALS_NP"
+  ],
+  "p_vs_np": "OPEN"
+}
