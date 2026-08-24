@@ -22,6 +22,40 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate TOPA Habitat contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          required = [
+              Path('.janus/HABITAT_LINK.json'),
+              Path('.janus/TOPA_NODE_MANIFEST.json'),
+              Path('registry/ACCOUNT-WIDE-TOPA-MAP.json'),
+              Path('registry/TOPA-AUDIT-STATE.json'),
+          ]
+          missing = [str(p) for p in required if not p.is_file()]
+          if missing:
+              raise SystemExit(f'Missing TOPA Habitat files: {missing}')
+
+          habitat = json.loads(Path('.janus/HABITAT_LINK.json').read_text(encoding='utf-8'))
+          if habitat.get('habitat_command_authority_granted') is not False:
+              raise SystemExit('Habitat command authority must remain false')
+          if habitat.get('write_back_default') != 'DENY':
+              raise SystemExit('Habitat write-back default must remain DENY')
+          if habitat.get('private_content_may_be_mirrored_to_public_habitat') is not False:
+              raise SystemExit('Private-to-public mirroring must remain false')
+
+          node = json.loads(Path('.janus/TOPA_NODE_MANIFEST.json').read_text(encoding='utf-8'))
+          if node.get('world_truth_authority') is not False:
+              raise SystemExit('TOPA world-truth authority must remain false')
+          if node.get('write_authority') is not False:
+              raise SystemExit('TOPA node write authority must remain false')
+          print('TOPA_HABITAT_CONTRACT=PASS')
+          PY
+
       - name: Clone TOPA upstream lineage
         shell: bash
         run: |
@@ -39,7 +73,16 @@ jobs:
         run: |
           set -euo pipefail
 
-          rm -rf corpus/meta-registry research/tesla-sweep protocols integrations/Janus-Demiurge integrations/janus-distributed-ai-swarm registry/TOPA-CORPUS-INDEX.json registry/UPSTREAM-SNAPSHOT.json
+          # Only managed upstream copies are rebuilt. Native TOPA data, hunts,
+          # Habitat files and local methodological integrations are preserved.
+          rm -rf \
+            corpus/meta-registry \
+            research/tesla-sweep \
+            protocols \
+            integrations/Janus-Demiurge \
+            integrations/janus-distributed-ai-swarm \
+            registry/TOPA-CORPUS-INDEX.json \
+            registry/UPSTREAM-SNAPSHOT.json
 
           mkdir -p \
             corpus/meta-registry \
@@ -49,21 +92,17 @@ jobs:
             integrations/janus-distributed-ai-swarm \
             registry
 
-          # Exact archival TOPA receipts/corpora.
           find .upstream/meta/data -maxdepth 1 -type f -name 'JANUS-TOPA-*.json' -print0 \
             | sort -z \
             | while IFS= read -r -d '' src; do cp "$src" corpus/meta-registry/; done
 
-          # Canonical foundation.
           cp .upstream/genesis/.janus/TOPA_FOUNDATION.json protocols/TOPA_FOUNDATION.json
 
-          # Distributed-swarm implementation and its local foundation snapshot.
           if [[ -f .upstream/swarm/.janus/TOPA_FOUNDATION.json ]]; then
             cp .upstream/swarm/.janus/TOPA_FOUNDATION.json integrations/janus-distributed-ai-swarm/TOPA_FOUNDATION.json
           fi
           cp .upstream/swarm/tools/topa_epistemic_router.py integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
 
-          # Demiurge / 17-Scout integration.
           if [[ -f .upstream/demiurge/.janus/TOPA_FOUNDATION.json ]]; then
             cp .upstream/demiurge/.janus/TOPA_FOUNDATION.json integrations/Janus-Demiurge/TOPA_FOUNDATION.json
           fi
@@ -72,7 +111,6 @@ jobs:
             cp .upstream/demiurge/scout_swarm/SCOUT_SWARM_MANIFEST-v1.json integrations/Janus-Demiurge/SCOUT_SWARM_MANIFEST-v1.json
           fi
 
-          # Full dedicated Tesla Sweep/TOPA Hunt data tree from its research branch.
           cp -a .upstream/cosmos/data/tesla-sweep/. research/tesla-sweep/
 
       - name: Build deterministic provenance indexes
@@ -84,8 +122,8 @@ jobs:
           DEMIURGE_SHA="$(git -C .upstream/demiurge rev-parse HEAD)"
           SWARM_SHA="$(git -C .upstream/swarm rev-parse HEAD)"
           COSMOS_SHA="$(git -C .upstream/cosmos rev-parse HEAD)"
-
-          export META_SHA GENESIS_SHA DEMIURGE_SHA SWARM_SHA COSMOS_SHA
+          TOPA_SHA="$(git rev-parse HEAD)"
+          export META_SHA GENESIS_SHA DEMIURGE_SHA SWARM_SHA COSMOS_SHA TOPA_SHA
 
           python - <<'PY'
           from __future__ import annotations
@@ -95,44 +133,76 @@ jobs:
           from pathlib import Path
 
           roots = [
+              Path('.janus'),
               Path('data'),
+              Path('hunts'),
               Path('protocols'),
               Path('corpus/meta-registry'),
               Path('research/tesla-sweep'),
-              Path('integrations/Janus-Demiurge'),
-              Path('integrations/janus-distributed-ai-swarm'),
+              Path('integrations'),
+              Path('registry'),
           ]
 
           source_map = {
-              'data': {
-                  'repository': 'Hawkar-usls/TOPA',
-                  'branch': 'main',
-                  'role': 'NATIVE_TOPA_ARTIFACT',
-              },
               'protocols': {
                   'repository': 'Hawkar-usls/Janus_Genesis',
                   'branch': 'main',
                   'commit': os.environ['GENESIS_SHA'],
+                  'role': 'MANAGED_UPSTREAM_SNAPSHOT',
               },
               'corpus/meta-registry': {
                   'repository': 'Hawkar-usls/janus-meta-registry',
                   'branch': 'main',
                   'commit': os.environ['META_SHA'],
+                  'role': 'MANAGED_UPSTREAM_SNAPSHOT',
               },
               'research/tesla-sweep': {
                   'repository': 'Hawkar-usls/Janus-Cosmos',
                   'branch': 'janus-tesla-sweep',
                   'commit': os.environ['COSMOS_SHA'],
+                  'role': 'MANAGED_UPSTREAM_SNAPSHOT',
               },
               'integrations/Janus-Demiurge': {
                   'repository': 'Hawkar-usls/Janus-Demiurge',
                   'branch': 'main',
                   'commit': os.environ['DEMIURGE_SHA'],
+                  'role': 'MANAGED_UPSTREAM_SNAPSHOT',
               },
               'integrations/janus-distributed-ai-swarm': {
                   'repository': 'Hawkar-usls/janus-distributed-ai-swarm',
                   'branch': 'main',
                   'commit': os.environ['SWARM_SHA'],
+                  'role': 'MANAGED_UPSTREAM_SNAPSHOT',
+              },
+              '.janus': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'commit': os.environ['TOPA_SHA'],
+                  'role': 'NATIVE_TOPA_HABITAT',
+              },
+              'data': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'commit': os.environ['TOPA_SHA'],
+                  'role': 'NATIVE_TOPA_ARTIFACT',
+              },
+              'hunts': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'commit': os.environ['TOPA_SHA'],
+                  'role': 'NATIVE_TOPA_HUNT',
+              },
+              'integrations': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'commit': os.environ['TOPA_SHA'],
+                  'role': 'NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION',
+              },
+              'registry': {
+                  'repository': 'Hawkar-usls/TOPA',
+                  'branch': 'main',
+                  'commit': os.environ['TOPA_SHA'],
+                  'role': 'NATIVE_TOPA_REGISTRY_STATE',
               },
           }
 
@@ -143,11 +213,15 @@ jobs:
               for path in sorted(p for p in root.rglob('*') if p.is_file() and p.name != '.keep'):
                   raw = path.read_bytes()
                   rel = path.as_posix()
+                  if rel in {'registry/TOPA-CORPUS-INDEX.json', 'registry/UPSTREAM-SNAPSHOT.json'}:
+                      continue
                   item = {
                       'path': rel,
                       'bytes': len(raw),
                       'sha256': hashlib.sha256(raw).hexdigest(),
                   }
+                  # Most specific prefixes first prevents local integrations from
+                  # overwriting managed-upstream provenance.
                   for prefix, source in source_map.items():
                       if rel == prefix or rel.startswith(prefix + '/'):
                           item['source'] = source
@@ -169,23 +243,25 @@ jobs:
               counts[top] = counts.get(top, 0) + 1
 
           index = {
-              'schema': 'janus.topa.corpus-index.v1',
+              'schema': 'janus.topa.corpus-index.v1.1',
               'repository': 'Hawkar-usls/TOPA',
               'motto': 'NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.',
               'file_count': len(files),
               'counts_by_top_level': counts,
               'files': files,
+              'copy_is_independent_replication': False,
               'world_truth': False,
           }
 
           snapshot = {
-              'schema': 'janus.topa.upstream-snapshot.v1',
+              'schema': 'janus.topa.upstream-snapshot.v1.1',
               'repository': 'Hawkar-usls/TOPA',
               'sources': {
-                  'TOPA-native-data': {
+                  'TOPA-native': {
                       'repository': 'Hawkar-usls/TOPA',
                       'branch': 'main',
-                      'import': 'data/',
+                      'commit': os.environ['TOPA_SHA'],
+                      'surfaces': ['.janus/', 'data/', 'hunts/', 'local integrations/', 'local registry state'],
                       'mode': 'NATIVE_NOT_UPSTREAM_COPY',
                   },
                   'janus-meta-registry': {
@@ -241,10 +317,10 @@ jobs:
           rm -rf .upstream
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add protocols corpus research integrations registry
+          git add .janus data hunts protocols corpus research integrations registry
           if git diff --cached --quiet; then
             echo "TOPA snapshot already current."
             exit 0
           fi
-          git commit -m "Refresh complete TOPA corpus index"
+          git commit -m "Refresh complete TOPA Habitat and corpus index"
           git push
