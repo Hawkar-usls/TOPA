@@ -1,0 +1,60 @@
+{
+  "schema": "topa.propaganda_defense.ancient_base_rate_descriptor_commitments.v0.1",
+  "date": "2026-08-24",
+  "status": "EIGHT_OF_EIGHT_CANONICAL_DESCRIPTOR_COMMITMENTS_FROZEN_SOURCE_RETRIEVAL_SEALS_PENDING",
+  "parent_locus_freeze": "ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json",
+  "canonicalization": "UTF-8 JSON object for each descriptor, ensure_ascii=false, sort_keys=true, separators=(',', ':'); SHA-256 of canonical descriptor bytes.",
+  "important_boundary": "descriptor_sha256 binds source identity/locus/language intent. It is NOT a hash of the external source content and must never be labeled source_byte_sha256.",
+  "commitments": [
+    {
+      "id":"BR01_HAMMURABI",
+      "descriptor_sha256":"c3c8c20f6106d8d266300bc4b64af663d404873cde91c6bd2fd258837bc5ec7c",
+      "descriptor":{"authority":"Yale Avalon / L. W. King translation","url":"https://avalon.law.yale.edu/ancient/hamcode.asp","locus":"complete Prologue through immediately before numbered laws + complete THE EPILOGUE through end","language_layer":"English translation structure control; Akkadian required for lexical claims"}
+    },
+    {
+      "id":"BR02_BEHISTUN",
+      "descriptor_sha256":"b21bf30a87bec74684ee32737a2ad27b4b8d2d54a12a97cda26d1b3ecd397a26",
+      "descriptor":{"authority":"Livius Old Persian Behistun text","urls":["https://www.livius.org/sources/content/behistun-persian-text/behistun-t-02/","https://www.livius.org/sources/content/behistun-persian-text/behistun-t-36/","https://www.livius.org/sources/content/behistun-persian-text/behistun-t-42/"],"locus":["Column I lines 9-17","Column IV lines 31-39","Column IV lines 87-92"],"language_layer":"Old Persian transliteration plus translation"}
+    },
+    {
+      "id":"BR03_KADESH",
+      "descriptor_sha256":"d3c473a4400e7c7e7490b061a0587147b6ac59454de98d81831548d2aaea7209",
+      "descriptor":{"authority":"John A. Wilson, The Texts of the Battle of Kadesh, AJSLL 43.4 (1927), DOI 10.1086/370157","url":"https://www.journals.uchicago.edu/doi/10.1086/370157","locus":"THE POEM, journal pages 266-278 inclusive; THE RECORD excluded","language_layer":"scholarly eclectic translation structure control; Egyptian required for lexical claims"}
+    },
+    {
+      "id":"BR04_NEO_ASSYRIAN_ANNALS",
+      "descriptor_sha256":"53c82f024d7733044787765200b76a879be8c87eb225c3a4b4e7061daabf3f2f",
+      "descriptor":{"authority":"ORACC RINAP 3 Sennacherib 001","url":"https://oracc.museum.upenn.edu/rinap/rinap3/Q003475/html","locus":"lines 1-4","language_layer":"Akkadian transliteration plus translation"}
+    },
+    {
+      "id":"BR05_HITTITE_TREATY",
+      "descriptor_sha256":"d68c59df8e994038b8e712f559c89fed07908b6a70974b2ecc580261f2a14d71",
+      "descriptor":{"authority":"Hethitologie-Portal Mainz CTH 62 + Devecchi 2012 scholarly transliteration","urls":["https://www.hethport.uni-wuerzburg.de/hetkonk/hetkonk_abfrage.php?c=62","https://iris.unito.it/retrieve/e27ce42b-d27c-2581-e053-d805fe0acbaa/Devecchi-RAI54.pdf"],"locus":"CTH 62.II A column I lines 19′-28′","language_layer":"Hittite transliteration plus translation; duplicates not independent events"}
+    },
+    {
+      "id":"BR06_THUCYDIDES",
+      "descriptor_sha256":"26b8b4733adeeab6d2afc46c14825d0f98b61a919599cf9bd9733ebf2dc736d9",
+      "descriptor":{"authority":"Perseus/Scaife Thucydides Historiae Greek edition + translation","source_urn":"urn:cts:greekLit:tlg0003.tlg001.perseus-grc2:2.34-2.46","locus":"Book 2 chapters 34-46 inclusive","language_layer":"Greek primary plus translation"}
+    },
+    {
+      "id":"BR07_RES_GESTAE",
+      "descriptor_sha256":"b427f20941fe2f605bd32193ab3add8d090acaa1bd056107b9ede755301937a6",
+      "descriptor":{"authority":"Perseus Res Gestae Divi Augusti","source_urn":"urn:cts:latinLit:phi1221.phi007.perseus-lat1","locus":["preface","section 1","section 8","section 25","section 34"],"language_layer":"Latin primary; translations non-independent"}
+    },
+    {
+      "id":"BR08_PTAHHOTEP",
+      "descriptor_sha256":"e7373eba8657eb00b0215a2acaca2d473b86e32964c7569d54c737d527369fac",
+      "descriptor":{"authority":"Thesaurus Linguae Aegyptiae Corpus edition 20","url":"https://thesaurus-linguae-aegyptiae.de/text/C6KGH3XC7RGU3DSL7HKYY2K3WM","persistent_text_id":"C6KGH3XC7RGU3DSL7HKYY2K3WM","object_id":"VR3AJXVORNEHFM5JCMXN5PC6GA","locus":"entire persistent TLA Text ID","language_layer":"Egyptian hieroglyphs/transliteration/lemmatization/translation"}
+    }
+  ],
+  "summary": {
+    "descriptor_commitments": "8/8 FROZEN",
+    "exact_loci": "8/8 FROZEN",
+    "external_source_byte_or_versioned_retrieval_seals": "PENDING",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action":"Fetch/hash reproducible external source representations or bind versioned persistent corpus/publication receipts for BR01-BR08; only then evaluate whether base-rate coding can be unlocked.",
+  "epistemic_effect":"ANTI_CHERRY_PICK_SOURCE_AND_LOCUS_COMMITMENT_ONLY"
+}
