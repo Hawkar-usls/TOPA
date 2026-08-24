@@ -1,0 +1,66 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.3",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG_APPEND_2026-08-24_ATLAS_BASE_RATE.v0.2.json",
+    "previous_max_seq": 18
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "open_source_gates_are_valid_results": true,
+    "no_feature_values_before_source_gate": true
+  },
+  "entries": [
+    {
+      "seq": 19,
+      "event": "ANCIENT_BASE_RATE_SOURCE_FREEZE_V0_1",
+      "status": "FIVE_OF_EIGHT_FROZEN_TWO_PROVISIONAL_ONE_OPEN",
+      "artifact": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.1.json",
+      "negative_preservation": ["BR03 Kadesh not forced from teaching translation", "BR05 Hittite treaty not forced from legacy translation", "BR08 Ptahhotep secondary reference rejected as primary substrate"],
+      "claim_effect": "SOURCE_QUALITY_GATE_ONLY"
+    },
+    {
+      "seq": 20,
+      "event": "KADESH_AND_PTAHHOTEP_SOURCE_AUTHORITY_PROMOTED",
+      "status": "SEVEN_OF_EIGHT_SOURCE_LOCUS_ROOTS_FROZEN_ONE_OPEN",
+      "artifact": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.2.json",
+      "promotions": {
+        "BR03":"Legacy scholarly Chicago/Breasted Kadesh substrate plus UCL genre corrective; modern-edition sensitivity required",
+        "BR08":"TLA text-level authority with persistent Text ID and Egyptian annotations"
+      },
+      "remaining_open":"BR05 modern Hittite treaty edition/transliteration",
+      "claim_effect": "SOURCE_AND_LOCUS_AUTHORITY_ONLY"
+    },
+    {
+      "seq": 21,
+      "event": "BASE_RATE_X35_ZERO_VALUE_PACKET_FROZEN",
+      "status": "35_FEATURE_CONTRACT_ZERO_VALUES_NOT_ISSUED",
+      "artifact": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.1.json",
+      "semantic_values_populated": 0,
+      "base_rate_coding_permission": false,
+      "claim_effect": "REPRESENTATION_FREEZE_ONLY"
+    },
+    {
+      "seq": 22,
+      "event": "PROPAGANDA_DEFENSE_SPRINT_V0_3_FROZEN",
+      "status": "ACTIVE_BR05_SOURCE_GATE_AND_BASE_RATE_PACKET_FREEZE",
+      "artifact": "CURRENT_SPRINT.v0.3.json",
+      "first_unmet_requirement":"BR05_MODERN_HITTITE_TREATY_SOURCE_AND_LOCUS_AUTHORITY",
+      "score_permission": false,
+      "claim_effect": "PROJECT_STATE_ADVANCE_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "BR05_SOURCE_GATE_AND_BASE_RATE_PACKET_FREEZE",
+    "atlas_techniques": 138,
+    "cross_epoch_dimensions": 35,
+    "ancient_source_locus_roots": "7/8 FROZEN",
+    "remaining_open": "BR05_HITTITE_TREATY",
+    "base_rate_packet": "FROZEN_35_FEATURES_0_VALUES_NOT_ISSUED",
+    "base_rate_coding_permission": false,
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  }
+}
