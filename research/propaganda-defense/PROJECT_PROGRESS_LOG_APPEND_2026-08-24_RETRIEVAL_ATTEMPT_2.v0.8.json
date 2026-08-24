@@ -1,0 +1,11 @@
+{
+  "schema":"topa.propaganda_defense.project_progress_log_append.v0.8",
+  "date":"2026-08-24",
+  "status":"APPEND_ONLY_SHARD",
+  "parent":{"path":"PROJECT_PROGRESS_LOG_APPEND_2026-08-24_RETRIEVAL_ATTEMPT_1.v0.7.json","previous_max_seq":33},
+  "entries":[
+    {"seq":34,"event":"BASE_RATE_EXTERNAL_RETRIEVAL_ATTEMPT_2_EXECUTED","status":"PARTIAL_FAIL_CLOSED_6_OF_8","artifact":"execution/BASE_RATE_RETRIEVAL_ATTEMPT_2_FAIL_CLOSED.v0.2.json","workflow_run_id":32754303310,"new_passes":["BR05_HITTITE_TREATY","BR06_THUCYDIDES","BR07_RES_GESTAE","BR08_PTAHHOTEP"],"remaining":["BR03_KADESH","BR04_NEO_ASSYRIAN_ANNALS"],"semantic_values_populated":0,"base_rate_coding_permission":false,"score_permission":false},
+    {"seq":35,"event":"RETRIEVAL_SPIRAL_LOCALIZED_TO_TWO_TRANSPORTS","status":"KADESH_AND_ORACC_ONLY","finding":"All non-BR03/BR04 repairs now reproduce frozen content without locus substitution.","next_legal_action":"Repair BR03 same-publication archival transport and BR04 official ORACC open-data transport only; replay all eight to prove no regression.","claim_effect":"RETRIEVAL_STATE_ONLY"}
+  ],
+  "current_snapshot":{"retrieval":"6/8 CONTENT_SUFFICIENT","semantic_values_populated":0,"base_rate_coding_permission":false,"sacred_flood_A_B_gate":"UNASSIGNED_UNCHANGED","score_permission":false}
+}
