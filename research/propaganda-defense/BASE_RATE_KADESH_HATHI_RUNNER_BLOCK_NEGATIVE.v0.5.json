@@ -1,0 +1,50 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_hathi_runner_block_negative.v0.5",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_HATHITRUST_TRANSPORT_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; printed p.278 is retained only as THE RECORD exclusion boundary",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32757602613,
+    "github_actions_job_id": 97528632199,
+    "artifact_id": 9531430716,
+    "artifact_sha256": "2c581981da5f915e5515dc9d7dc3365e451a1adf3bcf7989325d0dc9950d644b"
+  },
+  "hathitrust": {
+    "htid": "mdp.39015024059043",
+    "catalog_state": "v.43 1926-1927; Full view",
+    "preregistered_sequence_window": [260, 305],
+    "html_ok": "0/46",
+    "pageturner_ok": "0/46",
+    "image_anchor_sequences": [266, 272, 278, 284, 290],
+    "image_anchor_status": "5/5 HTTP 403",
+    "classification": "RUNNER_ACCESS_BLOCKED",
+    "interpretation": "The failure is at hosted-runner access/transport level. It is not evidence that the HathiTrust full-view item or Wilson article is absent."
+  },
+  "external_locator_crosscheck": {
+    "status": "CONSISTENT_WITH_FROZEN_BOUNDARY",
+    "finding": "Publicly indexed scan shows Wilson article starts on p.266; p.277 remains within Poem material; p.278 begins THE RECORD.",
+    "authority_effect": "NONE",
+    "note": "Locator crosscheck is not admitted as source-content retrieval."
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Probe bounded Google Books full-view page representations for the same volume using printed-page anchors PA266 through PA278. Admit only if same-volume page representations reproducibly expose title/Poem content and THE RECORD boundary; otherwise preserve another negative.",
+  "laws": [
+    "RUNNER_ACCESS_BLOCKED != SOURCE_ABSENT",
+    "CATALOG_FULL_VIEW != RETRIEVED_LOCUS",
+    "BOUNDARY_PAGE_IS_NOT_CONTENT_PAGE",
+    "TRANSPORT_REPAIR != LOCUS_CHANGE",
+    "NEGATIVE_RESULT_STOPS_REDUNDANT_RETRIES"
+  ]
+}
