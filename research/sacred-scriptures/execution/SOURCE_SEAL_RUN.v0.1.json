@@ -1,0 +1,82 @@
+{
+  "schema": "topa.sacred_scriptures.source_seal_run.v0.1",
+  "executed_at_utc": "2026-08-24T14:20:02.433480+00:00",
+  "status": "SOURCE_SEAL_FAILURE",
+  "required_source_ids": [
+    "F01_ATRAHASIS",
+    "F02_GILGAMESH_XI",
+    "F03_GENESIS_6_9",
+    "F04_QURAN_NOAH",
+    "F05_SATAPATHA_MANU"
+  ],
+  "sources": [
+    {
+      "id": "F01_ATRAHASIS",
+      "source": "Nathan Wasserman, The Flood: The Akkadian Sources, OBO 290 (2020)",
+      "source_url": "https://www.peeters-leuven.be/download_OA.php?id=9789042941748&name=The+Flood%3A+The+Akkadian+Sources",
+      "source_media_type": "application/pdf",
+      "source_bytes": 3880263,
+      "source_sha256": "627d27f1939631d3d21e168530121e05966cd38439f7118e65009c4d25f94864",
+      "seal_note": "Exact critical-edition line loci are cryptographically bound to the immutable full PDF hash; no PDF text extraction is treated as primary text.",
+      "frozen_locus_descriptor": "Atra-hasis C1:i:20'-35'|C1:ii:52\"-55\"|C1:iii:5'-27'|C1:iv:24'-27'|C1:v:30\"-38\"",
+      "slice_seal_type": "SOURCE_SHA256_PLUS_EXACT_LOCUS_BINDING",
+      "slice_sha256": "225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0",
+      "content_slice_sha256": null,
+      "content_slice_reason": "PDF critical edition retained as immutable source; exact line ranges remain the locus authority.",
+      "status": "SEALED"
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "source": "Nathan Wasserman, The Flood: The Akkadian Sources, OBO 290 (2020)",
+      "source_url": "https://www.peeters-leuven.be/download_OA.php?id=9789042941748&name=The+Flood%3A+The+Akkadian+Sources",
+      "source_media_type": "application/pdf",
+      "source_bytes": 3880263,
+      "source_sha256": "627d27f1939631d3d21e168530121e05966cd38439f7118e65009c4d25f94864",
+      "seal_note": "Exact critical-edition line loci are cryptographically bound to the immutable full PDF hash; no PDF text extraction is treated as primary text.",
+      "frozen_locus_descriptor": "Gilgamesh Tablet XI:8-203|8-20|21-44|45-91|92-139|140-156|157-203",
+      "slice_seal_type": "SOURCE_SHA256_PLUS_EXACT_LOCUS_BINDING",
+      "slice_sha256": "5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee",
+      "content_slice_sha256": null,
+      "content_slice_reason": "PDF critical edition retained as immutable source; exact line ranges remain the locus authority.",
+      "status": "SEALED"
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "source": "Tanzil Uthmani Quran Text v1.1",
+      "source_url": "https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=txt-2&agree=true&marks=true&sajdah=true&rub=true&stanween=true",
+      "export_options": {
+        "quranType": "uthmani",
+        "outType": "txt-2",
+        "marks": true,
+        "sajdah": true,
+        "rub": true,
+        "stanween": true,
+        "tatweel_below_superscript_alef": false
+      },
+      "source_download_bytes": 1397898,
+      "source_download_sha256": "b9027e22eb7e69d326f1eb7467fed8b7bc1eccbe1a894887ed2b3feb4ef5fc90",
+      "frozen_locus_descriptor": "Q 11:25-49",
+      "slice_seal_type": "NFC_UTF8_VERBATIM_VERSE_ROWS_SHA256",
+      "slice_bytes": 7055,
+      "slice_sha256": "b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c",
+      "verse_count": 25,
+      "normalization": "NFC only for hashing; verbatim verse characters otherwise preserved; LF rows",
+      "status": "SEALED"
+    }
+  ],
+  "sealed_count": 3,
+  "required_count": 5,
+  "errors": [
+    {
+      "stage": "BHSA",
+      "error": "AttributeError: 'bool' object has no attribute 'F'"
+    },
+    {
+      "stage": "GRETIL",
+      "error": "RuntimeError: GRETIL ŚB 1.8.1.[1]-[10] markers not found"
+    }
+  ],
+  "rights_policy": "Receipt stores hashes/provenance only; no source text is mirrored by this artifact.",
+  "blind_packet_permission_from_sources": false,
+  "score_permission": false
+}
