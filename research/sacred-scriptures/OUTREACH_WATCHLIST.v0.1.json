@@ -1,0 +1,127 @@
+{
+  "schema": "topa.sacred_scriptures.outreach_watchlist.v0.1",
+  "date": "2026-08-24",
+  "status": "DO_NOT_CONTACT_YET",
+  "purpose": "Maintain a public-professional watchlist of scholars who may be useful reviewers once TOPA has a reproducible result worth sharing.",
+  "privacy_rule": "Store only public professional identity, role, relevance and institutional/profile source. Resolve current contact details only at outreach time.",
+  "global_contact_gate": [
+    "No outreach for a motif claim before frozen source loci and provenance packets exist.",
+    "No outreach describing a mysterious residual before blind scoring and matched controls are complete.",
+    "Negative or null results are shareable if methodologically complete.",
+    "Ask for criticism/review, not endorsement.",
+    "Send the smallest relevant packet for the recipient's specialty rather than the whole JANUS corpus."
+  ],
+  "tiers": {
+    "A_SOURCE_AND_TEXT_SPECIALISTS": [
+      {
+        "name": "Enrique Jiménez",
+        "current_public_role": "Professor of Ancient Near Eastern Literatures, LMU Munich; leader of Electronic Babylonian Literature (eBL)",
+        "why_relevant": "Combines Assyriology, digital corpora and AI-assisted reconstruction of Babylonian literature; especially relevant to manuscript/root collapse and Akkadian source packets.",
+        "best_share_trigger": "A reproducible Atrahasis/Gilgamesh packet with exact tablets, lines, transliterations, source-root rules and an algorithmic false-positive audit.",
+        "public_profile": "https://www.assyriologie.uni-muenchen.de/personen/professoren/jimenez/projekte_jimenez/index.html",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Andrew R. George",
+        "current_public_role": "Professor of Babylonian, SOAS University of London",
+        "why_relevant": "Author of the major critical edition of the Babylonian Gilgamesh Epic; ideal specialist for whether TOPA has encoded Tablet XI responsibly.",
+        "best_share_trigger": "Exact Gilgamesh XI feature packet plus sensitivity analysis showing that results do not depend on modern translation vocabulary.",
+        "public_profile": "https://www.soas.ac.uk/about/andrew-george",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Irving Finkel",
+        "current_public_role": "Assistant Keeper, Mesopotamian cultures, Department of the Middle East, British Museum",
+        "why_relevant": "Cuneiform specialist and author of The Ark Before Noah; directly relevant to Mesopotamian flood traditions and tablet-level provenance.",
+        "best_share_trigger": "A tablet-grounded Flood calibration report with British Museum object identifiers and no claim beyond textual/historical inference.",
+        "public_profile": "https://www.britishmuseum.org/our-work/departments/middle-east",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Konrad Schmid",
+        "current_public_role": "Professor of Hebrew Bible and Ancient Judaism, University of Zurich",
+        "why_relevant": "Works on Hebrew Bible literary history, dating and ancient contexts; highly relevant to Genesis composition and chronology gates.",
+        "best_share_trigger": "Genesis 6-9 final-form versus source-stratified sensitivity results with explicit dating uncertainty.",
+        "public_profile": "https://www.theologie.uzh.ch/en/faecher/old_testament/hebrewbible_and_ancientjudaism/team/schmid.html",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Joshua Berman",
+        "current_public_role": "Professor of Bible, Bar-Ilan University",
+        "why_relevant": "Has published specifically on the limits of source criticism using Genesis 6-9 as a test case; useful adversarial reviewer against overconfident source decomposition.",
+        "best_share_trigger": "The Genesis dual-model sensitivity packet, especially if source partition materially changes clustering.",
+        "public_profile": "https://bible.biu.ac.il/en/node/559",
+        "priority": "HIGH_ADVERSARIAL"
+      },
+      {
+        "name": "Gabriel Said Reynolds",
+        "current_public_role": "Jerome J. Crowley and Rosaleen G. Crowley Professor of Theology, University of Notre Dame",
+        "why_relevant": "Researches the Qur'an in relation to Biblical and Late Antique traditions; directly relevant to preventing false independence claims between Qur'anic and Biblical material.",
+        "best_share_trigger": "Qur'anic Noah contact-graph packet and comparison showing exactly what is treated as dependence, context or unresolved similarity.",
+        "public_profile": "https://theology.nd.edu/people/faculty/gabriel-reynolds/",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Nicolai Sinai",
+        "current_public_role": "Professor of Islamic Studies, University of Oxford; Fellow of Pembroke College",
+        "why_relevant": "Historical-critical and literary study of the Qur'an, intertextuality, chronology and key-term semantics; ideal for Arabic ontology and chronology gates.",
+        "best_share_trigger": "Arabic-first Noah feature encoding with passage-boundary sensitivity and Late Antique contact nulls.",
+        "public_profile": "https://www.ames.ox.ac.uk/people/nicolai-sinai",
+        "priority": "VERY_HIGH"
+      },
+      {
+        "name": "Michael Marx",
+        "current_public_role": "Editor/research coordinator associated with Corpus Coranicum; continuing Corpus Coranicum digital publication since 2025",
+        "why_relevant": "Early Qur'anic manuscript evidence, variant readings and digital transmission history; useful for source-surface and manuscript controls.",
+        "best_share_trigger": "A Qur'an packet tied to manuscript/reading evidence rather than only a modern normalized text.",
+        "public_profile": "https://corpuscoranicum.org/en/about",
+        "priority": "HIGH"
+      },
+      {
+        "name": "Michael Witzel",
+        "current_public_role": "Wales Research Professor of Sanskrit, Harvard University",
+        "why_relevant": "Vedic language, literature, philology, manuscripts and comparative mythology; directly relevant to Satapatha Brahmana and Manu-flood source control.",
+        "best_share_trigger": "A Sanskrit-first Satapatha Brahmana 1.8.1 packet with recension, dating uncertainty and later-retelling collapse.",
+        "public_profile": "https://ancientstudies.harvard.edu/people/michael-witzel",
+        "priority": "VERY_HIGH"
+      }
+    ],
+    "B_METHOD_AND_COMPUTATIONAL_REVIEWERS": [
+      {
+        "name": "Jamshid Tehrani",
+        "current_public_role": "Professor, Department of Anthropology, Durham University",
+        "why_relevant": "Studies cultural transmission and evolution of folk narratives using comparative/phylogenetic methods; highly relevant to separating inheritance, borrowing and convergence.",
+        "best_share_trigger": "Blind clustering methodology, null-model design and leave-one-feature-family-out results rather than theological interpretation.",
+        "public_profile": "https://www.durham.ac.uk/staff/jamie-tehrani/",
+        "priority": "VERY_HIGH_METHOD"
+      },
+      {
+        "name": "Julien d'Huy",
+        "current_public_role": "Researcher affiliated with the Laboratoire d'Anthropologie Sociale, Collège de France/EHESS/CNRS",
+        "why_relevant": "Applies phylogenetic approaches to comparative mythology and explicitly studies how geographically separated myth variants may preserve historical relationships.",
+        "best_share_trigger": "Cross-tradition residual methodology after Q01 and Q02 calibration, including controls against analyst-created motif trees.",
+        "public_profile": "https://www.inrap.fr/dragons-aux-origines-du-mythe-20317",
+        "priority": "HIGH_METHOD"
+      },
+      {
+        "name": "Wido van Peursen",
+        "current_public_role": "Current staff, Eep Talstra Centre for Bible and Computer, Vrije Universiteit Amsterdam",
+        "why_relevant": "Computational analysis of the Hebrew Bible; ETCBC/DAST explicitly combines sacred-text scholarship with computational linguistics and expands beyond Hebrew to Sanskrit, Arabic, Syriac and Greek.",
+        "best_share_trigger": "Machine-readable Hebrew feature extraction, reproducible code and evidence that semantic clustering is not overriding formal textual structure.",
+        "public_profile": "https://etcbc.nl/staff/",
+        "priority": "VERY_HIGH_METHOD"
+      }
+    ]
+  },
+  "first_contact_strategy_when_ready": {
+    "order": [
+      "Send source-specific packet to one domain specialist first.",
+      "Send method-only packet to one computational/cultural-transmission reviewer independently.",
+      "Record criticisms before contacting the next reviewer.",
+      "Do not quote one scholar's reaction to prime another scholar unless permission and context make it appropriate."
+    ],
+    "request_language": "We built a preregistered falsification-first comparison and would value criticism of the source model/method. We are not asking for endorsement or a metaphysical conclusion.",
+    "success": "A reviewer identifies a falsifier, missing source, coding defect, or confirms that the packet is worth deeper scholarly inspection.",
+    "failure": "Outreach is framed as proof of a hidden universal message, asks scholars to validate JANUS as authority, or sends a huge unfocused repository dump."
+  }
+}
