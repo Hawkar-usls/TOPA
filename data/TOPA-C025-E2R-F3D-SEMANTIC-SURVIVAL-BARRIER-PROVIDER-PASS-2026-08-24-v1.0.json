@@ -1,0 +1,62 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-F3D-SEMANTIC-SURVIVAL-BARRIER-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1G-F3-D",
+  "status": "D0_ANALYTIC_BARRIER_PROVED__FINITE_PROVIDER_REPLAY_PASS",
+  "canonical_repository": "Hawkar-usls/TOPA",
+  "canonical_note": "research/mathematics/p-vs-np/C025_E2R_L1G_F3D_SEMANTIC_SURVIVAL_BARRIER.md",
+  "canonical_probe": "research/mathematics/p-vs-np/f3d_semantic_survival_barrier_probe.py",
+  "proved_analytically": {
+    "statement": "For every B>=2,D>=1 there is an O(BD)-gate frozen-B2 DAG over an abstract locality hypergraph with pre-restriction negative-frontier width b>=B and inversion depth d>=D, but a one-root-variable restriction makes every crossing macro constant.",
+    "restriction": "rho(z)=0",
+    "consequence": "No universal lower bound on surviving semantic (b_rho,d_rho) can depend only on original (b,d) and restriction size |rho|.",
+    "refuted_route": "LARGE_ORIGINAL_BD_PLUS_SMALL_RESTRICTION_SIZE_IMPLIES_LARGE_SURVIVING_BD"
+  },
+  "provider": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "pull_request": 214,
+    "head_commit": "4d110e746b04d574681a7f2ff9c5540178726acf",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32762269636,
+    "job_id": 97543618601,
+    "conclusion": "SUCCESS"
+  },
+  "provider_markers": [
+    "C025_E2R_F3D_D0_COUNTERFAMILY_FINITE_REPLAY = PASS",
+    "C025_E2R_F3D_D0_PRE_B_GE_TARGET = PASS",
+    "C025_E2R_F3D_D0_PRE_D_GE_TARGET = PASS",
+    "C025_E2R_F3D_D0_ONE_ROOT_BIT_COLLAPSES_ALL_TESTED_MACROS = PASS",
+    "C025_E2R_F3D_CLAIM_CEILING = FINITE_MECHANICS_ONLY",
+    "C025_E2R_F3D_NEXT = EXACT_SELF_REDUCTION_SEMANTIC_SURVIVAL"
+  ],
+  "source_alignment": {
+    "primary_source": "Dmitry Sokolov, Pseudorandom Generators, Resolution and Heavy Width, CCC 2022, DOI 10.4230/LIPIcs.CCC.2022.15",
+    "used_semantic_boundary": "Under normal partial x-assignments, local extension variables correspond to residual local Boolean functions; self-reduction yields a residual PRG formula.",
+    "transfer_status": "OBJECT_TARGET_ALIGNED_FOR_NEXT_F3D_QUESTION; D0 ITSELF IS AN INTERNAL ABSTRACT-LOCALITY COUNTERFAMILY"
+  },
+  "new_scientific_resource": {
+    "name": "RESTRICTION_RESILIENCE",
+    "heuristic_score": false,
+    "candidate_exact_objects": [
+      "kappa_sem(P;B0,D0) = minimum support size of a semantic collapse restriction",
+      "SURV_P(B0,D0;D) = probability of semantic b,d survival under an explicitly specified restriction distribution D"
+    ],
+    "warning": "kappa_sem alone is existential and is insufficient for a distributional self-reduction theorem."
+  },
+  "next_gates": {
+    "F3D_D1": "EXACT_SEMANTIC_RESIDUAL_CLASSIFIER",
+    "F3D_D2": "EXACT_SOURCE_SELF_REDUCTION_MODEL",
+    "F3D_D3": "QUANTITATIVE_RESTRICTION_RESILIENCE_THEOREM",
+    "F3D_D4": "EXPLICIT_COLLAPSE_ESCAPE_OR_COUNTERFAMILY_IN_SOURCE_MATCHED_SETTING"
+  },
+  "claim_ceiling": [
+    "provider PASS validates finite counterfamily mechanics only",
+    "D0 refutes a route, not unrestricted ER3 p-boundedness",
+    "abstract locality-hypergraph barrier is not yet an exact hard-NW self-reduction collapse theorem",
+    "Issue #217 remains open",
+    "P versus NP remains open"
+  ],
+  "p_vs_np": "OPEN"
+}
