@@ -1,0 +1,82 @@
+{
+  "schema": "TOPA_PVSNP_EXTERNAL_CLAIM_SALVAGE_AUDIT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "global_status": "P_VS_NP_OPEN",
+  "laws": [
+    "CLAIMED_CLOSURE != CLOSURE",
+    "FAILED_PROOF != USELESS_PROOF",
+    "PUBLICITY_OR_CREDENTIALS != EVIDENCE",
+    "FINITE_REPLAY != ASYMPTOTIC_THEOREM"
+  ],
+  "candidates": [
+    {
+      "id": "EXT-VEGA-2025",
+      "direction": "P_EQUALS_NP",
+      "route": "SAT_to_matching_via_2XHS",
+      "status": "ROUTE_REFUTED_BY_EXPLICIT_K33_COUNTEREXAMPLE",
+      "load_bearing_claim": "every legal 2XHS graph is a line graph",
+      "falsifier": "K3,3 is a legal degree-3 2XHS graph but is not a line graph because it contains an induced claw",
+      "next": "provider_replay"
+    },
+    {
+      "id": "EXT-LEE-2025",
+      "direction": "P_EQUALS_NP",
+      "route": "certificate_computation_graph",
+      "status": "OPEN_FOR_JANUS_AUDIT",
+      "load_bearing_claim": "local transition graph paths correspond to globally tape-consistent verifier runs",
+      "next": "construct_small_spurious_walk_or_prove_path_soundness"
+    },
+    {
+      "id": "EXT-DENG-2024",
+      "direction": "P_EQUALS_NP",
+      "route": "SDP_degree4_3coloring",
+      "status": "PUBLICLY_REFUTED",
+      "failure": "subgraph_vs_induced_subgraph_conflation"
+    },
+    {
+      "id": "EXT-DU-2010",
+      "direction": "P_EQUALS_NP",
+      "route": "3SAT_checking_tree",
+      "status": "PUBLICLY_REFUTED_BY_INFINITE_SAT_FAMILY",
+      "failure": "local useful-unit intersection destroys globally valid satisfying paths"
+    },
+    {
+      "id": "EXT-GUBIN-2007",
+      "direction": "P_EQUALS_NP",
+      "route": "compatibility_matrix_SAT",
+      "status": "PUBLICLY_REFUTED",
+      "failure": "local compatibility/depletion not equivalent to global satisfiability"
+    },
+    {
+      "id": "EXT-YAKHONTOV-2012",
+      "direction": "P_EQUALS_NP",
+      "route": "TCPE_fractional_multicommodity_LP",
+      "status": "OPEN_HIGH_PRIORITY_JANUS_AUDIT",
+      "load_bearing_claim": "LP feasibility iff one tape-consistent path exists",
+      "next": "seek_fractional_mixing_counterexample_to_Proposition_3_9"
+    },
+    {
+      "id": "EXT-DEOLALIKAR-2010",
+      "direction": "P_NOT_EQUAL_NP",
+      "status": "CLAIM_REFUTED_AS_WRITTEN",
+      "salvage": "finite_model_and_solution_space_hypotheses_only_below_original_claim_ceiling"
+    },
+    {
+      "id": "EXT-BLUM-2017",
+      "direction": "P_NOT_EQUAL_NP",
+      "status": "WITHDRAWN_AND_REFUTED",
+      "failure": "monotone_to_nonmonotone_approximation_transfer_fails_Tardos_sanity_control"
+    }
+  ],
+  "priority": [
+    "EXT-VEGA-2025",
+    "EXT-LEE-2025",
+    "EXT-YAKHONTOV-2012",
+    "EXT-DENG-2024",
+    "EXT-DU-2010",
+    "EXT-GUBIN-2007",
+    "EXT-DEOLALIKAR-2010",
+    "EXT-BLUM-2017"
+  ]
+}
