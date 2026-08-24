@@ -1,0 +1,50 @@
+{
+  "schema": "topa.sacred_scriptures.coder_independence_contract.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_ANY_SEMANTIC_CODING",
+  "scope": "F01-F05 and C01-C08 under FLOOD_STEMMA_BLIND_TEST.v0.1 frozen 28-feature schema",
+  "core_rule": "INDEPENDENCE_MUST_BE_OPERATIONALLY_RECEIPTED_NOT_NAMED",
+  "required_for_each_coder": [
+    "unique coder_instance_id",
+    "coder_type: HUMAN_OR_DISTINCT_MODEL_INSTANCE_OR_OTHER_DECLARED_OPERATOR",
+    "packet_template_sha256",
+    "feature_schema_sha256",
+    "source_slice_sha256 for every assigned item",
+    "start_timestamp",
+    "completion_timestamp",
+    "no_access_to_counterpart_output=true",
+    "no_access_to_scorer_output=true",
+    "no_access_to_control_class_or_expected_cluster=true where source-coding task permits",
+    "external_aids_log",
+    "signed_or_hash_committed_receipt"
+  ],
+  "independence_fail_conditions": [
+    "same reasoning instance represented as coder A and coder B",
+    "second prompt or second pass of the same state counted as a separate coder",
+    "copying, paraphrasing or editing counterpart output",
+    "counterpart feature values visible before own receipt freeze",
+    "shared mutable scratchpad containing counterpart decisions",
+    "one operator producing both outputs from a common hidden decision table",
+    "post-output relabeling of one coding pass as independent"
+  ],
+  "allowed_common_inputs": [
+    "same immutable source slice",
+    "same frozen coding packet template",
+    "same frozen feature schema",
+    "same preregistered ontology definitions",
+    "same published philological reference set when explicitly logged"
+  ],
+  "systemic_bias_note": "Operational independence does not guarantee epistemic independence. Two coders may share training, cultural, translation or scholarly priors. Agreement is therefore a reliability observation, never independent world evidence.",
+  "coder_isolation": {
+    "A_output_visible_to_B_before_B_freeze": false,
+    "B_output_visible_to_A_before_A_freeze": false,
+    "cross_item_coder_memory_allowed": true,
+    "cross_coder_output_memory_allowed": false,
+    "scorer_results_available_during_coding": false,
+    "expected_family_cluster_available_during_coding": false
+  },
+  "receipt_rule": "Every coder receipt is immutable after freeze. Corrections create a superseding receipt and preserve the original.",
+  "failure_semantics": "If genuine independence cannot be demonstrated, status is SINGLE_CODER_OR_DEPENDENT_REVIEW and the pair cannot satisfy the double-coding gate.",
+  "score_permission": false,
+  "claim_effect": "METHOD_INDEPENDENCE_CONTRACT_ONLY_NO_TEXTUAL_RESULT_CREDIT"
+}
