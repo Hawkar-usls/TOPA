@@ -1,0 +1,50 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_jstor_xml_shell_negative.v0.8",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_JSTOR_XML_TRANSPORT_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; p.278 is THE RECORD exclusion boundary",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32758422871,
+    "github_actions_job_id": 97531238117,
+    "artifact_id": 9531728772,
+    "artifact_sha256": "dae4dbabdffa9e8e27c72ba7817fa2f381f966c9c770cebf5ec90fc2c0ea8e77"
+  },
+  "result": {
+    "requested_routes": [
+      "https://www.jstor.org/doi/xml/10.2307/528771",
+      "https://www.jstor.org/stable/xml/528771.xml",
+      "https://www.jstor.org/stable/xml/528771"
+    ],
+    "classification": "HTML_SHELL_NOT_XML",
+    "common_response": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 3038,
+      "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"
+    },
+    "doi_xml_redirect": "https://www.jstor.org/stable/10.2307/528771?refreqid=robotstxt-sitemaps:1469a277ae2e6661bae97bb205d731fe",
+    "finding": "All three official XML-shaped routes resolve to the same 3038-byte HTML client shell already observed on the stable/PDF layer. No XML article bytes were retrieved."
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Stop guessing JSTOR endpoint suffixes. Search for a reproducible archival or version-pinned transport of the exact Wilson 1927 publication/stable object, preserving AUTHORITY=Wilson/AJSL/JSTOR/UChicago and source-root count=1. Require p.266 title/start and p.278 THE RECORD boundary before admission.",
+  "laws": [
+    "HTTP_200_HTML_SHELL != XML",
+    "SAME_3038_BYTE_HASH_ACROSS_PDF_AND_XML_ROUTES_MEANS_CLIENT_SHELL",
+    "ENDPOINT_GUESSING_STOPS_AFTER_REPEATED_IDENTICAL_SHELL",
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "NEGATIVE_RESULT_STOPS_REDUNDANT_RETRIES"
+  ]
+}
