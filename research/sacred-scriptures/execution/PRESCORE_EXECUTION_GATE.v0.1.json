@@ -1,0 +1,15 @@
+{
+  "schema": "topa.sacred_scriptures.prescore_execution_gate.v0.1",
+  "executed_at_utc": "2026-08-24T14:13:52.117850+00:00",
+  "status": "PRESCORE_EXECUTION_BLOCKED",
+  "canary_receipt_present": false,
+  "canary_status": null,
+  "canary_pass_count": null,
+  "source_receipt_present": false,
+  "source_status": null,
+  "source_sealed_count": null,
+  "blind_packet_build_permission": false,
+  "score_permission": false,
+  "failure_semantics": "Any missing/failed/unreadable receipt blocks blind-packet construction; SCORE remains locked regardless.",
+  "epistemic_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"
+}
