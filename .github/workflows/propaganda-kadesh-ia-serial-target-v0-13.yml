@@ -1,0 +1,31 @@
+name: propaganda-kadesh-ia-serial-target-v0-13
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_ia_serial_target_v0_13.py'
+      - '.github/workflows/propaganda-kadesh-ia-serial-target-v0-13.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  target:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover exact AJSL v43 issue child in IA serial collection
+        run: python tools/propaganda_kadesh_ia_serial_target_v0_13.py
+      - name: Upload targeted serial receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-ia-serial-target-v0-13
+          path: research/propaganda-defense/execution/KADESH_IA_SERIAL_TARGET.v0.13.json
+          if-no-files-found: error
+          retention-days: 30
