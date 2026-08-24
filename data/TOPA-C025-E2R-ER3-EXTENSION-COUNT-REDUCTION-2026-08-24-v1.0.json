@@ -1,0 +1,45 @@
+{
+  "schema": "topa.math.reduction-receipt.v1",
+  "id": "TOPA-C025-E2R-ER3-EXTENSION-COUNT-REDUCTION-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "target": "C025-E2R",
+  "status": "REDUCTION_PROVED__UNIVERSAL_EXTENSION_COUNT_BOUND_OPEN",
+  "external_theorem": {
+    "system": "Narrow Extended Resolution ER3",
+    "statement": "ER3 p-simulates Extended Resolution",
+    "source": "Nicolas Prcovic, Narrowing Extended Resolution, ICTAI 2012",
+    "role": "normalizes derived resolvent width to at most 3 with polynomial proof translation"
+  },
+  "definitions": {
+    "N": "explicit encoded root CNF length",
+    "n0": "number of root variables, n0 <= N",
+    "m": "number of root clauses, m <= N under ordinary explicit encoding",
+    "K": "number of extension variables in an ER3 refutation",
+    "V": "n0 + K"
+  },
+  "proved_lemmas": {
+    "clause_universe": "The number of distinct width<=3 clauses over V variables is at most 1 + 2V + C(2V,2) + C(2V,3) = O(V^3).",
+    "duplicate_elimination": "Retaining the earliest derivation of each repeated clause and redirecting later uses preserves a valid acyclic DAG refutation.",
+    "compressed_size": "Some ER3 DAG refutation using K extension variables has size O(N + K + (N+K)^3), up to ordinary logarithmic encoding factors.",
+    "sufficiency": "If every UNSAT CNF of length N admits some ER3 refutation with K <= N^c for fixed c, then every UNSAT CNF has polynomial-size ER/B2 certificates.",
+    "necessity_from_global_e2": "If ER/B2 is p-bounded, ER3 p-simulation yields polynomial-size ER3 proofs and hence polynomially many extension-variable introductions."
+  },
+  "equivalence": "GLOBAL_ER_B2_P_BOUNDEDNESS iff UNIVERSAL_POLYNOMIAL_EXTENSION_COUNT_IN_SOME_ER3_REFUTATION, up to polynomial translations",
+  "new_exact_gate": {
+    "github_issue": "Hawkar-usls/Janus-Fundamentum#217",
+    "statement": "Prove or refute existence of fixed c,N0 such that every UNSAT CNF F of length N>=N0 has some ER3 refutation using K(F)<=N^c extension variables.",
+    "status": "OPEN"
+  },
+  "deferred": {
+    "C025_C2_DETERMINISTIC_EXTENSION_DISCOVERY": "DEFERRED_BEHIND_E2R",
+    "C025_C2_GLOBAL_PROOF_SEARCH": "DEFERRED_BEHIND_E2R"
+  },
+  "claim_ceiling": {
+    "ER_P_BOUNDED": "NOT_ESTABLISHED",
+    "ER_NOT_P_BOUNDED": "NOT_ESTABLISHED",
+    "NP_EQUALS_CONP": "NOT_ESTABLISHED",
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED"
+  },
+  "canonical_note": "research/mathematics/p-vs-np/C025_E2R_NARROW_ER_EXTENSION_COUNT_REDUCTION.md"
+}
