@@ -1,0 +1,18 @@
+{
+  "schema": "janus.topa.private_source_boundary.v1",
+  "source_repository": "Hawkar-usls/SkinGPT",
+  "source_visibility": "PRIVATE",
+  "topa_role": "SENSOR_CALIBRATION_AND_GROUND_TRUTH_DISCIPLINE",
+  "mirror_private_content_to_public_TOPA": false,
+  "private_content_included_here": false,
+  "authority_delta": 0,
+  "allowed_handoff": [
+    "ROLE_ONLY",
+    "PUBLICLY_SAFE_BOUNDARY_METADATA",
+    "NO_PRIVATE_BYTES",
+    "NO_PRIVATE_CREDENTIALS",
+    "NO_PRIVATE_DATASET_MIRROR"
+  ],
+  "reason": "TOPA is public and the JANUS Habitat contract forbids mirroring private repository content into a public Habitat by default.",
+  "world_truth": false
+}
