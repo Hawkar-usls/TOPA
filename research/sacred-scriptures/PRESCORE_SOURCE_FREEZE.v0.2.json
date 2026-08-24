@@ -1,0 +1,108 @@
+{
+  "schema": "topa.sacred_scriptures.prescore_source_freeze.v0.2",
+  "date": "2026-08-24",
+  "status": "SOURCE_IDENTITIES_AND_LOCI_FROZEN__BYTE_HASHES_PENDING__SCORE_BLOCKED",
+  "supersedes": "PRESCORE_SOURCE_FREEZE.v0.1.json",
+  "supersession_reason": "Ancient-writing canary authority advanced from bridge v0.1 to v0.2 after discovery of current Linear A canonical state v2.32.",
+  "parent_test": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+  "rule": "No feature may be scored outside a frozen locus without a preregistered amendment. Unknown/damaged text remains UNKNOWN.",
+  "sources": [
+    {
+      "id": "F01_ATRAHASIS",
+      "language": "Akkadian",
+      "critical_baseline": "Nathan Wasserman, The Flood: The Akkadian Sources, OBO 290, 2020",
+      "source_url": "https://www.peeters-leuven.be/detail.php?search_key=9789042941731&series_number_str=290",
+      "witness_policy": "Use individual manuscript witnesses; do not create a synthetic composite witness for independence counting.",
+      "frozen_feature_blocks": [
+        ["C1 i 20'-35'", "warning / boat / preservation / initial construction"],
+        ["C1 ii 52\"-55\"", "closure / storm onset transition"],
+        ["C1 iii 5'-27'", "storm / destruction / immediate divine response"],
+        ["C1 iv 24'-27'", "duration / end-transition / damage boundary"],
+        ["C1 v 30\"-38\"", "offering / divine reaction"]
+      ],
+      "lacuna_rule": "Do not back-fill damaged/lost Atrahasis text from Gilgamesh XI for feature scoring.",
+      "hash_state": "PENDING_SOURCE_MATERIALIZATION"
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "language": "Akkadian",
+      "critical_baselines": ["Andrew R. George, The Babylonian Gilgamesh Epic, 2003", "Nathan Wasserman, The Flood: The Akkadian Sources, 2020"],
+      "public_line_crosscheck": "SOAS BAPLAR Standard Version Tablet XI, transcription based on George",
+      "source_url": "https://www.soas.ac.uk/baplar/recordings",
+      "frozen_primary_narrative_locus": "Tablet XI lines 8-203",
+      "frozen_feature_blocks": [
+        ["XI 8-20", "frame / Shuruppak / divine decision"],
+        ["XI 21-44", "warning / boat command / social cover story"],
+        ["XI 45-91", "design / construction / loading / departure preparation"],
+        ["XI 92-139", "closure / storm / destruction / duration / immediate aftermath"],
+        ["XI 140-156", "landfall / mountain / bird probes"],
+        ["XI 157-203", "sacrifice / divine response / dispute / survivor-status resolution"]
+      ],
+      "root_policy": "Manuscript witnesses remain separate for manuscript history but one Gilgamesh textual-family root for cross-cultural independence unless another question is preregistered.",
+      "hash_state": "PENDING_SOURCE_MATERIALIZATION"
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "language": "Biblical Hebrew",
+      "machine_baseline": "ETCBC BHSA release v1.8.1 / commit b112c16 / Text-Fabric data version 2021",
+      "source_url": "https://github.com/ETCBC/bhsa/releases/tag/v1.8.1",
+      "frozen_locus": "Genesis 6:5-9:17",
+      "analysis_modes": ["A_FINAL_RECEIVED_TEXT_BASELINE", "B_SOURCE_CRITICAL_PARTITION_SENSITIVITY"],
+      "sensitivity_rule": "No source partition is ground truth. Material dependence on a defensible partition => MODEL_DEPENDENT.",
+      "hash_state": "PENDING_BHSA_SLICE_HASH"
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "language": "Qur'anic Arabic",
+      "machine_baseline": "Tanzil Uthmani Quran Text Version 1.1",
+      "release_date": "2021-02-12",
+      "source_url": "https://tanzil.net/download/",
+      "license_url": "https://tanzil.net/docs/Text_License",
+      "frozen_primary_locus": "Q 11:25-49",
+      "source_layer_rule": "Source remains verbatim. Normalization/tokenization is a separately hashed derived layer.",
+      "secondary_noah_loci": "OUT_OF_PRIMARY_SCORE_UNTIL_SEPARATELY_FROZEN",
+      "historical_null": "Jewish, Christian and wider Late Antique contact/intertextuality remains active.",
+      "hash_state": "PENDING_VERBATIM_SLICE_HASH"
+    },
+    {
+      "id": "F05_SATAPATHA_MANU",
+      "language": "Vedic Sanskrit",
+      "machine_baseline": "GRETIL Satapatha-Brahmana, Madhyamdina recension, Book 1 (sb_01_u.htm)",
+      "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm",
+      "frozen_primary_locus": "Śatapatha-Brāhmaṇa 1.8.1.[1]-[10]",
+      "feature_map": [
+        ["1.8.1.[1]-[4]", "fish encounter / warning / boat preparation"],
+        ["1.8.1.[5]-[6]", "flood / boat / guidance / northern mountain / recession"],
+        ["1.8.1.[7]-[10]", "post-flood offering / repopulation"]
+      ],
+      "adjacent_text_policy": "1.8.1.[11]+ receives no Flood-feature credit without amendment.",
+      "provenance_conflict": {
+        "catalogue": "input by John Robert Gardner",
+        "book1_file_header": "Data input by H.S. Ananthanarayana and W. P. Lehman.",
+        "state": "OPEN_RECORDED_NO_SILENT_RESOLUTION",
+        "receipt": "GRETIL_PROVENANCE_CORRECTION.v0.1.json"
+      },
+      "hash_state": "PENDING_BOOK1_AND_SLICE_HASH"
+    }
+  ],
+  "prescore_canaries": {
+    "method_bridge": "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json",
+    "required": [
+      "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS",
+      "EGYPT_LEMMA_ID_CANARY_PASS",
+      "EGYPT_TEXT_ID_CANARY_PASS"
+    ]
+  },
+  "remaining_hard_gates": [
+    "MATERIALIZE_AND_HASH_ALL_FIVE_SOURCE_SLICES",
+    "BUILD_ANONYMIZED_FEATURE_PACKETS",
+    "DOUBLE_CODE_OR_INTER_RATER_CHECK",
+    "BUILD_AT_LEAST_TWO_MATCHED_CONTROLS_PER_FOCAL_TEXT",
+    "IMPLEMENT_DETERMINISTIC_SCORER",
+    "IMPLEMENT_SHUFFLED_FEATURE_AND_LABEL_NULLS",
+    "PASS_LINEAR_A_AND_EGYPT_CANARIES"
+  ],
+  "score_permission": false,
+  "score_unlock_condition": "All source-byte hashes, derived-layer hashes, anonymized packets, matched controls, nulls and current canaries are present and validators pass."
+}
