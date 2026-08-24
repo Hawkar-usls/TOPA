@@ -1,0 +1,82 @@
+{
+  "artifact_id": "TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.2",
+  "supersedes": "TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1",
+  "created_at_local": "2026-08-24T09:59:00+03:00",
+  "registry_layer": "TOPA",
+  "status": "ACTIVE_GENERAL_MATHEMATICAL_RESEARCH_MODE",
+  "canonical_home": "Hawkar-usls/TOPA",
+  "purpose": "Run falsification-first theorem/counterexample research while preserving proof-system, algorithmic, representation and data-structure costs as distinct gates.",
+  "core_law": "TOPA_MAY_GENERATE_ATTACK_AND_REPAIR_MATHEMATICS; FORMAL_PROMOTION_REQUIRES_CHECKABLE_DERIVATION_OR_COUNTEREXAMPLE.",
+  "roles": [
+    "MATHEMATICAL_SCOUT",
+    "ADVERSARIAL_REVIEWER",
+    "INVARIANT_GENERATOR",
+    "COUNTEREXAMPLE_GENERATOR",
+    "REDUCTION_AND_SIMULATION_SCOUT",
+    "ENCODING_AUDITOR",
+    "PARAMETER_AUDITOR",
+    "CERTIFICATE_PORTABILITY_AUDITOR",
+    "REPRESENTATION_COST_AUDITOR",
+    "DATA_STRUCTURE_COMPLEXITY_AUDITOR",
+    "FINITE_PROBE_DESIGNER"
+  ],
+  "new_v1_2_laws": [
+    "CHEAP_CERTIFICATE_VERIFICATION_DOES_NOT_IMPLY_CHEAP_CERTIFICATE_DISCOVERY",
+    "ONE_NEW_LOGICAL_PROOF_NODE_DOES_NOT_IMPLY_CONSTANT_SERIALIZED_CERTIFICATE_BYTES",
+    "FAST_INDEX_DOES_NOT_IMPLY_SMALL_INDEXED_CORPUS",
+    "POLYNOMIAL_WORK_IN_TRACE_OR_CACHE_SIZE_DOES_NOT_IMPLY_POLYNOMIAL_WORK_IN_ORIGINAL_INPUT_SIZE",
+    "SHORT_PROOF_EXISTENCE_DOES_NOT_IMPLY_DETERMINISTIC_POLYNOMIAL_PROOF_SEARCH",
+    "PORTABLE_CERTIFICATE_MUST_NOT_DEPEND_ON_PRODUCER_LOCAL_NODE_NUMBERING"
+  ],
+  "spiral": [
+    "FREEZE_CLAIM",
+    "NORMALIZE_DEFINITIONS_AND_OBJECT_IDENTITY",
+    "NORMALIZE_INPUT_PARAMETER",
+    "SPLIT_LOGICAL_SOUNDNESS_FROM_DISCOVERY_AND_REPRESENTATION_COST",
+    "SEARCH_POSITIVE_INVARIANT",
+    "SEARCH_NEGATIVE_COUNTERFAMILY",
+    "IMPLEMENT_STANDALONE_REPLAY_WHEN_APPROPRIATE",
+    "ATTACK_THE_INTERFACE_AFTER_FIRST_PASS",
+    "PRESERVE_FAILED_RUNS_AND_NARROW_PASSES",
+    "CHARGE_SERIALIZATION_INDEX_CACHE_AND_CERTIFICATE_COST",
+    "CLASSIFY_PROVED_REFUTED_CONDITIONAL_OPEN",
+    "ASCEND_AND_REATTACK"
+  ],
+  "current_application": {
+    "umbrella": "C025_POLICY0B_FAIR_PROOF_CARRYING_REASON_CALCULUS",
+    "provider_repo": "Hawkar-usls/Janus-Fundamentum",
+    "provider_pr": 214,
+    "umbrella_issue": 213,
+    "state_size_issue": 212,
+    "reason_discovery_issue": 215,
+    "closed_or_proved": {
+      "C024_ISSUE_211": "REFUTED_FOR_CURRENT_POLICY0A",
+      "C025_A_FAIR_SCHEDULER": "PROVED_IN_CURRENT_STATE_SIZE_AND_CI_PASS",
+      "C025_B_PORTABLE_REASON_SOUNDNESS": "PROVED_IN_SCOPE_AND_PROVIDER_CI_PASS"
+    },
+    "active_targets": [
+      "C025_C1_EXISTING_REASON_QUERY_COST",
+      "C025_C2_DETERMINISTIC_NEW_REASON_GENERATION_AND_PROOF_SEARCH",
+      "C025_E_TOTAL_REASON_CACHE_AND_PROOF_DAG_SIZE"
+    ]
+  },
+  "current_split": {
+    "reason_validity": "PROVED_IN_SCOPE",
+    "reason_portability": "PROVED_IN_SCOPE",
+    "existing_reason_query": "POLYNOMIAL_IN_EXPLICIT_CACHE_VOLUME__INPUT_RELATIVE_BOUND_CONDITIONAL",
+    "new_reason_generation": "OPEN",
+    "global_deterministic_proof_search": "OPEN",
+    "total_reason_cache_size_in_input_N": "OPEN",
+    "p_vs_np": "OPEN"
+  },
+  "promotion_gate": {
+    "formal_claim": "EXPLICIT_DEFINITIONS_AND_CHECKABLE_DERIVATION_REQUIRED",
+    "theorem_transfer": "SOURCE_OBJECT_AND_TARGET_SYSTEM_MUST_BE_IDENTICAL_OR_LINKED_BY_PROVED_SIMULATION_REDUCTION",
+    "algorithmic_claim": "PROOF_EXISTENCE_OR_P_SIMULATION_ALONE_IS_INSUFFICIENT",
+    "representation_claim": "ALL_ACTIVE_CACHE_INDEX_PROOF_AND_SERIALIZATION_BYTES_MUST_BE_CHARGED",
+    "finite_data": "MAY_VALIDATE_MECHANICS_OR_FALSIFY_FROZEN_FINITE_CLAIMS_BUT_NOT_PROVE_UNIVERSAL_ASYMPTOTICS",
+    "failed_attack": "DOES_NOT_PROVE_THE_RIVAL",
+    "survivor": "BECOMES_NEXT_PROOF_TARGET"
+  },
+  "claim_boundary": "No TOPA label, model consensus, finite replay, proof-system p-simulation, short-proof existence, or efficient verifier is by itself a proof of a deterministic polynomial-time SAT algorithm or a resolution of P versus NP."
+}
