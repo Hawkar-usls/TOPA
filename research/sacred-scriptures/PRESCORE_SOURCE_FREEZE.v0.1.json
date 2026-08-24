@@ -1,0 +1,111 @@
+{
+  "schema": "topa.sacred_scriptures.prescore_source_freeze.v0.1",
+  "date": "2026-08-24",
+  "status": "SOURCE_IDENTITIES_AND_LOCI_FROZEN__BYTE_HASHES_PENDING__SCORE_BLOCKED",
+  "parent_test": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+  "rule": "No feature may be scored outside a frozen locus without a new preregistered amendment. Unknown/damaged text remains UNKNOWN.",
+  "sources": [
+    {
+      "id": "F01_ATRAHASIS",
+      "language": "Akkadian",
+      "critical_baseline": "Nathan Wasserman, The Flood: The Akkadian Sources, OBO 290, 2020",
+      "source_url": "https://www.peeters-leuven.be/detail.php?search_key=9789042941731&series_number_str=290",
+      "witness_policy": "Use individual manuscript witnesses; do not create a synthetic composite Atrahasis witness for independence counting.",
+      "frozen_feature_blocks": [
+        {"locus": "C1 i 20'-35'", "role": "warning / boat command / life-preservation and initial construction features"},
+        {"locus": "C1 ii 52\"-55\"", "role": "boat closure / storm onset transition"},
+        {"locus": "C1 iii 5'-27'", "role": "storm, destruction and immediate divine-response features"},
+        {"locus": "C1 iv 24'-27'", "role": "duration/end-transition evidence and damage boundary"},
+        {"locus": "C1 v 30\"-38\"", "role": "post-flood offering and divine reaction"}
+      ],
+      "lacuna_rule": "The long damaged/lost transition before the surviving sacrifice passage may not be back-filled from Gilgamesh XI. Parallel reconstruction, if discussed, is a separate annotation with zero direct feature credit.",
+      "hash_state": "PENDING_SOURCE_MATERIALIZATION"
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "language": "Akkadian",
+      "critical_baselines": [
+        "Andrew R. George, The Babylonian Gilgamesh Epic, 2003",
+        "Nathan Wasserman, The Flood: The Akkadian Sources, 2020"
+      ],
+      "public_line_crosscheck": "SOAS BAPLAR Standard Version Tablet XI, transcription based on George",
+      "source_url": "https://www.soas.ac.uk/baplar/recordings",
+      "frozen_primary_narrative_locus": "Tablet XI lines 8-203",
+      "frozen_feature_blocks": [
+        {"locus": "XI 8-20", "role": "frame / Shuruppak / divine decision"},
+        {"locus": "XI 21-44", "role": "warning / destroy house-build boat / preserve life / social cover story begins"},
+        {"locus": "XI 45-91", "role": "boat design, construction, loading and departure preparation"},
+        {"locus": "XI 92-139", "role": "closure, storm, destruction, duration and immediate aftermath"},
+        {"locus": "XI 140-156", "role": "landfall / mountain / bird probes"},
+        {"locus": "XI 157-203", "role": "sacrifice, divine response, dispute and survivor-status resolution"}
+      ],
+      "root_policy": "Manuscript witnesses may be tracked separately but count as one Gilgamesh textual-family root for cross-cultural independence unless an explicit test asks a manuscript-history question.",
+      "hash_state": "PENDING_SOURCE_MATERIALIZATION"
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "language": "Biblical Hebrew",
+      "machine_baseline": "ETCBC BHSA release v1.8.1 / commit b112c16 / Text-Fabric data version 2021",
+      "source_url": "https://github.com/ETCBC/bhsa/releases/tag/v1.8.1",
+      "frozen_locus": "Genesis 6:5-9:17",
+      "analysis_modes": [
+        "A_FINAL_RECEIVED_TEXT_BASELINE",
+        "B_SOURCE_CRITICAL_PARTITION_SENSITIVITY"
+      ],
+      "sensitivity_rule": "No J/P or other source partition is treated as ground truth. If a result changes materially across defensible partitions, mark MODEL_DEPENDENT.",
+      "translation_rule": "Translations may support human inspection but carry zero lexical-match credit unless the Hebrew layer supports the feature.",
+      "hash_state": "PENDING_BHSA_SLICE_HASH"
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "language": "Qur'anic Arabic",
+      "machine_baseline": "Tanzil Uthmani Quran Text Version 1.1",
+      "release_date": "2021-02-12",
+      "source_url": "https://tanzil.net/download/",
+      "license_url": "https://tanzil.net/docs/Text_License",
+      "frozen_primary_locus": "Q 11:25-49",
+      "source_layer_rule": "Store/cite the source verbatim. Changing the Tanzil text is forbidden by its terms; normalization and tokenization must be derived layers with separate hashes.",
+      "secondary_noah_loci": "OUT_OF_PRIMARY_SCORE_UNTIL_SEPARATELY_FROZEN",
+      "historical_null": "Jewish, Christian and wider Late Antique contact/intertextuality remains an active dependence null and blocks naive independence counting.",
+      "hash_state": "PENDING_VERBATIM_SLICE_HASH"
+    },
+    {
+      "id": "F05_SATAPATHA_MANU",
+      "language": "Vedic Sanskrit",
+      "machine_baseline": "GRETIL Satapatha-Brahmana, Madhyamdina recension, Book 1 (sb_01_u.htm)",
+      "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm",
+      "frozen_primary_locus": "Śatapatha-Brāhmaṇa 1.8.1.[1]-[10]",
+      "feature_map": [
+        {"locus": "1.8.1.[1]-[4]", "role": "Manu/fish encounter, warning and boat preparation"},
+        {"locus": "1.8.1.[5]-[6]", "role": "flood, boat, fish guidance, northern mountain and recession"},
+        {"locus": "1.8.1.[7]-[10]", "role": "post-flood offering and repopulation sequence"}
+      ],
+      "adjacent_text_policy": "1.8.1.[11]+ is adjacent ritual exposition and receives no Flood-feature credit unless a later amendment explicitly adds a feature requiring it.",
+      "provenance_conflict": {
+        "catalogue": "GRETIL catalogue says input by John Robert Gardner",
+        "book1_file_header": "Book 1 file says data input by H.S. Ananthanarayana and W. P. Lehman",
+        "state": "OPEN_RECORDED_NO_SILENT_RESOLUTION"
+      },
+      "hash_state": "PENDING_BOOK1_AND_SLICE_HASH"
+    }
+  ],
+  "prescore_canaries": {
+    "method_bridge": "ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json",
+    "required": [
+      "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "EGYPT_LEMMA_ID_CANARY_PASS",
+      "EGYPT_TEXT_ID_CANARY_PASS"
+    ]
+  },
+  "remaining_hard_gates": [
+    "MATERIALIZE_AND_HASH_ALL_FIVE_SOURCE_SLICES",
+    "BUILD_ANONYMIZED_FEATURE_PACKETS",
+    "DOUBLE_CODE_OR_INTER_RATER_CHECK",
+    "BUILD_AT_LEAST_TWO_MATCHED_CONTROLS_PER_FOCAL_TEXT",
+    "IMPLEMENT_DETERMINISTIC_SCORER",
+    "IMPLEMENT_SHUFFLED_FEATURE_AND_LABEL_NULLS",
+    "PASS_LINEAR_A_AND_EGYPT_CANARIES"
+  ],
+  "score_permission": false,
+  "score_unlock_condition": "All source-byte hashes, derived-layer hashes, anonymized packets, matched controls, nulls and canaries are present and validator passes."
+}
