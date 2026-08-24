@@ -1,7 +1,7 @@
 {
   "schema": "topa.sacred_scriptures.source_seal_run.v0.1",
-  "executed_at_utc": "2026-08-24T14:49:54.827811+00:00",
-  "status": "SOURCE_SEAL_FAILURE",
+  "executed_at_utc": "2026-08-24T14:53:09.581363+00:00",
+  "status": "FIVE_OF_FIVE_SEALED",
   "required_source_ids": [
     "F01_ATRAHASIS",
     "F02_GILGAMESH_XI",
@@ -38,6 +38,150 @@
       "slice_sha256": "5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee",
       "content_slice_sha256": null,
       "content_slice_reason": "PDF critical edition retained as immutable source; exact line ranges remain the locus authority.",
+      "status": "SEALED"
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "source": "ETCBC BHSA Text-Fabric 2021",
+      "source_repository": "ETCBC/bhsa",
+      "source_commit": "b112c161cfd21eae403d51a2733740d8743460e7",
+      "source_transport": "RAW_GITHUB_FULL_COMMIT_FILES_OTEXT_DERIVED",
+      "source_dependency_policy": "All Text-Fabric format dependencies are derived from frozen otext.tf and individually SHA-256 sealed.",
+      "source_substrate_manifest": [
+        {
+          "path": "tf/2021/book.tf",
+          "bytes": 199917,
+          "sha256": "2f84c9493bb9a553bb40d7955472673b85933fe0af116299036d33e09d75702a",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/book.tf"
+        },
+        {
+          "path": "tf/2021/chapter.tf",
+          "bytes": 66379,
+          "sha256": "a09f8a2df52e7d2cec99b251852f9f88a6ecc0ea4a37ad5bd4a7fd3f3f3b2fc9",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/chapter.tf"
+        },
+        {
+          "path": "tf/2021/g_cons.tf",
+          "bytes": 1624791,
+          "sha256": "39161c1ba2dc44f19f070fa320cb00dc2c51bbe566f8da4495749b769d1e06a4",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_cons.tf"
+        },
+        {
+          "path": "tf/2021/g_cons_utf8.tf",
+          "bytes": 2938233,
+          "sha256": "1b5a3e41fdadb63e162404fadf83bbebc1ff1a1e016cdee321701ce863c5c87b",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_cons_utf8.tf"
+        },
+        {
+          "path": "tf/2021/g_lex.tf",
+          "bytes": 2304909,
+          "sha256": "3c81d126a2fae0ca67aad0d923c37b3ddfd6b741cf93e96760d196322056b828",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_lex.tf"
+        },
+        {
+          "path": "tf/2021/g_lex_utf8.tf",
+          "bytes": 3995396,
+          "sha256": "4026b48c461ed5f73d6fd39a36927ae0435f32ddc7abdcba1d00993e1fe68669",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_lex_utf8.tf"
+        },
+        {
+          "path": "tf/2021/g_word.tf",
+          "bytes": 3295014,
+          "sha256": "191726a37db8976ebead3aee8cc01f3520d41bf7ba2fd077b4ca08604e953ca4",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_word.tf"
+        },
+        {
+          "path": "tf/2021/g_word_utf8.tf",
+          "bytes": 5392356,
+          "sha256": "504330f4b4dbcfac628e45998796bcf0ba58b0c905c30a8ebdec088b10d692e0",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/g_word_utf8.tf"
+        },
+        {
+          "path": "tf/2021/lex.tf",
+          "bytes": 1792859,
+          "sha256": "2469664dc71bcde35a916d6a85453a5567cff3dcbc3e3323204e1120bc5ed25a",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/lex.tf"
+        },
+        {
+          "path": "tf/2021/lex_utf8.tf",
+          "bytes": 2741098,
+          "sha256": "21f0dde6d79cdde12558b88ae5e07b5717b1a5f7566d37847c57ff7b53b74627",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/lex_utf8.tf"
+        },
+        {
+          "path": "tf/2021/oslots.tf",
+          "bytes": 13526306,
+          "sha256": "c4efaeed8047d4e75834cc94856d79eacc7a146aea01c34d8be88497d8fa303b",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/oslots.tf"
+        },
+        {
+          "path": "tf/2021/otext.tf",
+          "bytes": 958,
+          "sha256": "20c1c41bc602804ecafbf56bfc88541b0af92afcc16fb594db6acfc6f3a846e9",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/otext.tf"
+        },
+        {
+          "path": "tf/2021/otype.tf",
+          "bytes": 667,
+          "sha256": "bb5da974a3b1dd7ff9ddab54dfb533059442642ab830b832a49eea8670aaa920",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/otype.tf"
+        },
+        {
+          "path": "tf/2021/qere.tf",
+          "bytes": 25373,
+          "sha256": "3aa63d0061ffe37d22f07f105c187cc96507f859e1867ff2b3b283de4ee2393f",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/qere.tf"
+        },
+        {
+          "path": "tf/2021/qere_trailer.tf",
+          "bytes": 12677,
+          "sha256": "a0ee4a58cde242bc5375cb6959c5cbc394b6a7a56ec39f187fcff44aa2c37e26",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/qere_trailer.tf"
+        },
+        {
+          "path": "tf/2021/qere_trailer_utf8.tf",
+          "bytes": 12739,
+          "sha256": "6aed11605413792577afe76f1f05a05d5bb8f22b47375971e53295aa1e8043e0",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/qere_trailer_utf8.tf"
+        },
+        {
+          "path": "tf/2021/qere_utf8.tf",
+          "bytes": 36561,
+          "sha256": "970fd6e1099e9a8c08ccaa35af896f963d3ad7c7e153fbf833fb36b84efa321e",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/qere_utf8.tf"
+        },
+        {
+          "path": "tf/2021/trailer.tf",
+          "bytes": 789147,
+          "sha256": "d41a18f54482fc20c615cd207091a40ff8cbd667752b6da25f04fe209f109663",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/trailer.tf"
+        },
+        {
+          "path": "tf/2021/trailer_utf8.tf",
+          "bytes": 834560,
+          "sha256": "cc9120b92248318cd335a088381e464c0650976ff39027ebe87a99b664567899",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/trailer_utf8.tf"
+        },
+        {
+          "path": "tf/2021/verse.tf",
+          "bytes": 61897,
+          "sha256": "ad850b19aae6ecb31c75fa4ff80ad956835e5089d60d37c7d73aa0d5a0893b84",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/verse.tf"
+        },
+        {
+          "path": "tf/2021/voc_lex_utf8.tf",
+          "bytes": 4048628,
+          "sha256": "e67e3a0d67205fbb8508faabfc210c59e1475465084ea8bfe88fa160bfb628b3",
+          "immutable_url": "https://raw.githubusercontent.com/ETCBC/bhsa/b112c161cfd21eae403d51a2733740d8743460e7/tf/2021/voc_lex_utf8.tf"
+        }
+      ],
+      "source_substrate_sha256": "97d258176ebbbc3e49dd3e5060cef61df8d8daf63e474cbc4ea4639e36920b3a",
+      "frozen_locus_descriptor": "Genesis 6:5-9:17",
+      "slice_seal_type": "NFC_UTF8_TEXT_SLICE_SHA256",
+      "slice_bytes": 19054,
+      "slice_sha256": "2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2",
+      "verse_count": 81,
+      "normalization": "NFC; LF; each row chapter:verse<TAB>g_word_utf8+trailer_utf8",
       "status": "SEALED"
     },
     {
@@ -78,15 +222,10 @@
       "status": "SEALED"
     }
   ],
-  "sealed_count": 4,
+  "sealed_count": 5,
   "required_count": 5,
-  "errors": [
-    {
-      "stage": "BHSA",
-      "error": "KeyError: 'g_cons'"
-    }
-  ],
+  "errors": [],
   "rights_policy": "Receipt stores hashes/provenance only; no source text is mirrored by this artifact.",
-  "blind_packet_permission_from_sources": false,
+  "blind_packet_permission_from_sources": true,
   "score_permission": false
 }
