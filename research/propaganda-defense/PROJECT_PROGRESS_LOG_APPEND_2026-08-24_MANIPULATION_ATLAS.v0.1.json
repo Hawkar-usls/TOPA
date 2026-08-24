@@ -1,0 +1,12 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.1",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "policy": {"does_not_rewrite_prior_logs":true,"negative_results_preserved":true,"method_pass_is_not_world_truth":true},
+  "entries": [
+    {"seq":13,"event":"MANIPULATION_ATLAS_INDEX_FROZEN","status":"DONE","artifact":"MANIPULATION_ATLAS_INDEX.v0.1.json","results":{"technique_total":138,"era_families":10,"coverage_claim":"NOT_EXHAUSTIVE"},"claim_effect":"DEFENSIVE_TAXONOMY_ONLY"},
+    {"seq":14,"event":"COMPACT_138_TECHNIQUE_REGISTRY_FROZEN","status":"DONE","artifact":"MANIPULATION_TECHNIQUE_REGISTRY_COMPACT.v0.1.json","range":"M001-M138","coverage":"LOW_TECH_SOCIAL_MECHANISMS_TO_GENERATIVE_AI","claim_effect":"DETECTION_VOCABULARY_ONLY"},
+    {"seq":15,"event":"SACRED_TEXT_FALSE_POSITIVE_AND_ANACHRONISM_FIREWALL_ADDED","status":"DONE","rules":["TECHNIQUE_PRESENT != PROPAGANDA","TECHNIQUE_PRESENT != INTENT","TECHNIQUE_PRESENT != EFFECT","SACRED_TEXT_RHETORIC != PROPAGANDA_BY_DEFAULT","COMPARE_TO_GENRE_MATCHED_NON_SACRED_BASE_RATES"],"claim_effect":"METHOD_GUARDRAIL_ONLY"}
+  ],
+  "current_snapshot": {"phase":"ATLAS_EXPANSION_AND_CROSS_CORPUS_CALIBRATION","technique_registry":"138 / 10 ERA FAMILIES","operational_guidance":"NONE_DEFENSIVE_ONLY","score_permission":false,"next_legal_action":"ADD_DETECTOR_DEFINITIONS_AND_SOURCE_ANCHORS_PER_TECHNIQUE_THEN_CALIBRATE_FALSE_POSITIVES_ON_NON_SACRED_CORPORA"}
+}
