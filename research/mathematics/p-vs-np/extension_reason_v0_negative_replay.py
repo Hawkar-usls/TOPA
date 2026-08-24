@@ -32,143 +32,95 @@ def rebuild(
     root_fingerprint=None,
 ) -> ExtensionReasonCertificate:
     return ExtensionReasonCertificate(
-        root_fingerprint=(
-            certificate.root_fingerprint
-            if root_fingerprint is None
-            else root_fingerprint
-        ),
+        root_fingerprint=(certificate.root_fingerprint if root_fingerprint is None else root_fingerprint),
         definitions=(certificate.definitions if definitions is None else definitions),
-        advertised_clause=(
-            certificate.advertised_clause
-            if advertised_clause is None
-            else advertised_clause
-        ),
+        advertised_clause=(certificate.advertised_clause if advertised_clause is None else advertised_clause),
         final_node=(certificate.final_node if final_node is None else final_node),
         nodes=(certificate.nodes if nodes is None else nodes),
     )
 
 
 def first_extension_axiom(certificate: ExtensionReasonCertificate) -> int:
-    return next(
-        index
-        for index, node in enumerate(certificate.nodes)
-        if node.kind == "EXTENSION_AXIOM"
-    )
+    return next(index for index, node in enumerate(certificate.nodes) if node.kind == "EXTENSION_AXIOM")
 
 
 def first_resolution(certificate: ExtensionReasonCertificate) -> int:
-    return next(
-        index
-        for index, node in enumerate(certificate.nodes)
-        if node.kind == "RESOLVE"
-    )
+    return next(index for index, node in enumerate(certificate.nodes) if node.kind == "RESOLVE")
 
 
 def self_test() -> None:
     root, certificate = valid_fixture()
     assert verify_certificate(root, certificate)
 
-    # 1. Freshness: an extension id may not collide with a root variable.
-    root_collision = rebuild(
-        certificate,
-        definitions=(ExtensionDef(1, 2, 3),),
-    )
+    root_collision = rebuild(certificate, definitions=(ExtensionDef(1, 2, 3),))
     assert not verify_certificate(root, root_collision)
 
-    # 2. Freshness: an extension id may not be defined twice, even if the
-    # second definition is syntactically different.
     duplicate_extension_id = rebuild(
         certificate,
-        definitions=(
-            ExtensionDef(5, 1, 2),
-            ExtensionDef(5, 3, 4),
-        ),
+        definitions=(ExtensionDef(5, 1, 2), ExtensionDef(5, 3, 4)),
     )
     assert not verify_certificate(root, duplicate_extension_id)
 
-    # 3. Canonical ordering/nonfreshness: extension ids must strictly increase.
     descending_extension_ids = rebuild(
         certificate,
-        definitions=(
-            ExtensionDef(6, 1, 2),
-            ExtensionDef(5, 3, 4),
-        ),
+        definitions=(ExtensionDef(6, 1, 2), ExtensionDef(5, 3, 4)),
     )
     assert not verify_certificate(root, descending_extension_ids)
 
-    # 4. Forward dependency: e5 cannot depend on e6 before e6 exists.
     forward_dependency = rebuild(
         certificate,
-        definitions=(
-            ExtensionDef(5, 1, 6),
-            ExtensionDef(6, 1, 2),
-        ),
+        definitions=(ExtensionDef(5, 1, 6), ExtensionDef(6, 1, 2)),
     )
     assert not verify_certificate(root, forward_dependency)
 
-    # 5. Explicit cyclic attempt.  Any finite topological ordering of this
-    # pair must expose a forward reference; v0 therefore rejects it.
     cyclic_dependency = rebuild(
         certificate,
-        definitions=(
-            ExtensionDef(5, 1, 6),
-            ExtensionDef(6, 2, 5),
-        ),
+        definitions=(ExtensionDef(5, 1, 6), ExtensionDef(6, 2, 5)),
     )
     assert not verify_certificate(root, cyclic_dependency)
 
-    # 6. Extension-variable leak: an advertised reusable clause must be over
-    # root variables only.
     ext_builder = Builder(root, [ExtensionDef(5, 1, 2)])
-    ext_node = ext_builder.extension_axiom(0, 2)
-    leaked = ext_builder.export(ext_node)
+    leaked = ext_builder.export(ext_builder.extension_axiom(0, 2))
     assert any(abs(literal) == 5 for literal in leaked.advertised_clause)
     assert not verify_certificate(root, leaked)
 
-    # 7. Tampered definitional axiom bytes must be rejected even when the
-    # definition index and slot metadata are unchanged.
     nodes = list(certificate.nodes)
     ext_index = first_extension_axiom(certificate)
-    ext_node = nodes[ext_index]
-    nodes[ext_index] = replace(ext_node, clause=(999,))
-    tampered_extension_axiom = rebuild(certificate, nodes=tuple(nodes))
-    assert not verify_certificate(root, tampered_extension_axiom)
+    nodes[ext_index] = replace(nodes[ext_index], clause=(999,))
+    assert not verify_certificate(root, rebuild(certificate, nodes=tuple(nodes)))
 
-    # 8. Invalid extension slot must be rejected.
     nodes = list(certificate.nodes)
     ext_index = first_extension_axiom(certificate)
-    ext_node = nodes[ext_index]
-    nodes[ext_index] = replace(ext_node, slot=3)
-    tampered_extension_slot = rebuild(certificate, nodes=tuple(nodes))
-    assert not verify_certificate(root, tampered_extension_slot)
+    nodes[ext_index] = replace(nodes[ext_index], slot=3)
+    assert not verify_certificate(root, rebuild(certificate, nodes=tuple(nodes)))
 
-    # 9. A malformed Resolution claim must be rejected.
     nodes = list(certificate.nodes)
     resolution_index = first_resolution(certificate)
-    resolution_node = nodes[resolution_index]
-    nodes[resolution_index] = replace(resolution_node, clause=(777,))
-    tampered_resolution = rebuild(certificate, nodes=tuple(nodes))
-    assert not verify_certificate(root, tampered_resolution)
+    nodes[resolution_index] = replace(nodes[resolution_index], clause=(777,))
+    assert not verify_certificate(root, rebuild(certificate, nodes=tuple(nodes)))
 
-    # 10. The advertised clause is bound to the final proof node.
-    advertised_tamper = rebuild(certificate, advertised_clause=(3,))
-    assert not verify_certificate(root, advertised_tamper)
+    assert not verify_certificate(root, rebuild(certificate, advertised_clause=(3,)))
 
-    # 11. Wrong root binding must fail even if all local node ids are valid.
     wrong_root = rebuild(
         certificate,
         root_fingerprint=formula_fingerprint(canonical_cnf([(1,), (-1,)])),
     )
     assert not verify_certificate(root, wrong_root)
 
-    # 12. Serialized proof garbage that is unreachable from the advertised
-    # final node is rejected; portable size cannot hide irrelevant payload.
     garbage = rebuild(
         certificate,
-        nodes=certificate.nodes
-        + (ProofNode("ROOT_AXIOM", root[0], source_clause=0),),
+        nodes=certificate.nodes + (ProofNode("ROOT_AXIOM", root[0], source_clause=0),),
     )
     assert not verify_certificate(root, garbage)
+
+    # A syntactically valid extra definition that is neither referenced by a
+    # reachable extension axiom nor needed by a used definition dependency is
+    # certificate payload garbage and must be rejected.
+    unused_definition = rebuild(
+        certificate,
+        definitions=certificate.definitions + (ExtensionDef(6, 3, 4),),
+    )
+    assert not verify_certificate(root, unused_definition)
 
     print("C025_B2_NEGATIVE_FRESH_ROOT_COLLISION = PASS")
     print("C025_B2_NEGATIVE_DUPLICATE_EXTENSION_ID = PASS")
@@ -181,7 +133,8 @@ def self_test() -> None:
     print("C025_B2_NEGATIVE_RESOLUTION_TAMPER = PASS")
     print("C025_B2_NEGATIVE_ADVERTISED_CLAUSE_TAMPER = PASS")
     print("C025_B2_NEGATIVE_ROOT_BINDING = PASS")
-    print("C025_B2_NEGATIVE_UNREACHABLE_GARBAGE = PASS")
+    print("C025_B2_NEGATIVE_UNREACHABLE_NODE_GARBAGE = PASS")
+    print("C025_B2_NEGATIVE_UNUSED_DEFINITION_GARBAGE = PASS")
     print(
         "claim_boundary = adversarial verifier admission only; universal proof "
         "size, extension discovery, total representation and proof search remain open"
