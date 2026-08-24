@@ -6,14 +6,18 @@ on:
       - 'research/mathematics/**'
       - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
       - 'data/TOPA-P-VS-NP-*.json'
+      - 'data/TOPA-C025-*.json'
       - 'data/JANUS-P-VS-NP-*.json'
+      - 'registry/TOPA-CANONICAL-HOME-*.json'
       - '.github/workflows/validate-mathematics.yml'
   pull_request:
     paths:
       - 'research/mathematics/**'
       - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
       - 'data/TOPA-P-VS-NP-*.json'
+      - 'data/TOPA-C025-*.json'
       - 'data/JANUS-P-VS-NP-*.json'
+      - 'registry/TOPA-CANONICAL-HOME-*.json'
       - '.github/workflows/validate-mathematics.yml'
 
 permissions:
@@ -37,7 +41,9 @@ jobs:
 
           targets = sorted(Path('data').glob('TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'))
           targets += sorted(Path('data').glob('TOPA-P-VS-NP-*.json'))
+          targets += sorted(Path('data').glob('TOPA-C025-*.json'))
           targets += sorted(Path('data').glob('JANUS-P-VS-NP-*.json'))
+          targets += sorted(Path('registry').glob('TOPA-CANONICAL-HOME-*.json'))
           if not targets:
               raise SystemExit('no mathematical JSON receipts found')
           for path in targets:
@@ -62,3 +68,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python policy0b_fair_scheduler_probe.py
+
+      - name: Replay C025-B proof-carrying reason verifier
+        run: |
+          cd research/mathematics/p-vs-np
+          python proof_carrying_reason.py
