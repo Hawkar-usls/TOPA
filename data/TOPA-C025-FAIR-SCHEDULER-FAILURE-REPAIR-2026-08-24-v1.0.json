@@ -1,0 +1,41 @@
+{
+  "artifact_id": "TOPA-C025-FAIR-SCHEDULER-FAILURE-REPAIR-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T09:40:51+03:00",
+  "target": "C025_A_FAIR_SCHEDULER_IMPLEMENTATION",
+  "principle": "FAILED_PREREGISTERED_RUNS_STAY_FAILED_AND_ARE_PRESERVED",
+  "first_run": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "pr": 214,
+    "workflow": "Validate C025 Fair Scheduler",
+    "run_id": 32698179359,
+    "conclusion": "FAILURE",
+    "failed_assertion": "expected total attempts = p^2 + 1",
+    "diagnosis": "the starvation fixture contains two eligible adversarial pivots, d and a, because both occur with both polarities; a complete fair scheduler must charge p^2 attempts for each, not silently count only d",
+    "mathematical_effect": "NO_FAILURE_OF_SUM_X_PX_QX_LE_L2_OVER_4_LEMMA",
+    "policy0a_effect": "NONE; Policy-0A still stops inside first pivot d and never reaches a",
+    "lesson": "FAIR_SCHEDULING_REQUIRES_EXHAUSTIVE_ELIGIBLE_PIVOT_ACCOUNTING"
+  },
+  "repair": {
+    "type": "FIX_TEST_EXPECTATION_AND_EXPLICITLY_TRACK_BOTH_SINK_PIVOTS",
+    "algorithm_changed": false,
+    "lemma_changed": false,
+    "branch_commit": "c5fdb93de319a70a1ec2fae2d2bcb3630f35d0b1"
+  },
+  "second_run": {
+    "workflow": "Validate C025 Fair Scheduler",
+    "run_id": 32698305504,
+    "conclusion": "SUCCESS",
+    "fixture": {
+      "literal_occurrences": 484,
+      "total_attempts": 12801,
+      "eligible_pivots": [1, 2, 163],
+      "sink_d_attempts": 6400,
+      "sink_a_attempts": 6400,
+      "core_attempts": 1,
+      "distinct_non_tautological_candidates": 1
+    },
+    "claim_ceiling": "scheduler-only; resolvent retention, state-size and global polynomiality remain open"
+  },
+  "status": "C025_A_SCHEDULER_MECHANICS_PASS_AFTER_PRESERVED_FIXTURE_ACCOUNTING_REPAIR",
+  "p_vs_np": "OPEN"
+}
