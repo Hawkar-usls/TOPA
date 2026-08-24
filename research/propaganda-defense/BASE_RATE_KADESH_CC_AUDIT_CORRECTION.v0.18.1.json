@@ -1,0 +1,74 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_cc_audit_correction.v0.18.1",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_AND_METHOD_CORRECTION_PRESERVED",
+  "scope": "BR03_KADESH_COMMON_CRAWL_QUERY_AUDIT_INTERPRETATION",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32774268355,
+    "github_actions_job_id": 97581575748,
+    "artifact_id": 9537445300,
+    "artifact_sha256": "d8b445a7b44d78106d81016b3d8ece01c7c3e8221e0c083431f7de299c3b35b9"
+  },
+  "raw_observations": {
+    "documented_exact_positive_control": "PASS",
+    "exact_positive_record_url": "https://www.example.com/",
+    "prefix_positive_control": "HTTP_503",
+    "wildcard_positive_control": "HTTP_503",
+    "historical_index_health": "0/8",
+    "historical_failures": "HTTP_503_OR_TIMEOUT",
+    "candidate_cdx_coordinates": 0,
+    "wayback_retry_document_id_493951399_capture_count": 2
+  },
+  "reverse_audit_corrections": [
+    {
+      "issue": "The script printed QUERY_BUILDER_VALIDATED=true because exact positive control passed even though historical index health was 0/8.",
+      "correction": "Authority classification is MEASUREMENT_INFRASTRUCTURE_INCONCLUSIVE for historical Common Crawl sampling. No negative archive inference is permitted."
+    },
+    {
+      "issue": "When wildcard/prefix controls failed, EXACT_ONLY fallback queried the numeric document root without the already frozen slug.",
+      "correction": "Those target zeroes are QUERY_CONSTRUCTION_INVALID_FOR_EXACT_MODE and carry zero evidentiary weight."
+    }
+  ],
+  "wayback_new_signal": {
+    "document_id": "493951399",
+    "captures": [
+      {
+        "timestamp": "20250825141753",
+        "original": "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh",
+        "digest": "FZ4K7Y3KNMXXSNOHCFTP5USDMW2YOVSY",
+        "length": "229746"
+      },
+      {
+        "timestamp": "20260111160515",
+        "original": "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh",
+        "digest": "AX5KLLFPDD65YEFQ3ERSB4LLGWZOE3EY",
+        "length": "216639"
+      }
+    ],
+    "classification": "EXACT_DOCUMENT_ID_ARCHIVE_COORDINATES_READY_FOR_BOUNDED_SNAPSHOT_TEST"
+  },
+  "admission": {
+    "common_crawl_negative_inference_allowed": false,
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Fetch only the two newly resolved Wayback snapshots for frozen Scribd document ID 493951399, hash the archived responses, and test Wilson/AJSL identity plus frozen p.266-277 Poem and p.278 Record boundary markers. Persist no source prose. Pause Common Crawl until a later health-validated replay rather than hammering a 503/timeout surface.",
+  "laws": [
+    "SCRIPT_SELF_REPORT != AUTHORITY_WITHOUT_REVERSE_AUDIT",
+    "HISTORICAL_HEALTH_0_OF_8 => INFRASTRUCTURE_INCONCLUSIVE",
+    "INVALID_EXACT_QUERY != NEGATIVE_EVIDENCE",
+    "ARCHIVE_COORDINATE != LOCUS_CONTENT",
+    "ARCHIVE_COPY != INDEPENDENT_WITNESS",
+    "NO_SEMANTIC_CODING",
+    "NO_SCORE"
+  ]
+}
