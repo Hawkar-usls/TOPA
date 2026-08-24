@@ -1,0 +1,31 @@
+{
+  "schema": "janus.topa.account_wide_map.v1",
+  "owner": "Hawkar-usls",
+  "baseline_before_topa_repository": 46,
+  "current_owned_repository_count_observed": 47,
+  "current_constellation_includes_TOPA": true,
+  "audit_scope": "ALL_ACCESSIBLE_OWNER_REPOSITORIES",
+  "tree_snapshot_status": "BASELINE_COMPLETE_BEFORE_TOPA_REPO_CREATION",
+  "full_file_content_status": "IN_PROGRESS_ACCOUNT_WIDE",
+  "topa_repository_status": "NEW_DEDICATED_NODE",
+  "roles": {
+    "CANONICAL_AND_RUNTIME_CORE": ["TOPA","Janus_Genesis","Janus-Demiurge","janus-distributed-ai-swarm","Demi_Head","Hrain","iNaiHR","AIFC","Janus-Fundamentum","Fast-CAT-SHAiTan","janus-meta-registry"],
+    "OBSERVATION_AND_SIGNAL_RESEARCH": ["Janus-Cosmos","SkinGPT","Echo-Pyramid","The-Voice-of-Janus","SCOBY-D0"],
+    "METHODOLOGICAL_DONORS": ["tranception","janus-io-public","janus-io"],
+    "SYMBOLIC_OR_HYPOTHESIS_CONTEXT_ONLY": ["aura-oracle-tg","janus-lapis","DIVINE_REALM","JanusMMORPG","ATOM-RPG","janus-first-followers-club-"],
+    "UPSTREAM_OR_REFERENCE_SURFACES": ["player","RadioPlayerV3","M5Unit-ENV","AI-Cardputer-adv-A-Portable-AI-Assistant","arduino-ide","Cardputer-Game-Station-Emulators","Arduino-AI-Chat-Library","emoji","xiaozhi-esp32","ESP32-TWAI-CAN","vcmi","lineara.xyz","Linear-A-decipherment-programme","clawdbot"],
+    "LEGACY_OR_INTERFACE_CONTEXT": ["BFain","Simptomat","SLOT","SSlot","-Terminal-for-Janus","Janus","ATOM-ELITE-1989---M5stack-ATOMS3R-2026-","Hawkar-usls"]
+  },
+  "global_provenance_rules": [
+    "OWNED_REPOSITORY != ORIGINAL_AUTHORSHIP_OF_ALL_CONTENT",
+    "UPSTREAM_MIRROR != JANUS_ORIGINAL_RESEARCH",
+    "COPY_COUNT != SOURCE_COUNT",
+    "MIRROR != INDEPENDENT_REPLICATION",
+    "IDENTICAL_BLOB_SHA_MAY_BE_DEDUPLICATED_FOR_CONTENT_REVIEW_BUT_EVERY_PATH_REMAINS_ACCOUNTED"
+  ],
+  "special_completed_surfaces": {
+    "tranception": {"snapshot":"e786ca75ac30afb14e45edffc92aa49a05a9da4f","file_level_coverage":"42/42","classification":"METHODOLOGICAL_DONOR_ONLY"},
+    "JanusMMORPG": {"classification":"GAME_RUNTIME_GATEWAY","paranormal_evidence_surface":false}
+  },
+  "world_truth": false
+}
