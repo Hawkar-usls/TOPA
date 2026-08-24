@@ -1,0 +1,74 @@
+{
+  "schema": "topa.sacred_scriptures.flood_source_gates.v0.2",
+  "date": "2026-08-24",
+  "status": "EXACT_SOURCE_IDENTITIES_AND_LOCI_FROZEN__HASH_AND_CONTROL_GATES_OPEN",
+  "supersedes": "FLOOD_SOURCE_GATES.v0.1.json",
+  "authoritative_detail": "PRESCORE_SOURCE_FREEZE.v0.2.json",
+  "global_rules": [
+    "NO_SCORING_FROM_MEMORY",
+    "TRANSLATION_MATCH_HAS_ZERO_LEXICAL_WEIGHT_UNLESS_ORIGINAL_LANGUAGE_SUPPORTS_IT",
+    "MANUSCRIPT_WITNESS_COUNT != CULTURAL_SOURCE_ROOT_COUNT",
+    "DISPUTED_SOURCE_MODEL_MUST_BE_SENSITIVITY_TESTED",
+    "UNKNOWN_OR_DAMAGED != ABSENT",
+    "SOURCE_BYTES_AND_DERIVED_LAYERS_REQUIRE_SEPARATE_HASHES",
+    "PRESCORE_CANARY_FAILURE_BLOCKS_SCORE"
+  ],
+  "texts": [
+    {
+      "id": "F01_ATRAHASIS",
+      "state": "EXACT_WASSERMAN_C1_FEATURE_BLOCKS_FROZEN",
+      "loci": ["C1 i 20'-35'", "C1 ii 52\"-55\"", "C1 iii 5'-27'", "C1 iv 24'-27'", "C1 v 30\"-38\""],
+      "remaining": ["SOURCE_BYTE_HASH", "VARIANT_DAMAGE_PACKET"]
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "state": "GEORGE_WASSERMAN_LINE_MODEL_FROZEN",
+      "locus": "Tablet XI 8-203",
+      "feature_blocks": ["8-20", "21-44", "45-91", "92-139", "140-156", "157-203"],
+      "remaining": ["SOURCE_BYTE_HASH", "MANUSCRIPT_VARIANT_PACKET"]
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "state": "BHSA_VERSION_AND_LOCUS_FROZEN",
+      "baseline": "ETCBC BHSA v1.8.1 / b112c16 / TF data 2021",
+      "locus": "Genesis 6:5-9:17",
+      "remaining": ["SLICE_HASH", "SOURCE_PARTITION_SENSITIVITY_SPEC"]
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "state": "TANZIL_VERSION_SCRIPT_AND_PRIMARY_LOCUS_FROZEN",
+      "baseline": "Tanzil Uthmani v1.1, released 2021-02-12",
+      "locus": "Q 11:25-49",
+      "remaining": ["VERBATIM_SLICE_HASH", "LATE_ANTIQUE_CONTACT_GRAPH"]
+    },
+    {
+      "id": "F05_SATAPATHA_MANU",
+      "state": "GRETIL_BOOK1_RECENSION_AND_NARRATIVE_LOCUS_FROZEN_WITH_PROVENANCE_CONFLICT",
+      "baseline": "GRETIL Madhyamdina Book 1 sb_01_u.htm",
+      "locus": "ŚB 1.8.1.[1]-[10]",
+      "remaining": ["BOOK1_AND_SLICE_HASH", "GRETIL_INPUT_ATTRIBUTION_CONFLICT_REMAINS_OPEN"]
+    }
+  ],
+  "method_canaries": {
+    "authority": "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json",
+    "required": [
+      "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS",
+      "EGYPT_LEMMA_ID_CANARY_PASS",
+      "EGYPT_TEXT_ID_CANARY_PASS"
+    ]
+  },
+  "control_gate": {
+    "status": "OPEN",
+    "requirements": [
+      "At least two controls per focal source root",
+      "At least one non-flood catastrophe control matched for genre",
+      "At least one non-sacred flood narrative where provenance permits",
+      "At least one geographically distant flood narrative with independent provenance",
+      "Feature-shuffled synthetic controls",
+      "No community-controlled oral material without permission/provenance clearance"
+    ]
+  },
+  "score_permission": false,
+  "next_action": "Hash immutable source slices, build canary implementations and matched controls, then anonymize packets."
+}
