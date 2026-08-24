@@ -1,0 +1,73 @@
+{
+  "schema": "topa.propaganda_defense.janus_protocol.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_DEFENSIVE_PROTOCOL",
+  "purpose": "Bind propaganda/information-influence research to TOPA/JANUS provenance, falsification, source-independence, reverse and spiral rules.",
+  "laws": [
+    "PROPAGANDA_LABEL != CLAIM_FALSEHOOD",
+    "CLAIM_FALSEHOOD != PROPAGANDA_INTENT",
+    "PROPAGANDA_CAN_USE_TRUE_INFORMATION",
+    "REPETITION_COUNT != INDEPENDENT_SOURCE_COUNT",
+    "REACH != PERSUASION",
+    "PERSUASION != BEHAVIOR_CHANGE",
+    "BEHAVIOR_CHANGE != CAUSATION_WITHOUT_DESIGN",
+    "ATTRIBUTION_REQUIRES_EVIDENCE",
+    "MODEL_OUTPUT != ATTRIBUTION",
+    "COUNTER_PROPAGANDA_CAN_ITSELF_BECOME_PROPAGANDA",
+    "DEFENSE_MUST_PRESERVE_RIGHTS_AND_PROPORTIONALITY",
+    "UNKNOWN = VALID_OUTPUT"
+  ],
+  "janus_roles": {
+    "TOPA": "case admission, classification, falsification and status ceiling",
+    "HRain": "structural narrative/source/distribution graph; no truth authority",
+    "iNAIHR": "semantic motif/frame candidates; zero evidence authority",
+    "DemiHead": "collapse source roots, preserve disagreement and compare competing attributions",
+    "Genesis": "governance/authority boundaries and protocol integrity",
+    "Fundamentum": "falsifiers, null models, counterexamples and claim ceilings",
+    "Fast-CAT": "adversarial attack on both propaganda and non-propaganda explanations",
+    "AIFC": "source lifecycle, canonical IDs, provenance and supersession",
+    "Janus-Cosmos": "blind/null/specificity discipline transferred where applicable",
+    "Swarm": "parallel source discovery only; agent count never equals source count",
+    "Aura": "symbolic/narrative hypothesis generation only; evidence authority zero",
+    "Terminal/Voice": "presentation after analytical state freeze"
+  },
+  "pipeline": [
+    "P0_FREEZE_RAW_ARTIFACT",
+    "P1_SOURCE_ROOT_AND_PROVENANCE",
+    "P2_FACTUAL_CLAIM_DECOMPOSITION",
+    "P3_BEHAVIOR_TTP_CLASSIFICATION",
+    "P4_DISTRIBUTION_AND_INDEPENDENCE_GRAPH",
+    "P5_AUDIENCE_EFFECT_EVIDENCE",
+    "P6_COMPETING_HYPOTHESES",
+    "P7_REVERSE_NECESSITY_PASS",
+    "P8_DEFENSIVE_RESPONSE_OPTIONS",
+    "P9_COUNTERMEASURE_EVIDENCE_AND_SIDE_EFFECTS",
+    "P10_ORIGIN_PRIME_RETURN"
+  ],
+  "competing_hypotheses": [
+    "H0 ordinary reporting/opinion without coordinated manipulation",
+    "H1 misinformation without deliberate deception",
+    "H2 partisan/selective framing without coordinated influence operation",
+    "H3 coordinated domestic influence activity",
+    "H4 foreign information manipulation/interference",
+    "H5 commercial engagement farming or spam",
+    "H6 satire/fiction/context collapse",
+    "H7 mixed ecosystem with several independent mechanisms"
+  ],
+  "admission_gates": {
+    "TTP_candidate": ["observable behavior mapped to frozen definition","evidence pointer","alternative explanation"],
+    "coordination_candidate": ["timing/network/content evidence beyond simple similarity","at least one falsifier"],
+    "attribution_candidate": ["independent provenance/infrastructure or authoritative evidence with limitations","source-root map","competing attribution"],
+    "effect_candidate": ["audience outcome measured separately from exposure/reach","confounds recorded","causal ceiling explicit"],
+    "countermeasure_candidate": ["evidence source","rights/proportionality review","side-effect/failure condition"]
+  },
+  "operational_firewall": {
+    "allow": ["defensive recognition","fact-checking","media literacy","prebunking/debunking research","OSINT verification","behavioral taxonomy","resilience assessment"],
+    "block": ["real-world covert influence campaign design","microtargeting","persuasion optimization against vulnerable groups","deceptive asset/persona creation","military psychological-operation execution planning","moderation-evasion coaching"]
+  },
+  "reverse_spiral": {
+    "formula": "ORIGIN_n -> FORWARD_CASE_MODEL -> REVERSE_REQUIRED_EVIDENCE -> MISSING_BRIDGES -> DEFENSIVE_TEST -> RETURN_n -> ORIGIN_PRIME_n+1",
+    "promotion": "State must advance by new evidence, localized missing bridge, correct demotion, new falsifier or reduced search space; rephrasing is not enrichment."
+  },
+  "score_permission": false
+}
