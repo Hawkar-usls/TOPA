@@ -1,0 +1,26 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.coder_bundle_freeze.v0.1",
+  "date": "2026-08-24",
+  "append_only": true,
+  "event": "COMPLETE_BASE_RATE_CODER_DEPENDENCY_BUNDLE_FROZEN",
+  "authority_receipt": "BASE_RATE_CODER_BUNDLE_FREEZE_PASS.v0.1.json",
+  "workflow_run_id": 32777007544,
+  "result": {
+    "checks": "12/12 PASS",
+    "bundle_files": 8,
+    "bundle_sha256": "9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa",
+    "semantic_values_populated": 0,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "score_permission": false
+  },
+  "spiral_delta": {
+    "origin": "Packet v0.3 itself had a stable hash and issuance permission.",
+    "reverse_finding": "A template hash alone did not bind separately stored schema, source, locus, descriptor, retrieval, independence and sacred-firewall dependencies.",
+    "origin_prime": "All eight coder dependencies are now bound under one reproducible aggregate bundle hash before any coder assignment or semantic value."
+  },
+  "next_legal_action": "FREEZE_CODER_QUALIFICATION_ASSIGNMENT_AND_DELIVERY_POLICY_THEN_RECORD_TWO_GENUINE_INDEPENDENT_ASSIGNMENTS",
+  "preservation": "Packet-issuance PASS remains valid but is now nested under the stricter complete-bundle identity."
+}
