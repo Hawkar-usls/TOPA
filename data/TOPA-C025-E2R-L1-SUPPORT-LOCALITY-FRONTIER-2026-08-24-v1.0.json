@@ -3,28 +3,76 @@
   "id": "TOPA-C025-E2R-L1-SUPPORT-LOCALITY-FRONTIER-2026-08-24-v1.0",
   "date": "2026-08-24",
   "front": "C025-E2R-L1",
-  "status": "OPEN_RESTRICTED_FRONTIER",
+  "status": "OPEN_RESTRICTED_FRONTIER__MECHANICS_PROVED",
   "restriction": {
     "support_root_literal": "{root_variable}",
     "support_extension": "support(left_literal) union support(right_literal)",
     "kappa_local": "every extension support size <= kappa",
     "initial_kappa_regime": "O(log N)"
   },
+  "proved_in_scope": [
+    "transitive support is exactly computable for frozen topologically ordered B2 definitions",
+    "literal polarity does not change root support",
+    "forward extension dependencies are rejected",
+    "kappa-local admission is decidable from the explicit definition DAG",
+    "under a partial assignment rho to root variables, residual support satisfies S_rho(e) subseteq S(e) minus dom(rho)",
+    "therefore root restrictions cannot increase support size and preserve kappa-locality",
+    "cardinality-local support does not imply Nisan-Wigderson neighborhood locality",
+    "if two local extension operands lie in the same fixed NW neighborhood, their conjunction remains in that neighborhood"
+  ],
   "gates": {
-    "L1_A_support_calculator_verifier": "IMPLEMENTED_PENDING_CI",
-    "L1_B_restriction_stability_under_partial_assignments": "OPEN",
-    "L1_C_relation_to_NW_functional_encodings": "OPEN",
-    "L1_D_heavy_width_transfer_or_transfer_refutation": "OPEN",
+    "L1_A_support_calculator_verifier": "PROVED_IN_SCOPE__PROVIDER_PASS",
+    "L1_B_root_restriction_support_monotonicity": "PROVED__PROVIDER_PASS",
+    "L1_C1_kappa_local_to_NW_local_direct_transfer": "REFUTED_BY_PARAMETER_MISMATCH__PROVIDER_PASS",
+    "L1_C2_same_neighborhood_extension_axiom_compatibility": "PROVED_CONDITIONAL_ON_FUNCTION_COLLECTION_G",
+    "L1_C3_full_functional_encoding_proof_transfer": "OPEN_ACTIVE",
+    "L1_D_heavy_width_transfer_or_transfer_refutation": "BLOCKED_BY_L1_C3",
     "L1_E_explicit_restricted_counterfamily": "OPEN"
+  },
+  "provider_receipt": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32728789959,
+    "job_id": 97436024608,
+    "workflow_conclusion": "success",
+    "verified_outputs": [
+      "C025_E2R_SEMANTIC_SIGNATURE_CEILING = PASS",
+      "C025_E2R_CLASS_COUNT_SUPERPOLY_METHOD = REFUTED",
+      "C025_E2R_PARITY_B2_COMPRESSION = PASS",
+      "C025_E2R_FLAT_CASE_COUNT_INVARIANT = REFUTED",
+      "C025_E2R_L1_TRANSITIVE_SUPPORT = PASS",
+      "C025_E2R_L1_POLARITY_INVARIANCE = PASS",
+      "C025_E2R_L1_FORWARD_DEPENDENCY_REJECTION = PASS",
+      "C025_E2R_L1_KAPPA_LOCAL_ADMISSION = PASS",
+      "C025_E2R_L1_ROOT_RESTRICTION_SUPPORT_MONOTONICITY = PASS",
+      "C025_E2R_L1_ROOT_RESTRICTION_LOCALITY_STABILITY = PASS",
+      "C025_E2R_L1C_KAPPA_LOCAL_TO_NW_LOCAL_TRANSFER = REFUTED",
+      "C025_E2R_L1C_SAME_NEIGHBORHOOD_EXTENSION_CLOSURE = PASS",
+      "C025_E2R_L1C_DIFFERENT_NEIGHBORHOOD_ESCAPE = PASS"
+    ]
   },
   "literature_templates": [
     "Sokolov 2022 heavy-width lower bounds for Resolution with local extension variables in functional Nisan-Wigderson encodings",
     "Impagliazzo-Mouli-Pitassi 2023 and follow-up locality/arity lower bounds for Polynomial Calculus with extension variables"
   ],
-  "transfer_status": "NOT_ESTABLISHED",
-  "claim_ceiling": "Any lower bound for ER3[kappa-local] is restriction-only until a theorem transfers it to unrestricted ER3. P vs NP remains open.",
+  "transfer_status": "PARTIAL_EXTENSION_AXIOM_MATCH_ONLY__FULL_THEOREM_TRANSFER_NOT_ESTABLISHED",
+  "claim_ceiling": "Any lower bound for a support-local or NW-neighborhood-local ER3 restriction is restriction-only until an explicit theorem transfers it to unrestricted ER3. Issue #217 and P vs NP remain open.",
   "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_CLASS_COUNT_BARRIER.md",
+    "research/mathematics/p-vs-np/extension_class_count_barrier_probe.py",
     "research/mathematics/p-vs-np/C025_E2R_LOCALITY_FRONTIER.md",
-    "research/mathematics/p-vs-np/support_locality_probe.py"
+    "research/mathematics/p-vs-np/support_locality_probe.py",
+    "research/mathematics/p-vs-np/C025_E2R_LOCALITY_LITERATURE_BOUNDARY.md",
+    "research/mathematics/p-vs-np/C025_E2R_NW_LOCALITY_TRANSFER_AUDIT.md",
+    "research/mathematics/p-vs-np/nw_locality_transfer_probe.py"
+  ],
+  "hard_laws": [
+    "MANY_SEMANTIC_CLASSES != SUPERPOLYNOMIAL_EXTENSION_COUNT",
+    "EXPONENTIAL_FLAT_REPRESENTATION != EXPONENTIAL_EXTENSION_COUNT",
+    "KAPPA_LOCAL != NW_NEIGHBORHOOD_LOCAL",
+    "NW_LOCAL_EXTENSION_AXIOM_MATCH != HEAVY_WIDTH_THEOREM_TRANSFER",
+    "LOCAL_EXTENSION_LOWER_BOUND != FULL_ER_LOWER_BOUND",
+    "RECURSIVE_EXTENSION_COMPOSITION_MUST_BE_CHARGED"
   ]
 }
