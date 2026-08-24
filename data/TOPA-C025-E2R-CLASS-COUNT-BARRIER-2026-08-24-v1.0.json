@@ -1,0 +1,38 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-CLASS-COUNT-BARRIER-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R",
+  "status": "NAIVE_CLASS_COUNT_INVARIANT_REFUTED",
+  "target_issue": 217,
+  "claims": {
+    "semantic_signature_ceiling": "PROVED",
+    "pure_assignment_class_count_can_force_superpolynomial_K": "REFUTED",
+    "parity_computable_with_3n_minus_3_B2_extensions": "PROVED_AND_EXECUTABLE",
+    "flat_CNF_DNF_case_count_is_stable_under_recursive_extensions": "REFUTED_BY_PARITY_COMPRESSION",
+    "B2_extension_definitions_form_K_gate_boolean_circuit_DAG": "PROVED",
+    "full_ER3_extension_count_lower_bound": "OPEN"
+  },
+  "theorems": {
+    "signature_bound": "K Boolean extension bits induce at most 2^K signatures on at most 2^n root assignments; hence signature-separation arguments give K >= log2(M) <= n <= N.",
+    "parity_compression": "PARITY_n is computed by frozen B2 grammar using 3(n-1) extension gates via iterative XOR; root-only CNF/DNF requires 2^(n-1) full cases."
+  },
+  "new_restricted_frontier": {
+    "name": "E2R-L1 support-local ER3",
+    "definition": "support(root literal x)={x}; support(e_i)=support(a_i) union support(b_i); every extension must have support size <= kappa",
+    "initial_regime": "kappa=O(log N)",
+    "status": "OPEN_RESTRICTED_FRONTIER",
+    "transfer_warning": "Lower bounds for local extensions in Resolution or Polynomial Calculus do not transfer without an explicit reduction/simulation theorem."
+  },
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_CLASS_COUNT_BARRIER.md",
+    "research/mathematics/p-vs-np/extension_class_count_barrier_probe.py"
+  ],
+  "hard_laws_added": [
+    "MANY_SEMANTIC_CLASSES != SUPERPOLYNOMIAL_EXTENSION_COUNT",
+    "EXPONENTIAL_FLAT_REPRESENTATION != EXPONENTIAL_EXTENSION_COUNT",
+    "LOCAL_EXTENSION_LOWER_BOUND != FULL_ER_LOWER_BOUND",
+    "RECURSIVE_EXTENSION_COMPOSITION_MUST_BE_CHARGED"
+  ],
+  "claim_ceiling": "This receipt refutes naive invariant classes only. Issue #217, ER/EF p-boundedness, NP vs coNP and P vs NP remain open."
+}
