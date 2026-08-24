@@ -1,0 +1,108 @@
+{
+  "schema": "janus.topa.hunt.pass.v1",
+  "hunt_id": "HUNT-0001",
+  "pass_id": "PASS-001-ARCHIVAL-ADVERSARIAL",
+  "created_at_local": "2026-08-24T09:34:00+03:00",
+  "status": "COMPLETE_WITH_OPEN_RAW_REPLAY_GATE",
+  "question": "What survives when the public Hessdalen record is split into event occurrence, sensor channel, common-cause inference and extraordinary interpretation?",
+  "evidence_findings": [
+    {
+      "id": "F1_1984_REPORT_STRUCTURE",
+      "finding": "The 1984 project preserved a structured technical report with instruments, event summaries and appendices rather than only later folklore.",
+      "source": "S1",
+      "effect": "G1_EVENT_OCCURRENCE has source-bound historical support for multiple reported events."
+    },
+    {
+      "id": "F2_REPORT_SCORING_LIMIT",
+      "finding": "The 1984 report states that its F/G classification was subjective and notes that only six reports had F9 or higher, with four of those also G7 or higher; the author explicitly says this was too little to draw conclusions about the nature of the light or common properties.",
+      "source": "S1",
+      "effect": "Historical high-anomaly labels cannot be treated as objective ground truth or as evidence that all reports belong to one phenomenon."
+    },
+    {
+      "id": "F3_RADAR",
+      "finding": "The 1984 report lists 36 radar recordings; only three were also visually observed as lights. The report also states that many radar-only returns were not photographed as unusual objects and that continuous radar/spectrum monitoring was not achieved.",
+      "source": "S1",
+      "effect": "At least limited multi-channel overlap is documented, but sensor independence and common-cause identity remain unproven."
+    },
+    {
+      "id": "F4_FAST_RADAR_EVENT",
+      "finding": "For 1984-01-27 22:58 local project time, the report gives two radar echoes about 2.4 seconds apart and roughly 20–21 km separated, yielding a reported minimum speed near 8.5 km/s; visual observers separately reported a fast south-to-north light around the same event window.",
+      "source": "S1",
+      "effect": "This is a high-value historical event for reconstruction, but the archived report is not equivalent to surviving raw radar video, calibration replay or independent range confirmation."
+    },
+    {
+      "id": "F5_MAGNETOMETER",
+      "finding": "The report notes four of ten F5-or-higher light registrations during a limited interval occurred near magnetic pulsations, while also warning that many pulsations occurred during those days and coincidence was possible.",
+      "source": "S1",
+      "effect": "No causal magnetic link is promoted."
+    },
+    {
+      "id": "F6_NULL_CHANNELS",
+      "finding": "The 1984 report found no useful contemporaneous result from Geiger counter, seismograph or IR viewer in the limited observations described, and explicitly treated the IR sample as too small for a conclusion.",
+      "source": "S1",
+      "effect": "Negative and low-power channels are preserved rather than omitted."
+    },
+    {
+      "id": "F7_MODERN_DATA_SURFACE",
+      "finding": "Current Project Hessdalen documentation says two 4K cameras record continuously, 20-minute video segments are stacked, public stacks have been available since September 2024, original videos exist from November 2024 and selected/full-day raw video is made available for testing.",
+      "source": "S2",
+      "effect": "A modern independent replay route exists in principle."
+    },
+    {
+      "id": "F8_KNOWN_MODERN_ARTIFACTS",
+      "finding": "The current project documentation explicitly lists stars, satellites, birds, insects, planes, h264 compression shadows, moon/sun lens reflections and other artifacts as things visible in stacked products.",
+      "source": "S2",
+      "effect": "Any stack-only anomaly must pass an artifact and known-object attack before promotion."
+    }
+  ],
+  "gate_results": {
+    "G1_EVENT_OCCURRENCE": "PASS_IN_STATED_ARCHIVAL_SCOPE",
+    "G2_MULTI_CHANNEL": "PARTIAL_PASS_SAME_PROJECT_MULTI_CHANNEL_NOT_INDEPENDENT_COMMON_CAUSE",
+    "G3_COMMON_CAUSE": "NOT_ESTABLISHED",
+    "G4_RAW_REPLAY": "OPEN_MODERN_ROUTE_AVAILABLE_HISTORICAL_RAW_LIMITED_OR_UNAVAILABLE",
+    "G5_EXTRAORDINARY_PROMOTION": "FAIL_NOT_JUSTIFIED"
+  },
+  "hypothesis_updates": {
+    "H0_HETEROGENEOUS_CONVENTIONAL": "STRONG_ACTIVE_COMPETITOR",
+    "H1_RECURRENT_LOCAL_NATURAL": "PLAUSIBLE_REPLICATION_WORTHY_BUT_NOT_ESTABLISHED",
+    "H2_INSTRUMENT_PROCESSING": "REQUIRED_EVENT_LEVEL_COMPETITOR_FOR_MODERN_CAMERA_PRODUCTS",
+    "H3_ENGINEERED_ORDINARY": "REQUIRED_EVENT_LEVEL_COMPETITOR",
+    "H4_EXTRAORDINARY": "NOT_PROMOTED"
+  },
+  "current_classification": {
+    "event_family": "DOCUMENTED_RECURRENT_REPORT_AND_INSTRUMENT_CORPUS",
+    "single_common_physical_cause": "NOT_ESTABLISHED",
+    "extraordinary_interpretation": "NOT_ESTABLISHED",
+    "research_value": "HIGH_FOR_REPLICATION_DESIGN",
+    "topa_state": "UNRESOLVED_EVENT_FAMILY__REPLICATION_WORTHY"
+  },
+  "killer_tests_next": [
+    {
+      "priority": "P0",
+      "id": "K1_MODERN_RAW_DAY_REPLAY",
+      "test": "Select one full public raw-video day before inspecting anomaly labels; freeze camera geometry and detection thresholds; independently classify all tracks against stars, satellites, meteors, aircraft, birds/insects and optical/compression artifacts."
+    },
+    {
+      "priority": "P0",
+      "id": "K2_TWO_CAMERA_PARALLAX",
+      "test": "For candidate events visible on separated cameras, solve line-of-sight geometry with clock uncertainty and require a physically consistent distance/trajectory before assigning speed or local-atmosphere origin."
+    },
+    {
+      "priority": "P0",
+      "id": "K3_CROSS_SENSOR_CLOCK",
+      "test": "Require synchronized raw timestamps across optical plus at least one independent non-optical channel; publish clock error bounds and false-trigger behavior."
+    },
+    {
+      "priority": "P1",
+      "id": "K4_1984_0127_RECONSTRUCTION",
+      "test": "Reconstruct the 1984-01-27 22:58 radar/visual event from the appendix geometry, radar specifications, sweep cadence and uncertainty; test ground-clutter, propagation, aircraft and timing alternatives before treating the reported ~8.5 km/s as physical motion."
+    },
+    {
+      "priority": "P1",
+      "id": "K5_HOLDOUT_EVENT_CLASSIFIER",
+      "test": "Build mundane controls on one date range, freeze classification rules, then score an independent holdout range. Only residuals that survive the frozen rules enter the anomaly queue."
+    }
+  ],
+  "compact_result": "HUNT-0001 does not start by declaring the Hessdalen Lights one object or one phenomenon. The public record supports a real, long-running corpus of recurrent reports and some instrument-channel overlap, but the 1984 project itself documented subjective classification, sparse high-quality/high-anomaly cases, limited visual-radar overlap, incomplete continuous monitoring and ambiguous magnetic correlation. Modern data availability makes Hessdalen unusually suitable for a stronger replay. TOPA therefore promotes the site to REPLICATION_WORTHY while refusing extraordinary or single-common-cause promotion.",
+  "world_truth": false
+}
