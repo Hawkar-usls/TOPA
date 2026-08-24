@@ -1,0 +1,31 @@
+name: propaganda-kadesh-reader-proxy-probe-v0-15
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_reader_proxy_probe_v0_15.py'
+      - '.github/workflows/propaganda-kadesh-reader-proxy-probe-v0-15.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe browser-rendering transport for frozen Wilson locus
+        run: python tools/propaganda_kadesh_reader_proxy_probe_v0_15.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-reader-proxy-probe-v0-15
+          path: research/propaganda-defense/execution/KADESH_READER_PROXY_PROBE.v0.15.json
+          if-no-files-found: error
+          retention-days: 30
