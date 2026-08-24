@@ -69,7 +69,12 @@ jobs:
           cd research/mathematics/p-vs-np
           python policy0b_fair_scheduler_probe.py
 
-      - name: Replay C025-B proof-carrying reason verifier
+      - name: Replay C025-B portable proof-carrying reason verifier
         run: |
           cd research/mathematics/p-vs-np
           python proof_carrying_reason.py
+
+      - name: Replay C025-C1 reason-cache index
+        run: |
+          cd research/mathematics/p-vs-np
+          python reason_cache_index.py
