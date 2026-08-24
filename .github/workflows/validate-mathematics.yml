@@ -98,3 +98,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python support_locality_probe.py
+
+      - name: Replay C025-E2R-L1C NW-locality transfer boundary
+        run: |
+          cd research/mathematics/p-vs-np
+          python nw_locality_transfer_probe.py
