@@ -1,82 +1,79 @@
 # C025-E2R-L1G-F2 — Negative-edge budget to macro cut-elimination cost
 
-**Status:** `ANALYTICAL_PROOF_COMPLETE_PENDING_PROVIDER_REPLAY`.
+**Status:** `ANALYTICAL_PROOF_V1_1_COMPLETE_PENDING_PROVIDER_REPLAY`.
 
-**Scope firewall:** this theorem converts a bounded polarity-inversion budget into a pure-Resolution simulation bound for the frozen B2/ER3 proof language on the NW hard-family transfer. It does **not** prove a superpolynomial lower bound on total extension count, does not resolve unrestricted ER/EF p-boundedness, and does not resolve P vs NP.
+**Scope firewall:** this theorem converts a bounded polarity-inversion budget into a pure-Resolution simulation bound for frozen B2/ER3 on the NW hard-family transfer. It does **not** prove a superpolynomial lower bound on total extension count, does not resolve unrestricted ER/EF p-boundedness, and does not resolve P vs NP.
 
 ## 1. Global budget
 
-Let `q` be the number of distinct **negative crossing dependency edges** in the complete crossing-extension DAG of a frozen B2/ER3 refutation.
-
-A crossing dependency edge is negative when a crossing extension is used negated as an operand of a later crossing extension. Negations of root/NW-local atoms are not counted.
-
-Let `S>=2` denote the explicit proof/certificate volume: root encoding, extension definitions, proof lines, and literal occurrences. The original proof is ER3, so every original Resolution line has width at most three.
-
-F1 established for one crossing literal `ell` with cone budget at most `q` the safe exact-expansion bound
+Let `q` be the number of distinct negative crossing dependency edges in the complete crossing-extension DAG and `S>=2` the explicit proof/certificate volume. F1 gives, for one crossing literal with cone budget at most `q`,
 
 ```text
 |CNFEXP(ell)| <= S^((q+2)!).
 ```
 
-For a width-3 source line, OR-distribution over at most three literal expansions therefore gives the safe line bound
+Since the original proof is ER3, a source line has at most three literals, so a safe structural line-expansion ceiling is
 
 ```text
 B_q := S^((q+3)!).
 ```
 
-We use a structural syntactic expansion with duplicate/tautology deletion but without semantic minimization. This preserves the recursive product/union structure needed by the proof construction. Its size obeys the same deliberately loose factorial ceiling.
+Use structural syntactic CNF expansion with duplicate/tautology deletion but without semantic minimization. This preserves the recursive union/product structure used below.
 
-## 2. Weakening is scaffolding, not a new proof rule
+## 2. Pure-Resolution restriction lemma
 
-It is convenient to construct an intermediate Resolution+Weakening proof.
+For a partial assignment `rho`, restrict every clause in a pure Resolution proof.
 
-### Lemma F2.1 — weakening elimination
+### Lemma F2.1 — proof restriction
 
-Any Resolution+Weakening derivation of the empty clause from a CNF can be converted to a pure Resolution derivation of the empty clause with no increase in the number of proof nodes.
+A pure Resolution refutation restricts to a pure Resolution refutation of the restricted CNF with no increase in proof nodes after deleting satisfied lines and aliasing stronger parents.
 
-Process nodes in order and maintain a pure-Resolution clause `C' subseteq C` for every old node `C`.
+For an old inference
 
-- input axiom: keep it;
-- weakening `P -> C` with `P subseteq C`: alias the transformed parent `P'`;
-- Resolution from `A OR x` and `B OR ~x` to `A OR B`:
-  - if transformed parents still contain complementary pivot literals, resolve them;
-  - if one transformed parent lost its pivot, alias that stronger parent, which is a subclause of `A OR B`.
+```text
+A OR x
+B OR ~x
+---------
+A OR B
+```
 
-Because the old resolvent is non-tautological, a newly resolved subclause is also non-tautological. The final transformed clause is a subclause of the empty clause, hence is empty.
+after restriction either the complementary pivot survives and the restricted parents resolve, or one parent loses the pivot and already subsumes the restricted old resolvent. The empty final clause remains empty.
 
-Thus every use of weakening below is only analytical scaffolding and can be erased from the final proof system.
+## 3. Pure context lifting by restrict-refute-lift
 
-## 3. Context lifting
+For a non-tautological clause `C`, let `rho_C` be the partial assignment that falsifies every literal of `C`.
 
-### Lemma F2.2 — Resolution context lifting
+### Lemma F2.2 — context lifting without weakening
 
-Let `pi` be a pure Resolution refutation of `Gamma union Delta` of size `R`. Let `C` be any clause. Suppose the current derivation contains, for every `gamma in Gamma`, a clause contained in `gamma OR C`, and contains every `delta in Delta`.
+Let `pi` be a pure Resolution refutation of `Gamma union Delta` of size `R`. Suppose the current derivation contains, for every `gamma in Gamma`, a clause contained in `gamma OR C`, and contains every `delta in Delta` (or stronger clauses).
 
-Then Resolution+Weakening derives a clause contained in `C` using `O(R)` nodes.
+Then pure Resolution derives a clause `C' subseteq C` with `O(R)` proof nodes.
 
-**Construction.** Weaken all supplied `Gamma` clauses to the exact `gamma OR C`; weaken every `delta` to `delta OR C`; replay `pi` with `C` appended to every line. The final line is `C`. If some supplied premise was already stronger, first weaken it to the requested contextual premise. Lemma F2.1 removes all weakenings globally.
+**Proof route.**
 
-No variable-disjointness assumption is needed. Child dependency cones and contexts may overlap.
+1. Restrict the current premises by `rho_C`. Every contextual `gamma OR C` becomes a clause contained in `gamma|rho_C`; every `delta` becomes `delta|rho_C` or is satisfied.
+2. By Lemma F2.1, restricting `pi` by the same `rho_C` gives a Resolution refutation of the corresponding restricted `Gamma union Delta` premises. Stronger current restricted premises can replace weaker ones by the same subsumption-preserving simulation.
+3. Lift this restricted refutation back to the unrestricted current premises: every literal removed because it was falsified by `rho_C` belongs to `C`; replaying the proof while retaining original premises therefore derives a clause contained in the blocking clause for `rho_C`, hence a subclause of `C`.
+
+This is the standard restrict-refute-lift pattern. No weakening rule is added, and no variable-disjointness assumption is used. Context, pivot variables and child cones may overlap.
 
 ## 4. Complement refutation for one macro
 
-Use the F1 positive-closure normal form for a crossing macro `F`:
+Use the F1 positive-closure normal form
 
 ```text
 F = L AND (~F_1) AND ... AND (~F_k),
 ```
 
-where `L` is a conjunction of signed local literals, `k<=q`, and every frontier child `F_j` has negative-edge budget at most `q-1`.
+where `L` is a conjunction of signed root/NW-local literals, `k<=q`, and every frontier child has negative-edge budget at most `q-1`.
 
-Write `P(F)` for the structural CNF expansion of `F` and `N(F)` for that of `~F`.
-
-Then
+Let `P(F)` be structural CNF for `F` and `N(F)` structural CNF for `~F`. Then
 
 ```text
 P(F) = units(L) union N(F_1) union ... union N(F_k),
 ```
 
-while `N(F)` consists of Cartesian clauses
+and `N(F)` consists of Cartesian clauses
 
 ```text
 neg(L) OR p_1 OR ... OR p_k,
@@ -92,170 +89,139 @@ with `p_j in P(F_j)`.
 S^((q+4)!).
 ```
 
-**Proof.** Induct on `q`.
+**Induction.** For `q=0`, resolve the one complement clause against at most `S` local unit clauses.
 
-Base `q=0`: `F` is a conjunction of at most `S` local literals. Resolve the single complement clause successively against the local unit clauses. This costs at most `S` Resolution steps.
+For `q>0`:
 
-Induction step:
+1. resolve `neg(L)` away from every clause of `N(F)` using local units;
+2. obtain all clauses `p_1 OR ... OR p_k`;
+3. eliminate children sequentially. For each fixed context of the other children, apply Lemma F2.2 to the inductive refutation of `P(F_j) union N(F_j)`. The `N(F_j)` clauses are already in `P(F)` and the contextual `P(F_j)` clauses are present from the Cartesian expansion, or stronger subclauses have already been derived;
+4. after all children are eliminated, obtain empty.
 
-1. For each clause of `N(F)`, resolve away the literals `neg(L)` using the local units in `P(F)`. At most `S * |N(F)|` steps are needed.
-2. We now have all clauses `p_1 OR ... OR p_k` generated by the frontier child expansions.
-3. Eliminate children one at a time. For a fixed context made of the other children, the induction-hypothesis refutation of `P(F_j) union N(F_j)` is lifted by Lemma F2.2 to derive the context clause (or a stronger subclause). The `N(F_j)` axioms are already present in `P(F)`; the contextualized `P(F_j)` clauses are exactly the current Cartesian clauses (or are subsumed by available stronger clauses).
-4. After child `j` is eliminated, continue with the remaining children. After all children are eliminated, derive the empty clause.
+No disjointness of child cones is assumed.
 
-Using the F1 bound `|P(F)|,|N(F)| <= S^((q+2)!)`, the deliberately loose recurrence is
+With `H(q)=(q+2)!`, a safe recurrence is
 
 ```text
-R_q <= S^(H(q)+1) + q * S^H(q) * R_(q-1),
-H(q)=(q+2)!.
+R_q <= S^(H(q)+1) + q*S^H(q)*R_(q-1),
 ```
 
-With `q<=S` and `R_(q-1) <= S^((q+3)!)`, this is safely bounded by
+and with `q<=S`, `R_(q-1)<=S^((q+3)!)`, this is dominated by
 
 ```text
 R_q <= S^((q+4)!).
 ```
 
-No disjointness of frontier child cones is assumed.
+## 5. One macro pivot
 
-## 5. Eliminate one macro pivot
-
-Consider an original ER3 inference
+For an ER3 inference
 
 ```text
 A OR e
 B OR ~e
-----------------  Res(e)
+--------- Res(e)
 A OR B
 ```
 
-where `e` is a crossing macro representing `F`.
-
-Expand the two parent lines and the target line into local/NW-local clauses. For each target clause `alpha OR beta` coming from one expansion clause `alpha` of `A` and one `beta` of `B`, the expanded parents provide
+let `e` represent `F`. Expand the parent and target clauses over root/NW-local atoms. For every target clause `alpha OR beta`, the parent expansions provide clauses contained in
 
 ```text
-alpha OR p    for all p in P(F),
-beta  OR n    for all n in N(F).
+alpha OR p   for every p in P(F),
+beta  OR n   for every n in N(F).
 ```
 
-Take the complement refutation of Lemma F2.3, append the appropriate context (`alpha`, `beta`, then their union when the two sides meet), and use Lemma F2.2 / weakening scaffolding to derive a clause contained in `alpha OR beta`.
+Apply the complement refutation from Lemma F2.3 through the pure context-lifting Lemma F2.2 to derive a clause contained in `alpha OR beta`.
 
-There are at most `B_q` target clauses for one original width-3 line, and each macro-cut simulation costs at most `S^((q+4)!)`. Hence one macro-pivot inference is simulated within the safe bound
+There are at most `B_q` target clauses for one original ER3 line. Thus one macro-pivot inference is simulated within the deliberately loose ceiling
 
 ```text
 S^((q+5)!).
 ```
 
-The same or smaller ceiling covers non-macro pivots by resolving corresponding expanded clauses and retaining stronger subclauses when an expanded pivot disappears.
+Non-macro pivots are no more expensive: corresponding expanded clauses resolve directly, and if the pivot disappears under a stronger expansion, the stronger parent subsumes the target.
 
-## 6. Full proof simulation theorem
+## 6. Full proof simulation
 
-### Theorem F2.4 — bounded-inversion macro cut elimination
+### Theorem F2.4 — bounded-inversion pure-Resolution simulation
 
-Let `Pi` be a frozen B2/ER3 refutation of explicit volume `S>=2` whose complete crossing dependency DAG contains `q` negative crossing edges.
-
-Then `Pi` can be converted into a pure Resolution refutation over root/NW-local atoms of size at most
+Every frozen B2/ER3 refutation of explicit volume `S>=2` and global negative crossing-edge budget `q` can be converted into a pure Resolution refutation over root/NW-local atoms of size
 
 ```text
 S_local <= S^((q+5)!).
 ```
 
-After the usual literal substitution identifying duplicate NW-local function variables, this becomes a Resolution refutation of the source functional encoding used by the established heavy-width lower bound.
+Identifying duplicate NW-local function variables by the already-audited literal substitution yields a Resolution refutation of the source functional encoding used by the NW heavy-width lower bound.
 
-The proof is constructive at the proof-system level. The factorial exponent is intentionally non-tight; the point is dependence on `q`, not constant optimization.
+The factorial exponent is intentionally loose. The theorem only needs an explicit computable dependence on `q`.
 
-## 7. Consequence on the polynomial-input NW-parity family
+## 7. NW hard-family consequence
 
-From L1E/L1F we have an existential polynomial-input NW-parity family with
-
-```text
-N = poly(n)
-```
-
-and local-functional Resolution lower bound, after absorbing polylogarithmic losses into the exponent,
+For the polynomial-input NW-parity family from L1E/L1F, after absorbing fixed polylogarithmic losses, there is a fixed `eta>0` such that sufficiently large family members satisfy
 
 ```text
 L(N) >= exp(N^eta)
 ```
 
-for some fixed `eta>0` and all sufficiently large members of the family.
+for local-functional Resolution.
 
-Assume an unrestricted B2/ER3 refutation has polynomial explicit size
-
-```text
-S <= N^d
-```
-
-for fixed `d`. Theorem F2.4 and the local lower bound force
+If an unrestricted B2/ER3 refutation had polynomial explicit size `S<=N^d`, then Theorem F2.4 forces
 
 ```text
 (N^d)^((q+5)!) >= exp(N^eta).
 ```
 
-Taking logarithms,
+Hence
 
 ```text
 (q+5)! * O(log N) >= N^eta.
 ```
 
-By the elementary bound `log(r!) = Theta(r log r)`, this implies
+Using `log(r!)=Theta(r log r)`,
 
 ```text
 q log q = Omega(log N),
 ```
 
-and therefore
+so
 
 ```text
 q = Omega(log N / log log N).
 ```
 
-### Restricted structural consequence
+Therefore every polynomial-size unrestricted ER3/B2 escape on this existential hard family must contain a growing polarity-inversion DAG with at least `Omega(log N/log log N)` negative crossing edges.
 
-Every polynomial-size unrestricted ER3/B2 escape on this existential hard family must contain a growing polarity-inversion structure:
+This is a structural inversion lower bound, not a superpolynomial total-extension lower bound. Since each B2 gate has at most two operand edges, it also implies only the weaker corollary `K=Omega(log N/log log N)`.
 
-```text
-NEGATIVE_CROSSING_EDGES >= Omega(log N / log log N).
-```
+## 8. Claim ceiling
 
-This is a lower bound on **negative crossing edges**, not on total extension count beyond what earlier crossing-count results already provide.
-
-Since every B2 gate has at most two operand edges, it also gives the weaker corollary `K >= Omega(log N/log log N)`, but the scientific value here is architectural: a constant or sub-threshold inversion budget cannot support a polynomial-size escape.
-
-## 8. What this still does not prove
-
-It does not show:
+Not established:
 
 - superpolynomial `q`;
-- superpolynomial total extension count `K` for unrestricted ER3;
+- superpolynomial unrestricted ER3 extension count;
 - ER/Extended-Frege lower bounds;
-- deterministic discovery of the required inversions;
+- deterministic discovery of the required inversion structure;
 - polynomial total runtime;
-- `P != NP` or `NP != coNP`.
+- `P!=NP` or `NP!=coNP`.
 
-The next useful front is no longer `does polarity inversion matter?` but:
-
-> can the `S^((q+5)!)` simulation be sharpened enough, or can the NW heavy-width/correlation structure charge *where* the inversions occur, so that polynomially many strategically placed inversions are also constrained?
-
-## 9. Exact promotion gates
+## 9. Promotion gates
 
 ```text
-L1G_F2_WEAKENING_ELIMINATION                = PROVED_ANALYTICALLY
-L1G_F2_CONTEXT_LIFTING                      = PROVED_ANALYTICALLY
-L1G_F2_MACRO_COMPLEMENT_REFUTATION          = PROVED_ANALYTICALLY
-L1G_F2_MACRO_PIVOT_SIMULATION               = PROVED_ANALYTICALLY
-L1G_F2_FULL_S_LOCAL_BOUND                   = PROVED_ANALYTICALLY
-L1G_F2_Q_LOWER_BOUND                        = DERIVED_FROM_SOURCE_LOWER_BOUND
-L1G_F2_PROVIDER_REPLAY                      = PENDING
-ISSUE_217_FULL_ER3_EXTENSION_COUNT          = OPEN
-P_VS_NP                                      = OPEN
+L1G_F2_RESTRICTION_LEMMA                 = PROVED_ANALYTICALLY
+L1G_F2_PURE_CONTEXT_LIFTING              = PROVED_ANALYTICALLY
+L1G_F2_MACRO_COMPLEMENT_REFUTATION       = PROVED_ANALYTICALLY
+L1G_F2_MACRO_PIVOT_SIMULATION            = PROVED_ANALYTICALLY
+L1G_F2_FULL_S_LOCAL_BOUND                = PROVED_ANALYTICALLY
+L1G_F2_Q_LOWER_BOUND                     = DERIVED_FROM_SOURCE_LOWER_BOUND
+L1G_F2_PROVIDER_REPLAY                   = PENDING
+ISSUE_217_FULL_ER3_EXTENSION_COUNT       = OPEN
+P_VS_NP                                  = OPEN
 ```
 
 ## 10. Hard laws
 
 ```text
-WEAKENING_SCAFFOLDING != STRONGER_FINAL_PROOF_SYSTEM
-SMALL_MACRO_CNF_PLUS_STRUCTURAL_COMPLEMENT_PROOF => BOUNDED_MACRO_CUT_COST
+RESTRICT_REFUTE_LIFT_STAYS_INSIDE_PURE_RESOLUTION
+SMALL_MACRO_CNF_PLUS_STRUCTURAL_COMPLEMENT_REFUTATION => BOUNDED_MACRO_CUT_COST
 Q_GROWTH != SUPERPOLYNOMIAL_EXTENSION_COUNT
 LOG_OVER_LOGLOG_INVERSION_LOWER_BOUND != ER_LOWER_BOUND
 SHORT_PROOF_EXISTENCE != DETERMINISTIC_PROOF_SEARCH
