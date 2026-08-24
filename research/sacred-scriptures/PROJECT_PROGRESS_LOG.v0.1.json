@@ -105,13 +105,38 @@
         "score_permission": false
       },
       "claim_effect": "INFRASTRUCTURE_ONLY"
+    },
+    {
+      "seq": 8,
+      "date": "2026-08-24",
+      "event": "VISIBLE_PRESCORE_CI_HARNESS_STARTED",
+      "status": "PRESCORE_SEAL_RUN_IN_PROGRESS",
+      "technical_review_surface": {
+        "draft_pr": 2,
+        "base": "topa-sacred-scriptures",
+        "head": "topa-sacred-scriptures-ci-run",
+        "merge_intent": false,
+        "purpose": "Expose PR-triggered Actions run, logs and artifacts without targeting main."
+      },
+      "workflow_runs": {
+        "guardrail_validator": {"run_id": 32737662981, "status": "COMPLETED_SUCCESS"},
+        "prescore_seal": {"run_id": 32737662999, "status": "IN_PROGRESS", "last_observed_step": "Checkout exact BHSA source"}
+      },
+      "gate_effect": {
+        "source_seals_admitted": 0,
+        "canary_combined_ci_admitted": false,
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "claim_effect": "EXECUTION_TRACE_ONLY"
     }
   ],
   "current_snapshot": {
     "phase": "HASH_AND_CANARY_EXECUTION",
     "source_seals": "0/5 AUTHORITATIVE EXECUTION RECEIPTS OBSERVED",
     "canary_precheck": "4/4 PASS LOCAL_DETERMINISTIC_PRECHECK",
-    "combined_ci_canary_receipt": "NOT_YET_OBSERVED",
+    "combined_ci_canary_receipt": "PRESCORE RUN 32737662999 IN_PROGRESS",
+    "guardrail_ci": "RUN 32737662981 PASS",
     "blind_packet_build_permission": false,
     "score_permission": false
   }
