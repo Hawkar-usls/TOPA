@@ -1,0 +1,49 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1F-CROSSING-TRADEOFF-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1F",
+  "status": "PROVED_IN_RESTRICTED_SCOPE__PROVIDER_PASS",
+  "theorems": {
+    "one_crossing_elimination": "a topologically last B2 crossing extension e<->(a AND b) can be eliminated from a Resolution derivation with line-count blow-up at most factor 2",
+    "t_crossing_elimination": "S_local <= S * 2^t",
+    "tradeoff": "if the corresponding local-functional encoding requires Resolution size L, then S * 2^t >= L",
+    "polynomial_input_consequence": "for a fixed-constant Delta=C ln n NW-parity regime supplied by the formal source theorem plus random-expander lemma, there exists alpha>0 such that every polynomial-size proof needs t >= Omega(N^alpha) crossing extensions"
+  },
+  "provider": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run": 32746842601,
+    "job": 97494297207,
+    "conclusion": "SUCCESS"
+  },
+  "provider_pass_gates": [
+    "C025_E2R_L1F_NON_E_PIVOT_ALL_POLARITY_CASES",
+    "C025_E2R_L1F_E_PIVOT_TWO_STEP_SIMULATION",
+    "C025_E2R_L1F_EXTENSION_DEFINITION_EVAPORATION",
+    "C025_E2R_L1F_ONE_GATE_LINE_MULTIPLIER_LE_2",
+    "C025_E2R_L1F_LOCAL_DESCENDANT_OF_CROSSING_REJECTED_BY_SUPPORT"
+  ],
+  "external_source": {
+    "title": "Pseudorandom Generators, Resolution and Heavy Width",
+    "author": "Dmitry Sokolov",
+    "venue": "CCC 2022",
+    "doi": "10.4230/LIPIcs.CCC.2022.15",
+    "used_results": [
+      "Lemma 9 random boundary-expander existence",
+      "Theorem 14 formal heavy-width Resolution size lower bound"
+    ]
+  },
+  "claim_ceiling": [
+    "finite CI validates translation mechanics, not the asymptotic source theorem",
+    "the crossing lower bound is polynomial in input length, not superpolynomial",
+    "unrestricted ER3 may still use polynomially many crossing extensions",
+    "Issue #217 remains open",
+    "P versus NP remains open"
+  ],
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_L1F_CROSSING_ELIMINATION_TRADEOFF.md",
+    "research/mathematics/p-vs-np/crossing_elimination_tradeoff_probe.py"
+  ]
+}
