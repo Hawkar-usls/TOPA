@@ -1,0 +1,157 @@
+{
+  "schema": "topa.sacred_scriptures.first_pass.v0.1",
+  "run_date": "2026-08-24",
+  "execution_mode": "ANALYST_APPLIED_TOPA_PROTOCOL_WITH_REPOSITORY_AND_SOURCE_CHECKS",
+  "runtime_claim": "No claim is made that every external JANUS executable/model was invoked live. The whole-JANUS role separation is applied as a protocol and recorded for later machine execution.",
+  "input": {
+    "corpus": "CORPUS_MANIFEST.v0.1.json",
+    "protocol": "JANUS_COUNCIL_PROTOCOL.v0.1.json",
+    "coverage": "CROSS_TRADITION_SEED_NOT_FULL_TEXT_EXHAUSTIVE"
+  },
+  "topa_state": "PASS_WITH_OPEN_GATES",
+  "primary_result": "The first strong result is not a universal hidden message. It is a source-independence map: many apparent cross-scripture repetitions are pseudoreplication because books, translations, later canons and commentaries share textual ancestors or directly embed one another.",
+  "source_root_collapses": [
+    {
+      "cluster": "TORAH_TANAKH_CHRISTIAN_OT",
+      "rule": "Torah is part of Tanakh; much of the Christian Old Testament shares the same ancient Israelite/Jewish textual ancestry. Repetition across these labels is not independent attestation by itself.",
+      "status": "COLLAPSE_REQUIRED"
+    },
+    {
+      "cluster": "OLD_TESTAMENT_MULTIPLE_TRANSLATIONS",
+      "rule": "KJV, modern English translations, Ukrainian translations, Septuagint-derived translations and other versions are translations/recensions, not automatically independent event witnesses.",
+      "status": "EDITION_STEMMA_REQUIRED"
+    },
+    {
+      "cluster": "QURAN_AND_BIBLICAL_FIGURES",
+      "rule": "Qur'anic parallels with Biblical/Jewish/Christian traditions are later textual witnesses in a historically connected cultural world. They cannot be counted as independent ancient confirmation of an earlier event without a specific independence argument.",
+      "status": "HISTORICAL_CONTACT_NULL_ACTIVE"
+    },
+    {
+      "cluster": "BHAGAVAD_GITA_MAHABHARATA",
+      "rule": "The Bhagavad Gita is embedded within the Mahabharata textual tradition; motif recurrence between the two is not independent evidence.",
+      "status": "COLLAPSE_REQUIRED"
+    },
+    {
+      "cluster": "DHAMMAPADA_PALI_CANON",
+      "rule": "The Dhammapada is part of the Khuddaka Nikaya within the Sutta Pitaka; corpus counts must not treat it as an independent canon beside the Pali Canon.",
+      "status": "COLLAPSE_REQUIRED"
+    },
+    {
+      "cluster": "KANGYUR_INDIVIDUAL_SUTRAS",
+      "rule": "An individual sutra and the Kangyur collection containing it are nested witnesses, not independent roots.",
+      "status": "COLLAPSE_REQUIRED"
+    },
+    {
+      "cluster": "LDS_BIBLE_PLUS_RESTORATION_SCRIPTURES",
+      "rule": "Biblical wording inside later restoration scripture must be checked for direct textual dependence before any similarity score is treated as independent recurrence.",
+      "status": "DEPENDENCE_TEST_REQUIRED"
+    },
+    {
+      "cluster": "ORAL_TEXT_TRANSCRIPTIONS",
+      "rule": "Multiple printed transcriptions may descend from one collector, informant, colonial edition or translation chain; number of webpages/books is not number of independent oral roots.",
+      "status": "PROVENANCE_CRITICAL"
+    }
+  ],
+  "motif_families_for_content_pass": [
+    {
+      "id": "M01_CREATION_FROM_UNFORMED_STATE",
+      "examples_to_test": ["Genesis", "Enuma Elish", "Rigveda Nasadiya Sukta", "Popol Vuh", "selected Chinese cosmogonies"],
+      "strongest_null": "GENERIC_COSMOGONIC_GENRE_CONVERGENCE",
+      "promotion_gate": "RARE_ORDERED_FEATURE_BUNDLE_PLUS_CHRONOLOGY"
+    },
+    {
+      "id": "M02_FLOOD_CATASTROPHE_SURVIVOR",
+      "examples_to_test": ["Genesis flood", "Atrahasis", "Gilgamesh Tablet XI", "Qur'anic Noah narratives", "Manu flood tradition", "selected Indigenous flood narratives only with appropriate provenance"],
+      "strongest_null": "HISTORICAL_DIFFUSION_PLUS_COMMON_FLOOD_EXPERIENCE",
+      "promotion_gate": "EARLIEST_ATTESTATION_AND_CONTACT_ROUTE_GRAPH"
+    },
+    {
+      "id": "M03_DIVINE_OR_SACRED_LAW",
+      "examples_to_test": ["Torah", "Qur'an", "Dharmaśāstra", "Vinaya", "Jain Agamas", "Sikh Rahit-related literature kept separate from primary canon"],
+      "strongest_null": "SOCIAL_NORM_AND_INSTITUTIONAL_CONVERGENCE",
+      "promotion_gate": "STRUCTURAL_NOT_JUST_TOPICAL_SIMILARITY"
+    },
+    {
+      "id": "M04_SACRIFICE_RENUNCIATION_OFFERING",
+      "examples_to_test": ["Vedic sacrificial texts", "Hebrew Bible", "New Testament", "Buddhist renunciation texts", "Jain ascetic texts", "Zoroastrian liturgy"],
+      "strongest_null": "RITUAL_AND_ASCETIC_UNIVERSALS",
+      "promotion_gate": "DISTINGUISH_SACRIFICE_FROM_RENUNCIATION_AND_METAPHOR"
+    },
+    {
+      "id": "M05_DEATH_RETURN_REBIRTH_RESURRECTION",
+      "examples_to_test": ["New Testament resurrection", "Egyptian mortuary texts", "Buddhist rebirth", "Hindu rebirth", "Zoroastrian resurrection/renovation", "Mesopotamian descent myths"],
+      "strongest_null": "CATEGORY_COLLAPSE_BY_TRANSLATION",
+      "promotion_gate": "ONTOLOGY_ALIGNMENT_BEFORE_SIMILARITY"
+    },
+    {
+      "id": "M06_FINAL_JUDGMENT_OR_COSMIC_RENEWAL",
+      "examples_to_test": ["Hebrew prophetic/apocalyptic texts", "New Testament apocalypse", "Qur'an", "Zoroastrian Frashokereti-related texts", "selected Hindu cyclic-renewal texts"],
+      "strongest_null": "KNOWN_HISTORICAL_CONTACT_OR_DISTINCT_CYCLIC_MODELS_FALSELY_HARMONIZED",
+      "promotion_gate": "CHRONOLOGY_PLUS_CONCEPTUAL_DIFFERENCE_MATRIX"
+    },
+    {
+      "id": "M07_ETHICAL_RECIPROCITY",
+      "examples_to_test": ["Jewish", "Christian", "Islamic", "Buddhist", "Confucian", "Hindu", "Jain and other ethical corpora"],
+      "strongest_null": "HIGHLY_EXPECTED_SOCIAL_CONVERGENCE",
+      "promotion_gate": "VERY_LOW_EVIDENCE_VALUE_UNLESS_RARE_STRUCTURE_PRESENT"
+    },
+    {
+      "id": "M08_SACRED_MOUNTAIN_TREE_WATER_AXIS",
+      "examples_to_test": ["Sinai/Zion", "Meru-related traditions", "Bodhi tree", "Yggdrasil-like comparative controls outside this seed", "sacred river traditions", "world-tree and axis motifs"],
+      "strongest_null": "ECOLOGICAL_AND_SYMBOLIC_CONVERGENCE",
+      "promotion_gate": "DO_NOT_MERGE_MOUNTAIN_TREE_AND_WATER_INTO_ONE_SYMBOL_WITHOUT_TEXTUAL_JUSTIFICATION"
+    }
+  ],
+  "first_pass_findings": [
+    {
+      "finding": "The corpus requires a graph, not a flat bag of books.",
+      "reason": "Nested canons, translations, recensions and later quotations create severe pseudoreplication.",
+      "confidence": "HIGH"
+    },
+    {
+      "finding": "Original-language alignment is a mandatory gate for any surprising semantic parallel.",
+      "reason": "English/Russian/Ukrainian translations can collapse distinct concepts into the same word or split one concept into several words.",
+      "confidence": "HIGH"
+    },
+    {
+      "finding": "The strongest initial scientific target is historical textual transmission, not metaphysical proof.",
+      "reason": "Transmission generates falsifiable predictions about date, geography, loanwords, phrase order, manuscript families and contact routes.",
+      "confidence": "HIGH"
+    },
+    {
+      "finding": "Generic motifs such as flood, creation, law, judgment, sacred trees and moral reciprocity have low evidential specificity when used alone.",
+      "reason": "They are common enough to arise through diffusion, shared environments, genre convention or independent convergence.",
+      "confidence": "HIGH"
+    },
+    {
+      "finding": "Rare ordered bundles are more informative than theme labels.",
+      "reason": "A sequence of unusual details, distinctive phrasing or shared errors can discriminate common ancestry from generic convergence better than a broad motif name.",
+      "confidence": "HIGH"
+    }
+  ],
+  "best_next_killer_test": {
+    "name": "FLOOD_STEMMA_BLIND_TEST_V0_1",
+    "question": "Can TOPA separate historically connected Ancient Near Eastern flood traditions from independently convergent flood narratives using only frozen features, chronology and blinded controls?",
+    "procedure": [
+      "Freeze a feature schema before looking at labels",
+      "Encode Genesis, Atrahasis, Gilgamesh XI, Qur'anic Noah passages, Manu flood text and matched non-flood controls",
+      "Collapse direct textual descendants and translations",
+      "Blind tradition labels",
+      "Score rare ordered feature bundles",
+      "Restore chronology/geography only after similarity scoring",
+      "Compare against shuffled and genre-matched controls",
+      "Attempt to falsify both shared-source and independent-convergence explanations"
+    ],
+    "success_condition": "A reproducible separation between known/likely transmission families and independent controls without tuning on the labels.",
+    "failure_condition": "The method groups texts mainly by translation vocabulary, generic flood features or analyst-chosen labels.",
+    "world_truth_effect": "NONE; even a successful textual stemma would establish textual/historical relationships, not supernatural causation."
+  },
+  "open_gates": [
+    "FULL_TEXT_ACQUISITION_RIGHTS",
+    "MANUSCRIPT_LEVEL_DATING",
+    "ORIGINAL_LANGUAGE_TOKENIZATION",
+    "ORAL_TRADITION_PERMISSION_AND_PROVENANCE",
+    "BLIND_CONTROL_CORPUS",
+    "LIVE_EXECUTION_ACROSS_EXTERNAL_JANUS_RUNTIMES"
+  ]
+}
