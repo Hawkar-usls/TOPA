@@ -12,8 +12,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "research" / "sacred-scriptures"
-FREEZE = BASE / "PRESCORE_SOURCE_FREEZE.v0.1.json"
-BRIDGE = BASE / "ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json"
+FREEZE = BASE / "PRESCORE_SOURCE_FREEZE.v0.2.json"
+BRIDGE = BASE / "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json"
 BASELINE = BASE / "PHILOLOGY_BASELINE.v0.1.json"
 
 
@@ -39,7 +39,11 @@ def main() -> int:
         if freeze.get("status") != "SOURCE_IDENTITIES_AND_LOCI_FROZEN__BYTE_HASHES_PENDING__SCORE_BLOCKED":
             fail("Unexpected prescore freeze status")
         if freeze.get("score_permission") is not False:
-            fail("SCORE must remain locked in v0.1")
+            fail("SCORE must remain locked in v0.2")
+        if freeze.get("supersedes") != "PRESCORE_SOURCE_FREEZE.v0.1.json":
+            fail("Prescore v0.2 must preserve supersession lineage")
+        if bridge.get("supersedes") != "ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json":
+            fail("Method bridge v0.2 must preserve supersession lineage")
 
         sources = {s.get("id"): s for s in freeze.get("sources", [])}
         required_ids = {"F01_ATRAHASIS", "F02_GILGAMESH_XI", "F03_GENESIS_6_9", "F04_QURAN_NOAH", "F05_SATAPATHA_MANU"}
@@ -61,6 +65,7 @@ def main() -> int:
 
         required_canaries = {
             "LINEAR_A_REPRESENTATION_CANARY_PASS",
+            "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS",
             "EGYPT_LEMMA_ID_CANARY_PASS",
             "EGYPT_TEXT_ID_CANARY_PASS",
         }
@@ -70,12 +75,22 @@ def main() -> int:
         if bridge.get("prescore_gate", {}).get("failure_action") != "BLOCK_FLOOD_SCORE_AND_REPAIR_PIPELINE":
             fail("Canary failure must block score")
 
+        la = bridge.get("linear_a", {})
+        current = la.get("current_canonical_state", {})
+        if current.get("version") != "v2.32" or current.get("status") != "CURRENT_CANONICAL_RESEARCH_STATE":
+            fail("Linear A canary authority is not pinned to current canonical v2.32")
+        ceiling = la.get("current_claim_ceiling_v2_32", {})
+        if ceiling.get("G0_support") != "8/10" or ceiling.get("G0_numeric_payload_distribution_difference_established") is not False:
+            fail("Linear A support-floor negative canary changed")
+        if ceiling.get("decipherment_established") is not False:
+            fail("Linear A canary must not claim decipherment")
+
         if baseline.get("status") != "SOURCE_BASELINE_PARTIAL_FREEZE_WITH_GRETIL_PROVENANCE_CONFLICT":
             fail("Philology baseline status does not preserve provenance conflict")
 
         pending = [s["id"] for s in freeze["sources"] if str(s.get("hash_state", "")).startswith("PENDING")]
         if not pending:
-            fail("v0.1 unexpectedly has no pending source hashes; use a new version to unlock SCORE")
+            fail("v0.2 unexpectedly has no pending source hashes; use a new version to unlock SCORE")
 
     except (AssertionError, json.JSONDecodeError, OSError, KeyError) as exc:
         print("TOPA_PRESCORE_GATE=FAIL")
@@ -84,7 +99,7 @@ def main() -> int:
 
     print("TOPA_PRESCORE_GATE=PASS_LOCKED")
     print("SCORE_PERMISSION=false")
-    print("LINEAR_A_CANARY=REQUIRED_NOT_YET_EXECUTED")
+    print("LINEAR_A_CANARIES=REQUIRED_NOT_YET_EXECUTED")
     print("EGYPT_CANARIES=REQUIRED_NOT_YET_EXECUTED")
     print("SOURCE_HASHES=PENDING")
     print("PASS_SCOPE=FROZEN_IDENTITIES_LOCI_AND_FAIL_CLOSED_LOCK_ONLY")
