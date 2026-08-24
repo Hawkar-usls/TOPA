@@ -9,6 +9,7 @@ Start here:
 - [`research/sacred-scriptures/JANUS_COUNCIL_PROTOCOL.v0.1.json`](research/sacred-scriptures/JANUS_COUNCIL_PROTOCOL.v0.1.json)
 - [`research/sacred-scriptures/TOPA_FIRST_PASS.v0.1.json`](research/sacred-scriptures/TOPA_FIRST_PASS.v0.1.json)
 - [`research/sacred-scriptures/JANUS_EXISTING_LINEAGE.v0.1.json`](research/sacred-scriptures/JANUS_EXISTING_LINEAGE.v0.1.json)
+- [`research/sacred-scriptures/SOURCE_DISCOVERY_RECEIPTS.v0.1.json`](research/sacred-scriptures/SOURCE_DISCOVERY_RECEIPTS.v0.1.json)
 - [`research/sacred-scriptures/PROVENANCE_AND_RIGHTS.md`](research/sacred-scriptures/PROVENANCE_AND_RIGHTS.md)
 
 Validator:
