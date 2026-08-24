@@ -1,0 +1,108 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_8_of_8_retrieval_authority_map.v0.1",
+  "date": "2026-08-24",
+  "status": "EIGHT_OF_EIGHT_RETRIEVAL_AUTHORITIES_ASSEMBLED_PENDING_GLOBAL_CONSISTENCY_GATE",
+  "purpose": "Consolidate the exact already-preserved retrieval receipts without rerunning or rewriting their history. Transport mirrors remain zero-authority and add no source roots.",
+  "controls": [
+    {
+      "id": "BR01_HAMMURABI",
+      "status": "PASS",
+      "class": "SOURCE_BYTES",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_1_FAIL_CLOSED.v0.1.json",
+      "source_sha256": "93410a95441d28fd498df423ec7860ae5ee821df3811989bb469838075c9eb12",
+      "aggregate_sha256": "fdaacc57ead6fb5321f6e0645d317c6dedec94505c345c406ccfe7315e772893",
+      "source_root_count": 1
+    },
+    {
+      "id": "BR02_BEHISTUN",
+      "status": "PASS",
+      "class": "SOURCE_BYTES_MULTICOMPONENT",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_1_FAIL_CLOSED.v0.1.json",
+      "aggregate_sha256": "132dfd09fd975b77aad6dfe84010d5d786f1660c093588d2d9b48f77fb4aad71",
+      "component_sha256": [
+        "049e9046c12f1f078c3a91e6704803671e5fda09c1b68b32de297870c33a4be1",
+        "94d48655e9b2e8c2c21613971816816fefb11754fbed3afab56130f7b45cbd08",
+        "13e7de2d4d9faf1ccb1dc285e9cb62b0a7f98a60d17229c3ec56b61ec5b35436"
+      ],
+      "source_root_count": 1
+    },
+    {
+      "id": "BR03_KADESH",
+      "status": "PASS",
+      "class": "STABLE_NORMALIZED_CONTENT_SPAN_OVER_ZERO_AUTHORITY_ARCHIVE_TRANSPORT",
+      "receipt": "BASE_RATE_KADESH_BR03_RETRIEVAL_PASS.v0.21.json",
+      "scholarly_authority": "Wilson / AJSL / University of Chicago / JSTOR / DOI 10.1086/370157",
+      "transport_authority": 0,
+      "poem_span_sha256": {
+        "20250825141753": "df2076467ac7bf47249bb9ef35e2b69121c59747c797214350910d26d33f030d",
+        "20260111160515": "7e148f78bd566f38a816a02eff872170ba301e778bbed668a3243f9dee45d67c"
+      },
+      "source_root_count": 1
+    },
+    {
+      "id": "BR04_NEO_ASSYRIAN_ANNALS",
+      "status": "PASS",
+      "class": "VERSIONED_TRANSPORT_MIRROR_FOR_FROZEN_ORACC_OBJECT",
+      "receipt": "ORACC_Q003475_TRANSPORT_MIRROR_ADMISSION.v0.1.json",
+      "source_authority": "ORACC RINAP 3 Q003475",
+      "transport_mirror_sha256": "b4589e8ce98bf35102ea48303114684565c1c14a47d8ddae62f446b7e6060df5",
+      "transport_authority": 0,
+      "source_root_count": 1
+    },
+    {
+      "id": "BR05_HITTITE_TREATY",
+      "status": "PASS",
+      "class": "SOURCE_BYTES_SCHOLARLY_PDF",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_2_FAIL_CLOSED.v0.2.json",
+      "source_sha256": "51ff66d1ceb7268e0a9022ae4328b7f1ccfe9774a8ea9d3756fb18c3ecf30bc0",
+      "pdf_text_sha256": "1189424469d3ad6b97050196ab6749d00bad0c38cfeec78317e7bb0b2258e62c",
+      "source_root_count": 1
+    },
+    {
+      "id": "BR06_THUCYDIDES",
+      "status": "PASS",
+      "class": "PINNED_VERSIONED_CORPUS_REPRESENTATION",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_2_FAIL_CLOSED.v0.2.json",
+      "perseus_commit": "a065c359aab33c33bd17ddc2cac7d27fdc9cd870",
+      "source_sha256": "0565b20acd3fa78e5738ba33853a34abad616c93c8dc89804dd282ae25fec976",
+      "slice_sha256": "1cfed1087c95eb15b7445d4cff835e1b0030fe9e88b6360c72e86789e1f4ae27",
+      "source_root_count": 1
+    },
+    {
+      "id": "BR07_RES_GESTAE",
+      "status": "PASS",
+      "class": "SOURCE_BYTES_MULTICOMPONENT",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_2_FAIL_CLOSED.v0.2.json",
+      "aggregate_sha256": "2e078411ca8ed6b5c11843fa5773596ad1d58f60893e2e948a387a87730011f2",
+      "source_root_count": 1
+    },
+    {
+      "id": "BR08_PTAHHOTEP",
+      "status": "PASS",
+      "class": "VERSIONED_CORPUS_REPRESENTATION",
+      "receipt": "execution/BASE_RATE_RETRIEVAL_ATTEMPT_2_FAIL_CLOSED.v0.2.json",
+      "persistent_text_id": "C6KGH3XC7RGU3DSL7HKYY2K3WM",
+      "page_sha256": [
+        "7f66e0c90801a7d1aa73a3b75551967c30281e9270b7f5b7ff41305ad642e7fe",
+        "e031bb74601f8bcdd062e592de5f48c35852af8dabf8d8b6d3bacf7dcde42be0"
+      ],
+      "aggregate_sha256": "bc351a8e363acfb2fc7ed1dd418a0deaa6abbf832e6c22ab7188d77ea62445be",
+      "source_root_count": 1
+    }
+  ],
+  "summary": {
+    "retrieval_passes": 8,
+    "required": 8,
+    "transport_mirrors_counted_as_independent_roots": 0,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "laws": [
+    "CONSOLIDATED_MAP_DOES_NOT_ERASE_PARTIAL_FAIL_HISTORY",
+    "TRANSPORT_COPY != INDEPENDENT_SOURCE_ROOT",
+    "EIGHT_RETRIEVAL_PASSES != SEMANTIC_RESULT",
+    "NO_CODING_BEFORE_GLOBAL_CONSISTENCY_AND_CODER_CONTRACT_GATE",
+    "NO_SCORE"
+  ]
+}
