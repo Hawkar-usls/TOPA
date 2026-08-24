@@ -1,0 +1,45 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coder_bundle_freeze_pass.v0.1",
+  "date": "2026-08-24",
+  "status": "PASS_COMPLETE_DEPENDENCY_BUNDLE_FROZEN",
+  "policy": "BASE_RATE_CODER_BUNDLE_FREEZE_POLICY.v0.1.json",
+  "workflow": {
+    "draft_pr": 30,
+    "run_id": 32777007544,
+    "job_id": 97590263442,
+    "head_sha": "ac7700d998ee542856a13b94a7876af03703e387",
+    "conclusion": "success",
+    "artifact_id": 9538318587,
+    "artifact_digest": "sha256:ef4b8afbbf31b3324ed2eb8e1ad7170175a3426fd4e9c8342205cd74ddaa586c"
+  },
+  "checks": {"passed": 12, "required": 12},
+  "bundle_sha256": "9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa",
+  "bundle_entries": [
+    {"path":"research/propaganda-defense/BASE_RATE_CODING_PACKET_TEMPLATE.v0.3.json","sha256":"69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f","git_blob_sha":"a514bb77bac6c283ca60c771ab3ac46eb8bf416b","byte_length":4169},
+    {"path":"research/propaganda-defense/CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json","sha256":"636632ed24ff42f455cc5306b4b6294a4e2f1de6833f73757347a2e79ddac6ce","git_blob_sha":"da8d7788b82b4f4b179aec31cafda070773041ac","byte_length":13164},
+    {"path":"research/propaganda-defense/ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.3.json","sha256":"9322904427ca9ff1d1c107f2f75b0dbb082b9343a4c931be04a407151fd8b1a7","git_blob_sha":"e8d4a07b6836774e24d0af82c906521dde5a4e22","byte_length":4143},
+    {"path":"research/propaganda-defense/ANCIENT_BASE_RATE_EXACT_SUBLOCUS_FREEZE.v0.1.json","sha256":"99bb0dfeeec71b9e204ea049d844b2f33709dd9a1fa97ee7fc8ee45ec5e1c323","git_blob_sha":"afe9d2d53cc792cc170176ca89b6d77b25658ca9","byte_length":5391},
+    {"path":"research/propaganda-defense/ANCIENT_BASE_RATE_DESCRIPTOR_COMMITMENTS.v0.1.json","sha256":"7c8b3f59e6662ee4a634453d1bd8fef2b3166d31f035440be21fe05b3ae29f93","git_blob_sha":"5ce1cbbb39ad603455c661ec5cd45c2b22b058e5","byte_length":4998},
+    {"path":"research/propaganda-defense/BASE_RATE_8_OF_8_RETRIEVAL_AUTHORITY_MAP.v0.1.json","sha256":"bddc2254235a9e198abbb4277a347768698c34afad49dac8eb4391fee6d99163","git_blob_sha":"a487cd262446b823913c6ee1ac2d45bf8d645002","byte_length":4687},
+    {"path":"research/propaganda-defense/BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1.json","sha256":"7b38965eb4803fbde20d76b55e5548833ddfad038fbe1e0a7d1d3abfa7a727e9","git_blob_sha":"e397f3dfcf30ab8a23163df868c1de8452ed5395","byte_length":3640},
+    {"path":"research/propaganda-defense/SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json","sha256":"cdaa889677985af57884c0089403f7a68586e73b1df1225fb378fcaafb5f4a24","git_blob_sha":"191de3be6072f9a2004d6ebac03e8f0498013dd8","byte_length":6544}
+  ],
+  "result": {
+    "coder_bundle_hash_frozen": true,
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_values_populated": 0,
+    "score_permission": false
+  },
+  "next_legal_action": "Create two genuine coder assignment receipts that independently satisfy BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1 and bind exactly bundle SHA-256 9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa. Until both exist, no X01-X35 semantic value is admitted.",
+  "laws": [
+    "BUNDLE_HASH_BINDS_ALL_CODER_DEPENDENCIES",
+    "BUNDLE_HASH != SEMANTIC_RESULT",
+    "TWO_GENUINE_ASSIGNMENTS_REQUIRED",
+    "NO_ASSIGNMENT_BY_RELABELING_ONE_REASONING_PATH",
+    "SEMANTIC_VALUES_REMAIN_ZERO",
+    "NO_SCORE"
+  ]
+}
