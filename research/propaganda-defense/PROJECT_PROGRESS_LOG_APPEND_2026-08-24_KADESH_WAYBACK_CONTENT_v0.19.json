@@ -1,0 +1,26 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.kadesh_wayback_content.v0.19",
+  "date": "2026-08-24",
+  "append_only": true,
+  "event": "TWO_EXACT_WAYBACK_SNAPSHOTS_EXPOSE_STRONG_TEXT_GEOMETRY_BUT_OLD_IDENTITY_RULE_NOT_MET",
+  "authority_receipt": "BASE_RATE_KADESH_WAYBACK_CONTENT_PARTIAL.v0.19.json",
+  "run_id": 32774877764,
+  "result": {
+    "exact_snapshots_tested": 2,
+    "if_replays_with_full_page_coverage_266_287": 2,
+    "if_replays_with_all_four_internal_markers": 2,
+    "old_identity_rule_author_string_present": 0,
+    "embedded_asset_coordinate_sets": 2,
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "spiral_delta": {
+    "forward_rule": "Mirror identity required title + document ID + author string.",
+    "reverse_finding": "The mirror can omit bibliographic author metadata while still exposing exact title, frozen pagination and distinctive internal section geometry; scholarly authority was already frozen independently at Wilson/AJSL/DOI/JSTOR.",
+    "origin_prime": "Decompose scholarly source authority from transport-object identity and freeze a content-geometry gate before any admission replay."
+  },
+  "next_legal_action": "FREEZE_AND_RUN_TRANSPORT_OBJECT_IDENTITY_CONTENT_GEOMETRY_GATE_V0_20",
+  "preservation": "v0.19 remains PARTIAL; no criterion is silently dropped after seeing the result."
+}
