@@ -8,6 +8,7 @@ on:
     paths:
       - 'research/sacred-scriptures/**'
       - 'tools/sacred_scripture_corpus_check.py'
+      - 'tools/sacred_scripture_prescore_gate.py'
       - '.github/workflows/sacred-scriptures.yml'
 
 permissions:
@@ -23,3 +24,5 @@ jobs:
           python-version: '3.12'
       - name: Validate sacred scripture corpus
         run: python tools/sacred_scripture_corpus_check.py
+      - name: Validate prescore source freeze and canary lock
+        run: python tools/sacred_scripture_prescore_gate.py
