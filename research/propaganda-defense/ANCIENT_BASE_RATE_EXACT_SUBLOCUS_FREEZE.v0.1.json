@@ -1,0 +1,83 @@
+{
+  "schema": "topa.propaganda_defense.ancient_base_rate_exact_sublocus_freeze.v0.1",
+  "date": "2026-08-24",
+  "status": "EIGHT_OF_EIGHT_EXACT_CONTROL_LOCI_FROZEN_SOURCE_SEALS_PENDING",
+  "parent_authority": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.3.json",
+  "selection_rule": "Loci are frozen before any X01-X35 semantic coding. Whole-text selection is permitted when it is the stricter anti-cherry-pick choice; later narrowing requires a new preregistered sensitivity receipt and may not replace the frozen primary result.",
+  "controls": [
+    {
+      "id":"BR01_HAMMURABI",
+      "exact_locus":"Yale Avalon L. W. King translation: complete Prologue from opening royal/divine commission through immediately before numbered laws, plus complete section headed THE EPILOGUE through its end. The numbered law body between them is excluded from the primary locus.",
+      "source":"https://avalon.law.yale.edu/ancient/hamcode.asp",
+      "mode":"TRANSLATION_STRUCTURE_CONTROL",
+      "lexical_credit":"FORBIDDEN_WITHOUT_AKKADIAN_CROSSCHECK"
+    },
+    {
+      "id":"BR02_BEHISTUN",
+      "exact_locus":["Old Persian Column I lines 9-17","Old Persian Column IV lines 31-39","Old Persian Column IV lines 87-92"],
+      "source_pages":[
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-02/",
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-36/",
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-42/"
+      ],
+      "mode":"OLD_PERSIAN_TRANSLITERATION_PLUS_TRANSLATION"
+    },
+    {
+      "id":"BR03_KADESH",
+      "exact_locus":"John A. Wilson, The Texts of the Battle of Kadesh, AJSLL 43.4 (1927), section THE POEM only, journal pages 266-278 inclusive, from the article introduction/title into the Poem through its colophon; THE RECORD section is excluded from the primary locus.",
+      "source":"https://www.journals.uchicago.edu/doi/10.1086/370157",
+      "stable_bibliographic_locator":"DOI 10.1086/370157; pp. 266-287 article, primary locus pp. 266-278",
+      "genre_corrective":"UCL Digital Egypt Kadesh/war context remains a separate context receipt and cannot overwrite the primary textual coding.",
+      "mode":"SCHOLARLY_ECLECTIC_TRANSLATION_STRUCTURE_CONTROL",
+      "lexical_credit":"FORBIDDEN_WITHOUT_EGYPTIAN_SOURCE_LANGUAGE_CROSSCHECK"
+    },
+    {
+      "id":"BR04_NEO_ASSYRIAN_ANNALS",
+      "exact_locus":"ORACC RINAP 3 Sennacherib 001, lines 1-4 only for primary base-rate run.",
+      "source":"https://oracc.museum.upenn.edu/rinap/rinap3/Q003475/html",
+      "mode":"AKKADIAN_TRANSLITERATION_PLUS_TRANSLATION"
+    },
+    {
+      "id":"BR05_HITTITE_TREATY",
+      "exact_locus":"CTH 62.II A column I lines 19′-28′ only for primary base-rate run.",
+      "catalog":"https://www.hethport.uni-wuerzburg.de/hetkonk/hetkonk_abfrage.php?c=62",
+      "open_transliteration":"https://iris.unito.it/retrieve/e27ce42b-d27c-2581-e053-d805fe0acbaa/Devecchi-RAI54.pdf",
+      "mode":"HITTITE_TRANSLITERATION_PLUS_TRANSLATION",
+      "witness_rule":"Akkadian/Hittite duplicates are textual witnesses, not independent event sources."
+    },
+    {
+      "id":"BR06_THUCYDIDES",
+      "exact_locus":"Thucydides Book 2 chapters 34-46 inclusive: state-funeral institutional context plus Periclean Funeral Oration.",
+      "source_family":"Perseus Digital Library Greek and 1910 English edition already frozen in source-authority pass",
+      "mode":"GREEK_PRIMARY_PLUS_TRANSLATION",
+      "translation_rule":"Greek and English are layers of one textual root, not independent witnesses."
+    },
+    {
+      "id":"BR07_RES_GESTAE",
+      "exact_locus":"Res Gestae Divi Augusti: preface plus sections 1, 8, 25 and 34 only.",
+      "source_family":"Perseus Digital Library Latin text URI urn:cts:latinLit:phi1221.phi007.perseus-lat1",
+      "mode":"LATIN_PRIMARY_TEXT",
+      "translation_rule":"Translations may assist coding but cannot count as independent support."
+    },
+    {
+      "id":"BR08_PTAHHOTEP",
+      "exact_locus":"Entire TLA Text ID C6KGH3XC7RGU3DSL7HKYY2K3WM (Die Lehre des Ptahhotep; pTurin CGT 54014) as the primary control locus. No maxim/sentence subset may replace this whole-text primary result after feature inspection.",
+      "source":"https://thesaurus-linguae-aegyptiae.de/text/C6KGH3XC7RGU3DSL7HKYY2K3WM",
+      "persistent_text_id":"C6KGH3XC7RGU3DSL7HKYY2K3WM",
+      "object_id":"VR3AJXVORNEHFM5JCMXN5PC6GA",
+      "line_convention":"[1] = manuscript line 1; D-numbers follow E. Dévaud verse numbering as documented by TLA.",
+      "mode":"EGYPTIAN_HIEROGLYPHS_TRANSLITERATION_LEMMATIZATION_TRANSLATION",
+      "anti_cherry_pick_reason":"Whole persistent text object is stricter and reproducible; sentence-level narrowing remains sensitivity-only unless separately preregistered before coding."
+    }
+  ],
+  "summary": {
+    "exact_control_loci_frozen": 8,
+    "required": 8,
+    "semantic_X01_X35_cells_populated": 0,
+    "source_byte_or_metadata_seals_complete": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action":"Generate immutable source-byte hashes where lawful/stable and canonical metadata-descriptor commitments otherwise; bind all eight to BASE_RATE_CODING_PACKET_TEMPLATE.v0.2 before any coding is issued.",
+  "epistemic_effect":"EXACT_LOCUS_PREREGISTRATION_ONLY_NO_MANIPULATION_CLASSIFICATION"
+}
