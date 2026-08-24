@@ -1,0 +1,47 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1G-F3-WIDTH-DEPTH-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1G-F3",
+  "status": "PROVED_IN_STATED_SCOPE",
+  "canonical_repository": "Hawkar-usls/TOPA",
+  "provider_repository": "Hawkar-usls/Janus-Fundamentum",
+  "provider_branch": "c025-policy0b-fair-reason",
+  "provider_head": "8008a8c61c4eff3b3e33cd0bf521cfd9665edaa8",
+  "provider_run": 32754807213,
+  "provider_job": 97519752439,
+  "provider_conclusion": "SUCCESS",
+  "proved_in_scope": {
+    "negative_depth_metric": true,
+    "negative_frontier_width_metric": true,
+    "depth_one_exponential_frontier_counterfamily": true,
+    "depth_alone_polynomial_route": "REFUTED",
+    "paired_representation_bound": "|CNFEXP(plus_or_minus e)| <= S^((b+2)^(d+1))",
+    "paired_macro_cut_bound": "S_local <= S^(7*(b+2)^(d+1))",
+    "hard_family_tradeoff": "(d+1)*log(b+2) = Omega(log N) for every polynomial-size B2/ER3 escape on the stated existential polynomial-input NW-parity family"
+  },
+  "provider_gates": [
+    "C025_E2R_L1G_F3_NEGATIVE_DEPTH_METRIC = PASS",
+    "C025_E2R_L1G_F3_FRONTIER_WIDTH_METRIC = PASS",
+    "C025_E2R_L1G_F3_DEPTH_ONE_EXPONENTIAL_FRONTIER = PASS",
+    "C025_E2R_L1G_F3_DEPTH_ALONE_POLY_ROUTE = REFUTED",
+    "C025_E2R_L1G_F3_BD_REPRESENTATION_BOUND_FINITE = PASS",
+    "C025_E2R_L1G_F3_BD_CUT_RECURRENCE_CEILING = PASS",
+    "C025_E2R_L1G_F3_WIDTH_DEPTH_TRADEOFF_ALGEBRA = PASS",
+    "C025_E2R_L1G_F3_Q0_MONOTONE_BASE = PASS"
+  ],
+  "claim_ceiling": [
+    "width-depth tradeoff is restriction-family specific",
+    "does not imply superpolynomial unrestricted ER3 extension count",
+    "does not establish an ER or Extended-Frege lower bound",
+    "does not establish deterministic extension/proof discovery",
+    "does not resolve P versus NP or NP versus coNP"
+  ],
+  "source_transfer_note": "Sokolov's functional representation is stable under partial x-assignments, but F3-D must still distinguish syntactic support survival from semantic residual-function survival.",
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_L1G_F3_FRONTIER_WIDTH_DEPTH.md",
+    "research/mathematics/p-vs-np/frontier_width_depth_f3_probe.py"
+  ],
+  "next_front": "C025-E2R-L1G-F3-D: surviving width/depth under NW self-reductions and semantic-collapse audit",
+  "p_vs_np": "OPEN"
+}
