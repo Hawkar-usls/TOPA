@@ -1,0 +1,12 @@
+{
+  "schema": "topa.sacred_scriptures.project_progress_log_append.v0.1",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "policy": {"does_not_rewrite_prior_logs":true,"negative_results_preserved":true,"no_gate_reinterpretation":true},
+  "entries": [
+    {"seq":24,"event":"PROPAGANDA_DEFENSE_ATLAS_LINKED_AS_PARALLEL_METHOD","status":"DONE","artifact":"SACRED_TEXT_MANIPULATION_SCREEN.v0.1.json","atlas":"topa-propaganda-defense @ observed commit 4954af9307c67a0729a54187bcf00276bd00ee6a","technique_total":138,"claim_effect":"PARALLEL_METHOD_ONLY"},
+    {"seq":25,"event":"FLOOD_BLIND_CONTAMINATION_FIREWALL_FROZEN","status":"DONE","rules":["manipulation results hidden from Flood A/B before their receipts freeze","no manipulation-screen output populates 28-feature Flood cells","no propaganda artifact counts as coder A/B"],"gate_effect":{"coder_A":"UNASSIGNED","coder_B":"UNASSIGNED","disagreement_manifest":"BLOCKED","score_permission":false}},
+    {"seq":26,"event":"ANCIENT_NON_SACRED_BASE_RATE_DECK_PREREGISTERED","status":"8_CONTROL_FAMILIES_SOURCE_SEALING_PENDING","artifact":"ANCIENT_NON_SACRED_MANIPULATION_BASE_RATE_DECK.v0.1.json","controls":["Hammurabi","Behistun","Egypt Kadesh","Neo-Assyrian annals","Hittite treaty","Thucydides","Res Gestae","Ptahhotep/wisdom instruction"],"claim_effect":"FALSE_POSITIVE_CALIBRATION_DESIGN_ONLY"}
+  ],
+  "current_snapshot": {"phase":"PARALLEL_MANIPULATION_BASE_RATE_CALIBRATION_PREP","flood_coder_A":"UNASSIGNED","flood_coder_B":"UNASSIGNED","manipulation_screen_score":"NOT_RUN","base_rate_controls":"0/8 SEALED","score_permission":false,"next_legal_action":"SEAL_NON_SACRED_BASE_RATE_CONTROLS_BEFORE_ANY_SACRED_MANIPULATION_PROMOTION"}
+}
