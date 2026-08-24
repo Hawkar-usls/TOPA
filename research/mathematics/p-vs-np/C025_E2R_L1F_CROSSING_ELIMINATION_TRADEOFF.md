@@ -1,8 +1,8 @@
 # C025-E2R-L1F — Crossing-extension elimination tradeoff
 
-**Status:** `ONE_GATE_ELIMINATION_PROVED`; asymptotic crossing-budget consequence pending provider replay.
+**Status:** `PROVED_IN_RESTRICTED_SCOPE__PROVIDER_PASS`.
 
-**Scope firewall:** this is a tradeoff for the direct NW-parity family and its local-functional encoding. It does **not** prove a lower bound for unrestricted ER3 with polynomially many crossing extensions, and it does not resolve Issue #217.
+**Scope firewall:** this is a tradeoff for the direct NW-parity family and its local-functional encoding. It does **not** prove a superpolynomial lower bound for unrestricted ER3 extension count and it does not resolve Issue #217.
 
 ## 1. Setup
 
@@ -26,6 +26,8 @@ A local extension cannot depend on a crossing ancestor: support is the union of 
 
 Hence crossing variables may be eliminated in reverse introduction order without destroying the already-local extension definitions that remain.
 
+Throughout this note `S` means **total proof-line volume including all used input/extension axioms** after reachability pruning. If a presentation stores definitions separately, add their explicit three-clause volume before applying the bound.
+
 ## 2. Clause expansion for one eliminated extension
 
 For a clause `C` not containing both `e` and `~e`, define `EXP_e(C)` after replacing `e` by `(a AND b)`:
@@ -45,9 +47,7 @@ EXP_e(C) = {A OR ~a OR ~b}.
 
 Duplicates are canonicalized and tautological clauses may be deleted.
 
-Thus every old proof line produces at most two non-tautological clauses.
-
-The three defining axioms of `e` expand to tautologies and disappear.
+Thus every old proof line produces at most two non-tautological clauses. The three defining axioms of `e` expand to tautologies and disappear.
 
 ## 3. Resolution-step simulation
 
@@ -115,13 +115,13 @@ Then `e` and its three defining clauses can be eliminated, producing a Resolutio
 |pi_without_e| <= 2 |pi|
 ```
 
-up to deletion of tautological/duplicate lines and ordinary representation overhead.
+up to tautology/duplicate deletion and ordinary identifier encoding overhead.
 
 The argument is constructive: process the old derivation in order and emit at most two expanded clauses for every old line using the simulations above.
 
 ## 5. t-gate elimination theorem
 
-Let `t` be the number of crossing extension variables in a B2/ER3 refutation and `S` its proof-line count.
+Let `t` be the number of crossing extension variables in a B2/ER3 refutation and `S` its total proof-line volume.
 
 Eliminate crossing variables in reverse introduction order. Local descendants of a crossing variable cannot exist, and later crossing variables have already been eliminated. Repeating the one-gate lemma gives a local-only Resolution proof of size
 
@@ -129,7 +129,7 @@ Eliminate crossing variables in reverse introduction order. Local descendants of
 S_local <= S * 2^t.
 ```
 
-After identifying duplicate local-function variables by literal substitution, every remaining root/local axiom is an axiom of the NW functional encoding used by the heavy-width lower bound. Therefore, if every Resolution refutation of that functional encoding has size at least `L`, then
+After identifying duplicate local-function variables by literal substitution, every remaining root/local axiom is contained in the NW functional encoding used by the heavy-width lower bound. Therefore, if every Resolution refutation of that functional encoding has size at least `L`, then
 
 ```text
 S * 2^t >= L.
@@ -145,54 +145,109 @@ This is the first proof-sensitive crossing-budget tradeoff. It does not use raw 
 
 ## 6. Polynomial-input parameter regime
 
-The source heavy-width theorem is more general than the maximal-degree corollary. Combine its formal expander theorem with the random-graph existence lemma using
+Use the formal source heavy-width theorem together with its random boundary-expander lemma, rather than only the maximal-degree corollary.
+
+Fix `0 < delta < 1` and put
 
 ```text
-m = n^(2-delta),
-Delta = C log n
+m = n^(2-delta).
 ```
 
-for a sufficiently large fixed `C`, and choose a sufficiently small fixed expansion-loss parameter `epsilon>0` so that the factor `2^(O(epsilon Delta))` is `n^q` with `q<delta`.
-
-For parity base functions, the balancedness condition survives every restriction fixing fewer than all `Delta` inputs.
-
-The direct truth-table CNF has
+Choose a sufficiently large fixed constant `C` and
 
 ```text
-N = O(m * 2^Delta * Delta * log n) = n^O(1).
+Delta = C ln n.
 ```
 
-The heavy-width theorem then yields an existential random-graph family with local-functional Resolution lower bound
+Choose a sufficiently small fixed `xi>0` and a fixed `chi>1` with
 
 ```text
-L = exp(n^Omega(delta) / polylog(n)).
+xi ln chi >= 2,
+2 Delta >= 4 ln m,
 ```
 
-(after shrinking constants in the exponent as needed).
-
-Hence, for every polynomial-size B2/ER3 proof `S=N^O(1)`,
+and set the source expansion-loss parameter `epsilon=2xi`. The random-graph lemma then gives, with high probability,
 
 ```text
-t >= Omega(log L) = n^Omega(delta) = N^alpha
+r = n/(Delta chi) = Theta(n/log n)
 ```
 
-for some fixed `alpha>0` depending on the frozen constants.
+and boundary expansion `(1-epsilon)Delta` after matching notation.
 
-So a polynomial-size refutation of this family cannot escape the NW-local lower bound using only `o(N^alpha)` crossing extensions.
+Choose `xi` small enough that
+
+```text
+2^(6 epsilon Delta) <= n^(delta/2).
+```
+
+Parity on `Delta` variables is `(1/4,3 epsilon Delta)`-balanced whenever `3 epsilon < 1`, because after fixing fewer than all inputs the remaining parity is exactly balanced.
+
+The formal heavy-width theorem therefore gives
+
+```text
+log L
+  >= Omega(epsilon^5 * r^2 /(2^(6 epsilon Delta) * m))
+  >= Omega(n^(delta/2)/polylog(n)).
+```
+
+The direct truth-table CNF has explicit encoded length
+
+```text
+N = O(m * 2^Delta * Delta * log n) = n^D polylog(n)
+```
+
+for a fixed constant `D = 2-delta + C ln 2` under ordinary binary literal identifiers. Hence there is a fixed `alpha>0` such that, for all sufficiently large members of the existential hard family,
+
+```text
+log L >= N^alpha.
+```
+
+For every fixed polynomial bound `S <= N^q`, the term `log S=O(log N)` is negligible, so
+
+```text
+t >= log2(L/S) >= Omega(N^alpha).
+```
+
+Thus a polynomial-size B2/ER3 refutation of this family cannot escape the NW-local lower bound using `o(N^alpha)` crossing extensions.
 
 This is a **polynomial crossing-count lower bound**, not a superpolynomial one.
 
-## 7. Why this still does not close #217
+## 7. Provider replay
 
-The tradeoff permits
+Authoritative finite-mechanics replay:
+
+```text
+repo       = Hawkar-usls/Janus-Fundamentum
+branch     = c025-policy0b-fair-reason
+workflow   = Validate C025 Fair Scheduler and Reasons
+run        = 32746842601
+job        = 97494297207
+conclusion = SUCCESS
+```
+
+PASS gates:
+
+```text
+C025_E2R_L1F_NON_E_PIVOT_ALL_POLARITY_CASES
+C025_E2R_L1F_E_PIVOT_TWO_STEP_SIMULATION
+C025_E2R_L1F_EXTENSION_DEFINITION_EVAPORATION
+C025_E2R_L1F_ONE_GATE_LINE_MULTIPLIER_LE_2
+C025_E2R_L1F_LOCAL_DESCENDANT_OF_CROSSING_REJECTED_BY_SUPPORT
+```
+
+CI validates finite translation mechanics only. The asymptotic lower bound uses the external heavy-width theorem plus the parameter map above.
+
+## 8. Why this still does not close #217
+
+The tradeoff permits polynomially many crossings:
 
 ```text
 t = N^alpha, N^(alpha+1), ...
 ```
 
-which is still polynomial in the input length. Therefore it does not rule out a polynomial-size unrestricted ER3/B2 refutation.
+Therefore it does not rule out a polynomial-size unrestricted ER3/B2 refutation.
 
-It does, however, remove a large class of possible escapes:
+It does remove a large class of possible escapes:
 
 ```text
 O(log N) crossings        -> insufficient
@@ -202,27 +257,28 @@ N^beta crossings          -> insufficient for every beta<alpha
 
 for the frozen hard-family parameters.
 
-The next gate is to improve the elimination cost per crossing from exponential in `t` to a subexponential/polynomial function for a structurally restricted crossing skeleton, or to exhibit an explicit crossing construction showing that such an improvement is impossible.
+The next gate is to ask whether the generic `2^t` elimination loss can be improved for a structurally restricted crossing circuit, or whether an explicit B2 construction forces exponential CNF expansion and proves that the generic factor is qualitatively unavoidable.
 
-## 8. Exact status
+## 9. Exact status
 
 ```text
 L1F_C_ONE_GATE_CNF_EXPANSION          = PROVED
-L1F_C_RESOLUTION_STEP_SIMULATION      = PROVED
+L1F_C_RESOLUTION_STEP_SIMULATION      = PROVED__PROVIDER_PASS
 L1F_C_T_GATE_ELIMINATION              = PROVED
 L1F_D_SIZE_CROSSING_TRADEOFF          = PROVED_FROM_SOURCE_LOWER_BOUND
-L1F_D_POLYNOMIAL_CROSSING_LOWER_BOUND = CLAIM_PENDING_PROVIDER_REPLAY
+L1F_D_POLYNOMIAL_CROSSING_LOWER_BOUND = PROVED_IN_RESTRICTED_SCOPE
 L1F_E_SUPERPOLY_CROSSING_LOWER_BOUND  = OPEN
 ISSUE_217_FULL_ER3_EXTENSION_COUNT     = OPEN
 P_VS_NP                                = OPEN
 ```
 
-## 9. Hard laws
+## 10. Hard laws
 
 ```text
-ONE_CROSSING_EXTENSION_CAN_BUY_AT_MOST_FACTOR_2_UNDER_EXACT_ELIMINATION
+ONE_CROSSING_EXTENSION_COSTS_AT_MOST_FACTOR_2_UNDER_EXACT_ELIMINATION
 POLYNOMIAL_CROSSING_LOWER_BOUND != SUPERPOLYNOMIAL_EXTENSION_LOWER_BOUND
 LOCAL_FUNCTIONS_FREE_IN_SOURCE_ENCODING != CROSSING_FUNCTIONS_FREE
+FINITE_CI_REPLAY != ASYMPTOTIC_SOURCE_THEOREM
 CROSSING_EXISTENCE != DETERMINISTIC_CROSSING_DISCOVERY
 P_VS_NP = OPEN
 ```
