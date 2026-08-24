@@ -1,0 +1,48 @@
+{
+  "id": "TOPA-C025-AKINATOR-RSPC-SEMANTIC-SURVIVAL-PASS-2026-08-25-v1.0",
+  "schema_version": "1.0",
+  "status": "FINITE_MECHANICS_PASS__ANALYTIC_REDUCTION_SEPARATE",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "canonical_note": "research/mathematics/p-vs-np/C025_AKINATOR_RSPC_SEMANTIC_SURVIVAL_SEARCH_BARRIER.md",
+  "probe": "research/mathematics/p-vs-np/akinator_rspc_semantic_survival_probe.py",
+  "workflow": ".github/workflows/validate-akinator-rspc.yml",
+  "provider_receipt": {
+    "repository": "Hawkar-usls/TOPA",
+    "workflow_name": "Validate Akinator RSPC",
+    "head_sha": "0b2bd8ab020a5c728bfe0d763c9d263ea8bded57",
+    "run_id": 32791677963,
+    "job_id": 97634309131,
+    "conclusion": "SUCCESS",
+    "markers": [
+      "AKINATOR_RSPC_SAT_TO_NONCONSTANCY_FINITE_REPLAY = PASS",
+      "AKINATOR_RSPC_SINGLE_WITNESS_COUNTEREXAMPLE = PASS",
+      "AKINATOR_RSPC_PAIR_ENUMERATION_FINITE_ALGEBRA = PASS",
+      "GENERAL_RESIDUAL_NONCONSTANCY_NP_COMPLETE = ANALYTIC_REDUCTION_NOT_CI",
+      "WITNESS_FRONTIER_SUPERPOLY_LOWER_BOUND = NOT_PROVED",
+      "SOURCE_MATCHED_RESTRICTION_HARDNESS = OPEN",
+      "PROOF_CARRYING_STRUCTURAL_SELECTOR = OPEN",
+      "P_VS_NP = OPEN"
+    ]
+  },
+  "analytic_result": {
+    "general_residual_nonconstancy": "NP_COMPLETE",
+    "general_residual_constancy": "coNP_COMPLETE",
+    "reduction": "F(x) -> C_F(z,x)=z AND F(x), rho=empty",
+    "scope": "GENERAL_BOOLEAN_CIRCUIT_OR_B2_DAG_REPRESENTATION",
+    "source_matched_sokolov_restriction_hardness": "OPEN"
+  },
+  "new_exact_resource": {
+    "name": "WITNESS_FRONTIER_WIDTH",
+    "symbol": "Omega(S)",
+    "definition": "maximum number of retained constructive positive witnesses per represented function in selector state S",
+    "current_status": "NO_SUPERPOLYNOMIAL_LOWER_BOUND_PROVED"
+  },
+  "scientific_laws": [
+    "CHEAP_SURVIVAL_WITNESS_VERIFICATION != CHEAP_SURVIVAL_WITNESS_DISCOVERY",
+    "SHORT_ASSIGNMENT_WITNESS != POLYNOMIAL_WITNESS_SEARCH",
+    "ONE_WITNESS_PER_VALUE != COMPLETE_COMPOSITIONAL_SURVIVAL",
+    "GENERAL_CIRCUIT_HARDNESS != SOURCE_MATCHED_RESTRICTION_HARDNESS",
+    "POLYNOMIAL_WITNESS_FRONTIER_MUST_BE_PROVED_IN_ORIGINAL_INPUT_LENGTH"
+  ],
+  "next_gate": "RSPC-S2_WITNESS_FRONTIER_ACCOUNTING_AND_NO_BACKTRACKING_COMPLETENESS"
+}
