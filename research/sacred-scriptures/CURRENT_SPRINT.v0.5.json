@@ -1,0 +1,51 @@
+{
+  "schema": "topa.sacred_scriptures.current_sprint.v0.5",
+  "date": "2026-08-24",
+  "status": "ACTIVE_ORIGIN_PRIME_INDEPENDENT_CODER_ASSIGNMENT_PHASE",
+  "supersedes": "CURRENT_SPRINT.v0.4.json",
+  "why_state_changed": "JANUS 5D spiral + reverse pass found pre-coder arbitration, packet identity and independence receipts as missing required nodes. These contracts are now frozen and the pre-coder CI gate passed.",
+  "entry_gates": {
+    "prescore_gate": "PASS",
+    "focal_source_seals": "5/5",
+    "canaries": "4/4",
+    "real_controls": "8/8",
+    "synthetic_null_generators": "2/2 FROZEN_NO_OUTPUTS",
+    "pre_coder_contract_gate": "PASS",
+    "semantic_coding_permission": true,
+    "genuine_independence_still_required": true,
+    "score_permission": false
+  },
+  "current_authorities": {
+    "reverse_spiral": "DOUBLE_CODING_REVERSE_SPIRAL.v0.1.json",
+    "blind_packet_manifest": "BLIND_PACKET_BUILD_MANIFEST.v0.2.json",
+    "independence_contract": "CODER_INDEPENDENCE_CONTRACT.v0.1.json",
+    "arbitration_protocol": "ARBITRATION_PROTOCOL.v0.1.json",
+    "packet_template": "SOURCE_CODING_PACKET_TEMPLATE.v0.1.json",
+    "pre_coder_gate": "execution/PRE_CODER_CONTRACT_FREEZE_GATE.v0.1.json"
+  },
+  "ordered_next": [
+    "assign coder A and coder B as genuinely independent operators/instances",
+    "record independent coder-instance receipts before semantic coding",
+    "issue identical packet-template and source-slice hash bindings to both coders",
+    "independently code F01-F05 and C01-C08 without counterpart outputs",
+    "freeze each item receipt before cross-coder comparison",
+    "construct disagreement manifest",
+    "arbitrate only under already frozen ARBITRATION_PROTOCOL.v0.1",
+    "freeze double-coded arbitrated matrix and SHA-256",
+    "only then generate C09/C10 actual shuffled outputs",
+    "build opaque scorer packets and run leakage validator",
+    "require separate score-unlock receipt"
+  ],
+  "hard_locks": [
+    "NO_SAME_REASONING_INSTANCE_AS_A_AND_B",
+    "NO_SECOND_PASS_ROLEPLAY_AS_INDEPENDENCE",
+    "NO_COUNTERPART_OUTPUT_VISIBILITY_BEFORE_OWN_FREEZE",
+    "NO_ARBITRATION_RULE_DRIFT_AFTER_OUTPUTS",
+    "NO_TRANSLATION_ONLY_RARE_LEXICAL_PRESENT",
+    "NO_C09_C10_OUTPUT_BEFORE_MATRIX_FREEZE",
+    "NO_SCORE_YET",
+    "NO_RANKING_YET",
+    "NO_INTERPRET_MATCH_AS_TRUTH"
+  ],
+  "promotion_ceiling": "INDEPENDENT_CODING_AND_PACKET_CONSTRUCTION_ONLY"
+}
