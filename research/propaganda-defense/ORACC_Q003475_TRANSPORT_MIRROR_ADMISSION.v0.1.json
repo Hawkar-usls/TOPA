@@ -1,0 +1,44 @@
+{
+  "schema":"topa.propaganda_defense.transport_mirror_admission.v0.1",
+  "date":"2026-08-24",
+  "status":"ADMITTED_AS_VERSIONED_TRANSPORT_MIRROR_NOT_SOURCE_AUTHORITY",
+  "control_id":"BR04_NEO_ASSYRIAN_ANNALS",
+  "frozen_source_authority":{
+    "name":"ORACC RINAP 3",
+    "object_id":"Q003475",
+    "text_name":"Sennacherib 001",
+    "frozen_locus":"lines 1-4",
+    "official_url":"https://oracc.museum.upenn.edu/rinap/rinap3/Q003475",
+    "authority_changed":false
+  },
+  "transport_problem":{
+    "github_actions_error":"CERTIFICATE_VERIFY_FAILED unable to get local issuer certificate on official ORACC download host",
+    "policy":"Do not disable TLS verification and pretend the resulting bytes are a strong secure transport seal."
+  },
+  "versioned_transport_mirror":{
+    "repository":"niekveldhuis/Digital-Assyriology",
+    "commit":"49b565bc91253d473580445c436e1fc02f2098a0",
+    "path":"Scrape-Oracc/Output/rinap_rinap3_Q003475.txt",
+    "raw_url":"https://raw.githubusercontent.com/niekveldhuis/Digital-Assyriology/49b565bc91253d473580445c436e1fc02f2098a0/Scrape-Oracc/Output/rinap_rinap3_Q003475.txt",
+    "retrieved_bytes":27845,
+    "sha256":"b4589e8ce98bf35102ea48303114684565c1c14a47d8ddae62f446b7e6060df5",
+    "validation":{"oracc_object_id_present":true,"text_name_present":true,"lines_1_4_present":true,"total_rows_for_Q003475":94}
+  },
+  "external_identity_crosscheck":{
+    "official_oracc_page_verified_current":true,
+    "official_page_exposes_Q003475_and_Sennacherib_001":true,
+    "official_page_exposes_lines_1_4_transliteration_and_translation":true,
+    "license_context":"ORACC annotated editions are published as open data/CC BY-SA in the ORACC ecosystem; preserve attribution and project identity.",
+    "note":"This crosscheck establishes that the pinned mirror represents the frozen ORACC object/locus; it does not make the mirror an independent historical source."
+  },
+  "epistemic_rules":[
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "MIRROR_COPY != INDEPENDENT_WITNESS",
+    "ORACC_Q003475_REMAINS_THE_ONLY_SOURCE_ROOT_FOR_BR04",
+    "IF_MIRROR_AND_OFFICIAL_IDENTITY_DIVERGE_THEN_FAIL",
+    "NO_LOCUS_CHANGE",
+    "NO_SEMANTIC_CODING_EFFECT",
+    "NO_SCORE"
+  ],
+  "admission_effect":"BR04 may use the pinned GitHub object as reproducible transport bytes for the already-frozen ORACC Q003475 lines 1-4, subject to replay validation; source authority and evidence-root count remain unchanged."
+}
