@@ -1,0 +1,54 @@
+{
+  "schema": "topa.sacred_scriptures.current_sprint.v0.4",
+  "date": "2026-08-24",
+  "status": "ACTIVE_INDEPENDENT_DOUBLE_CODING_PHASE",
+  "supersedes": "CURRENT_SPRINT.v0.3.json",
+  "entry_gates": {
+    "prescore_gate": "PASS",
+    "canaries": "4/4 PASS",
+    "focal_source_seals": "5/5 SEALED",
+    "real_controls": "8/8 SEALED",
+    "synthetic_null_generators": "2/2 FROZEN",
+    "control_slots_with_frozen_prerequisites": "10/10",
+    "independent_double_coding_permission": true,
+    "actual_synthetic_outputs_exist": false,
+    "score_permission": false,
+    "authority_receipts": [
+      "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json",
+      "execution/CONTROL_SEAL_RUN.v0.1.json",
+      "execution/SYNTHETIC_NULL_FREEZE.v0.1.json",
+      "execution/CONTROL_ADMISSION_GATE.v0.1.json"
+    ]
+  },
+  "objective": "Obtain genuinely independent A/B feature codings for five focal sources and eight real controls under the frozen 28-feature schema, preserve all disagreements, arbitrate without overwriting either coder, and freeze the resulting matrix before generating any synthetic-null outputs.",
+  "ordered_next": [
+    "issue source-coding packet A and source-coding packet B to genuinely independent coders for F01-F05 and C01-C08",
+    "require PRESENT, ABSENT, UNKNOWN or NOT_APPLICABLE for every frozen feature and preserve text-locus evidence pointers",
+    "freeze coder A receipts before exposing coder B output and vice versa",
+    "compute disagreement manifest without converting disagreement into consensus by averaging",
+    "create arbitration receipts while preserving both original coder values",
+    "freeze the double-coded arbitrated matrix and its SHA-256 commitment",
+    "only after matrix freeze derive and generate C09/C10 shuffled outputs from the already frozen generator and seed commitments",
+    "replace source identities with opaque scorer IDs and retain only a non-reversible public mapping commitment",
+    "run leakage and packet-completeness validators",
+    "require a separate score-unlock receipt before deterministic scoring"
+  ],
+  "hard_locks": [
+    "NO_SCORE_YET",
+    "NO_RANKING_YET",
+    "NO_SINGLE_REASONING_INSTANCE_AS_TWO_INDEPENDENT_CODERS",
+    "NO_LABEL_REVEAL_TO_SCORER",
+    "NO_UNKNOWN_TO_ABSENT_COERCION",
+    "NO_C09_C10_ACTUAL_OUTPUT_BEFORE_DOUBLE_CODED_MATRIX_FREEZE",
+    "NO_POST_HOC_CONTROL_SUBSTITUTION",
+    "NO_INTERPRETATION_OF_MATCH_AS_TRUTH"
+  ],
+  "current_authorities": {
+    "matched_control_deck": "MATCHED_CONTROL_DECK.v0.1.json",
+    "blind_packet_build_manifest": "BLIND_PACKET_BUILD_MANIFEST.v0.1.json",
+    "feature_schema": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+    "control_candidate_freeze": "CONTROL_CANDIDATE_FREEZE.v0.1.json",
+    "residual_protocol": "INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json"
+  },
+  "promotion_ceiling": "DOUBLE_CODING_AND_PACKET_CONSTRUCTION_ONLY; empirical result claims remain forbidden until blinded scoring and post-score reveal gates are separately satisfied"
+}
