@@ -23,6 +23,11 @@ TANZIL_URL = ("https://tanzil.net/pub/download/index.php?"
               "sajdah=true&rub=true&stanween=true")
 GRETIL_URL = "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm"
 BHSA_FULL_SHA = "b112c161cfd21eae403d51a2733740d8743460e7"
+BHSA_RAW_BASE = f"https://raw.githubusercontent.com/ETCBC/bhsa/{BHSA_FULL_SHA}/tf/2021"
+BHSA_FILES = [
+    "otype.tf", "oslots.tf", "otext.tf", "book.tf", "chapter.tf", "verse.tf",
+    "g_word_utf8.tf", "trailer_utf8.tf"
+]
 
 def h(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
@@ -72,30 +77,57 @@ def seal_akkadian():
          "status":"SEALED"},
     ]
 
-def seal_bhsa(bhsa_dir: Path):
-    bhsa_dir = bhsa_dir.resolve()
-    if not bhsa_dir.exists():
-        raise RuntimeError(f"BHSA checkout missing: {bhsa_dir}")
-    import subprocess
-    head = subprocess.check_output(["git", "-C", str(bhsa_dir), "rev-parse", "HEAD"], text=True).strip()
-    if head != BHSA_FULL_SHA:
-        raise RuntimeError(f"BHSA wrong commit: {head}")
-    tfdir = (bhsa_dir / "tf" / "2021").resolve()
-    files = ["otype.tf","oslots.tf","book.tf","chapter.tf","verse.tf","g_word_utf8.tf","trailer_utf8.tf"]
+def prepare_bhsa_tf(bhsa_dir: Path | None):
+    """Return exact BHSA 2021 TF directory plus transport metadata.
+
+    A full checkout is accepted when supplied, but CI defaults to fetching only
+    the eight required TF files from raw.githubusercontent.com at the full
+    frozen commit SHA. This avoids a large repository checkout while preserving
+    exact source identity.
+    """
+    if bhsa_dir is not None:
+        import subprocess
+        root = bhsa_dir.resolve()
+        if not root.exists():
+            raise RuntimeError(f"BHSA checkout missing: {root}")
+        head = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
+        if head != BHSA_FULL_SHA:
+            raise RuntimeError(f"BHSA wrong commit: {head}")
+        tfdir = (root / "tf" / "2021").resolve()
+        return tfdir, "GIT_CHECKOUT_FULL_COMMIT", head
+
+    tfdir = Path(".source-cache/bhsa-raw/tf/2021").resolve()
+    tfdir.mkdir(parents=True, exist_ok=True)
+    for name in BHSA_FILES:
+        data = fetch(f"{BHSA_RAW_BASE}/{name}")
+        (tfdir / name).write_bytes(data)
+    return tfdir, "RAW_GITHUB_FULL_COMMIT_FILES", BHSA_FULL_SHA
+
+def seal_bhsa(bhsa_dir: Path | None):
+    tfdir, transport, head = prepare_bhsa_tf(bhsa_dir)
     manifest = []
-    for name in files:
+    for name in BHSA_FILES:
         p = tfdir / name
         b = p.read_bytes()
-        manifest.append({"path":f"tf/2021/{name}", "bytes":len(b), "sha256":h(b)})
+        manifest.append({
+            "path": f"tf/2021/{name}",
+            "bytes": len(b),
+            "sha256": h(b),
+            "immutable_url": f"{BHSA_RAW_BASE}/{name}"
+        })
     manifest_raw = "\n".join(f"{x['path']}\0{x['sha256']}" for x in manifest).encode()
     substrate_sha = h(manifest_raw)
+
     from tf.fabric import Fabric
     TF = Fabric(locations=str(tfdir), silent="deep")
-    loaded = TF.load("g_word_utf8 trailer_utf8", silent="deep")
-    if loaded is False or getattr(TF, "api", None) is None:
-        raise RuntimeError("Text-Fabric failed to load BHSA 2021 features")
-    api = TF.api
+    TF.load("g_word_utf8 trailer_utf8", silent="deep")
+    api = getattr(TF, "api", None)
+    if api is None:
+        raise RuntimeError("Text-Fabric failed to load exact BHSA 2021 feature set")
     F, L, T = api.F, api.L, api.T
+    if not hasattr(F, "g_word_utf8") or not hasattr(F, "trailer_utf8"):
+        raise RuntimeError("BHSA word/trailer features unavailable after exact-file load")
+
     ranges = {6:(5,22), 7:(1,24), 8:(1,22), 9:(1,17)}
     rows = []
     for chapter, (v0, v1) in ranges.items():
@@ -110,6 +142,7 @@ def seal_bhsa(bhsa_dir: Path):
     return {
         "id":"F03_GENESIS_6_9", "source":"ETCBC BHSA Text-Fabric 2021",
         "source_repository":"ETCBC/bhsa", "source_commit":head,
+        "source_transport":transport,
         "source_substrate_manifest":manifest, "source_substrate_sha256":substrate_sha,
         "frozen_locus_descriptor":"Genesis 6:5-9:17",
         "slice_seal_type":"NFC_UTF8_TEXT_SLICE_SHA256", "slice_bytes":len(slice_bytes),
@@ -158,15 +191,17 @@ def seal_gretil():
         "slice_seal_type":"NFC_UTF8_VISIBLE_TEXT_SHA256", "slice_bytes":len(slice_bytes),
         "slice_sha256":h(slice_bytes),
         "normalization":"HTML tags removed; entities unescaped; visible marker 1.8.1.[1] through before 1.8.1.[11]; NFC; LF",
+        "source_note":"GRETIL itself contains a mechanically corrupted visible number for paragraph 3 (1.8.1[[.]]3); it is preserved verbatim inside the frozen slice rather than repaired.",
         "status":"SEALED"}
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--bhsa-dir", required=True)
+    ap.add_argument("--bhsa-dir", default=None)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
+    bhsa_dir = Path(args.bhsa_dir) if args.bhsa_dir else None
     sources, errors = [], []
-    for name, fn in [("AKKADIAN", seal_akkadian), ("BHSA", lambda:seal_bhsa(Path(args.bhsa_dir))), ("TANZIL", seal_tanzil), ("GRETIL", seal_gretil)]:
+    for name, fn in [("AKKADIAN", seal_akkadian), ("BHSA", lambda:seal_bhsa(bhsa_dir)), ("TANZIL", seal_tanzil), ("GRETIL", seal_gretil)]:
         try:
             r = fn(); sources.extend(r if isinstance(r, list) else [r]); print(f"SOURCE_SEAL_{name}=PASS")
         except Exception as exc:
