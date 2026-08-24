@@ -23,7 +23,9 @@
     "C025-B portable context-independent plain-Resolution proof-carrying reason with standalone verifier and provider CI",
     "C025-C1 exact certified-reason applicability index polynomial in explicit cache volume",
     "C025-E1 plain-Resolution universal polynomial certificate-size barrier",
-    "C025-B2 extension-aware portable reason v0 with conservative-extension theorem, standalone verifier, definition-closure pruning and strengthened provider replay"
+    "C025-B2 extension-aware portable reason v0 with conservative-extension theorem, standalone verifier, definition-closure pruning and strengthened provider replay",
+    "C025-E2A proof that frozen B2 refutations are p-equivalent to standard Extended Resolution on UNSAT CNFs",
+    "C025-E2R reduction of global proof size to extension-variable count in Narrow Extended Resolution ER3"
   ],
   "established_in_stated_scope": [
     "TOPA repository architecture and machine-readable rules exist",
@@ -42,7 +44,11 @@
     "an accepted C025-B2 advertised clause over original variables is implied by the canonical root CNF",
     "C025-B2 context-independent reuse is sound for any root-variable context falsifying the accepted advertised clause",
     "C025-B2 provider replay rejects the frozen freshness, dependency, extension-leak, tamper, root-binding, unreachable-node and unused-definition attacks",
-    "C025-B2 portable export prunes unused extension definitions and proof nodes"
+    "C025-B2 portable export prunes unused extension definitions and proof nodes",
+    "for UNSAT CNF refutations frozen B2 and standard Extended Resolution p-simulate each other",
+    "global B2 polynomial proof-size is the Extended-Resolution p-boundedness frontier up to standard polynomial encoding translations",
+    "given an ER3 refutation with K extension variables, duplicate-elimination bounds some DAG refutation by O(N + K + (N+K)^3) up to ordinary encoding factors",
+    "global B2/ER p-boundedness is equivalent up to polynomial translations to a universal polynomial extension-count bound in some ER3 refutation"
   ],
   "not_established": [
     "paranormal causation",
@@ -56,9 +62,11 @@
     "a single common physical cause for the Hessdalen event family",
     "an extraordinary cause for Hessdalen events",
     "P versus NP resolution",
+    "NP equals coNP",
     "a universal polynomial residual-count theorem for Policy-0B",
     "a universal polynomial active-state/reason-cache/proof-DAG size theorem",
-    "a universal polynomial proof-size theorem for the C025-B2 extension-aware language",
+    "Extended Resolution p-boundedness",
+    "a universal polynomial extension-count theorem for ER3",
     "deterministic polynomial-time discovery of useful extension definitions",
     "deterministic polynomial-time discovery of useful new reasons or short proofs",
     "polynomial reason-cache applicability cost in original input length without a cache-size theorem",
@@ -80,6 +88,9 @@
     "c025_b2_verifier": "research/mathematics/p-vs-np/extension_reason_v0.py",
     "c025_b2_negative_replay": "research/mathematics/p-vs-np/extension_reason_v0_negative_replay.py",
     "c025_b2_provider_receipt": "data/TOPA-C025-B2-EXTENSION-AWARE-REASON-PROVIDER-PASS-2026-08-24-v1.0.json",
+    "c025_e2_frontier_receipt": "data/TOPA-C025-E2-ER-P-BOUNDEDNESS-FRONTIER-2026-08-24-v1.0.json",
+    "c025_e2_equivalence": "research/mathematics/p-vs-np/C025_E2_ER_P_BOUNDEDNESS_EQUIVALENCE.md",
+    "c025_e2r_extension_count": "research/mathematics/p-vs-np/C025_E2R_NARROW_ER_EXTENSION_COUNT_REDUCTION.md",
     "native_hunts": "hunts/README.md",
     "hunt_index": "registry/TOPA-HUNT-INDEX.json",
     "method": "docs/METHOD.md",
@@ -105,7 +116,9 @@
     "SOUNDNESS_IS_NOT_CERTIFICATE_SIZE",
     "CERTIFICATE_SIZE_IS_NOT_CACHE_SIZE",
     "CACHE_SIZE_IS_NOT_PROOF_DISCOVERY",
-    "PROOF_DISCOVERY_IS_NOT_TOTAL_RUNTIME"
+    "PROOF_DISCOVERY_IS_NOT_TOTAL_RUNTIME",
+    "P_EQUIVALENT_PROOF_LANGUAGES_SHARE_POLYNOMIAL_BOUNDEDNESS_STATUS",
+    "POLY_WIDTH_CLAUSE_UNIVERSE_DOES_NOT_BOUND_EXTENSION_COUNT"
   ],
   "current_mathematical_front": {
     "c024_conditional_bridge": "PROVED",
@@ -114,14 +127,18 @@
     "c025_issue_213": "OPEN_ACTIVE",
     "c025_a_fair_scheduler": "PROVED_IN_CURRENT_STATE_SIZE__CI_PASS",
     "c025_b_plain_resolution_reason": "PROVED_IN_SCOPE__PROVIDER_CI_PASS",
-    "c025_c_issue_215": "OPEN_ACTIVE",
+    "c025_c_issue_215": "OPEN_DEFERRED_BEHIND_E2R",
     "c025_c_existing_reason_query": "POLYNOMIAL_IN_EXPLICIT_CACHE_VOLUME__INPUT_RELATIVE_BOUND_CONDITIONAL",
     "c025_e1_plain_resolution_certificate_size": "REFUTED_AS_UNIVERSAL_POLYNOMIAL_LANGUAGE",
     "c025_b2_extension_aware_reason": "PROVED_IN_SCOPE__STRENGTHENED_PROVIDER_CI_PASS",
     "c025_b2_provider_run": 32720170819,
-    "c025_e2_universal_extension_aware_proof_size": "OPEN_ACTIVE",
-    "c025_c2_extension_definition_discovery": "OPEN_ACTIVE",
-    "c025_c2_global_proof_search": "OPEN_ACTIVE",
+    "c025_e2a_b2_er_p_equivalence": "PROVED",
+    "c025_e2b_global_er_p_boundedness": "OPEN_MAJOR_EXTERNAL_FRONTIER",
+    "c025_e2r_issue_217": "OPEN_ACTIVE",
+    "c025_e2r_er3_clause_universe_and_dedup": "PROVED",
+    "c025_e2r_universal_poly_extension_count": "OPEN",
+    "c025_c2_extension_definition_discovery": "DEFERRED_UNTIL_E2R",
+    "c025_c2_global_proof_search": "DEFERRED_UNTIL_E2R",
     "c025_e_total_reason_cache_and_dag_size": "OPEN",
     "p_vs_np": "OPEN"
   },
