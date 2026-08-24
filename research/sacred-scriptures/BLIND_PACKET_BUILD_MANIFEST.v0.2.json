@@ -1,0 +1,70 @@
+{
+  "schema": "topa.sacred_scriptures.blind_packet_build_manifest.v0.2",
+  "date": "2026-08-24",
+  "status": "ORIGIN_PRIME_PRE_CODER_CONTRACTS_PASS_AWAIT_GENUINE_A_B",
+  "supersedes": "BLIND_PACKET_BUILD_MANIFEST.v0.1.json",
+  "spiral_receipt": "DOUBLE_CODING_REVERSE_SPIRAL.v0.1.json",
+  "pre_coder_gate_receipt": "execution/PRE_CODER_CONTRACT_FREEZE_GATE.v0.1.json",
+  "entry_state": {
+    "focal_sources": "5/5 SEALED",
+    "method_canaries": "4/4 PASS",
+    "real_controls": "8/8 SEALED",
+    "synthetic_null_generators": "2/2 FROZEN",
+    "control_prerequisites": "10/10 FROZEN",
+    "pre_coder_contract_gate": "PASS",
+    "preexisting_semantic_coding_receipts": 0,
+    "score_permission": false
+  },
+  "origin_prime_delta": [
+    "Arbitration protocol is now frozen before any coder output.",
+    "Coder independence is now a receipted operational property, not an A/B label.",
+    "A and B must receive the same hash-bound coding packet template.",
+    "Translation-only lexical resemblance cannot become rare lexical evidence.",
+    "Arbitration is blind to scorer output, expected cluster and control class."
+  ],
+  "contract_hashes": {
+    "CODER_INDEPENDENCE_CONTRACT.v0.1.json": "467bae54be4fbe3cae301cbcf23dc726b51ab9b7fa76c6b36a25d35b25672eae",
+    "ARBITRATION_PROTOCOL.v0.1.json": "46f875e6f4a1b2754df7b4cad79c3b9385b44c39be10e9b90b9d42ecbd25c1b2",
+    "SOURCE_CODING_PACKET_TEMPLATE.v0.1.json": "2f3a7a828878e41521183967ab1aec3c5c4dae0c75e515548aaaff33333db3a3"
+  },
+  "coder_state": {
+    "A": "UNASSIGNED_GENUINELY_INDEPENDENT_CODER_REQUIRED",
+    "B": "UNASSIGNED_GENUINELY_INDEPENDENT_CODER_REQUIRED",
+    "same_reasoning_instance_may_fill_both": false,
+    "same_reasoning_instance_second_pass_counts_as_independent": false,
+    "counterpart_output_visibility_before_freeze": false
+  },
+  "semantic_coding_scope": {
+    "focals": ["F01_ATRAHASIS","F02_GILGAMESH_XI","F03_GENESIS_6_9","F04_QURAN_NOAH","F05_SATAPATHA_MANU"],
+    "real_controls": ["C01","C02","C03","C04","C05","C06","C07","C08"],
+    "feature_count": 28,
+    "allowed_values": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"]
+  },
+  "synthetic_null_state": {
+    "C09": "GENERATOR_FROZEN_OUTPUT_NOT_GENERATED",
+    "C10": "GENERATOR_FROZEN_OUTPUT_NOT_GENERATED",
+    "generation_condition": "ONLY_AFTER_DOUBLE_CODED_ARBITRATED_MATRIX_SHA_FREEZE"
+  },
+  "completion_gate": {
+    "coder_A_genuine_receipts_complete": false,
+    "coder_B_genuine_receipts_complete": false,
+    "all_disagreements_preserved": false,
+    "all_disagreements_arbitrated_under_prefrozen_protocol": false,
+    "double_coded_arbitrated_matrix_frozen": false,
+    "C09_C10_outputs_generated_after_matrix_freeze": false,
+    "opaque_scorer_packets_built": false,
+    "leakage_validator_pass": false,
+    "score_unlock_receipt": false,
+    "score_permission": false
+  },
+  "next_legal_action": "ASSIGN_TWO_GENUINELY_INDEPENDENT_CODERS_AND_ISSUE_IDENTICAL_HASH_BOUND_PACKETS",
+  "forbidden_until_later_gate": [
+    "SAME_INSTANCE_A_B_ROLEPLAY",
+    "SEMANTIC_CODING_WITH_UNHASHED_OR_DRIFTED_PACKET",
+    "POST_OUTPUT_ARBITRATION_RULE_CHANGE",
+    "GENERATE_C09_C10_BEFORE_MATRIX_FREEZE",
+    "SCORE",
+    "RANK",
+    "INTERPRET_MATCH_AS_TRUTH"
+  ]
+}
