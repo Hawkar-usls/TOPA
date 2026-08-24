@@ -1,0 +1,41 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_jstor_bootstrap_negative.v0.9",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_JSTOR_PUBLIC_BOOTSTRAP_GRAPH_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32758815967,
+    "github_actions_job_id": 97532482251,
+    "artifact_id": 9531867413,
+    "artifact_sha256": "79eefd221c9197e0c3027f5686664c49936aaf3fd8706f63a6ee4eea25b5d3df"
+  },
+  "result": {
+    "same_origin_refs": 3,
+    "bootstrap_assets_inspected": 3,
+    "discovered_candidate_routes": 0,
+    "usable_pdf_or_xml_routes": 0,
+    "classification": "PUBLIC_BOOTSTRAP_GRAPH_CONTAINS_NO_DISCOVERABLE_CONTENT_ROUTE",
+    "finding": "The accessible JSTOR stable shell and its bounded same-origin bootstrap assets expose no discovered stable/PDF/XML/download route usable by the hosted runner."
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Run a cross-environment retrieval check against the exact official UChicago/JSTOR publication URLs. If a non-GitHub transport obtains genuine source bytes, record the environment-specific seal and design reproducibility without changing the frozen source. If official bytes remain inaccessible, consider only a version-pinned exact scan mirror with SOURCE_ROOT_COUNT=1 and a strict authority firewall.",
+  "laws": [
+    "NO_DISCOVERED_ROUTE_MEANS_STOP_BOOTSTRAP_ENDPOINT_TUNING",
+    "RUNNER_ACCESS_FAILURE_MUST_BE_SEPARATED_FROM_SOURCE_ABSENCE",
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "MIRROR_COPY != INDEPENDENT_WITNESS",
+    "FAIL_IS_PRESERVED_BEFORE_CROSS_ENVIRONMENT_TEST"
+  ]
+}
