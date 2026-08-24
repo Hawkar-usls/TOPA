@@ -1,0 +1,152 @@
+{
+  "schema": "topa.sacred_scriptures.ancient_writing_method_bridge.v0.2",
+  "date": "2026-08-24",
+  "status": "FROZEN_METHOD_BRIDGE_V0_2",
+  "supersedes": "ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json",
+  "supersession_reason": "A deeper registry pass found Linear A v2.32 as CURRENT_CANONICAL_RESEARCH_STATE and a newer exact historical-source receipt. v0.1 is preserved as discovery history but is not current authority.",
+  "purpose": "Reuse already-built JANUS safeguards from Linear A and Egyptian-record work as mandatory prescore canaries for the sacred-text pipeline. These corpora are method controls, not additional witnesses for the Flood hypothesis.",
+  "linear_a": {
+    "role": "REPRESENTATION_SUPPORT_AND_FALSE_POSITIVE_CANARY",
+    "upstream": [
+      {
+        "repository": "Hawkar-usls/Linear-A-decipherment-programme",
+        "role": "historical/program baseline",
+        "note": "The repository is linked into JANUS Habitat in reference-and-handoff-only mode; source history remains authoritative and no execution authority is implied."
+      },
+      {
+        "repository": "Hawkar-usls/janus-meta-registry",
+        "path": "research/linear_a/",
+        "role": "JANUS executable research lineage"
+      }
+    ],
+    "current_canonical_state": {
+      "path": "data/JANUS-LINEAR-A-RESEARCH-STATE-2026-08-16-v2.32.json",
+      "version": "v2.32",
+      "status": "CURRENT_CANONICAL_RESEARCH_STATE"
+    },
+    "current_exact_historical_source": {
+      "repository": "mwenge/lineara.xyz",
+      "commit": "568f452c7a5ec80fa292cb307ead2fc6f65d07fb",
+      "path": "LinearAInscriptions.js",
+      "bytes": 1609122,
+      "sha256": "b7b383b93db55b504eb00c552a8b18c19a588e83bba7ff0ab93ca32277d8bfe2",
+      "classification": "EXACT_BYTE_FOR_BYTE_HISTORICAL_INPUT_MATCH_TO_BRIAKOS_RECEIPT"
+    },
+    "historical_older_same_corpus_baseline_preserved": {
+      "commit": "43fe7cf1abc8e6bb1ea3228c3a1bd5938709620a",
+      "inscriptions_blob": "ef41c58802a3135f295072ba60fc0df39450a10c",
+      "note": "Preserved because earlier JANUS stages were frozen against this source state; it does not replace v2.32 current authority."
+    },
+    "lessons_imported": [
+      "PIN_SOURCE_VERSION_BEFORE_SCORING",
+      "TYPE_PUNCTUATION_NUMERIC_AND_SEMANTIC_OBJECTS_BEFORE_ANY_MEANING_SCORE",
+      "PRESERVE_REPRESENTATION_FAILURES_AS_SCIENTIFIC_RESULTS",
+      "USE_TRUE_HOLDOUTS_AND_RELATION_DESTROYING_NULLS",
+      "DO_NOT_LOWER_FROZEN_SUPPORT_THRESHOLDS_TO_RESCUE_A_NEAR_MISS",
+      "PRESERVE_STRONG_INTERNAL_SIGNAL_WITHOUT_ADMISSION_WHEN_SUPPORT_GATE_FAILS",
+      "SAME_CORPUS_MULTI_IMPLEMENTATION_AGREEMENT_IS_NOT_EXTERNAL_REPLICATION",
+      "EXACT_SOURCE_IDENTITY_DOES_NOT_REPRODUCE_A_METHOD_IF_CORPUS_SELECTION_OR_TOKENIZATION_IS_UNKNOWN"
+    ],
+    "canaries": [
+      {
+        "id": "LINEAR_A_STAR_900_REPRESENTATION_CANARY",
+        "historical_case": "A strong pre-filter *900 survivor was revealed as Aegean word-separator punctuation.",
+        "topa_test": "Punctuation/numeric/format markers injected into anonymized sacred-text packets must receive zero semantic evidence and must not form rare bundles."
+      },
+      {
+        "id": "LINEAR_A_SUPPORT_FLOOR_CANARY",
+        "historical_case": "v2.32 preserves a strong KU-RO terminal-numeric-payload internal signal but refuses admission because exchangeable target support is 8 while the frozen floor is 10.",
+        "topa_test": "A high similarity statistic or low null probability must not unlock Flood promotion when preregistered support/control minima fail."
+      }
+    ],
+    "current_claim_ceiling_v2_32": {
+      "probable_region_scoped_structural_function_established": true,
+      "admitted_source_word": "KU-RO",
+      "admitted_probable_structural_function": "ROW-OPENING-LIKE",
+      "scope_region": "HT",
+      "internal_post_F0_terminal_numeric_slot_refinement_established": true,
+      "internal_refinement_label": "ROW-OPENING-WITH-TERMINAL-NUMERIC-SLOT-LIKE",
+      "G0_numeric_payload_distribution_difference_established": false,
+      "G0_support": "8/10",
+      "TOTAL_or_SUMMARY_semantic_function_established": false,
+      "exact_word_meaning_established": false,
+      "translation_established": false,
+      "phonetic_value_established": false,
+      "language_family_established": false,
+      "new_anchor_established": false,
+      "decipherment_established": false,
+      "strict_R3B_replication_established": false
+    },
+    "firewall": [
+      "LINEAR_A_STRUCTURAL_FUNCTION != WORD_TRANSLATION",
+      "STRONG_INTERNAL_SIGNAL != ADMITTED_RESULT",
+      "STRUCTURAL_SURVIVOR != DECIPHERMENT",
+      "FORMAT_MARKER != SEMANTIC_TOKEN",
+      "METHOD_ANCESTOR != CONTENT_EVIDENCE"
+    ]
+  },
+  "egyptian_records": {
+    "role": "IDENTIFIER_PROVENANCE_ONTOLOGY_AND_NEGATIVE-CONTROL_CANARY",
+    "upstream_repository": "Hawkar-usls/janus-meta-registry",
+    "anchor_artifacts": [
+      "data/JANUS-EGYPT-OSIRIS-JSON-INVENTORY-2026-08-20-v1.0.json",
+      "data/JANUS-EGYPTIAN-PYRAMID-WALL-PLACEMENT-AND-TEXT-ID-AUDIT-2026-08-18-v1.0.json",
+      "data/JANUS-SAH-ORION-LEXICAL-GATE-AUDIT-2026-08-18-v1.0.json",
+      "data/JANUS-MENDES-TOMB-TEXTUAL-STRATIGRAPHY-FORWARD-REVERSE-CONCORDANCE-2026-08-20-v1.0.json"
+    ],
+    "lessons_imported": [
+      "UTTERANCE_NUMBER_MUST_NOT_BE_CONFUSED_WITH_PARAGRAPH_OR_SECTION_NUMBER",
+      "RECORD_MONUMENT_ROOM_WALL_AND_SEQUENCE_WHERE_RELEVANT",
+      "DISTINCT_LEMMA_IDS_MUST_NOT_BE_MERGED_BY_VISUAL_OR_PHONETIC_SIMILARITY",
+      "OCR_GAP_STAYS_OPEN_AND_MUST_NOT_BE_RECONSTRUCTED_FROM_EXPECTATION",
+      "ICONOGRAPHY_TEXT_OBJECT_IDENTITY_AND_MODERN_INTERPRETATION_ARE_SEPARATE_LAYERS",
+      "A_MISSING_TEXTUAL_BRIDGE_REMAINS_MISSING"
+    ],
+    "lexical_canary": {
+      "distinct_items": [
+        {"form": "Sꜣḥ", "TLA_lemma_id": 127020, "class": "Orion constellation name"},
+        {"form": "sꜣḫ", "TLA_lemma_id": 127110, "class": "verb: glorify/make excellent"},
+        {"form": "sꜣḫ", "TLA_lemma_id": 127120, "class": "noun: spiritual/glorified state"}
+      ],
+      "topa_test": "Keep all three identities distinct unless an independently evidenced relation is supplied. Orthographic/phonetic resemblance alone must not create equivalence."
+    },
+    "text_id_canary": {
+      "examples": [
+        {"label": "PT355", "utterance": 355, "section_range": "§§572-574"},
+        {"label": "PT366", "utterance": 366, "section_range": "§§626-633"},
+        {"label": "PT222", "utterance": 222, "section_start": "§199", "full_source_recheck": true},
+        {"label": "PT477", "utterance": 477, "section_start": "§956", "prior_modern_interpretation_failed": true}
+      ],
+      "topa_test": "Shuffle utterance and section numbers as distractors. Numeric coincidence must never generate semantic evidence."
+    },
+    "mendes_provenance_canary": {
+      "rule": "A printed/OCR-corrupted hieroglyphic gap remains UNKNOWN even when context makes reconstruction tempting.",
+      "example": "The lower protected gold sheet has two vertical inscription lines confirmed, but exact hieroglyphs/translation remain open; CG 53469 surface inscription remains not established."
+    },
+    "possible_flood_negative_control": {
+      "status": "CANDIDATE_NOT_ADMITTED",
+      "reason": "Wasserman 2020 states that no mention of a great Flood is found in ancient Egyptian literature. This makes Egyptian literature potentially useful as an ancient-culture negative control, but the claim must be independently checked against a defined Egyptian corpus before admission.",
+      "do_not_do": "Do not reinterpret Destruction of Mankind, Nile hymns, Nun/cosmogony or other Egyptian water/destruction texts into a Flood witness merely to fill the slot."
+    },
+    "firewall": [
+      "EGYPTIAN_PROJECT_GRAPH != ANCIENT_SOURCE_TEXT",
+      "ICONOGRAPHIC_SIMILARITY != LEXICAL_IDENTITY",
+      "WALL_ORDER != ALGORITHMIC_ORDER_UNLESS_PREREGISTERED",
+      "PHYSICAL_PLACEMENT != CAUSATION",
+      "MISSING_BRIDGE != NEGATIVE_PROOF",
+      "ABSENCE_CLAIM_REQUIRES_DEFINED_CORPUS",
+      "METHOD_CONTROL != FLOOD_WITNESS"
+    ]
+  },
+  "prescore_gate": {
+    "required_before_flood_score": [
+      "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS",
+      "EGYPT_LEMMA_ID_CANARY_PASS",
+      "EGYPT_TEXT_ID_CANARY_PASS",
+      "NO_CONTROL_CORPUS_CONTENT_LEAK_INTO_FLOOD_LABELS"
+    ],
+    "failure_action": "BLOCK_FLOOD_SCORE_AND_REPAIR_PIPELINE",
+    "success_effect": "METHOD_PERMISSION_ONLY; NO_INCREASE_IN_WORLD_TRUTH_CONFIDENCE"
+  }
+}
