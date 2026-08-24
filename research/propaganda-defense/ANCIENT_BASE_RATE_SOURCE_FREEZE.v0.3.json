@@ -1,0 +1,73 @@
+{
+  "schema": "topa.propaganda_defense.ancient_base_rate_source_freeze.v0.3",
+  "date": "2026-08-24",
+  "status": "EIGHT_OF_EIGHT_SOURCE_LOCUS_AUTHORITIES_FROZEN_COMMITMENTS_PENDING",
+  "supersedes": "ANCIENT_BASE_RATE_SOURCE_FREEZE.v0.2.json",
+  "unchanged_frozen_controls": [
+    "BR01_HAMMURABI",
+    "BR02_BEHISTUN",
+    "BR03_KADESH",
+    "BR04_NEO_ASSYRIAN_ANNALS",
+    "BR06_THUCYDIDES",
+    "BR07_RES_GESTAE",
+    "BR08_PTAHHOTEP"
+  ],
+  "BR05_HITTITE_TREATY": {
+    "status": "LOCUS_AUTHORITY_FROZEN_HASH_COMMITMENT_PENDING",
+    "text_identity": "CTH 62 — Treaty of Muršili II with Duppi-Teššup of Amurru (.I Akkadian, .II Hittite)",
+    "catalog_authority": {
+      "institution": "Hethitologie-Portal Mainz / Catalog der Texte der Hethiter and Konkordanz der hethitischen Keilschrifttafeln",
+      "cth": "CTH 62",
+      "catalog_url": "https://www.hethport.uni-wuerzburg.de/CTH/index.php?l=Duppi-Te%C5%A1%C5%A1up",
+      "concordance_url": "https://www.hethport.uni-wuerzburg.de/hetkonk/hetkonk_abfrage.php?c=62",
+      "catalog_citation": "S. Košak – G.G.W. Müller – S. Görke – Ch.W. Steitler, hethiter.net/: CTH",
+      "online_edition_cited_by_concordance": "G. Wilhelm – F. Fuscagni (ed.), hethiter.net/: CTH 62 (2013sqq.)",
+      "license_note": "Hethitologie-Portal concordance page states Creative Commons Attribution-ShareAlike 4.0 International License."
+    },
+    "witnesses": [
+      "KBo 5.9 and joined/duplicate Hittite witnesses",
+      "KUB 3.119",
+      "KUB 14.5",
+      "KUB 19.48",
+      "KUB 23.6",
+      "KBo 22.39",
+      "KBo 50.25",
+      "KBo 50.26",
+      "KBo 50.28",
+      "KUB 3.14 Akkadian witness"
+    ],
+    "primary_base_rate_locus": "CTH 62.II A column I lines 19′–28′",
+    "locus_function": "Kingship concession / fidelity request: installation, oath toward Hatti king/land/descendants, reciprocal protection and dynastic succession.",
+    "open_scholarly_transliteration_authority": {
+      "author": "Elena Devecchi",
+      "title": "Treaties and Edicts in the Hittite World",
+      "publication_context": "Proceedings of the 54th Rencontre Assyriologique Internationale, 2012",
+      "url": "https://iris.unito.it/retrieve/e27ce42b-d27c-2581-e053-d805fe0acbaa/Devecchi-RAI54.pdf",
+      "exact_reference": "CTH 62.II A col. I 19′–28′",
+      "content_mode": "Hittite transliteration with translation/discussion"
+    },
+    "independent_open_scholarly_context": {
+      "authors": "Birgit Christiansen; Elena Devecchi",
+      "title": "Die hethitischen Vasallenverträge und die biblische Bundestheologie",
+      "repository": "LMU Munich open repository",
+      "url": "https://epub.ub.uni-muenchen.de/28021/1/Christiansen_Devecchi_Die_hethitischen_Vasallenvertraege_und_die_biblische_Bundeskonzeption.pdf",
+      "exact_reference": "CTH 62.II A i 19′–28′",
+      "role": "Independent scholarly discussion of oath/fidelity structure; not counted as a separate ancient witness."
+    },
+    "secondary_written-tablet_locus": "CTH 62.II A iv 21–22, where the treaty/oath written on the tablet is discussed in modern scholarship; not part of the primary X35 locus unless separately activated.",
+    "language_layer": "HITTITE_TRANSLITERATION_PLUS_TRANSLATION; AKKADIAN VERSION RETAINED AS PARALLEL WITNESS_NOT_INDEPENDENT_EVENT_SOURCE",
+    "anti_pseudoreplication_rule": "Akkadian and Hittite versions/duplicates of CTH 62 are textual witnesses to one treaty tradition, not multiple independent political events.",
+    "admission_ceiling": "TREATY_OATH_AUTHORITY_AND_LOYALTY_BASE_RATE_ONLY"
+  },
+  "summary": {
+    "source_locus_authorities_frozen": 8,
+    "required": 8,
+    "source_or_metadata_commitments_complete": false,
+    "semantic_X01_X35_cells_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_targets_coded": 0,
+    "score_permission": false
+  },
+  "next_legal_action": "Freeze immutable source-or-metadata commitments for BR01-BR08 and SHA-256 the zero-value BASE_RATE_CODING_PACKET_TEMPLATE.v0.1 before issuing any coding packet.",
+  "epistemic_effect": "SOURCE_AND_LOCUS_AUTHORITY_COMPLETE_NO_MANIPULATION_CLASSIFICATION"
+}
