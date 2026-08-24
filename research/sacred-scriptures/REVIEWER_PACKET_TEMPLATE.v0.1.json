@@ -1,0 +1,36 @@
+{
+  "schema": "topa.sacred_scriptures.reviewer_packet_template.v0.1",
+  "date": "2026-08-24",
+  "status": "TEMPLATE_ONLY_DO_NOT_SEND_YET",
+  "purpose": "Define the smallest packet to send to a specialist when SHAREABILITY_GATE permits outreach.",
+  "packet": {
+    "one_sentence_question": "What, if anything, is wrong with our source model, coding, or falsification design for this specific comparison?",
+    "include": [
+      "one-page scope and non-claim boundary",
+      "exact text loci and edition/manuscript identifiers",
+      "source-root/dependence graph relevant to recipient",
+      "frozen feature schema subset relevant to recipient",
+      "blind/control procedure",
+      "result or negative certificate with uncertainty",
+      "reproducible code/data link",
+      "three strongest known weaknesses",
+      "specific questions for the reviewer"
+    ],
+    "exclude": [
+      "claims that JANUS is an authority",
+      "requests for endorsement",
+      "unrelated repository history",
+      "metaphysical conclusions",
+      "large attachment dumps without a reading path",
+      "other reviewers' opinions before independent review"
+    ]
+  },
+  "reviewer_questions": [
+    "Did we choose the right source root and edition?",
+    "Did we collapse any witnesses that should remain distinct, or count as independent anything that should be collapsed?",
+    "Did translation or ontology choices manufacture a feature match?",
+    "Is there a known contact/transmission route we missed?",
+    "Which single test would most likely falsify our current interpretation?"
+  ],
+  "receipt_rule": "Every external criticism becomes an append-only review receipt; disagreement is preserved, not averaged into consensus."
+}
