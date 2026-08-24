@@ -93,3 +93,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python extension_class_count_barrier_probe.py
+
+      - name: Replay C025-E2R-L1 transitive support locality mechanics
+        run: |
+          cd research/mathematics/p-vs-np
+          python support_locality_probe.py
