@@ -1,0 +1,46 @@
+{
+  "schema": "topa.sacred_scriptures.blind_packet_build_manifest.v0.1",
+  "date": "2026-08-24",
+  "status": "FOCAL_SLOTS_AUTHORIZED_CONTROLS_AND_DOUBLE_CODING_OPEN",
+  "entry_receipt": "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json",
+  "prescore_gate": {
+    "canaries": "4/4 PASS",
+    "sources": "5/5 SEALED",
+    "blind_packet_build_permission": true,
+    "score_permission": false
+  },
+  "two_stage_blinding": {
+    "stage_A_source_coding": "Two independent coders may access the exact frozen source locus and provenance needed for philological coding, but not scorer outputs, other coder decisions or target family labels used by the scoring stage.",
+    "stage_B_scorer_packet": "After coding and disagreement preservation, a separate builder replaces source identity with opaque packet IDs and removes tradition, source name, language, chronology, geography, manuscript labels and control class before scoring."
+  },
+  "focal_slots": [
+    {"source_id":"F01_ATRAHASIS","slice_sha256":"225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0","coding_A":"OPEN","coding_B":"OPEN","scorer_packet":"BLOCKED_UNTIL_DOUBLE_CODE"},
+    {"source_id":"F02_GILGAMESH_XI","slice_sha256":"5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee","coding_A":"OPEN","coding_B":"OPEN","scorer_packet":"BLOCKED_UNTIL_DOUBLE_CODE"},
+    {"source_id":"F03_GENESIS_6_9","slice_sha256":"2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2","coding_A":"OPEN","coding_B":"OPEN","scorer_packet":"BLOCKED_UNTIL_DOUBLE_CODE"},
+    {"source_id":"F04_QURAN_NOAH","slice_sha256":"b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c","coding_A":"OPEN","coding_B":"OPEN","scorer_packet":"BLOCKED_UNTIL_DOUBLE_CODE"},
+    {"source_id":"F05_SATAPATHA_MANU","slice_sha256":"8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6","coding_A":"OPEN","coding_B":"OPEN","scorer_packet":"BLOCKED_UNTIL_DOUBLE_CODE"}
+  ],
+  "control_deck": {
+    "authority":"MATCHED_CONTROL_DECK.v0.1.json",
+    "admitted":0,
+    "required":10,
+    "state":"BLOCKING_FINAL_PACKET_COMPLETION"
+  },
+  "feature_value_states": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"],
+  "unknown_rule": "UNKNOWN is never coerced to ABSENT and remains explicit through scorer packet generation.",
+  "disagreement_rule": "Coder A and coder B values are preserved separately; arbitration creates a third receipt and never overwrites either original coding receipt.",
+  "opaque_id_rule": "Opaque IDs must be randomly assigned outside the scorer-visible packet. The public repository may store only a commitment to the mapping, never the reversible mapping itself.",
+  "forbidden_scorer_keys": [
+    "source_id","source","tradition","religion","language","translation","chronology","date","geography","provenance","manuscript","tablet","control_class","family_label","contact_graph"
+  ],
+  "required_nulls": ["SHUFFLED_LABEL_NULL","SHUFFLED_FEATURE_NULL"],
+  "completion_gate": {
+    "five_focal_double_codes_complete": false,
+    "ten_controls_admitted_and_double_coded": false,
+    "null_fixtures_frozen": false,
+    "leakage_validator_pass": false,
+    "final_blind_packets_complete": false,
+    "score_permission": false
+  },
+  "next_legal_action": "FILL_MATCHED_CONTROL_DECK_AND_BEGIN_INDEPENDENT_DOUBLE_CODING"
+}
