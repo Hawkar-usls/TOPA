@@ -1,0 +1,51 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.6",
+  "date": "2026-08-24",
+  "status": "READY_FOR_GENUINE_INDEPENDENT_BASE_RATE_CODER_ASSIGNMENT",
+  "supersedes": "CURRENT_SPRINT.v0.5.json",
+  "why_state_changed": "BR03 Kadesh retrieval was admitted through a pre-frozen source-authority/transport-object policy; all eight ancient controls now have consolidated retrieval authority, the stale zero-value packet v0.2 was superseded by synchronized v0.3, coder-independence/arbitration rules were frozen, and the reverse-consistency packet-issuance gate passed 24/24 in GitHub Actions run 32776757559.",
+  "entry_gates": {
+    "manipulation_atlas": "138 TECHNIQUES / 10 FAMILIES",
+    "cross_epoch_schema": "35 DIMENSIONS FROZEN",
+    "ancient_source_authorities": "8/8 FROZEN",
+    "ancient_exact_loci": "8/8 FROZEN",
+    "canonical_descriptor_commitments": "8/8 FROZEN",
+    "external_retrieval_authorities": "8/8 FROZEN",
+    "packet_version": "BR_X35_v0.3",
+    "packet_sha256": "69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f",
+    "packet_issuance_gate": "24/24 PASS",
+    "packet_issuance_permission": true,
+    "semantic_values_populated": 0,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  },
+  "objective": "Obtain two genuinely independent coding paths, record their independence and delivery receipts, and bind both to the identical zero-value packet SHA before any X01-X35 semantic work is recognized by the project.",
+  "ordered_next": [
+    "identify/record Coder A and Coder B as genuinely independent paths under BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1",
+    "create separate assignment receipts before semantic coding",
+    "issue identical packet SHA-256 69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f to each path",
+    "freeze packet-delivery receipt for each coder",
+    "only after both assignments and deliveries are frozen may a separate semantic-coding-start gate be evaluated",
+    "each coder freezes a complete raw matrix before either result is compared",
+    "only after both raw matrices freeze may DISAGREEMENT_MANIFEST exist",
+    "arbitrate under already frozen rules and preserve both raw matrices",
+    "freeze final base-rate matrix before any sacred manipulation comparison",
+    "keep Flood A/B isolated until their own receipts freeze"
+  ],
+  "hard_locks": [
+    "ONE_REASONING_INSTANCE != TWO_CODERS",
+    "TWO_LABELS != TWO_INDEPENDENT_CODERS",
+    "NO_SEMANTIC_CODING_BEFORE_TWO_ASSIGNMENT_AND_DELIVERY_RECEIPTS",
+    "IDENTICAL_PACKET_HASH_REQUIRED",
+    "NO_COMPARE_BEFORE_BOTH_RAW_MATRIX_FREEZES",
+    "NO_SACRED_TARGET_RESULTS_TO_BASE_RATE_CODERS",
+    "NO_BASE_RATE_RESULTS_TO_FLOOD_A_B_BEFORE_THEIR_FREEZE",
+    "NO_SCORE"
+  ],
+  "current_first_unmet_requirement": "TWO_GENUINE_INDEPENDENT_CODER_ASSIGNMENTS_BOUND_TO_IDENTICAL_PACKET_HASH",
+  "promotion_ceiling": "PACKET_ISSUANCE_READINESS_ONLY",
+  "score_permission": false
+}
