@@ -1,0 +1,56 @@
+{
+  "schema": "topa.sacred_scriptures.prescore_success_receipt.v0.1",
+  "date": "2026-08-24",
+  "status": "PRESCORE_GATE_SATISFIED",
+  "authority_branch": "topa-sacred-scriptures",
+  "successful_pr_ci": {
+    "workflow_run_id": 32741347834,
+    "job_id": 97476300081,
+    "head_sha": "6084f4f4f8b3c9333316f62f86687c77efd2ff42",
+    "artifact_id": 9525305433,
+    "artifact_digest": "sha256:020cd7f2789d99d20c8f2c5eb3dbcabdf234ab24a6c4a80466e87a28307ffd17",
+    "conclusion": "success"
+  },
+  "canaries": {
+    "status": "FOUR_OF_FOUR_PASS",
+    "pass_count": 4,
+    "required": 4,
+    "fixtures": {
+      "LINEAR_A_REPRESENTATION_CANARY_PASS": "ef0016be2639ac01e04defea840aadeeb884a4a31ee61908dd503335cd333539",
+      "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS": "15effa188c8e40bddc94a51d78d562c8579187edf80595261a2ebce3962ef9ce",
+      "EGYPT_LEMMA_ID_CANARY_PASS": "6ba38691f52c7cb33803a465debca2569e5bd7c7d1016f1a369fcfed6163547e",
+      "EGYPT_TEXT_ID_CANARY_PASS": "945a1f15ffce645cb9f2588a0cb5628f2d0d540b06eda31720595736e1552811"
+    }
+  },
+  "source_seals": {
+    "status": "FIVE_OF_FIVE_SEALED",
+    "sealed_count": 5,
+    "required": 5,
+    "slices": {
+      "F01_ATRAHASIS": "225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0",
+      "F02_GILGAMESH_XI": "5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee",
+      "F03_GENESIS_6_9": "2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2",
+      "F04_QURAN_NOAH": "b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c",
+      "F05_SATAPATHA_MANU": "8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6"
+    },
+    "source_level_receipts": {
+      "WASSERMAN_PDF_SHA256": "627d27f1939631d3d21e168530121e05966cd38439f7118e65009c4d25f94864",
+      "BHSA_SUBSTRATE_SHA256": "97d258176ebbbc3e49dd3e5060cef61df8d8daf63e474cbc4ea4639e36920b3a",
+      "BHSA_COMMIT": "b112c161cfd21eae403d51a2733740d8743460e7",
+      "TANZIL_DOWNLOAD_SHA256": "b9027e22eb7e69d326f1eb7467fed8b7bc1eccbe1a894887ed2b3feb4ef5fc90",
+      "GRETIL_DOWNLOAD_SHA256": "50aefd5a364efa688e3767ec407f143b5174726e79ed94f3bc65b9ce5526ab5b"
+    }
+  },
+  "gate": {
+    "blind_packet_build_permission": true,
+    "score_permission": false,
+    "epistemic_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"
+  },
+  "authority_receipts": [
+    "execution/CANARY_RUN.v0.1.json",
+    "execution/SOURCE_SEAL_RUN.v0.1.json",
+    "execution/PRESCORE_EXECUTION_GATE.v0.1.json"
+  ],
+  "next_legal_action": "BUILD_FINAL_BLIND_PACKETS",
+  "forbidden_until_later_gate": ["SCORE", "RANK", "INTERPRET_MATCH_AS_TRUTH"]
+}
