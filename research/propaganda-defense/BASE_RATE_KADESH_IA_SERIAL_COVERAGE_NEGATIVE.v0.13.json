@@ -1,0 +1,51 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_ia_serial_coverage_negative.v0.13",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_INTERNET_ARCHIVE_SERIAL_COVERAGE_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "metadata_scout": {
+    "github_actions_run_id": 32759692772,
+    "artifact_id": 9532175041,
+    "artifact_sha256": "005d72a379751b556e6a0d76b0ad47b372c03c35935c927a1291923f82bdc0b0",
+    "unique_items": 189,
+    "initial_likely_count": 30,
+    "notable_false_positive": "pub_american-journal-of-semitic-languages-and-literatures"
+  },
+  "targeted_reverse_check": {
+    "github_actions_run_id": 32759840521,
+    "github_actions_job_id": 97535831708,
+    "artifact_id": 9532225556,
+    "artifact_sha256": "e57de9f94d140bb92cd2a131c0cd932a81fcac5233a53a167b1ee1062607e10b",
+    "collection_identifier": "pub_american-journal-of-semitic-languages-and-literatures",
+    "metadata_mediatype": "collection",
+    "metadata_sim_pubid": "5655",
+    "metadata_issn": "1062-0516",
+    "metadata_date": "1884-1910",
+    "metadata_explicit_coverage_statement": "The Internet Archive Collection contains microfilm published between 1884 and 1910.",
+    "search_children_1926_1928": 0,
+    "search_children_year_1927": 0,
+    "search_children_volume_43": 0,
+    "classification": "CORRECT_SERIAL_ID_BUT_COVERAGE_EXCLUDES_FROZEN_1927_VOLUME"
+  },
+  "admission": {
+    "internet_archive_serial_can_cover_br03": false,
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Remove the 1884-1910 IA serial collection from BR03 candidates. Continue only with holdings whose explicit coverage includes 1927/volume 43, or with an exact Wilson 1927 scan transport mirror under SOURCE_ROOT_COUNT=1.",
+  "laws": [
+    "TITLE_AND_ISSN_MATCH != CHRONOLOGICAL_COVERAGE",
+    "SERIAL_METADATA_FALSE_POSITIVE_MUST_BE_DEMOTED",
+    "COVERAGE_EXCLUSION_OVERRIDES_NAME_MATCH",
+    "NEGATIVE_REVERSE_CHECK_IS_A_RESULT",
+    "NO_SOURCE_SUBSTITUTION"
+  ]
+}
