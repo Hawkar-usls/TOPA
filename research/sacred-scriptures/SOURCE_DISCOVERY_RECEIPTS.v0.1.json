@@ -1,0 +1,81 @@
+{
+  "schema": "topa.sacred_scriptures.source_discovery_receipts.v0.1",
+  "checked_date": "2026-08-24",
+  "status": "PARTIAL_VERIFIED_SOURCE_MAP",
+  "receipts": [
+    {
+      "tradition": "Judaism",
+      "source": "Sefaria",
+      "url": "https://www.sefaria.org/texts/Tanakh",
+      "verified": "Tanakh library exposes Torah, Prophets and Writings; version pages carry version-specific license metadata.",
+      "reuse_state": "CHECK_VERSION_LICENSE"
+    },
+    {
+      "tradition": "Christianity",
+      "source": "BibleGateway KJV",
+      "url": "https://www.biblegateway.com/versions/King-James-Version-KJV-Bible/",
+      "verified": "KJV page reports Publisher: Public Domain and exposes Old and New Testament book lists.",
+      "reuse_state": "PUBLIC_DOMAIN_US_SOURCE_REPORTED"
+    },
+    {
+      "tradition": "Islam",
+      "source": "Tanzil",
+      "url": "https://tanzil.net/download/",
+      "license_url": "https://tanzil.net/docs/Text_License",
+      "verified": "Arabic Qur'an text is downloadable; verbatim copying/distribution is permitted with attribution/source-link and notice; changing the text is not allowed.",
+      "reuse_state": "VERBATIM_ONLY"
+    },
+    {
+      "tradition": "Theravada and early Buddhism",
+      "source": "SuttaCentral",
+      "url": "https://suttacentral.net/licensing",
+      "verified": "Licensing page distinguishes public-domain original-language Buddhist texts from translations with separate licenses; SuttaCentral also asks that content not be scraped for generative-AI datasets.",
+      "reuse_state": "CANON_MAPPING_AND_PER_TEXT_LICENSE_CHECK; NO_BULK_AI_SCRAPE"
+    },
+    {
+      "tradition": "Vedic/Hindu and Indian textual traditions",
+      "source": "GRETIL",
+      "url": "https://gretil.sub.uni-goettingen.de/",
+      "verified": "Electronic text register includes Vedic and epic materials, including Mahabharata files and edition/inputter metadata.",
+      "reuse_state": "PRESERVE_ELECTRONIC_EDITION_PROVENANCE"
+    },
+    {
+      "tradition": "Tibetan Buddhism",
+      "source": "84000",
+      "url": "https://84000.co/",
+      "verified": "84000 publishes translations of Tibetan canonical works; individual works may carry CC BY-NC-ND and tradition-specific reading warnings.",
+      "reuse_state": "METADATA_ONLY_BY_DEFAULT; PER_TEXT_LICENSE"
+    },
+    {
+      "tradition": "Bahai Faith",
+      "source": "Bahai Reference Library",
+      "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/",
+      "verified": "Official Reference Library exposes the Kitab-i-Aqdas, including downloadable PDF/DOCX/HTML and publication metadata; rights are governed by the site's legal information.",
+      "reuse_state": "OFFICIAL_SOURCE_VERIFIED; RIGHTS_CHECK_BEFORE_MIRROR"
+    },
+    {
+      "tradition": "Bahai Faith",
+      "source": "Bahai Reference Library",
+      "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-iqan/",
+      "verified": "Official Reference Library exposes the Kitab-i-Iqan with publication metadata and reference links.",
+      "reuse_state": "OFFICIAL_SOURCE_VERIFIED; RIGHTS_CHECK_BEFORE_MIRROR"
+    },
+    {
+      "tradition": "Latter-day Saint tradition",
+      "source": "Church of Jesus Christ of Latter-day Saints",
+      "url": "https://www.churchofjesuschrist.org/study/manual/translations-and-downloads/scriptures/pearl-of-great-price?lang=eng",
+      "verified": "Official site describes the Pearl of Great Price and its constituent works and translation history.",
+      "reuse_state": "OFFICIAL_SOURCE_VERIFIED; RIGHTS_CHECK_BEFORE_MIRROR"
+    }
+  ],
+  "rule": "SOURCE_VERIFIED != MIRROR_RIGHTS_VERIFIED",
+  "next_source_discovery": [
+    "Guru Granth Sahib authoritative edition",
+    "Avesta scholarly/original-language source",
+    "Jain Agama authoritative digital source",
+    "CBETA/Chinese Buddhist Canon source and reuse terms",
+    "Samaritan Pentateuch critical edition",
+    "Mandaean primary-text editions",
+    "community-authorized oral-corpus sources"
+  ]
+}
