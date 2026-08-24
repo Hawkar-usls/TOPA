@@ -1,0 +1,13 @@
+{
+  "schema": "topa.sacred_scriptures.ci_trigger_request.v0.1",
+  "date": "2026-08-24",
+  "purpose": "Trigger a visible pull-request Actions run for prescore source sealing and canary verification without merging into main or changing claim authority.",
+  "base_branch": "topa-sacred-scriptures",
+  "requested_checks": [
+    "FOUR_OF_FOUR_CANARIES",
+    "FIVE_OF_FIVE_SOURCE_SEALS",
+    "PRESCORE_COMBINED_PERMISSION_GATE"
+  ],
+  "score_permission": false,
+  "claim_effect": "NONE"
+}
