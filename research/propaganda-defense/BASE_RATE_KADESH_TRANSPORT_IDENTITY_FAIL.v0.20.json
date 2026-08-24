@@ -1,0 +1,51 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_transport_identity_fail.v0.20",
+  "date": "2026-08-24",
+  "status": "FAIL_PRESERVED_BEFORE_IMPLEMENTATION_CORRECTION",
+  "gate": "KADESH_TRANSPORT_OBJECT_IDENTITY_GATE.v0.20.json",
+  "diagnostic_run": {
+    "github_actions_run_id": 32775271589,
+    "github_actions_job_id": 97584773367,
+    "artifact_id": 9537687531,
+    "artifact_sha256": "23d6281afd18cd58836c1dcaf52e1f5cfebf0da447f518656e7e8103432e1ab7"
+  },
+  "result": {
+    "snapshot_pass": "2/2",
+    "poem_wordset_jaccard": 0.9933962264150943,
+    "jaccard_pass": true,
+    "same_page_coverage": true,
+    "same_marker_vector_implementation": false,
+    "transport_admission_review_eligible": false,
+    "br03_retrieval_pass": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "snapshot_diagnostics": [
+    {
+      "timestamp": "20250825141753",
+      "marker_counts": {"the_poem": 8, "council_urges_peace": 1, "the_record": 5, "comment_on_the_texts": 1},
+      "geometry_distances_chars": {"p266_to_THE_POEM": 143, "p277_to_COUNCIL": 8, "p278_to_THE_RECORD": 46, "p287_to_COMMENT": 207},
+      "poem_span_chars": 27580,
+      "poem_span_word_tokens": 4859,
+      "all_per_snapshot_checks": true
+    },
+    {
+      "timestamp": "20260111160515",
+      "marker_counts": {"the_poem": 8, "council_urges_peace": 1, "the_record": 7, "comment_on_the_texts": 1},
+      "geometry_distances_chars": {"p266_to_THE_POEM": 143, "p277_to_COUNCIL": 8, "p278_to_THE_RECORD": 46, "p287_to_COMMENT": 207},
+      "poem_span_chars": 27011,
+      "poem_span_word_tokens": 4798,
+      "all_per_snapshot_checks": true
+    }
+  ],
+  "failure_localization": "Implementation compared raw marker multiplicities instead of the gate's presence/absence marker vector. The two Scribd UI generations repeat THE RECORD a different number of times while preserving identical required marker presence and exact page-marker geometry.",
+  "laws": [
+    "FAIL_PRESERVED_BEFORE_REPAIR",
+    "UI_DUPLICATION_COUNT != TEXT_SEMANTIC_VECTOR",
+    "REPRESENTATION_NOISE_MUST_NOT_BECOME_SEMANTIC_CRITERION",
+    "GATE_WORDING_CONTROLS_IMPLEMENTATION",
+    "NO_BR03_PROMOTION_FROM_FAILED_RUN",
+    "NO_CODING",
+    "NO_SCORE"
+  ]
+}
