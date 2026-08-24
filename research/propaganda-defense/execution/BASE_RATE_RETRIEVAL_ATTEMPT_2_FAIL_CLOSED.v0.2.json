@@ -1,0 +1,20 @@
+{
+  "schema":"topa.propaganda_defense.base_rate_retrieval_attempt.v0.2",
+  "date":"2026-08-24",
+  "attempt":2,
+  "status":"PARTIAL_FAIL_CLOSED_6_OF_8",
+  "workflow":{"run_id":32754303310,"job_id":97518173156,"artifact_id":9530255533,"artifact_digest":"sha256:e37872f125cad05f5187a6c17ea848c932973fd131018191b7bd8e8c20d476f4","draft_pr":7,"head_sha":"5a1817b2907dc39b2127e387eec2781b558147aa"},
+  "frozen_inputs_unchanged":true,
+  "summary":{"content_sufficient":"6/8","sufficient_ids":["BR01_HAMMURABI","BR02_BEHISTUN","BR05_HITTITE_TREATY","BR06_THUCYDIDES","BR07_RES_GESTAE","BR08_PTAHHOTEP"],"blocked_ids":["BR03_KADESH","BR04_NEO_ASSYRIAN_ANNALS"],"semantic_values_populated":0,"base_rate_coding_permission":false,"score_permission":false},
+  "newly_repaired_since_attempt_1":[
+    {"id":"BR05_HITTITE_TREATY","status":"PASS","source_sha256":"51ff66d1ceb7268e0a9022ae4328b7f1ccfe9774a8ea9d3756fb18c3ecf30bc0","pdf_text_sha256":"1189424469d3ad6b97050196ab6749d00bad0c38cfeec78317e7bb0b2258e62c"},
+    {"id":"BR06_THUCYDIDES","status":"PASS","perseus_commit":"a065c359aab33c33bd17ddc2cac7d27fdc9cd870","source_sha256":"0565b20acd3fa78e5738ba33853a34abad616c93c8dc89804dd282ae25fec976","slice_sha256":"1cfed1087c95eb15b7445d4cff835e1b0030fe9e88b6360c72e86789e1f4ae27"},
+    {"id":"BR07_RES_GESTAE","status":"PASS","aggregate_sha256":"2e078411ca8ed6b5c11843fa5773596ad1d58f60893e2e948a387a87730011f2"},
+    {"id":"BR08_PTAHHOTEP","status":"PASS","text_id":"C6KGH3XC7RGU3DSL7HKYY2K3WM","edition_pages":2,"page_sha256":["7f66e0c90801a7d1aa73a3b75551967c30281e9270b7f5b7ff41305ad642e7fe","e031bb74601f8bcdd062e592de5f48c35852af8dabf8d8b6d3bacf7dcde42be0"],"aggregate_sha256":"bc351a8e363acfb2fc7ed1dd418a0deaa6abbf832e6c22ab7188d77ea62445be"}
+  ],
+  "remaining_blockers":[
+    {"id":"BR03_KADESH","reason":"JSTOR nominal PDF transport returned HTML shell; UChicago PDF returned 403"},
+    {"id":"BR04_NEO_ASSYRIAN_ANNALS","reason":"official ORACC transports fail hosted-runner certificate verification"}
+  ],
+  "repair_policy":["PRESERVE_THIS_6_OF_8_RECEIPT","CHANGE_TRANSPORT_OR_VALIDATION_ONLY","NO_SOURCE_OR_LOCUS_SUBSTITUTION","NO_SEMANTIC_CODING","NO_SCORE"]
+}
