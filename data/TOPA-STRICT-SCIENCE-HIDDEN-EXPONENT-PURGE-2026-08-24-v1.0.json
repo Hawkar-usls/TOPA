@@ -1,0 +1,130 @@
+{
+  "schema": "hawkar.topa.strict-science-purge-receipt.v1",
+  "id": "TOPA-STRICT-SCIENCE-HIDDEN-EXPONENT-PURGE-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T21:25:00+03:00",
+  "canonical_home": "Hawkar-usls/TOPA",
+  "status": "POLICY_RUNTIME_AND_ACTIVE_SURFACES_UPDATED__PROVIDER_CI_NOT_YET_RETRIEVED",
+  "goal": "Remove heuristic authority from active TOPA/JANUS scientific claims and expose every known location where a growing exponent or uncharged derived representation can hide.",
+  "strict_science": {
+    "foundation": "protocols/TOPA_FOUNDATION.json",
+    "foundation_version": "1.3",
+    "gate": "data/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+    "method": "docs/METHOD.md",
+    "status": "docs/STATUS.md",
+    "project_status": "PROJECT_STATUS.json",
+    "scientific_authority_classes": [
+      "SOURCE_FACT",
+      "FORMAL_DERIVATION",
+      "REPRODUCIBLE_EXPERIMENT",
+      "STATISTICAL_INFERENCE",
+      "HYPOTHESIS_ONLY"
+    ],
+    "hypothesis_only_evidence_weight": "ZERO",
+    "uncalibrated_confidence": "FORBIDDEN_AS_SCIENTIFIC_AUTHORITY",
+    "heuristic_score": "FORBIDDEN_AS_SCIENTIFIC_AUTHORITY",
+    "survivor_label": "FORBIDDEN_AS_SCIENTIFIC_AUTHORITY",
+    "model_or_scout_vote": "FORBIDDEN_AS_SCIENTIFIC_AUTHORITY",
+    "visual_resemblance": "FORBIDDEN_AS_CLASSIFICATION_WITHOUT_FROZEN_VALIDATED_RULE",
+    "historical_heuristic_records": "PRESERVED_AS_PROVENANCE_ONLY"
+  },
+  "runtime_and_integration_changes": {
+    "topa_native_router": {
+      "path": "integrations/janus-distributed-ai-swarm/topa_epistemic_router.py",
+      "commit": "1663739c33ce22cf43a6553688c28675f7bd2cb8"
+    },
+    "swarm_router": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "path": "tools/topa_epistemic_router.py",
+      "commit": "c3b0085fba53232f9486c960dcaa1526470dc949"
+    },
+    "swarm_foundation_binding": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "commit": "830997226d1b8fc4d2c1d342cc8c58c8a1e489f3"
+    },
+    "swarm_kenshi_runtime": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "commit": "f81d469e4dd9432b8df6200d21d8ed430088723a"
+    },
+    "swarm_unit_tests": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "commit": "9f9f153d506defb3f5087a34d9ad17ae186302a3"
+    },
+    "swarm_workflow": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "commit": "f5e51471301ed1ebc7bdabbbf6b4411ab72fab98",
+      "provider_ci": "NOT_YET_RETRIEVED"
+    },
+    "genesis_binding": {
+      "repository": "Hawkar-usls/Janus_Genesis",
+      "commit": "394d588ab604b0ffc0d07dfa5c29caa17b5a254c"
+    },
+    "demiurge_scout_protocol": {
+      "repository": "Hawkar-usls/Janus-Demiurge",
+      "commit": "9173d9aa7334d972d135c09f01299e4749542814"
+    },
+    "demiurge_manifest": {
+      "repository": "Hawkar-usls/Janus-Demiurge",
+      "commit": "1d22fb3fc61a30ed84e23943eb0ffcd6fd678d9c"
+    }
+  },
+  "bootstrap_repair": {
+    "path": ".github/workflows/bootstrap-topa.yml",
+    "commit": "b76784b069aea95b72fde8d39ff6da73fbb9047e",
+    "problem_found": "Old bootstrap deleted protocols and integration snapshots then copied Genesis/Swarm v1.2 files over TOPA-native authority.",
+    "repair": "TOPA-native protocols/data/docs/router are immutable to bootstrap; upstream versions are stored as provenance mirrors only.",
+    "ci": "NOT_YET_RETRIEVED"
+  },
+  "empirical_hunt_repair": {
+    "hunt": "HUNT-0001-HESSDALEN",
+    "classification_registry": "hunts/HUNT-0001-HESSDALEN/K1-CLASSIFICATION-LADDER.md",
+    "classification_commit": "ad9976afc26b97222bb378f3a013d555951569c2",
+    "result_schema": "hunts/HUNT-0001-HESSDALEN/K1-RESULT-SCHEMA.json",
+    "result_schema_commit": "84326971f433e554d7da9725678e23aaa066fd17",
+    "new_rule": "UNCLASSIFIED -> CLASS only through a frozen class_rule_id with measurements, reference datasets, calibration, predeclared tolerances and a reproducible receipt.",
+    "forbidden_shortcuts": [
+      "visual resemblance",
+      "human confidence",
+      "unvalidated model label",
+      "no match found therefore extraordinary"
+    ]
+  },
+  "hidden_exponent_audit": {
+    "path": "research/mathematics/p-vs-np/C025_HIDDEN_EXPONENT_AUDIT_2026-08-24.md",
+    "commit": "1cbd5c522490ceb5e84604fb24b59cb0b3174fa1",
+    "provider_issue": "Hawkar-usls/Janus-Fundamentum#222",
+    "fixed_exponent_rule": "T(N) is polynomial only when T(N)<=C*N^c with universal fixed C,c independent of input and growing family parameters.",
+    "critical_exposed_exponents": {
+      "F2": "S_local <= S^((q+5)!) — fixed-degree polynomial in S only for fixed q",
+      "F3": "S_local <= S^(7*(b+2)^(d+1)) — fixed-degree polynomial in S only for fixed b,d"
+    },
+    "open_hiding_places": [
+      "active state literal volume L(N)",
+      "retention recurrence across layers",
+      "reason-cache volume M(N)",
+      "portable certificate bytes",
+      "ER3 extension count K(N)",
+      "deterministic extension-definition search",
+      "deterministic proof search",
+      "bit complexity of canonicalization/hash/equality/sorting/serialization",
+      "n,Delta,m to encoded N parameter transfer and explicit fixed eta",
+      "existential/high-probability NW hard-instance construction",
+      "F3-D surviving semantic b_rho,d_rho"
+    ]
+  },
+  "current_exact_mathematical_front": "C025-E2R-L1G-F3-D_SEMANTIC_RESTRICTION_SURVIVAL",
+  "ci_boundary": {
+    "swarm_provider_run_retrieved": false,
+    "topa_bootstrap_run_retrieved": false,
+    "local_network_replay_available": false,
+    "promotion": "NO_PROVIDER_PASS_CLAIM_UNTIL_AN_ACTUAL_WORKFLOW_RECEIPT_IS_RETRIEVED"
+  },
+  "claim_ceiling": {
+    "strict_science_policy_enacted": true,
+    "heuristic_authority_removed_from_updated_active_surfaces": true,
+    "historical_heuristics_deleted": false,
+    "all_possible_future_heuristic_code_paths_exhaustively_proved_absent": false,
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
