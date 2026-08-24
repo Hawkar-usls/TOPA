@@ -1,0 +1,46 @@
+{
+  "schema": "topa.c025.policy0b1_total_machine_freeze.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "FROZEN_BASELINE__TOTAL_CORRECT__EXPONENTIAL_BRANCH_BOUND_EXPLICIT",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_POLICY0B1_TOTAL_MACHINE_FREEZE.md",
+  "provider_branch": "Hawkar-usls/Janus-Fundamentum:c025-policy0b-fair-reason",
+  "frozen": {
+    "automatic_extensions": "NONE",
+    "global_reason_cache": "NONE",
+    "residual_memoization": "NONE",
+    "branch_variable": "MIN_UNASSIGNED_ROOT_ID",
+    "branch_order": "FALSE_THEN_TRUE",
+    "heuristic_scores": "FORBIDDEN",
+    "random_tie_breaking": "FORBIDDEN"
+  },
+  "preprocessing": {
+    "unit_propagation": "EXACT_CANONICAL",
+    "resolution_layer": "COMPLETE_FAIR_FROZEN_LAYER",
+    "attempt_bound": "sum_x p_x*q_x <= L^2/4",
+    "retention": "EMPTY_OR_UNIT_OR_ONE_CANONICAL_STRICT_SUBSUMING_STRENGTHENING_PER_FROZEN_CLAUSE",
+    "active_clause_count_increase": false,
+    "nonunit_change_strictly_decreases_literal_volume": true
+  },
+  "theorems": {
+    "preprocessing_termination": "PROVED",
+    "transition_satisfiability_preservation": "PROVED",
+    "recursive_completeness": "PROVED",
+    "total_termination": "PROVED",
+    "per_node_work": "N^O(1)",
+    "branch_depth": "<=n",
+    "recursive_node_upper_bound": "<=2^(n+1)-1",
+    "total_current_upper_bound": "2^N*N^O(1)"
+  },
+  "open": [
+    "C2_DETERMINISTIC_DISCOVERY",
+    "POLYNOMIAL_TOTAL_STATE_COUNT",
+    "POLYNOMIAL_TOTAL_RUNTIME",
+    "POLYNOMIAL_TOTAL_CERTIFICATE_BYTES"
+  ],
+  "claim_ceiling": [
+    "TOTAL_DETERMINISTIC_MACHINE != POLYNOMIAL_TIME_MACHINE",
+    "POLICY0B1_FROZEN != C2_SOLVED",
+    "P_VS_NP = OPEN"
+  ],
+  "p_vs_np": "OPEN"
+}
