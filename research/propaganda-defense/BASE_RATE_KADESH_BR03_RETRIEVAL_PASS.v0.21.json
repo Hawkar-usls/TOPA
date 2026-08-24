@@ -1,0 +1,45 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_br03_retrieval_pass.v0.21",
+  "date": "2026-08-24",
+  "status": "BR03_RETRIEVAL_PASS",
+  "policy": "KADESH_BR03_TRANSPORT_ADMISSION_POLICY.v0.21.json",
+  "diagnostic_run": {
+    "github_actions_run_id": 32776088554,
+    "github_actions_job_id": 97587368577,
+    "artifact_id": 9537995468,
+    "artifact_sha256": "068f2f3b0cc0b4c71534fc67409e243a8d9abdb46dfe89af4bc32c547db70267"
+  },
+  "result": {
+    "snapshots_pass": "2/2",
+    "poem_wordset_jaccard": 0.9933962264150943,
+    "stable_expected_span_hashes": true,
+    "BR03_RETRIEVAL_PASS": true,
+    "ancient_base_rate_external_retrieval": "8/8_CANDIDATE_PENDING_GLOBAL_CONSISTENCY_REVIEW",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "stable_content_seals": {
+    "20250825141753_poem_span_sha256": "df2076467ac7bf47249bb9ef35e2b69121c59747c797214350910d26d33f030d",
+    "20260111160515_poem_span_sha256": "7e148f78bd566f38a816a02eff872170ba301e778bbed668a3243f9dee45d67c"
+  },
+  "source_accounting": {
+    "scholarly_authority": "Wilson / AJSL / University of Chicago / JSTOR / DOI 10.1086/370157",
+    "scribd_authority": 0,
+    "wayback_authority": 0,
+    "wayback_timestamps_are_independent_sources": false,
+    "source_root_count": 1
+  },
+  "rights_scope": {
+    "status": "PUBLIC_DOMAIN_IN_UNITED_STATES_FOR_1927_US_PUBLICATION_UNDER_CURRENT_US_COPYRIGHT_OFFICE_RULE",
+    "global_public_domain_claim": false
+  },
+  "next_legal_action": "BASE_RATE_8_OF_8_RETRIEVAL_REVERSE_CONSISTENCY_AND_CODING_UNLOCK_REVIEW",
+  "laws": [
+    "BR03_RETRIEVAL_PASS != CODING_PERMISSION",
+    "TRANSPORT_REPLICATION != INDEPENDENT_ATTESTATION",
+    "WRAPPER_BYTES != SOURCE_TEXT_BYTES",
+    "SEMANTIC_VALUES_REMAIN_ZERO",
+    "NO_SCORE"
+  ]
+}
