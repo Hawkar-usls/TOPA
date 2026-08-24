@@ -1,0 +1,40 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_ia_whole_volume_negative.v0.11",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_INTERNET_ARCHIVE_WHOLE_VOLUME_DISCOVERY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32759469228,
+    "github_actions_job_id": 97534570164,
+    "artifact_id": 9532184904,
+    "artifact_sha256": "8ed64a71b4c565384591c5d72c13b34aff916e21855a6244b3a57ba78c581b95"
+  },
+  "result": {
+    "unique_archive_items": 117,
+    "content_candidates": 0,
+    "candidate_ids": [],
+    "classification": "NO_EXACT_WILSON_1927_CONTENT_REPRESENTATION_FOUND_IN_BOUNDED_IA_PASS"
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "relation_to_v0_13": "The later targeted serial check explains one major metadata false positive: the matching AJSL serial collection covers only 1884-1910 and therefore cannot contain the frozen 1927 article.",
+  "next_legal_action": "Proceed only to exact-scan transport mirrors of the already frozen Wilson/JSTOR article, with strict authority/source-root firewall and page-boundary validation.",
+  "laws": [
+    "WHOLE_VOLUME_SEARCH_NEGATIVE_IS_PRESERVED",
+    "NO_CONTENT_CANDIDATE != SOURCE_ABSENT_FROM_WORLD",
+    "ARCHIVE_FALSE_POSITIVES_REQUIRE_COVERAGE_CHECK",
+    "TRANSPORT_MIRROR != SOURCE_AUTHORITY",
+    "NO_SOURCE_SUBSTITUTION"
+  ]
+}
