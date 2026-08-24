@@ -1,0 +1,34 @@
+{
+  "schema": "topa.c025.c2_branch_mass_progress_gate.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "C2_OPEN__HIDDEN_EXPONENT_IS_GLOBAL_SEARCH_MASS",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_C025_C2_HIDDEN_SEARCH_EXPONENT_AUDIT.md",
+  "provider_issue": 224,
+  "proved": {
+    "raw_assignment_mass": "A(u)=2^u",
+    "branch_mass_identity": "A(child0)+A(child1)=A(parent)",
+    "unassigned_count_frontier_measure": "REFUTED",
+    "clause_count_frontier_measure": "REFUTED_AS_NAIVE_UNIVERSAL_MEASURE",
+    "literal_volume_frontier_measure": "REFUTED_AS_NAIVE_UNIVERSAL_MEASURE",
+    "assignment_mass_measure": "EXACT_BUT_EXPONENTIAL_AT_ROOT",
+    "global_frontier_telescoping_lemma": "PROVED_AS_SUFFICIENT_CONDITION"
+  },
+  "sufficient_gate": {
+    "root_bound": "mu(root)<=C*N^c",
+    "expansion_rule": "sum_i mu(child_i)<=mu(parent)-1",
+    "consequence": "expanded_states<=mu(root)"
+  },
+  "search_barriers": [
+    "POLY_WORK_PER_STATE != POLY_TOTAL_STATES",
+    "POLY_CERTIFICATE_SIZE != POLY_EXHAUSTIVE_CERTIFICATE_SEARCH",
+    "FAST_REASON_QUERY_IN_M != M_IS_POLY_IN_N",
+    "SHORT_ER_PROOF_EXISTS != CHEAP_ER_DISCOVERY"
+  ],
+  "open": [
+    "USEFUL_POLY_BOUNDED_FRONTIER_POTENTIAL",
+    "DETERMINISTIC_DISCOVERY",
+    "GLOBAL_AMORTIZATION",
+    "POLY_REPRESENTATION_COUPLING"
+  ],
+  "p_vs_np": "OPEN"
+}
