@@ -1,8 +1,10 @@
 {
   "schema": "topa.sacred_scriptures.ci_trigger_request.v0.1",
   "date": "2026-08-24",
+  "attempt": 2,
   "purpose": "Trigger a visible pull-request Actions run for prescore source sealing and canary verification without merging into main or changing claim authority.",
   "base_branch": "topa-sacred-scriptures",
+  "repair_since_attempt_1": "BHSA checkout ref corrected from short b112c16 to full b112c161cfd21eae403d51a2733740d8743460e7.",
   "requested_checks": [
     "FOUR_OF_FOUR_CANARIES",
     "FIVE_OF_FIVE_SOURCE_SEALS",
