@@ -1,0 +1,53 @@
+name: propaganda-base-rate-retrieval
+
+on:
+  push:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'research/propaganda-defense/**'
+      - 'tools/propaganda_base_rate_source_retrieval.py'
+      - '.github/workflows/propaganda-base-rate-retrieval.yml'
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'research/propaganda-defense/**'
+      - 'tools/propaganda_base_rate_source_retrieval.py'
+      - '.github/workflows/propaganda-base-rate-retrieval.yml'
+
+jobs:
+  retrieval:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run fail-closed source retrieval and hashing
+        id: retrieve
+        shell: bash
+        run: |
+          set +e
+          python tools/propaganda_base_rate_source_retrieval.py
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Upload retrieval receipt even on partial failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: propaganda-base-rate-source-retrieval
+          path: research/propaganda-defense/execution/BASE_RATE_SOURCE_RETRIEVAL_RUN.v0.1.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Enforce fail-closed result
+        shell: bash
+        run: |
+          rc='${{ steps.retrieve.outputs.exit_code }}'
+          if [ "$rc" != "0" ]; then
+            echo "Retrieval gate remains closed; receipt was preserved."
+            exit "$rc"
+          fi
