@@ -1,0 +1,31 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log.v0.1",
+  "created_at": "2026-08-24T18:50:00+03:00",
+  "status": "ACTIVE_APPEND_ONLY",
+  "branch": "topa-propaganda-defense",
+  "policy": {
+    "append_only_semantics": true,
+    "negative_results_preserved": true,
+    "corrections_create_new_entries": true,
+    "source_count_not_truth": true,
+    "no_operational_influence_promotion": true
+  },
+  "entries": [
+    {"seq":1,"event":"PROPAGANDA_DEFENSE_BRANCH_CREATED","status":"DONE","base_main_commit":"24225290e94a3d0917eea07c8ebfa54010d0b754","claim_effect":"PROJECT_STRUCTURE_ONLY"},
+    {"seq":2,"event":"SEED_LITERATURE_CENSUS_BUILT","status":"36_SOURCE_RECORDS_ACROSS_6_CLASSES","artifact":"CORPUS_MANIFEST.v0.1.json","claim_effect":"BIBLIOGRAPHIC_AND_SOURCE_DISCOVERY_ONLY"},
+    {"seq":3,"event":"DEFENSIVE_OPERATIONAL_FIREWALL_FROZEN","status":"DONE","rules":["red-team TTPs may be used for recognition","no real-audience targeting or microtargeting","no covert/deceptive campaign design","no military psychological-operation execution planning"],"claim_effect":"SAFETY_AND_SCOPE_ONLY"},
+    {"seq":4,"event":"JANUS_PROPAGANDA_DEFENSE_PROTOCOL_FROZEN","status":"DONE","artifact":"JANUS_PROTOCOL.v0.1.json","claim_effect":"METHOD_ONLY"},
+    {"seq":5,"event":"DEFENSIVE_MANUAL_V0_1_FROZEN","status":"DONE","artifact":"DEFENSIVE_MANUAL.v0.1.json","claim_effect":"DEFENSIVE_ANALYSIS_METHOD_ONLY"},
+    {"seq":6,"event":"WEB_SOURCE_RECEIPTS_SEED_PASS","status":"14_CURRENT_OR_AUTHORITATIVE_SURFACES_VERIFIED","artifact":"SOURCE_DISCOVERY_RECEIPTS.v0.1.json","claim_effect":"PUBLICATION_IDENTITY_AND_SCOPE_ONLY"},
+    {"seq":7,"event":"SACRED_TEXT_PARALLEL_GATE_PRESERVED","status":"UNCHANGED_EXTERNAL_LANE","note":"No propaganda-defense artifact counts as coder A or coder B. Flood DISAGREEMENT_MANIFEST remains blocked until two genuinely independent hash-bound coding paths freeze their outputs.","claim_effect":"NO_GATE_CHANGE"}
+  ],
+  "current_snapshot": {
+    "phase": "CORPUS_EXPANSION_AND_SOURCE_SEALING",
+    "coverage_claim": "NOT_EXHAUSTIVE",
+    "seed_sources": 36,
+    "web_verified_receipts": 14,
+    "operational_firewall": "ACTIVE",
+    "score_permission": false,
+    "next_legal_action": "EXPAND_HISTORICAL_AND_CROSS_NATIONAL_CORPUS_THEN_HASH_STABLE_OPEN_SOURCES"
+  }
+}
