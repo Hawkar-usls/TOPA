@@ -1,0 +1,42 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_google_shape_probe_negative.v0.4",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_GOOGLE_SEARCHWITHINVOLUME_SHAPE_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32757341692,
+    "github_actions_job_id": 97527814441,
+    "artifact_id": 9531335300,
+    "artifact_sha256": "db2a7241355b1ec710286338d7bb3013f977d989e10c04d770aedf8e235390c2"
+  },
+  "finding": {
+    "google_books_volume_id": "2l5uKJXiO70C",
+    "queries": ["The Texts of the Battle of Kadesh", "John A. Wilson", "THE POEM", "THE RECORD"],
+    "response_schema": ["number_of_results", "search_query_escaped", "searchable"],
+    "unique_page_refs": 0,
+    "has_page_ids": false,
+    "has_page_numbers": false,
+    "has_page_urls": false,
+    "conclusion": "The current public SearchWithinVolume2 response exposes counts but no page-reference objects. The hypothesized page-ref JSON path is rejected."
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Use the already confirmed full-view HathiTrust v.43 scan candidates and probe only a preregistered bounded scan-sequence window derived from printed pp.266-278, validating page-number/title/Poem/Record boundary signals without changing the frozen locus.",
+  "laws": [
+    "FAILED_SCHEMA_HYPOTHESIS_IS_PRESERVED",
+    "SEARCH_COUNT != PAGE_REFERENCE",
+    "PAGE_REFERENCE != SOURCE_CONTENT",
+    "TRANSPORT_REPAIR != LOCUS_CHANGE",
+    "NEGATIVE_RESULT != PERMISSION_TO_SUBSTITUTE_SOURCE"
+  ]
+}
