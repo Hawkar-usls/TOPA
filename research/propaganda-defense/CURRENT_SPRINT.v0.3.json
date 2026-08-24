@@ -1,0 +1,40 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.3",
+  "date": "2026-08-24",
+  "status": "ACTIVE_BR05_SOURCE_GATE_AND_BASE_RATE_PACKET_FREEZE",
+  "supersedes": "CURRENT_SPRINT.v0.2.json",
+  "entry_gates": {
+    "guardrail_ci": "PASS",
+    "manipulation_atlas": "138 TECHNIQUES / 10 FAMILIES",
+    "cross_epoch_schema": "35 DIMENSIONS FROZEN",
+    "ancient_control_slots": "8/8 PREREGISTERED",
+    "ancient_source_locus_roots": "7/8 FROZEN; BR05 OPEN",
+    "base_rate_packet_template": "35 FEATURES / 0 VALUES / FROZEN_NOT_ISSUED",
+    "nonwestern_multilingual_roots": "12 DISCOVERED",
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "objective": "Close the final Hittite treaty source-authority gap, hash/commit all admitted base-rate source-locus receipts, and prove the zero-value X01-X35 packet remains uncontaminated before any ancient control coding begins.",
+  "ordered_next": [
+    "resolve BR05 Treaty of Mursili II and Duppi-Tessub using a stable modern provenance-clear edition/transliteration and freeze oath/witness/sanction locus",
+    "create immutable source-or-metadata commitments for BR01-BR08 with exact locus descriptors",
+    "hash BASE_RATE_CODING_PACKET_TEMPLATE.v0.1 and verify all 35 semantic values are still null",
+    "run fail-closed base-rate prescore validator",
+    "only after 8/8 source gate PASS set base_rate_coding_permission=true",
+    "code non-sacred controls before any sacred text above S0_FORM_ONLY",
+    "preserve genre false-positive explanations and UNKNOWN distinct from ABSENT",
+    "keep Flood A/B isolated from all resulting X01-X35 outputs until their own receipts freeze"
+  ],
+  "hard_locks": [
+    "NO_FORCE_8_OF_8_BY_DOWNGRADING_SOURCE_QUALITY",
+    "NO_FEATURE_VALUES_BEFORE_8_OF_8_SOURCE_GATE",
+    "NO_SACRED_TARGET_CODING_BEFORE_BASE_RATE_CONTROLS",
+    "NO_FLOOD_A_B_CONTAMINATION",
+    "NO_OPERATIONAL_PROPAGANDA_GUIDANCE",
+    "NO_SCORE"
+  ],
+  "current_first_unmet_requirement": "BR05_MODERN_HITTITE_TREATY_SOURCE_AND_LOCUS_AUTHORITY",
+  "promotion_ceiling": "SOURCE_AND_PACKET_READINESS_ONLY",
+  "score_permission": false
+}
