@@ -1,0 +1,33 @@
+name: propaganda-kadesh-jstor-pdf-probe-v0-7
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_jstor_pdf_probe_v0_7.py'
+      - '.github/workflows/propaganda-kadesh-jstor-pdf-probe-v0-7.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deterministic PDF parser
+        run: python -m pip install 'pypdf==6.0.0'
+      - name: Probe exact JSTOR stable PDF object 528771
+        run: python tools/propaganda_kadesh_jstor_pdf_probe_v0_7.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-jstor-pdf-probe-v0-7
+          path: research/propaganda-defense/execution/KADESH_JSTOR_PDF_PROBE.v0.7.json
+          if-no-files-found: error
+          retention-days: 30
