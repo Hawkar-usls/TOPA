@@ -1,0 +1,73 @@
+{
+  "schema": "topa.sacred_scriptures.residual_hunt_queue.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_QUEUE_V0_1",
+  "principle": "Calibrate TOPA on cases where transmission/convergence should be distinguishable before interpreting any surprising survivor.",
+  "queue": [
+    {
+      "rank": 1,
+      "id": "Q01_FLOOD_STEMMA",
+      "role": "CALIBRATION_DIFFUSION_VS_CONVERGENCE",
+      "artifact": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+      "why_first": "Ancient Near Eastern transmission hypotheses and generic flood convergence provide both a strong dependence null and a strong convergence null.",
+      "killer_falsifier": "If clustering depends on generic flood features, translation vocabulary, duplicated textual roots or one feature family, the method fails calibration.",
+      "promotion_ceiling": "UNRESOLVED_INDEPENDENT_RESIDUAL"
+    },
+    {
+      "rank": 2,
+      "id": "Q02_ETHICAL_RECIPROCITY",
+      "role": "EXPECTED_CONVERGENCE_POSITIVE_CONTROL",
+      "why_second": "Reciprocity-like ethics are expected to recur under ordinary social coordination and should therefore produce low-specificity cross-tradition similarity.",
+      "killer_falsifier": "If TOPA promotes generic reciprocity wording as mysterious residual, specificity is inadequate and later motif claims are blocked.",
+      "promotion_ceiling": "CONVERGENCE_EXPECTED unless rare ordered structure survives controls"
+    },
+    {
+      "rank": 3,
+      "id": "Q03_DEATH_RETURN_REBIRTH_RESURRECTION",
+      "role": "ONTOLOGY_ALIGNMENT_STRESS_TEST",
+      "why_third": "Translation can falsely merge resurrection, rebirth, revivification, afterlife, apotheosis, seasonal return and mythic descent/ascent into one category.",
+      "killer_falsifier": "If the apparent pattern vanishes after original-language ontology separation, record CATEGORY_COLLAPSE and stop.",
+      "promotion_ceiling": "UNRESOLVED_INDEPENDENT_RESIDUAL"
+    },
+    {
+      "rank": 4,
+      "id": "Q04_CREATION_FROM_UNFORMED_STATE",
+      "role": "RARE_ORDERED_COSMOGONY_TEST",
+      "why_fourth": "Creation from darkness, waters, void, separation or ordering is broad; only rare ordered bundles have useful specificity.",
+      "killer_falsifier": "Matched non-sacred cosmogonic and philosophical controls reproduce the same bundle at similar frequency.",
+      "promotion_ceiling": "UNRESOLVED_INDEPENDENT_RESIDUAL"
+    },
+    {
+      "rank": 5,
+      "id": "Q05_LAW_COVENANT_DHARMA_DISCIPLINE",
+      "role": "SOCIAL_INSTITUTION_CONVERGENCE_TEST",
+      "why_fifth": "Norm systems recur naturally, but their authority structure, reciprocity, sanction model and transmission form may preserve historically informative differences.",
+      "killer_falsifier": "Similarity is explainable by broad institutional functions rather than rare textual/structural features.",
+      "promotion_ceiling": "CONVERGENCE_EXPECTED or UNDERDETERMINED_CONTACT_VS_CONVERGENCE"
+    },
+    {
+      "rank": 6,
+      "id": "Q06_FINAL_JUDGMENT_COSMIC_RENEWAL",
+      "role": "CHRONOLOGY_AND_CONTACT_STRESS_TEST",
+      "why_sixth": "Judgment, renovation, apocalypse and cyclic renewal are often historically connected or conceptually non-equivalent; chronology and ontology must precede motif scoring.",
+      "killer_falsifier": "The cluster dissolves after separating linear judgment, cyclical cosmology and historically connected apocalyptic traditions.",
+      "promotion_ceiling": "UNRESOLVED_INDEPENDENT_RESIDUAL"
+    },
+    {
+      "rank": 7,
+      "id": "Q07_SACRED_AXIS_MOUNTAIN_TREE_WATER",
+      "role": "ECOLOGICAL_SYMBOLIC_CONVERGENCE_TEST",
+      "why_seventh": "Mountains, trees and water have obvious ecological and perceptual salience, making them a strong test of over-harmonization.",
+      "killer_falsifier": "The result requires collapsing mountain, tree, river, pillar and center into one analyst-created meta-symbol.",
+      "promotion_ceiling": "CONVERGENCE_EXPECTED unless rare textual structure survives"
+    }
+  ],
+  "global_stop_rules": [
+    "If Q01 fails calibration, freeze later residual promotion until the scoring method is repaired.",
+    "If Q02 is incorrectly promoted as mysterious on generic features, reduce motif specificity weights before continuing.",
+    "No queue item may inherit a conclusion from a previous item; only validated method components may transfer.",
+    "Every negative result remains in the corpus as a calibration certificate."
+  ],
+  "success_definition": "The queue succeeds if TOPA reliably demotes ordinary convergence and known transmission while preserving only reproducible, provenance-bound residual questions.",
+  "failure_definition": "The queue fails if it preferentially manufactures mystery from broad motifs, translation artifacts, duplicated roots or analyst-selected ontology."
+}
