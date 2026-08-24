@@ -1,0 +1,50 @@
+{
+  "schema": "topa.sacred_scriptures.matched_control_deck.v0.1",
+  "date": "2026-08-24",
+  "status": "PREREGISTERED_SLOTS_AWAITING_SOURCE_FREEZE",
+  "parent_test": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+  "minimum_control_ratio": "2 controls per focal text = 10 controls minimum for 5 focal texts",
+  "allocation_frozen_before_control_selection": true,
+  "allocation": [
+    {"slot":"C01","class":"HISTORICALLY_CONNECTED_FLOOD_FAMILY_POSITIVE_CONTROL","admission":"OPEN"},
+    {"slot":"C02","class":"HISTORICALLY_CONNECTED_FLOOD_FAMILY_POSITIVE_CONTROL","admission":"OPEN"},
+    {"slot":"C03","class":"DISTANT_PROVENANCE_CLEARED_FLOOD_NARRATIVE","admission":"OPEN"},
+    {"slot":"C04","class":"DISTANT_PROVENANCE_CLEARED_FLOOD_NARRATIVE","admission":"OPEN"},
+    {"slot":"C05","class":"NON_FLOOD_CATASTROPHE_GENRE_MATCH","admission":"OPEN"},
+    {"slot":"C06","class":"NON_FLOOD_CATASTROPHE_GENRE_MATCH","admission":"OPEN"},
+    {"slot":"C07","class":"NON_SACRED_DOCUMENTED_FLOOD_NARRATIVE","admission":"OPEN"},
+    {"slot":"C08","class":"NON_SACRED_DOCUMENTED_FLOOD_NARRATIVE","admission":"OPEN"},
+    {"slot":"C09","class":"FEATURE_SHUFFLED_SYNTHETIC_NULL","admission":"OPEN"},
+    {"slot":"C10","class":"FEATURE_SHUFFLED_SYNTHETIC_NULL","admission":"OPEN"}
+  ],
+  "real_control_admission_required_fields": [
+    "independent_control_id",
+    "control_class",
+    "source_root",
+    "exact_text_locus",
+    "edition_or_document_identifier",
+    "language",
+    "provenance",
+    "rights_or_permission_state",
+    "source_sha256",
+    "slice_sha256",
+    "root_independence_note",
+    "known_or_plausible_contact_note",
+    "genre_match_note",
+    "falsifier"
+  ],
+  "synthetic_control_admission_required_fields": [
+    "generator_version",
+    "generator_sha256",
+    "seed_commitment",
+    "input_schema_sha256",
+    "shuffle_constraints",
+    "leakage_check"
+  ],
+  "rights_rule": "No community-controlled or oral sacred narrative is admissible without explicit permission/provenance clearance; absence is preferred to unauthorized extraction.",
+  "anti_cherry_pick_rule": "A slot cannot be replaced after any scoring output is observed. Rejected candidates and rejection reasons remain append-only receipts.",
+  "leakage_rule": "Control class and source identity are removed from scorer-facing packets after coding; only opaque packet IDs and frozen feature values remain.",
+  "current_count": {"admitted":0,"required":10},
+  "blind_packet_ready": false,
+  "score_permission": false
+}
