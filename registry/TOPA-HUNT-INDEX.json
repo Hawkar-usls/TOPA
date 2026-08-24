@@ -1,0 +1,21 @@
+{
+  "schema": "janus.topa.hunt-index.v1",
+  "repository": "Hawkar-usls/TOPA",
+  "updated_at_local": "2026-08-24T09:36:00+03:00",
+  "native_hunt_count": 1,
+  "hunts": [
+    {
+      "hunt_id": "HUNT-0001",
+      "slug": "HESSDALEN",
+      "title": "Hessdalen Lights: event-family reality before explanation",
+      "path": "hunts/HUNT-0001-HESSDALEN/",
+      "status": "ACTIVE_AFTER_PASS_001",
+      "current_state": "UNRESOLVED_EVENT_FAMILY__REPLICATION_WORTHY",
+      "promotion_allowed": false,
+      "latest_pass": "PASS-001-ARCHIVAL-ADVERSARIAL",
+      "next_gate": "K1_MODERN_RAW_DAY_REPLAY"
+    }
+  ],
+  "law": "A native TOPA hunt must preserve preregistration, source ledger, passes, current status and supersession history inside TOPA itself.",
+  "world_truth": false
+}
