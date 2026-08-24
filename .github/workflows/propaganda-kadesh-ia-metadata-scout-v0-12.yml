@@ -1,0 +1,31 @@
+name: propaganda-kadesh-ia-metadata-scout-v0-12
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_ia_metadata_scout_v0_12.py'
+      - '.github/workflows/propaganda-kadesh-ia-metadata-scout-v0-12.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  scout:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Search IA metadata for AJSL volume 43
+        run: python tools/propaganda_kadesh_ia_metadata_scout_v0_12.py
+      - name: Upload metadata scout receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-ia-metadata-scout-v0-12
+          path: research/propaganda-defense/execution/KADESH_IA_METADATA_SCOUT.v0.12.json
+          if-no-files-found: error
+          retention-days: 30
