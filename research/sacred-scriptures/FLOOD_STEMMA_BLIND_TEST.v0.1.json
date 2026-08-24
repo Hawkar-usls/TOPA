@@ -1,0 +1,137 @@
+{
+  "schema": "topa.sacred_scriptures.flood_stemma_blind_test.v0.1",
+  "date": "2026-08-24",
+  "status": "PREREGISTERED_NOT_YET_SCORED",
+  "parent_protocol": "INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json",
+  "question": "Can a preregistered blinded feature model distinguish historically connected flood traditions from matched independent or generic flood narratives without using tradition labels or modern translation vocabulary?",
+  "primary_hypotheses": {
+    "H_diffusion": "Some flood texts cluster because of textual ancestry or historical transmission.",
+    "H_convergence": "Some similarities arise independently from common flood experience and narrative convergence.",
+    "H_overfit": "Apparent clustering is produced mainly by analyst-selected motifs, translation vocabulary or label leakage."
+  },
+  "seed_texts": [
+    {
+      "id": "F01_ATRAHASIS",
+      "label_state": "HIDDEN_DURING_SCORING",
+      "source_gate": "Acquire a philologically reliable edition/translation and preserve tablet/manuscript metadata. British Museum object 1889,0426.236 is an Old Babylonian Atrahasis flood witness dated to 1635 BC.",
+      "root_policy": "Treat copies/fragments as manuscript witnesses within an Atrahasis textual family, not independent cultural attestations."
+    },
+    {
+      "id": "F02_GILGAMESH_XI",
+      "label_state": "HIDDEN_DURING_SCORING",
+      "source_gate": "Use Tablet XI with manuscript identifiers. British Museum K.3375 is a Neo-Assyrian 7th-century BC witness from the Library of Ashurbanipal.",
+      "root_policy": "Keep Gilgamesh flood witnesses separate at manuscript level but collapse to textual-family level for independence counts."
+    },
+    {
+      "id": "F03_GENESIS_6_9",
+      "label_state": "HIDDEN_DURING_SCORING",
+      "source_gate": "Encode Hebrew text with edition/version metadata and keep translation outputs secondary.",
+      "root_policy": "Christian translations and later retellings do not create additional independent roots."
+    },
+    {
+      "id": "F04_QURAN_NOAH",
+      "label_state": "HIDDEN_DURING_SCORING",
+      "source_gate": "Encode the relevant Arabic passages directly and record all passage boundaries before feature scoring.",
+      "root_policy": "Test historical contact with Jewish, Christian and wider Late Antique traditions as an active null."
+    },
+    {
+      "id": "F05_MANU_FLOOD",
+      "label_state": "HIDDEN_DURING_SCORING",
+      "source_gate": "Select and freeze the exact Sanskrit textual locus and edition before coding.",
+      "root_policy": "Do not pool later Manu retellings as independent witnesses."
+    }
+  ],
+  "control_design": {
+    "minimum_groups": [
+      "historically connected flood-family candidates",
+      "geographically/culturally distant flood narratives with provenance",
+      "non-flood catastrophe narratives matched for genre",
+      "non-sacred flood narratives where available",
+      "feature-shuffled synthetic controls"
+    ],
+    "oral_tradition_rule": "No community-controlled or oral sacred narrative enters the test without permission/provenance clearance. Absence is preferable to unauthorized extraction.",
+    "minimum_control_ratio": "At least 2 controls per focal text before promotion of any classifier result."
+  },
+  "frozen_feature_schema": [
+    "catastrophe_type",
+    "stated_cause_or_trigger",
+    "warning_present",
+    "warning_source_class",
+    "selected_survivor_present",
+    "survivor_selection_basis",
+    "vessel_or_refuge_present",
+    "construction_instruction_present",
+    "construction_material_detail_present",
+    "geometry_or_dimension_detail_present",
+    "sealing_or_waterproofing_detail_present",
+    "family_or_household_saved",
+    "animals_saved",
+    "plant_seed_or_other_biological_preservation",
+    "craftspeople_or_other_human_categories_saved",
+    "wealth_or_material_goods_saved",
+    "catastrophe_duration_encoded",
+    "water_recession_stages_encoded",
+    "bird_release_or_animal_probe_present",
+    "number_and_order_of_probe_animals",
+    "landing_or_resting_place_present",
+    "mountain_or_high_place_present",
+    "post_survival_offering_or_sacrifice",
+    "divine_response_after_offering",
+    "covenant_blessing_immortality_or_new_order",
+    "explicit_repopulation_or_world_reset",
+    "rare_lexical_or_formulaic_correspondence",
+    "rare_ordered_event_bundle"
+  ],
+  "feature_coding_rules": [
+    "No feature value may be inferred from memory when the text locus is unavailable.",
+    "Unknown and damaged-text states remain UNKNOWN, not 0.",
+    "Broad concepts must not be harmonized across traditions without an ontology note.",
+    "A modern translation word match scores zero lexical evidence unless supported by original-language analysis.",
+    "Ordered bundles are scored only from explicit sequence in the frozen text locus.",
+    "Analysts coding features must not see the family label used by the scoring stage where practical."
+  ],
+  "analysis_plan": [
+    "Freeze exact text loci, editions and feature schema.",
+    "Create anonymized IDs and remove tradition labels from coding/scoring packets.",
+    "Encode values independently where possible and preserve disagreements.",
+    "Compute similarity using generic features and rare-feature-weighted features separately.",
+    "Run shuffled-label and shuffled-feature nulls.",
+    "Reveal chronology and geography only after initial clustering is frozen.",
+    "Construct contact graph and collapse known textual roots.",
+    "Re-score residual similarity after dependence/contact subtraction.",
+    "Run leave-one-text-out and leave-one-feature-family-out sensitivity checks.",
+    "Have Fast-CAT-style blinded review attack the strongest surviving bundle.",
+    "Issue PASS, HOLD, FAIL or NEGATIVE_CERTIFICATE; never force a survivor."
+  ],
+  "primary_success_condition": "Before label reveal, the preregistered model distinguishes at least one historically supported transmission family from matched controls in a way that survives translation substitution, source-root collapse, shuffled nulls and leave-one-feature-family-out checks.",
+  "primary_failure_condition": "Clustering disappears when labels, modern translation vocabulary, generic flood features, one analyst-selected feature family or duplicated textual roots are removed.",
+  "residual_success_condition": "A rare ordered bundle remains between source roots with no currently supported dependence/contact explanation and also exceeds matched convergence controls.",
+  "residual_interpretation": "UNRESOLVED_INDEPENDENT_RESIDUAL only. It is a target for another spiral, not evidence of revelation or supernatural causation.",
+  "external_anchor_receipts": [
+    {
+      "source": "British Museum",
+      "object": "1889,0426.236",
+      "use": "Old Babylonian Atrahasis flood witness; museum dates it to 1635 BC"
+    },
+    {
+      "source": "British Museum",
+      "object": "K.3375",
+      "use": "Gilgamesh Tablet XI flood witness; museum dates it to the 7th century BC"
+    },
+    {
+      "source": "Sefaria",
+      "object": "Genesis 6-9",
+      "use": "Hebrew text/version surface; exact edition and license metadata remain mandatory"
+    }
+  ],
+  "open_gates": [
+    "FREEZE_EXACT_ATRAHASIS_EDITION",
+    "FREEZE_EXACT_GILGAMESH_XI_EDITION",
+    "FREEZE_HEBREW_GENESIS_EDITION",
+    "FREEZE_ARABIC_QURAN_PASSAGES",
+    "FREEZE_SANSKRIT_MANU_LOCUS",
+    "BUILD_PERMISSION_CLEARED_DISTANT_CONTROLS",
+    "DOUBLE_CODING_OR_INTER_RATER_CHECK",
+    "RUN_BLINDED_SCORING"
+  ]
+}
