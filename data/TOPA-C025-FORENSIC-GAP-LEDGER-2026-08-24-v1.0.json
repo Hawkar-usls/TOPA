@@ -1,0 +1,299 @@
+{
+  "schema": "hawkar.topa.forensic-gap-ledger.v1",
+  "id": "TOPA-C025-FORENSIC-GAP-LEDGER-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T20:23:00+03:00",
+  "canonical_home": "Hawkar-usls/TOPA",
+  "provider_repository": "Hawkar-usls/Janus-Fundamentum",
+  "scope": "C024 residual-cache bridge through C025-E2R-L1G-F3-D",
+  "journal": "research/mathematics/p-vs-np/C024_C025_FORENSIC_RESEARCH_JOURNAL_2026-08-24.md",
+  "global_status": {
+    "p_vs_np": "OPEN",
+    "c024_conditional_bridge": "PROVED",
+    "c024_issue_211": "REFUTED_FOR_CURRENT_POLICY0A",
+    "c025_b2_soundness": "PROVED_IN_SCOPE",
+    "global_er_p_boundedness": "OPEN_MAJOR_EXTERNAL_FRONTIER",
+    "global_er3_extension_count_issue_217": "OPEN",
+    "current_mathematical_front": "F3_D_SEMANTIC_RESTRICTION_SURVIVAL"
+  },
+  "priority_legend": {
+    "P0": "blocks or invalidates any total algorithmic polynomial-time claim",
+    "P1": "threatens theorem transfer, asymptotic accounting, or validation coverage",
+    "P2": "authority, provenance, lifecycle, or status-surface drift"
+  },
+  "gaps": [
+    {
+      "id": "G00",
+      "priority": "P0",
+      "class": "SPECIFICATION",
+      "status": "OPEN",
+      "title": "Complete deterministic Policy-0B machine is not frozen",
+      "why_it_matters": "Scheduler, reason language, cache query and proof-complexity layers exist, but there is not yet one complete deterministic transition system to which a total-runtime theorem can refer.",
+      "missing": [
+        "exact lookup/propagate/scan/retain/extend/branch ordering",
+        "candidate resolvent retention rule",
+        "deletion/subsumption rule",
+        "deterministic extension-definition proposal rule",
+        "deterministic new-reason generation rule and tie breaking"
+      ],
+      "exit_condition": "Freeze POLICY0B.1_COMPLETE_TRANSITION_SYSTEM with all transitions, tie rules and charged data structures.",
+      "blocks": ["C025_C2", "TOTAL_RUNTIME_THEOREM"]
+    },
+    {
+      "id": "G01",
+      "priority": "P0",
+      "class": "REPRESENTATION_COMPLEXITY",
+      "status": "OPEN",
+      "title": "Universal active representation bound in original input length is missing",
+      "why_it_matters": "Polynomial work per current state is useless for a P-time bridge if clauses, reasons, indexes, extension definitions or proof DAGs can be superpolynomial in N.",
+      "must_charge": [
+        "active clauses and candidate resolvents",
+        "reason cache",
+        "reason applicability index",
+        "extension definitions",
+        "shared proof DAGs",
+        "portable certificate materializations",
+        "canonicalization/hash/index structures"
+      ],
+      "exit_condition": "Prove one universal polynomial byte bound in original encoded input length N for every retained structure, or refute the frozen retention architecture by an explicit infinite family.",
+      "related": ["Fundamentum#212", "C025_E"]
+    },
+    {
+      "id": "G02",
+      "priority": "P0",
+      "class": "MATHEMATICAL_TRANSFER",
+      "status": "OPEN_ACTIVE",
+      "title": "F3-D semantic restriction survival",
+      "why_it_matters": "F3 lower-bounds original polarity width/depth, but the heavy-width argument applies after structured NW self-reductions. Syntactic support survival does not imply semantic macro survival.",
+      "objects": ["b_rho", "d_rho", "surviving semantic crossing skeleton"],
+      "failure_modes": ["constant collapse", "alias collapse", "becomes NW-local", "negative edge disappears"],
+      "exit_condition": "Prove a quantitative survival theorem for semantic residual functions under the exact Sokolov NW self-reduction, or exhibit a polynomial-size escape whose large original polarity structure collapses under those restrictions.",
+      "next": true
+    },
+    {
+      "id": "G03",
+      "priority": "P0",
+      "class": "PROOF_SEARCH",
+      "status": "OPEN_DEFERRED",
+      "title": "Deterministic extension/reason/proof discovery cost",
+      "why_it_matters": "Short proofs or polynomially verifiable reasons do not imply that Policy-0B can find them in polynomial time.",
+      "exit_condition": "Freeze a deterministic generation/search algorithm and prove total work poly(N), including failed proposals and explored states, or refute it by an infinite family.",
+      "related": ["Fundamentum#215", "C025_C2"]
+    },
+    {
+      "id": "G04",
+      "priority": "P1",
+      "class": "GLOBAL_PROOF_COMPLEXITY",
+      "status": "OPEN_MAJOR_EXTERNAL_FRONTIER",
+      "title": "Universal ER3 extension-count bound / ER p-boundedness",
+      "why_it_matters": "Restricted lower bounds do not settle unrestricted ER3. The global question is polynomially equivalent to the Extended Resolution / Extended Frege p-boundedness frontier.",
+      "exit_condition": "Resolve Fundamentum#217 positively or negatively with a valid universal theorem/counterfamily.",
+      "related": ["Fundamentum#217", "Fundamentum#216"]
+    },
+    {
+      "id": "G05",
+      "priority": "P1",
+      "class": "EXPLICITNESS",
+      "status": "OPEN",
+      "title": "NW hard family is existential/high-probability rather than deterministically explicit",
+      "why_it_matters": "Current restricted asymptotic lower bounds use suitable random NW graphs. An executable adversarial suite would be stronger with explicit verified instances.",
+      "exit_condition": "Provide a deterministic explicit graph family satisfying the required expansion properties, or produce independently checkable expansion certificates for generated hard instances."
+    },
+    {
+      "id": "G06",
+      "priority": "P1",
+      "class": "VALIDATION_COVERAGE",
+      "status": "NOT_VERIFIED_COMPLETE",
+      "title": "C025-F adversarial family regression suite is incomplete or not fully wired",
+      "why_it_matters": "Umbrella Issue #213 requires GT, padded GT, masked/lifted Tseitin, PHP, near-threshold random 3-SAT, and synthetic padding attacks. Current audit verified many structural probes but did not verify a dedicated Policy-0B replay for every required family.",
+      "required_families": [
+        "theorem-matched directed GT_n",
+        "padded resolution-sink GT_n",
+        "masked/lifted Tseitin",
+        "pigeonhole principle",
+        "near-threshold random 3-SAT finite controls",
+        "synthetic pivot/frequency/index padding"
+      ],
+      "exit_condition": "Add one explicit Policy-0B adversarial-family workflow with frozen expected outcomes and claim ceilings for every required family."
+    },
+    {
+      "id": "G07",
+      "priority": "P1",
+      "class": "SOURCE_AUDIT",
+      "status": "PARTIAL",
+      "title": "External theorem package needs one immutable transfer ledger",
+      "verified_sources": [
+        "Dmitry Sokolov, Pseudorandom Generators, Resolution and Heavy Width, CCC 2022, DOI 10.4230/LIPIcs.CCC.2022.15",
+        "Nicolas Prcovic, Narrowing Extended Resolution, ICTAI 2012, DOI 10.1109/ICTAI.2012.81"
+      ],
+      "exit_condition": "Freeze exact theorem numbers/pages/hypotheses/parameter names and the exact internal lemma consuming each external theorem."
+    },
+    {
+      "id": "G08",
+      "priority": "P1",
+      "class": "TRANSLATION_ASSURANCE",
+      "status": "OPEN_ASSURANCE",
+      "title": "B2-to-ER and ER-to-ER3 translations lack an executable finite translator",
+      "why_it_matters": "The mathematical p-simulation claims can be further protected against object-identity drift by executable finite certificate translation.",
+      "exit_condition": "Implement finite proof translators/verifiers for B2<->ER normal forms and the relevant ER3 transformation interface, while preserving that finite replay is not an asymptotic proof."
+    },
+    {
+      "id": "G09",
+      "priority": "P1",
+      "class": "FORMAL_ASSURANCE",
+      "status": "OPEN_ASSURANCE",
+      "title": "F2/F3 asymptotic proofs are prose mathematics plus finite replay, not machine checked",
+      "exit_condition": "Add an independent derivation and, if practical, formalize core combinatorial lemmas in a proof assistant or a small proof-checking DSL."
+    },
+    {
+      "id": "G10",
+      "priority": "P1",
+      "class": "THEOREM_TRANSFER",
+      "status": "PROVED_BUT_NEEDS_FROZEN_SOURCE_RECEIPT",
+      "title": "NW semantic axiom inclusion should have exact source-line binding",
+      "why_it_matters": "L1E depends on direct root clauses and same-neighborhood extension clauses being semantic axioms of the source functional encoding.",
+      "exit_condition": "Freeze exact source definitions/line ranges and an independent object-level derivation of root-axiom and extension-axiom inclusion."
+    },
+    {
+      "id": "G11",
+      "priority": "P1",
+      "class": "PARAMETER_ACCOUNTING",
+      "status": "OPEN",
+      "title": "L1E and L1F parameter regimes can be conflated",
+      "why_it_matters": "L1E uses Delta approximately log^(2-delta)n; L1F/F2/F3 use a polynomial-input regime with Delta=C log n. Mixing them can invalidate input-relative exponents.",
+      "exit_condition": "Create C025_E2R_PARAMETER_LEDGER.md mapping n,m,Delta,r,epsilon,N,K,S,L,eta,alpha for every theorem."
+    },
+    {
+      "id": "G12",
+      "priority": "P1",
+      "class": "ASYMPTOTIC_PARAMETER_MAP",
+      "status": "OPEN",
+      "title": "Explicit eta derivation is not frozen",
+      "why_it_matters": "F2/F3 use L(N)>=exp(N^eta) after absorbing source losses. The exact eta dependence should be auditable rather than prose shorthand.",
+      "exit_condition": "Freeze an explicit inequality deriving one valid fixed eta>0 from the selected source regime and input encoding."
+    },
+    {
+      "id": "G13",
+      "priority": "P1",
+      "class": "PROOF_ACCOUNTING",
+      "status": "OPEN_ASSURANCE",
+      "title": "F3 width-depth recurrence needs an independent overlap/DAG-sharing audit",
+      "why_it_matters": "Finite fixtures passed, but overlapping dependency cones, semantic aliases and shared DAG nodes are exactly where loose multiplicative accounting can overclaim.",
+      "exit_condition": "Produce a second derivation explicitly covering overlap, aliasing and DAG sharing for S_local <= S^(7*(b+2)^(d+1))."
+    },
+    {
+      "id": "G14",
+      "priority": "P2",
+      "class": "STATUS_DRIFT",
+      "status": "DRIFT",
+      "title": "PROJECT_STATUS.json is stale",
+      "why_it_matters": "It stops around L1C and does not expose L1E, L1F, L1G, F2, F3 or the F3-D endpoint.",
+      "exit_condition": "Synchronize PROJECT_STATUS.json from this forensic ledger without deleting non-mathematical TOPA state."
+    },
+    {
+      "id": "G15",
+      "priority": "P2",
+      "class": "STATUS_DRIFT",
+      "status": "DRIFT",
+      "title": "Mathematics README navigation is stale",
+      "exit_condition": "Add the forensic journal, gap ledger, #217->#221 chain and current F3-D front to research/mathematics/README.md."
+    },
+    {
+      "id": "G16",
+      "priority": "P2",
+      "class": "STATUS_DRIFT",
+      "status": "DRIFT",
+      "title": "Fundamentum PR #214 summary is stale",
+      "why_it_matters": "The branch contains later L1E/F/G/F2/F3 work but the PR body stops near the initial ER3 extension-count reduction.",
+      "exit_condition": "Update PR #214 body with the restricted-result chain, provider receipts, current F3-D front and unchanged global claim ceiling."
+    },
+    {
+      "id": "G17",
+      "priority": "P2",
+      "class": "STATUS_DRIFT",
+      "status": "DRIFT",
+      "title": "Issue #221 body predates F3 provider PASS",
+      "exit_condition": "Update or comment on #221 with run 32754807213/job 97519752439 and promote F3-C only in the stated restricted scope."
+    },
+    {
+      "id": "G18",
+      "priority": "P2",
+      "class": "LIFECYCLE",
+      "status": "AMBIGUOUS",
+      "title": "Historical C024 PR #210 remains open/draft after #211 refutation",
+      "why_it_matters": "An open historical draft can look like a competing active authority although successor work moved to C025.",
+      "exit_condition": "Close/archive PR #210 as a completed negative-result line, or mark it prominently historical/frozen with a pointer to PR #214."
+    },
+    {
+      "id": "G19",
+      "priority": "P2",
+      "class": "SCOPE_DRIFT",
+      "status": "DRIFT",
+      "title": "Issue #212 residual-size scope has drifted into a broader C025 representation shorthand",
+      "why_it_matters": "Resolving Policy-0A residual size would not automatically bound C025 reasons, indexes, extensions and proof DAGs.",
+      "exit_condition": "Either broaden/rename #212 with explicit new representation classes or create a new C025-E issue and keep #212 historical."
+    }
+  ],
+  "repair_queue": [
+    {
+      "order": 1,
+      "id": "R1",
+      "action": "Synchronize authority surfaces",
+      "targets": ["PROJECT_STATUS.json", "research/mathematics/README.md", "Fundamentum PR #214", "Fundamentum Issue #221"]
+    },
+    {
+      "order": 2,
+      "id": "R2",
+      "action": "Freeze source and parameter ledger",
+      "targets": ["Sokolov theorem mapping", "Prcovic ER3 theorem mapping", "eta/alpha derivations", "input-size regimes"]
+    },
+    {
+      "order": 3,
+      "id": "R3",
+      "action": "Attack F3-D semantic restriction survival",
+      "targets": ["semantic simplification", "surviving crossing skeleton", "b_rho", "d_rho", "exact NW self-reduction"]
+    },
+    {
+      "order": 4,
+      "id": "R4",
+      "action": "Restore complete C025-F adversarial regression",
+      "targets": ["GT", "padded GT", "Policy-0B Tseitin", "PHP", "random 3-SAT", "synthetic padding"]
+    },
+    {
+      "order": 5,
+      "id": "R5",
+      "action": "Freeze complete Policy0B.1 deterministic machine",
+      "targets": ["retention", "deletion", "extension proposal", "search order", "tie breaking"]
+    },
+    {
+      "order": 6,
+      "id": "R6",
+      "action": "Repair active-representation issue scope and byte model",
+      "targets": ["clauses", "reasons", "extensions", "indexes", "proof DAGs", "portable bytes"]
+    },
+    {
+      "order": 7,
+      "id": "R7",
+      "action": "Resume C025-C2 deterministic proof discovery only after upstream objects are frozen"
+    }
+  ],
+  "preserved_failure_lessons": [
+    "Policy-0A #211: early irrelevant pivot can starve a global inference budget",
+    "C025-A first CI failure: fair scheduling requires accounting every eligible pivot, not the intended adversarial one only",
+    "C025-B first portable design: producer-local node IDs are not standalone certificates",
+    "C025-B2 first green run: unreachable proof-node rejection is insufficient if unused definitions can carry uncharged payload",
+    "L1G first CI failure: Cartesian product is an upper bound after canonicalization, not necessarily an exact distinct-clause count",
+    "F1 first provider attempt: an analytical huge bound should be compared symbolically/logarithmically, not materialized"
+  ],
+  "hard_laws": [
+    "FAILED_RUNS_STAY_IN_LINEAGE",
+    "PROVIDER_PASS_IS_NOT_UNIVERSAL_THEOREM",
+    "THEOREM_TRANSFER_REQUIRES_OBJECT_IDENTITY_OR_PROVED_REDUCTION",
+    "POLY_WORK_IN_CURRENT_STATE_IS_NOT_POLY_WORK_IN_INPUT_N",
+    "CHEAP_VERIFICATION_IS_NOT_CHEAP_DISCOVERY",
+    "FAST_INDEX_IS_NOT_SMALL_CACHE",
+    "SHORT_PROOF_EXISTS_IS_NOT_DETERMINISTIC_POLYTIME_PROOF_SEARCH",
+    "RESTRICTED_ER3_LOWER_BOUND_IS_NOT_FULL_ER3_LOWER_BOUND",
+    "SYNTACTIC_SUPPORT_SURVIVAL_IS_NOT_SEMANTIC_MACRO_SURVIVAL",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
