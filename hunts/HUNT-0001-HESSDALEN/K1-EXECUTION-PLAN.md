@@ -1,6 +1,6 @@
 # HUNT-0001 — K1 Modern Raw-Day Replay
 
-**State:** preregistered; acquisition not yet executed.
+**State:** preregistered; video acquisition/viewing bridge implemented; complete raw-day dataset not yet frozen.
 
 The first executable modern test is a blind full-day replay. The day is selected before inspecting anomaly labels or curated event commentary.
 
@@ -33,9 +33,40 @@ COMPLETE RAW DAY
 
 A stack-only feature can never become a TOPA residual. The corresponding raw video must exist and preserve the feature.
 
+## Retina video bridge
+
+TOPA now has a native evidence-preserving media bridge at:
+
+```text
+tools/topa_retina_video.py
+```
+
+It accepts local media, ordinary HTTP(S) media and public Google Drive file/folder URLs. Public Drive support uses optional `gdown`; every acquired file is frozen by filename, byte count and SHA-256 before analysis.
+
+The bridge produces `ffprobe` metadata, deterministic timestamped frame samples, frame hashes, contact sheets and optional source-bound Retina analysis. It does not delete source data or derived frames.
+
+Example public Drive acquisition:
+
+```bash
+python -m pip install gdown
+python tools/topa_retina_video.py 'https://drive.google.com/drive/folders/FOLDER_ID' --out runs/hessdalen-drive
+```
+
+This fixes the **tooling/viewing** problem, not the **dataset-membership** problem:
+
+```text
+ABLE_TO_ENUMERATE_OR_DOWNLOAD_PUBLIC_DRIVE
+!=
+ONE_COMPLETE_RAW_DAY_PROVEN
+```
+
+The selected K1 day must still be frozen from a reproducible segment manifest or an independently verified complete-day listing.
+
 ## Holdout discipline
 
 Any thresholds or classifiers tuned on part of the day must be frozen before a separate holdout interval is scored. `No counterexample found` is not a positive extraordinary result.
+
+The Retina bridge's interval sampling/contact sheets are for visual access and QC only. A sub-second event can fall between samples, so K1's scientific event search must still operate on the full-rate source stream or an equivalently loss-bounded track detector.
 
 ## K2 correction
 
@@ -54,8 +85,19 @@ surveyed separated positions
 
 Without that gate, TOPA may report angular motion only.
 
-## Current blocker
+## Current acquisition state
 
-The public Project Hessdalen page confirms that a full raw day is available, but the current retrieval path does not expose the Google Drive directory listing needed to enumerate and download it reproducibly. The correct state is therefore `ACQUISITION_OPEN`, not `REPLAY_COMPLETE`.
+The earlier blocker — inability of the browser retrieval channel to expose a reproducible Google Drive folder listing — is no longer treated as a general inability to inspect video. TOPA can now acquire public Drive media through the Retina bridge and freeze hashes locally.
 
-That failure is useful: the experiment is frozen before data inspection.
+The remaining blocker is narrower and scientific: TOPA does not yet know which exact public files constitute one complete raw day, their segment continuity, authoritative timestamp basis, camera geometry/calibration, or whether the third remote/test camera provides a surveyed usable stereo baseline.
+
+A source-bound request for those fields was sent to Project Hessdalen on 2026-08-24 and is recorded in `CONTACT-001-HESSDALEN-RAW-DATA-REQUEST.json`.
+
+Until that dataset boundary is resolved, state remains:
+
+```text
+VIDEO_INGEST = IMPLEMENTED
+RAW_DAY_MEMBERSHIP = OPEN
+K1_REPLAY = NOT_YET_EXECUTED
+K2_TRIANGULATION = BLOCKED_PENDING_BASELINE_AND_CALIBRATION
+```
