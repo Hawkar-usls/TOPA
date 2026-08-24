@@ -1,0 +1,60 @@
+{
+  "schema": "topa.sacred_scriptures.philology_baseline.v0.1",
+  "date": "2026-08-24",
+  "status": "SOURCE_BASELINE_PARTIAL_FREEZE",
+  "purpose": "Record the preferred machine-readable and critical-edition baselines for the first Flood calibration before feature extraction.",
+  "baselines": [
+    {
+      "tradition": "Akkadian flood sources",
+      "preferred_critical_baseline": "Nathan Wasserman, The Flood: The Akkadian Sources: A New Edition, Commentary, and a Literary Discussion, OBO 290, 2020",
+      "reason": "Peer-reviewed synoptic edition collecting the Akkadian flood sources from Old Babylonian through Neo-Assyrian/Neo-Babylonian, including Gilgamesh XI, with philological commentary and glossary.",
+      "source": "https://www.peeters-leuven.be/detail.php?search_key=9789042941731&series_number_str=290",
+      "access_note": "Publisher identifies the book as open access.",
+      "topa_use": "Use source-by-source witnesses; do not flatten the Akkadian flood corpus into one composite witness."
+    },
+    {
+      "tradition": "Gilgamesh",
+      "preferred_critical_baseline": "Andrew R. George, The Babylonian Gilgamesh Epic: Introduction, Critical Edition and Cuneiform Texts, 2003",
+      "reason": "Critical edition collecting known cuneiform sources; SOAS repository identifies it as peer-reviewed and publicly available.",
+      "source": "https://soas-repository.worktribe.com/output/446254/the-babylonian-gilgamesh-epic-introduction-critical-edition-and-cuneiform-texts",
+      "topa_use": "Cross-check Wasserman's Flood-specific synoptic treatment against George's Gilgamesh edition for Tablet XI."
+    },
+    {
+      "tradition": "Biblical Hebrew / Genesis",
+      "preferred_machine_baseline": "ETCBC BHSA (Biblia Hebraica Stuttgartensia Amstelodamensis) frozen Text-Fabric version",
+      "reason": "Machine-readable Hebrew Bible with linguistic annotations and versioned fixed datasets; suited to reproducible extraction and syntax-aware controls.",
+      "source": "https://github.com/ETCBC/bhsa",
+      "license": "CC BY-NC 4.0 for the data; attribution required; commercial use restricted.",
+      "topa_use": "Freeze one explicit BHSA version before extraction; preserve the received-text reading and run separate source-partition sensitivity rather than modifying the base text."
+    },
+    {
+      "tradition": "Qur'anic Arabic",
+      "preferred_machine_baseline": "Tanzil Uthmani Quran Text, Version 1.1",
+      "reason": "Versioned UTF-8 Arabic text with explicit distribution terms and a stable download surface.",
+      "source": "https://tanzil.net/docs/download",
+      "license": "Creative Commons Attribution 3.0 with verbatim-copy requirement; changing the text is not allowed.",
+      "topa_use": "Store verbatim source text if mirrored; normalization/tokenization must be a derived analysis layer, never a replacement of the canonical source file."
+    },
+    {
+      "tradition": "Vedic Sanskrit / Satapatha Brahmana",
+      "preferred_machine_baseline": "GRETIL Satapatha-Brahmana, Madhyamdina recension (input by John Robert Gardner)",
+      "reason": "GRETIL explicitly lists a UTF-8 electronic text for the Madhyamdina recension, allowing the exact recension to be frozen rather than using only an English translation.",
+      "source": "https://gretil.sub.uni-goettingen.de/gretilbk.htm",
+      "topa_use": "Freeze the Madhyamdina recension and exact 1.8.1 locus before coding; later Manu/Matsya retellings remain separate descendants unless independence is demonstrated."
+    }
+  ],
+  "anti_bias_rules": [
+    "A newer edition does not erase older witness history; citations and variant readings remain traceable.",
+    "Machine-readable convenience does not outrank critical philology.",
+    "Derived normalization layers must be hash-linked to the immutable source text.",
+    "No cross-language lexical score is permitted from English/Russian/Ukrainian translations alone.",
+    "If two defensible editions materially change a feature, mark the feature EDITION_SENSITIVE rather than choosing the favorable reading."
+  ],
+  "next_work": [
+    "freeze exact Wasserman sections/line numbers for Atrahasis and Gilgamesh XI",
+    "freeze a specific BHSA version and extract Genesis 6:5-9:17",
+    "freeze Tanzil 1.1 Uthmani Q 11:25-49 plus secondary Noah loci",
+    "freeze GRETIL Madhyamdina Satapatha Brahmana 1.8.1",
+    "produce immutable source hashes and derived-analysis hashes"
+  ]
+}
