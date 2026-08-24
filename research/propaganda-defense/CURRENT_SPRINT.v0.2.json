@@ -1,0 +1,49 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.2",
+  "date": "2026-08-24",
+  "status": "ACTIVE_CROSS_EPOCH_SCHEMA_BASE_RATE_AND_MULTILINGUAL_SOURCE_FREEZE",
+  "supersedes": "CURRENT_SPRINT.v0.1.json",
+  "entry_gates": {
+    "guardrail_ci": "PASS",
+    "seed_manifest": "36 SOURCES / 6 CLASSES",
+    "manipulation_atlas": "138 TECHNIQUES / 10 FAMILIES",
+    "cross_epoch_observable_schema": "35 DIMENSIONS PREREGISTERED",
+    "nonwestern_multilingual_expansion": "12 SOURCE ROOTS DISCOVERED",
+    "sacred_base_rate_control_protocol": "8 CONTROL SLOTS PREREGISTERED",
+    "operational_firewall": "ACTIVE",
+    "sacred_flood_A_B_gate": "UNCHANGED_AND_OPEN",
+    "score_permission": false
+  },
+  "objective": "Turn the broad defensive atlas into a falsification-capable cross-era detector by freezing source provenance, measuring non-sacred genre base rates, and keeping sacred-text and propaganda analyses causally separated until their respective blind gates permit comparison.",
+  "ordered_next": [
+    "resolve exact edition/locus/rights for BR01-BR08 ancient non-sacred controls",
+    "seal immutable bytes or metadata receipts for openly retrievable source roots; never mirror restricted material merely for convenience",
+    "build zero-semantic-value X01-X35 coding packet before any base-rate coding",
+    "code non-sacred controls before sacred targets and preserve UNKNOWN distinct from ABSENT",
+    "expand multilingual/non-Western source roots beyond current East Asia/Africa/Latin America/Pacific seed",
+    "map M001-M138 techniques onto X01-X35 dimensions without collapsing historically distinct implementations",
+    "run reverse pass: hide source-side labels and test whether classification changes",
+    "only after base-rate freeze authorize parallel sacred manipulation screening above S0_FORM_ONLY",
+    "keep Flood A/B unexposed to propaganda-atlas outputs until both independent coding receipts freeze"
+  ],
+  "hard_locks": [
+    "NO_OPERATIONAL_PROPAGANDA_DEPLOYMENT_GUIDANCE",
+    "NO_REAL_AUDIENCE_TARGETING_OR_MICROTARGETING",
+    "NO_TECHNIQUE_PRESENT_TO_INTENT_SHORTCUT",
+    "NO_RHETORIC_TO_PROPAGANDA_SHORTCUT",
+    "NO_SACRED_SPECIFICITY_WITHOUT_NON_SACRED_BASE_RATE",
+    "NO_ANACHRONISTIC_MODERN_LABEL_WITHOUT_CONTEXT",
+    "NO_SOURCE_SIDE_BASED_EVIDENCE_STANDARD",
+    "NO_FLOOD_A_B_CONTAMINATION_FROM_PARALLEL_ATLAS",
+    "NO_SCORE_YET"
+  ],
+  "authorities": {
+    "atlas_index": "MANIPULATION_ATLAS_INDEX.v0.1.json",
+    "cross_epoch_schema": "CROSS_EPOCH_OBSERVABLE_SCHEMA.v0.1.json",
+    "base_rate_protocol": "SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json",
+    "multilingual_expansion": "NONWESTERN_MULTILINGUAL_EXPANSION.v0.1.json",
+    "defensive_manual": "DEFENSIVE_MANUAL.v0.1.json"
+  },
+  "promotion_ceiling": "SOURCE_FREEZE_AND_BASE_RATE_METHOD_READY_ONLY",
+  "score_permission": false
+}
