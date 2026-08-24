@@ -27,14 +27,6 @@ jobs:
         with:
           ref: topa-sacred-scriptures
 
-      - name: Checkout exact BHSA source
-        uses: actions/checkout@v4
-        with:
-          repository: ETCBC/bhsa
-          ref: b112c161cfd21eae403d51a2733740d8743460e7
-          path: .source-cache/bhsa
-          fetch-depth: 1
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -56,7 +48,6 @@ jobs:
         run: |
           mkdir -p receipts
           python tools/sacred_scripture_source_seal.py \
-            --bhsa-dir .source-cache/bhsa \
             --out receipts/SOURCE_SEAL_RUN.v0.1.json
 
       - name: Build combined permission receipt
