@@ -58,12 +58,60 @@
       "gates": {"blind_packet_build_permission": false, "score_permission": false},
       "next_receipts": ["SOURCE_SEAL_RUN.v0.1.json", "CANARY_RUN.v0.1.json"],
       "claim_effect": "NONE_UNTIL_EXECUTED"
+    },
+    {
+      "seq": 6,
+      "date": "2026-08-24",
+      "event": "FOUR_CANARY_DETERMINISTIC_PRECHECK_EXECUTED",
+      "status": "FOUR_OF_FOUR_PASS_LOCAL_PRECHECK",
+      "artifact": "execution/CANARY_RUN.local-precheck.v0.1.json",
+      "results": {
+        "LINEAR_A_REPRESENTATION_CANARY_PASS": "PASS",
+        "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS": "PASS",
+        "EGYPT_LEMMA_ID_CANARY_PASS": "PASS",
+        "EGYPT_TEXT_ID_CANARY_PASS": "PASS"
+      },
+      "authority_boundary": "LOCAL_DETERMINISTIC_PRECHECK_NOT_COMBINED_SOURCE_SEAL_CI",
+      "gate_effect": {
+        "canary_side_ready": true,
+        "blind_packet_build_permission": false,
+        "reason": "Five immutable source seals are still required.",
+        "score_permission": false
+      },
+      "claim_effect": "METHOD_CONTROL_ONLY"
+    },
+    {
+      "seq": 7,
+      "date": "2026-08-24",
+      "event": "REPRODUCIBLE_SOURCE_SEAL_AND_NEGATIVE_RECEIPT_CI_ADDED",
+      "status": "EXECUTION_RECEIPT_NOT_YET_OBSERVED_IN_BRANCH",
+      "artifacts": [
+        "tools/sacred_scripture_source_seal.py",
+        "tools/sacred_scripture_canaries.py",
+        ".github/workflows/sacred-scriptures-prescore-seal.yml"
+      ],
+      "design": [
+        "Seal five frozen source loci using SHA-256 receipts without mirroring source texts into the repository",
+        "Pin ETCBC BHSA to commit b112c16",
+        "Use fully parameterized Tanzil Uthmani v1.1 export",
+        "Hash GRETIL Book 1 and the frozen ŚB 1.8.1.[1]-[10] visible-text slice",
+        "Hash Wasserman 2020 PDF bytes and cryptographically bind distinct exact Akkadian line-locus descriptors",
+        "Persist PASS or FAIL receipts before fail-closed workflow termination"
+      ],
+      "gate_effect": {
+        "source_seals_admitted": 0,
+        "source_seals_required": 5,
+        "blind_packet_build_permission": false,
+        "score_permission": false
+      },
+      "claim_effect": "INFRASTRUCTURE_ONLY"
     }
   ],
   "current_snapshot": {
     "phase": "HASH_AND_CANARY_EXECUTION",
-    "source_seals": "0/5 EXECUTED_RECEIPTS_IN_REPO",
-    "canaries": "0/4 EXECUTED_RECEIPTS_IN_REPO",
+    "source_seals": "0/5 AUTHORITATIVE EXECUTION RECEIPTS OBSERVED",
+    "canary_precheck": "4/4 PASS LOCAL_DETERMINISTIC_PRECHECK",
+    "combined_ci_canary_receipt": "NOT_YET_OBSERVED",
     "blind_packet_build_permission": false,
     "score_permission": false
   }
