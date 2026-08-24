@@ -5,7 +5,7 @@
   "maturity": "ACTIVE_PROTOTYPE",
   "status": "ACTIVE_RESEARCH",
   "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
-  "purpose": "Evidence-bounded investigation of anomalous, paranormal-labelled and unexplained reports, plus a falsification-first mathematical research mode, using provenance preservation, competing hypotheses, explicit proof obligations, prediction freezing and unresolved states.",
+  "purpose": "Evidence-bounded investigation of anomalous, paranormal-labelled and unexplained reports, plus falsification-first mathematical research and native empirical hunts, using provenance preservation, competing hypotheses, explicit proof obligations, prediction freezing and unresolved states.",
   "implemented": [
     "canonical epistemic foundation v1.2",
     "provenance/channel classification",
@@ -19,14 +19,17 @@
     "executable claim-envelope validator",
     "archival case corpus and adversarial receipts",
     "Tesla Sweep / TOPA Hunt research snapshot import",
-    "general mathematical research mode v1.1 with theorem/counterexample, encoding, parameter and full-cost gates"
+    "general mathematical research mode v1.1 with theorem/counterexample, encoding, parameter and full-cost gates",
+    "native hunt framework with preregistration, source ledger, pass receipts, status, hunt index and CI structure validation",
+    "HUNT-0001 Hessdalen archival/adversarial PASS-001"
   ],
   "established_in_stated_scope": [
     "TOPA repository architecture and machine-readable rules exist",
     "historical source/provenance records can be preserved and reclassified without erasing lineage",
     "the validator can reject specified provenance and prediction-rule violations",
     "case status is allowed to decrease after later falsification",
-    "mathematical candidates can be typed and routed through explicit proof, counterexample, encoding and parameter checks"
+    "mathematical candidates can be typed and routed through explicit proof, counterexample, encoding and parameter checks",
+    "HUNT-0001 establishes a source-bound recurrent Hessdalen report/instrument corpus worthy of raw-data replication while refusing single-common-cause or extraordinary promotion"
   ],
   "not_established": [
     "paranormal causation",
@@ -37,6 +40,8 @@
     "supernatural entities",
     "technosignatures in the Tesla Sweep corpus",
     "the favored J1832 natural-mechanism synthesis",
+    "a single common physical cause for the Hessdalen event family",
+    "an extraordinary cause for Hessdalen events",
     "P versus NP resolution",
     "a universal theorem from finite mathematical experiments",
     "world truth from model or Scout consensus"
@@ -44,6 +49,9 @@
   "current_authority": {
     "foundation": "protocols/TOPA_FOUNDATION.json",
     "mathematical_mode": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
+    "native_hunts": "hunts/README.md",
+    "hunt_index": "registry/TOPA-HUNT-INDEX.json",
+    "hunt_0001_status": "hunts/HUNT-0001-HESSDALEN/STATUS.json",
     "method": "docs/METHOD.md",
     "case_status": "docs/STATUS.md",
     "corpus_index": "registry/TOPA-CORPUS-INDEX.json",
@@ -57,6 +65,8 @@
     "FAILED_TESTS_MUST_BE_ABLE_TO_LOWER_CONFIDENCE",
     "UNRESOLVED_IS_A_VALID_TERMINAL_STATE",
     "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT",
+    "RECURRENT_REPORTS_ARE_NOT_ONE_PHENOMENON",
+    "MULTI_CHANNEL_IS_NOT_INDEPENDENT_COMMON_CAUSE",
     "MATHEMATICAL_PROMOTION_REQUIRES_CHECKABLE_DERIVATION_OR_COUNTEREXAMPLE",
     "FINITE_EXPERIMENT_IS_NOT_UNIVERSAL_ASYMPTOTIC_THEOREM"
   ],
