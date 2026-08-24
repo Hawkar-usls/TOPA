@@ -1,16 +1,54 @@
 {
-  "schema": "janus.topa.corpus-index.v1",
+  "schema": "janus.topa.corpus-index.v1.1",
   "repository": "Hawkar-usls/TOPA",
   "motto": "NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD.",
-  "file_count": 55,
+  "file_count": 74,
   "counts_by_top_level": {
-    "data": 1,
+    ".janus": 2,
+    "data": 3,
+    "hunts": 6,
     "protocols": 1,
     "corpus": 12,
     "research": 36,
-    "integrations": 5
+    "integrations": 11,
+    "registry": 3
   },
   "files": [
+    {
+      "path": ".janus/HABITAT_LINK.json",
+      "bytes": 836,
+      "sha256": "89b8999b90aa4fc25990964032e08aa84c633305d5d05cd034ee5bbdd93db64a",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HABITAT"
+      }
+    },
+    {
+      "path": ".janus/TOPA_NODE_MANIFEST.json",
+      "bytes": 2322,
+      "sha256": "bf1589179308fd5f297db5827ee0a61ea1bf8f24a18dbba83effa78d9845f464",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HABITAT"
+      },
+      "status": "ACTIVE_RESEARCH_NODE"
+    },
+    {
+      "path": "data/JANUS-P-VS-NP-POLYNOMIAL-RESIDUAL-CACHE-BRIDGE-CONTINUATION-2026-08-24-v1.2.json",
+      "bytes": 3697,
+      "sha256": "6ada50348818930bde2dab208cdbbc86a29ba4571eb4ae0840c35bca42f82970",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_ARTIFACT"
+      },
+      "artifact_id": "JANUS-P-VS-NP-POLYNOMIAL-RESIDUAL-CACHE-BRIDGE-CONTINUATION-2026-08-24-v1.2"
+    },
     {
       "path": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
       "bytes": 3258,
@@ -18,10 +56,95 @@
       "source": {
         "repository": "Hawkar-usls/TOPA",
         "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
         "role": "NATIVE_TOPA_ARTIFACT"
       },
       "artifact_id": "TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1",
       "status": "ACTIVE_GENERAL_MATHEMATICAL_RESEARCH_MODE"
+    },
+    {
+      "path": "data/TOPA-P-VS-NP-ISSUE-211-RESOLUTION-SINK-COUNTERFAMILY-2026-08-24-v1.0.json",
+      "bytes": 3770,
+      "sha256": "28b6dc848eb9852ad500fff2d376c8a47dc780ac0f7d7d4a06fc0346c787f9ff",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_ARTIFACT"
+      },
+      "artifact_id": "TOPA-P-VS-NP-ISSUE-211-RESOLUTION-SINK-COUNTERFAMILY-2026-08-24-v1.0",
+      "status": "STRONG_FORMAL_REFUTATION_CANDIDATE_PENDING_IMPLEMENTATION_PARITY_AND_INDEPENDENT_REPLAY"
+    },
+    {
+      "path": "hunts/HUNT-0001-HESSDALEN/PASS-001-ARCHIVAL-ADVERSARIAL.json",
+      "bytes": 7188,
+      "sha256": "23af334f7eccabf2282f8c8f24822d41feba349f7c609080323faef1c1166d1e",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      },
+      "status": "COMPLETE_WITH_OPEN_RAW_REPLAY_GATE"
+    },
+    {
+      "path": "hunts/HUNT-0001-HESSDALEN/PREREGISTRATION.json",
+      "bytes": 4751,
+      "sha256": "1ded1ea0328a617a7d193c95caa1a6d05614f6dc5e389e096a376ab9298c96e8",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      },
+      "title": "HUNT-0001 — Hessdalen Lights: event-family reality before explanation",
+      "status": "FROZEN_BEFORE_TOPA_PASS_001"
+    },
+    {
+      "path": "hunts/HUNT-0001-HESSDALEN/README.md",
+      "bytes": 3945,
+      "sha256": "2979c809afb0b45907d8b4134fbb6e863cb8961e0235454bf25443f592f4b8f6",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      }
+    },
+    {
+      "path": "hunts/HUNT-0001-HESSDALEN/SOURCE_LEDGER.json",
+      "bytes": 3251,
+      "sha256": "158b8d3c632620edd03d8ade206fa9b2b5b00d4f57d0fedb837c5ecf9a380a21",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      },
+      "status": "ACTIVE_SOURCE_LEDGER"
+    },
+    {
+      "path": "hunts/HUNT-0001-HESSDALEN/STATUS.json",
+      "bytes": 1043,
+      "sha256": "f839330424f42cc5eab5b8f8d96905ee1449d52f1279572c9767da44fccc3cca",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      },
+      "status": "ACTIVE_AFTER_PASS_001"
+    },
+    {
+      "path": "hunts/README.md",
+      "bytes": 1142,
+      "sha256": "1db6e322b3ec1f2e700af40dca94123e4ae65739ec4f41c3252f74ebb58c056b",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HUNT"
+      }
     },
     {
       "path": "protocols/TOPA_FOUNDATION.json",
@@ -30,7 +153,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus_Genesis",
         "branch": "main",
-        "commit": "dd5e2a64758e7621650d8044917199693b862a54"
+        "commit": "dd5e2a64758e7621650d8044917199693b862a54",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "id": "JANUS_TOPA_FOUNDATION_V1_2",
       "version": "1.2",
@@ -43,7 +167,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-ADVERSARIAL-FALSIFICATION-SURVIVOR-PASS-2026-08-23-v1.0",
       "title": "TOPA — ADVERSARIAL FALSIFICATION / SURVIVOR PASS",
@@ -57,7 +182,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-ART-BELL-OBSERVER-NODE-PREY-2006-v1.0",
       "title": "TOPA ART BELL OBSERVER NODE — PREY (2006)",
@@ -71,7 +197,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-ART-BELL-REAL-CALLER-ARCHIVE-v1.0",
       "title": "TOPA — ART BELL REAL CALLER ARCHIVE",
@@ -85,7 +212,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-ART-BELL-REAL-CALLER-ARCHIVE-v1.1",
       "title": "TOPA — ART BELL REAL CALLER ARCHIVE",
@@ -99,7 +227,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-ART-BELL-REAL-CALLER-ARCHIVE-v1.2",
       "title": "TOPA — ART BELL REAL CALLER ARCHIVE",
@@ -114,7 +243,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-DONALD-E-KEYHOE-EVIDENCE-AUDIT-EGYPT-CROSSREFERENCES-v1.0",
       "title": "TOPA — DONALD E. KEYHOE: BIOGRAPHY, CASE AUDIT, AND EGYPT CROSS-REFERENCES",
@@ -128,7 +258,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-J1832-FAST-HRAIN-MECHANISM-HANDOFF-2026-08-23-v1.0",
       "status": "ACTIVE_RESEARCH_HANDOFF__FAVORED_SYNTHESIS_NOT_PROVEN"
@@ -140,7 +271,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-KENSHI-17-SCOUT-FOUNDATION-2026-08-23-v1.2",
       "title": "JANUS TOPA × Kenshi × 17 Scout Foundation Receipt",
@@ -154,7 +286,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-KEYHOE-FORENSIC-TRIAD-RB47-KINROSS-RAS-EL-KANAYIS-v1.0",
       "title": "TOPA — KEYHOE FORENSIC TRIAD: RB-47 / KINROSS / RAS EL-KANAYIS",
@@ -168,7 +301,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-KEYHOE-REVERSE-SPIRAL-HIDDEN-DEPENDENCIES-AUDIT-2026-08-23-v1.0",
       "title": "TOPA — KEYHOE REVERSE + SPIRAL HIDDEN-DEPENDENCIES AUDIT",
@@ -182,7 +316,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-KEYHOE-REVERSE-SPIRAL-HIDDEN-DEPENDENCIES-AUDIT-2026-08-23-v1.1",
       "title": "TOPA — KEYHOE REVERSE + SPIRAL HIDDEN-DEPENDENCIES AUDIT",
@@ -197,7 +332,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-meta-registry",
         "branch": "main",
-        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5"
+        "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "artifact_id": "JANUS-TOPA-RB47-KILL-PASS-2026-08-23-v1.0",
       "title": "TOPA — RB-47 ADVERSARIAL KILL PASS",
@@ -211,7 +347,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0"
     },
@@ -222,7 +359,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "ACTIVE_RESEARCH_BRANCH"
@@ -234,7 +372,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "COMPLETE_WITH_ESCALATIONS"
@@ -246,7 +385,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "QUEUE_INITIALIZED"
@@ -258,7 +398,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.5",
       "status": "HUNT_ACTIVE__J1832_COMPOSITE_NATURAL_MECHANISM_NARROWED__RAW_FAST_MICROSTRUCTURE_GATE_OPEN"
@@ -270,7 +411,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FROZEN_BEFORE_FURTHER_RAW_SIGNAL_SCORING"
@@ -282,7 +424,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.1",
       "status": "TRAINING_ACTIVE__FIELD_GRID_GATE_ARMED"
@@ -294,7 +437,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "INGESTED_WITH_RAW_DATA_FIREWALL"
@@ -306,7 +450,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       }
     },
     {
@@ -316,7 +461,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "HIGH_INTEREST_VALIDATION_LEAD__NOT_YET_SCORED"
@@ -328,7 +474,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.1",
       "status": "FROZEN_CORRECTION__SUPERSEDES_EVENT_RATE_PORTION_OF_002A_V1_0"
@@ -340,7 +487,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "NEGATIVE_FIRST_PASS__NO_CLEAN_HYDROACOUSTIC_HOLDOUT_ADMITTED"
@@ -352,7 +500,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_PUBLIC_TOA_CADENCE_REPLAY__FULL_BARYCENTRIC_TIMING_FIT_NOT_REIMPLEMENTED"
@@ -364,7 +513,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_PUBLISHED_NOTEBOOK_PHASE_METHOD_AND_OUTPUT_CONCORDANCE__INDEPENDENT_PROFILE_REFIT_PENDING"
@@ -376,7 +526,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FROZEN_BEFORE_NUMERIC_DYNAMIC_SPECTRUM_SCORING"
@@ -388,7 +539,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "BLOCKED_NUMERIC_ARRAY_REPLAY__PUBLIC_PRODUCTS_IDENTIFIED__UNSAFE_PICKLE_EXECUTION_REFUSED"
@@ -400,7 +552,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_SAFE_NONPICKLE_ARRAY_ACQUISITION__READY_FOR_FROZEN_MORPHOLOGY_GATE"
@@ -412,7 +565,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "SAFE_NONPICKLE_ROUTE_FOUND__BYTE_ACQUISITION_PENDING_ACTIONS_RUN"
@@ -424,7 +578,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FROZEN_BEFORE_FIRST_NUMERIC_MORPHOLOGY_SCORE"
@@ -436,7 +591,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_SAFE_NUMERIC_CRACO_MORPHOLOGY_CHARACTERIZATION__CONTROL_COMPARISON_PENDING"
@@ -448,7 +604,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_WITH_METRIC_SEMANTICS_REPAIR__NO_SCORE_RETUNING"
@@ -460,7 +617,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FROZEN_BEFORE_MODEL_DISCRIMINATION"
@@ -472,7 +630,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "ROTATION_NEUTRON_STAR_ORIGIN_NOW_FAVORED__EMISSION_MECHANISM_STILL_UNRESOLVED"
@@ -484,7 +643,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0"
     },
@@ -495,7 +655,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "KNOWN_ANTHROPOGENIC_PERIODICITY_CONTROL"
@@ -507,7 +668,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "COMPLETE_WITH_METHOD_ESCALATIONS"
@@ -519,7 +681,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "COMPLETE__REAL_INTEREST_NODES_RANKED__NO_UNKNOWN_PHYSICS_PROMOTED"
@@ -531,7 +694,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "COMPLETE_WITH_ONE_MAJOR_SELF_CORRECTION_AND_NEW_HIGH_VALUE_CONTROLS"
@@ -543,7 +707,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "ACTIVE_HUNT__ONE_HIGH_INTEREST_UNRESOLVED_ASTROPHYSICAL_TARGET_ADMITTED"
@@ -555,7 +720,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_EVIDENCE_DISCIPLINE__RAW_PIXEL_STAGE_PENDING"
@@ -567,7 +733,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0"
     },
@@ -578,7 +745,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "PASS_MORPHOLOGY_CONFOUNDER_CALIBRATION__STRICT_PIXEL_SCORE_NOT_CLAIMED"
@@ -590,7 +758,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FAIL_SPECIFICITY__LINEATED_FAULT_GRABEN_DOMINATES_BASE_SCORE"
@@ -602,7 +771,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.1",
       "status": "PASS_SYNTHETIC_REPAIR__FIELD_GENERALIZATION_UNTESTED"
@@ -614,7 +784,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.0",
       "status": "FROZEN_BEFORE_FIRST_NUMERIC_FIELD_SCORE"
@@ -626,7 +797,52 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Cosmos",
         "branch": "janus-tesla-sweep",
-        "commit": "9615544fdefbaf80cd612bc84f830c8853245300"
+        "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
+      }
+    },
+    {
+      "path": "integrations/AIFC/TOPA_INDEPENDENT_FUTURE_GATE.json",
+      "bytes": 1830,
+      "sha256": "f90b7da02e57208a0bc99d20f3f92074d0e04fbe0275412332624d3716b05b70",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
+      }
+    },
+    {
+      "path": "integrations/Demi_Head/JANUS_UNEXPLAINED_ALIGNMENT_LINK.json",
+      "bytes": 864,
+      "sha256": "9dc523160da7b996b73181a6fde55021ccb04f37310c0e57bdd5b45040fb0779",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
+      }
+    },
+    {
+      "path": "integrations/Echo-Pyramid/SCIENTIFIC_BOUNDARY.md",
+      "bytes": 1200,
+      "sha256": "b5157f6efc29dd5b029dba7e9b23f28144e3a1c71bd7f301c07855cd7d15c587",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
+      }
+    },
+    {
+      "path": "integrations/Hrain/JANUS_UNEXPLAINED_ALIGNMENT_LINK.json",
+      "bytes": 780,
+      "sha256": "868fab1b8188217475ef1d1918013b2d0e842047f78a5f2cb30f75b0e223807c",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
       }
     },
     {
@@ -636,7 +852,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Demiurge",
         "branch": "main",
-        "commit": "999eaed078ba1780b480629520997114adb42666"
+        "commit": "999eaed078ba1780b480629520997114adb42666",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       }
     },
     {
@@ -646,7 +863,8 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Demiurge",
         "branch": "main",
-        "commit": "999eaed078ba1780b480629520997114adb42666"
+        "commit": "999eaed078ba1780b480629520997114adb42666",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.2",
       "status": "ACTIVE_SCOUT_EPISTEMIC_FOUNDATION"
@@ -658,11 +876,23 @@
       "source": {
         "repository": "Hawkar-usls/Janus-Demiurge",
         "branch": "main",
-        "commit": "999eaed078ba1780b480629520997114adb42666"
+        "commit": "999eaed078ba1780b480629520997114adb42666",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "id": "TOPA_SCOUT_EPISTEMIC_PROTOCOL_V1_2",
       "version": "1.2",
       "status": "ACTIVE_REQUIRED_ALL_SCOUTS"
+    },
+    {
+      "path": "integrations/SkinGPT/PRIVATE_SOURCE_BOUNDARY.json",
+      "bytes": 651,
+      "sha256": "f03b4f6702b85305733b5d79ee49522f7ee2c84e40194bee3979b8ba0abfd0ce",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
+      }
     },
     {
       "path": "integrations/janus-distributed-ai-swarm/TOPA_FOUNDATION.json",
@@ -671,7 +901,8 @@
       "source": {
         "repository": "Hawkar-usls/janus-distributed-ai-swarm",
         "branch": "main",
-        "commit": "ad1b9da27f355fff3d5e236d427c71dcb34508c8"
+        "commit": "ad1b9da27f355fff3d5e236d427c71dcb34508c8",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
       },
       "version": "1.2",
       "status": "ACTIVE_RUNTIME_EPISTEMIC_FOUNDATION"
@@ -683,9 +914,56 @@
       "source": {
         "repository": "Hawkar-usls/janus-distributed-ai-swarm",
         "branch": "main",
-        "commit": "ad1b9da27f355fff3d5e236d427c71dcb34508c8"
+        "commit": "ad1b9da27f355fff3d5e236d427c71dcb34508c8",
+        "role": "MANAGED_UPSTREAM_SNAPSHOT"
+      }
+    },
+    {
+      "path": "integrations/tranception/TOPA_METHOD_DONOR.json",
+      "bytes": 2292,
+      "sha256": "a9fa604f78048e4dfd20491decfcc673b67c69dd56ed61b8c075774e6866f074",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_HANDOFF_OR_METHOD_INTEGRATION"
+      }
+    },
+    {
+      "path": "registry/ACCOUNT-WIDE-TOPA-MAP.json",
+      "bytes": 2097,
+      "sha256": "c72aad52880c8c6aed4b9252b99d38d7b7691261a3f092494ca844bb2e3d94fc",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_REGISTRY_STATE"
+      }
+    },
+    {
+      "path": "registry/TOPA-AUDIT-STATE.json",
+      "bytes": 1851,
+      "sha256": "b9385b93bce7fe9192efaad7d6e1a5c89c23edd17ce5278bbdba5ff5e25fc88e",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_REGISTRY_STATE"
+      },
+      "status": "ACTIVE_ACCOUNT_WIDE_INGEST"
+    },
+    {
+      "path": "registry/TOPA-HUNT-INDEX.json",
+      "bytes": 777,
+      "sha256": "e471a92d12beb66a8dc76c5c29bb2ec6a49612b15b68194431f4a28d658637bc",
+      "source": {
+        "repository": "Hawkar-usls/TOPA",
+        "branch": "main",
+        "commit": "5d9f025e54192e284b9a4eef5b9c211ca78f4d4c",
+        "role": "NATIVE_TOPA_REGISTRY_STATE"
       }
     }
   ],
+  "copy_is_independent_replication": false,
   "world_truth": false
 }
