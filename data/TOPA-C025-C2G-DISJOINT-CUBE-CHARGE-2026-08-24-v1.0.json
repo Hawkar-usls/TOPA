@@ -1,0 +1,40 @@
+{
+  "schema": "topa.c025.c2g_disjoint_cube_charge.v1",
+  "created_at_local": "2026-08-24T23:17:00+03:00",
+  "status": "SUFFICIENT_PROGRESS_THEOREM_PROVED__UNIVERSAL_DISCOVERY_OPEN",
+  "arbiter": "Hawkar-usls/Demi_Head/docs/TOPA_C025_C2G_DISJOINT_CUBE_CHARGE_CANDIDATE.md",
+  "provider_issue": 224,
+  "definitions": {
+    "falsifying_cube": "Q(C)={root assignments falsifying every literal of C}",
+    "cube_size": "|Q(C)|=2^(n-|C|)",
+    "pairwise_disjointness": "exists shared variable occurring with opposite signs"
+  },
+  "theorems": {
+    "pairwise_disjointness_criterion": "PROVED",
+    "width_to_charge_count": "k<=2^w",
+    "log_width_consequence": "w<=c*log2(N) => k<=N^c",
+    "branch_charge_consequence": "one fresh charge per branch => polynomial branch count"
+  },
+  "operational_charge": [
+    "canonical root clause",
+    "standalone proof of F |= C",
+    "width receipt",
+    "pairwise disjointness receipt"
+  ],
+  "barriers": [
+    "ARBITRARY_REASON_CUBES_CAN_OVERLAP",
+    "FULL_DECISION_PREFIX_GUARDING_CAN_GROW_WIDTH_TO_OMEGA(depth)",
+    "SHORT_WIDTH_REASON != CHEAP_REASON_DISCOVERY"
+  ],
+  "open": [
+    "UNIVERSAL_DETERMINISTIC_CHARGE_DISCOVERY",
+    "POLY_TOTAL_REASON_PROOF_BYTES",
+    "COUPLING_TO_TOTAL_POLICY_RUNTIME"
+  ],
+  "claim_ceiling": [
+    "SUFFICIENT_PROGRESS_CERTIFICATE != UNIVERSAL_EXISTENCE",
+    "UNIVERSAL_EXISTENCE != POLYTIME_DISCOVERY",
+    "C2G_THEOREM != P_EQUALS_NP"
+  ],
+  "p_vs_np": "OPEN"
+}
