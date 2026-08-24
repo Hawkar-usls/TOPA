@@ -40,47 +40,99 @@ jobs:
         run: python -m pip install --disable-pip-version-check text-fabric
 
       - name: Run four prescore canaries
+        id: canaries
+        continue-on-error: true
         run: |
+          mkdir -p receipts
           python tools/sacred_scripture_canaries.py \
             --out receipts/CANARY_RUN.v0.1.json
 
       - name: Seal five immutable source loci
+        id: seals
+        continue-on-error: true
         run: |
+          mkdir -p receipts
           python tools/sacred_scripture_source_seal.py \
             --bhsa-dir .source-cache/bhsa \
             --out receipts/SOURCE_SEAL_RUN.v0.1.json
 
-      - name: Verify combined permission gate
+      - name: Build combined permission receipt
+        if: always()
         run: |
           python - <<'PY'
           import json
+          from datetime import datetime, timezone
           from pathlib import Path
-          c=json.loads(Path('receipts/CANARY_RUN.v0.1.json').read_text())
-          s=json.loads(Path('receipts/SOURCE_SEAL_RUN.v0.1.json').read_text())
-          ok=(c['status']=='FOUR_OF_FOUR_PASS' and s['status']=='FIVE_OF_FIVE_SEALED')
-          print(f"CANARIES={c['pass_count']}/4")
-          print(f"SOURCES={s['sealed_count']}/5")
+          def read(path):
+              p=Path(path)
+              if not p.exists():
+                  return None
+              try:
+                  return json.loads(p.read_text(encoding='utf-8'))
+              except Exception as e:
+                  return {'status':'UNREADABLE_RECEIPT','error':f'{type(e).__name__}: {e}'}
+          c=read('receipts/CANARY_RUN.v0.1.json')
+          s=read('receipts/SOURCE_SEAL_RUN.v0.1.json')
+          cpass=bool(c and c.get('status')=='FOUR_OF_FOUR_PASS' and c.get('pass_count')==4)
+          spass=bool(s and s.get('status')=='FIVE_OF_FIVE_SEALED' and s.get('sealed_count')==5)
+          ok=cpass and spass
+          gate={
+              'schema':'topa.sacred_scriptures.prescore_execution_gate.v0.1',
+              'executed_at_utc':datetime.now(timezone.utc).isoformat(),
+              'status':'BLIND_PACKET_BUILD_UNLOCKED' if ok else 'PRESCORE_EXECUTION_BLOCKED',
+              'canary_receipt_present':c is not None,
+              'canary_status':None if c is None else c.get('status'),
+              'canary_pass_count':None if c is None else c.get('pass_count'),
+              'source_receipt_present':s is not None,
+              'source_status':None if s is None else s.get('status'),
+              'source_sealed_count':None if s is None else s.get('sealed_count'),
+              'blind_packet_build_permission':ok,
+              'score_permission':False,
+              'failure_semantics':'Any missing/failed/unreadable receipt blocks blind-packet construction; SCORE remains locked regardless.',
+              'epistemic_effect':'METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT'
+          }
+          Path('receipts').mkdir(exist_ok=True)
+          Path('receipts/PRESCORE_EXECUTION_GATE.v0.1.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(f"CANARIES={gate['canary_pass_count']}/4")
+          print(f"SOURCES={gate['source_sealed_count']}/5")
           print(f"BLIND_PACKET_BUILD_PERMISSION={str(ok).lower()}")
-          print("SCORE_PERMISSION=false")
-          if not ok:
-              raise SystemExit(2)
+          print('SCORE_PERMISSION=false')
           PY
 
       - name: Upload receipts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: sacred-scriptures-prescore-receipts
           path: receipts/*.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 90
 
-      - name: Persist successful receipts to branch
+      - name: Persist execution receipts to branch
+        if: always()
         run: |
           mkdir -p research/sacred-scriptures/execution
-          cp receipts/CANARY_RUN.v0.1.json research/sacred-scriptures/execution/CANARY_RUN.v0.1.json
-          cp receipts/SOURCE_SEAL_RUN.v0.1.json research/sacred-scriptures/execution/SOURCE_SEAL_RUN.v0.1.json
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/sacred-scriptures/execution/CANARY_RUN.v0.1.json research/sacred-scriptures/execution/SOURCE_SEAL_RUN.v0.1.json
-          git diff --cached --quiet || git commit -m "Record sacred-scriptures source seals and canary receipts"
-          git push origin HEAD:topa-sacred-scriptures
+          shopt -s nullglob
+          files=(receipts/*.json)
+          if [ ${#files[@]} -gt 0 ]; then
+            cp receipts/*.json research/sacred-scriptures/execution/
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research/sacred-scriptures/execution/*.json
+            git diff --cached --quiet || git commit -m "Record sacred-scriptures prescore execution receipts"
+            git push origin HEAD:topa-sacred-scriptures
+          fi
+
+      - name: Enforce fail-closed final status
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('receipts/PRESCORE_EXECUTION_GATE.v0.1.json')
+          if not p.exists():
+              raise SystemExit('combined gate receipt missing')
+          g=json.loads(p.read_text(encoding='utf-8'))
+          if g.get('blind_packet_build_permission') is not True:
+              raise SystemExit(2)
+          PY
