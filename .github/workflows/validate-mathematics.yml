@@ -103,3 +103,8 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python nw_locality_transfer_probe.py
+
+      - name: Replay C025-E2R-L1E direct-CNF functional-encoding transfer mechanics
+        run: |
+          cd research/mathematics/p-vs-np
+          python nw_local_er3_transfer_probe.py
