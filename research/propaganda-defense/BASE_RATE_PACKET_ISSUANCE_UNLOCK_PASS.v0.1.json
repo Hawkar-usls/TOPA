@@ -1,0 +1,49 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_packet_issuance_unlock_pass.v0.1",
+  "date": "2026-08-24",
+  "status": "PASS_PACKET_ISSUANCE_ONLY",
+  "policy": "BASE_RATE_PACKET_ISSUANCE_UNLOCK_POLICY.v0.1.json",
+  "workflow": {
+    "draft_pr": 29,
+    "run_id": 32776757559,
+    "job_id": 97589462856,
+    "head_sha": "a70daf77f08844f34c8f2cbadbc7bf7831549a65",
+    "conclusion": "success",
+    "artifact_id": 9538227580,
+    "artifact_digest": "sha256:665cec39c3a694cb477ae3f19b14ee25616b26dda265fdf849de52275b0e687e"
+  },
+  "checks": {
+    "passed": 24,
+    "required": 24,
+    "semantic_receipts_preexisting": 0
+  },
+  "frozen_authority_hashes": {
+    "packet_path": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.3.json",
+    "packet_sha256": "69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f",
+    "packet_git_blob_sha": "a514bb77bac6c283ca60c771ab3ac46eb8bf416b",
+    "independence_contract_path": "BASE_RATE_INDEPENDENT_CODING_CONTRACT.v0.1.json",
+    "independence_contract_sha256": "7b38965eb4803fbde20d76b55e5548833ddfad038fbe1e0a7d1d3abfa7a727e9",
+    "independence_contract_git_blob_sha": "e397f3dfcf30ab8a23163df868c1de8452ed5395"
+  },
+  "result": {
+    "ancient_base_rate_external_retrieval": "8/8_FROZEN",
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_values_populated": 0,
+    "sacred_target_coding_permission": false,
+    "score_permission": false
+  },
+  "interpretation": "The substrate is internally consistent enough to distribute the exact same zero-value packet to two genuinely independent coders once their independence is separately recorded. This is not permission for one reasoning instance to fill two copies, not a semantic result, not a propaganda classification, and not SCORE permission.",
+  "next_legal_action": "Freeze coder assignment and packet-delivery receipts for two genuinely independent coding paths. Both receipts must bind packet SHA-256 69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f before either semantic matrix can count toward the experiment.",
+  "laws": [
+    "PACKET_ISSUANCE_PERMISSION != SEMANTIC_CODING_PERMISSION",
+    "TWO_GENUINE_ASSIGNMENTS_REQUIRED_BEFORE_CODING_COUNTS",
+    "SAME_REASONING_INSTANCE_CANNOT_FILL_A_AND_B",
+    "IDENTICAL_PACKET_HASH_REQUIRED",
+    "SEMANTIC_VALUES_REMAIN_ZERO",
+    "SACRED_FLOOD_FIREWALL_REMAINS_CLOSED",
+    "NO_SCORE"
+  ]
+}
