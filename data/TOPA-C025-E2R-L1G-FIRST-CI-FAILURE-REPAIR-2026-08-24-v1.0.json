@@ -1,0 +1,36 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1G-FIRST-CI-FAILURE-REPAIR-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1G",
+  "status": "FAILED_FIXTURE_ACCOUNTING_REPAIRED_PENDING_REPLAY",
+  "failed_provider_run": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run": 32747919279,
+    "job": 97497745879,
+    "conclusion": "FAILURE",
+    "failing_step": "Replay C025-E2R-L1G expansion entropy and monotone-crossing mechanics"
+  },
+  "failure": {
+    "assertion": "len(expand_clause((20,21,22), macros)) == 2*3*4",
+    "observed_distinct_clause_count": 11,
+    "cause": "the three monotone macros have overlapping local leaves; different Cartesian choices canonicalize to identical clauses, so product of leaf counts is an upper bound rather than an equality"
+  },
+  "mathematical_effect": {
+    "theorem_damage": "NONE_TO_POLYNOMIAL_UPPER_BOUND",
+    "correct_statement": "|EXP(C)| <= product_j leaves(e_j) for positive macro literals in the ER3 line",
+    "reason": "canonicalization, duplicate collapse, tautology deletion and subsumption-like overlap can only decrease the number of distinct expanded clauses"
+  },
+  "repair": [
+    "replace exact-product fixture assertion by the exact observed overlapping fixture count 11 plus <= product upper-bound assertion",
+    "rename replay gate from exact Cartesian product to polynomial upper bound",
+    "preserve this first failed run in lineage"
+  ],
+  "claim_ceiling": [
+    "L1G monotone-crossing simulation is not promoted until a post-repair provider replay passes",
+    "the failed run does not establish or refute unrestricted ER3 bounds",
+    "Issue #217 and P versus NP remain open"
+  ]
+}
