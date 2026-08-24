@@ -1,0 +1,56 @@
+{
+  "schema": "hawkar.topa.math-receipt.v1",
+  "id": "TOPA-C025-E2R-L1G-F2-MACRO-CUT-PROVIDER-PASS-2026-08-24-v1.0",
+  "date": "2026-08-24",
+  "front": "C025-E2R-L1G-F2",
+  "status": "PROVED_IN_STATED_SCOPE",
+  "canonical_repository": "Hawkar-usls/TOPA",
+  "provider_repository": "Hawkar-usls/Janus-Fundamentum",
+  "provider_branch": "c025-policy0b-fair-reason",
+  "provider_head": "6dd18e95c663451b5bf9cff5abba691bb9b29156",
+  "provider_run": 32753914462,
+  "provider_job": 97516954725,
+  "provider_conclusion": "SUCCESS",
+  "proved_in_scope": {
+    "f1_negative_edge_accounting": true,
+    "f1_factorial_representation_ceiling": true,
+    "f1_bound_materialization_avoided": true,
+    "f2_pure_restriction_context_overlap_fixture": true,
+    "f2_nested_complement_refutation_fixtures": true,
+    "f2_factorial_recurrence_ceiling": true,
+    "analytical_macro_cut_bound": "S_local <= S^((q+5)!)",
+    "hard_family_consequence": "q = Omega(log N / log log N) for every polynomial-size B2/ER3 escape on the stated existential polynomial-input NW-parity family"
+  },
+  "proof_route": [
+    "F1 positive-closure structural CNF expansion",
+    "pure Resolution closure under partial restrictions",
+    "restrict-refute-lift context lemma deriving a subclause of the context",
+    "inductive P(F) union N(F) complement refutation",
+    "macro-pivot simulation",
+    "full ER3-to-local-Resolution simulation",
+    "NW heavy-width lower-bound comparison"
+  ],
+  "preserved_repairs": [
+    "The first F2 draft used weakening as scaffolding. v1.1 replaced the authoritative route with pure restrict-refute-lift; the weakening replay remains only a historical regression check.",
+    "The first F1 provider attempt attempted to materialize S^((q+2)!), an astronomically large analytic bound. The replay was repaired to compare logarithms instead. BOUND != OBJECT_TO_MATERIALIZE."
+  ],
+  "claim_ceiling": [
+    "q lower bound is logarithmic-over-loglog, not superpolynomial",
+    "does not prove a superpolynomial unrestricted ER3 extension-count lower bound",
+    "does not prove an Extended Resolution or Extended Frege lower bound",
+    "does not establish deterministic proof discovery",
+    "does not resolve P versus NP or NP versus coNP"
+  ],
+  "external_sanity": [
+    "Resolution is standardly closed under restrictions with no proof-size increase.",
+    "Weakening steps can be eliminated from Resolution refutations without increasing standard complexity measures, though F2-v1.1 no longer relies on weakening as the authoritative route."
+  ],
+  "artifacts": [
+    "research/mathematics/p-vs-np/C025_E2R_L1G_F1_POLARITY_INVERSION_BUDGET.md",
+    "research/mathematics/p-vs-np/polarity_inversion_budget_probe.py",
+    "research/mathematics/p-vs-np/C025_E2R_L1G_F2_MACRO_CUT_ELIMINATION.md",
+    "research/mathematics/p-vs-np/macro_cut_elimination_f2_probe.py"
+  ],
+  "next_front": "C025-E2R-L1G-F3: inversion placement/depth versus NW restriction survival",
+  "p_vs_np": "OPEN"
+}
