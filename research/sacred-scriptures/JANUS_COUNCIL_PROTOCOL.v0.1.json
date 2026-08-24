@@ -1,0 +1,220 @@
+{
+  "schema": "topa.sacred_scriptures.janus_council_protocol.v0.1",
+  "status": "ACTIVE_PROTOCOL",
+  "research_object": "Sacred-scripture corpus and cross-tradition claims",
+  "constitutional_boundary": {
+    "model_output_is_evidence": false,
+    "agent_count_is_source_count": false,
+    "consensus_is_truth": false,
+    "symbolic_association_is_fact": false,
+    "metaphysical_claim_from_text_comparison": "NOT_ADMISSIBLE",
+    "human_inspection_required": true
+  },
+  "unit_of_analysis": {
+    "minimum": "PASSAGE_WITH_EDITION_LANGUAGE_CANON_SOURCE_AND_LOCATION",
+    "required_fields": [
+      "tradition_id",
+      "work_id",
+      "canonical_status",
+      "original_language_if_known",
+      "edition_or_manuscript",
+      "passage_locator",
+      "source_root",
+      "license_or_access_rule",
+      "date_range",
+      "geography_if_relevant",
+      "translation_id_if_used"
+    ]
+  },
+  "nodes": [
+    {
+      "node": "TOPA",
+      "role": "Epistemic envelope, claim classification, provenance/falsification gates",
+      "authority": "FINAL_CLASSIFICATION_WITHIN_PROTOCOL_ONLY"
+    },
+    {
+      "node": "HRain",
+      "role": "Structural graph of traditions, canons, books, passages, manuscripts, chronology and source roots",
+      "authority": "STRUCTURE_ONLY"
+    },
+    {
+      "node": "iNaiHR",
+      "role": "Associative semantic expansion: motifs, symbols, possible parallels, alternate readings",
+      "authority": "HYPOTHESIS_ONLY"
+    },
+    {
+      "node": "Demi_Head",
+      "role": "Bind structural and associative packets, collapse derivative sources to roots, preserve disagreement",
+      "authority": "BOUNDED_REVIEW"
+    },
+    {
+      "node": "Janus-Demiurge",
+      "role": "Scout decomposition and independent task packets across traditions and source families",
+      "authority": "SCOUT_ONLY"
+    },
+    {
+      "node": "Janus_Genesis",
+      "role": "Freeze authority boundary, protocol identity, receipts and supersession lineage",
+      "authority": "CONSTITUTIONAL_BOUNDARY"
+    },
+    {
+      "node": "Janus-Fundamentum",
+      "role": "Construct falsifiers, claim ceilings, negative-result preservation and conventional alternatives",
+      "authority": "FALSIFICATION_GATE"
+    },
+    {
+      "node": "Fast-CAT-SHAiTan",
+      "role": "Adversarial/blinded review of proposed textual parallels; search for mundane and translation explanations",
+      "authority": "ADVERSARIAL_REVIEW"
+    },
+    {
+      "node": "AIFC",
+      "role": "Canonicalization, witness/source lifecycle, append-only evidence state and fail-closed validation",
+      "authority": "CANONICALIZATION_GATE"
+    },
+    {
+      "node": "Janus-Cosmos",
+      "role": "Anti-pseudoreplication: distinguish independent textual witnesses from copied/derivative families; blind gates",
+      "authority": "INDEPENDENCE_GATE"
+    },
+    {
+      "node": "janus-distributed-ai-swarm",
+      "role": "Parallel task packets; keep model identities and source dependencies separate",
+      "authority": "NO_TRUTH_MULTIPLIER"
+    },
+    {
+      "node": "janus-meta-registry",
+      "role": "Append-only artifact lineage, hashes, corrections, supersession and cross-repository references",
+      "authority": "LINEAGE_RECORD"
+    },
+    {
+      "node": "tranception",
+      "role": "Reverse-direction search: start from a motif/result and walk backward to earliest attestations and alternate causes",
+      "authority": "HYPOTHESIS_AND_REVERSE_SEARCH_ONLY"
+    },
+    {
+      "node": "janus-lapis",
+      "role": "Freeze stable candidate invariants only after they survive provenance and falsification gates",
+      "authority": "INVARIANT_CANDIDATE_ONLY"
+    },
+    {
+      "node": "aura-oracle-tg",
+      "role": "Symbolic or intuitive association generator to widen search space",
+      "authority": "ZERO_EVIDENCE_AUTHORITY"
+    },
+    {
+      "node": "Janus",
+      "role": "Portfolio-level coordination and public-repository standards",
+      "authority": "ORCHESTRATION_ONLY"
+    },
+    {
+      "node": "-Terminal-for-Janus",
+      "role": "Human-visible execution and audit surface",
+      "authority": "PRESENTATION_ONLY"
+    },
+    {
+      "node": "The-Voice-of-Janus",
+      "role": "Narrative rendering after evidence state is frozen; must preserve uncertainty labels",
+      "authority": "PRESENTATION_ONLY"
+    }
+  ],
+  "pipeline": [
+    {
+      "stage": "S0_FREEZE",
+      "action": "Freeze exact claim before searching for confirming parallels",
+      "output": "CLAIM_RECEIPT"
+    },
+    {
+      "stage": "S1_CANON_MAP",
+      "action": "Map tradition-specific canon and category; never assume all traditions mean scripture the same way",
+      "output": "CANON_GRAPH"
+    },
+    {
+      "stage": "S2_PROVENANCE",
+      "action": "Resolve original-language witness, manuscript/edition, translation, source root, date and geography",
+      "output": "PROVENANCE_GRAPH"
+    },
+    {
+      "stage": "S3_ASSOCIATION",
+      "action": "Generate semantic motif candidates without promotion",
+      "output": "MOTIF_CANDIDATES"
+    },
+    {
+      "stage": "S4_REVERSE",
+      "action": "For each candidate, walk backward to earliest known attestations and known contact routes",
+      "output": "DIFFUSION_AND_ANCESTRY_CANDIDATES"
+    },
+    {
+      "stage": "S5_ATTACK",
+      "action": "Attack each match using translation convergence, generic human universals, genre convention, interpolation, shared intermediary and cherry-picking explanations",
+      "output": "ADVERSARIAL_RECEIPT"
+    },
+    {
+      "stage": "S6_BLIND_CONTROL",
+      "action": "Compare against unrelated control texts and shuffled passage windows to estimate false-match rate",
+      "output": "SPECIFICITY_RECEIPT"
+    },
+    {
+      "stage": "S7_INDEPENDENCE",
+      "action": "Collapse copied traditions/editions to historical source families before counting recurrence",
+      "output": "INDEPENDENT_ROOT_COUNT"
+    },
+    {
+      "stage": "S8_CLASSIFY",
+      "action": "Classify result as textual dependence, probable diffusion, generic convergence, unresolved, refuted or insufficient data",
+      "output": "TOPA_EVIDENCE_STATE"
+    },
+    {
+      "stage": "S9_SPIRAL",
+      "action": "Re-enter earlier stages with discovered constraints; preserve prior failed paths instead of rewriting them",
+      "output": "SUPERSESSION_RECEIPT"
+    }
+  ],
+  "candidate_hypotheses": [
+    {
+      "id": "H0_GENERIC_CONVERGENCE",
+      "claim": "Apparent similarities arise from common human cognitive, ecological, social or literary constraints",
+      "default": "ACTIVE"
+    },
+    {
+      "id": "H1_HISTORICAL_DIFFUSION",
+      "claim": "A motif or passage moved through identifiable contact, translation or literary dependence",
+      "default": "ACTIVE"
+    },
+    {
+      "id": "H2_COMMON_TEXTUAL_ANCESTOR",
+      "claim": "Two or more witnesses descend from a shared earlier textual/oral source",
+      "default": "ACTIVE"
+    },
+    {
+      "id": "H3_INDEPENDENT_RARE_CONVERGENCE",
+      "claim": "A rare structured motif independently emerged in separated traditions",
+      "default": "ACTIVE_BUT_HIGH_BAR"
+    },
+    {
+      "id": "H4_COMMON_REVELATION_METAPHYSICAL",
+      "claim": "Similarities prove a single supernatural source or revelation",
+      "default": "OUTSIDE_EMPIRICAL_ADMISSION_FROM_TEXT_COMPARISON_ALONE"
+    }
+  ],
+  "promotion_gates": [
+    "ORIGINAL_LANGUAGE_CHECK_WHEN_AVAILABLE",
+    "EDITION_AND_TRANSLATION_IDENTITY",
+    "EARLIEST_ATTESTATION_WINDOW",
+    "KNOWN_CONTACT_ROUTE_CHECK",
+    "SOURCE_ROOT_COLLAPSE",
+    "BLIND_CONTROL_FALSE_MATCH_RATE",
+    "RARE_FEATURE_BUNDLE_NOT_SINGLE_GENERIC_MOTIF",
+    "COUNTEREXAMPLE_SEARCH",
+    "NEGATIVE_RESULT_PRESERVATION"
+  ],
+  "forbidden_shortcuts": [
+    "COUNTING_BIBLE_OT_AND_TANAKH_AS_INDEPENDENT_SOURCES",
+    "COUNTING_MULTIPLE_TRANSLATIONS_AS_MULTIPLE_WITNESSES",
+    "USING_ONE_WORD_SIMILARITY_AS_COMMON_SOURCE_PROOF",
+    "TRANSLATING_DIFFERENT_TERMS_INTO_THE_SAME_ENGLISH_WORD_AND_CALLING_IT_A_MATCH",
+    "USING_MODEL_AGREEMENT_AS_REPLICATION",
+    "TREATING_MISSING_DIGITIZATION_AS_ABSENCE",
+    "TREATING_ORAL_TRADITION_AS_PUBLIC_DOMAIN_BY_DEFAULT"
+  ]
+}
