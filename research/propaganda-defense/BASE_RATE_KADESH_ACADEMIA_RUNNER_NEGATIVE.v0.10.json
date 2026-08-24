@@ -1,0 +1,41 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_academia_runner_negative.v0.10",
+  "date": "2026-08-24",
+  "status": "NEGATIVE_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_EXACT_SCAN_MIRROR_DISCOVERY_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / JSTOR-UChicago",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32759061839,
+    "github_actions_job_id": 97533255251,
+    "artifact_id": 9531956379,
+    "artifact_sha256": "23e0877e6b02c12f414bd818aad68db94f195ea27e4b913abe1a99d950ad59a4"
+  },
+  "result": {
+    "public_search_index_state": "Academia search indexing exposes Wilson 1927 title and internal OCR snippet around article page 282.",
+    "hosted_runner_state": {"discovered_refs": 0, "exact_identity_pages": 0, "pdf_transports": 0},
+    "classification": "SEARCH_INDEX_VISIBLE_BUT_RUNNER_RETRIEVAL_NOT_DISCOVERABLE",
+    "finding": "Search-engine visibility is not promoted to a byte seal. Academia remains unadmitted as a transport mirror."
+  },
+  "admission": {
+    "academia_is_authority": false,
+    "academia_is_independent_witness": false,
+    "br03_content_sufficient": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Search archival holdings for a machine-retrievable scan of the complete AJSL volume 43 (1926-1927), then locate the already frozen Wilson pp.266-287 internally. Do not substitute a different Kadesh translation or edition.",
+  "laws": [
+    "SEARCH_INDEX_VISIBILITY != RETRIEVAL",
+    "PROFILE_SNIPPET != SOURCE_BYTES",
+    "MIRROR_DISCOVERY_FAIL != PERMISSION_TO_USE_SNIPPET",
+    "WHOLE_VOLUME_SCAN_CAN_BE_SAME_PUBLICATION_TRANSPORT",
+    "FAIL_IS_PRESERVED_BEFORE_ROUTE_CHANGE"
+  ]
+}
