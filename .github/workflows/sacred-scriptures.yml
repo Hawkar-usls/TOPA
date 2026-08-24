@@ -1,0 +1,25 @@
+name: sacred-scriptures
+
+on:
+  push:
+    branches:
+      - topa-sacred-scriptures
+  pull_request:
+    paths:
+      - 'research/sacred-scriptures/**'
+      - 'tools/sacred_scripture_corpus_check.py'
+      - '.github/workflows/sacred-scriptures.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate sacred scripture corpus
+        run: python tools/sacred_scripture_corpus_check.py
