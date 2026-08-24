@@ -1,0 +1,112 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coder_qualification_assignment_policy.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_ANY_CODER_ASSIGNMENT",
+  "bundle_authority": {
+    "receipt": "BASE_RATE_CODER_BUNDLE_FREEZE_PASS.v0.1.json",
+    "bundle_sha256": "9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa",
+    "required_coders": 2
+  },
+  "purpose": "Ensure that genuine independence is paired with minimum methodological competence, without training coders on BR01-BR08 answers or exposing sacred-target results.",
+  "assignment_state": {
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "assignment_receipts_created": 0,
+    "delivery_receipts_created": 0,
+    "semantic_values_populated": 0,
+    "semantic_coding_permission": false,
+    "score_permission": false
+  },
+  "independence_requirements": [
+    "A and B are separate reasoning paths or persons, not relabeled passes of one reasoning instance.",
+    "A may not view B's values, evidence pointers, confidence, disagreements or interim notes before A freezes a complete receipt; reciprocal for B.",
+    "A and B may not coordinate interpretations during primary coding.",
+    "Both receive exactly the same bundle SHA-256 and the same frozen source/locus authorities.",
+    "Neither receives sacred manipulation-screen results, desired conclusions or SCORE outputs before own base-rate receipt freezes."
+  ],
+  "qualification_checks_before_assignment": [
+    {
+      "id": "Q01_UNKNOWN_IS_VALID",
+      "must_acknowledge": "UNKNOWN is a valid result and must not be converted to ABSENT because evidence is missing."
+    },
+    {
+      "id": "Q02_FORM_INTENT_EFFECT_SEPARATION",
+      "must_acknowledge": "Observable rhetorical form, manipulative intent, propaganda institution and audience effect are separate evidentiary levels."
+    },
+    {
+      "id": "Q03_GENRE_FALSE_POSITIVE_CONTROL",
+      "must_acknowledge": "A PRESENT feature requires the frozen genre false-positive controls and an alternative nonmanipulative explanation to be considered."
+    },
+    {
+      "id": "Q04_TRANSLATION_FIREWALL",
+      "must_acknowledge": "Translation-only evidence may support structural coding but receives no original-language lexical correspondence credit."
+    },
+    {
+      "id": "Q05_SOURCE_ROOT_COLLAPSE",
+      "must_acknowledge": "Translations, mirrors, archival timestamps and derivative editions do not become independent historical witnesses merely by repetition."
+    },
+    {
+      "id": "Q06_INTENT_FROM_STYLE_FORBIDDEN",
+      "must_acknowledge": "Style or emotional language alone cannot establish deceptive/manipulative intent."
+    },
+    {
+      "id": "Q07_EFFECT_FROM_TEXT_FORBIDDEN",
+      "must_acknowledge": "Textual form alone cannot establish X35 observed audience effect."
+    },
+    {
+      "id": "Q08_EVIDENCE_POINTER_REQUIRED",
+      "must_acknowledge": "Every PRESENT or ABSENT judgment must carry a reproducible evidence pointer; uncertainty is explicitly recorded."
+    },
+    {
+      "id": "Q09_COMPETENCE_BOUNDARY",
+      "must_acknowledge": "When a language/philology claim exceeds the coder's competence or supplied evidence, the coder uses UNKNOWN/INSUFFICIENT rather than guessing."
+    },
+    {
+      "id": "Q10_NO_TARGET_TRAINING",
+      "must_acknowledge": "Qualification does not expose expected BR01-BR08 values and uses no sacred-target outcomes as examples."
+    }
+  ],
+  "qualification_pass_rule": "All Q01-Q10 acknowledgements must be recorded before an assignment receipt is valid. This is methodological qualification, not proof of domain expertise in every ancient language.",
+  "domain_competence_declaration": {
+    "required": true,
+    "per_control_allowed": ["DIRECT_SOURCE_LANGUAGE_COMPETENCE","STRUCTURAL_TRANSLATION_ONLY","PHILOLOGICAL_SUPPORT_REQUIRED","INSUFFICIENT_FOR_LEXICAL_CLAIMS"],
+    "rule": "A coder may still code structure outside direct language competence if the frozen evidence mode permits it, but must not claim lexical/source-language evidence beyond declared competence."
+  },
+  "assignment_receipt_must_include": [
+    "coder_slot",
+    "independence_basis",
+    "qualification_Q01_Q10",
+    "domain_competence_declaration_BR01_BR08",
+    "bundle_sha256",
+    "assigned_at",
+    "no_prior_view_of_other_coder_values_attestation",
+    "no_sacred_target_result_exposure_attestation"
+  ],
+  "delivery_receipt_must_include": [
+    "coder_slot",
+    "bundle_sha256",
+    "dependency_count_8",
+    "delivery_identity_or_channel",
+    "received_bundle_hash_verified",
+    "semantic_work_not_started_before_delivery_verification"
+  ],
+  "unlock_after_two_valid_assignment_and_delivery_receipts": {
+    "base_rate_semantic_coding_permission": true,
+    "comparison_permission": false,
+    "disagreement_manifest_permission": false,
+    "sacred_target_coding_permission": false,
+    "score_permission": false,
+    "next_gate": "CODER_A_AND_B_INDEPENDENT_RAW_MATRIX_FREEZE"
+  },
+  "laws": [
+    "INDEPENDENCE_WITHOUT_METHOD_COMPETENCE_IS_NOT_ENOUGH",
+    "QUALIFICATION != TARGET_ANSWER_TRAINING",
+    "LANGUAGE_COMPETENCE_LIMITS_LEXICAL_CREDIT",
+    "UNKNOWN_IS_VALID",
+    "NO_GUESSING_ACROSS_COMPETENCE_BOUNDARY",
+    "IDENTICAL_BUNDLE_HASH_REQUIRED_FOR_A_AND_B",
+    "NO_COMPARE_BEFORE_BOTH_RAW_RECEIPTS_FREEZE",
+    "NO_SACRED_CONTAMINATION",
+    "NO_SCORE"
+  ]
+}
