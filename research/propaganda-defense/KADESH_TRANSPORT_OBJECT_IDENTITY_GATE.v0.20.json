@@ -1,0 +1,75 @@
+{
+  "schema": "topa.propaganda_defense.kadesh_transport_object_identity_gate.v0.20",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_V0_20_EXECUTION",
+  "trigger": "Reverse finding from preserved v0.19 partial: scholarly source authority and mirror transport-object identity are distinct gates.",
+  "source_authority_frozen": {
+    "author": "John A. Wilson",
+    "publication": "The American Journal of Semitic Languages and Literatures",
+    "publisher_root": "University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "title": "The Texts of the Battle of Kadesh",
+    "authority_may_not_be_replaced_by_mirror": true
+  },
+  "transport_object_frozen": {
+    "scribd_numeric_document_id": "493951399",
+    "wayback_timestamps": ["20250825141753", "20260111160515"],
+    "original_url": "https://www.scribd.com/document/493951399/Wilson-John-The-Texts-of-the-Battle-of-Kadesh",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; p.278 retained as THE RECORD exclusion boundary"
+  },
+  "per_snapshot_mandatory": {
+    "exact_document_id_present": true,
+    "exact_title_present": true,
+    "all_journal_page_labels_266_through_287_present": true,
+    "the_poem_marker_present": true,
+    "council_urges_peace_marker_present": true,
+    "the_record_marker_present": true,
+    "comment_on_the_texts_marker_present": true,
+    "ordering": "THE_POEM_BEFORE_THE_RECORD_BEFORE_COMMENT_ON_THE_TEXTS",
+    "nearest_page_geometry": {
+      "THE_POEM_near_page_266_max_chars": 3000,
+      "COUNCIL_URGES_PEACE_near_page_277_max_chars": 3500,
+      "THE_RECORD_near_page_278_max_chars": 2200,
+      "COMMENT_ON_THE_TEXTS_near_page_287_max_chars": 3500
+    },
+    "poem_span_between_THE_POEM_and_THE_RECORD_min_normalized_chars": 8000,
+    "poem_span_min_word_tokens": 1200,
+    "embedded_original_asset_must_bind_document_id": true
+  },
+  "cross_timestamp_mandatory": {
+    "both_snapshots_must_pass_per_snapshot_gate": true,
+    "poem_span_word_set_jaccard_min": 0.90,
+    "same_page_coverage": true,
+    "same_marker_vector": true
+  },
+  "explicit_nonrequirements": {
+    "mirror_must_repeat_author_string": false,
+    "reason": "The mirror is not used to establish authorship or scholarly authority. Those are independently frozen at Wilson/AJSL/DOI/JSTOR. The mirror must instead prove object identity/content geometry."
+  },
+  "promotion_if_pass": {
+    "transport_object_identity_content_sufficiency": "PASS_CANDIDATE",
+    "transport_admission_review_eligible": true,
+    "br03_retrieval_pass": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "promotion_if_fail": {
+    "transport_admission_review_eligible": false,
+    "br03_retrieval_pass": false,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "laws": [
+    "SOURCE_AUTHORITY_IDENTITY != TRANSPORT_OBJECT_IDENTITY",
+    "MIRROR_AUTHOR_METADATA_IS_NOT_AUTHORSHIP_EVIDENCE",
+    "TRANSPORT_OBJECT_IDENTITY_REQUIRES_INTERNAL_GEOMETRY_NOT_TITLE_ALONE",
+    "TWO_ARCHIVE_TIMESTAMPS_MUST_REPLICATE",
+    "TRANSPORT_MIRROR_ADDS_ZERO_SOURCE_ROOTS",
+    "GATE_FROZEN_BEFORE_V0_20_EXECUTION",
+    "PASS_CANDIDATE != BR03_RETRIEVAL_PASS",
+    "NO_SEMANTIC_CODING",
+    "NO_SCORE"
+  ]
+}
