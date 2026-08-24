@@ -1,11 +1,18 @@
 {
-  "schema": "janus.topa.upstream-snapshot.v1",
+  "schema": "janus.topa.upstream-snapshot.v1.1",
   "repository": "Hawkar-usls/TOPA",
   "sources": {
-    "TOPA-native-data": {
+    "TOPA-native": {
       "repository": "Hawkar-usls/TOPA",
       "branch": "main",
-      "import": "data/",
+      "commit": "7e13eb7e5e26430474585ae183daafb260032f32",
+      "surfaces": [
+        ".janus/",
+        "data/",
+        "hunts/",
+        "local integrations/",
+        "local registry state"
+      ],
       "mode": "NATIVE_NOT_UPSTREAM_COPY"
     },
     "janus-meta-registry": {
