@@ -1,0 +1,36 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_eight_authority_ci_success_receipt.v0.2",
+  "date": "2026-08-24",
+  "status": "EIGHT_SOURCE_AUTHORITIES_ZERO_VALUE_PACKET_LOCK_VALIDATED",
+  "authority_branch": "topa-propaganda-defense",
+  "authority_base_commit": "81abd7e6fb28ee227db93a74b3bffb6622098990",
+  "technical_harness": {
+    "draft_pr": 5,
+    "head": "topa-propaganda-defense-ci-run-v3",
+    "head_commit": "89180ec5b7ed11bcee3787bdf64a63e18fd4c0b2",
+    "base": "topa-propaganda-defense",
+    "merge_intent": false
+  },
+  "workflow": {
+    "run_id": 32751571486,
+    "job_id": 97509504992,
+    "name": "propaganda-base-rate-prescore",
+    "conclusion": "success"
+  },
+  "validator_output": {
+    "TOPA_BASE_RATE_PRESCORE_CHECK": "PASS",
+    "ATLAS_TECHNIQUES": 138,
+    "CROSS_EPOCH_DIMENSIONS": 35,
+    "ANCIENT_SOURCE_AUTHORITIES": "8/8_FROZEN",
+    "ZERO_VALUE_PACKET_SHA256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+    "EXACT_SUB_LOCUS_COMMITMENTS": "INCOMPLETE",
+    "SEMANTIC_VALUES_POPULATED": 0,
+    "BASE_RATE_CODING_PERMISSION": false,
+    "SACRED_FLOOD_A_B_CONTAMINATION": "BLOCKED",
+    "SCORE_PERMISSION": false
+  },
+  "state_delta_from_previous_ci": "BR05 source authority moved from OPEN to FROZEN through a Hethitologie-Portal CTH 62 witness/catalog bundle plus open modern scholarly transliteration; the validator advanced accordingly without unlocking coding.",
+  "interpretation": "PASS validates the new locked method state only. Source authority completeness is not exact-sub-locus completeness, is not semantic coding, and is not evidence that any control or sacred text is manipulative propaganda.",
+  "next_unmet_requirement": "BR01_BR08_EXACT_SUB_LOCUS_AND_SOURCE_OR_METADATA_COMMITMENTS",
+  "claim_effect": "MACHINE_READABLE_METHOD_STATE_VALIDATION_ONLY_NO_SEMANTIC_RESULT_NO_SCORE"
+}
