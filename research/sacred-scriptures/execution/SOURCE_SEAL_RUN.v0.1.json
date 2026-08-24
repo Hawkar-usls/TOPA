@@ -1,6 +1,6 @@
 {
   "schema": "topa.sacred_scriptures.source_seal_run.v0.1",
-  "executed_at_utc": "2026-08-24T14:20:02.433480+00:00",
+  "executed_at_utc": "2026-08-24T14:49:54.827811+00:00",
   "status": "SOURCE_SEAL_FAILURE",
   "required_source_ids": [
     "F01_ATRAHASIS",
@@ -62,18 +62,28 @@
       "verse_count": 25,
       "normalization": "NFC only for hashing; verbatim verse characters otherwise preserved; LF rows",
       "status": "SEALED"
+    },
+    {
+      "id": "F05_SATAPATHA_MANU",
+      "source": "GRETIL Satapatha-Brahmana, Madhyamdina, Book 1",
+      "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm",
+      "source_download_bytes": 239590,
+      "source_download_sha256": "50aefd5a364efa688e3767ec407f143b5174726e79ed94f3bc65b9ce5526ab5b",
+      "frozen_locus_descriptor": "Śatapatha-Brāhmaṇa 1.8.1.[1]-[10]",
+      "slice_seal_type": "NFC_UTF8_VISIBLE_TEXT_SHA256",
+      "slice_bytes": 2698,
+      "slice_sha256": "8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6",
+      "normalization": "HTML tags removed; entities unescaped; visible marker 1.8.1.[1] through before 1.8.1.[11]; NFC; LF",
+      "source_note": "GRETIL itself contains a mechanically corrupted visible number for paragraph 3 (1.8.1[[.]]3); it is preserved verbatim inside the frozen slice rather than repaired.",
+      "status": "SEALED"
     }
   ],
-  "sealed_count": 3,
+  "sealed_count": 4,
   "required_count": 5,
   "errors": [
     {
       "stage": "BHSA",
-      "error": "AttributeError: 'bool' object has no attribute 'F'"
-    },
-    {
-      "stage": "GRETIL",
-      "error": "RuntimeError: GRETIL ŚB 1.8.1.[1]-[10] markers not found"
+      "error": "KeyError: 'g_cons'"
     }
   ],
   "rights_policy": "Receipt stores hashes/provenance only; no source text is mirrored by this artifact.",
