@@ -1,0 +1,33 @@
+{
+  "schema": "topa.sacred_scriptures.ancient_non_sacred_manipulation_base_rate_deck.v0.1",
+  "date": "2026-08-24",
+  "status": "PREREGISTERED_CANDIDATE_DECK_SOURCE_SEALING_PENDING",
+  "purpose": "Estimate how often manipulation-atlas forms occur in non-sacred texts of comparable genre, period and institutional setting before promoting similar forms in sacred texts.",
+  "selection_frozen_before_sacred_manipulation_scoring": true,
+  "controls": [
+    {"id":"BR01_HAMMURABI","class":"LAW_CODE","source":"Code of Hammurabi, L. W. King translation / Yale Avalon surface","locus_plan":"prologue + selected operative laws + epilogue/curses","why":"tests divine legitimation, royal titulary, law authority, reward/punishment and curse formulas outside scripture","source_state":"PUBLIC_SURFACE_VERIFIED_HASH_PENDING"},
+    {"id":"BR02_BEHISTUN","class":"ROYAL_INSCRIPTION","source":"Darius I Behistun inscription","locus_plan":"genealogy/titulary + revolt narrative + lie/loyalty admonition","why":"tests genealogy, divine favor, enemy labeling, victory narrative and truth/lie authority claims in imperial inscription","source_state":"TRANSLITERATION_AND_TRANSLATION_SURFACE_VERIFIED_HASH_PENDING"},
+    {"id":"BR03_EGYPT_KADESH","class":"ROYAL_VICTORY_INSCRIPTION","source":"Ramesses II Kadesh textual/monumental tradition","locus_plan":"royal self-presentation + battle narrative + divine aid passages","why":"tests victory inflation, heroization, titulary, divine legitimation and monumentality in state text","source_state":"JANUS_EGYPT_LINEAGE_AVAILABLE_EXACT_SOURCE_FREEZE_PENDING"},
+    {"id":"BR04_ASSYRIAN_ANNALS","class":"ROYAL_ANNALS","source":"Neo-Assyrian royal inscription/annal corpus via scholarly open corpus candidate","locus_plan":"one frozen campaign account selected before technique scoring","why":"tests enemy dehumanization, terror display, victory framing, divine sanction and court chronicle selection","source_state":"SOURCE_SELECTION_PENDING"},
+    {"id":"BR05_HITTITE_TREATY","class":"TREATY","source":"Hittite suzerainty treaty candidate","locus_plan":"historical prologue + loyalty clauses + divine witnesses + blessings/curses","why":"tests authority, covenant-like structure, oath, blessing/curse and loyalty enforcement in explicitly political treaty genre","source_state":"SOURCE_SELECTION_PENDING"},
+    {"id":"BR06_THUCYDIDES","class":"POLITICAL_MILITARY_SPEECH","source":"Thucydides speech/dialogue candidate","locus_plan":"one complete speech/dialogue frozen before scoring","why":"tests fear, honor, social proof, false dilemma, ethos/pathos and war rhetoric outside sacred canon","source_state":"SOURCE_SELECTION_PENDING"},
+    {"id":"BR07_RES_GESTAE","class":"POLITICAL_SELF_INSCRIPTION","source":"Res Gestae Divi Augusti","locus_plan":"full inscription or frozen thematic blocks","why":"tests self-presentation, selective memory, public benefaction, authority transfer and manufactured legitimacy","source_state":"SOURCE_SELECTION_PENDING"},
+    {"id":"BR08_PTAHHOTEP","class":"WISDOM_INSTRUCTION","source":"Instruction of Ptahhotep or comparable Egyptian wisdom instruction","locus_plan":"one stable complete edition/translation slice","why":"tests moral exhortation, authority, repetition, hierarchy and pedagogy without assuming propaganda","source_state":"SOURCE_SELECTION_PENDING"}
+  ],
+  "admission_requirements": [
+    "exact edition/manuscript or scholarly corpus identity",
+    "exact locus",
+    "source SHA-256 where lawful/stable",
+    "slice SHA-256 where lawful/stable",
+    "genre",
+    "date range",
+    "language",
+    "translation identity if used",
+    "provenance and rights state",
+    "predefined atlas technique subset",
+    "UNKNOWN distinct from ABSENT"
+  ],
+  "comparison_rule": "A sacred-text technique may not be called unusual or specifically manipulative merely because it is present. Compare its rate/form against relevant non-sacred controls and attack genre/institutional alternatives first.",
+  "flood_blind_firewall": "This deck and its future results must remain hidden from Flood Coder A/B until their independent 28-feature receipts freeze.",
+  "score_permission": false
+}
