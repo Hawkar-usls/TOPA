@@ -1,0 +1,39 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.1",
+  "date": "2026-08-24",
+  "status": "ACTIVE_HISTORICAL_CROSS_NATIONAL_SOURCE_EXPANSION_AND_SEALING",
+  "entry_gates": {
+    "seed_corpus": "36 SOURCES / 6 CLASSES",
+    "current_web_receipts": "14 VERIFIED PUBLICATION SURFACES",
+    "historical_computational_expansion": "12 ADDITIONAL SOURCE SURFACES",
+    "multiside_primary_archive_expansion": "8 PRIMARY/ARCHIVAL SOURCE SURFACES",
+    "guardrail_ci": "PASS",
+    "operational_firewall": "PASS",
+    "source_symmetry_gate": "PASS",
+    "score_permission": false
+  },
+  "objective": "Expand toward a cross-era, cross-national, provenance-bound propaganda/information-influence corpus and freeze stable source snapshots before any mechanism-prevalence or intervention-effect scoring.",
+  "ordered_next": [
+    "expand non-Western and multilingual primary archives and scholarship",
+    "resolve exact rights/license state for every open full-text/PDF/archive candidate",
+    "hash stable open source snapshots and preserve retrieval receipts without bulk-mirroring restricted works",
+    "freeze a cross-epoch observable-mechanism coding schema before artifact selection for scoring",
+    "build positive/negative controls separating propaganda behavior from ordinary persuasion, journalism, satire and uncoordinated misinformation",
+    "separate content truth, manipulative behavior, coordination, attribution, reach and causal audience effect into independent gates",
+    "preregister defensive intervention outcomes and side-effect measures before evaluating countermeasures",
+    "run JANUS forward/reverse/spiral and source-symmetry passes on the frozen corpus"
+  ],
+  "hard_locks": [
+    "NO_REAL_WORLD_PROPAGANDA_ASSET_GENERATION",
+    "NO_REAL_AUDIENCE_MICROTARGETING",
+    "NO_COVERT_PERSONA_OR_ASTROTURF_DESIGN",
+    "NO_MODERATION_OR_ATTRIBUTION_EVASION",
+    "NO_MILITARY_PSYOP_EXECUTION_PLANNING",
+    "NO_ATTRIBUTION_FROM_MODEL_OUTPUT_ALONE",
+    "NO_VIRALITY_TO_PERSUASION_SHORTCUT",
+    "NO_EFFECT_SCORE_BEFORE_PREREGISTRATION_AND_CONTROLS",
+    "NO_SIDE_BASED_EVIDENCE_STANDARD",
+    "SACRED_TEXT_A_B_GATE_REMAINS_INDEPENDENT_AND_OPEN"
+  ],
+  "promotion_ceiling": "DEFENSIVE_CORPUS_AND_METHOD_READY_ONLY"
+}
