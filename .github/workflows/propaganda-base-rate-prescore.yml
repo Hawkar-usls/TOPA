@@ -1,0 +1,30 @@
+name: propaganda-base-rate-prescore
+
+on:
+  push:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'research/propaganda-defense/**'
+      - 'tools/propaganda_base_rate_check.py'
+      - '.github/workflows/propaganda-base-rate-prescore.yml'
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'research/propaganda-defense/**'
+      - 'tools/propaganda_base_rate_check.py'
+      - '.github/workflows/propaganda-base-rate-prescore.yml'
+
+jobs:
+  guardrail:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate ancient base-rate prescore lock
+        run: python tools/propaganda_base_rate_check.py
