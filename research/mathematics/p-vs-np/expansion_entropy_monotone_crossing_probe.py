@@ -37,7 +37,6 @@ def evaluate_gates(root_assignment: dict[int, bool], gates: list[Gate]) -> dict[
 
 
 def parity_b2(n: int) -> tuple[list[Gate], int]:
-    """Compute x1 xor ... xor xn with exactly 3(n-1) AND gates."""
     assert n >= 1
     if n == 1:
         return [], 1
@@ -56,14 +55,11 @@ def parity_b2(n: int) -> tuple[list[Gate], int]:
 
 
 def exact_positive_cnf_false_rows(n: int, fn) -> set[Clause]:
-    """Canonical full truth-table CNF: one width-n clause per false row."""
     clauses: set[Clause] = set()
     for bits in product((False, True), repeat=n):
         if fn(bits):
             continue
-        # Clause falsified exactly by this row.
-        clause = frozenset((-i if bits[i-1] else i) for i in range(1, n + 1))
-        clauses.add(clause)
+        clauses.add(frozenset((-i if bits[i-1] else i) for i in range(1, n + 1)))
     return clauses
 
 
@@ -100,7 +96,6 @@ def crossing_monotone(gates: list[Gate], root_or_local_atoms: set[int]) -> bool:
 
 
 def flatten_crossing(var: int, gate_map: dict[int, Gate], local_atoms: set[int]) -> tuple[int, ...]:
-    """Return signed local literals in a crossing-monotone conjunction."""
     def flat_lit(lit: int) -> list[int]:
         v = abs(lit)
         if v in local_atoms:
@@ -111,8 +106,6 @@ def flatten_crossing(var: int, gate_map: dict[int, Gate], local_atoms: set[int])
         return flat_lit(g.left) + flat_lit(g.right)
 
     out = flat_lit(var)
-    # Stable duplicate deletion; contradictory leaves are allowed syntactically
-    # but are irrelevant for the clean fixtures below.
     seen: set[int] = set()
     uniq: list[int] = []
     for lit in out:
@@ -123,7 +116,6 @@ def flatten_crossing(var: int, gate_map: dict[int, Gate], local_atoms: set[int])
 
 
 def expand_clause_monotone(clause: tuple[int, ...], macros: dict[int, tuple[int, ...]]) -> set[Clause]:
-    """Exact CNF expansion of one macro-clause under flattened conjunctions."""
     acc: set[Clause] = {frozenset()}
     for lit in clause:
         v = abs(lit)
@@ -153,38 +145,37 @@ def resolve(p: Clause, q: Clause, pivot: int) -> Clause | None:
 
 
 def check_monotone_flattening_and_expansion() -> None:
-    # Local atoms 1..8; crossing chain 20=(1&2), 21=(20&3), 22=(21&-4).
     gates = [Gate(20, 1, 2), Gate(21, 20, 3), Gate(22, 21, -4)]
-    assert crossing_monotone(gates, set(range(1, 9)))
+    locals_ = set(range(1, 9))
+    assert crossing_monotone(gates, locals_)
     gm = {g.var: g for g in gates}
-    macros = {v: flatten_crossing(v, gm, set(range(1, 9))) for v in (20, 21, 22)}
+    macros = {v: flatten_crossing(v, gm, locals_) for v in (20, 21, 22)}
     assert macros[20] == (1, 2)
     assert macros[21] == (1, 2, 3)
     assert macros[22] == (1, 2, 3, -4)
 
     assert len(expand_clause_monotone((22,), macros)) == 4
-    neg = expand_clause_monotone((-22,), macros)
-    assert neg == {frozenset({-1, -2, -3, 4})}
+    assert expand_clause_monotone((-22,), macros) == {frozenset({-1, -2, -3, 4})}
 
-    # Three positive ER3 macro literals: exact Cartesian product of leaf counts.
+    # Cartesian choices are an UPPER bound, not an equality: overlapping macro
+    # leaves can canonicalize to the same clause. This fixture intentionally
+    # overlaps supports and should produce 11 distinct clauses, <= 2*3*4.
     c = expand_clause_monotone((20, 21, 22), macros)
-    assert len(c) == 2 * 3 * 4
+    assert len(c) == 11
+    assert len(c) <= 2 * 3 * 4
     assert len(c) <= (1 + sum(len(x) for x in macros.values())) ** 3
 
-    # Explicit negative crossing dependency is rejected.
     bad = [Gate(20, 1, 2), Gate(21, -20, 3)]
-    assert not crossing_monotone(bad, set(range(1, 9)))
+    assert not crossing_monotone(bad, locals_)
 
 
 def check_flattened_pivot() -> None:
-    # e = l1 & ... & lr.  From A|li and B|~l1|...|~lr, resolve away leaves.
     for r in range(2, 9):
         leaves = list(range(1, r + 1))
         A, B = 100, 101
         cur = frozenset({B, *(-x for x in leaves)})
         for leaf in leaves:
-            parent = frozenset({A, leaf})
-            nxt = resolve(parent, cur, leaf)
+            nxt = resolve(frozenset({A, leaf}), cur, leaf)
             assert nxt is not None
             cur = nxt
         assert cur == frozenset({A, B})
@@ -199,7 +190,8 @@ def main() -> None:
     print("C025_E2R_L1G_GENERIC_POLY_ELIMINATION_ROUTE = REFUTED")
     print("C025_E2R_L1G_CROSSING_MONOTONE_ADMISSION = PASS")
     print("C025_E2R_L1G_MONOTONE_FLATTENING = PASS")
-    print("C025_E2R_L1G_ER3_MACRO_CLAUSE_POLY_EXPANSION = PASS")
+    print("C025_E2R_L1G_OVERLAP_CANONICALIZATION = PASS")
+    print("C025_E2R_L1G_ER3_MACRO_CLAUSE_POLY_UPPER_BOUND = PASS")
     print("C025_E2R_L1G_FLATTENED_PIVOT_CHAIN = PASS")
     print("C025_E2R_L1G_NEGATIVE_CROSSING_DEPENDENCY_REJECTION = PASS")
     print("claim_boundary = finite mechanics only; restricted asymptotic consequence uses the established NW local-functional lower bound")
