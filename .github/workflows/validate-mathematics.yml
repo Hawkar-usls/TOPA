@@ -55,4 +55,10 @@ jobs:
 
       - name: Replay Issue 211 finite mechanics
         run: |
-          python research/mathematics/p-vs-np/policy0a_padded_gt_counterfamily.py
+          cd research/mathematics/p-vs-np
+          python policy0a_padded_gt_counterfamily.py
+
+      - name: Replay Policy-0B fair scheduler
+        run: |
+          cd research/mathematics/p-vs-np
+          python policy0b_fair_scheduler_probe.py
