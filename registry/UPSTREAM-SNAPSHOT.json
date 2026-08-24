@@ -1,0 +1,39 @@
+{
+  "schema": "janus.topa.upstream-snapshot.v1.1",
+  "repository": "Hawkar-usls/TOPA",
+  "sources": {
+    "janus-meta-registry": {
+      "repository": "Hawkar-usls/janus-meta-registry",
+      "branch": "main",
+      "commit": "d8df0e2a4a3a898230bc8d9f6b870e35685c0bd5",
+      "import": "corpus/meta-registry/JANUS-TOPA-*.json"
+    },
+    "Janus_Genesis": {
+      "repository": "Hawkar-usls/Janus_Genesis",
+      "branch": "main",
+      "commit": "dd5e2a64758e7621650d8044917199693b862a54",
+      "import": "protocols/TOPA_FOUNDATION.json"
+    },
+    "Janus-Demiurge": {
+      "repository": "Hawkar-usls/Janus-Demiurge",
+      "branch": "main",
+      "commit": "999eaed078ba1780b480629520997114adb42666",
+      "import": "integrations/Janus-Demiurge/"
+    },
+    "janus-distributed-ai-swarm": {
+      "repository": "Hawkar-usls/janus-distributed-ai-swarm",
+      "branch": "main",
+      "commit": "ad1b9da27f355fff3d5e236d427c71dcb34508c8",
+      "import": "integrations/janus-distributed-ai-swarm/"
+    },
+    "Janus-Cosmos-tesla-sweep": {
+      "repository": "Hawkar-usls/Janus-Cosmos",
+      "branch": "janus-tesla-sweep",
+      "commit": "9615544fdefbaf80cd612bc84f830c8853245300",
+      "import": "research/tesla-sweep/"
+    }
+  },
+  "local_habitat_and_method_integrations_are_topa_authored": true,
+  "copy_is_independent_replication": false,
+  "world_truth": false
+}
