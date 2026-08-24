@@ -1,0 +1,77 @@
+{
+  "schema": "topa.sacred_scriptures.source_coding_packet_template.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_TEMPLATE_NO_SEMANTIC_VALUES",
+  "feature_authority": {
+    "path": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+    "feature_count": 28,
+    "feature_schema_sha256": "31c1e8561a53d775202509111bc013770c5b71355269678226c7f76a67cf9e0f"
+  },
+  "packet_required_fields": [
+    "coder_instance_id",
+    "coder_role_A_or_B",
+    "item_receipt_id",
+    "source_or_control_id",
+    "source_slice_sha256",
+    "packet_template_sha256",
+    "feature_schema_sha256",
+    "coding_started_at",
+    "coding_completed_at",
+    "external_aids_log",
+    "features",
+    "independence_attestation"
+  ],
+  "feature_cell_required_fields": [
+    "feature_id",
+    "value",
+    "evidence_pointer",
+    "evidence_mode",
+    "uncertainty_note"
+  ],
+  "allowed_values": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"],
+  "evidence_modes": [
+    "EXPLICIT_TEXT_LOCUS",
+    "ORIGINAL_LANGUAGE_OR_PHILOLOGICAL_SUPPORT",
+    "STRUCTURAL_SEQUENCE_IN_FROZEN_LOCUS",
+    "SOURCE_DAMAGE_OR_LACUNA",
+    "NOT_APPLICABLE_BY_FROZEN_DEFINITION"
+  ],
+  "coding_rules": [
+    "Code only from the exact frozen source locus and explicitly logged philological aids.",
+    "Do not infer a feature from general memory of the tradition, later retellings or neighboring passages outside the frozen locus.",
+    "UNKNOWN is a positive epistemic state and must never be coerced to ABSENT.",
+    "NOT_APPLICABLE is used only when the frozen feature definition genuinely does not apply to the item, not when evidence is missing.",
+    "Ordered bundles require explicit order in the frozen locus.",
+    "Modern translation word overlap receives zero lexical evidence by itself.",
+    "rare_lexical_or_formulaic_correspondence may be PRESENT only with original-language or philologically controlled support; if unavailable, use UNKNOWN rather than translation-based PRESENT.",
+    "Do not consult scorer outputs, counterpart coder values, expected clusters or control-class labels.",
+    "Every PRESENT and ABSENT value requires an evidence pointer or a frozen-definition reason sufficient for independent audit.",
+    "Do not harmonize broad concepts across traditions beyond the frozen ontology."
+  ],
+  "packet_visibility": {
+    "coder_may_see": [
+      "source identity needed to locate/understand the frozen text",
+      "exact frozen locus",
+      "edition/manuscript/source metadata needed for philology",
+      "frozen feature definitions",
+      "approved/logged reference aids"
+    ],
+    "coder_must_not_see": [
+      "other coder output",
+      "scorer output",
+      "expected family cluster",
+      "control class when not intrinsically required by source identification",
+      "future C09/C10 shuffled output",
+      "post-score chronology/contact reveal packet"
+    ]
+  },
+  "per_item_output_state_initial": "UNCODED",
+  "template_contains_feature_values": false,
+  "template_contains_expected_answers": false,
+  "template_contains_family_labels_for_scoring": false,
+  "independence_contract": "CODER_INDEPENDENCE_CONTRACT.v0.1.json",
+  "arbitration_protocol": "ARBITRATION_PROTOCOL.v0.1.json",
+  "receipt_freeze_rule": "Each coder's completed item packet is hashed and frozen before counterpart output can be revealed to that coder or to arbitration.",
+  "score_permission": false,
+  "claim_effect": "CODING_INSTRUMENT_ONLY_NO_TEXTUAL_RESULT_CREDIT"
+}
