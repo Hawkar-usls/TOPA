@@ -1,0 +1,44 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_transport_identity_pass_candidate.v0.20.1",
+  "date": "2026-08-24",
+  "status": "PASS_CANDIDATE_TRANSPORT_ADMISSION_REVIEW_ELIGIBLE",
+  "parent_gate": "KADESH_TRANSPORT_OBJECT_IDENTITY_GATE.v0.20.json",
+  "implementation_correction": "KADESH_TRANSPORT_IDENTITY_IMPLEMENTATION_CORRECTION.v0.20.1.json",
+  "diagnostic_run": {
+    "github_actions_run_id": 32775577949,
+    "github_actions_job_id": 97585754358,
+    "artifact_id": 9537801243,
+    "artifact_sha256": "791a736617d14a8973af14bc47b2b9ca9232e9c01d9c9c85f685e06422cd7692"
+  },
+  "result": {
+    "snapshot_pass": "2/2",
+    "poem_wordset_jaccard": 0.9933962264150943,
+    "same_marker_presence_vector": true,
+    "same_page_coverage_266_287": true,
+    "transport_object_identity_content_sufficiency": "PASS_CANDIDATE",
+    "transport_admission_review_eligible": true,
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "unchanged_authority": {
+    "author": "John A. Wilson",
+    "publication": "The American Journal of Semitic Languages and Literatures",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "mirror_authority": 0,
+    "archive_authority": 0,
+    "source_root_count": 1
+  },
+  "rights_note": "The article was published in the United States in 1927. The U.S. Copyright Office states that all works published in the United States before January 1, 1931 are now in the public domain. This does not elevate Scribd or Wayback to scholarly authority and does not require storing mirror prose in the repository.",
+  "next_legal_action": "Freeze and execute a separate BR03 transport admission review. It must verify scholarly-authority independence from the mirror, reproducible frozen transport coordinates/hashes, sufficient content geometry for future X01-X35 coding, public-domain/rights compatibility, zero source-root inflation, zero semantic values, and must still keep BASE_RATE_CODING and SCORE locked even if BR03 retrieval is admitted.",
+  "laws": [
+    "PASS_CANDIDATE != BR03_RETRIEVAL_PASS",
+    "TRANSPORT_REPLICATION != INDEPENDENT_SOURCE_REPLICATION",
+    "MIRROR_ADDS_ZERO_SOURCE_ROOTS",
+    "SCHOLARLY_AUTHORITY_REMAINS_WILSON_AJSL_DOI_JSTOR",
+    "NO_SEMANTIC_CODING",
+    "NO_SCORE"
+  ]
+}
