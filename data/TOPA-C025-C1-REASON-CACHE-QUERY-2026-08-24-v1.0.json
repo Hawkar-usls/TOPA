@@ -1,0 +1,53 @@
+{
+  "artifact_id": "TOPA-C025-C1-REASON-CACHE-QUERY-2026-08-24-v1.0",
+  "created_at_local": "2026-08-24T10:02:27+03:00",
+  "target": "C025_C1_EXISTING_CERTIFIED_REASON_QUERY",
+  "status": "PROVED_RELATIVE_TO_EXPLICIT_CACHE_VOLUME__PROVIDER_REPLAY_PASS",
+  "query_model": {
+    "applicability": "C subseteq FALSE(rho)",
+    "index": "literal occurrence lists + per-reason false counters + exact trail rollback",
+    "cache_volume": "M = sum_i |C_i|"
+  },
+  "proved": [
+    "COUNTER_INDEX_REPORTS_REASON_I_IFF_CURRENT_ASSIGNMENT_FALSIFIES_ALL_LITERALS_OF_C_I",
+    "ALONG_MONOTONE_ASSIGNMENT_PATH_EACH_STORED_LITERAL_OCCURRENCE_IS_TOUCHED_AT_MOST_ONCE",
+    "TOTAL_FORWARD_COUNTER_UPDATES_LE_M",
+    "ROLLBACK_COST_EQUALS_NUMBER_OF_REVERTED_COUNTER_UPDATES"
+  ],
+  "provider_ci": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "pr": 214,
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "run_id": 32699767758,
+    "job_id": 97348759517,
+    "conclusion": "SUCCESS",
+    "markers": [
+      "C025_C1_REASON_CACHE_INDEX = PASS",
+      "C025_C1_SUBSET_QUERY_EXACTNESS = PASS",
+      "C025_C1_ROLLBACK_EXACTNESS = PASS",
+      "C025_C1_MONOTONE_UPDATES_LE_LITERAL_VOLUME = PASS",
+      "C025_C1_DUPLICATE_CANONICALIZATION = PASS",
+      "C025_C1_TAUTOLOGY_REJECTION = PASS"
+    ],
+    "finite_fixture": {
+      "literal_volume_M": 8,
+      "forward_updates": 6
+    }
+  },
+  "claim_ceiling": {
+    "cost_in_explicit_cache_volume_M": "POLYNOMIAL_PROVED",
+    "cost_in_original_input_length_N": "CONDITIONAL_ON_M_POLYNOMIAL_IN_N",
+    "total_cache_size_M_polynomial_in_N": "OPEN_C025_E_ISSUE_212",
+    "new_reason_generation": "OPEN_C025_C2",
+    "global_deterministic_proof_search": "OPEN_C025_C2_D",
+    "p_vs_np": "OPEN"
+  },
+  "hard_boundary": "FAST_INDEX_IN_M_DOES_NOT_IMPLY_M_IS_SMALL_IN_N",
+  "canonical_artifacts": {
+    "design": "research/mathematics/p-vs-np/C025_C_REASON_DISCOVERY_AND_PROOF_SEARCH.md",
+    "probe": "research/mathematics/p-vs-np/reason_cache_index.py",
+    "issue": "Hawkar-usls/Janus-Fundamentum#215"
+  },
+  "next_front": "C025_C2_DETERMINISTIC_NEW_REASON_GENERATION_AND_GLOBAL_PROOF_SEARCH"
+}
