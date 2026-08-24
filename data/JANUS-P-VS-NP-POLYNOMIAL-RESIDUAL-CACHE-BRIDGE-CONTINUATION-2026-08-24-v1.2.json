@@ -1,0 +1,88 @@
+{
+  "artifact_id": "JANUS-P-VS-NP-POLYNOMIAL-RESIDUAL-CACHE-BRIDGE-CONTINUATION-2026-08-24-v1.2",
+  "created_at_local": "2026-08-24T09:18:00+03:00",
+  "continues": [
+    "JANUS-P-VS-NP-POLYNOMIAL-RESIDUAL-CACHE-BRIDGE-CONTINUATION-2026-08-24-v1.1",
+    "TOPA-P-VS-NP-ISSUE-211-RESOLUTION-SINK-COUNTERFAMILY-2026-08-24-v1.0"
+  ],
+  "target": "POLYNOMIAL_RESIDUAL_CACHE_BRIDGE_FOR_CNF_SAT",
+  "bridge_state": {
+    "conditional_implication": "PROVED",
+    "correctness": "PROVED",
+    "polynomial_depth": "PROVED",
+    "calls_from_unique_state_count": "PROVED",
+    "local_budget_in_current_state_size": "PROVED",
+    "issue_211_universal_residual_count": "STRONG_REFUTATION_CANDIDATE_PENDING_REPLAY",
+    "issue_212_universal_residual_size": "OPEN"
+  },
+  "topa_math_mode": {
+    "artifact": "data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json",
+    "role": "ACTIVE_SCOUT_ADVERSARY_INVARIANT_AND_COUNTERFAMILY_GENERATOR",
+    "status": "ACTIVE"
+  },
+  "issue_211_lineage": [
+    {
+      "stage": "A0",
+      "name": "THEOREM_OBJECT_AND_ENCODING_REPAIR",
+      "result": "DIRECT_TRANSFER_FROM_OLD_COMPACT_GT_PROXY_REJECTED",
+      "repair": "THEOREM_MATCHED_DIRECTED_GT_N_IMPLEMENTED"
+    },
+    {
+      "stage": "A1.1",
+      "name": "INCOMPARABILITY_SIGNATURE_SURVIVES_LOCAL_RESOLUTION",
+      "result": "PROVED_PARTIAL_INVARIANT",
+      "limitation": "UNDIRECTED_INCOMPARABILITY_DOES_NOT_RECOVER_ORIENTATION_OF_PRUNE_SIGMA"
+    },
+    {
+      "stage": "A1.2_ALTERNATE",
+      "name": "RESOLUTION_SINK_PADDING_COUNTERFAMILY",
+      "result": "STRONG_FORMAL_REFUTATION_CANDIDATE",
+      "idea": "starve the deterministic local Resolution pass on the smallest-id independent pivot using only tautological resolvents, while private uniform boosters keep branching in GT core"
+    }
+  ],
+  "resolution_sink_construction": {
+    "family": "H_n = GT_n AND BOOST_n AND SINK_n",
+    "B": "256*n^2",
+    "p": "64*n^2",
+    "sink_pair_attempts": "p^2 = 4096*n^4",
+    "root_attempt_budget_bound": "4L0 < p^2",
+    "sink_additions": 0,
+    "core_resolution_attempts": 0,
+    "core_branch_frequency_floor": "B",
+    "padding_frequency_ceiling": "2p",
+    "branch_separation": "B > 2p",
+    "projection": "augmented key -> unitprop(GT_n|rho)",
+    "candidate_residual_lower_bound": "S(H_n) >= 2^(n-2)",
+    "input_length": "N_n = O(n^4 log n)",
+    "candidate_consequence": "ISSUE_211_FALSE_FOR_CURRENT_POLICY0A"
+  },
+  "fundamentum_mirror": {
+    "repo": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "pure-math-polynomial-residual-cache-bridge",
+    "pr": 210,
+    "issue": 211,
+    "proof": "proof_attempts/C024/C024_A_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md",
+    "probe": "experiments/direct/janus_tear_policy0a_padded_gt_counterfamily.py",
+    "workflow": ".github/workflows/validate-c024-resolution-sink.yml",
+    "latest_workflow_commit": "959ff270287622daba1aecde394dc1d30c3ddac5",
+    "workflow_run_id": 32697547130,
+    "workflow_status_at_receipt": "IN_PROGRESS"
+  },
+  "promotion_gates": [
+    "CI_IMPLEMENTATION_PARITY_PASS",
+    "SOURCE_GT_THEOREM_SCOPE_REVIEW",
+    "PROJECTION_LEMMA_INDEPENDENT_REVIEW",
+    "N_TO_INPUT_BIT_LENGTH_INDEPENDENT_PARAMETER_AUDIT"
+  ],
+  "if_issue_211_refuted": {
+    "bridge_logic": "REMAINS_VALID_CONDITIONALLY",
+    "current_policy0a_positive_route": "DEAD_BECAUSE_FIRST_PREMISE_FALSE",
+    "issue_212": "MAY_REMAIN_INTERESTING_BUT_NO_LONGER_SUFFICIENT_TO_RESCUE_CURRENT_POLICY0A_BRIDGE",
+    "next_design_constraint": "LOCAL_INFERENCE_SCHEDULE_MUST_NOT_BE_ADVERSARIALLY_STARVABLE_BY_IRRELEVANT_EARLY_PIVOTS"
+  },
+  "mathematical_verdict": {
+    "P_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_NOT_EQUALS_NP": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
