@@ -1,0 +1,34 @@
+{
+  "schema": "topa.sacred_scriptures.control_admission_attempt.v0.1",
+  "date": "2026-08-24",
+  "attempt": 1,
+  "status": "FAIL_CLOSED_SEVEN_OF_EIGHT_WITH_TOC_COLLISION_AUDIT",
+  "observed_receipt_time_utc": "2026-08-24T15:21:53.966658+00:00",
+  "real_controls": {
+    "reported_sealed_count": 7,
+    "required": 8,
+    "hard_failure": {
+      "slot": "C06",
+      "error": "RuntimeError: implausibly short visible-text locus: 16 chars",
+      "diagnosis": "The first repeated LXV/LXVI headings were the table-of-contents echo rather than the body letter."
+    },
+    "audit_discovery": {
+      "slot": "C01",
+      "reported_status": "SEALED",
+      "reported_slice_bytes": 84,
+      "reported_slice_sha256": "bda9fb81fdcf583d6eb6c471791c254c8469c09f4f3e156dfec8da7352da775f",
+      "diagnosis": "The first repeated IV/VI headings were the table-of-contents echo; this formal PASS is explicitly non-admitted and must be superseded by parser-only rerun."
+    }
+  },
+  "synthetic_nulls": {
+    "status": "TWO_OF_TWO_SYNTHETIC_NULL_GENERATORS_FROZEN",
+    "actual_outputs_exist": false,
+    "score_permission": false
+  },
+  "repair": "Keep all eight source identities and preregistered locus boundaries unchanged; when headings repeat, enumerate every valid start-to-end occurrence and deterministically select the maximum valid span, then require a minimum 300-character body locus.",
+  "frozen_control_identities_changed": false,
+  "frozen_loci_changed": false,
+  "double_coding_permission": false,
+  "score_permission": false,
+  "claim_effect": "NEGATIVE_PARSER_EXECUTION_TRACE_ONLY"
+}
