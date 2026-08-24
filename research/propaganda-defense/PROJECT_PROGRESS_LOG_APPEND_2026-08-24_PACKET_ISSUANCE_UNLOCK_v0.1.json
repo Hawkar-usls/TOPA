@@ -1,0 +1,32 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.packet_issuance_unlock.v0.1",
+  "date": "2026-08-24",
+  "append_only": true,
+  "event": "ANCIENT_BASE_RATE_PACKET_ISSUANCE_UNLOCK_GATE_PASSED",
+  "authority_receipt": "BASE_RATE_PACKET_ISSUANCE_UNLOCK_PASS.v0.1.json",
+  "workflow_run_id": 32776757559,
+  "result": {
+    "checks": "24/24 PASS",
+    "retrieval": "8/8 FROZEN",
+    "packet_sha256": "69dc5c1ce55fa913d822c026a5223a4d97e7de26d816793069f03319cf90681f",
+    "independence_contract_sha256": "7b38965eb4803fbde20d76b55e5548833ddfad038fbe1e0a7d1d3abfa7a727e9",
+    "semantic_receipts_preexisting": 0,
+    "base_rate_packet_issuance_permission": true,
+    "base_rate_semantic_coding_permission": false,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "semantic_values_populated": 0,
+    "score_permission": false
+  },
+  "spiral_delta": {
+    "origin": "8/8 retrieval candidate but stale packet state and coder-independence risk remained.",
+    "reverse_findings": [
+      "Packet v0.2 had stale exact-locus state and was superseded rather than rewritten.",
+      "Packet issuance had to be separated from semantic coding permission.",
+      "Independent coder identity had to remain an external gate rather than being simulated by two labels or repeated model passes."
+    ],
+    "origin_prime": "Substrate and zero-value packet are now issuance-ready, but semantic coding still has no legal path until two genuine independent coder assignments bind the same packet hash."
+  },
+  "next_legal_action": "RECORD_TWO_GENUINE_INDEPENDENT_CODER_ASSIGNMENTS_AND_HASH_BOUND_PACKET_DELIVERY_RECEIPTS",
+  "preservation": "All earlier 2/8, 6/8, Kadesh transport failures, v0.20 implementation failure and later corrections remain separate historical nodes."
+}
