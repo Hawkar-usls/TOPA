@@ -1,0 +1,42 @@
+{
+  "schema": "topa.sacred_scriptures.current_sprint.v0.3",
+  "date": "2026-08-24",
+  "status": "ACTIVE_MATCHED_CONTROL_AND_BLIND_PACKET_BUILD_PHASE",
+  "supersedes": "CURRENT_SPRINT.v0.2.json",
+  "entry_gate": {
+    "prescore_gate": "PASS",
+    "canaries": "4/4 PASS",
+    "source_seals": "5/5 SEALED",
+    "blind_packet_build_permission": true,
+    "score_permission": false,
+    "authority_receipt": "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json"
+  },
+  "objective": "Construct the final blinded scoring corpus without exposing family labels to the scoring stage and without scoring before matched controls, null fixtures and double coding are complete.",
+  "ordered_next": [
+    "freeze exactly ten matched control slots: two controls per focal source root overall",
+    "materialize provenance-cleared source roots for all real controls and hash exact loci",
+    "generate synthetic shuffled controls from a frozen generator and seed only after real-control slots are frozen",
+    "double-code every focal and real-control source under the frozen feature schema with UNKNOWN distinct from ABSENT",
+    "preserve coder disagreements and arbitration receipts",
+    "build scorer-facing packets with opaque IDs and strip tradition, source, language, chronology and geography labels",
+    "inject null fixtures using the same packet schema",
+    "run leakage and packet-completeness validator",
+    "only after a separate scoring-unlock receipt may deterministic scoring execute"
+  ],
+  "hard_locks": [
+    "NO_SCORE_YET",
+    "NO_LABEL_REVEAL_TO_SCORER",
+    "NO_CONTROL_WITHOUT_EXACT_LOCUS_AND_HASH",
+    "NO_ORAL_OR_COMMUNITY_CONTROLLED_SACRED_NARRATIVE_WITHOUT_PERMISSION_PROVENANCE_CLEARANCE",
+    "NO_UNKNOWN_TO_ABSENT_COERCION",
+    "NO_SINGLE_CODER_PROMOTION",
+    "NO_POST_HOC_CONTROL_SUBSTITUTION_AFTER_SCORING"
+  ],
+  "next_authorities": {
+    "matched_control_deck": "MATCHED_CONTROL_DECK.v0.1.json",
+    "blind_packet_build_manifest": "BLIND_PACKET_BUILD_MANIFEST.v0.1.json",
+    "feature_schema": "FLOOD_STEMMA_BLIND_TEST.v0.1.json",
+    "residual_protocol": "INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json"
+  },
+  "promotion_ceiling": "BLIND_PACKET_READY_ONLY; empirical result claims remain forbidden until blinded scoring and post-score reveal gates are separately satisfied"
+}
