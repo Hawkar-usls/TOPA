@@ -6,6 +6,7 @@ on:
       - topa-propaganda-defense
     paths:
       - 'tools/propaganda_retrieval_probe_v0_1.py'
+      - 'tools/propaganda_retrieval_probe_v0_2.py'
       - '.github/workflows/propaganda-retrieval-probe.yml'
       - 'research/propaganda-defense/**'
 
@@ -21,10 +22,14 @@ jobs:
           python-version: '3.12'
       - name: Probe same-source transports only
         run: python tools/propaganda_retrieval_probe_v0_1.py
-      - name: Upload diagnostic receipt
+      - name: Probe Kadesh archival transports
+        run: python tools/propaganda_retrieval_probe_v0_2.py
+      - name: Upload diagnostic receipts
         uses: actions/upload-artifact@v4
         with:
-          name: propaganda-retrieval-transport-probe-v0-1
-          path: research/propaganda-defense/execution/RETRIEVAL_TRANSPORT_PROBE.v0.1.json
+          name: propaganda-retrieval-transport-probe-v0-2
+          path: |
+            research/propaganda-defense/execution/RETRIEVAL_TRANSPORT_PROBE.v0.1.json
+            research/propaganda-defense/execution/RETRIEVAL_ARCHIVE_PROBE.v0.2.json
           if-no-files-found: error
           retention-days: 30
