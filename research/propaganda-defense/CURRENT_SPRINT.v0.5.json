@@ -1,0 +1,45 @@
+{
+  "schema": "topa.propaganda_defense.current_sprint.v0.5",
+  "date": "2026-08-24",
+  "status": "ACTIVE_EXTERNAL_SOURCE_RETRIEVAL_AND_VERSION_SEAL_PHASE",
+  "supersedes": "CURRENT_SPRINT.v0.4.json",
+  "why_state_changed": "All eight ancient controls now have frozen source authorities, exact primary loci and canonical descriptor commitments. The remaining distinction is between a commitment to what should be read and a reproducible seal of the external representation actually retrieved.",
+  "entry_gates": {
+    "manipulation_atlas": "138 TECHNIQUES / 10 FAMILIES",
+    "cross_epoch_schema": "35 DIMENSIONS FROZEN",
+    "ancient_source_authorities": "8/8 FROZEN",
+    "ancient_exact_loci": "8/8 FROZEN",
+    "canonical_descriptor_commitments": "8/8 FROZEN",
+    "zero_value_packet_sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+    "external_source_byte_or_versioned_retrieval_seals": "PENDING",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_flood_lane": "A_B_UNASSIGNED_UNCHANGED",
+    "score_permission": false
+  },
+  "objective": "Obtain reproducible retrieval receipts for each frozen control without mirroring restricted material, distinguishing raw byte seals from versioned corpus/URN metadata seals, then run a fail-closed unlock review before any X01-X35 coding.",
+  "ordered_next": [
+    "attempt deterministic retrieval/hash of lawful stable representations for BR01-BR08",
+    "for multi-page roots record component SHA-256 values and a deterministic aggregate hash",
+    "for versioned corpora such as TLA/Perseus retain persistent IDs, edition/version metadata and retrieval-time representation hashes without claiming immutable external hosting",
+    "record HTTP/redirect/content-type and failure receipts; a blocked source remains BLOCKED rather than silently substituted",
+    "classify each receipt as SOURCE_BYTES, VERSIONED_CORPUS_REPRESENTATION or METADATA_ONLY",
+    "do not unlock coding if a control lacks enough content for the frozen locus to be independently coded",
+    "run updated fail-closed commitment/retrieval gate",
+    "only after a separate unlock receipt may X01-X35 base-rate coding begin",
+    "keep Sacred Flood Coder A/B isolated from every X01-X35 result"
+  ],
+  "hard_locks": [
+    "DESCRIPTOR_HASH != SOURCE_BYTE_HASH",
+    "METADATA_RECEIPT != TEXT_CONTENT_IF_CONTENT_NOT_PRESENT",
+    "NO_SILENT_SOURCE_SUBSTITUTION_ON_RETRIEVAL_FAILURE",
+    "NO_FEATURE_VALUES_BEFORE_RETRIEVAL_GATE",
+    "NO_SACRED_TARGET_CODING_BEFORE_BASE_RATE_CONTROLS",
+    "NO_FLOOD_A_B_CONTAMINATION",
+    "NO_OPERATIONAL_PROPAGANDA_GUIDANCE",
+    "NO_SCORE"
+  ],
+  "current_first_unmet_requirement": "BR01_BR08_EXTERNAL_SOURCE_BYTE_OR_VERSIONED_RETRIEVAL_SEALS",
+  "promotion_ceiling": "RETRIEVAL_AND_REPRODUCIBILITY_READINESS_ONLY",
+  "score_permission": false
+}
