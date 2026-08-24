@@ -1,0 +1,77 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_wayback_content_partial.v0.19",
+  "date": "2026-08-24",
+  "status": "PARTIAL_WITH_STRONG_CONTENT_GEOMETRY_PRESERVED",
+  "scope": "BR03_KADESH_TWO_EXACT_WAYBACK_SNAPSHOTS",
+  "frozen_identity": {
+    "authority": "John A. Wilson / AJSL / University of Chicago / JSTOR",
+    "doi": "10.1086/370157",
+    "jstor_stable_id": "528771",
+    "transport_document_id": "493951399",
+    "frozen_locus": "THE POEM, journal pp.266-278; Record excluded",
+    "operational_boundary": "Poem content pp.266-277; p.278 retained as THE RECORD exclusion boundary",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32774877764,
+    "github_actions_job_id": 97583526751,
+    "artifact_id": 9537557987,
+    "artifact_sha256": "8500d01e90eb957810f5564ee34fed6ae6c777895d4018dd657abf388efc0207"
+  },
+  "snapshot_results": [
+    {
+      "timestamp": "20250825141753",
+      "if_replay_sha256": "267877a2449a58297c9aa13069aa4658fa505ce1523e18831c417dd61ed11a08",
+      "normalized_sha256": "d24fc5ee15aec24904d70ebe85768b4e5dfd48f29a2fdeab1d000a039e8afd4c",
+      "page_coverage_266_287": 22,
+      "markers": {
+        "the_poem": true,
+        "council_urges_peace": true,
+        "the_record": true,
+        "comment_on_the_texts": true
+      },
+      "exact_document_id_present": true,
+      "exact_title_present": true,
+      "author_string_present": false,
+      "embedded_asset_urlset_sha256": "aed4256fc11a21ea72679fdd7538f1658334278e71d23b2499044465d5e315d5"
+    },
+    {
+      "timestamp": "20260111160515",
+      "if_replay_sha256": "92ebe1ea96c41d3966a7be8df7d83a5019f7f8c5a61ed8139e2dc2475f0c37b8",
+      "normalized_sha256": "bc01b6d2fcadfe564f85662082b79a2e60d2d0a201afa40020bbd385496931e7",
+      "page_coverage_266_287": 22,
+      "markers": {
+        "the_poem": true,
+        "council_urges_peace": true,
+        "the_record": true,
+        "comment_on_the_texts": true
+      },
+      "exact_document_id_present": true,
+      "exact_title_present": true,
+      "author_string_present": false,
+      "embedded_asset_urlset_sha256": "f30260228f33145c82e108df94f2496050e5c2c0bb0d568fff5b1f60073e9c71"
+    }
+  ],
+  "interpretation": {
+    "locus_content_candidate_under_old_all_fields_identity_rule": false,
+    "reason": "Old diagnostic identity_ok required the author string to be repeated inside the mirror replay; that string was absent even though exact document ID, exact title, all 22 journal page numbers and all four internal section markers were present in both independent timestamps.",
+    "transport_identity_question": "OPEN_FOR_REVERSE_DECOMPOSITION",
+    "important_distinction": "SOURCE_AUTHORITY_IDENTITY and TRANSPORT_OBJECT_IDENTITY are not necessarily the same gate. Wilson/AJSL/DOI/JSTOR authority was frozen independently of Scribd; the mirror may be bindable by exact title/document ID plus internal text geometry without pretending Scribd supplies scholarly authority."
+  },
+  "admission": {
+    "br03_retrieval_pass": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Freeze, before execution, a separate transport-object identity/content-sufficiency gate using exact document ID, exact title, full 266-287 pagination, Poem-to-Record span geometry, section-boundary markers, substantial content span length/hash and cross-timestamp reproducibility. The frozen scholarly authority remains Wilson/AJSL/DOI/JSTOR and Scribd/Wayback remain zero-authority transports.",
+  "laws": [
+    "MIRROR_AUTHOR_METADATA_ABSENCE != SOURCE_AUTHORSHIP_ABSENCE",
+    "SOURCE_AUTHORITY_IDENTITY != TRANSPORT_OBJECT_IDENTITY",
+    "TRANSPORT_OBJECT_CAN_NEVER_ADD_SOURCE_ROOT",
+    "FULL_PAGE_NAVIGATION_ALONE != CONTENT",
+    "INTERNAL_TEXT_SPAN_GEOMETRY_REQUIRED_BEFORE_ADMISSION",
+    "NO_SEMANTIC_CODING",
+    "NO_SCORE"
+  ]
+}
