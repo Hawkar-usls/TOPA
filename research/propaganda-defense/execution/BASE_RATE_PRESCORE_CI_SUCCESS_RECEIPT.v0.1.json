@@ -1,0 +1,40 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_prescore_ci_success_receipt.v0.1",
+  "date": "2026-08-24",
+  "status": "BASE_RATE_PRESCORE_LOCK_VALIDATED",
+  "authority_branch": "topa-propaganda-defense",
+  "authority_base_commit": "f9720be4f67f116d951fc7927570c63b106f0eeb",
+  "technical_harness": {
+    "draft_pr": 4,
+    "head": "topa-propaganda-defense-ci-run-v2",
+    "head_commit": "2ba78182fb4ee9c2f72a043540b51e54d06ca556",
+    "base": "topa-propaganda-defense",
+    "merge_intent": false
+  },
+  "workflow": {
+    "run_id": 32750964720,
+    "job_id": 97507566254,
+    "name": "propaganda-base-rate-prescore",
+    "conclusion": "success"
+  },
+  "validator_output": {
+    "TOPA_BASE_RATE_PRESCORE_CHECK": "PASS",
+    "ATLAS_TECHNIQUES": 138,
+    "CROSS_EPOCH_DIMENSIONS": 35,
+    "ANCIENT_SOURCE_ROOTS": "7/8_FROZEN_BR05_OPEN",
+    "SEMANTIC_VALUES_POPULATED": 0,
+    "BASE_RATE_CODING_PERMISSION": false,
+    "SACRED_FLOOD_A_B_CONTAMINATION": "BLOCKED",
+    "SCORE_PERMISSION": false
+  },
+  "interpretation": "PASS means the project is correctly locked at the current prescore state. It is not a pass of any manipulation hypothesis and does not authorize ancient-control coding while BR05 remains unresolved.",
+  "first_unmet_requirement": "BR05_MODERN_HITTITE_TREATY_SOURCE_AND_LOCUS_AUTHORITY",
+  "claim_effect": "MACHINE_READABLE_METHOD_AND_LOCK_VALIDATION_ONLY_NO_SEMANTIC_RESULT_NO_SCORE",
+  "epistemic_firewall": [
+    "CI_PASS != MANIPULATION_FOUND",
+    "CI_PASS != PROPAGANDA_FOUND",
+    "CI_PASS != SACRED_TEXT_RESULT",
+    "CI_PASS != FLOOD_SCORE_UNLOCK",
+    "OPEN_BR05_REMAINS_OPEN"
+  ]
+}
