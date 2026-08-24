@@ -1,0 +1,21 @@
+{
+  "schema": "topa.sacred_scriptures.pre_coder_contract_freeze_gate.v0.1",
+  "executed_at_utc": "2026-08-24T15:44:20.549518+00:00",
+  "status": "PRE_CODER_CONTRACTS_FROZEN_ORIGIN_PRIME_READY",
+  "spiral_authority": "DOUBLE_CODING_REVERSE_SPIRAL.v0.1.json",
+  "contract_sha256": {
+    "independence": "467bae54be4fbe3cae301cbcf23dc726b51ab9b7fa76c6b36a25d35b25672eae",
+    "arbitration": "46f875e6f4a1b2754df7b4cad79c3b9385b44c39be10e9b90b9d42ecbd25c1b2",
+    "packet_template": "2f3a7a828878e41521183967ab1aec3c5c4dae0c75e515548aaaff33333db3a3",
+    "null_freeze": "b40f59bbe0b04f29050ecb0a9a1537877761e5b36effada381c96cd9fb52c14a"
+  },
+  "preexisting_semantic_coding_receipts": [],
+  "semantic_coding_permission": true,
+  "genuine_independence_still_required_at_execution": true,
+  "same_reasoning_instance_may_count_as_two_coders": false,
+  "arbitration_rules_frozen_before_outputs": true,
+  "packet_template_contains_feature_values": false,
+  "score_permission": false,
+  "errors": [],
+  "epistemic_effect": "PRE_CODER_METHOD_PERMISSION_ONLY_NO_SEMANTIC_RESULT_NO_SCORE"
+}
