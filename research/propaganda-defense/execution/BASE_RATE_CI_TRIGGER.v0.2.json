@@ -1,0 +1,16 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_ci_trigger.v0.2",
+  "date": "2026-08-24",
+  "purpose": "Technical PR-only trigger for the updated eight-authority, zero-semantic-value base-rate prescore validator.",
+  "base_commit": "81abd7e6fb28ee227db93a74b3bffb6622098990",
+  "expected_state": {
+    "ancient_source_authorities": "8/8_FROZEN",
+    "zero_value_packet_sha256": "da80734a96ea26bce3111b3deb7a4ebc5c78334199c9b4ff095e395525319155",
+    "exact_sub_locus_commitments": "INCOMPLETE",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "sacred_flood_A_B_contamination": "BLOCKED",
+    "score_permission": false
+  },
+  "merge_intent": false
+}
