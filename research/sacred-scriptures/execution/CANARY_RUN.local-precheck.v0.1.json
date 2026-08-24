@@ -1,0 +1,75 @@
+{
+  "schema": "topa.sacred_scriptures.canary_run.v0.1",
+  "executed_at_utc": "2026-08-24T14:14:11.862054+00:00",
+  "execution_authority": "LOCAL_DETERMINISTIC_PRECHECK_NOT_COMBINED_SOURCE_SEAL_CI",
+  "code_equivalence": "Matches tools/sacred_scripture_canaries.py fixtures and admission logic at commit 16e207aa0601161c317397a0ae838f1883fd19b8",
+  "status": "FOUR_OF_FOUR_PASS",
+  "method_bridge": "ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json",
+  "results": [
+    {
+      "id": "LINEAR_A_REPRESENTATION_CANARY_PASS",
+      "status": "PASS",
+      "fixture_sha256": "ef0016be2639ac01e04defea840aadeeb884a4a31ee61908dd503335cd333539",
+      "evidence": {
+        "fixtures": [
+          {"token": "*900", "type": "PUNCTUATION", "semantic_credit": 0},
+          {"token": "10", "type": "NUMERIC_EXACT", "semantic_credit": 0},
+          {"token": "≈¹⁄₄", "type": "NUMERIC_APPROX_OR_UNCERTAIN", "semantic_credit": 0},
+          {"token": "SA·RA₂", "type": "SEMANTIC_CANDIDATE", "semantic_credit": 1}
+        ],
+        "semantic_candidates": ["SA·RA₂"]
+      }
+    },
+    {
+      "id": "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS",
+      "status": "PASS",
+      "fixture_sha256": "15effa188c8e40bddc94a51d78d562c8579187edf80595261a2ebce3962ef9ce",
+      "evidence": {
+        "frozen_support_floor": 10,
+        "cases": [
+          {"signal": true, "support": 8, "expected_admit": false, "observed_admit": false},
+          {"signal": true, "support": 9, "expected_admit": false, "observed_admit": false},
+          {"signal": true, "support": 10, "expected_admit": true, "observed_admit": true},
+          {"signal": false, "support": 100, "expected_admit": false, "observed_admit": false}
+        ],
+        "historical_reference": "KU-RO G0 8/10 SUPPORT_BLOCKED"
+      }
+    },
+    {
+      "id": "EGYPT_LEMMA_ID_CANARY_PASS",
+      "status": "PASS",
+      "fixture_sha256": "6ba38691f52c7cb33803a465debca2569e5bd7c7d1016f1a369fcfed6163547e",
+      "evidence": {
+        "items": [
+          {"form": "Sꜣḥ", "lemma_id": 127020, "class": "Orion constellation name"},
+          {"form": "sꜣḫ", "lemma_id": 127110, "class": "verb: glorify/make excellent"},
+          {"form": "sꜣḫ", "lemma_id": 127120, "class": "noun: spiritual/glorified state"}
+        ],
+        "identity_keys": [["TLA", 127020], ["TLA", 127110], ["TLA", 127120]],
+        "spelling_groups": {"sꜣḥ": [127020], "sꜣḫ": [127110, 127120]}
+      }
+    },
+    {
+      "id": "EGYPT_TEXT_ID_CANARY_PASS",
+      "status": "PASS",
+      "fixture_sha256": "945a1f15ffce645cb9f2588a0cb5628f2d0d540b06eda31720595736e1552811",
+      "evidence": {
+        "references": [
+          {"label": "PT355", "utterance": 355, "sections": [572, 573, 574]},
+          {"label": "PT366", "utterance": 366, "sections": [626, 627, 628, 629, 630, 631, 632, 633]},
+          {"label": "PT222", "utterance": 222, "section_start": 199},
+          {"label": "PT477", "utterance": 477, "section_start": 956}
+        ],
+        "adversarial_pair": [["utterance", 355], ["section", 355]],
+        "typed_identity_count": 17
+      }
+    }
+  ],
+  "pass_count": 4,
+  "required_pass_count": 4,
+  "blind_packet_permission_from_canaries": true,
+  "blind_packet_permission_effective": false,
+  "blind_packet_permission_blocker": "Five immutable source seals not yet observed in repository execution receipt.",
+  "score_permission": false,
+  "epistemic_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"
+}
