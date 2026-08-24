@@ -10,6 +10,9 @@ on:
       - 'research/sacred-scriptures/ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json'
       - 'research/sacred-scriptures/PRESCORE_SOURCE_FREEZE.v0.2.json'
       - '.github/workflows/sacred-scriptures-prescore-seal.yml'
+  pull_request:
+    branches:
+      - topa-sacred-scriptures
   workflow_dispatch:
 
 permissions:
@@ -19,7 +22,7 @@ jobs:
   prescore-seal:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout TOPA
+      - name: Checkout TOPA authority branch
         uses: actions/checkout@v4
         with:
           ref: topa-sacred-scriptures
@@ -108,8 +111,8 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
-      - name: Persist execution receipts to branch
-        if: always()
+      - name: Persist execution receipts to authority branch
+        if: always() && github.event_name != 'pull_request'
         run: |
           mkdir -p research/sacred-scriptures/execution
           shopt -s nullglob
