@@ -1,0 +1,23 @@
+{
+  "schema": "janus.topa.hunt.k1-result.v1",
+  "hunt_id": "HUNT-0001",
+  "state": "TEMPLATE_BEFORE_REPLAY",
+  "raw_day_manifest": "K1-DATA-MANIFEST-SCHEMA.json",
+  "counts": {
+    "tracks_total": null,
+    "stars_or_planets": null,
+    "satellites_or_spacecraft": null,
+    "aircraft": null,
+    "meteors": null,
+    "birds_or_insects": null,
+    "lens_or_internal_reflections": null,
+    "h264_or_codec_artifacts": null,
+    "stacking_artifacts": null,
+    "other_conventional_or_uncertain": null,
+    "residual_unclassified": null
+  },
+  "residual_candidates": [],
+  "holdout_scored": false,
+  "extraordinary_claim_allowed": false,
+  "world_truth": false
+}
