@@ -1,0 +1,55 @@
+{
+  "schema": "janus.topa.method_donor.tranception.v1",
+  "source_repository": "Hawkar-usls/tranception",
+  "source_snapshot": "e786ca75ac30afb14e45edffc92aa49a05a9da4f",
+  "audit_status": "FILE_LEVEL_REVIEWED_42_OF_42",
+  "role": "METHODOLOGICAL_DONOR_ONLY",
+  "empirical_authority_for_topa_cases": false,
+  "upstream_derived_repository": true,
+  "purpose": "Reuse bounded methodological patterns from Tranception without claiming its protein-language-model results as TOPA evidence or JANUS-original science.",
+  "adopted_patterns": [
+    {
+      "pattern": "MODEL_PRIOR_PLUS_RETRIEVED_EVIDENCE",
+      "topa_mapping": "Combine a baseline model with source-bound local evidence while keeping their contributions separable."
+    },
+    {
+      "pattern": "MISSING_RETRIEVAL_FALLBACK",
+      "topa_mapping": "If a retrieved prior is absent or inapplicable, do not fabricate it; fall back to the bounded baseline."
+    },
+    {
+      "pattern": "INPUT_VALIDATION_BEFORE_SCORING",
+      "topa_mapping": "Malformed identity, range, source-state or non-finite observations are rejected before anomaly scoring."
+    },
+    {
+      "pattern": "BIDIRECTIONAL_SCORING",
+      "topa_mapping": "Forward/reverse scoring can reduce directional bias but does not imply backwards causation or precognition."
+    },
+    {
+      "pattern": "MULTI_METRIC_VALIDATION",
+      "topa_mapping": "A single favorable metric must not be the sole promotion gate when orthogonal metrics are available."
+    },
+    {
+      "pattern": "CASE_VS_AGGREGATE_SEPARATION",
+      "topa_mapping": "Average mechanism performance does not prove that the mechanism explains every individual survivor."
+    }
+  ],
+  "derived_topa_laws": [
+    "BIDIRECTIONAL_SCORING != RETROCAUSALITY",
+    "AGGREGATE_PERFORMANCE != CASE_SPECIFIC_VALIDITY",
+    "MECHANISM_HELPS_ON_AVERAGE != MECHANISM_EXPLAINS_EVERY_CASE",
+    "VALIDATE_OBSERVATION_BEFORE_SCORING",
+    "MISSING_PRIOR_MUST_NOT_BE_INVENTED"
+  ],
+  "repository_drift_controls": [
+    {
+      "finding": "STALE_EXAMPLE_REFERENCE",
+      "detail": "An indel example references ProteinGym_reference_file_indels_speedups.csv although that file is absent from the frozen tree."
+    },
+    {
+      "finding": "PATH_CLASS_DRIFT",
+      "detail": "An indel performance example uses a substitutions-folder variable while running in indel mode."
+    }
+  ],
+  "drift_law": "ORDINARY_REPOSITORY_DRIFT_MUST_BE_TESTED_BEFORE_ANOMALOUS_INTERPRETATION",
+  "world_truth": false
+}
