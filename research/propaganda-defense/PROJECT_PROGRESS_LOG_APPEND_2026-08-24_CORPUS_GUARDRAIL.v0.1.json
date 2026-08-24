@@ -1,0 +1,80 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.v0.1",
+  "date": "2026-08-24",
+  "status": "APPEND_ONLY_SHARD",
+  "parent_log": {
+    "path": "PROJECT_PROGRESS_LOG.v0.1.json",
+    "parent_blob_sha": "13648e8d110b515ad9dee08e7423d81a5a680a61",
+    "previous_max_seq": 7
+  },
+  "policy": {
+    "does_not_rewrite_parent": true,
+    "negative_results_preserved": true,
+    "corrections_create_new_entries": true,
+    "method_pass_is_not_world_truth": true
+  },
+  "entries": [
+    {
+      "seq": 8,
+      "event": "SOURCE_AUTHORITY_AND_SYMMETRY_MATRIX_FROZEN",
+      "status": "DONE",
+      "artifact": "SOURCE_AUTHORITY_AND_BIAS_MATRIX.v0.1.json",
+      "state_change": "source prestige or actor alignment can no longer substitute for evidence; identical analytic standards required while preserving non-equivalence of historical contexts",
+      "claim_effect": "METHOD_ONLY"
+    },
+    {
+      "seq": 9,
+      "event": "HISTORICAL_AND_COMPUTATIONAL_CORPUS_EXPANDED",
+      "status": "12_ADDITIONAL_SOURCE_SURFACES",
+      "artifact": "HISTORICAL_AND_COMPUTATIONAL_EXPANSION.v0.1.json",
+      "coverage": ["WWI", "WWII", "Cold War active measures", "organized social-media manipulation", "AI-era threat reporting"],
+      "claim_effect": "SOURCE_DISCOVERY_ONLY"
+    },
+    {
+      "seq": 10,
+      "event": "MULTISIDE_PRIMARY_ARCHIVE_EXPANSION_ADDED",
+      "status": "8_ARCHIVAL_SOURCE_SURFACES",
+      "artifact": "PRIMARY_ARCHIVE_MULTISIDE_EXPANSION.v0.1.json",
+      "coverage": ["multinational WWI posters", "Soviet 1928 pictorial propaganda maps", "US WWII posters", "Japan/Pacific-war handbills", "Japanese war-poster bibliography", "Nazi propaganda context", "declassified Soviet active-measures assessments"],
+      "claim_effect": "ARCHIVE_AND_PROVENANCE_EXPANSION_ONLY"
+    },
+    {
+      "seq": 11,
+      "event": "PROPAGANDA_DEFENSE_GUARDRAIL_CI_EXECUTED",
+      "status": "PASS",
+      "artifact": "execution/GUARDRAIL_CI_SUCCESS_RECEIPT.v0.1.json",
+      "workflow_run_id": 32748620165,
+      "workflow_job_id": 97499995344,
+      "results": {
+        "seed_sources": 36,
+        "source_classes": 6,
+        "web_verified_receipts": 14,
+        "operational_firewall": "PASS",
+        "source_symmetry_gate": "PASS",
+        "sacred_text_A_B_gate": "UNCHANGED",
+        "score_permission": false
+      },
+      "claim_effect": "MACHINE_READABLE_GUARDRAIL_VALIDATION_ONLY"
+    },
+    {
+      "seq": 12,
+      "event": "PROPAGANDA_DEFENSE_SPRINT_V0_1_FROZEN",
+      "status": "ACTIVE_HISTORICAL_CROSS_NATIONAL_SOURCE_EXPANSION_AND_SEALING",
+      "artifact": "CURRENT_SPRINT.v0.1.json",
+      "next_legal_action": "EXPAND_MULTILINGUAL_NONWESTERN_CORPUS_RESOLVE_RIGHTS_HASH_STABLE_OPEN_SOURCES_THEN_PREREGISTER_CROSS_EPOCH_CODING_SCHEMA",
+      "claim_effect": "PROJECT_STATE_ADVANCE_ONLY"
+    }
+  ],
+  "current_snapshot": {
+    "phase": "HISTORICAL_CROSS_NATIONAL_SOURCE_EXPANSION_AND_SEALING",
+    "seed_manifest_sources": 36,
+    "additional_historical_computational_surfaces": 12,
+    "additional_multiside_archive_surfaces": 8,
+    "web_verified_seed_receipts": 14,
+    "guardrail_ci": "PASS",
+    "operational_firewall": "PASS",
+    "source_symmetry_gate": "PASS",
+    "score_permission": false,
+    "sacred_text_parallel_lane": "A_B_UNASSIGNED_GATE_OPEN"
+  }
+}
