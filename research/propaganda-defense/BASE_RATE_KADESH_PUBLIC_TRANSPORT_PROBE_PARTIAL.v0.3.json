@@ -1,0 +1,64 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_kadesh_public_transport_probe_partial.v0.3",
+  "date": "2026-08-24",
+  "status": "PARTIAL_FAIL_CLOSED_PRESERVED",
+  "scope": "BR03_KADESH_RETRIEVAL_LAYER_ONLY",
+  "frozen_identity": {
+    "authority": "John A. Wilson, The Texts of the Battle of Kadesh, AJSL 43.4 (1927)",
+    "doi": "10.1086/370157",
+    "frozen_locus": "THE POEM, journal pp. 266-278; Record excluded",
+    "source_or_locus_changed": false
+  },
+  "diagnostic_run": {
+    "github_actions_run_id": 32757036646,
+    "github_actions_job_id": 97526854666,
+    "artifact_id": 9531227210,
+    "artifact_sha256": "08a0c9d2adbc792ee1d9e6245c795318fb8d9b9b4a1924378b9ce454098dde0a"
+  },
+  "results": {
+    "hathitrust_public_routes": {
+      "status": "BLOCKED",
+      "detail": "Public PageTurner search requests returned HTTP 403 for all frozen same-volume candidates and all bounded queries; no page sequence was admitted.",
+      "candidate_htids_unchanged": ["uc1.b3604224", "coo.31924066155205", "mdp.39015024059043"]
+    },
+    "uchicago_same_doi": {
+      "status": "BLOCKED",
+      "detail": "Landing, pdf, epdf, pdfplus, and download=true variants all returned HTTP 403 from the GitHub runner; zero PDF transports admitted."
+    },
+    "google_books_same_volume": {
+      "status": "PARTIAL_TRANSPORT_DISCOVERY",
+      "volume_id": "2l5uKJXiO70C",
+      "dynamic_view_api": {
+        "preview": "full",
+        "embeddable": true,
+        "can_download_pdf": false,
+        "can_download_epub": false
+      },
+      "search_within_volume": {
+        "title_query_number_of_results": 20,
+        "author_query_number_of_results": 4,
+        "poem_query_number_of_results": 20,
+        "record_query_number_of_results": 20,
+        "parser_state": "JSON parsed but result-array path not yet localized; no page IDs admitted in v0.3",
+        "repair_class": "PARSER_SHAPE_ONLY"
+      },
+      "boundary": "FULL_VIEW_METADATA_AND_SEARCH_COUNTS != RETRIEVED_LOCUS_CONTENT"
+    }
+  },
+  "admission": {
+    "br03_content_sufficient": false,
+    "retrieval_repair_candidate": false,
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "next_legal_action": "Localize the Google SearchWithinVolume2 result-array shape without exposing snippets, extract only page IDs/page numbers/page URLs and snippet hashes, then test bounded same-volume page representations. Do not modify frozen authority or locus.",
+  "laws": [
+    "DIAGNOSTIC_PASS != RETRIEVAL_PASS",
+    "FULL_VIEW_METADATA != LOCUS_CONTENT",
+    "SEARCH_COUNT != PAGE_CONTENT",
+    "HTTP_403 != SOURCE_ABSENT",
+    "TRANSPORT_REPAIR != LOCUS_CHANGE",
+    "PARTIAL_FAIL_IS_A_RESULT"
+  ]
+}
