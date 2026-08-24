@@ -1,0 +1,45 @@
+{
+  "schema": "topa.propaganda_defense.project_progress_log_append.kadesh_transport.v0.20.1",
+  "date": "2026-08-24",
+  "append_only": true,
+  "events": [
+    {
+      "stage": "v0.20",
+      "event": "PRE_FROZEN_TRANSPORT_OBJECT_IDENTITY_GATE_EXECUTED",
+      "run_id": 32775271589,
+      "result": "FAIL_PRESERVED",
+      "snapshot_pass": "2/2",
+      "poem_wordset_jaccard": 0.9933962264150943,
+      "failure_localization": "same_marker_vector was implemented as raw UI occurrence-count equality rather than mandatory marker presence vector equality",
+      "br03_retrieval_pass": false,
+      "base_rate_coding_permission": false,
+      "score_permission": false
+    },
+    {
+      "stage": "v0.20.1",
+      "event": "IMPLEMENTATION_ONLY_CORRECTION_FROZEN_BEFORE_REPLAY_AND_REPLAY_EXECUTED",
+      "run_id": 32775577949,
+      "result": "PASS_CANDIDATE_TRANSPORT_ADMISSION_REVIEW_ELIGIBLE",
+      "snapshot_pass": "2/2",
+      "poem_wordset_jaccard": 0.9933962264150943,
+      "same_marker_presence_vector": true,
+      "transport_admission_review_eligible": true,
+      "br03_retrieval_pass": false,
+      "base_rate_coding_permission": false,
+      "score_permission": false
+    }
+  ],
+  "stable_content_seals": {
+    "wayback_20250825141753_poem_span_sha256": "df2076467ac7bf47249bb9ef35e2b69121c59747c797214350910d26d33f030d",
+    "wayback_20260111160515_poem_span_sha256": "7e148f78bd566f38a816a02eff872170ba301e778bbed668a3243f9dee45d67c",
+    "note": "The normalized Poem-span hashes remained stable across repeated runs even when whole Wayback wrapper response hashes changed."
+  },
+  "spiral_delta": {
+    "origin": "Wayback/Scribd transport object looked promising but old mirror-author-string identity rule failed.",
+    "reverse_1": "Decompose scholarly source authority from transport-object identity; freeze internal page/section geometry before replay.",
+    "reverse_2": "v0.20 exposed an implementation bug: UI marker multiplicity was treated as a semantic vector.",
+    "origin_prime": "Transport object is now admission-review eligible under the pre-frozen and implementation-corrected gate; scholarly authority remains Wilson/AJSL/UChicago/JSTOR; no new source root is added."
+  },
+  "next_legal_action": "FREEZE_AND_EXECUTE_BR03_TRANSPORT_ADMISSION_POLICY_V0_21",
+  "preservation": "The v0.20 FAIL, v0.20.1 correction, and v0.20.1 PASS_CANDIDATE all remain separate historical nodes."
+}
