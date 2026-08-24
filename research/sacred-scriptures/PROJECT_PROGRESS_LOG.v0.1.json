@@ -11,255 +11,33 @@
     "no_entry_may_raise_metaphysical_claim_ceiling": true
   },
   "entries": [
-    {
-      "seq": 1,
-      "date": "2026-08-24",
-      "event": "SACRED_SCRIPTURES_BRANCH_ESTABLISHED",
-      "status": "DONE",
-      "artifacts": ["CORPUS_MANIFEST.v0.1.json", "JANUS_COUNCIL_PROTOCOL.v0.1.json"],
-      "claim_effect": "METHOD_AND_CORPUS_STRUCTURE_ONLY"
-    },
-    {
-      "seq": 2,
-      "date": "2026-08-24",
-      "event": "INDEPENDENT_RESIDUAL_PROTOCOL_FROZEN",
-      "status": "DONE",
-      "artifacts": ["INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json", "FLOOD_STEMMA_BLIND_TEST.v0.1.json"],
-      "claim_effect": "PREREGISTRATION_ONLY"
-    },
-    {
-      "seq": 3,
-      "date": "2026-08-24",
-      "event": "PHILOLOGY_AND_SOURCE_LOCI_FROZEN",
-      "status": "DONE_WITH_OPEN_HASH_GATE",
-      "artifacts": ["PHILOLOGY_BASELINE.v0.1.json", "PRESCORE_SOURCE_FREEZE.v0.2.json", "FLOOD_SOURCE_GATES.v0.2.json"],
-      "claim_effect": "SOURCE_IDENTITY_AND_LOCUS_ONLY"
-    },
-    {
-      "seq": 4,
-      "date": "2026-08-24",
-      "event": "LINEAR_A_AND_EGYPT_METHOD_LINEAGE_IMPORTED",
-      "status": "DONE",
-      "artifacts": ["ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json"],
-      "notes": [
-        "Linear A *900 representation failure preserved as canary",
-        "Linear A v2.32 KU-RO 8/10 support-floor non-admission preserved as canary",
-        "Egypt TLA lemma IDs kept distinct",
-        "Pyramid Text utterance IDs kept distinct from paragraph/section IDs"
-      ],
-      "claim_effect": "METHOD_CONTROL_ONLY"
-    },
-    {
-      "seq": 5,
-      "date": "2026-08-24",
-      "event": "SOURCE_SEAL_AND_CANARY_EXECUTION_SPRINT_OPENED",
-      "status": "IN_PROGRESS",
-      "targets": {"immutable_source_seals": 5, "canary_passes_required": 4},
-      "gates": {"blind_packet_build_permission": false, "score_permission": false},
-      "next_receipts": ["SOURCE_SEAL_RUN.v0.1.json", "CANARY_RUN.v0.1.json"],
-      "claim_effect": "NONE_UNTIL_EXECUTED"
-    },
-    {
-      "seq": 6,
-      "date": "2026-08-24",
-      "event": "FOUR_CANARY_DETERMINISTIC_PRECHECK_EXECUTED",
-      "status": "FOUR_OF_FOUR_PASS_LOCAL_PRECHECK",
-      "artifact": "execution/CANARY_RUN.local-precheck.v0.1.json",
-      "results": {
-        "LINEAR_A_REPRESENTATION_CANARY_PASS": "PASS",
-        "LINEAR_A_SUPPORT_FLOOR_CANARY_PASS": "PASS",
-        "EGYPT_LEMMA_ID_CANARY_PASS": "PASS",
-        "EGYPT_TEXT_ID_CANARY_PASS": "PASS"
-      },
-      "authority_boundary": "LOCAL_DETERMINISTIC_PRECHECK_NOT_COMBINED_SOURCE_SEAL_CI",
-      "gate_effect": {
-        "canary_side_ready": true,
-        "blind_packet_build_permission": false,
-        "reason": "Five immutable source seals are still required.",
-        "score_permission": false
-      },
-      "claim_effect": "METHOD_CONTROL_ONLY"
-    },
-    {
-      "seq": 7,
-      "date": "2026-08-24",
-      "event": "REPRODUCIBLE_SOURCE_SEAL_AND_NEGATIVE_RECEIPT_CI_ADDED",
-      "status": "DONE",
-      "artifacts": [
-        "tools/sacred_scripture_source_seal.py",
-        "tools/sacred_scripture_canaries.py",
-        ".github/workflows/sacred-scriptures-prescore-seal.yml"
-      ],
-      "design": [
-        "Seal five frozen source loci using SHA-256 receipts without mirroring source texts into the repository",
-        "Pin ETCBC BHSA to exact frozen commit",
-        "Use fully parameterized Tanzil Uthmani v1.1 export",
-        "Hash GRETIL Book 1 and the frozen ŚB 1.8.1.[1]-[10] visible-text slice",
-        "Hash Wasserman 2020 PDF bytes and cryptographically bind distinct exact Akkadian line-locus descriptors",
-        "Persist PASS or FAIL receipts before fail-closed workflow termination"
-      ],
-      "claim_effect": "INFRASTRUCTURE_ONLY"
-    },
-    {
-      "seq": 8,
-      "date": "2026-08-24",
-      "event": "VISIBLE_PRESCORE_CI_HARNESS_STARTED",
-      "status": "DONE",
-      "technical_review_surface": {
-        "draft_pr": 2,
-        "base": "topa-sacred-scriptures",
-        "head": "topa-sacred-scriptures-ci-run",
-        "merge_intent": false,
-        "purpose": "Expose PR-triggered Actions run, logs and artifacts without targeting main."
-      },
-      "claim_effect": "EXECUTION_TRACE_ONLY"
-    },
-    {
-      "seq": 9,
-      "date": "2026-08-24",
-      "event": "PRESCORE_ATTEMPT_1_FAIL_CLOSED",
-      "status": "INFRASTRUCTURE_FAIL_PRESERVED",
-      "workflow_run_id": 32737662999,
-      "failure": "actions/checkout interpreted short BHSA ref b112c16 as branch/tag rather than exact commit",
-      "combined_gate": {
-        "canaries": null,
-        "sources": null,
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
-      "repair": "Pin BHSA with full commit b112c161cfd21eae403d51a2733740d8743460e7.",
-      "frozen_loci_changed": false,
-      "claim_effect": "NEGATIVE_EXECUTION_TRACE_ONLY"
-    },
-    {
-      "seq": 10,
-      "date": "2026-08-24",
-      "event": "PRESCORE_ATTEMPT_2_PARTIAL_SEAL",
-      "status": "FOUR_OF_FOUR_CANARIES_THREE_OF_FIVE_SOURCES",
-      "workflow_run_id": 32737902520,
-      "artifact_id": 9523988952,
-      "artifact_digest": "sha256:ac2673d51676386242e4bad0f94364f8d2fa90b06ec595c7dc3bcee9b287758a",
-      "results": {
-        "canaries": "4/4 PASS",
-        "sources": "3/5 SEALED",
-        "sealed": ["F01_ATRAHASIS", "F02_GILGAMESH_XI", "F04_QURAN_NOAH"],
-        "failed": {
-          "F03_GENESIS_6_9": "BHSA Text-Fabric loader/path API mismatch",
-          "F05_SATAPATHA_MANU": "GRETIL visible marker parser mismatch"
-        }
-      },
-      "gate_effect": {
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
-      "frozen_loci_changed": false,
-      "claim_effect": "METHOD_EXECUTION_ONLY"
-    },
-    {
-      "seq": 11,
-      "date": "2026-08-24",
-      "event": "PARSER_ONLY_REPAIRS_AND_PRESCORE_ATTEMPT_3_LAUNCHED",
-      "status": "IN_PROGRESS",
-      "repairs": [
-        "BHSA loader resolves exact tf/2021 directory, verifies full commit SHA, and reads API through TF.api after load",
-        "GRETIL parser uses visible markers 1.8.1.[1] through before 1.8.1.[11] while preserving frozen locus 1.8.1.[1]-[10]"
-      ],
-      "workflow_run_id": 32740381447,
-      "guardrail_run_id": 32740381473,
-      "guardrail_status": "PASS",
-      "frozen_loci_changed": false,
-      "gate_effect": {
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
-      "claim_effect": "EXECUTION_TRACE_ONLY"
-    },
-    {
-      "seq": 12,
-      "date": "2026-08-24",
-      "event": "PRESCORE_ATTEMPT_3_TRANSPORT_SUPERSEDED",
-      "status": "STALE_FULL_BHSA_CHECKOUT_RUN_PRESERVED",
-      "workflow_run_id": 32740381447,
-      "last_observed_state": "IN_PROGRESS_AT_EXACT_BHSA_CHECKOUT",
-      "reason_for_supersession": "Full ETCBC/bhsa checkout was operationally slow and unnecessary for sealing the frozen TF substrate; later attempts retained the same full commit authority while fetching exact required files only.",
-      "frozen_loci_changed": false,
-      "gate_effect": {
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
-      "claim_effect": "NEGATIVE_INFRASTRUCTURE_TRACE_ONLY"
-    },
-    {
-      "seq": 13,
-      "date": "2026-08-24",
-      "event": "PRESCORE_ATTEMPT_4_REACHED_FOUR_OF_FIVE",
-      "status": "FOUR_OF_FOUR_CANARIES_FOUR_OF_FIVE_SOURCES",
-      "workflow_run_id": 32741104814,
-      "artifact_id": 9525183505,
-      "artifact_digest": "sha256:69cd29167cf457aa426481541e728cdec6f23bfb49c3f0005221de6e53853d66",
-      "results": {
-        "canaries": "4/4 PASS",
-        "sources": "4/5 SEALED",
-        "sealed": ["F01_ATRAHASIS", "F02_GILGAMESH_XI", "F04_QURAN_NOAH", "F05_SATAPATHA_MANU"],
-        "failed": {"F03_GENESIS_6_9": "Text-Fabric dependency closure missing g_cons"}
-      },
-      "repair": "Derive every text-format feature dependency directly from frozen BHSA otext.tf, fetch each dependency at the same full commit, and SHA-256 seal each file before loading.",
-      "frozen_loci_changed": false,
-      "gate_effect": {
-        "blind_packet_build_permission": false,
-        "score_permission": false
-      },
-      "claim_effect": "METHOD_EXECUTION_ONLY"
-    },
-    {
-      "seq": 14,
-      "date": "2026-08-24",
-      "event": "PRESCORE_ATTEMPT_5_FULL_GATE_PASS",
-      "status": "FOUR_OF_FOUR_CANARIES_AND_FIVE_OF_FIVE_SOURCES_PASS",
-      "workflow_run_id": 32741347834,
-      "workflow_job_id": 97476300081,
-      "artifact_id": 9525305433,
-      "artifact_digest": "sha256:020cd7f2789d99d20c8f2c5eb3dbcabdf234ab24a6c4a80466e87a28307ffd17",
-      "results": {
-        "canaries": "4/4 PASS",
-        "sources": "5/5 SEALED",
-        "source_slice_sha256": {
-          "F01_ATRAHASIS": "225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0",
-          "F02_GILGAMESH_XI": "5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee",
-          "F03_GENESIS_6_9": "2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2",
-          "F04_QURAN_NOAH": "b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c",
-          "F05_SATAPATHA_MANU": "8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6"
-        },
-        "bhsa": {
-          "commit": "b112c161cfd21eae403d51a2733740d8743460e7",
-          "substrate_sha256": "97d258176ebbbc3e49dd3e5060cef61df8d8daf63e474cbc4ea4639e36920b3a",
-          "dependency_policy": "Derived from frozen otext.tf and individually sealed"
-        }
-      },
-      "authority_artifacts": [
-        "execution/CANARY_RUN.v0.1.json",
-        "execution/SOURCE_SEAL_RUN.v0.1.json",
-        "execution/PRESCORE_EXECUTION_GATE.v0.1.json",
-        "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json"
-      ],
-      "gate_effect": {
-        "blind_packet_build_permission": true,
-        "score_permission": false
-      },
-      "frozen_loci_changed": false,
-      "claim_effect": "METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"
-    }
+    {"seq":1,"date":"2026-08-24","event":"SACRED_SCRIPTURES_BRANCH_ESTABLISHED","status":"DONE","artifacts":["CORPUS_MANIFEST.v0.1.json","JANUS_COUNCIL_PROTOCOL.v0.1.json"],"claim_effect":"METHOD_AND_CORPUS_STRUCTURE_ONLY"},
+    {"seq":2,"date":"2026-08-24","event":"INDEPENDENT_RESIDUAL_PROTOCOL_FROZEN","status":"DONE","artifacts":["INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json","FLOOD_STEMMA_BLIND_TEST.v0.1.json"],"claim_effect":"PREREGISTRATION_ONLY"},
+    {"seq":3,"date":"2026-08-24","event":"PHILOLOGY_AND_SOURCE_LOCI_FROZEN","status":"DONE_WITH_OPEN_HASH_GATE","artifacts":["PHILOLOGY_BASELINE.v0.1.json","PRESCORE_SOURCE_FREEZE.v0.2.json","FLOOD_SOURCE_GATES.v0.2.json"],"claim_effect":"SOURCE_IDENTITY_AND_LOCUS_ONLY"},
+    {"seq":4,"date":"2026-08-24","event":"LINEAR_A_AND_EGYPT_METHOD_LINEAGE_IMPORTED","status":"DONE","artifacts":["ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json"],"notes":["Linear A *900 representation failure preserved as canary","Linear A v2.32 KU-RO 8/10 support-floor non-admission preserved as canary","Egypt TLA lemma IDs kept distinct","Pyramid Text utterance IDs kept distinct from paragraph/section IDs"],"claim_effect":"METHOD_CONTROL_ONLY"},
+    {"seq":5,"date":"2026-08-24","event":"SOURCE_SEAL_AND_CANARY_EXECUTION_SPRINT_OPENED","status":"IN_PROGRESS","targets":{"immutable_source_seals":5,"canary_passes_required":4},"gates":{"blind_packet_build_permission":false,"score_permission":false},"next_receipts":["SOURCE_SEAL_RUN.v0.1.json","CANARY_RUN.v0.1.json"],"claim_effect":"NONE_UNTIL_EXECUTED"},
+    {"seq":6,"date":"2026-08-24","event":"FOUR_CANARY_DETERMINISTIC_PRECHECK_EXECUTED","status":"FOUR_OF_FOUR_PASS_LOCAL_PRECHECK","artifact":"execution/CANARY_RUN.local-precheck.v0.1.json","results":{"LINEAR_A_REPRESENTATION_CANARY_PASS":"PASS","LINEAR_A_SUPPORT_FLOOR_CANARY_PASS":"PASS","EGYPT_LEMMA_ID_CANARY_PASS":"PASS","EGYPT_TEXT_ID_CANARY_PASS":"PASS"},"authority_boundary":"LOCAL_DETERMINISTIC_PRECHECK_NOT_COMBINED_SOURCE_SEAL_CI","gate_effect":{"canary_side_ready":true,"blind_packet_build_permission":false,"reason":"Five immutable source seals are still required.","score_permission":false},"claim_effect":"METHOD_CONTROL_ONLY"},
+    {"seq":7,"date":"2026-08-24","event":"REPRODUCIBLE_SOURCE_SEAL_AND_NEGATIVE_RECEIPT_CI_ADDED","status":"DONE","artifacts":["tools/sacred_scripture_source_seal.py","tools/sacred_scripture_canaries.py",".github/workflows/sacred-scriptures-prescore-seal.yml"],"design":["Seal five frozen source loci using SHA-256 receipts without mirroring source texts into the repository","Pin ETCBC BHSA to exact frozen commit","Use fully parameterized Tanzil Uthmani v1.1 export","Hash GRETIL Book 1 and the frozen ŚB 1.8.1.[1]-[10] visible-text slice","Hash Wasserman 2020 PDF bytes and cryptographically bind distinct exact Akkadian line-locus descriptors","Persist PASS or FAIL receipts before fail-closed workflow termination"],"claim_effect":"INFRASTRUCTURE_ONLY"},
+    {"seq":8,"date":"2026-08-24","event":"VISIBLE_PRESCORE_CI_HARNESS_STARTED","status":"DONE","technical_review_surface":{"draft_pr":2,"base":"topa-sacred-scriptures","head":"topa-sacred-scriptures-ci-run","merge_intent":false,"purpose":"Expose PR-triggered Actions run, logs and artifacts without targeting main."},"claim_effect":"EXECUTION_TRACE_ONLY"},
+    {"seq":9,"date":"2026-08-24","event":"PRESCORE_ATTEMPT_1_FAIL_CLOSED","status":"INFRASTRUCTURE_FAIL_PRESERVED","workflow_run_id":32737662999,"failure":"actions/checkout interpreted short BHSA ref b112c16 as branch/tag rather than exact commit","combined_gate":{"canaries":null,"sources":null,"blind_packet_build_permission":false,"score_permission":false},"repair":"Pin BHSA with full commit b112c161cfd21eae403d51a2733740d8743460e7.","frozen_loci_changed":false,"claim_effect":"NEGATIVE_EXECUTION_TRACE_ONLY"},
+    {"seq":10,"date":"2026-08-24","event":"PRESCORE_ATTEMPT_2_PARTIAL_SEAL","status":"FOUR_OF_FOUR_CANARIES_THREE_OF_FIVE_SOURCES","workflow_run_id":32737902520,"artifact_id":9523988952,"artifact_digest":"sha256:ac2673d51676386242e4bad0f94364f8d2fa90b06ec595c7dc3bcee9b287758a","results":{"canaries":"4/4 PASS","sources":"3/5 SEALED","sealed":["F01_ATRAHASIS","F02_GILGAMESH_XI","F04_QURAN_NOAH"],"failed":{"F03_GENESIS_6_9":"BHSA Text-Fabric loader/path API mismatch","F05_SATAPATHA_MANU":"GRETIL visible marker parser mismatch"}},"gate_effect":{"blind_packet_build_permission":false,"score_permission":false},"frozen_loci_changed":false,"claim_effect":"METHOD_EXECUTION_ONLY"},
+    {"seq":11,"date":"2026-08-24","event":"PARSER_ONLY_REPAIRS_AND_PRESCORE_ATTEMPT_3_LAUNCHED","status":"IN_PROGRESS","repairs":["BHSA loader resolves exact tf/2021 directory, verifies full commit SHA, and reads API through TF.api after load","GRETIL parser uses visible markers 1.8.1.[1] through before 1.8.1.[11] while preserving frozen locus 1.8.1.[1]-[10]"],"workflow_run_id":32740381447,"guardrail_run_id":32740381473,"guardrail_status":"PASS","frozen_loci_changed":false,"gate_effect":{"blind_packet_build_permission":false,"score_permission":false},"claim_effect":"EXECUTION_TRACE_ONLY"},
+    {"seq":12,"date":"2026-08-24","event":"PRESCORE_ATTEMPT_3_TRANSPORT_SUPERSEDED","status":"STALE_FULL_BHSA_CHECKOUT_RUN_PRESERVED","workflow_run_id":32740381447,"last_observed_state":"IN_PROGRESS_AT_EXACT_BHSA_CHECKOUT","reason_for_supersession":"Full ETCBC/bhsa checkout was operationally slow and unnecessary for sealing the frozen TF substrate; later attempts retained the same full commit authority while fetching exact required files only.","frozen_loci_changed":false,"gate_effect":{"blind_packet_build_permission":false,"score_permission":false},"claim_effect":"NEGATIVE_INFRASTRUCTURE_TRACE_ONLY"},
+    {"seq":13,"date":"2026-08-24","event":"PRESCORE_ATTEMPT_4_REACHED_FOUR_OF_FIVE","status":"FOUR_OF_FOUR_CANARIES_FOUR_OF_FIVE_SOURCES","workflow_run_id":32741104814,"artifact_id":9525183505,"artifact_digest":"sha256:69cd29167cf457aa426481541e728cdec6f23bfb49c3f0005221de6e53853d66","results":{"canaries":"4/4 PASS","sources":"4/5 SEALED","sealed":["F01_ATRAHASIS","F02_GILGAMESH_XI","F04_QURAN_NOAH","F05_SATAPATHA_MANU"],"failed":{"F03_GENESIS_6_9":"Text-Fabric dependency closure missing g_cons"}},"repair":"Derive every text-format feature dependency directly from frozen BHSA otext.tf, fetch each dependency at the same full commit, and SHA-256 seal each file before loading.","frozen_loci_changed":false,"gate_effect":{"blind_packet_build_permission":false,"score_permission":false},"claim_effect":"METHOD_EXECUTION_ONLY"},
+    {"seq":14,"date":"2026-08-24","event":"PRESCORE_ATTEMPT_5_FULL_GATE_PASS","status":"FOUR_OF_FOUR_CANARIES_AND_FIVE_OF_FIVE_SOURCES_PASS","workflow_run_id":32741347834,"workflow_job_id":97476300081,"artifact_id":9525305433,"artifact_digest":"sha256:020cd7f2789d99d20c8f2c5eb3dbcabdf234ab24a6c4a80466e87a28307ffd17","results":{"canaries":"4/4 PASS","sources":"5/5 SEALED","source_slice_sha256":{"F01_ATRAHASIS":"225381982b045b6e6ef81feb192880a0df97d8c3530a625ea3894279c9b571a0","F02_GILGAMESH_XI":"5997ec3cc222de585d3e81a04ff3857c6c6641eb5cf94a90b0c65108db8c88ee","F03_GENESIS_6_9":"2538b66e9c5288678a4ce7e5fecf230e7bebe7aed293d6a9522b5bf772a1eeb2","F04_QURAN_NOAH":"b3ca7777d6398649c5c39712de7ee1777754f795a9cc9f7e3dba2a07772f148c","F05_SATAPATHA_MANU":"8d1a4590c8661974868833ebc7c0e8c38bfacab3c54a7aa544c4aee456a76bf6"},"bhsa":{"commit":"b112c161cfd21eae403d51a2733740d8743460e7","substrate_sha256":"97d258176ebbbc3e49dd3e5060cef61df8d8daf63e474cbc4ea4639e36920b3a","dependency_policy":"Derived from frozen otext.tf and individually sealed"}},"authority_artifacts":["execution/CANARY_RUN.v0.1.json","execution/SOURCE_SEAL_RUN.v0.1.json","execution/PRESCORE_EXECUTION_GATE.v0.1.json","execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json"],"gate_effect":{"blind_packet_build_permission":true,"score_permission":false},"frozen_loci_changed":false,"claim_effect":"METHOD_PERMISSION_ONLY_NO_WORLD_TRUTH_CREDIT"},
+    {"seq":15,"date":"2026-08-24","event":"MATCHED_CONTROL_AND_BLIND_PACKET_BUILD_PHASE_OPENED","status":"PREREGISTERED_CONTROL_SLOTS_AND_PACKET_MANIFEST_FROZEN","artifacts":["CURRENT_SPRINT.v0.3.json","MATCHED_CONTROL_DECK.v0.1.json","BLIND_PACKET_BUILD_MANIFEST.v0.1.json"],"design":{"control_slots":10,"allocation":"2 historically connected flood-family positive + 2 distant provenance-cleared flood + 2 non-flood catastrophe genre matches + 2 non-sacred documented flood + 2 feature-shuffled synthetic nulls","focal_slots":5,"double_coding_required":true,"unknown_distinct_from_absent":true,"two_stage_blinding":true,"public_mapping_forbidden":true},"open_gates":["ADMIT_AND_HASH_8_REAL_CONTROLS","FREEZE_2_SYNTHETIC_NULL_GENERATOR_RECEIPTS","DOUBLE_CODE_5_FOCAL_AND_8_REAL_CONTROLS","PRESERVE_AND_ARBITRATE_DISAGREEMENTS","BUILD_OPAQUE_SCORER_PACKETS","RUN_LEAKAGE_VALIDATOR"],"gate_effect":{"blind_packet_build_permission":true,"final_blind_packets_complete":false,"score_permission":false},"claim_effect":"PREREGISTRATION_AND_PACKET_INFRASTRUCTURE_ONLY"}
   ],
   "current_snapshot": {
-    "phase": "BLIND_PACKET_CONSTRUCTION_AUTHORIZED",
-    "source_seals": "5/5 SEALED",
-    "canaries": "4/4 PASS",
-    "prescore_gate": "PASS",
-    "successful_workflow_run_id": 32741347834,
-    "authority_receipt": "execution/PRESCORE_SUCCESS_RECEIPT.v0.1.json",
-    "blind_packet_build_permission": true,
-    "score_permission": false,
-    "next_legal_action": "BUILD_FINAL_BLIND_PACKETS_WITH_ANONYMIZATION_DOUBLE_CODING_MATCHED_CONTROLS_AND_NULL_FIXTURES",
-    "forbidden_until_later_gate": ["SCORE", "RANK", "INTERPRET_MATCH_AS_TRUTH"]
+    "phase":"MATCHED_CONTROL_AND_BLIND_PACKET_BUILD",
+    "source_seals":"5/5 SEALED",
+    "canaries":"4/4 PASS",
+    "prescore_gate":"PASS",
+    "matched_controls":"0/10 ADMITTED; SLOT ALLOCATION FROZEN",
+    "focal_packet_slots":"5/5 AUTHORIZED FOR DOUBLE CODING",
+    "final_blind_packets_complete":false,
+    "blind_packet_build_permission":true,
+    "score_permission":false,
+    "next_legal_action":"ADMIT_AND_HASH_MATCHED_CONTROLS_THEN_DOUBLE_CODE_FEATURES",
+    "forbidden_until_later_gate":["SCORE","RANK","INTERPRET_MATCH_AS_TRUTH"]
   }
 }
