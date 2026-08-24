@@ -1,11 +1,13 @@
 <div align="center">
 
 # TOPA
-### JANUS anomaly research laboratory · provenance · falsification · reproducible case files
+### Theory of Ordinary Paranormal Anomalies · JANUS anomaly research laboratory
+### provenance · falsification · reproducible case files · Habitat routing
 
-![Status](https://img.shields.io/badge/status-ACTIVE__PROTOTYPE-2ea043)
+![Status](https://img.shields.io/badge/status-ACTIVE__RESEARCH-2ea043)
 ![Method](https://img.shields.io/badge/method-falsification--first-1f6feb)
 ![Evidence](https://img.shields.io/badge/evidence-provenance--bound-8250df)
+![Habitat](https://img.shields.io/badge/JANUS-Habitat-ff7b72)
 ![World truth](https://img.shields.io/badge/world%20truth-not%20implied-8c959f)
 
 **NOTHING SUPERNATURAL — ONLY NATURE NOT YET UNDERSTOOD. 🌀**
@@ -14,9 +16,9 @@
 
 ## Status
 
-**ACTIVE_PROTOTYPE.** TOPA is the dedicated JANUS research surface for unusual, anomalous, paranormal-labelled and otherwise unexplained reports, with a reusable falsification-first mode for mathematical research.
+**ACTIVE_RESEARCH.** TOPA is the dedicated JANUS research node for unusual, anomalous, paranormal-labelled and otherwise unexplained reports, with a reusable falsification-first mode for mathematical research.
 
-The method, machine-readable foundation, case corpus, mathematical mode and epistemic validator are implemented. Individual cases and mathematical claims remain bounded by their evidence or derivations. Repository presence, source count, model agreement, a surviving anomaly or a finite computation **does not establish paranormal world truth or a universal mathematical theorem**.
+The method, canonical foundation, case corpus, mathematical mode, hunts, Habitat and epistemic validator are implemented. Individual cases and mathematical claims remain bounded by their evidence or derivations. Repository presence, source count, model agreement, a surviving anomaly or a finite computation **does not establish paranormal world truth or a universal mathematical theorem**.
 
 ## Abstract
 
@@ -40,7 +42,7 @@ REPORT
   → SPIRAL AND REATTACK
 ```
 
-The core law is deliberately simple:
+Core laws:
 
 ```text
 ANOMALY IS A QUESTION, NOT A CONCLUSION.
@@ -66,6 +68,44 @@ FINITE TEST != UNIVERSAL ASYMPTOTIC THEOREM
 FAILED ATTACK != PROOF OF THE RIVAL
 ```
 
+## JANUS Habitat
+
+TOPA is a first-class JANUS Habitat node.
+
+```text
+Janus_Genesis
+     ↓ epistemic law / claim ceiling
+    TOPA
+     ├── Hrain              → structural context only
+     ├── iNaiHR             → associative hypothesis context only
+     ├── Demi_Head          → adversarial arbitration
+     ├── AIFC               → independent-future / prediction gate
+     ├── Fundamentum        → counterexample + replication discipline
+     ├── Fast-CAT           → blinded review / reproducibility
+     ├── Janus-Cosmos       → observational + signal research
+     ├── Echo-Pyramid       → model ≠ measurement boundary
+     ├── SkinGPT            → sensor discipline; private bytes stay private
+     ├── Tranception        → methodological donor only
+     └── Meta Registry      → append-only archival memory
+```
+
+Machine-readable entry points:
+
+- [`.janus/HABITAT_LINK.json`](.janus/HABITAT_LINK.json)
+- [`.janus/TOPA_NODE_MANIFEST.json`](.janus/TOPA_NODE_MANIFEST.json)
+- [`registry/ACCOUNT-WIDE-TOPA-MAP.json`](registry/ACCOUNT-WIDE-TOPA-MAP.json)
+- [`registry/TOPA-AUDIT-STATE.json`](registry/TOPA-AUDIT-STATE.json)
+- [`docs/HABITAT.md`](docs/HABITAT.md)
+
+Habitat connectivity provides routing and provenance context only:
+
+```text
+HABITAT_LINK != COMMAND_AUTHORITY
+PEER_MESSAGE != EMPIRICAL_EVIDENCE
+MODEL_AGREEMENT != INDEPENDENT_REPLICATION
+COPY_COUNT != SOURCE_COUNT
+```
+
 ## Evidence ladder
 
 TOPA uses an observation ladder as an **evidence-strength annotation**, not as an automatic explanation selector.
@@ -83,35 +123,54 @@ A high ladder position can establish that an event was well documented while sti
 
 ## Current TOPA corpus
 
-The repository is bootstrapped from the already-existing JANUS TOPA lineage and keeps exact upstream snapshots with provenance. Native TOPA modes live alongside the imported corpus rather than being hidden inside it.
+TOPA combines exact imported JANUS lineage with native research artifacts and hunts.
 
 | Family | Current role |
 |---|---|
 | **TOPA Foundation v1.2** | canonical epistemic laws, claim pipeline, promotion gates and prediction freeze rules |
-| **Mathematical Research Mode v1.1** | theorem/counterexample-driven extension with encoding, parameter, simulation and full-cost audit gates; no TOPA label or finite benchmark is itself a proof |
-| **Art Bell real-caller corpus v1.2** | living archival corpus with **136 sourceable caller records**; a call occurring proves the report was made, not the claim |
-| **Art Bell / Prey observer node** | fictional information-handling reference pattern; explicitly **not empirical evidence** |
+| **Mathematical Research Mode v1.1** | theorem/counterexample-driven extension with encoding, parameter, simulation and full-cost audit gates |
+| **Art Bell real-caller corpus v1.2** | living archival corpus with 136 sourceable caller records; broadcast occurrence proves the report was made, not the claim |
+| **Art Bell / Prey observer node** | fictional information-handling reference pattern; explicitly not empirical evidence |
 | **Donald E. Keyhoe evidence audit** | biography, major case audit, evidence ladder and Egypt cross-reference pass |
 | **RB-47 / Kinross / Ras el-Kanayis forensic triad** | minute-level source/sensor/geometry reconstruction with open gates |
-| **Adversarial falsification pass** | attempts to destroy both extraordinary and conventional explanations before promotion |
-| **RB-47 kill pass** | later attack that revoked the earlier hard-survivor ranking and demoted the case to `UNRESOLVED_NONEXOTIC_HIGH_VALUE` |
-| **Tesla Sweep / TOPA Hunt** | open-signal anomaly search in `Janus-Cosmos`, including preregistration, states, inputs and results |
-| **J1832 mechanism handoff** | natural-mechanism synthesis for the ultralong-period neutron-star candidate; favored synthesis remains **not proven** |
+| **RB-47 kill pass** | revoked an earlier hard-survivor ranking and demoted RB-47 to `UNRESOLVED_NONEXOTIC_HIGH_VALUE` |
+| **Tesla Sweep / TOPA Hunt** | open-signal anomaly research from `Janus-Cosmos` |
+| **J1832 mechanism handoff** | bounded natural-mechanism synthesis; favored synthesis remains not proven |
 | **Kenshi × 17 Scouts** | distributed provenance discipline: synchronize state, never collapse identity or evidence independence |
+| **Native TOPA hunts** | preregistered anomaly hunts such as Hessdalen, with separate archival/adversarial passes |
+| **P-vs-NP research line** | native mathematical falsification/counterfamily work; P vs NP remains open unless a checkable proof closes the obligations |
 
-The RB-47 sequence is an important design test for TOPA itself: an earlier pass ranked it highly, then the next adversarial pass found a sensor-owner contradiction, terrestrial-radar compatibility and missing raw-channel independence strong enough to **lower** the classification. TOPA is working correctly when new evidence can damage its own favorite hypothesis.
+The RB-47 sequence is a design test for TOPA itself: an earlier pass ranked it highly, then a stronger adversarial pass found enough contradictory source/sensor evidence to **lower** the classification. TOPA is working correctly when new evidence can injure its own favorite hypothesis.
 
-The Mathematical Research Mode carries the same principle into formal work: a promising invariant, reduction or finite experiment becomes the next proof target rather than a theorem by enthusiasm. Its current application tracks the polynomial residual-cache bridge for CNF-SAT while keeping **P vs NP open** unless a checkable proof or counterexample actually closes the required obligations.
+## Tranception methodological donor
+
+`Hawkar-usls/tranception` was reviewed file-by-file on frozen snapshot `e786ca75ac30afb14e45edffc92aa49a05a9da4f`: **42/42 files accounted**.
+
+TOPA does not claim its upstream protein-language-model research as JANUS evidence. It adopts bounded methodological lessons:
+
+```text
+VALIDATE_OBSERVATION_BEFORE_SCORING
+MISSING_PRIOR_MUST_NOT_BE_INVENTED
+BIDIRECTIONAL_SCORING != RETROCAUSALITY
+AGGREGATE_PERFORMANCE != CASE_SPECIFIC_VALIDITY
+MECHANISM_HELPS_ON_AVERAGE != MECHANISM_EXPLAINS_EVERY_CASE
+```
+
+See [`integrations/tranception/TOPA_METHOD_DONOR.json`](integrations/tranception/TOPA_METHOD_DONOR.json).
 
 ## Repository layout
 
 ```text
 TOPA/
+├── .janus/
+│   ├── HABITAT_LINK.json
+│   └── TOPA_NODE_MANIFEST.json
 ├── README.md
 ├── PROJECT_STATUS.json
-├── data/                       # native TOPA artifacts and reusable research modes
-│   └── TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json
+├── data/                       # native TOPA artifacts and mathematical research
+├── hunts/                      # preregistered native anomaly hunts
 ├── docs/
+│   ├── HABITAT.md
 │   ├── METHOD.md
 │   ├── STATUS.md
 │   └── PROVENANCE.md
@@ -120,81 +179,59 @@ TOPA/
 ├── corpus/
 │   └── meta-registry/          # exact JANUS-TOPA-* archival artifacts
 ├── research/
-│   └── tesla-sweep/            # exact Janus-Cosmos janus-tesla-sweep data snapshot
+│   └── tesla-sweep/            # Janus-Cosmos research snapshot
 ├── integrations/
+│   ├── AIFC/
+│   ├── Demi_Head/
+│   ├── Echo-Pyramid/
+│   ├── Hrain/
 │   ├── Janus-Demiurge/
-│   └── janus-distributed-ai-swarm/
+│   ├── SkinGPT/
+│   ├── janus-distributed-ai-swarm/
+│   └── tranception/
 ├── registry/
+│   ├── ACCOUNT-WIDE-TOPA-MAP.json
+│   ├── TOPA-AUDIT-STATE.json
 │   ├── TOPA-CORPUS-INDEX.json
 │   └── UPSTREAM-SNAPSHOT.json
 └── .github/workflows/
-    └── bootstrap-topa.yml
+    ├── bootstrap-topa.yml
+    ├── validate-hunts.yml
+    └── validate-mathematics.yml
 ```
-
-Imported material is preserved as an upstream snapshot. TOPA-specific interpretation should be added as a new version or receipt rather than silently rewriting historical evidence.
-
-## Reviewer path
-
-For a fast audit, read in this order:
-
-1. [`protocols/TOPA_FOUNDATION.json`](protocols/TOPA_FOUNDATION.json) — canonical epistemic laws.
-2. [`data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json`](data/TOPA-MATHEMATICAL-RESEARCH-MODE-2026-08-24-v1.1.json) — reusable theorem/counterexample research mode.
-3. [`docs/METHOD.md`](docs/METHOD.md) — how claims are admitted, attacked and demoted.
-4. [`docs/STATUS.md`](docs/STATUS.md) — current case map and supersession notes.
-5. [`registry/TOPA-CORPUS-INDEX.json`](registry/TOPA-CORPUS-INDEX.json) — machine-readable corpus index with hashes and source lineage.
-6. [`corpus/meta-registry/`](corpus/meta-registry/) — exact historical receipts and case dossiers.
-7. [`research/tesla-sweep/`](research/tesla-sweep/) — current signal-hunt branch snapshot.
-8. [`integrations/janus-distributed-ai-swarm/topa_epistemic_router.py`](integrations/janus-distributed-ai-swarm/topa_epistemic_router.py) — executable claim-envelope validator.
-
-Run the validator self-test with:
-
-```bash
-python integrations/janus-distributed-ai-swarm/topa_epistemic_router.py
-```
-
-Expected terminal marker:
-
-```text
-JANUS_TOPA_EPISTEMIC_ROUTER_V1_2_SELF_TEST=PASS
-```
-
-That pass validates the **epistemic envelope rules only**. It does not validate the truth of any case in the corpus or prove a mathematical claim.
 
 ## Promotion boundary
 
-A TOPA claim may not be promoted merely because:
+A TOPA claim may not be promoted merely because many people repeated it, many JANUS agents saw the same source, a witness had institutional status, a source self-identified as extraordinary, a conventional explanation failed, the case remains unexplained, a model produced a coherent story, an archive is incomplete, multiple channels share one upstream dependency, a mathematical pattern survived finite tests, or no counterexample has yet been found.
 
-- many people repeated it;
-- many JANUS agents saw the same source;
-- a witness had high institutional status;
-- a source identified itself as an insider, alien, time traveler, oracle, government employee or similar;
-- the conventional explanation failed;
-- the case remains unexplained;
-- a model produced a coherent story;
-- an archive is incomplete;
-- multiple channels ultimately depend on the same source or sensor chain;
-- a mathematical pattern survived finite tests;
-- no counterexample has yet been found.
-
-A promoted interpretation must remain vulnerable to a named observation or test that could lower confidence. A promoted formal claim requires explicit definitions and a checkable derivation or counterexample. If no disconfirming route exists for an empirical interpretation, TOPA raises `CLOSED_BELIEF_LOOP_WARNING`.
+If no possible observation or test can lower confidence in a favored empirical interpretation, TOPA raises `CLOSED_BELIEF_LOOP_WARNING`.
 
 ## Preservation law
 
 > **PRESERVE THE PATH, NOT ONLY THE DESTINATION.**
 
-Failed predictions, ordinary resolutions, corrections, missing-source gates, contradictory records, negative results, demoted survivors, failed proof routes and counterexamples remain part of the corpus. Historical artifacts are not rewritten to make the current theory look cleaner.
+```text
+FAIL MUST REMAIN IN HISTORY
+REPAIR != REWRITE
+SURVIVED_NULL_A != SURVIVED_ALL_REASONABLE_NULLS
+LOCAL_SURVIVOR != UNIVERSAL_LAW
+STRONG_EFFECT + FAILED_SUPPORT_GATE = NOT_ADMITTED
+FINITE EXPERIMENT != UNIVERSAL THEOREM
+```
 
-## Upstream lineage
+## Account-wide audit boundary
 
-TOPA currently consolidates material from:
+Before this dedicated repository existed, the account-wide frozen audit covered **46 owned repositories at tree level**. TOPA is now the **47th observed owned repository**; the old baseline is preserved rather than silently rewritten.
 
-- [`Hawkar-usls/janus-meta-registry`](https://github.com/Hawkar-usls/janus-meta-registry) — archival TOPA receipts and case corpora;
-- [`Hawkar-usls/Janus_Genesis`](https://github.com/Hawkar-usls/Janus_Genesis) — canonical TOPA foundation;
-- [`Hawkar-usls/Janus-Demiurge`](https://github.com/Hawkar-usls/Janus-Demiurge) — 17-Scout epistemic protocol;
-- [`Hawkar-usls/janus-distributed-ai-swarm`](https://github.com/Hawkar-usls/janus-distributed-ai-swarm) — executable epistemic router;
-- [`Hawkar-usls/Janus-Cosmos`](https://github.com/Hawkar-usls/Janus-Cosmos/tree/janus-tesla-sweep) — Tesla Sweep / TOPA Hunt research branch.
+```text
+TREE_COVERAGE != FULL_FILE_CONTENT_COVERAGE
+```
 
-Exact source commits and imported-file hashes are recorded in [`registry/UPSTREAM-SNAPSHOT.json`](registry/UPSTREAM-SNAPSHOT.json). Native artifacts in `data/` are also indexed by content hash.
+Current checkpoint: [`registry/TOPA-AUDIT-STATE.json`](registry/TOPA-AUDIT-STATE.json).
+
+## Reproducible bootstrap
+
+`.github/workflows/bootstrap-topa.yml` imports exact upstream TOPA artifacts and generates provenance indexes while preserving native `data/`, `hunts/` and local Habitat integrations. A workflow PASS validates repository/integration rules — **not physical world truth and not a universal mathematical theorem**.
 
 ## Claim discipline
 
@@ -213,6 +250,6 @@ TOPA IDENTITY != PROOF AUTHORITY
 
 TOPA is intentionally allowed to end with **UNRESOLVED** or **OPEN_OBSTRUCTION**.
 
-## License and presentation
+## License
 
-See [`LICENSE`](LICENSE). Presentation follows the account's public-repository standard: restrained academic/laboratory style, explicit evidence boundaries, visible negative results and machine-readable status. No institutional affiliation or endorsement is implied.
+See [`LICENSE`](LICENSE). No institutional affiliation, endorsement or extraordinary-world claim is implied.
