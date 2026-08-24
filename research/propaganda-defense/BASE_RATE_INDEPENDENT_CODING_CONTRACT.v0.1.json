@@ -1,0 +1,88 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_independent_coding_contract.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_PACKET_ISSUANCE",
+  "purpose": "Prevent pseudo-independence while coding BR01-BR08 under X01-X35. No reasoning instance, model invocation, human session or derivative pass may count twice merely by being relabeled.",
+  "packet_authority": {
+    "path": "BASE_RATE_CODING_PACKET_TEMPLATE.v0.3.json",
+    "git_blob_sha": "a514bb77bac6c283ca60c771ab3ac46eb8bf416b",
+    "semantic_values_at_freeze": 0,
+    "issued_to_coders_at_freeze": false
+  },
+  "coder_requirements": {
+    "required_coders": 2,
+    "coder_A": "UNASSIGNED",
+    "coder_B": "UNASSIGNED",
+    "same_reasoning_instance_may_count_as_two_coders": false,
+    "same_conversation_context_may_be_replayed_and_counted_as_independent": false,
+    "one_coder_may_view_the_other_coder_receipt_before_own_freeze": false,
+    "both_must_receive_identical_packet_sha256": true,
+    "each_coder_receipt_must_be_hash_frozen_before_comparison": true,
+    "each_coder_must_fill_evidence_pointer_and_nonmanipulative_alternative_for_every_non_UNKNOWN_value": true
+  },
+  "blindness": {
+    "sacred_target_results_visible_to_base_rate_coders": false,
+    "desired_sacred_conclusion_visible_to_base_rate_coders": false,
+    "flood_coder_A_or_B_may_view_base_rate_results_before_their_own_receipts_freeze": false,
+    "base_rate_coders_may_know_control_genre_and_historical_context_required_by_packet": true,
+    "base_rate_coders_may_see_final_sacred_comparison_or_score": false
+  },
+  "arbitration_pre_freeze": {
+    "arbitration_occurs_only_after_A_and_B_receipts_are_both_frozen": true,
+    "arbitrator_may_view": [
+      "feature definition",
+      "frozen source/locus",
+      "Coder A value and evidence pointer",
+      "Coder B value and evidence pointer",
+      "genre context",
+      "alternative nonmanipulative explanations"
+    ],
+    "arbitrator_may_not_view": [
+      "sacred target result",
+      "desired manipulation classification",
+      "future sacred excess statistic",
+      "SCORE output"
+    ],
+    "allowed_disagreement_classes": [
+      "EVIDENCE_POINTER_MISMATCH",
+      "PRESENT_VS_ABSENT",
+      "PRESENT_OR_ABSENT_VS_UNKNOWN",
+      "NOT_APPLICABLE_DISAGREEMENT",
+      "GENRE_CONTEXT_DISAGREEMENT",
+      "TRANSLATION_OR_LEXICAL_CREDIT_DISAGREEMENT"
+    ],
+    "allowed_resolution": [
+      "A_SUPPORTED",
+      "B_SUPPORTED",
+      "DOWNGRADE_TO_UNKNOWN",
+      "NOT_APPLICABLE",
+      "UNRESOLVED_PRESERVE_BOTH"
+    ],
+    "override_requires_written_evidence_reason": true,
+    "majority_vote_or_model_consensus_is_sufficient": false
+  },
+  "matrix_freeze": {
+    "comparison_before_A_B_freeze": false,
+    "disagreement_manifest_before_A_B_freeze": false,
+    "final_matrix_must_receive_sha256_before_any_sacred_comparison": true,
+    "raw_A_and_B_matrices_are_preserved_after_arbitration": true
+  },
+  "promotion_logic": {
+    "global_consistency_gate_may_set_packet_issuance_permission": true,
+    "global_consistency_gate_may_assign_coders": false,
+    "global_consistency_gate_may_populate_semantic_values": false,
+    "semantic_coding_may_begin_only_after_two_genuine_coder_assignments_are_recorded": true,
+    "score_permission": false
+  },
+  "laws": [
+    "TWO_LABELS != TWO_INDEPENDENT_CODERS",
+    "MODEL_CONSENSUS != INDEPENDENT_REPLICATION",
+    "IDENTICAL_PACKET_REQUIRED_FOR_A_AND_B",
+    "A_FREEZE_AND_B_FREEZE_PRECEDE_COMPARISON",
+    "ARBITRATION_RULES_PRECEDE_DISAGREEMENTS",
+    "UNKNOWN_IS_A_VALID_OUTPUT",
+    "UNRESOLVED_DISAGREEMENT_IS_A_VALID_OUTPUT",
+    "NO_SACRED_RESULT_LEAKAGE",
+    "NO_SCORE"
+  ]
+}
