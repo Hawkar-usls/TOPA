@@ -1,20 +1,18 @@
 {
   "schema": "topa.sacred_scriptures.ci_trigger_request.v0.1",
   "date": "2026-08-24",
-  "attempt": 5,
-  "purpose": "Trigger a visible pull-request Actions run for prescore source sealing and canary verification without merging into main or changing claim authority.",
+  "attempt": 6,
+  "purpose": "Trigger a visible pull-request Actions run for the matched-control admission phase without merging into main or unlocking scoring.",
   "base_branch": "topa-sacred-scriptures",
-  "repairs_since_attempt_4": [
-    "Attempt 4 reached 4/5 source seals; only BHSA failed with missing Text-Fabric dependency g_cons.",
-    "BHSA loader now derives every text-format feature dependency directly from the frozen commit's exact otext.tf and fetches plus SHA-256 seals each dependency before loading.",
-    "No frozen locus, canary, source edition, or scoring rule changed."
-  ],
-  "frozen_loci_changed": false,
+  "phase": "MATCHED_CONTROL_AND_SYNTHETIC_NULL_FREEZE",
+  "frozen_control_identities_changed_after_scoring": false,
   "requested_checks": [
-    "FOUR_OF_FOUR_CANARIES",
-    "FIVE_OF_FIVE_SOURCE_SEALS",
-    "PRESCORE_COMBINED_PERMISSION_GATE"
+    "EIGHT_OF_EIGHT_REAL_CONTROL_SOURCE_AND_SLICE_SEALS",
+    "TWO_OF_TWO_SYNTHETIC_NULL_GENERATOR_AND_SEED_COMMITMENTS",
+    "CONTROL_ADMISSION_DOUBLE_CODING_PERMISSION_GATE"
   ],
+  "actual_synthetic_null_outputs_requested": false,
+  "double_coding_started": false,
   "score_permission": false,
   "claim_effect": "NONE"
 }
