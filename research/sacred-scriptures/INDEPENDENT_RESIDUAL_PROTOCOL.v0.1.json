@@ -1,0 +1,157 @@
+{
+  "schema": "topa.sacred_scriptures.independent_residual_protocol.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_METHOD_V0_1",
+  "research_question": "After removing known textual dependence, plausible historical contact, translation artifacts, genre effects and expected human/ecological convergence, what recurring structures remain genuinely unresolved?",
+  "non_goal": "This protocol does not rank religions, select a true canon, infer revelation from similarity, or treat sacred status as empirical authority.",
+  "core_laws": [
+    "RELIGION_A != COMPETITOR_TO_RELIGION_B",
+    "TEXTUAL_SIMILARITY != INDEPENDENT_DISCOVERY",
+    "INDEPENDENT_DISCOVERY != SUPERNATURAL_CAUSE",
+    "RESIDUAL != REVELATION",
+    "TRANSLATION_MATCH != ORIGINAL_LANGUAGE_MATCH",
+    "MODEL_CONSENSUS != INDEPENDENT_CONFIRMATION",
+    "MISSING_CONTACT_ROUTE != PROOF_OF_NO_CONTACT",
+    "UNKNOWN = VALID_RESULT"
+  ],
+  "subtraction_pipeline": [
+    {
+      "stage": "R0_SOURCE_ROOT_COLLAPSE",
+      "subtract": [
+        "translations of the same source",
+        "recensions descending from the same textual ancestor where known",
+        "books embedded inside larger canons",
+        "later quotations or retellings of earlier texts",
+        "multiple web editions descending from one edition/collector"
+      ],
+      "output": "independent_source_root_candidates",
+      "fail_closed": true
+    },
+    {
+      "stage": "R1_TRANSLATION_AND_SEMANTIC_CONTROL",
+      "subtract": [
+        "similarity created by one modern translation language",
+        "false equivalence caused by broad glosses",
+        "token overlap absent in original-language or philologically controlled alignment"
+      ],
+      "output": "translation_resistant_features",
+      "fail_closed": true
+    },
+    {
+      "stage": "R2_HISTORICAL_CONTACT_GRAPH",
+      "subtract": [
+        "direct borrowing",
+        "known intermediary traditions",
+        "plausible trade, conquest, migration, diaspora or scholarly contact",
+        "chronologically impossible independence claims"
+      ],
+      "rule": "absence of a documented route lowers confidence in diffusion but does not prove isolation",
+      "output": "contact_adjusted_candidates",
+      "fail_closed": true
+    },
+    {
+      "stage": "R3_EXPECTED_CONVERGENCE_NULL",
+      "subtract": [
+        "generic responses to death, birth, kinship, reciprocity and social coordination",
+        "shared ecological pressures such as flood, drought, fire, famine, disease and seasonality",
+        "common narrative grammar such as hero, warning, transgression, punishment, restoration",
+        "genre conventions shared by law, hymn, ritual, apocalypse, wisdom and myth"
+      ],
+      "output": "specificity_survivors",
+      "fail_closed": true
+    },
+    {
+      "stage": "R4_BLIND_RARE_BUNDLE_TEST",
+      "test": [
+        "rare ordered feature bundles",
+        "shared unusual sequence",
+        "distinctive structural asymmetry",
+        "shared error or anomaly where philologically defensible",
+        "negative controls and shuffled controls"
+      ],
+      "output": "blind_survivors",
+      "fail_closed": true
+    },
+    {
+      "stage": "R5_ADVERSARIAL_REATTACK",
+      "attack_routes": [
+        "find an overlooked common ancestor",
+        "find an overlooked contact corridor",
+        "replace rare feature with broader coding and see whether effect vanishes",
+        "swap translations or editions",
+        "remove one tradition at a time",
+        "test analyst degrees of freedom",
+        "compare against matched non-sacred corpora"
+      ],
+      "output": "independent_residual_candidates",
+      "fail_closed": true
+    }
+  ],
+  "residual_states": [
+    {
+      "state": "COLLAPSED_SAME_ROOT",
+      "meaning": "apparent recurrence is not independent"
+    },
+    {
+      "state": "DIFFUSION_EXPLAINS",
+      "meaning": "known or strongly supported transmission/contact explains recurrence"
+    },
+    {
+      "state": "CONVERGENCE_EXPECTED",
+      "meaning": "independent recurrence is plausible but unsurprising under shared human/ecological constraints"
+    },
+    {
+      "state": "UNDERDETERMINED_CONTACT_VS_CONVERGENCE",
+      "meaning": "data cannot currently separate transmission from independent convergence"
+    },
+    {
+      "state": "UNRESOLVED_INDEPENDENT_RESIDUAL",
+      "meaning": "rare structure survives current dependence, contact, translation, convergence and blind-control attacks; requires another spiral, not metaphysical promotion"
+    },
+    {
+      "state": "FALSIFIED_PATTERN",
+      "meaning": "pattern disappears under controls or depends on analyst choices"
+    }
+  ],
+  "minimum_evidence_packet_per_claim": [
+    "exact text locus",
+    "edition/manuscript identifier where available",
+    "language",
+    "translation identity if used",
+    "earliest defensible attestation range",
+    "geographic provenance or uncertainty",
+    "source-root ancestry",
+    "known/plausible contact edges",
+    "feature encoding frozen before label reveal",
+    "matched controls",
+    "falsifier",
+    "current residual state"
+  ],
+  "janus_roles": {
+    "HRain": "build source, chronology, geography and dependency graph",
+    "iNaiHR": "propose semantic correspondences; zero authority until textual verification",
+    "Demi_Head": "collapse source roots and preserve contradictory readings",
+    "Janus_Genesis": "freeze protocol, features and promotion ceilings before analysis",
+    "Janus-Fundamentum": "generate strongest mundane and historical falsifiers",
+    "Fast-CAT-SHAiTan": "blind review of encoded feature bundles",
+    "AIFC": "canonicalize evidence packets, hashes and witness/source identity",
+    "Janus-Cosmos": "audit pseudoreplication, nulls and control leakage",
+    "janus-distributed-ai-swarm": "parallelize extraction without multiplying evidence weight",
+    "tranception": "reverse-trace late forms toward earlier attestations",
+    "janus-lapis": "freeze only survivors and negative certificates",
+    "aura-oracle-tg": "hypothesis generator only; evidence authority zero",
+    "janus-meta-registry": "append-only lineage and supersession record",
+    "Terminal/Voice": "present bounded result after gates"
+  },
+  "promotion_ceiling": {
+    "from_texts_alone": "UNRESOLVED_INDEPENDENT_RESIDUAL",
+    "forbidden_promotions": [
+      "SUPERNATURAL_PROVEN",
+      "REVELATION_PROVEN",
+      "ONE_RELIGION_TRUE",
+      "PROPHECY_PROVEN",
+      "ANCIENT_GLOBAL_NETWORK_PROVEN"
+    ]
+  },
+  "spiral_rule": "Every survivor must be re-entered at R0 with new sources, stronger controls or a new falsifier. A survivor is a question of higher resolution, not a conclusion of higher certainty."
+}
