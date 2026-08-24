@@ -11,6 +11,9 @@ on:
       - 'tools/sacred_scripture_control_seal.py'
       - 'tools/sacred_scripture_synthetic_null_freeze.py'
       - '.github/workflows/sacred-scriptures-control-seal.yml'
+  pull_request:
+    branches:
+      - topa-sacred-scriptures
   workflow_dispatch:
 
 permissions:
