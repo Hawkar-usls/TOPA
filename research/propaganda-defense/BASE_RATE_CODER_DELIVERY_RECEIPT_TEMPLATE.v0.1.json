@@ -1,0 +1,26 @@
+{
+  "schema": "topa.propaganda_defense.base_rate_coder_delivery_receipt_template.v0.1",
+  "date": "2026-08-24",
+  "status": "TEMPLATE_ONLY_NOT_A_DELIVERY",
+  "policy": "BASE_RATE_CODER_QUALIFICATION_ASSIGNMENT_POLICY.v0.1.json",
+  "required_bundle_sha256": "9c601a94633c5025122864f13df71d48c32ebc4c8952e116657c3c58c95ee8fa",
+  "required_dependency_count": 8,
+  "coder_slot": null,
+  "coder_assignment_receipt": null,
+  "delivery_identity_or_channel": null,
+  "delivered_at": null,
+  "received_bundle_sha256": null,
+  "received_dependency_count": null,
+  "received_bundle_hash_verified": false,
+  "semantic_work_started_before_delivery_verification": null,
+  "valid_delivery": false,
+  "semantic_coding_permission_effect": false,
+  "score_permission": false,
+  "laws": [
+    "TEMPLATE != DELIVERY",
+    "RECEIVED_BUNDLE_HASH_MUST_EQUAL_REQUIRED_BUNDLE_HASH",
+    "DELIVERY_PRECEDES_SEMANTIC_WORK",
+    "BOTH_CODERS_RECEIVE_IDENTICAL_BUNDLE",
+    "NO_SCORE"
+  ]
+}
