@@ -9,14 +9,18 @@ Start here:
 - [`research/sacred-scriptures/JANUS_COUNCIL_PROTOCOL.v0.1.json`](research/sacred-scriptures/JANUS_COUNCIL_PROTOCOL.v0.1.json)
 - [`research/sacred-scriptures/INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json`](research/sacred-scriptures/INDEPENDENT_RESIDUAL_PROTOCOL.v0.1.json)
 - [`research/sacred-scriptures/FLOOD_STEMMA_BLIND_TEST.v0.1.json`](research/sacred-scriptures/FLOOD_STEMMA_BLIND_TEST.v0.1.json)
-- [`research/sacred-scriptures/PRESCORE_SOURCE_FREEZE.v0.1.json`](research/sacred-scriptures/PRESCORE_SOURCE_FREEZE.v0.1.json)
-- [`research/sacred-scriptures/ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json`](research/sacred-scriptures/ANCIENT_WRITING_METHOD_BRIDGE.v0.1.json)
+- [`research/sacred-scriptures/FLOOD_SOURCE_GATES.v0.2.json`](research/sacred-scriptures/FLOOD_SOURCE_GATES.v0.2.json) — current source-gate authority
+- [`research/sacred-scriptures/PRESCORE_SOURCE_FREEZE.v0.2.json`](research/sacred-scriptures/PRESCORE_SOURCE_FREEZE.v0.2.json) — current prescore authority
+- [`research/sacred-scriptures/ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json`](research/sacred-scriptures/ANCIENT_WRITING_METHOD_BRIDGE.v0.2.json) — current Linear A / Egyptian-record canary authority
 - [`research/sacred-scriptures/PHILOLOGY_BASELINE.v0.1.json`](research/sacred-scriptures/PHILOLOGY_BASELINE.v0.1.json)
 - [`research/sacred-scriptures/GRETIL_PROVENANCE_CORRECTION.v0.1.json`](research/sacred-scriptures/GRETIL_PROVENANCE_CORRECTION.v0.1.json)
+- [`research/sacred-scriptures/CURRENT_SPRINT.v0.2.json`](research/sacred-scriptures/CURRENT_SPRINT.v0.2.json)
 - [`research/sacred-scriptures/TOPA_FIRST_PASS.v0.1.json`](research/sacred-scriptures/TOPA_FIRST_PASS.v0.1.json)
 - [`research/sacred-scriptures/JANUS_EXISTING_LINEAGE.v0.1.json`](research/sacred-scriptures/JANUS_EXISTING_LINEAGE.v0.1.json)
 - [`research/sacred-scriptures/SOURCE_DISCOVERY_RECEIPTS.v0.1.json`](research/sacred-scriptures/SOURCE_DISCOVERY_RECEIPTS.v0.1.json)
 - [`research/sacred-scriptures/PROVENANCE_AND_RIGHTS.md`](research/sacred-scriptures/PROVENANCE_AND_RIGHTS.md)
+
+Historical `v0.1` prescore/source-gate/ancient-writing bridge artifacts remain preserved as superseded receipts and are not current authority.
 
 Validators:
 
@@ -36,6 +40,7 @@ SIMILAR != SAME_SOURCE
 DIFFERENT != CONTRADICTION
 TRANSLATION != ORIGINAL
 STRUCTURAL_SURVIVOR != TRANSLATION
+STRONG_INTERNAL_SIGNAL != ADMITTED_RESULT
 UTTERANCE_NUMBER != PARAGRAPH_NUMBER
 UNKNOWN = VALID RESULT
 ```
