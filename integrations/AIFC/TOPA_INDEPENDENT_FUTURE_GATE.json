@@ -1,0 +1,22 @@
+{
+  "schema": "janus.topa.integration.aifc.v1",
+  "source_repository": "Hawkar-usls/AIFC",
+  "source_snapshot": "a1c1d8c8de2c924560010ce1f4ed0033d2e0d36b",
+  "role": "INDEPENDENT_FUTURE_AND_PREDICTION_EVIDENCE_GATE",
+  "empirical_authority": 0,
+  "question": "Did an immutable pre-target witness contain exact information about a later independently generated random target beyond the admitted forward-causal guessing bound?",
+  "required_order": ["EXTERNALLY_CERTIFIED_TRIAL_SLOT","CANDIDATE_PRODUCTION","PRE_RETURN_BYTES_FROZEN","EXTERNAL_FRESHNESS_CERTIFICATE","FUTURE_TARGET_GENERATION","INDEPENDENT_VERIFICATION","TERMINAL_TRIAL_VISIBLE"],
+  "key_gates": ["GLOBAL_TRIAL_LEDGER","EXACT_PRE_TARGET_FREEZE","POST_FREEZE_TARGET_GENERATION","PROOF_CARRYING_ENTROPY_PROFILE","CAUSAL_DAG","MULTIPLICITY_ACCOUNTING","ANYTIME_VALID_EVIDENCE","EXTERNAL_FRESHNESS","BYZANTINE_SAFE_QUORUM","CANONICALIZATION","FAIL_CLOSED_VERIFIER"],
+  "topa_laws": ["PREDICTION_MUST_BE_FROZEN_BEFORE_OUTCOME","TARGET_AVAILABLE_BEFORE_FREEZE_INVALIDATES_INDEPENDENT_FUTURE_CLASS","SEMANTIC_SIMILARITY != EXACT_FUTURE_INFORMATION","SIGNATURE != UNPREDICTABILITY_PROOF","THRESHOLD_CROSSING != MECHANISM_IDENTIFICATION","MODEL_OR_VERIFIER_TEST != PHYSICAL_RETROCAUSALITY_EVIDENCE"],
+  "scientific_boundary": {
+    "physical_retrocausality_observed": false,
+    "faster_than_light_communication_observed": false,
+    "precognition_observed": false,
+    "information_transfer_to_past_observed": false,
+    "RETROCAUSALITY_PROVED_result_class_exists": false,
+    "admitted_threshold_meaning": "THE_SPECIFIED_FORWARD_CAUSAL_NULL_OR_ONE_OF_ITS_EVIDENCE_PREMISES_IS_INCOMPATIBLE_WITH_THE_OBSERVED_RECORD"
+  },
+  "source_file": "README.md",
+  "source_blob_sha": "11fcbbd01ac1a6e4e8ebfa5f838d096ef8988f30",
+  "world_truth": false
+}
