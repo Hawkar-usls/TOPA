@@ -1,0 +1,96 @@
+{
+  "schema": "topa.sacred_scriptures.arbitration_protocol.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_BEFORE_ANY_A_B_CODING_OUTPUT",
+  "scope": "Resolve A/B feature disagreements only after both independent receipts are frozen, without overwriting either source receipt.",
+  "preconditions": [
+    "coder A receipt frozen",
+    "coder B receipt frozen",
+    "both receipts bind the same packet_template_sha256",
+    "both receipts bind the same feature_schema_sha256",
+    "both receipts bind the same source slice sha256 for the item",
+    "coder independence contract PASS"
+  ],
+  "arbitrator_blinding": {
+    "may_see": [
+      "exact frozen source locus",
+      "frozen feature definition",
+      "coder A value and evidence pointer",
+      "coder B value and evidence pointer",
+      "declared philological aids used by each coder"
+    ],
+    "must_not_see": [
+      "scorer output",
+      "pairwise similarity matrix",
+      "expected target cluster",
+      "control class",
+      "synthetic-null output",
+      "opaque ID mapping reveal",
+      "which resolution would strengthen or weaken the research hypothesis"
+    ]
+  },
+  "disagreement_classes": [
+    "PRESENT_VS_ABSENT",
+    "PRESENT_VS_UNKNOWN",
+    "ABSENT_VS_UNKNOWN",
+    "NOT_APPLICABLE_VS_OTHER",
+    "EVIDENCE_POINTER_CONFLICT",
+    "ONTOLOGY_SCOPE_CONFLICT",
+    "SOURCE_DAMAGE_OR_LACUNA_CONFLICT",
+    "TRANSLATION_ORIGINAL_LANGUAGE_CONFLICT"
+  ],
+  "resolution_ladder": [
+    {
+      "step": 1,
+      "action": "CHECK_SOURCE_IDENTITY_AND_SLICE_HASH",
+      "rule": "If either coder used the wrong slice/version, do not arbitrate the semantic value; issue a procedural correction receipt and recode independently."
+    },
+    {
+      "step": 2,
+      "action": "CHECK_FEATURE_DEFINITION",
+      "rule": "Resolve only against the preregistered feature definition; no feature broadening or narrowing after seeing the disagreement."
+    },
+    {
+      "step": 3,
+      "action": "CHECK_EXPLICIT_TEXTUAL_SUPPORT",
+      "rule": "Explicit locus evidence outranks inference. Lack of explicit support cannot be repaired by narrative plausibility."
+    },
+    {
+      "step": 4,
+      "action": "CHECK_ORIGINAL_LANGUAGE_OR_PHILOLOGY_WHERE_REQUIRED",
+      "rule": "For rare_lexical_or_formulaic_correspondence, modern translation wording alone cannot resolve to PRESENT."
+    },
+    {
+      "step": 5,
+      "action": "PRESERVE_UNCERTAINTY",
+      "rule": "If the frozen evidence does not decide the feature, arbitrate to UNKNOWN rather than force PRESENT or ABSENT."
+    }
+  ],
+  "allowed_arbitrated_values": ["PRESENT","ABSENT","UNKNOWN","NOT_APPLICABLE"],
+  "forbidden_resolution_methods": [
+    "majority vote including JANUS submodels",
+    "choose the value that improves expected clustering",
+    "average coder labels into a pseudo-value",
+    "rewrite the feature definition after seeing conflict",
+    "use model consensus as textual evidence",
+    "silently replace UNKNOWN with ABSENT"
+  ],
+  "receipt_required_fields": [
+    "item_id",
+    "feature_id",
+    "coder_A_receipt_hash",
+    "coder_B_receipt_hash",
+    "value_A",
+    "value_B",
+    "disagreement_class",
+    "arbitrated_value",
+    "decisive_source_pointer_or_reason_for_unknown",
+    "arbitrator_instance_id",
+    "arbitration_protocol_sha256",
+    "timestamp"
+  ],
+  "preservation_rule": "Arbitration creates a third immutable receipt. It never edits or deletes coder A/B receipts.",
+  "instability_rule": "Agreement statistics are reported descriptively but do not create truth authority. A large disagreement burden may trigger ontology review before scoring, but cannot be hidden by arbitration.",
+  "score_permission": false,
+  "claim_effect": "PRE_OUTPUT_ADJUDICATION_RULES_ONLY_NO_TEXTUAL_RESULT_CREDIT"
+}
