@@ -1,0 +1,110 @@
+{
+  "schema": "topa.propaganda_defense.ancient_base_rate_source_freeze.v0.1",
+  "date": "2026-08-24",
+  "status": "FIVE_OF_EIGHT_SOURCE_LOCUS_ROOTS_FROZEN_THREE_OPEN",
+  "parent_protocol": "SACRED_BASE_RATE_CONTROL_PROTOCOL.v0.1.json",
+  "rule": "A control is not admitted merely because a famous translation exists. Exact edition/locus and a defensible provenance path are required; weak teaching translations remain provisional.",
+  "controls": [
+    {
+      "id":"BR01_HAMMURABI",
+      "status":"LOCUS_ROOT_FROZEN_HASH_PENDING",
+      "source":"Yale Avalon Project — Code of Hammurabi, L. W. King translation",
+      "url":"https://avalon.law.yale.edu/ancient/hamcode.asp",
+      "exact_locus":"Prologue from opening through immediately before first numbered law; Epilogue from heading THE EPILOGUE through end of epilogue",
+      "language_layer":"ENGLISH_TRANSLATION_CONTROL_ONLY",
+      "original_language_requirement":"Akkadian source-language cross-check required before lexical claims",
+      "rights_state":"OPEN_WEB; REUSE TERMS TO VERIFY BEFORE MIRROR",
+      "admission_ceiling":"RHETORICAL_STRUCTURE_BASE_RATE_ONLY"
+    },
+    {
+      "id":"BR02_BEHISTUN",
+      "status":"LOCUS_ROOT_FROZEN_HASH_PENDING",
+      "source":"Livius Old Persian Behistun pages with transliteration and adapted King/Thompson translation",
+      "source_pages":[
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-02/",
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-36/",
+        "https://www.livius.org/sources/content/behistun-persian-text/behistun-t-42/"
+      ],
+      "exact_locus":["Column I lines 9-17","Column IV lines 31-39","Column IV lines 87-92"],
+      "why_these_loci":"Dynastic/divine kingship; lie/rebellion framing and punishment; inscription production/dissemination statement.",
+      "language_layer":"OLD_PERSIAN_TRANSLITERATION_PLUS_TRANSLATION",
+      "rights_state":"CITE_LINK; MIRRORING TERMS TO VERIFY",
+      "admission_ceiling":"RHETORICAL_AND_DISTRIBUTION_STRUCTURE_BASE_RATE"
+    },
+    {
+      "id":"BR03_KADESH",
+      "status":"PROVISIONAL_NOT_ADMITTED",
+      "context_source":"UCL Digital Egypt — War in Ancient Egypt / Ramesses II",
+      "context_urls":["https://www.ucl.ac.uk/museums-static/digitalegypt/foreignrelations/war.html","https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/ramsesii.html"],
+      "candidate_text_source":"Fordham Ancient History Sourcebook Kadesh translation",
+      "candidate_url":"https://sourcebooks.web.fordham.edu/ancient/1326khita.asp",
+      "blocker":"Teaching/legacy translation is useful for discovery but not sufficient as the sole frozen Egyptological textual authority; exact modern edition and text witness still required.",
+      "critical_context":"UCL explicitly cautions that the Kadesh narrative belongs to a king-praise ideological genre and should not be treated as modern journalistic reportage.",
+      "admission_ceiling":"CONTEXT_CONTROL_ONLY_NO_X01_X35_CODING_YET"
+    },
+    {
+      "id":"BR04_NEO_ASSYRIAN_ANNALS",
+      "status":"LOCUS_ROOT_FROZEN_HASH_PENDING",
+      "source":"ORACC RINAP 3 — Sennacherib 001 (First Campaign Cylinder)",
+      "url":"https://oracc.museum.upenn.edu/rinap/rinap3/Q003475/html",
+      "edition":"Grayson and Novotny, Royal Inscriptions of the Neo-Assyrian Period 3/1",
+      "exact_locus":"Sennacherib 001 lines 1-4 for royal titulary/justice/enemy-control frame; later campaign narrative may be added only by new preregistered locus receipt",
+      "language_layer":"AKKADIAN_TRANSLITERATION_PLUS_ENGLISH_TRANSLATION",
+      "rights_state":"OPEN_ORACC_SCHOLARLY_EDITION; PRESERVE_PROJECT_TERMS",
+      "admission_ceiling":"ROYAL_TITULARY_AND_AUTHORITY_BASE_RATE_ONLY"
+    },
+    {
+      "id":"BR05_HITTITE_TREATY",
+      "status":"PROVISIONAL_NOT_ADMITTED",
+      "candidate":"Treaty between Mursilis II and Duppi-Tessub of Amurru",
+      "candidate_source":"Jewish and Christian Literature page preserving older scholarly references and translation",
+      "url":"https://jewishchristianlit.com/treat01/",
+      "visible_anchor":"Preamble + Historical Introduction; Akkadian/Hittite tablet references listed",
+      "blocker":"Need a modern, provenance-clear scholarly edition or stable open facsimile/transliteration before freezing the oath/blessing/curse locus.",
+      "admission_ceiling":"SOURCE_DISCOVERY_ONLY"
+    },
+    {
+      "id":"BR06_THUCYDIDES",
+      "status":"LOCUS_ROOT_FROZEN_HASH_PENDING",
+      "source":"Perseus Digital Library",
+      "work":"Thucydides, Historiae / The Peloponnesian War",
+      "exact_locus":"Book 2 chapters 34-46 (state funeral context plus Periclean Funeral Oration)",
+      "primary_language_locator":"Greek text, especially 2.37 and surrounding chapters",
+      "translation_locator":"Perseus 1910 English, Book 2 chapters 34-46",
+      "rights_state":"Perseus page states CC BY-SA 3.0 US for the 1910 English work; exact Greek edition/reuse terms remain edition-specific",
+      "why":"Public ritual, state-selected panegyric, collective identity, civic exemplarity and war-death rhetoric with explicit genre context.",
+      "admission_ceiling":"POLITICAL_RHETORIC_BASE_RATE"
+    },
+    {
+      "id":"BR07_RES_GESTAE",
+      "status":"LOCUS_ROOT_FROZEN_HASH_PENDING",
+      "source":"Perseus Digital Library",
+      "work":"Caesar Augustus, Res Gestae Divi Augusti",
+      "text_uri":"urn:cts:latinLit:phi1221.phi007.perseus-lat1",
+      "exact_locus":"Preface plus sections 1, 8, 25 and 34",
+      "why":"Self-authored achievement framing, model-exemplar claim, consensus/loyalty display and authority/virtue legitimation.",
+      "language_layer":"LATIN_PRIMARY_TEXT; parallel translations may be controls but not independent witnesses",
+      "rights_state":"PERSEUS_ACCESS; VERIFY_EDITION_SPECIFIC_REUSE_TERMS_BEFORE_MIRROR",
+      "admission_ceiling":"POLITICAL_SELF_PRESENTATION_BASE_RATE"
+    },
+    {
+      "id":"BR08_PTAHHOTEP",
+      "status":"OPEN_SOURCE_GATE",
+      "target":"Instruction of Ptahhotep",
+      "blocker":"No sufficiently clean source-language/edition/locus authority was frozen in this pass. Secondary UCL-hosted scholarship references the Maxims but is not the required primary textual substrate.",
+      "required_next":"Locate a provenance-clear Egyptological edition/transliteration with exact maxim/line identifiers and lawful access state.",
+      "admission_ceiling":"NO_CODING"
+    }
+  ],
+  "summary": {
+    "locus_roots_frozen_hash_pending": 5,
+    "provisional_not_admitted": 2,
+    "open_source_gate": 1,
+    "total": 8,
+    "semantic_X01_X35_cells_populated": 0,
+    "sacred_targets_coded": 0,
+    "score_permission": false
+  },
+  "next_legal_action": "Resolve BR03 modern Egyptological text authority, BR05 modern Hittite treaty edition, and BR08 Ptahhotep primary edition; then seal retrievable frozen source/locus bytes or metadata commitments before building the zero-value coding packet.",
+  "epistemic_effect": "SOURCE_AND_LOCUS_FREEZE_ONLY_NO_MANIPULATION_CLASSIFICATION"
+}
