@@ -1,0 +1,22 @@
+{
+  "schema": "janus.topa.hunt.status.v1",
+  "hunt_id": "HUNT-0001",
+  "slug": "HESSDALEN",
+  "updated_at_local": "2026-08-24T09:35:00+03:00",
+  "status": "ACTIVE_AFTER_PASS_001",
+  "current_state": "UNRESOLVED_EVENT_FAMILY__REPLICATION_WORTHY",
+  "promotion_allowed": false,
+  "extraordinary_interpretation": "NOT_ESTABLISHED",
+  "single_common_physical_cause": "NOT_ESTABLISHED",
+  "archival_event_occurrence": "SUPPORTED_IN_STATED_SCOPE",
+  "multi_channel_overlap": "PARTIAL_SAME_PROJECT_DOCUMENTED",
+  "raw_replay": "NEXT_GATE",
+  "highest_priority_next_action": "K1_MODERN_RAW_DAY_REPLAY",
+  "authority": {
+    "preregistration": "hunts/HUNT-0001-HESSDALEN/PREREGISTRATION.json",
+    "source_ledger": "hunts/HUNT-0001-HESSDALEN/SOURCE_LEDGER.json",
+    "latest_pass": "hunts/HUNT-0001-HESSDALEN/PASS-001-ARCHIVAL-ADVERSARIAL.json"
+  },
+  "boundary": "Hessdalen is promoted as a replication-worthy observational testbed, not as proof of a paranormal, extraterrestrial, intelligent or unknown-physics phenomenon.",
+  "world_truth": false
+}
