@@ -1,0 +1,19 @@
+{
+  "schema": "janus.topa.hunt.spiral-state.v1",
+  "hunt_id": "HUNT-0001",
+  "spiral": 2,
+  "state": "K1_FROZEN__RAW_ACQUISITION_OPEN__K2_CORRECTED",
+  "k1": {
+    "gate": "K1_MODERN_RAW_DAY_REPLAY",
+    "selection_bias_control": "FROZEN",
+    "raw_day": "NOT_YET_ENUMERATED",
+    "replay": "NOT_YET_EXECUTED"
+  },
+  "k2": {
+    "old_gate": "K2_TWO_CAMERA_PARALLAX",
+    "new_gate": "K2_STEREO_BASELINE_GATE",
+    "reason": "Two operational 4K cameras are co-mounted on the Blue Box mast; a real stereo baseline is not established."
+  },
+  "lesson": "ATTACK_EXPERIMENTAL_DESIGN_BEFORE_ANOMALY_INTERPRETATION",
+  "world_truth": false
+}
