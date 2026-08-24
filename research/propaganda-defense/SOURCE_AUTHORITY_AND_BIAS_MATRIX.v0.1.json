@@ -1,0 +1,43 @@
+{
+  "schema": "topa.propaganda_defense.source_authority_and_bias_matrix.v0.1",
+  "date": "2026-08-24",
+  "status": "FROZEN_SYMMETRIC_ANALYSIS_RULE",
+  "core_law": "THE_SAME_ANALYTIC_STANDARD_APPLIES_REGARDLESS_OF_ACTOR_ALIGNMENT_OR_SOURCE_PRESTIGE",
+  "authority_classes": [
+    {"class":"PRIMARY_ARCHIVE_ARTIFACT","can_establish":"what artifact/document/poster/broadcast record exists and its catalog provenance","cannot_establish":"audience effect or truth of every claim inside the artifact"},
+    {"class":"PEER_REVIEWED_EMPIRICAL","can_establish":"results within stated design/sample/uncertainty","cannot_establish":"universal effectiveness or attribution outside the studied data"},
+    {"class":"ACADEMIC_SYNTHESIS","can_establish":"structured literature interpretation and definitions","cannot_establish":"primary-event truth without underlying evidence"},
+    {"class":"MILITARY_OR_GOVERNMENT_DOCTRINE","can_establish":"how that institution publicly defines or organizes a capability","cannot_establish":"that the doctrine is effective, ethically preferred or objectively complete"},
+    {"class":"GOVERNMENT_THREAT_ASSESSMENT_OR_DECLASSIFIED_REPORT","can_establish":"the institution's documented assessment and cited evidence","cannot_establish":"exclusive attribution truth; institutional incentives and unavailable evidence remain explicit"},
+    {"class":"NGO_OR_PRACTITIONER_REPORT","can_establish":"documented cases/methods within its collection process","cannot_establish":"complete population prevalence or neutral attribution by status alone"},
+    {"class":"PLATFORM_SELF_REPORT","can_establish":"what the platform says it detected/removed and disclosed network indicators","cannot_establish":"independent completeness, causal effect or absence of undisclosed cases"},
+    {"class":"NEWS_OR_SECONDARY_REPORT","can_establish":"a report/claim exists and may point to sources","cannot_establish":"source-root independence until traced backward"},
+    {"class":"MODEL_OR_JANUS_OUTPUT","can_establish":"hypothesis, clustering, anomaly or search direction","cannot_establish":"external-world truth, intent, coordination, attribution or persuasion effect"}
+  ],
+  "symmetry_tests": [
+    "Would TOPA classify the same observable behavior identically if the actor label were hidden?",
+    "Would we demand the same evidence for coordination if the message supported our preferred conclusion?",
+    "Would we accept the same government/NGO/platform evidence if it came from an opposing actor?",
+    "Does a true factual statement still use manipulative distribution behavior? Truth and manipulation are separate dimensions.",
+    "Does a false statement have a plausible non-deliberate explanation? Falsehood and propaganda intent are separate gates.",
+    "Does a counter-propaganda response reproduce the same coercive/manipulative technique it condemns?"
+  ],
+  "bias_receipt_required": [
+    "funding_or_institutional_affiliation_where_known",
+    "collection_method",
+    "selection_window",
+    "missing_data",
+    "source_access_limitations",
+    "known_conflicts_or_incentives",
+    "independence_from_other_sources",
+    "falsifier"
+  ],
+  "firewall": [
+    "OFFICIAL_SOURCE != EXCLUSIVE_TRUTH",
+    "OPPOSITION_SOURCE != AUTOMATIC_FALSEHOOD",
+    "TRUE_CONTENT != NON_PROPAGANDA",
+    "FALSE_CONTENT != PROPAGANDA_INTENT_PROVEN",
+    "COUNTER_PROPAGANDA != AUTOMATICALLY_BENIGN",
+    "SYMMETRY_IS_A_TEST_NOT_FALSE_EQUIVALENCE"
+  ]
+}
