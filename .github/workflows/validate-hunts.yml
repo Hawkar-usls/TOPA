@@ -1,0 +1,73 @@
+name: Validate TOPA native hunts
+
+on:
+  push:
+    paths:
+      - "hunts/**"
+      - "registry/TOPA-HUNT-INDEX.json"
+      - ".github/workflows/validate-hunts.yml"
+  pull_request:
+    paths:
+      - "hunts/**"
+      - "registry/TOPA-HUNT-INDEX.json"
+      - ".github/workflows/validate-hunts.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate native hunt structure and JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('hunts')
+          hunt_dirs = sorted(p for p in root.glob('HUNT-*') if p.is_dir())
+          assert hunt_dirs, 'NO_NATIVE_HUNTS_FOUND'
+
+          seen = set()
+          for hunt in hunt_dirs:
+              required = [
+                  'README.md',
+                  'PREREGISTRATION.json',
+                  'SOURCE_LEDGER.json',
+                  'STATUS.json',
+              ]
+              for name in required:
+                  path = hunt / name
+                  assert path.exists(), f'MISSING_REQUIRED_FILE:{path}'
+
+              pass_files = sorted(hunt.glob('PASS-*.json'))
+              assert pass_files, f'NO_PASS_RECEIPT:{hunt}'
+
+              prereg = json.loads((hunt / 'PREREGISTRATION.json').read_text(encoding='utf-8'))
+              status = json.loads((hunt / 'STATUS.json').read_text(encoding='utf-8'))
+              ledger = json.loads((hunt / 'SOURCE_LEDGER.json').read_text(encoding='utf-8'))
+              for path in pass_files:
+                  json.loads(path.read_text(encoding='utf-8'))
+
+              hunt_id = prereg.get('hunt_id')
+              assert hunt_id and hunt_id not in seen, f'INVALID_OR_DUPLICATE_HUNT_ID:{hunt_id}'
+              seen.add(hunt_id)
+              assert status.get('hunt_id') == hunt_id, f'STATUS_ID_MISMATCH:{hunt}'
+              assert ledger.get('hunt_id') == hunt_id, f'LEDGER_ID_MISMATCH:{hunt}'
+              assert prereg.get('world_truth') is False, f'PREREG_WORLD_TRUTH_MUST_BE_FALSE:{hunt}'
+              assert status.get('world_truth') is False, f'STATUS_WORLD_TRUTH_MUST_BE_FALSE:{hunt}'
+
+          index = json.loads(Path('registry/TOPA-HUNT-INDEX.json').read_text(encoding='utf-8'))
+          indexed = {x['hunt_id'] for x in index.get('hunts', [])}
+          assert indexed == seen, f'HUNT_INDEX_MISMATCH:indexed={sorted(indexed)} actual={sorted(seen)}'
+          assert index.get('native_hunt_count') == len(seen), 'HUNT_COUNT_MISMATCH'
+          assert index.get('world_truth') is False, 'INDEX_WORLD_TRUTH_MUST_BE_FALSE'
+
+          print(f'TOPA_NATIVE_HUNT_VALIDATION=PASS hunts={len(seen)}')
+          PY
