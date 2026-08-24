@@ -45,10 +45,10 @@ jobs:
           targets += sorted(Path('data').glob('JANUS-P-VS-NP-*.json'))
           targets += sorted(Path('registry').glob('TOPA-CANONICAL-HOME-*.json'))
           if not targets:
-              raise SystemExit('no mathematical JSON receipts found')
+            raise SystemExit('no mathematical JSON receipts found')
           for path in targets:
-              json.loads(path.read_text(encoding='utf-8'))
-              print(f'JSON_PASS {path}')
+            json.loads(path.read_text(encoding='utf-8'))
+            print(f'JSON_PASS {path}')
           PY
 
       - name: Compile mathematical probes
@@ -118,3 +118,13 @@ jobs:
         run: |
           cd research/mathematics/p-vs-np
           python expansion_entropy_monotone_crossing_probe.py
+
+      - name: Replay C025-E2R-L1G-F1 polarity inversion budget
+        run: |
+          cd research/mathematics/p-vs-np
+          python polarity_inversion_budget_probe.py
+
+      - name: Replay C025-E2R-L1G-F2 macro cut elimination mechanics
+        run: |
+          cd research/mathematics/p-vs-np
+          python macro_cut_elimination_f2_probe.py
