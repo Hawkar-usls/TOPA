@@ -6,12 +6,14 @@ on:
       - 'research/mathematics/**'
       - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
       - 'data/TOPA-P-VS-NP-*.json'
+      - 'data/JANUS-P-VS-NP-*.json'
       - '.github/workflows/validate-mathematics.yml'
   pull_request:
     paths:
       - 'research/mathematics/**'
       - 'data/TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'
       - 'data/TOPA-P-VS-NP-*.json'
+      - 'data/JANUS-P-VS-NP-*.json'
       - '.github/workflows/validate-mathematics.yml'
 
 permissions:
@@ -35,6 +37,7 @@ jobs:
 
           targets = sorted(Path('data').glob('TOPA-MATHEMATICAL-RESEARCH-MODE-*.json'))
           targets += sorted(Path('data').glob('TOPA-P-VS-NP-*.json'))
+          targets += sorted(Path('data').glob('JANUS-P-VS-NP-*.json'))
           if not targets:
               raise SystemExit('no mathematical JSON receipts found')
           for path in targets:
@@ -45,6 +48,10 @@ jobs:
       - name: Compile mathematical probes
         run: |
           python -m py_compile research/mathematics/p-vs-np/*.py
+
+      - name: Replay theorem-matched GT encoding
+        run: |
+          python research/mathematics/p-vs-np/source_gt.py
 
       - name: Replay Issue 211 finite mechanics
         run: |
