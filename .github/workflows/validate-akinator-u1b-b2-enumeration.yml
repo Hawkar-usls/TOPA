@@ -1,0 +1,29 @@
+name: Validate Akinator U1B B2 Enumeration
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1B_ALL_ONE_STEP_B2_ENUMERATION.md'
+      - 'research/mathematics/p-vs-np/akinator_u1b_b2_candidate_enumeration_probe.py'
+      - '.github/workflows/validate-akinator-u1b-b2-enumeration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run complete one-step B2 enumeration mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1b_b2_candidate_enumeration_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks candidate-count and definition-encoding mechanics only.'
+          echo 'Polynomial one-step proposal assumes polynomial current state size.'
+          echo 'Global useful-candidate selection and progress remain OPEN.'
+          echo 'P_VS_NP = OPEN'
