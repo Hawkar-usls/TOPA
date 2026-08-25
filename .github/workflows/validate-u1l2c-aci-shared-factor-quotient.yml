@@ -1,0 +1,28 @@
+name: Validate U1-L2C ACI Shared Factor Quotient
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1L2C_PROOF_CARRYING_ACI_SHARED_FACTOR_QUOTIENT.md'
+      - 'research/mathematics/p-vs-np/u1l2c_aci_shared_factor_quotient_verifier.py'
+      - '.github/workflows/validate-u1l2c-aci-shared-factor-quotient.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-aci-quotient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile provider
+        run: python -m py_compile research/mathematics/p-vs-np/u1l2c_aci_shared_factor_quotient_verifier.py
+      - name: Verify frozen ACI quotient ladder and refusal controls
+        run: python research/mathematics/p-vs-np/u1l2c_aci_shared_factor_quotient_verifier.py
