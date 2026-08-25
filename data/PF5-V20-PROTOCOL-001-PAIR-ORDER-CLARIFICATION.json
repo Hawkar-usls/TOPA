@@ -1,0 +1,23 @@
+{
+  "artifact_id": "PF5-V20-PROTOCOL-001-PAIR-ORDER-CLARIFICATION",
+  "status": "PRE_PROVIDER_CLARIFICATION",
+  "provider_existed_at_clarification": false,
+  "provider_results_seen": false,
+  "holdout_changed": false,
+  "theorem_changed": false,
+  "ambiguity": "The phrase 'inner_index increasing after outer' could be read as j > i only, which would miss a strict-subsumption pair when the subsuming clause appears later in canonical order.",
+  "frozen_deterministic_rule": {
+    "outer_i": "0..m-1 increasing",
+    "inner_j": "0..m-1 increasing, j != i",
+    "accept": "set(clause_i) is a strict subset of set(clause_j)",
+    "action": "remove clause_j for the first accepted ordered pair, emit certificate, then re-enter exact closure"
+  },
+  "fresh_frozen_holdout_unchanged": [
+    {"n": 6, "m": 24, "seeds": "914600..914615"},
+    {"n": 7, "m": 28, "seeds": "914700..914715"}
+  ],
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
