@@ -1,0 +1,100 @@
+name: Validate PF5 Non-Affine Connected Boundary v4
+
+on:
+  push:
+    branches:
+      - pf5-non-affine-connected-boundary-v4
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_NON_AFFINE_CONNECTED_BOUNDARY_GATE_V4.md'
+      - 'research/mathematics/p-vs-np/pf5_non_affine_connected_boundary_v4.py'
+      - '.github/workflows/validate-pf5-non-affine-connected-boundary-v4.yml'
+
+jobs:
+  heterogeneous-non-affine-join:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen heterogeneous JOIN replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_non_affine_connected_boundary_v4.py --json-out ../../../pf5-non-affine-connected-boundary-v4.result.json
+
+      - name: Verify v4 frozen contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-non-affine-connected-boundary-v4.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-NON-AFFINE-CONNECTED-BOUNDARY-V4'
+          assert d['widths_frozen_before_provider_run']==[3,4,6,8,10,12,14]
+          assert d['new_tuned_caps_added'] is False
+          assert d['caps']['OBDD_MAX_NONTERMINAL_NODES']==192
+          assert d['caps']['MAX_PRIMARY_STATE_BYTES']==250000
+          assert d['left_language']=='AFFINE_GF2'
+          assert d['right_languages']==['OR_INTERLEAVED_OBDD','EXACTLY_ONE_INTERLEAVED_OBDD']
+          assert d['join_language']=='COMMON_FROZEN_ORDER_OBDD'
+          assert d['boundary_language_discovery']=='SUPPLIED_FROZEN_TYPES_ONLY'
+          assert len(d['controls'])==14
+
+          passed=0
+          sat_passed=0
+          for r in d['controls']:
+              assert r['connected'] is True
+              assert r['left_language']=='AFFINE_GF2'
+              assert r['right_language']=='INTERLEAVED_OBDD'
+              assert r['join_language']=='COMMON_FROZEN_ORDER_OBDD'
+              assert r['boundary_language_discovery']=='SUPPLIED_FROZEN_TYPES_ONLY'
+              if r['status']=='PASS_EXACT_CLOSED':
+                  passed += 1
+                  assert r['left_affine_private_project_exact'] is True
+                  assert r['right_nonaffine_private_project_exact'] is True
+                  assert r['right_boundary_non_affine'] is True
+                  assert r['affine_to_obdd_conversion_exact'] is True
+                  assert r['right_obdd_copy_exact'] is True
+                  assert r['heterogeneous_join_exact'] is True
+                  assert r['repeated_shared_project_exact'] is True
+                  assert r['strict_heterogeneous_witness_glue_exact'] is True
+                  assert r['left_models']==r['expected_left_models']
+                  assert r['right_models']==r['expected_right_models']
+                  assert r['join_models']==r['expected_join_models']
+                  if r['expected_sat']:
+                      sat_passed += 1
+                      assert r['joined_boundary_non_affine'] is True
+                      assert r['final_scalar'] is True
+                      assert r['witness_valid'] is True
+                      assert r['witness_source']=='COMMON_J_OBDD_PROOF_PLUS_RIGHT_OBDD_PROOF_PLUS_LEFT_AFFINE_PIVOTS'
+                  else:
+                      assert r['final_scalar'] is False
+                      assert r['witness_valid'] is None
+                      assert r['witness_source']=='NO_WITNESS_COMMON_OBDD_FALSE'
+              else:
+                  assert r['status']=='CAP_HIT'
+                  assert r['claim']=='FINITE_HETEROGENEOUS_REPRESENTATION_ESCAPE_ONLY'
+
+          assert passed > 0
+          assert sat_passed > 0
+          assert d['all_passed_controls_exact'] is True
+          assert d['all_sat_joined_boundaries_non_affine'] is True
+          assert d['universal_cheap_language_selection']=='OPEN'
+          assert d['universal_cheap_cross_language_conversion']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_NON_AFFINE_CONNECTED_BOUNDARY_V4_CONTRACT = PASS')
+          print('PASSED_CONTROLS =', passed)
+          print('FIRST_BASE_CAP_HIT =', d['first_base_cap_hit'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'This is a supplied-type heterogeneous representation gate.'
+          echo 'SUPPLIED_TYPE != DISCOVERED_TYPE'
+          echo 'UNIVERSAL_CHEAP_LANGUAGE_SELECTION = OPEN'
+          echo 'UNIVERSAL_CHEAP_CROSS_LANGUAGE_CONVERSION = OPEN'
+          echo 'P_VS_NP = OPEN'
