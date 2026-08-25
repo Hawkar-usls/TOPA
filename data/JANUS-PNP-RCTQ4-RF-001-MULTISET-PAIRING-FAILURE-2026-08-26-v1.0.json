@@ -1,0 +1,27 @@
+{
+  "schema": "JANUS_PNP_RCTQ4_RF_001_FAILURE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "failure_id": "RCTQ4-RF-001",
+  "audit_protocol_commit": "d089dccdc1964e1686bc7427af59ff6fc4fdf45f",
+  "verifier_commit": "51f570e922cce4d6324f4adfc8616cffb34615db",
+  "workflow_head": "46a5d02dc5398454f5917d523ce43ed61fe65c19",
+  "run_id": 32908972803,
+  "job_id": 97999042755,
+  "conclusion": "FAILURE",
+  "failure_class": "MULTISET_VS_SET_AUDIT_ASSUMPTION",
+  "error": "The verifier paired complement clauses through a set and asserted set cardinality equals the 166-clause occurrence tuple. B41 contains duplicate clause occurrences; canonical_cnf sorts but does not globally deduplicate clauses.",
+  "NAE3_identity_impact": "NONE",
+  "RCTQ4_escape_impact": "NONE",
+  "new_exact_observation": {
+    "id": "DUPLICATE_CLAUSE_IDEMPOTENCE",
+    "identity": "A AND A = A",
+    "status": "EXACT_BOOLEAN_IDENTITY_PENDING_FRESH_TYPED_ADMISSION",
+    "note": "Not currently represented by strict subsumption, which requires A<B."
+  },
+  "repair_scope": "Use exact Counter/multiset pairing so every clause occurrence is paired once with a complement occurrence; report unique clause and unique macro counts separately. Do not change frozen NAE identity or RCTQ4 results.",
+  "P_VS_NP": "OPEN"
+}
