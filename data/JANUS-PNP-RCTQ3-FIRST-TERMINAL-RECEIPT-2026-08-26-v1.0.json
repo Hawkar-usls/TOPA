@@ -1,0 +1,60 @@
+{
+  "schema": "JANUS_PNP_RCTQ3_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "protocol": {
+    "path": "research/mathematics/p-vs-np/C025_AKINATOR_RCTQ3_POLARITY_TERMINAL_AND_GAUGED_ESCAPE.md",
+    "commit": "51b0b44e9808ae69c1aab1c0e6eebcc8106ad82e",
+    "frozen_before_provider": true
+  },
+  "provider": {
+    "path": "research/mathematics/p-vs-np/rctq3_polarity_gauged_escape_verifier.py",
+    "commit": "5ec371ae7d6ad5f8912d5e60538e5cb005212428"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-rctq3.yml",
+    "head_commit": "1d80f4d0a94319a77acbfbe3ce6cc86f9a50bbeb"
+  },
+  "first_run": {
+    "run_id": 32906713727,
+    "job_id": 97992323910,
+    "attempt": 1,
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526"
+  },
+  "catalog_extension": {
+    "old_operator_count": 14,
+    "new_operator_count": 15,
+    "new_operator": "UNIFORM_POLARITY_CLAUSE_WITNESS",
+    "recognition": "O(total_literal_occurrences)",
+    "witness": "ALL_ONES_OR_ALL_ZERO_ON_CERTIFIED_DOMAIN"
+  },
+  "primary_escape": {
+    "id": "G_37",
+    "construction": "E_37 under fixed signed gauge pattern [0,0,1,1,0]",
+    "variables": 37,
+    "clauses": 74,
+    "literal_occurrences": 222,
+    "all_negative_clause_count": 7,
+    "all_positive_clause_count": 9,
+    "mixed_witness_from_original_all_ones": "PASS",
+    "mixed_witness_from_original_all_zero": "PASS",
+    "frozen_15_operator_domains_admitting_state": 0,
+    "swap_orbit_P": 137438953472,
+    "swap_orbit_status": "REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4"
+  },
+  "theorem_ledger": {
+    "UNIFORM_POLARITY_CLAUSE_WITNESS_EXACT_ON_CERTIFIED_DOMAIN": true,
+    "SIGNED_GAUGE_IS_SAT_EQUIVALENCE_BIJECTION": true,
+    "FROZEN_15_CATALOG_UNIVERSAL_NEXT_TRANSITION_AVAILABILITY": false,
+    "GAUGE_RELABELING_IS_STATE_COUNT_COMPRESSION": false,
+    "CATALOG_ESCAPE_IMPLIES_SAT_HARDNESS": false,
+    "P_EQUALS_NP": false
+  },
+  "reverse_obligation": "EXACT_SIGNED_POLARITY_NORMALIZATION_AND_THEN_STRONGER_BALANCED_ESCAPE",
+  "P_VS_NP": "OPEN"
+}
