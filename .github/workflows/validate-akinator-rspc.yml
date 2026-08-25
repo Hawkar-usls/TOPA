@@ -13,6 +13,8 @@ on:
       - 'research/mathematics/p-vs-np/akinator_large_support_robdd_probe.py'
       - 'research/mathematics/p-vs-np/C025_AKINATOR_LIVE_WIDTH_PATH_DP_CERTIFICATE.md'
       - 'research/mathematics/p-vs-np/akinator_live_width_path_dp_probe.py'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PROOF_CARRYING_ELIMINATION_SELECTOR.md'
+      - 'research/mathematics/p-vs-np/akinator_proof_carrying_elimination_probe.py'
       - '.github/workflows/validate-akinator-rspc.yml'
   workflow_dispatch:
 
@@ -37,10 +39,12 @@ jobs:
         run: python research/mathematics/p-vs-np/akinator_large_support_robdd_probe.py
       - name: Run live-width path-DP finite mechanics
         run: python research/mathematics/p-vs-np/akinator_live_width_path_dp_probe.py
+      - name: Run proof-carrying elimination selector finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_proof_carrying_elimination_probe.py
       - name: Claim ceiling reminder
         run: |
-          echo 'CI checks finite reduction/algebra/substitution/ROBDD/live-width/DP/counterexample mechanics only.'
-          echo 'NP-completeness, bounded-support ER3 elimination, residual-frontier, and live-width DP bounds are analytic/source results, not CI theorems.'
-          echo 'No unrestricted ER3 size lower bound, order-independent OBDD lower bound, or universal low-live-width representation theorem is claimed.'
-          echo 'Representation rewrite discovery and global progress remain OPEN.'
+          echo 'CI checks finite reduction/algebra/substitution/ROBDD/live-width/DP/elimination/certificate mechanics only.'
+          echo 'Davis-Putnam exactness, bounded-support ER3 elimination, residual-frontier, live-width DP, and conditional P=NP bridges are analytic/source results, not CI theorems.'
+          echo 'Universal ELIM-CAP_C availability and MACRO-RESTORE-CAP availability remain OPEN.'
+          echo 'No unrestricted ER3 size lower bound or P vs NP conclusion is claimed.'
           echo 'P_VS_NP = OPEN'
