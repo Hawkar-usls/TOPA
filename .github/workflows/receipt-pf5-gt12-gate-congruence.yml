@@ -1,0 +1,58 @@
+name: Receipt PF5 GT12 Gate Congruence
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_gt12_intact_gate_congruence_probe.py'
+      - '.github/workflows/receipt-pf5-gt12-gate-congruence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact intact gate congruence successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_gt12_intact_gate_congruence_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          c=r['congruence']
+          out={
+              'terminal':r['terminal'],
+              'before_units':r['before']['units'],
+              'before_variables':r['before']['variables'],
+              'historical_gates':r['before']['historical_gates'],
+              'successful_merges':c['successful_merges'],
+              'work_total':c['work']['total'],
+              'passes':c['work']['passes'],
+              'after_units':r['after']['units'],
+              'after_clauses':r['after']['clauses'],
+              'after_variables':r['after']['variables'],
+              'first_pass':c['passes'][0] if c['passes'] else None,
+              'last_pass':c['passes'][-1] if c['passes'] else None,
+              'handoff_status':None if r['automaton_handoff'] is None else r['automaton_handoff']['status'],
+              'handoff_states':None if r['automaton_handoff'] is None else r['automaton_handoff']['residual_states'],
+              'p_vs_np':r['p_vs_np'],
+          }
+          print('PF5_GT12_GATE_CONGRUENCE_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
