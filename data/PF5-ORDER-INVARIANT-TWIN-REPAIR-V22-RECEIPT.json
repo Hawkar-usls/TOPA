@@ -1,0 +1,110 @@
+{
+  "artifact_id": "PF5-ORDER-INVARIANT-TWIN-REPAIR-V22-RECEIPT",
+  "status": "PASS",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "7b268b9485138f5037d6a5530d95650df0ed9df7",
+  "workflow_run": 32839465026,
+  "workflow_job": 97775542749,
+  "result_sha256": "f8742a50d4225d1ef88dc18a25eba0214768fd3c2f496ad4d456e24cb600536f",
+  "source_manifest_sha256": "8d0ef6ca46a8821c2c15eef41bb867241b8600f4afbe168f2f585b529f4b4ed3",
+  "reduction_batch_sha256": "9b59d4875e40e82ba062a12c655c28e535f021ce97be446b4b1ba657698f6ce3",
+  "parent_gap": "data/PF5-V18-002-BODY-ORDER-SENSITIVITY.json",
+  "protocol_receipt": "data/PF5-V22-FROZEN-ORDER-INVARIANT-TWIN-REPAIR-PROTOCOL.json",
+  "repair_type": "IMPLEMENTATION_REPAIR_OF_EXISTING_EXACT_THEOREM",
+  "theorem": "(A OR x) AND (A OR NOT x) == A",
+  "theorem_changed": false,
+  "fresh_frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "915600..915615"},
+    {"n": 7, "m": 28, "seeds": "915700..915715"}
+  ],
+  "summary": {
+    "cases": 32,
+    "baseline_cases_with_missed_semantic_twin": 27,
+    "feature_fired_cases": 27,
+    "feature_noop_cases": 5,
+    "total_v22_steps": 49,
+    "terminal_true_cases": 0,
+    "terminal_false_cases": 0,
+    "open_residual_cases": 32,
+    "positive_byte_delta_cases": 27,
+    "mean_baseline_crystal_bytes": 216.8125,
+    "mean_final_crystal_bytes": 187.5625,
+    "all_semantic_audits_pass": true,
+    "all_final_residuals_semantic_twin_free": true,
+    "exact_final_revisits": 0
+  },
+  "runtime_ledger": {
+    "v13": {
+      "rounds": 207,
+      "literal_occurrence_checks": 13577,
+      "clause_membership_checks": 0,
+      "clauses_removed": 0,
+      "certificate_bytes": 0,
+      "residual_bytes_peak": 87186,
+      "witness_lift_ops": 0,
+      "variable_tests": 1328,
+      "failed_variable_tests": 1328,
+      "clause_polarity_checks": 30215,
+      "pair_checks": 2060,
+      "complement_literal_checks": 3686,
+      "successful_projections": 0
+    },
+    "v15": {
+      "variable_tests": 1324,
+      "failed_variable_tests": 1323,
+      "clause_polarity_checks": 30147,
+      "pair_checks": 33648,
+      "complement_literal_checks": 59700,
+      "non_taut_resolvent_rows": 22560,
+      "unique_resolvent_insertions": 21380,
+      "successful_projections": 1,
+      "clauses_removed": 5,
+      "clauses_emitted": 1,
+      "certificate_bytes": 1345
+    },
+    "v18": {
+      "variable_tests": 1174,
+      "failed_variable_tests": 1116,
+      "clause_polarity_checks": 26450,
+      "pair_checks": 27674,
+      "body_literal_checks": 55263,
+      "body_hashes": 33342,
+      "successful_contractions": 58,
+      "clauses_removed": 116,
+      "clauses_emitted": 58,
+      "certificate_bytes": 36541
+    },
+    "v20": {
+      "clause_pair_tests": 67981,
+      "failed_pair_tests": 67914,
+      "literal_membership_checks": 6611,
+      "successful_contractions": 67,
+      "clauses_removed": 67,
+      "certificate_bytes": 25169,
+      "state_bytes_peak": 29986,
+      "cumulative_state_bytes": 42990
+    },
+    "v22": {
+      "variable_tests": 397,
+      "failed_variable_tests": 348,
+      "clause_polarity_checks": 8704,
+      "pair_checks": 8130,
+      "semantic_key_literal_visits": 21907,
+      "semantic_key_builds": 10934,
+      "existing_clause_key_checks": 1011,
+      "successful_contractions": 49,
+      "clauses_removed": 98,
+      "clauses_emitted": 49,
+      "certificate_bytes": 30418,
+      "state_bytes_peak": 16348,
+      "cumulative_state_bytes": 26099
+    }
+  },
+  "interpretation": "The fresh frozen audit confirms that the legacy v18 tuple-order sensitivity caused missed logical complementary twins in 27 of 32 v20 baselines. The order-invariant repair removed all such twins and passed every bounded semantic audit. All 32 cases remain open residuals; this is an implementation repair and finite closure improvement, not an asymptotic result.",
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "next_gate": "FIRST_RESIDUAL_SURVIVING_V12_V13_V15_V18_V20_V22",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
