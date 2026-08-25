@@ -1,0 +1,23 @@
+{
+  "schema": "JANUS_PNP_U1L2B1_AC_GATE_TRADEOFF_OBSERVER_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "workflow_head": "4f780c362c96c9853c293e95fffba53f8ede5261",
+  "workflow_run": 32853195000,
+  "workflow_job": 97818791071,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "result_sha256": "5755ed11dc2e2cb70fd99d9f9a5d3f1030f0350eb1db7cd9e44fa63138ad628c",
+  "scope": {"k":4,"g_max":3,"admitted_circuits":20792,"function_projection_classes":5016},
+  "result": {
+    "classes_with_multiple_pareto_costs": 0,
+    "max_pareto_points_in_one_class": 1,
+    "classes_where_some_source_needs_gate_growth_for_lower_ac": 0,
+    "source_instances_where_lower_ac_requires_gate_growth": 0,
+    "distinct_source_encodings_where_lower_ac_requires_gate_growth": 0,
+    "max_required_gate_growth_within_frozen_scope": 0
+  },
+  "claim": "WITHIN_FROZEN_K4_G3_SINGLETON_DEPENDENCY_SCOPE_NO_AC_VS_GATE_GROWTH_TRADEOFF_WAS_FOUND",
+  "claim_ceiling": "LOCAL_EXHAUSTIVE_RESULT_ONLY_P_VS_NP_OPEN",
+  "next_debt": "LIFT_CATALOG_COST_FROM_SINGLETON_PROJECTED_BOUNDARY_TO_ARBITRARY_BOUNDARY_DEPENDENCY_MASK"
+}
