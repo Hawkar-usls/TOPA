@@ -1,0 +1,32 @@
+{
+  "schema": "JANUS_PNP_RCTQ4_001_FAILURE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "failure_id": "RCTQ4-001",
+  "protocol_commit": "8d4699c79b87e3c149996b653ba5649c94a0565d",
+  "provider_commit": "866e2e16fd3e501dd544d6ab17efff581e9faf56",
+  "workflow_head": "5d58f2db011de4b15c4db14b5dcc1342f4bc04c2",
+  "run_id": 32907640334,
+  "job_id": 97995073289,
+  "run_number": 1,
+  "attempt": 1,
+  "status": "COMPLETED",
+  "conclusion": "CANCELLED_BY_12_MINUTE_WORKFLOW_TIMEOUT",
+  "failure_class": "EXACT_DOMAIN_AUDIT_MATERIALIZATION_COST",
+  "observed_log": "Python verifier ran from 22:45:21Z until workflow cancellation at 22:57:31Z; compile had already passed.",
+  "root_cause": {
+    "operation": "SWAP_ORBIT_WEIGHT domain audit called build_quotient, which materializes every orbit-weight state after admission.",
+    "B37_encoded_N": 638,
+    "B37_singleton_orbit_product_P": 137438953472,
+    "B37_N_pow_4": 165684817936,
+    "P_le_N_pow_4": true,
+    "meaning": "The frozen mathematical N^4 domain admits B37, but materializing 2^37 explicit orbit states is infeasible for this CI run. This is a finite materialization/audit issue, not an asymptotic non-polynomiality result."
+  },
+  "theorem_impact": "NONE",
+  "frozen_protocol_changed": false,
+  "repair_scope": "Replace quotient materialization during domain audit with exact symbolic domain test: discover swap classes, compute P=product(|C_j|+1), compute N, compare P<=N^4. Do not change operator domain semantics or cap.",
+  "P_VS_NP": "OPEN"
+}
