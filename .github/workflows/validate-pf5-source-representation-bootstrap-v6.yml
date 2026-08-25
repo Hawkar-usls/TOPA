@@ -1,0 +1,129 @@
+name: Validate PF5 Source Representation Bootstrap v6
+
+on:
+  push:
+    branches:
+      - pf5-source-representation-bootstrap-v6
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SOURCE_REPRESENTATION_BOOTSTRAP_GATE_V6.md'
+      - 'research/mathematics/p-vs-np/pf5_source_representation_bootstrap_v6.py'
+      - '.github/workflows/validate-pf5-source-representation-bootstrap-v6.yml'
+
+jobs:
+  source-bootstrap:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen source bootstrap replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_source_representation_bootstrap_v6.py --json-out ../../../pf5-source-representation-bootstrap-v6.result.json
+
+      - name: Verify v6 source-bootstrap contract
+        run: |
+          python - <<'PY'
+          import inspect
+          import json
+          import sys
+          sys.path.insert(0, 'research/mathematics/p-vs-np')
+          import pf5_source_representation_bootstrap_v6 as v6
+
+          # Mechanical blind-source API check: no fixture kind/name/language input.
+          params=list(inspect.signature(v6.bootstrap_representation).parameters)
+          assert params==['clauses','variables','frozen_order'], params
+
+          d=json.load(open('pf5-source-representation-bootstrap-v6.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SOURCE-REPRESENTATION-BOOTSTRAP-V6'
+          assert d['widths_frozen_before_provider_run']==[4,6,8,10,12,14]
+          assert d['bootstrap_order_frozen_before_provider_run']==[
+              'SIGNED_PARITY_GRAPH_CNF','GENERIC_FROZEN_ORDER_OBDD'
+          ]
+          assert d['new_tuned_caps_added'] is False
+          assert len(d['controls'])==18
+
+          passed=0
+          lanes={}
+          for r in d['controls']:
+              if r['status']=='CAP_HIT':
+                  assert r['claim']=='FINITE_SOURCE_BOOTSTRAP_PORTFOLIO_ESCAPE_ONLY'
+                  continue
+              passed += 1
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['source_input_is_cnf_only'] is True
+              assert r['bootstrap_input_has_no_prebuilt_obdd'] is True
+              assert r['bootstrap_api_unlabeled'] is True
+              assert r['fixed_bootstrap_order_used'] is True
+              assert r['failed_bootstrap_work_charged'] is True
+              assert r['source_equivalence_certificate_exact'] is True
+              assert r['selected_representation_project_closed'] is True
+              assert r['strict_source_witness'] is True
+              assert r['lane_matches_frozen_expectation'] is True
+              lanes[r['selected_lane']]=lanes.get(r['selected_lane'],0)+1
+
+              kind=r['external_kind_for_test_only']
+              attempts=[(a['bootstrap'],a['status']) for a in r['bootstrap_attempts']]
+              if kind=='SIGNED_BLOCKED_PAIRS':
+                  assert r['selected_lane']=='SIGNED_PARITY_COMPONENTS'
+                  assert attempts==[('SIGNED_PARITY_GRAPH_CNF','ACCEPT_EQUIVALENT')]
+                  assert r['final_scalar'] is True
+                  assert r['witness_valid'] is True
+                  assert r['witness_source']=='SIGNED_COMPONENT_REROOT_PROJECTION_PROOF'
+              elif kind=='SIGNED_CYCLE_UNSAT':
+                  assert r['selected_lane']=='SIGNED_PARITY_COMPONENTS'
+                  assert attempts==[('SIGNED_PARITY_GRAPH_CNF','ACCEPT_EQUIVALENT')]
+                  assert r['final_scalar'] is False
+                  assert r['witness_valid'] is None
+                  assert r['witness_source']=='NO_WITNESS_SIGNED_COMPONENT_CONTRADICTION'
+              elif kind=='WIDE_OR':
+                  assert r['selected_lane']=='GENERIC_FROZEN_ORDER_OBDD'
+                  assert attempts[0][0]=='SIGNED_PARITY_GRAPH_CNF' and attempts[0][1]=='REJECT'
+                  assert attempts[1]==('GENERIC_FROZEN_ORDER_OBDD','ACCEPT_SYNTAX_PRESERVING')
+                  assert r['failed_bootstrap_ops']>0
+                  assert r['final_scalar'] is True
+                  assert r['witness_valid'] is True
+                  assert r['witness_source']=='GENERIC_SOURCE_OBDD_PROJECTION_PROOF'
+              else:
+                  raise AssertionError(kind)
+
+          assert passed>0
+          assert d['passed_controls']==passed
+          assert d['all_passed_source_cnf_only'] is True
+          assert d['all_passed_no_prebuilt_obdd'] is True
+          assert d['all_passed_bootstrap_unlabeled'] is True
+          assert d['all_passed_fixed_bootstrap_order'] is True
+          assert d['all_passed_failed_work_charged'] is True
+          assert d['all_passed_source_equivalence_exact'] is True
+          assert d['all_passed_project_closed'] is True
+          assert d['all_passed_strict_source_witness'] is True
+          assert d['blind_lane_selection_matches_frozen_expectation'] is True
+          assert d['signed_blocked_pair_discovered_before_obdd'] is True
+          assert d['parity_cycle_contradiction_discovered'] is True
+          assert d['wide_or_uses_generic_bootstrap'] is True
+          assert lanes.get('SIGNED_PARITY_COMPONENTS',0)>0
+          assert lanes.get('GENERIC_FROZEN_ORDER_OBDD',0)>0
+          assert d['generic_obdd_bad_order_receipt']=='PRESERVED_FROM_PF5_V0_BLOCKED_EQUALITY'
+          assert d['universal_source_representation_discovery']=='OPEN'
+          assert d['universal_polynomial_bootstrap']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_SOURCE_REPRESENTATION_BOOTSTRAP_V6_CONTRACT = PASS')
+          print('PASSED_CONTROLS =', passed)
+          print('LANES =', lanes)
+          print('FIRST_BASE_CAP_HIT =', d['first_base_cap_hit'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'v6 starts from CNF bytes, not from a free compact OBDD.'
+          echo 'BAD_OBDD_ORDER != FORMULA_HARDNESS'
+          echo 'UNIVERSAL_SOURCE_REPRESENTATION_DISCOVERY = OPEN'
+          echo 'UNIVERSAL_POLYNOMIAL_BOOTSTRAP = OPEN'
+          echo 'P_VS_NP = OPEN'
