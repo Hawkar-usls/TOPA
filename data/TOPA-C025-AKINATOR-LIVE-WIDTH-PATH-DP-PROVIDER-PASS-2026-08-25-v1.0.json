@@ -1,0 +1,36 @@
+{
+  "id": "TOPA-C025-AKINATOR-LIVE-WIDTH-PATH-DP-PROVIDER-PASS-2026-08-25-v1.0",
+  "schema_version": "1.0",
+  "status": "PROVIDER_FINITE_MECHANICS_PASS__ANALYTIC_THEOREM_SEPARATE",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "canonical_note": "research/mathematics/p-vs-np/C025_AKINATOR_LIVE_WIDTH_PATH_DP_CERTIFICATE.md",
+  "topa": {
+    "head_sha": "ed302676ef98e56fca97315c7feec9a67d8538d4",
+    "run_id": 32793132510,
+    "job_id": 97638737275,
+    "conclusion": "SUCCESS"
+  },
+  "provider": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "head_sha": "d4146e7f8232c4d38818f42517d8fbd804b2f464",
+    "run_id": 32793214883,
+    "job_id": 97639002424,
+    "conclusion": "SUCCESS"
+  },
+  "analytic_results": [
+    "Gate-trace live intervals produce a valid deterministic path decomposition.",
+    "Exact output feasibility and residual nonconstancy are decidable in poly(T)*2^O(lambda) from that decomposition.",
+    "If trace bytes are polynomial in N and lambda=O(log N) with a universal constant, exact survival discovery is polynomial in original N.",
+    "Parity has linear root support and constant live width in the streaming B2 representation.",
+    "The pair-fanout fixed dependency architecture forces lambda=Omega(n)=Omega(sqrt(T)) for every topological serialization of that architecture."
+  ],
+  "boundaries": [
+    "Finite provider PASS validates mechanics only.",
+    "The pair-fanout lower bound is architecture-scoped, not a function lower bound across all equivalent circuits.",
+    "Equivalent low-width rewrite discovery is OPEN.",
+    "Global proof progress is OPEN.",
+    "P_VS_NP = OPEN"
+  ],
+  "next_gate": "GLOBAL_PROGRESS_CERTIFICATE_AFTER_EXACT_LOW_BOUNDARY_SURVIVAL"
+}
