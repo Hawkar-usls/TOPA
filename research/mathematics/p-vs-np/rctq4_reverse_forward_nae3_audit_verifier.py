@@ -3,12 +3,13 @@
 
 Discovers and verifies the exact complement-clause-pair <-> signed NAE3
 representation switch, then replays the immutable JANUS chain in both
-directions.  This is not a SAT solver and does not establish polynomial
-existential closure for NAE3.
+directions. Clause occurrences are paired as a multiset because canonical_cnf
+sorts but does not globally deduplicate clauses. This is not a SAT solver and
+does not establish polynomial existential closure for NAE3.
 """
 from __future__ import annotations
 
-from collections import deque
+from collections import Counter, deque
 from hashlib import sha256
 import importlib.util
 from itertools import product
@@ -64,21 +65,21 @@ def clause_complement(c):
 
 def pair_to_nae_macros(F):
     F = r4.r3.r2.canonical_cnf(F)
-    clause_set = set(F)
-    seen = set()
+    original = Counter(F)
+    remaining = Counter(original)
     macros = []
-    for c in F:
-        if c in seen:
-            continue
+    for c in sorted(original):
         d = clause_complement(c)
-        assert d in clause_set, (c, d)
         assert c != d
-        seen.add(c); seen.add(d)
-        rep = min(c, d)
-        macros.append(rep)
-    assert len(seen) == len(F)
+        assert original[d] == original[c], (c, original[c], d, original[d])
+        while remaining[c] > 0:
+            assert remaining[d] > 0, (c, d, remaining[c], remaining[d])
+            remaining[c] -= 1
+            remaining[d] -= 1
+            macros.append(min(c, d))
+    assert all(v == 0 for v in remaining.values())
     macros = tuple(sorted(macros))
-    return macros
+    return macros, original
 
 
 def local_nae_identity_truth_table():
@@ -106,7 +107,7 @@ def macro_accepts(rep, assignment):
 
 
 def incidence_cycle_rank(macros, variables):
-    # Bipartite multigraph: variable vertices and distinct macro vertices.
+    # Macro occurrences are distinct edge vertices, including duplicates.
     v_nodes = [("v", v) for v in variables]
     e_nodes = [("e", i) for i in range(len(macros))]
     adj = {u: set() for u in v_nodes + e_nodes}
@@ -137,7 +138,7 @@ def incidence_cycle_rank(macros, variables):
     assert beta >= 0
     return {
         "variable_vertices": len(v_nodes),
-        "macro_vertices": len(e_nodes),
+        "macro_occurrence_vertices": len(e_nodes),
         "incidence_edges": incidence_count,
         "connected_components": components,
         "cycle_rank_beta": beta,
@@ -151,7 +152,7 @@ def exact_b41_nae_audit():
     assert primary["admitted_frozen16_operator_ids"] == []
     assert len(B) == 166
 
-    macros = pair_to_nae_macros(B)
+    macros, clause_multiset = pair_to_nae_macros(B)
     assert len(macros) == 83
     local_rows = local_nae_identity_truth_table()
 
@@ -160,7 +161,6 @@ def exact_b41_nae_audit():
     assert all(macro_accepts(m, w0) for m in macros)
     assert all(w0[v] == (not w1[v]) for v in w1)
 
-    # A conjunction of NAE constraints is invariant under global complement.
     complement_replay_count = 0
     for macro in macros:
         vals1 = literal_values(macro, w1)
@@ -170,25 +170,40 @@ def exact_b41_nae_audit():
         complement_replay_count += 1
 
     incidence = incidence_cycle_rank(macros, r4.r3.r2.variables(B))
+    unique_clause_count = len(clause_multiset)
+    duplicate_clause_occurrences = len(B) - unique_clause_count
+    unique_macro_count = len(set(macros))
+    duplicate_macro_occurrences = len(macros) - unique_macro_count
+    assert duplicate_clause_occurrences >= 0
+    assert duplicate_macro_occurrences >= 0
 
     return {
         "schema_id": "NAE3_COMPLEMENT_CLAUSE_PAIR_MACRO",
         "status": "PROVED_EXACT_RESTRICTED_REPRESENTATION_SWITCH",
-        "domain": "EVERY_CLAUSE_HAS_EXACT_LITERALWISE_COMPLEMENT",
+        "domain": "CLAUSE_MULTISET_IS_CLOSED_UNDER_EXACT_LITERALWISE_COMPLEMENT_WITH_MATCHED_MULTIPLICITY",
         "identity": "(a OR b OR c) AND (!a OR !b OR !c) == NAE(a,b,c)",
         "local_truth_table_rows": len(local_rows),
-        "discovery": "DETERMINISTIC_EXACT_COMPLEMENT_PAIR_HASHING",
-        "construction_bound": "O(m log m) under canonical clause hashing/sorting",
+        "discovery": "DETERMINISTIC_EXACT_COMPLEMENT_PAIR_MULTISET_HASHING",
+        "construction_bound": "O(m log m) under canonical clause sorting plus exact multiplicity accounting",
         "witness_lift": "IDENTITY_ON_VARIABLE_ASSIGNMENT",
-        "B41_cnf_clause_count": len(B),
-        "B41_nae3_macro_count": len(macros),
-        "presentation_clause_to_macro_ratio": 2,
+        "B41_cnf_clause_occurrences": len(B),
+        "B41_unique_cnf_clauses": unique_clause_count,
+        "B41_duplicate_clause_occurrences": duplicate_clause_occurrences,
+        "B41_nae3_macro_occurrences": len(macros),
+        "B41_unique_nae3_macros": unique_macro_count,
+        "B41_duplicate_macro_occurrences": duplicate_macro_occurrences,
+        "presentation_clause_occurrence_to_macro_occurrence_ratio": 2,
         "B41_witness_1_macro_replay": "PASS",
         "B41_witness_0_macro_replay": "PASS",
         "global_complement_macro_replays": complement_replay_count,
         "global_complement_symmetry": True,
         "incidence": incidence,
         "cycle_rank_interpretation": "LINEAR_NUMBER_OF_CYCLE_BITS_DOES_NOT_IMPLY_POLYNOMIALLY_MANY_SEMANTIC_STATES",
+        "additional_exact_identity_exposed": {
+            "id": "DUPLICATE_CLAUSE_IDEMPOTENCE",
+            "identity": "A AND A = A",
+            "status": "PROVED_BOOLEAN_IDENTITY_PENDING_FRESH_TYPED_ADMISSION"
+        },
         "is_sat_decision": False,
         "is_universal_existential_closure": False,
         "is_p_equals_np": False,
@@ -211,6 +226,7 @@ def main():
         "claim_ceiling": "P_VS_NP_OPEN",
         "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
         "audit_protocol_commit": AUDIT_PROTOCOL_COMMIT,
+        "rctq4_rf_001_preserved": True,
         "reverse_forward_hash_stable": True,
         "execution_sequence": execution,
         "reverse_seed": "B_41",
@@ -222,7 +238,7 @@ def main():
             "RCTQ4_001_was_finite_materialization_timeout_not_theorem_failure": True,
             "ASYMPTOTIC_POLY_DOMAIN_IS_NOT_FINITE_PRACTICAL_BUDGET": True,
         },
-        "next_gate": "RCTQ5_TYPED_NAE3_PAIR_MACRO_THEN_SIGNED_NAE_SWITCHING_NORMALIZATION_AND_EXISTENTIAL_CLOSURE_AUDIT",
+        "next_gate": "RCTQ5_TYPED_DUPLICATE_IDEMPOTENCE_AND_NAE3_PAIR_MACRO_THEN_SIGNED_NAE_SWITCHING_NORMALIZATION",
         "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
         "P_VS_NP": "OPEN",
     }
