@@ -1,0 +1,45 @@
+{
+  "id": "TOPA-C025-AKINATOR-LARGE-SUPPORT-ROBDD-PROVIDER-PASS-2026-08-25-v1.0",
+  "schema_version": "1.0",
+  "status": "PROVIDER_FINITE_MECHANICS_PASS__ANALYTIC_AND_SOURCE_RESULTS_SEPARATE",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "canonical_note": "research/mathematics/p-vs-np/C025_AKINATOR_LARGE_SUPPORT_ROBDD_CERTIFICATE.md",
+  "order_barrier_note": "research/mathematics/p-vs-np/C025_AKINATOR_ROBDD_ORDER_DISCOVERY_BARRIER.md",
+  "topa_run": {
+    "head_sha": "2f67080b0dfa571462358c9270e604bbf7d7fe86",
+    "run_id": 32792684508,
+    "job_id": 97637325085,
+    "conclusion": "SUCCESS"
+  },
+  "fundamentum_provider": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "head_sha": "a79e8ee05e5568edf3ba55f60cfa08df2c96bd2b",
+    "run_id": 32792861253,
+    "job_id": 97637867156,
+    "conclusion": "SUCCESS",
+    "markers": [
+      "C025_AKINATOR_ROBDD_PARITY_LINEAR_SIZE_FINITE = PASS",
+      "C025_AKINATOR_ROBDD_EQ_BAD_ORDER_EXP_FRONTIER_FINITE = PASS",
+      "C025_AKINATOR_ROBDD_EQ_INTERLEAVED_LINEAR_SIZE_FINITE = PASS",
+      "C025_AKINATOR_ROBDD_RESIDUAL_FRONTIER_FINITE = PASS",
+      "C025_AKINATOR_ROBDD_LOCAL_CERTIFICATE = ANALYTIC_THEOREM_NOT_CI",
+      "C025_AKINATOR_GENERAL_ORDERING_HARDNESS = EXTERNAL_SOURCE_RESULT_NOT_CI",
+      "C025_AKINATOR_TARGET_NW_ORDERING_HARDNESS = NOT_PROVED",
+      "C025_AKINATOR_GLOBAL_PROGRESS = OPEN",
+      "P_VS_NP = OPEN"
+    ]
+  },
+  "analytic_results": [
+    "ROBDD B2 construction/verification/restriction/survival is polynomial in explicit diagram bytes for a fixed order.",
+    "Parity has large root support but linear ROBDD by a two-state recurrence.",
+    "Frozen-order ROBDD size is lower-bounded by distinct residual-function frontier width.",
+    "EQ_n has a linear B2 DAG but an exponential ROBDD under X-then-Y order and linear ROBDD under interleaving."
+  ],
+  "external_result": {
+    "citation": "B. Bollig and I. Wegener, Improving the Variable Ordering of OBDDs Is NP-Complete, IEEE Transactions on Computers 45(9), 993-1002, 1996, DOI 10.1109/12.537122",
+    "scope": "GENERAL_OBDD_VARIABLE_ORDERING",
+    "target_nw_ordering_hardness": "NOT_PROVED"
+  },
+  "next_gate": "COMPOSITIONAL_BOUNDARY_WIDTH_CERTIFICATE_AND_GLOBAL_PROGRESS"
+}
