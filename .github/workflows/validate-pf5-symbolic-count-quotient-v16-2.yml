@@ -1,0 +1,70 @@
+name: Validate PF5 Symbolic Count Quotient v16.2
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SYMBOLIC_COUNT_QUOTIENT_V16_2.md'
+      - 'research/mathematics/p-vs-np/pf5_symbolic_count_quotient_v16_2.py'
+      - '.github/workflows/validate-pf5-symbolic-count-quotient-v16-2.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SYMBOLIC_COUNT_QUOTIENT_V16_2.md'
+      - 'research/mathematics/p-vs-np/pf5_symbolic_count_quotient_v16_2.py'
+      - '.github/workflows/validate-pf5-symbolic-count-quotient-v16-2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  symbolic-count-quotient:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run restricted constructive quotient
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_symbolic_count_quotient_v16_2.py \
+            --json-out ../../../pf5-symbolic-count-quotient-v16-2.result.json
+      - name: Verify constructive theorem contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-symbolic-count-quotient-v16-2.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SYMBOLIC-COUNT-QUOTIENT-V16.2'
+          assert d['status']=='RESTRICTED_CONSTRUCTIVE_WHOLE_ORDER_QUOTIENT_PASS'
+          assert d['family']=='D(n,m)=AND_m(x1 OR ... OR xn)'
+          assert d['incidence_graph']=='K_{n,m}'
+          assert d['state_bound']=='(n+1)(m+1)'
+          assert d['max_outgoing_abstract_actions']==2
+          assert len(d['small_exhaustive_controls'])==16
+          for r in d['small_exhaustive_controls']:
+              assert r['raw_optimum']==r['symbolic_optimum']==r['lifted_width']
+              assert r['future_congruence_verified'] is True
+              assert r['quotient_state_count']==(r['n']+1)*(r['m']+1)
+          assert [r['n'] for r in d['large_symbolic_only_controls']]==[16,64,256,512]
+          for r in d['large_symbolic_only_controls']:
+              assert r['raw_subset_enumeration_used'] is False
+              assert r['quotient_state_count']==(r['n']+1)*(r['m']+1)
+              assert r['lifted_order_length']==r['n']+r['m']
+          t=d['theorem']
+          assert all(t.values())
+          e=d['epistemic_firewall']
+          assert e['small_raw_enumeration_used_only_for_independent_validation'] is True
+          assert e['large_controls_use_no_raw_subset_enumeration'] is True
+          assert e['supplied_family_symmetry_is_essential'] is True
+          assert e['universal_symmetry_or_message_discovery_not_proved'] is True
+          assert d['universal_polynomial_prefix_quotient']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_SYMBOLIC_COUNT_QUOTIENT_V16_2_CONTRACT = PASS')
+          print('LARGE =',[(r['n'],r['quotient_state_count'],r['optimum'],r['quotient_transition_checks']) for r in d['large_symbolic_only_controls']])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'RESTRICTED SYMBOLIC QUOTIENT = CONSTRUCTIVE'
+          echo 'SUPPLIED PERMUTATION SYMMETRY IS ESSENTIAL'
+          echo 'RESTRICTED FAMILY != ARBITRARY CNF'
+          echo 'P_VS_NP = OPEN'
