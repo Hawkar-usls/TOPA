@@ -1,0 +1,85 @@
+name: PF5 Continuation Refinement v16.1 Receipt
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate-pf5-continuation-refinement-v16-1-receipt.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  persistent-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v5.1 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: e507484a62eb29543910cd018c380150051f986f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute v16.1 quietly
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_continuation_refinement_certificate_v16_1.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v5_1.py \
+            --json-out ../../../../v16-1.result.json >/dev/null
+      - name: Build compact receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.load(open('v16-1.result.json',encoding='utf-8'))
+          receipt={
+            'artifact_id':'PF5-CONTINUATION-REFINEMENT-CERTIFICATE-V16.1-RECEIPT',
+            'source_result_sha256':d['result_sha256'],
+            'seed':d['seed'],
+            'raw_subset_state_count':d['raw_subset_state_count'],
+            'initial_partition':d['initial_partition'],
+            'refinement_rounds':d['refinement_rounds'],
+            'stabilized_after_rounds':d['stabilized_after_rounds'],
+            'final_partition':d['final_partition'],
+            'split_certificate_count':d['split_certificate_count'],
+            'split_certificates_sha256':d['split_certificates_sha256'],
+            'split_certificate_bytes':d['split_certificate_bytes'],
+            'split_certificate_examples':d['split_certificate_examples'],
+            'quotient_bellman_value':d['quotient_bellman_value'],
+            'quotient_lifted_order':d['quotient_lifted_order'],
+            'quotient_lifted_width':d['quotient_lifted_width'],
+            'conditional_theorem':d['conditional_theorem'],
+            'global_cost_ledger':d['global_cost_ledger'],
+            'epistemic_firewall':d['epistemic_firewall'],
+            'next_gate':d['next_gate'],
+            'universal_polynomial_prefix_quotient':d['universal_polynomial_prefix_quotient'],
+            'p_vs_np':d['p_vs_np'],
+          }
+          out=Path('topa/data/PF5-CONTINUATION-REFINEMENT-CERTIFICATE-V16.1-RECEIPT.json')
+          out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print('V16_1_RECEIPT = PASS')
+          print('INITIAL_CLASSES =',receipt['initial_partition']['class_count'])
+          print('ROUNDS =',[(r['round'],r['old_class_count'],r['new_class_count'],r['split_block_count']) for r in receipt['refinement_rounds']])
+          print('FINAL_CLASSES =',receipt['final_partition']['class_count'])
+          print('SPLIT_CERTS =',receipt['split_certificate_count'])
+          print('SPLIT_BYTES =',receipt['split_certificate_bytes'])
+          print('WIDTH =',receipt['quotient_lifted_width'])
+          print('SHA =',receipt['source_result_sha256'])
+          PY
+      - name: Commit receipt
+        working-directory: topa
+        run: |
+          git config user.name 'JANUS CI Receipt'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/PF5-CONTINUATION-REFINEMENT-CERTIFICATE-V16.1-RECEIPT.json
+          if git diff --cached --quiet; then
+            echo 'Receipt unchanged.'
+          else
+            git commit -m 'Record PF5 v16.1 continuation refinement receipt'
+            git push origin HEAD:pf5-continuation-refinement-certificate-v16-1
+          fi

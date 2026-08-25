@@ -1,0 +1,504 @@
+{
+  "artifact_id": "PF5-CONTINUATION-REFINEMENT-CERTIFICATE-V16.1-RECEIPT",
+  "conditional_theorem": {
+    "explicit_refinement_is_sound_on_finite_prefix_DAG": true,
+    "fixed_point_is_future_congruence": true,
+    "polynomial_if_symbolic_blocks_splits_transitions_and_certificates_are_polynomially_bounded": true,
+    "quotient_bellman_and_concrete_lift_are_exact": true,
+    "universal_polynomial_symbolic_refinement_exists": "OPEN"
+  },
+  "epistemic_firewall": {
+    "exact_ps_table_is_exponential_audit_only": true,
+    "exact_v16_bisimulation_is_used_only_as_independent_final_partition_oracle": true,
+    "no_claim_of_polynomial_split_discovery": true,
+    "no_merge_is_authorized_by_similarity": true,
+    "raw_prefix_enumeration_is_exponential_audit_only": true,
+    "split_witnesses_use_only_prior_partition_successor_blocks": true
+  },
+  "final_partition": {
+    "class_count": 2626,
+    "matches_v16_future_bisimulation": true,
+    "partition_digest": "9c38c6ba05ea5a14e14f1461a39eb3daa25e092761ba7f93290be127b04ce6e7",
+    "v16_bisimulation_class_count": 2626
+  },
+  "global_cost_ledger": {
+    "exact_ps_assignment_rows": 53790,
+    "exact_ps_cut_evaluations": 4094,
+    "exact_ps_literal_checks": 280060,
+    "quotient_concrete_lift_checks": 78,
+    "raw_bellman_transition_checks": 24576,
+    "refinement_transition_refs": 98304,
+    "slime_manifest_generation_ops": 304317,
+    "split_certificate_bytes": 470775
+  },
+  "initial_partition": {
+    "class_count": 71,
+    "definition": "(depth,current_exact_ps_cut)",
+    "partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf"
+  },
+  "next_gate": "SYMBOLIC_CONTINUATION_REFINEMENT_WITH_POLYNOMIAL_BLOCK_AND_SPLIT_BOUNDS",
+  "p_vs_np": "OPEN",
+  "quotient_bellman_value": 4,
+  "quotient_lifted_order": [
+    "c:0",
+    "c:1",
+    "c:2",
+    "v:2",
+    "v:4",
+    "c:3",
+    "c:5",
+    "v:1",
+    "c:6",
+    "v:3",
+    "c:4",
+    "v:5"
+  ],
+  "quotient_lifted_width": 4,
+  "raw_subset_state_count": 4096,
+  "refinement_rounds": [
+    {
+      "monotone_refinement": true,
+      "new_class_count": 1344,
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_class_count": 71,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "round": 1,
+      "split_block_count": 57,
+      "split_state_count": 4000,
+      "transition_refs": 24576
+    },
+    {
+      "monotone_refinement": true,
+      "new_class_count": 2550,
+      "new_partition_digest": "6142860d36ea48cb84522597c0eae1273810cb75f4c9dcfbabff09c2b695ace6",
+      "old_class_count": 1344,
+      "old_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "round": 2,
+      "split_block_count": 497,
+      "split_state_count": 2613,
+      "transition_refs": 24576
+    },
+    {
+      "monotone_refinement": true,
+      "new_class_count": 2626,
+      "new_partition_digest": "a013d017d083162c4fe6aab32aa92fbdbdc54cd0e031d35a0ed9f94c94881819",
+      "old_class_count": 2550,
+      "old_partition_digest": "6142860d36ea48cb84522597c0eae1273810cb75f4c9dcfbabff09c2b695ace6",
+      "round": 3,
+      "split_block_count": 68,
+      "split_state_count": 199,
+      "transition_refs": 24576
+    },
+    {
+      "monotone_refinement": true,
+      "new_class_count": 2626,
+      "new_partition_digest": "9c38c6ba05ea5a14e14f1461a39eb3daa25e092761ba7f93290be127b04ce6e7",
+      "old_class_count": 2626,
+      "old_partition_digest": "a013d017d083162c4fe6aab32aa92fbdbdc54cd0e031d35a0ed9f94c94881819",
+      "round": 4,
+      "split_block_count": 0,
+      "split_state_count": 0,
+      "transition_refs": 24576
+    }
+  ],
+  "seed": 911000,
+  "source_result_sha256": "aaf2c8d5f366d554751c9c84a8343e9a227f6ae1c5065cf58e8958646ee1d0a9",
+  "split_certificate_bytes": 470775,
+  "split_certificate_count": 622,
+  "split_certificate_examples": [
+    {
+      "concrete_lifts_a_to_discrepant_block": [
+        {
+          "leaf": "c:0",
+          "next_mask": 129
+        },
+        {
+          "leaf": "c:1",
+          "next_mask": 130
+        },
+        {
+          "leaf": "c:2",
+          "next_mask": 132
+        },
+        {
+          "leaf": "c:3",
+          "next_mask": 136
+        },
+        {
+          "leaf": "c:4",
+          "next_mask": 144
+        },
+        {
+          "leaf": "c:5",
+          "next_mask": 160
+        },
+        {
+          "leaf": "c:6",
+          "next_mask": 192
+        }
+      ],
+      "concrete_lifts_b_to_discrepant_block": [
+        {
+          "leaf": "v:1",
+          "next_mask": 132
+        },
+        {
+          "leaf": "v:2",
+          "next_mask": 260
+        },
+        {
+          "leaf": "v:3",
+          "next_mask": 516
+        },
+        {
+          "leaf": "v:4",
+          "next_mask": 1028
+        },
+        {
+          "leaf": "v:5",
+          "next_mask": 2052
+        }
+      ],
+      "discrepancy": {
+        "count_a": 7,
+        "count_b": 5,
+        "successor_block_id": 7
+      },
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_block_id": 1,
+      "old_block_size": 12,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "representative_a_mask": 128,
+      "representative_a_prefix": [
+        "v:1"
+      ],
+      "representative_b_mask": 4,
+      "representative_b_prefix": [
+        "c:2"
+      ],
+      "resulting_new_block_ids": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "round": 1,
+      "successor_multiset_a": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        9,
+        9,
+        9,
+        9
+      ],
+      "successor_multiset_b": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ]
+    },
+    {
+      "concrete_lifts_a_to_discrepant_block": [
+        {
+          "leaf": "c:6",
+          "next_mask": 1120
+        }
+      ],
+      "concrete_lifts_b_to_discrepant_block": [],
+      "discrepancy": {
+        "count_a": 1,
+        "count_b": 0,
+        "successor_block_id": 10
+      },
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_block_id": 7,
+      "old_block_size": 35,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "representative_a_mask": 1056,
+      "representative_a_prefix": [
+        "c:5",
+        "v:4"
+      ],
+      "representative_b_mask": 132,
+      "representative_b_prefix": [
+        "c:2",
+        "v:1"
+      ],
+      "resulting_new_block_ids": [
+        1316,
+        1317,
+        1318,
+        1319,
+        1320,
+        1321,
+        1322,
+        1323
+      ],
+      "round": 1,
+      "successor_multiset_a": [
+        10,
+        11,
+        11,
+        11,
+        11,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "successor_multiset_b": [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        12,
+        12,
+        12
+      ]
+    },
+    {
+      "concrete_lifts_a_to_discrepant_block": [
+        {
+          "leaf": "v:4",
+          "next_mask": 1120
+        }
+      ],
+      "concrete_lifts_b_to_discrepant_block": [],
+      "discrepancy": {
+        "count_a": 1,
+        "count_b": 0,
+        "successor_block_id": 10
+      },
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_block_id": 8,
+      "old_block_size": 16,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "representative_a_mask": 96,
+      "representative_a_prefix": [
+        "c:5",
+        "c:6"
+      ],
+      "representative_b_mask": 34,
+      "representative_b_prefix": [
+        "c:1",
+        "c:5"
+      ],
+      "resulting_new_block_ids": [
+        1325,
+        1326,
+        1327,
+        1328,
+        1329,
+        1330,
+        1331,
+        1332,
+        1333,
+        1334
+      ],
+      "round": 1,
+      "successor_multiset_a": [
+        10,
+        11,
+        11,
+        11,
+        11,
+        12,
+        12,
+        12,
+        12,
+        13
+      ],
+      "successor_multiset_b": [
+        11,
+        11,
+        11,
+        11,
+        11,
+        12,
+        12,
+        12,
+        12,
+        13
+      ]
+    },
+    {
+      "concrete_lifts_a_to_discrepant_block": [
+        {
+          "leaf": "c:4",
+          "next_mask": 88
+        }
+      ],
+      "concrete_lifts_b_to_discrepant_block": [],
+      "discrepancy": {
+        "count_a": 1,
+        "count_b": 0,
+        "successor_block_id": 14
+      },
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_block_id": 9,
+      "old_block_size": 15,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "representative_a_mask": 72,
+      "representative_a_prefix": [
+        "c:3",
+        "c:6"
+      ],
+      "representative_b_mask": 9,
+      "representative_b_prefix": [
+        "c:0",
+        "c:3"
+      ],
+      "resulting_new_block_ids": [
+        1335,
+        1336,
+        1337,
+        1338,
+        1339,
+        1340,
+        1341,
+        1342,
+        1343
+      ],
+      "round": 1,
+      "successor_multiset_a": [
+        11,
+        11,
+        12,
+        12,
+        12,
+        13,
+        13,
+        13,
+        13,
+        14
+      ],
+      "successor_multiset_b": [
+        11,
+        11,
+        12,
+        12,
+        12,
+        13,
+        13,
+        13,
+        13,
+        15
+      ]
+    },
+    {
+      "concrete_lifts_a_to_discrepant_block": [
+        {
+          "leaf": "v:2",
+          "next_mask": 2436
+        },
+        {
+          "leaf": "v:3",
+          "next_mask": 2692
+        }
+      ],
+      "concrete_lifts_b_to_discrepant_block": [
+        {
+          "leaf": "v:1",
+          "next_mask": 2436
+        }
+      ],
+      "discrepancy": {
+        "count_a": 2,
+        "count_b": 1,
+        "successor_block_id": 21
+      },
+      "new_partition_digest": "3f423244b033267e08cd92bc22b1ab4a99fc2a1069f56b5972c6bd8fb2f3a408",
+      "old_block_id": 11,
+      "old_block_size": 80,
+      "old_partition_digest": "2969b1916e35d15ce6b1796874ea88c5f513782e4c2cea356e97900723e7dfcf",
+      "representative_a_mask": 2180,
+      "representative_a_prefix": [
+        "c:2",
+        "v:1",
+        "v:5"
+      ],
+      "representative_b_mask": 2308,
+      "representative_b_prefix": [
+        "c:2",
+        "v:2",
+        "v:5"
+      ],
+      "resulting_new_block_ids": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "round": 1,
+      "successor_multiset_a": [
+        19,
+        19,
+        19,
+        19,
+        19,
+        20,
+        21,
+        21,
+        22
+      ],
+      "successor_multiset_b": [
+        19,
+        19,
+        19,
+        19,
+        19,
+        20,
+        21,
+        22,
+        22
+      ]
+    }
+  ],
+  "split_certificates_sha256": "327ab310f43c1b94a9b468cf9d462d62084f51a30ac212de095c380d540d902d",
+  "stabilized_after_rounds": 4,
+  "universal_polynomial_prefix_quotient": "OPEN"
+}
