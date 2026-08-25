@@ -1,0 +1,30 @@
+name: Observe U1-L2B0 Projection-Specific Identities
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/u1l2b0_projection_specific_observer.py'
+      - '.github/workflows/observe-u1l2b0-projection-specific.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  projection-specific-observer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile observer and frozen provider
+        run: |
+          python -m py_compile research/mathematics/p-vs-np/u1l2b0_exact_local_equivalence_kernel.py
+          python -m py_compile research/mathematics/p-vs-np/u1l2b0_projection_specific_observer.py
+      - name: Classify frozen exact catalog
+        working-directory: research/mathematics/p-vs-np
+        run: python u1l2b0_projection_specific_observer.py
