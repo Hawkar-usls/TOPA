@@ -1,0 +1,35 @@
+{
+  "schema": "JANUS_PNP_U1L2B0_PROJECTION_SPECIFIC_OBSERVER_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "frozen_catalog_sha256": "d69755c8206f52f9ba398b99ebe312d1aeb1ee283b60edefdc1d5280f860179a",
+  "observer_head": "9ba28727880cff7fa495c9beab4b930765c4835a",
+  "workflow_run": 32852520027,
+  "workflow_job": 97816560242,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "observer_result_sha256": "7266637fc69534f156fcc12ad76bf1e065c1946e1c67a1bd12c6df984e34508d",
+  "counts": {
+    "admitted_circuits": 20792,
+    "gate_drop_replacement_pairs": 70080,
+    "same_gate_count_strict_affected_cone_drop_pairs": 5184,
+    "same_gate_count_affected_cone_drop_semantic_dep_pairs": 4992,
+    "same_gate_count_affected_cone_drop_semantic_independent_pairs": 192,
+    "source_circuits_with_same_gate_affected_cone_drop": 2016
+  },
+  "interpretation": {
+    "projection_aware_exact_identities_exist_beyond_gate_minimization": true,
+    "same_size_semantically_x_dependent_contractions_exist": true,
+    "local_identity_catalog_is_complete_only_for_frozen_k4_g3_scope": true,
+    "global_saturation_polynomial": "NOT_YET_CLAIMED_IN_THIS_RECEIPT",
+    "universal_projection_closure": "OPEN",
+    "p_vs_np": "OPEN"
+  },
+  "representative_pattern": {
+    "semantic_shape": "FOUR_WAY_AND_REASSOCIATION",
+    "source_local_cost": [2,3],
+    "target_local_cost": [1,3],
+    "meaning": "same Boolean function and same gate count, but one fewer internal gate syntactically depends on the designated projected variable"
+  },
+  "next_gate": "U1-L2B1_CONTEXT_CLOSED_AFFECTED_CONE_MONOTONICITY_AND_POLY_SATURATION"
+}
