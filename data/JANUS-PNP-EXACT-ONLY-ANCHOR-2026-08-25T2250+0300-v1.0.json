@@ -1,0 +1,43 @@
+{
+  "schema": "JANUS_PNP_EXACT_ONLY_ANCHOR",
+  "version": "1.0",
+  "anchored_local_time": "2026-08-25T22:50:00+03:00",
+  "anchored_utc_time": "2026-08-25T19:50:00Z",
+  "repository": "Hawkar-usls/TOPA",
+  "branch": "pnp-proof-obligation-graph-u1-l2-exact-only",
+  "parent_head": "baa82d31d76e1fff5581cb43809ab9a86bb80e0c",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "HEURISTICS_FORBIDDEN_EVERYWHERE_IN_PNP_PROJECT",
+  "admission_rule": "A historical method may re-enter only as exact mathematics: deterministic domain predicate + exact transform + theorem/identity + replayable certificate + polynomial construction/discovery/verification bound + witness or UNSAT certificate where applicable + typed codomain.",
+  "current_exact_state": {
+    "keymaster": "TYPED_EXACT_ALGEBRA",
+    "exact_operator_count": 14,
+    "frontier_theorem": "|F_N| <= M(N) * min_j product_{i!=j}(B_i(N)+1)",
+    "cost_dimension": 9,
+    "latest_exact_quotient": "SWAP_ORBIT_WEIGHT",
+    "latest_restricted_result": "PAIR_SWAP_DISCOVERY_POLYNOMIAL_AND_EXISTENTIAL_UPDATE_EXACT_WHEN_ORBIT_PRODUCT_P_LE_N^4",
+    "active_universal_debt": [
+      "POLYNOMIAL_CANONICAL_TRANSITION_STATE_COUNT_FOR_ARBITRARY_CNF",
+      "POLYNOMIAL_CUMULATIVE_COST_COORDINATE_BOUNDS",
+      "EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS",
+      "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+      "P_VS_NP"
+    ]
+  },
+  "reverse_spiral_contract": {
+    "direction": "CURRENT_END_TO_EARLIEST_RECOVERABLE_ORIGIN_THEN_FORWARD_SYNTHESIS",
+    "historical_statuses": [
+      "ACTIVE_EXACT",
+      "ALGEBRAIZED",
+      "PRUNED",
+      "HISTORICAL_NEGATIVE",
+      "GOVERNANCE_ONLY",
+      "PROVENANCE_ONLY"
+    ],
+    "no_history_rewrite": true,
+    "negative_results_preserved": true,
+    "no_heuristic_candidate_selection": true,
+    "run_after_synthesis": "UNIFIED_EXACT_JANUS_SPIRAL_RUNNER"
+  }
+}
