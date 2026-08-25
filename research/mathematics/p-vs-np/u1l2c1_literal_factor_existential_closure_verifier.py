@@ -310,7 +310,7 @@ def main() -> None:
             "LITERAL_ACI_QUOTIENT_WITNESS_LIFT": "PROVED_IN_SCOPE_BY_REPLAY",
             "NONLITERAL_FACTOR_PROJECTION": "OPEN_REFUSED",
             "ARBITRARY_B2_SEQUENTIAL_CLOSURE": "OPEN",
-            "P_EQUALS_NP": false,
+            "P_EQUALS_NP": False,
         },
         "next_gate": "U1-L2C2_CERTIFIED_NONLITERAL_FACTOR_PROJECTION",
     }
