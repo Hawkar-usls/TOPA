@@ -1,0 +1,69 @@
+{
+  "schema": "JANUS_PNP_RCTQ1_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "protocol": {
+    "path": "research/mathematics/p-vs-np/C025_AKINATOR_RCTQ1_RESTRICTION_CLOSED_TRANSITION_QUOTIENT.md",
+    "commit": "30a13b006368fcf60dfb9a10d688cbb0e0f4293c",
+    "frozen_before_provider": true
+  },
+  "provider": {
+    "path": "research/mathematics/p-vs-np/rctq1_restriction_closed_transition_quotient_verifier.py",
+    "commit": "567e1b13c9f58449645a580a9002f07b87c4671e"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-rctq1.yml",
+    "head_commit": "82f56956f814bc4bb5d602779573032b1084e89d",
+    "name": "Validate JANUS RCTQ-1"
+  },
+  "first_run": {
+    "run_id": 32895486382,
+    "job_id": 97957077331,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"
+  },
+  "positive_results": {
+    "RESTRICT_EXACTNESS": true,
+    "RESTRICT_COMPOSITION": true,
+    "CERTIFIED_INTACT_B2_ALIAS_WITNESS_LIFT": true,
+    "CERTIFIED_INTACT_B2_ALIAS_PERSISTS_UNDER_RESTRICTION": true,
+    "RCTQ1_CERTIFIED_ALIAS_LANGUAGE_RESTRICTION_CLOSED": true
+  },
+  "finite_replay_counts": {
+    "restrict_relation_checks": 530,
+    "restrict_composition_checks": 52,
+    "alias_base_relation_checks": 32,
+    "alias_post_restriction_relation_checks": 512,
+    "selector_restrictions_constructed": 69904,
+    "n8_pairwise_future_distinguisher_checks": 32640
+  },
+  "negative_result": {
+    "family": "F_n = AND_i (z_i OR y_i)",
+    "residual_under_selector_restriction": "AND_{i in S} y_i",
+    "future_distinguishable_classes": "2^n",
+    "frozen_ladder": [
+      {"n":4,"classes":16},
+      {"n":8,"classes":256},
+      {"n":12,"classes":4096},
+      {"n":16,"classes":65536}
+    ],
+    "ALL_RESTRICTION_FUTURE_CONGRUENCE_CLASSES_POLYNOMIAL": false,
+    "meaning": "A universal polynomial bound on the entire counterfactual restriction state space is too strong and is not required for a deterministic polynomial SAT trace."
+  },
+  "critical_reframing": {
+    "old_overstrong_target": "POLYNOMIAL_NUMBER_OF_ALL_RESTRICTION_CANONICAL_STATES",
+    "correct_target": "POLYNOMIAL_TOTAL_MATERIALIZED_DETERMINISTIC_TRACE_VOLUME_PLUS_POLYNOMIAL_STATE_BYTES_AND_FULL_Q_TOTAL",
+    "keymaster_M_of_N": "COUNT_ONLY_CANONICAL_STATES_ACTUALLY_RETAINED_OR_MATERIALIZED_BY_FROZEN_EXECUTION"
+  },
+  "active_keymaster_operator_count": 14,
+  "active_catalog_changed": false,
+  "next_gate": "RCTQ2_DETERMINISTIC_TRACE_VOLUME_PLUS_STATE_BYTES_BOUND",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
