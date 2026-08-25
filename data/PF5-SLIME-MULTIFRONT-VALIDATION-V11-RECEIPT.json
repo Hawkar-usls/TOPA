@@ -1,0 +1,61 @@
+{
+  "artifact_id": "PF5-SLIME-MULTIFRONT-VALIDATION-V11-RECEIPT",
+  "status": "AUTHORITATIVE_FRESH_VALIDATION_PASS",
+  "provider": {
+    "run": 32825833425,
+    "job": 97733492959,
+    "topa_head": "d96775197caa965987d9cbf9dcf685cdd2cc4761",
+    "slime_v2_producer_commit": "21deebb20e226871f9f1c23a34d5a0693283efef",
+    "conclusion": "SUCCESS",
+    "candidate_batch_sha256": "3d23a87cb33cb3d8b679873e81fc9da7fced9fe5387e5f864c79d8e96058c0a2",
+    "result_sha256": "072365017261545a5a448c115ab2b6fcdcfff9bd70691d8fa2e178ece23ceb1a"
+  },
+  "fresh_sources": {
+    "seeds": [907000,907001,907002,907003,907004,907005,907006,907007,907008,907009,907010,907011,907012,907013,907014,907015,907016,907017,907018,907019,907020,907021,907022,907023,907024,907025,907026,907027,907028,907029,907030,907031],
+    "n": 7,
+    "m": 10,
+    "v2_candidates_per_source": 16,
+    "external_random_candidates_per_source": 32,
+    "all_candidate_orders_frozen_before_exact_probe": true
+  },
+  "outcomes": {
+    "best_structured_vs_default": {"WIN":13,"TIE":19,"LOSS":0},
+    "best_full_v2_vs_default": {"WIN":19,"TIE":13,"LOSS":0},
+    "best_full_v2_vs_external_random": {"WIN":14,"TIE":11,"LOSS":7}
+  },
+  "mean_exact_caterpillar_ps_width": {
+    "default": 9.3125,
+    "best_structured": 8.28125,
+    "best_full_v2": 7.78125,
+    "best_external_random": 8.03125
+  },
+  "structured_front_hit_counts": {
+    "MF_BALANCED_EDGE":26,
+    "MF_BALANCED_SEM":26,
+    "MF_DEFAULT":19,
+    "MF_EDGE_GLOBAL":25,
+    "MF_EDGE_TIGHT":23,
+    "MF_SEM_GLOBAL":24,
+    "MF_SEM_TIGHT":18,
+    "MF_TRACE_NARROW":4
+  },
+  "cost_ledger": {
+    "v2_producer_ops": 1722016,
+    "external_random_generation_ops": 18432,
+    "total_generation_ops": 1740448,
+    "exact_verifier_cuts": 47616,
+    "exact_verifier_assignment_rows": 691885,
+    "exact_verifier_literal_checks": 3487394
+  },
+  "interpretation": [
+    "The multi-front architecture repairs a substantial portion of the v10 single-front brittleness on a fresh seed domain.",
+    "The full 16-front v2 finite portfolio has slightly lower mean exact caterpillar PS-width than a separate 32-order random benchmark, but still loses on seven sources.",
+    "Finite portfolio quality is not universal candidate completeness.",
+    "The charged discovery cost is now a first-class bottleneck: the current v2 structured pressure implementation repeatedly rescans incidence structure and is far more expensive than generating random orders.",
+    "The next repair must preserve v2 candidate orders while amortizing edge/semantic frontier computation across trial additions and fronts."
+  ],
+  "next_gate": "SLIME_SHARED_PRESSURE_AMORTIZATION_WITH_ORDER_EQUIVALENCE",
+  "runtime_selection_by_exact_ps_score": "FORBIDDEN",
+  "universal_candidate_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
