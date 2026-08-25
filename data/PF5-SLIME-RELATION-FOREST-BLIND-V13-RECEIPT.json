@@ -1,0 +1,50 @@
+{
+  "artifact_id": "PF5-SLIME-RELATION-FOREST-BLIND-V13-RECEIPT",
+  "workflow_run": 32828690847,
+  "workflow_job": 97742314953,
+  "conclusion": "SUCCESS",
+  "producer_commit": "cb589db77ff6fe478f65ccafc953120fcfc0ff07",
+  "producer_feature": "PROJECTED_CLAUSE_RELATION_FOREST_CAP",
+  "manifest_batch_sha256": "409a426d0a6349125f43fab6a2d0aeaf78eb5908505687e87fa58838bb0bfa1f",
+  "result_sha256": "c01dce480bbbbfcf37f3477acc57e79a0645dff029e8e861cc3117e95664ccae",
+  "calibration": {
+    "seed": 908001,
+    "v1_width": 6,
+    "v2_width": 6,
+    "v3_width": 4,
+    "exact_optimum": 4,
+    "excluded_from_holdout_summary": true
+  },
+  "blind_holdout": {
+    "seeds": "909000..909015",
+    "cases": 16,
+    "v3_vs_v2_wins": 10,
+    "v3_vs_v2_ties": 6,
+    "v3_vs_v2_losses": 0,
+    "v3_vs_v1_wins": 14,
+    "v3_vs_v1_ties": 2,
+    "v3_vs_v1_losses": 0,
+    "v1_exact_optimal_cases": 0,
+    "v2_exact_optimal_cases": 3,
+    "v3_exact_optimal_cases": 9,
+    "mean_v1_width": 6.125,
+    "mean_v2_width": 5.4375,
+    "mean_v3_width": 4.125,
+    "mean_optimal_width": 3.6875,
+    "mean_v1_gap": 2.4375,
+    "mean_v2_gap": 1.75,
+    "mean_v3_gap": 0.4375,
+    "max_v3_gap": 1,
+    "first_v3_suboptimal_seed": 909002
+  },
+  "global_cost_ledger": {
+    "producer_generation_ops": 1082026,
+    "exact_subset_dp_cut_evaluations": 69598,
+    "exact_verifier_assignment_rows": 939864,
+    "exact_verifier_literal_checks": 4876920
+  },
+  "interpretation": "The source-only projected-clause relation-forest cap transferred strongly to a fresh finite holdout and closed the known 908001 calibration gap, but v3 remains suboptimal on seven of sixteen holdouts. This is evidence for a useful proof-carrying candidate feature, not universal candidate completeness or a polynomial SAT algorithm.",
+  "next_gate": "DIAGNOSE_909002_RELATION_FOREST_RESIDUAL_GAP_BEFORE_V4_MUTATION",
+  "universal_candidate_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
