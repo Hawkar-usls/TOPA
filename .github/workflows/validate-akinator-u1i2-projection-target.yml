@@ -1,0 +1,29 @@
+name: Validate Akinator U1I2 Projection Target
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1I2_PROJECTION_TARGET_RECOGNITION_BARRIER.md'
+      - 'research/mathematics/p-vs-np/akinator_u1i2_projection_target_probe.py'
+      - '.github/workflows/validate-akinator-u1i2-projection-target.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run projection-target finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1i2_projection_target_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks only the finite x AND F projection identity.'
+          echo 'coNP-completeness is an analytical reduction, not a CI theorem.'
+          echo 'Proof-carrying rewrite completeness remains OPEN.'
+          echo 'P_VS_NP = OPEN'
