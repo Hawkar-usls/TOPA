@@ -1,0 +1,346 @@
+{
+  "artifact_id": "PF5-WHOLE-ORDER-PREFIX-STATE-QUOTIENT-V16-RECEIPT",
+  "audit_future_bisimulation": {
+    "classes_by_depth": {
+      "0": 1,
+      "1": 12,
+      "10": 3,
+      "11": 1,
+      "12": 1,
+      "2": 66,
+      "3": 220,
+      "4": 491,
+      "5": 756,
+      "6": 732,
+      "7": 274,
+      "8": 57,
+      "9": 12
+    },
+    "construction_is_exponential_audit_only": true,
+    "future_bisimulation_class_count": 2626,
+    "largest_class_size": 92,
+    "nontrivial_class_count": 357,
+    "raw_states_by_depth": {
+      "0": 1,
+      "1": 12,
+      "10": 66,
+      "11": 12,
+      "12": 1,
+      "2": 66,
+      "3": 220,
+      "4": 495,
+      "5": 792,
+      "6": 924,
+      "7": 792,
+      "8": 495,
+      "9": 220
+    },
+    "raw_subset_state_count": 4096,
+    "replay_failures": 0,
+    "signature_build_transition_refs": 24576
+  },
+  "audit_quotient_bellman_value": 4,
+  "audit_quotient_lifted_width": 4,
+  "epistemic_firewall": {
+    "audit_bisimulation_is_not_claimed_polynomially_discoverable": true,
+    "exact_cut_table_is_exponential_audit_oracle": true,
+    "future_bisimulation_partition_is_exponential_audit_oracle": true,
+    "raw_bellman_is_exponential_audit_oracle": true,
+    "weak_scalar_labels_are_not_admitted_congruences": true
+  },
+  "first_pure_future_obstruction": {
+    "bellman_optimal_candidates": [
+      {
+        "action_bottleneck_value": 4,
+        "future_opt_after_action": 4,
+        "immediate_exact_ps": 3,
+        "leaf": "v:2",
+        "next_mask": 2309
+      },
+      {
+        "action_bottleneck_value": 4,
+        "future_opt_after_action": 4,
+        "immediate_exact_ps": 4,
+        "leaf": "v:3",
+        "next_mask": 2565
+      },
+      {
+        "action_bottleneck_value": 4,
+        "future_opt_after_action": 4,
+        "immediate_exact_ps": 4,
+        "leaf": "v:4",
+        "next_mask": 3077
+      }
+    ],
+    "best_bellman_action_value": 4,
+    "best_immediate_exact_ps": 3,
+    "chosen": {
+      "action_bottleneck_value": 5,
+      "future_opt_after_action": 5,
+      "immediate_exact_ps": 3,
+      "leaf": "v:1",
+      "next_mask": 2181
+    },
+    "chosen_is_bellman_optimal": false,
+    "chosen_is_immediate_exact_minimum": true,
+    "mask_before": 2053,
+    "prefix_before": [
+      "c:0",
+      "c:2",
+      "v:5"
+    ],
+    "same_immediate_better_future_candidates": [
+      {
+        "action_bottleneck_value": 4,
+        "future_opt_after_action": 4,
+        "immediate_exact_ps": 3,
+        "leaf": "v:2",
+        "next_mask": 2309
+      }
+    ],
+    "state_future_optimum": 4,
+    "step": 3
+  },
+  "global_cost_ledger": {
+    "audit_bisimulation_transition_refs": 24576,
+    "audit_quotient_concrete_lift_checks": 78,
+    "exact_ps_assignment_rows": 53790,
+    "exact_ps_cut_evaluations": 4094,
+    "exact_ps_literal_checks": 280060,
+    "raw_bellman_transition_checks": 24576,
+    "slime_v5_manifest_generation_ops": 304317
+  },
+  "next_gate": "POLYNOMIAL_PROOF_CARRYING_PREFIX_BISIMULATION_DISCOVERY_OR_STRONGER_SYMBOLIC_WHOLE_ORDER_STATE_LANGUAGE",
+  "p_vs_np": "OPEN",
+  "raw_bellman_optimum": 4,
+  "raw_subset_state_count": 4096,
+  "seed": 911000,
+  "source_result_sha256": "693a2f9635dc7713bfcaff42814e96f64dfc2b4529eea65b9f18ad1b1ddf8f8a",
+  "universal_polynomial_prefix_quotient": "OPEN",
+  "v5_width": 5,
+  "weak_scalar_label_audit": {
+    "depth_plus_current_cut": {
+      "class_count": 71,
+      "first_unsafe_collision": {
+        "label": [
+          1,
+          2
+        ],
+        "mask_a": 1,
+        "mask_b": 2,
+        "profile_a": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "profile_b": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "state_a": [
+          "c:0"
+        ],
+        "state_b": [
+          "c:1"
+        ]
+      },
+      "states_inside_nontrivial_classes": 4088,
+      "unsafe_transition_collision_class_count": 57
+    },
+    "depth_plus_current_cut_plus_exact_future_value": {
+      "class_count": 152,
+      "first_unsafe_collision": {
+        "label": [
+          1,
+          2,
+          4
+        ],
+        "mask_a": 1,
+        "mask_b": 2,
+        "profile_a": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "profile_b": [
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "state_a": [
+          "c:0"
+        ],
+        "state_b": [
+          "c:1"
+        ]
+      },
+      "states_inside_nontrivial_classes": 4062,
+      "unsafe_transition_collision_class_count": 106
+    }
+  }
+}
