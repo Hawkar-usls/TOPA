@@ -1,0 +1,78 @@
+name: Validate PF5 Slime Relation Forest Blind v13
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_forest_blind_v13.py'
+      - '.github/workflows/validate-pf5-slime-relation-forest-blind-v13.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_forest_blind_v13.py'
+      - '.github/workflows/validate-pf5-slime-relation-forest-blind-v13.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  blind-relation-forest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v3 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: cb589db77ff6fe478f65ccafc953120fcfc0ff07
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Freeze v3 manifests then run exact DP judge
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_relation_forest_blind_v13.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v3.py \
+            --json-out ../../../../pf5-slime-relation-forest-blind-v13.result.json
+      - name: Verify blind firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-relation-forest-blind-v13.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-RELATION-FOREST-BLIND-V13'
+          assert d['status']=='FINITE_BLIND_EXACT_OPTIMUM_AUDIT_COMPLETE'
+          assert d['producer_feature']=='PROJECTED_CLAUSE_RELATION_FOREST_CAP'
+          assert d['calibration_seed_already_observed']==908001
+          assert d['calibration_excluded_from_holdout_summary'] is True
+          assert d['holdout_seeds_frozen_before_provider_run']==list(range(909000,909016))
+          assert d['all_sources_and_manifests_frozen_before_exact_dp'] is True
+          assert d['adaptive_candidate_generation_after_exact_dp'] is False
+          assert d['exact_dp_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['relation_forest_cap_is_upper_bound_not_exact_pswidth'] is True
+          s=d['holdout_summary']
+          assert s['holdout_cases']==16
+          assert s['v3_vs_v2_wins']+s['v3_vs_v2_ties']+s['v3_vs_v2_losses']==16
+          assert s['v3_vs_v1_wins']+s['v3_vs_v1_ties']+s['v3_vs_v1_losses']==16
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['universal_polynomial_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          for row in d['controls']:
+              assert 'SLIME_SEMANTIC_PRESSURE' in row['candidate_widths']
+              assert 'SLIME_SIGNATURE_CAP_PRESSURE' in row['candidate_widths']
+              assert 'SLIME_RELATION_FOREST_PRESSURE' in row['candidate_widths']
+              assert row['exact_optimal_width'] <= min(row['candidate_widths'].values())
+              assert row['v3_gap']==row['v3_width']-row['exact_optimal_width']
+          print('PF5_SLIME_RELATION_FOREST_V13_CONTRACT = PASS')
+          print('CALIBRATION =',d['calibration']['v1_width'],d['calibration']['v2_width'],d['calibration']['v3_width'],d['calibration']['exact_optimal_width'])
+          print('HOLDOUT_SUMMARY =',s)
+          print('MANIFEST_BATCH_SHA256 =',d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'KNOWN_CALIBRATION != BLIND_VALIDATION'
+          echo 'RELATION_FOREST_CAP != EXACT_PSWIDTH'
+          echo 'FINITE_HOLDOUT_IMPROVEMENT != UNIVERSAL_COMPLETENESS'
+          echo 'P_VS_NP = OPEN'
