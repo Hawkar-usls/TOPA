@@ -1,0 +1,68 @@
+{
+  "schema": "JANUS_PNP_RCTQ3_REVERSE_FORWARD_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "immutable_forward_result": {
+    "run_id": 32906713727,
+    "job_id": 97992323910,
+    "result_sha256": "ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526",
+    "status": "SUCCESS_FIRST_RUN"
+  },
+  "failure_lineage": [
+    {
+      "id": "RCTQ3-RF-001",
+      "run_id": 32906877767,
+      "job_id": 97992808205,
+      "receipt_commit": "af32df571423e1ed19e0f8ae16e284c590977b69",
+      "class": "IMPLEMENTATION_PATH_ERROR",
+      "theorem_impact": "NONE"
+    },
+    {
+      "id": "RCTQ3-RF-002",
+      "run_id": 32907196524,
+      "job_id": 97993746480,
+      "receipt_commit": "3d91adadd39fc1abb7d0f89a54488ba24f4f6964",
+      "class": "IMPLEMENTATION_MARKER_MISMATCH",
+      "theorem_impact": "NONE"
+    }
+  ],
+  "successful_reverse_forward": {
+    "workflow_head": "dd4a517238ada15e0fba407fed03e681992ba36f",
+    "run_id": 32907355714,
+    "job_id": 97994220797,
+    "run_number": 3,
+    "attempt": 1,
+    "conclusion": "SUCCESS",
+    "result_sha256": "6b8878066cab01018c1f86d2d9cc1a5a2a480808f1796b75d5723472b1947439",
+    "reverse_forward_hash_stable": true
+  },
+  "hash_stable_chain": {
+    "UNIFIED": "56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3",
+    "KANAMI": "9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586",
+    "RCTQ1": "40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73",
+    "RCTQ2": "469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90",
+    "RCTQ3": "ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526"
+  },
+  "reverse_discovered_exact_schema": {
+    "id": "SIGNED_POLARITY_COUNT_NORMALIZE",
+    "status": "PROVED_EXACT_REPRESENTATION_NORMALIZATION",
+    "domain": "EXISTS_VARIABLE_WITH_NEGATIVE_OCCURRENCES_GT_POSITIVE_OCCURRENCES",
+    "theorem": "INDEPENDENT_VARIABLE_COMPLEMENTATION_IS_SAT_BIJECTION",
+    "certificate": "FLIP_VECTOR_PLUS_SOURCE_TARGET_HASH",
+    "complexity": "O_TOTAL_LITERAL_OCCURRENCES_PLUS_CANONICAL_SERIALIZATION",
+    "witness_lift": "XOR_FLIP_VECTOR_ON_WITNESS",
+    "G37_to_E37_exact": true,
+    "flipped_variable_count": 14,
+    "composition": "G37 -> SIGNED_POLARITY_COUNT_NORMALIZE -> E37 -> UNIFORM_POLARITY_CLAUSE_WITNESS -> TERMINAL",
+    "is_state_count_compression": false,
+    "is_universal_sat_progress": false,
+    "candidate_extended_catalog_count": 16
+  },
+  "historical_15_catalog_mutated": false,
+  "next_gate": "RCTQ4_TYPED_SIGNED_NORMALIZATION_THEN_BALANCED_POLARITY_ESCAPE_WITH_NO_COUNT_GAUGE_DEFECT",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
