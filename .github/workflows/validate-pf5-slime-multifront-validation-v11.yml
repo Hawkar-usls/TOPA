@@ -1,0 +1,80 @@
+name: Validate PF5 Slime Multi-Front v11
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_MULTIFRONT_VALIDATION_V11.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_multifront_validation_v11.py'
+      - '.github/workflows/validate-pf5-slime-multifront-validation-v11.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_MULTIFRONT_VALIDATION_V11.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_multifront_validation_v11.py'
+      - '.github/workflows/validate-pf5-slime-multifront-validation-v11.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  fresh-multifront-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v2 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 21deebb20e226871f9f1c23a34d5a0693283efef
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fresh frozen v11 validation
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_multifront_validation_v11.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_swarm_v2.py \
+            --json-out ../../../../pf5-slime-multifront-validation-v11.result.json
+      - name: Verify v11 contract without outcome assertions
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-multifront-validation-v11.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-MULTIFRONT-VALIDATION-V11'
+          assert d['status']=='FRESH_FINITE_VALIDATION_COMPLETE'
+          assert d['producer']['commit']=='21deebb20e226871f9f1c23a34d5a0693283efef'
+          assert d['fresh_source_seeds_frozen_before_provider_run']==list(range(907000,907032))
+          assert d['source_n']==7 and d['source_m']==10
+          assert d['v2_candidates_per_source']==16
+          assert d['external_random_candidates_per_source']==32
+          assert d['all_candidate_orders_frozen_before_exact_probe'] is True
+          assert len(d['results'])==32
+          assert sum(d['structured_vs_default'].values())==32
+          assert sum(d['full_v2_vs_default'].values())==32
+          assert sum(d['full_v2_vs_external_random'].values())==32
+          assert d['exact_probe_is_finite_exponential_audit_only'] is True
+          assert d['runtime_selection_by_exact_ps_score']=='FORBIDDEN'
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          # No assertion about WIN/TIE/LOSS counts.
+          for row in d['results']:
+              assert len(row['all_v2_widths'])==16
+              assert len(row['external_random_widths'])==32
+              assert 'MF_DEFAULT' in row['all_v2_widths']
+          print('PF5_SLIME_MULTIFRONT_V11_CONTRACT = PASS')
+          print('STRUCTURED_VS_DEFAULT =',d['structured_vs_default'])
+          print('FULL_V2_VS_DEFAULT =',d['full_v2_vs_default'])
+          print('FULL_V2_VS_EXTERNAL_RANDOM =',d['full_v2_vs_external_random'])
+          print('MEAN_WIDTHS =',d['mean_widths'])
+          print('BATCH_SHA256 =',d['candidate_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'FRESH_MULTI_FRONT_SUCCESS != UNIVERSAL_CANDIDATE_COMPLETENESS'
+          echo 'POLYNOMIAL_CANDIDATE_COUNT != POLYNOMIAL_STATE_GUARANTEE'
+          echo 'EXACT_AUDIT_SCORE_SELECTION != RUNTIME_SELECTION'
+          echo 'P_VS_NP = OPEN'
