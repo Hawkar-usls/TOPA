@@ -1,0 +1,47 @@
+name: Validate PF5 Component Product v2.1
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_component_product_representation_v2_1.py'
+      - 'data/PF5-CP-001-OUTER-WITNESS-BYPASS.json'
+      - '.github/workflows/validate-pf5-component-product-v2-1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strict-witness-glue:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Replay strict inner-witness composition
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_component_product_representation_v2_1.py --json-out ../../../pf5-component-product-v2.1.result.json
+      - name: Require selected-component witness source
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-component-product-v2.1.result.json', encoding='utf-8'))
+          assert d['repair']=='PF5-CP-001-OUTER-WITNESS-BYPASS'
+          assert d['v1_escape_repaired_with_strict_inner_witness_glue'] is True
+          for r in d['rungs']:
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['witness_valid'] is True
+              assert r['witness_glue_source']=='SELECTED_COMPONENT_WITNESSES_ONLY'
+              m=int(r['rung'].split('_FAN')[0].replace('HYBRID_EQ',''))
+              assert r['witness_glue_complete_root_count']==2*m+12
+          print('PF5_CP_001_STRICT_INNER_WITNESS_GLUE = REPAIRED')
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Machine replay now exercises actual inner-witness remap + disjoint union.'
+          echo 'CP2 remains an exact composition theorem, not a universal polynomial theorem.'
+          echo 'NEXT_FRONT = CONNECTED_BOUNDARY_ADHESION_GATE'
+          echo 'P_VS_NP = OPEN'
