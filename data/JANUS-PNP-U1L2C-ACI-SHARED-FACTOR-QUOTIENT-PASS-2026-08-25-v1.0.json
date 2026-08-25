@@ -1,0 +1,54 @@
+{
+  "schema": "JANUS_PNP_U1L2C_ACI_SHARED_FACTOR_QUOTIENT_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "4c7e7f4a28cb42eec455d773639de4879c00fca7",
+  "provider_commit": "e0f3a3281155674bbf8669a531e932c4eb2ad09e",
+  "workflow_head": "f265bbf1a38cad6b92985bb7aeb119627d49f2f1",
+  "workflow_run": 32878028901,
+  "workflow_job": 97900613725,
+  "workflow_run_attempt": 1,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "frozen_scope": {
+    "language": "CLOSED_PURE_POSITIVE_AND_DAG_OVER_CANONICAL_SIGNED_LEAF_IDS",
+    "m_values": [2,4,8,16,32,64,128],
+    "lanes": 4,
+    "sat_oracle": false,
+    "semantic_equivalence_oracle": false,
+    "sampled_valuation_test": false
+  },
+  "global_ledger": {
+    "total_certificate_bytes": 299273,
+    "total_counted_operations": 53790
+  },
+  "rows": [
+    {"m":2,"source_gate_count":13,"source_ac_x":13,"target_gate_count":6,"target_ac_x":1,"certificate_bytes":1005},
+    {"m":4,"source_gate_count":23,"source_ac_x":23,"target_gate_count":8,"target_ac_x":1,"certificate_bytes":1396},
+    {"m":8,"source_gate_count":43,"source_ac_x":43,"target_gate_count":12,"target_ac_x":1,"certificate_bytes":2418},
+    {"m":16,"source_gate_count":83,"source_ac_x":83,"target_gate_count":20,"target_ac_x":1,"certificate_bytes":5652},
+    {"m":32,"source_gate_count":163,"source_ac_x":163,"target_gate_count":36,"target_ac_x":1,"certificate_bytes":16759},
+    {"m":64,"source_gate_count":323,"source_ac_x":323,"target_gate_count":68,"target_ac_x":1,"certificate_bytes":57399},
+    {"m":128,"source_gate_count":643,"source_ac_x":643,"target_gate_count":132,"target_ac_x":1,"certificate_bytes":214644}
+  ],
+  "refusal_controls": [
+    {"name":"NEGATED_INTERNAL","result":"REFUSE_NON_ACI_CONE"},
+    {"name":"EXPLICIT_OR","result":"REFUSE_NON_ACI_CONE"},
+    {"name":"MIXED_OPAQUE_CHILD","result":"REFUSE_NON_ACI_CONE"}
+  ],
+  "result_sha256": "68d7bfc24b37f7936b3d65b41ae769d36ba4d06ffad21d7e64d66429798e883e",
+  "proved_in_scope": {
+    "PURE_AND_ACI_QUOTIENT_EXACTNESS": true,
+    "PURE_AND_ACI_QUOTIENT_DETERMINISTIC_POLY_CONSTRUCTION": true,
+    "SF4_SHARED_FANOUT_ESCAPE_REPAIRED": true
+  },
+  "still_open": [
+    "ARBITRARY_B2_QUOTIENT",
+    "SEQUENTIAL_EXISTENTIAL_CLOSURE",
+    "UNIVERSAL_CREATE_GRAMMAR",
+    "GLOBAL_POLY_STATE_AND_WORK",
+    "P_VS_NP"
+  ],
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "next_gate": "U1-L2C1_ACI_QUOTIENT_EXISTENTIAL_UPDATE_CLOSURE"
+}
