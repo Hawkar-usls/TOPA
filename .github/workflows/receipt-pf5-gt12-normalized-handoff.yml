@@ -40,20 +40,21 @@ jobs:
           r=json.load(open('/tmp/r.json'))
           n=r['certified_normalization']
           h=r.get('automaton_handoff')
-          print('PF5_GT12_NORM_RECEIPT=' + json.dumps({
-            'terminal': r['terminal'],
-            'before_units': r['pf1_residue']['units'],
-            'before_clauses': r['pf1_residue']['clauses'],
-            'before_variables': r['pf1_residue']['variables'],
-            'subset_probes': n['subset_probes'],
-            'certificate_steps': n['certificate_steps'],
-            'certificate_verified': n['certificate_verified'],
-            'after_units': n['normalized_units'],
-            'after_clauses': n['normalized_clauses'],
-            'after_variables': n['normalized_variables'],
-            'handoff_status': None if h is None else h['status'],
-            'handoff_states': None if h is None else h['residual_states'],
-            'handoff_bdd_nodes': None if h is None else h['bdd_nodes'],
-            'p_vs_np': r['p_vs_np']
-          }, sort_keys=True, separators=(',',':')))
-PY
+          out={
+              'terminal': r['terminal'],
+              'before_units': r['pf1_residue']['units'],
+              'before_clauses': r['pf1_residue']['clauses'],
+              'before_variables': r['pf1_residue']['variables'],
+              'subset_probes': n['subset_probes'],
+              'certificate_steps': n['certificate_steps'],
+              'certificate_verified': n['certificate_verified'],
+              'after_units': n['normalized_units'],
+              'after_clauses': n['normalized_clauses'],
+              'after_variables': n['normalized_variables'],
+              'handoff_status': None if h is None else h['status'],
+              'handoff_states': None if h is None else h['residual_states'],
+              'handoff_bdd_nodes': None if h is None else h['bdd_nodes'],
+              'p_vs_np': r['p_vs_np'],
+          }
+          print('PF5_GT12_NORM_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
