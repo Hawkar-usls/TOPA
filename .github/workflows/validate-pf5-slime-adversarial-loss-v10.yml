@@ -1,0 +1,69 @@
+name: Validate PF5 Slime Adversarial Loss v10
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_adversarial_loss_v10.py'
+      - '.github/workflows/validate-pf5-slime-adversarial-loss-v10.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_adversarial_loss_v10.py'
+      - '.github/workflows/validate-pf5-slime-adversarial-loss-v10.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  adversarial-loss-search:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 36437e053bb151660eaed4e82634d430346343a5
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen adversarial corpus
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_adversarial_loss_v10.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router.py \
+            --json-out ../../../../pf5-slime-adversarial-loss-v10.result.json
+      - name: Verify non-adaptive contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-adversarial-loss-v10.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-ADVERSARIAL-LOSS-V10'
+          assert d['status']=='FINITE_ADVERSARIAL_CORPUS_COMPLETE'
+          assert d['search_seeds_frozen_before_provider_run']==list(range(906000,906128))
+          assert d['sources_and_manifests_frozen_before_exact_probe'] is True
+          assert d['adaptive_source_generation_after_probe'] is False
+          assert d['corpus_size']==128
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          s=d['summary']
+          assert s['slime_wins']+s['slime_ties']+s['slime_losses']==128
+          for row in d['all_rows']:
+              assert set(row['candidate_widths'])=={
+                  'LEXICAL_BASELINE','EXACT_DUPLICATE_CLAUSE_BLOCKS',
+                  'SIGNED_INCIDENCE_PROFILE_BLOCKS','SLIME_SEMANTIC_PRESSURE'
+              }
+          print('PF5_SLIME_ADVERSARIAL_V10_CONTRACT = PASS')
+          print('SUMMARY =',s)
+          print('MANIFEST_BATCH_SHA256 =',d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'SLIME_LOSS != P_NE_NP'
+          echo 'SLIME_WIN != P_EQ_NP'
+          echo 'FINITE_ADVERSARY != UNIVERSAL_COMPLETENESS'
+          echo 'P_VS_NP = OPEN'
