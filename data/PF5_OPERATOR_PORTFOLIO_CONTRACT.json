@@ -1,0 +1,149 @@
+{
+  "artifact_id": "PF5-EXACT-OPERATOR-PORTFOLIO-CONTRACT-2026-08-25-v1.0",
+  "schema": "janus.pvsnp.pf5.operator-portfolio.v1",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "original_input_measure": "N = exact serialized input CNF bytes/encoding units under the frozen experiment contract",
+  "global_acceptance_rule": "AN_OPERATOR_MAY_ADVANCE_THE_SOLVER_ONLY_WITH_AN_EXACT_VERIFIER_ACCEPTANCE_AND_A_CHARGED_PROGRESS_RECEIPT",
+  "global_cost_ledger": [
+    "proposal_work",
+    "verification_work",
+    "accepted_output_bytes",
+    "temporary_bytes",
+    "failed_candidate_work",
+    "proof_certificate_bytes",
+    "witness_provenance_bytes",
+    "canonicalization_work",
+    "communication_work_if_distributed",
+    "cumulative_distinct_state_or_dag_nodes"
+  ],
+  "global_forbidden_shortcuts": [
+    "semantic equivalence oracle",
+    "SAT/UNSAT oracle hidden inside a selector",
+    "model counting oracle",
+    "heuristic score promoted to logical authority",
+    "parallel latency reported as total work",
+    "unpriced representation switching",
+    "small final artifact after superpolynomial temporary construction",
+    "provider PASS promoted to universal theorem",
+    "ER-certified rewrite renamed as proof-system escape"
+  ],
+  "operators": [
+    {
+      "operator_id": "PF1_PREBIRTH_PIVOT_FACTOR",
+      "authority_repo": "Hawkar-usls/TOPA",
+      "authority_path": "research/mathematics/p-vs-np/C025_AKINATOR_PREBIRTH_PIVOT_FACTORIZATION.md",
+      "proposal_algorithm": "Choose a frozen root pivot and syntactically split pivot clauses into positive residuals A_i and negative residuals B_j.",
+      "verifier": "Check the explicit Boolean factor certificate for R AND ((AND_i A_i) OR (AND_j B_j)) and witness-return rule.",
+      "exactness": "PROVED_IN_SCOPE",
+      "success_progress": "At least one original root is existentially eliminated before pairwise resolvent birth.",
+      "known_positive_control": "equality pair x<->y collapses to TRUE under elimination of x",
+      "known_negative_or_open_boundary": "iterated factor DAG/boundary relation total polynomial size is OPEN"
+    },
+    {
+      "operator_id": "C025_CERTIFIED_SUBSUMPTION_NORMALIZER",
+      "authority_repo": "Hawkar-usls/Janus-Fundamentum",
+      "authority_ref": "122ccf2c1082fc5967d063dc7b73ac8e26c9325d",
+      "authority_path": "experiments/direct/janus_c025_core.py",
+      "proposal_algorithm": "Sort canonical clauses by length and propose removal only when a retained clause is a syntactic subset.",
+      "verifier": "verify_normalization checks hashes, source membership, subset relation and exact reconstructed output.",
+      "exactness": "FINITE_IMPLEMENTATION_REPLAYED_AND_PROOF_RULE_SYNTACTIC",
+      "success_progress": "Strict clause deletion under syntactic subsumption without changing CNF semantics.",
+      "known_positive_control": "absorption family raw residual states collapse by certified subsumption",
+      "known_negative_or_open_boundary": "normalization after child birth does not by itself prevent exponential branch creation"
+    },
+    {
+      "operator_id": "C025_RESIDUAL_AUTOMATON",
+      "authority_repo": "Hawkar-usls/Janus-Fundamentum",
+      "authority_ref": "122ccf2c1082fc5967d063dc7b73ac8e26c9325d",
+      "authority_path": "experiments/direct/janus_c025_core.py",
+      "proposal_algorithm": "Follow a frozen variable order, cofactor exactly, normalize by certified subsumption and memoize exact residual CNFs.",
+      "verifier": "Every normalization transition is independently verified and returned SAT witness is checked against the original normalized formula.",
+      "exactness": "FAIL_CLOSED_EXACT_UNDER_STATE_BUDGET",
+      "success_progress": "Return EXACT SAT/UNSAT and witness within frozen state budget; otherwise OPEN.",
+      "known_positive_control": "interleaved equality and implication-chain controls",
+      "known_negative_or_open_boundary": "blocked equality has exponential residual width; bad order is not hardness"
+    },
+    {
+      "operator_id": "BHQ2_SIGNED_ORBIT_ABSORPTION",
+      "authority_repo": "Hawkar-usls/Janus-Fundamentum",
+      "authority_ref": "janus-bh-q2-buzz-physarum-signed-singularity",
+      "authority_path": "experiments/direct/janus_tear_policy0a_bh_q2_buzz_physarum_signed_singularity_probe.py",
+      "proposal_algorithm": "Physarum signed typed signature attracts candidates; signed incidence canonicalization proposes a map.",
+      "verifier": "Buzz requires explicit bijective signed map, literal round-trip, forward exact equality to representative and inverse exact equality back to current residual.",
+      "exactness": "PROOF_CARRYING_ABSORPTION_ONLY",
+      "success_progress": "Reuse an already-solved residual representative with exact reversible coordinate map.",
+      "failure_accounting": [
+        "physarum_signature_checks",
+        "event_horizon_collisions",
+        "signed_refinement_edge_visits",
+        "q0_fallback_refinement_edge_visits",
+        "buzz_return_checks",
+        "hawking_escape_count"
+      ],
+      "known_positive_control": "signed equivalence absorptions on frozen calibration families",
+      "known_negative_or_open_boundary": "GT12 found more absorptions but BH-Q2 total work proxy was about 3.9x Q1 under the frozen run; stronger quotient != cheaper quotient"
+    },
+    {
+      "operator_id": "LIVE_WIDTH_RELATIONAL_DP",
+      "authority_repo": "Hawkar-usls/TOPA",
+      "authority_path": "research/mathematics/p-vs-np/C025_AKINATOR_LIVE_WIDTH_PATH_DP_CERTIFICATE.md",
+      "proposal_algorithm": "Use deterministic first/last occurrence intervals of the serialized B2 trace to produce a path-style live boundary.",
+      "verifier": "Exact boundary assignment dynamic program.",
+      "exactness": "PROVED_IN_SCOPE",
+      "success_progress": "Exact survival/relation processing when the boundary table remains within cap.",
+      "known_positive_control": "lambda=O(log N) gives polynomial explicit DP",
+      "known_negative_or_open_boundary": "large live width does not prove every possible quotient is large"
+    },
+    {
+      "operator_id": "ROBDD_EXACT_LANE",
+      "authority_repo": "Hawkar-usls/TOPA",
+      "authority_path": "research/mathematics/p-vs-np/C025_AKINATOR_LARGE_SUPPORT_ROBDD_CERTIFICATE.md",
+      "proposal_algorithm": "Build reduced ordered BDD under a frozen paid order.",
+      "verifier": "Canonical ROBDD mechanics inside the frozen order/representation lane.",
+      "exactness": "EXACT_WHEN_WITHIN_EXPLICIT_SIZE_CAP",
+      "success_progress": "Exact residual/relation representation within polynomial cap.",
+      "known_positive_control": "large-support parity-like functions may remain compact under suitable representation",
+      "known_negative_or_open_boundary": "bad orders can blow exponentially; good-order discovery is separately hard"
+    },
+    {
+      "operator_id": "TRANCEPTION_PREBIRTH_ORBIT_GENERATOR",
+      "authority_repo": "Hawkar-usls/janus-meta-registry",
+      "authority_path": "data/JANUS-TRANCEPTION-BACK-FORTH-PNP-PATH-DIAGNOSIS-2026-08-18-v1.0.json",
+      "proposal_algorithm": "Discover a compact branch-action generator basis from parent/seed structure before child materialization.",
+      "verifier": "Exact forward/inverse replay and witness-return path; local failed-generator tombstones remain context-bound.",
+      "exactness": "RESTRICTED_FAMILY_POSITIVE_CONTROL",
+      "success_progress": "Quotient branch actions before birth into polynomially many symbolic orbit states on the certified family.",
+      "known_positive_control": "C025 equality family: 2^256 represented prefixes with 257 symbolic states in the recorded restricted experiment",
+      "known_negative_or_open_boundary": "universal polynomial generator discovery, coverage, quotient state count and dynamic update are OPEN"
+    },
+    {
+      "operator_id": "B2_ER_CERTIFIED_REWRITE",
+      "authority_repo": "Hawkar-usls/TOPA",
+      "authority_path": "research/mathematics/p-vs-np/C025_AKINATOR_PF4_ER_CERTIFIED_REWRITE_BRIDGE.md",
+      "proposal_algorithm": "Enumerate frozen B2/Resolution-certified local rewrites/extensions.",
+      "verifier": "Existing B2 extension and Resolution verifier.",
+      "exactness": "SOUND_IN_FROZEN_CERTIFICATE_LANE",
+      "success_progress": "Produce an exact certified rewrite/reason/proof fragment under global caps.",
+      "known_positive_control": "family-specific Cook/PHP B2 generator",
+      "known_negative_or_open_boundary": "universal short trace is ER p-boundedness frontier; deterministic discovery is the C2/#215 gate"
+    }
+  ],
+  "portfolio_acceptance": {
+    "operator_order": [
+      "PF1_PREBIRTH_PIVOT_FACTOR",
+      "C025_CERTIFIED_SUBSUMPTION_NORMALIZER",
+      "LIVE_WIDTH_RELATIONAL_DP",
+      "ROBDD_EXACT_LANE",
+      "TRANCEPTION_PREBIRTH_ORBIT_GENERATOR",
+      "BHQ2_SIGNED_ORBIT_ABSORPTION",
+      "B2_ER_CERTIFIED_REWRITE",
+      "C025_RESIDUAL_AUTOMATON"
+    ],
+    "selection_rule": "DETERMINISTIC_FIRST_ACCEPTING_OPERATOR_UNDER_FROZEN_CAPS; ALL_FAILED_PROPOSALS_ARE_CHARGED",
+    "no_posthoc_reordering": true,
+    "universal_success_theorem": "OPEN"
+  },
+  "current_red_point": "POLYNOMIALLY_DISCOVERABLE_DECOMPOSITION_PLUS_CHEAP_CERTIFIED_QUOTIENT",
+  "closure_condition": "If the portfolio (or a frozen polynomial extension of it) always provides an exact accepted rank-decreasing step with total cumulative work/bytes <= N^K for one universal fixed K and terminates after polynomially many rank decreases, then SAT is in P and P=NP.",
+  "global_status": "P_VS_NP = OPEN"
+}
