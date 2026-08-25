@@ -1,0 +1,61 @@
+name: Validate PF5 Boundary Coverage Matrix Repair
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_boundary_coverage_matrix_v0_1.py'
+      - 'data/PF5-BCM-001-OBDD-FAILED-BUILD-COST-ACCOUNTING.json'
+      - '.github/workflows/validate-pf5-boundary-coverage-matrix-repair.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repaired-finite-coverage-matrix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run repaired frozen matrix
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_boundary_coverage_matrix_v0_1.py --json-out ../../../pf5-boundary-coverage-matrix-v0.1.result.json
+      - name: Require repair marker and charged blocked-OBDD build
+        run: |
+          python - <<'PY'
+          import json
+          p='pf5-boundary-coverage-matrix-v0.1.result.json'
+          d=json.load(open(p, encoding='utf-8'))
+          assert d['accounting_revision']=='v0.1_PF5_BCM_001_REPAIR'
+          cell=None
+          for c in d['controls']:
+              if c['name']=='EQ_PAIRS_BLOCKED_8':
+                  for x in c['lanes']:
+                      if x['lane']=='FROZEN_ORDER_OBDD':
+                          cell=x
+          assert cell is not None
+          assert cell['status']=='CAP_HIT'
+          assert cell['cap_phase']=='BUILD'
+          assert cell['build_ops'] > 0
+          assert cell['failed_discovery_ops'] > 0
+          assert cell['nonterminal_nodes_total'] == 192
+          assert cell['representation_bytes_peak'] > 0
+          print('PF5_BCM_001_FAILED_BUILD_COST_ACCOUNTING = REPAIRED')
+          print('BLOCKED_OBDD_PARTIAL_BUILD_OPS =', cell['build_ops'])
+          print('BLOCKED_OBDD_PARTIAL_STATE_BYTES =', cell['representation_bytes_peak'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Show repaired finite summary
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-boundary-coverage-matrix-v0.1.result.json', encoding='utf-8'))
+          for c in d['controls']:
+              print(c['name'], 'coverage=', ','.join(c['primary_coverage']), 'hole=', c['representation_coverage_hole_under_v0_caps'])
+          print('UNIVERSAL_POLYNOMIAL_COVERAGE = OPEN')
+          print('GLOBAL_PROGRESS_AMORTIZATION = OPEN')
+          print('P_VS_NP = OPEN')
+          PY

@@ -1,0 +1,33 @@
+{
+  "artifact_id": "PF5-BCM-001-OBDD-FAILED-BUILD-COST-ACCOUNTING",
+  "class": "ACCOUNTING_DEFECT_NEGATIVE_RECEIPT",
+  "status": "DETECTED_IN_FIRST_MATRIX_RUN__REPAIR_ADDED_V0_1",
+  "first_run": {
+    "workflow": "Validate PF5 Boundary Coverage Matrix",
+    "run_id": 32798807748,
+    "job_id": 97655504187,
+    "conclusion": "SUCCESS_WITH_ACCOUNTING_DEFECT_IN_ONE_CAP_HIT_CELL",
+    "result_sha256": "82c28ac8c0f20a215e93fec391a2c338fd011224b27b52664dd59e96e180a16e"
+  },
+  "trigger_cell": {
+    "control": "EQ_PAIRS_BLOCKED_8",
+    "lane": "FROZEN_ORDER_OBDD",
+    "status": "CAP_HIT",
+    "cap": "OBDD_MAX_NONTERMINAL_NODES",
+    "incorrect_reported_build_ops": 0,
+    "incorrect_reported_nonterminal_nodes_total": 0
+  },
+  "cause": "The OBDD node-cap exception escaped build_bdd_from_raw before its partial BDD/raw-DAG/recursion counters were returned to run_obdd. The CAP_HIT handler therefore had no live partial build object and defaulted already-spent construction work to zero.",
+  "scientific_effect": "Semantic matrix classifications were not promoted beyond finite scope, but the typed cost ledger violated the frozen law that failed construction/search work must be charged. The original receipt is retained and not rewritten.",
+  "repair": {
+    "script": "research/mathematics/p-vs-np/pf5_boundary_coverage_matrix_v0_1.py",
+    "rule": "Construct OBDD in the caller-visible scope and, on CAP_HIT, serialize the partial BDD and charge bdd_ops + raw_restriction_ops + recursion_calls. Controls and all caps remain unchanged.",
+    "expected_marker": "PF5_BCM_001_FAILED_BUILD_COST_ACCOUNTING = REPAIRED"
+  },
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "laws": [
+    "FAILED_BUILD_COST_MUST_NOT_DISAPPEAR_ON_EXCEPTION",
+    "FIRST_RECEIPT_REMAINS_HISTORICAL_NEGATIVE_RECEIPT",
+    "ACCOUNTING_REPAIR_MUST_NOT_CHANGE_FROZEN_CONTROLS_OR_CAPS"
+  ]
+}

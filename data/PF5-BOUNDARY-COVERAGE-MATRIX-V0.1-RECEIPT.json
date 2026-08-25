@@ -1,0 +1,108 @@
+{
+  "artifact_id": "PF5-BOUNDARY-COVERAGE-MATRIX-V0.1-RECEIPT",
+  "protocol": "research/mathematics/p-vs-np/PF5_BOUNDARY_COVERAGE_MATRIX_V0.md",
+  "accounting_revision": "v0.1_PF5_BCM_001_REPAIR",
+  "branch": "pf5-boundary-coverage-matrix-v0",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "provider_receipt": {
+    "workflow": "Validate PF5 Boundary Coverage Matrix Repair",
+    "run_id": 32798916003,
+    "job_id": 97655811964,
+    "conclusion": "SUCCESS",
+    "result_sha256": "b946411eae579812fc96c22e6827f2b86c704e75027cdbe6ed3e1de48a0be1e7"
+  },
+  "accounting_repair": {
+    "defect": "PF5-BCM-001-OBDD-FAILED-BUILD-COST-ACCOUNTING",
+    "status": "REPAIRED",
+    "blocked_equality_obdd_partial_nodes": 192,
+    "blocked_equality_obdd_partial_build_ops": 6340,
+    "blocked_equality_obdd_failed_discovery_ops": 6340,
+    "blocked_equality_obdd_partial_state_bytes": 2695,
+    "controls_or_caps_changed": false
+  },
+  "controls": [
+    {
+      "name": "PARITY_CHAIN_12",
+      "primary_coverage": ["RAW_B2_SHANNON", "FROZEN_ORDER_OBDD", "LIVE_WIDTH_FACTOR_DP", "TRANCEPTION_ORBIT_TEMPLATE"],
+      "notable_costs": {
+        "raw_peak_bytes": 2139,
+        "obdd_peak_bytes": 335,
+        "factor_peak_bytes": 6296,
+        "factor_cumulative_bytes": 284523,
+        "orbit_peak_bytes": 58
+      }
+    },
+    {
+      "name": "EQ_PAIRS_INTERLEAVED_8",
+      "primary_coverage": ["RAW_B2_SHANNON", "FROZEN_ORDER_OBDD", "LIVE_WIDTH_FACTOR_DP", "TRANCEPTION_ORBIT_TEMPLATE"],
+      "notable_costs": {
+        "raw_peak_bytes": 18830,
+        "raw_projection_ops": 26686,
+        "obdd_peak_bytes": 360,
+        "factor_max_boundary_width": 10,
+        "orbit_peak_bytes": 84
+      }
+    },
+    {
+      "name": "EQ_PAIRS_BLOCKED_8",
+      "primary_coverage": ["RAW_B2_SHANNON", "LIVE_WIDTH_FACTOR_DP", "TRANCEPTION_ORBIT_TEMPLATE"],
+      "notable_events": {
+        "obdd": "CAP_HIT_DURING_BUILD",
+        "obdd_cap": "OBDD_MAX_NONTERMINAL_NODES",
+        "obdd_partial_nodes": 192,
+        "obdd_partial_build_ops": 6340,
+        "raw_peak_bytes": 18830,
+        "factor_max_boundary_width": 10,
+        "orbit_peak_bytes": 84
+      }
+    },
+    {
+      "name": "FANOUT_PAIR_ARCH_6",
+      "primary_coverage": ["RAW_B2_SHANNON", "FROZEN_ORDER_OBDD"],
+      "notable_events": {
+        "factor_dp": "CAP_HIT",
+        "factor_cap": "FACTOR_MAX_BUCKET_SCOPE",
+        "factor_max_boundary_width_before_hit": 15,
+        "factor_finalize_ops_before_hit": 196596,
+        "tranception": "UNSUPPORTED",
+        "raw_peak_bytes": 665,
+        "obdd_peak_bytes": 188
+      }
+    },
+    {
+      "name": "RANDOM3SAT_CAL_12",
+      "primary_coverage": ["RAW_B2_SHANNON", "FROZEN_ORDER_OBDD"],
+      "notable_events": {
+        "factor_dp": "CAP_HIT",
+        "factor_cap": "FACTOR_MAX_BUCKET_SCOPE",
+        "factor_max_boundary_width_before_hit": 11,
+        "factor_root_projection_ops_before_hit": 10048,
+        "tranception": "UNSUPPORTED",
+        "raw_peak_bytes": 8936,
+        "raw_projection_ops": 22998,
+        "obdd_peak_bytes": 408,
+        "obdd_build_ops": 22956
+      }
+    }
+  ],
+  "portfolio_result": {
+    "all_frozen_controls_have_primary_representation_coverage": true,
+    "universal_primary_lane_found": false,
+    "current_generic_fallback_on_uncovered_structural_controls": "RAW_B2_SHANNON with FROZEN_ORDER_OBDD also covering the current fanout/random finite controls",
+    "universal_polynomial_coverage": "OPEN",
+    "controller_switching_cost": "OPEN",
+    "global_progress_amortization": "OPEN",
+    "c2g_laminar_role": "PROGRESS_SIDECAR_NOT_PRIMARY_BOUNDARY_REPRESENTATION"
+  },
+  "next_exact_front": {
+    "name": "PF5_REPRESENTATION_ESCAPE_LADDER",
+    "question": "Can a frozen composite family simultaneously force OBDD order-cap pressure, live-width/factor boundary pressure, and orbit-template rejection, leaving RAW_B2_SHANNON as the only primary lane; if so, does repeated existential projection make RAW state/intermediate cost cross the same frozen polynomial-proxy caps?",
+    "rules": [
+      "use a deterministic parameter ladder rather than tune one size after inspection",
+      "preserve the existing v0 caps",
+      "charge partial failed construction",
+      "do not interpret finite portfolio escape as P!=NP",
+      "audit known semantic/proof upper bounds before any hardness language"
+    ]
+  }
+}

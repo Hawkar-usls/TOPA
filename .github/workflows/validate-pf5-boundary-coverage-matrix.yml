@@ -1,0 +1,35 @@
+name: Validate PF5 Boundary Coverage Matrix
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_BOUNDARY_COVERAGE_MATRIX_V0.md'
+      - 'research/mathematics/p-vs-np/pf5_boundary_coverage_matrix_v0.py'
+      - '.github/workflows/validate-pf5-boundary-coverage-matrix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-coverage-matrix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen proof-carrying boundary matrix
+        run: |
+          python research/mathematics/p-vs-np/pf5_boundary_coverage_matrix_v0.py --json-out pf5-boundary-coverage-matrix-v0.result.json
+      - name: Show machine-readable finite result
+        run: cat pf5-boundary-coverage-matrix-v0.result.json
+      - name: Claim ceiling reminder
+        run: |
+          echo 'This CI compares finite proof-carrying representation/update mechanics only.'
+          echo 'PASS on frozen controls does not establish universal polynomial coverage.'
+          echo 'CAP_HIT or UNSUPPORTED does not establish a lower bound against other representations.'
+          echo 'C2G-LAMINAR is a progress sidecar, not a primary boundary language.'
+          echo 'UNIVERSAL_POLYNOMIAL_COVERAGE = OPEN'
+          echo 'GLOBAL_PROGRESS_AMORTIZATION = OPEN'
+          echo 'P_VS_NP = OPEN'
