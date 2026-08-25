@@ -1,0 +1,49 @@
+{
+  "schema": "JANUS_PNP_U1L2C2K1_KEYMASTER_CATALOG_EXTENSION_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2-exact-only",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "exact_only_contract_commit": "f10cee2d7793eb5548ce057cb787f948dcb5a9db",
+  "c2c1_receipt_commit": "c75814edaa634ce49d8285fc82b3423dbbcb5f17",
+  "initial_extension_provider_commit": "f2c8ea851eea6ff9e150b10e607a990c8272d4a0",
+  "workflow_commit": "8165e6c0e4a9e312ce2a09e819fdeb3cd190acda",
+  "failure_receipt": {
+    "id": "U1-L2C2K1-001",
+    "run": 32889282116,
+    "job": 97937099073,
+    "cause": "IMPORTLIB_MODULE_NOT_REGISTERED_IN_SYS_MODULES_BEFORE_DATACLASS_EXECUTION",
+    "theorem_impact": "NONE",
+    "catalog_impact": "NONE_EXECUTION_STOPPED_BEFORE_VALIDATION",
+    "repair": "REGISTER_spec.name_TO_base_IN_sys.modules_BEFORE_exec_module"
+  },
+  "repair_commit": "1b126d9edaaf19ff049282ccd2a2b677f1a7404e",
+  "authoritative_run": 32889349395,
+  "authoritative_job": 97937322448,
+  "authoritative_conclusion": "SUCCESS",
+  "result_sha256": "0806f5120df08b8a1db755292eb893ea8c073a1830217aaaa2666b35321f2c2d",
+  "catalog": {
+    "base_exact_operator_count": 12,
+    "extended_exact_operator_count": 14,
+    "added": ["SWAP_ORBIT_WEIGHT_EXISTS","SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"]
+  },
+  "composition": {
+    "CNF_TO_SWAP_ORBIT_WEIGHT_THEN_EXISTS": "PASS_TYPE_CHECKED",
+    "SWAP_ORBIT_WEIGHT_SELF_COMPOSITION": "PASS_TYPE_CHECKED",
+    "certificate_rule": "CONCATENATE_CERTIFICATES",
+    "cost_rule": "COMPONENTWISE_ADD",
+    "witness_rule": "REVERSE_COMPOSE_WITNESS_LIFTS"
+  },
+  "heuristic_injection_control": {
+    "admitted": false,
+    "reason": "REFUSE_NONEXACT_SELECTION_AUTHORITY"
+  },
+  "frontier_product_bound": "|F_N| <= M(N) * min_j Product_{i!=j}(B_i(N)+1)",
+  "remaining_universal_debt": [
+    "POLYNOMIAL_CANONICAL_TRANSITION_STATE_COUNT_M_N_FOR_ARBITRARY_CNF",
+    "POLYNOMIAL_CUMULATIVE_COST_COORDINATE_BOUNDS_B_I_N",
+    "EXACT_TRANSITION_QUOTIENT_FOR_ASYMMETRIC_CNF_BEYOND_SWAP_ORBITS",
+    "P_VS_NP"
+  ],
+  "next_gate": "U1-L2C2C2_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS"
+}
