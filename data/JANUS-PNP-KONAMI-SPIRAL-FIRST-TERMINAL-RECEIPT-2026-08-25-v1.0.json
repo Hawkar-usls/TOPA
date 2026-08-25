@@ -1,0 +1,85 @@
+{
+  "schema": "JANUS_PNP_KONAMI_SPIRAL_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "full_method_json": {
+    "file": "data/JANUS-PNP-KONAMI-SPIRAL-FULL-METHOD-2026-08-25-v1.0.json",
+    "commit": "359645fa32cba8a29e1075c1c5d72108ec11287d",
+    "blob_sha": "f6657e354d7f59c847f16697d61ba0ba7e296178",
+    "base_method_count": 76
+  },
+  "auditor": {
+    "file": "research/mathematics/p-vs-np/janus_konami_spiral_fixed_point_v1.py",
+    "provider_commit": "bee9c7d1676d273d0294bb455a2ee7af570ce3bc",
+    "workflow_head": "8701582c3ebd2319ea12be7a68baab26fc893855"
+  },
+  "first_run": {
+    "workflow": "Validate JANUS Konami Spiral Fixed Point",
+    "run_id": 32894205094,
+    "job_id": 97952895805,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "f81de3788853c0dc252a2134d5868020415784c04b4ddf09c021202400f013f3"
+  },
+  "fixed_point": {
+    "cycles": 2,
+    "directional_confluence": true,
+    "capability_count": 39,
+    "barrier_count": 17,
+    "unresolved_obligation_count": 10
+  },
+  "unresolved_obligations": [
+    "ARBITRARY_CNF_EXACT_CATALOG_COVERAGE",
+    "CROSS_LANGUAGE_SEMANTIC_EQUIVALENCE_CERTIFICATE",
+    "GLOBAL_CERTIFICATE_COMPOSITION",
+    "GLOBAL_WITNESS_OR_UNSAT_LIFT",
+    "PIVOT_ORDER_INVARIANCE_OR_POLY_BRANCH_QUOTIENT",
+    "POLY_CANONICAL_TRANSITION_STATE_COUNT",
+    "POLY_CUMULATIVE_COST_BOUNDS",
+    "POLY_DISCOVERY_AND_BUILD",
+    "UNIVERSAL_SEQUENTIAL_EXISTENTIAL_CLOSURE",
+    "WELL_FOUNDED_REPRESENTATION_SWITCHING"
+  ],
+  "macro_fronts": {
+    "F1_COVERAGE_AND_PIVOT": [
+      "ARBITRARY_CNF_EXACT_CATALOG_COVERAGE",
+      "PIVOT_ORDER_INVARIANCE_OR_POLY_BRANCH_QUOTIENT",
+      "UNIVERSAL_SEQUENTIAL_EXISTENTIAL_CLOSURE"
+    ],
+    "F2_STATE_CONGRUENCE_AND_FRONTIER": [
+      "CROSS_LANGUAGE_SEMANTIC_EQUIVALENCE_CERTIFICATE",
+      "POLY_CANONICAL_TRANSITION_STATE_COUNT",
+      "POLY_CUMULATIVE_COST_BOUNDS"
+    ],
+    "F3_DISCOVERY_AND_TERMINATION": [
+      "POLY_DISCOVERY_AND_BUILD",
+      "WELL_FOUNDED_REPRESENTATION_SWITCHING"
+    ],
+    "F4_GLOBAL_PROOF_COMPOSITION": [
+      "GLOBAL_CERTIFICATE_COMPOSITION",
+      "GLOBAL_WITNESS_OR_UNSAT_LIFT"
+    ]
+  },
+  "synesthetic_memory_core": {
+    "status": "GOVERNANCE_ONLY",
+    "law": "MEASUREMENT -> SENSORY_PASSPORT -> MEMORY/RETRIEVAL/COMPARISON; NEVER PASSPORT -> SCIENTIFIC_VERDICT",
+    "trajectory_passports": 4,
+    "final_state_vector": [39, 10, 17],
+    "final_delta": [0, 0, 0],
+    "final_second_delta": [0, 0, 0],
+    "final_canonical_sha256": "025ce0daff148ce70e9831516828721ab1e39e675e55b8cbbbc25b4799d1b2d6",
+    "scientific_verdict_authority": false,
+    "useful_discovery": "Representation-switch termination/cycle control is a distinct proof obligation."
+  },
+  "janus_readout": {
+    "most_central_next_target": "F2_STATE_CONGRUENCE_AND_FRONTIER__CROSS_LANGUAGE_PROOF_CARRYING_TRANSITION_CONGRUENCE_WITH_POLY_CLASS_BOUND",
+    "why": "Keymaster frontier theorem is already conditional; a polynomially discoverable cross-language transition congruence could simultaneously attack exact deduplication, M(N), representation-switch cycles and frontier size.",
+    "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
