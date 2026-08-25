@@ -1,0 +1,51 @@
+{
+  "artifact_id": "PF5-PNP-SPIRAL-JOURNAL-V17",
+  "status": "CHECKPOINT_CLOSED",
+  "parent": "data/PF5-PNP-SPIRAL-JOURNAL-V16.json",
+  "parent_rule": "PARENT_REMAINS_IMMUTABLE_HISTORY",
+  "purpose": "Leave the exhausted 16-case v11 corpus and locate a fresh obstruction without adaptive search.",
+  "frozen_ladder": [
+    {"n": 6, "m": 24, "seeds": "911600..911607"},
+    {"n": 7, "m": 28, "seeds": "911700..911707"},
+    {"n": 8, "m": 32, "seeds": "911800..911807"},
+    {"n": 9, "m": 36, "seeds": "911900..911907"},
+    {"n": 10, "m": 40, "seeds": "912000..912007"},
+    {"n": 12, "m": 48, "seeds": "912200..912207"}
+  ],
+  "provider": {
+    "run": 32837144928,
+    "job": 97768428869,
+    "conclusion": "SUCCESS",
+    "head": "6ac330b2aac9c652cc6d228ae2f0081b129ab74e",
+    "source_manifest_sha256": "307d818fafd7d66ce4a7c0161b1c4835bb384a36d3d7cf21d020ac0cbd26298e",
+    "reduction_batch_sha256": "d9f8f7d3f12148e9ac9ce129267b7394b1f8a65722c576c3fba2fcf54c4ffae8",
+    "result_sha256": "52eca717dff43151b0df96d8e8365707f64e7e6a0ca77066171a313750a9ff72"
+  },
+  "result": {
+    "cases": 48,
+    "survivor_count": 48,
+    "first_survivor": {"n": 6, "m": 24, "seed": 911600},
+    "first_survivor_crystal_sha256": "06cfc87bfe5963cb2ff913ce58aa1915236ad28b74d8c734d054862bb0cb4522",
+    "first_survivor_cnf": [[-4,-5,-6],[-4,5,-6],[-3,-4,5],[-3,4,5],[-2,-4,-6],[-2,-4,-5],[-2,-4,5],[-2,-3,-4],[-2,3,-5],[-2,4,5],[-1,-2,6],[-1,2,-3],[-1,3,5],[-1,4,-6],[1,-3,-4],[1,2,-4],[1,4,5],[1,5,6],[2,-3,-4],[2,-3,5],[2,3,-6],[3,-4,-5],[3,4,-6],[4,-5,6]],
+    "first_survivor_semantic_projection_audit": "PASS"
+  },
+  "new_fact": "The sparse 5-variable corpus was not representative of the current exact-closure boundary. Every denser fresh source in the pre-frozen v17 ladder survives v12+v13+v15.",
+  "hephaestus_contract": {
+    "role": "EXACT_SYNTACTIC_CRYSTALLIZATION_AND_RECURRENCE_GUARD",
+    "decision_authority": false,
+    "metrics_used_as_score": false
+  },
+  "do_not_repeat": [
+    "Do not extend v17 seeds after seeing 48/48 survivors and call the extension part of the same blind ladder.",
+    "Do not return to 907000..907015 for a survivor; that corpus is already closed.",
+    "Do not introduce a threshold such as 'allow up to k resolvents' merely because it reduces these instances.",
+    "Do not use Hephaestus size, entropy, or slack as a variable-selection criterion."
+  ],
+  "next_gate": {
+    "name": "THEOREM_ONLY_ANALYSIS_OF_911600",
+    "visible_exact_identity": "(A OR x) AND (A OR NOT x) == A",
+    "candidate_operator": "COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION",
+    "admission_requirement": "Exact logical equivalence, polynomial discovery, replayable certificate, identity witness map, fresh holdout."
+  },
+  "claim_ceiling": {"UNIVERSAL_EXACT_CLOSURE": "OPEN", "P_VS_NP": "OPEN"}
+}
