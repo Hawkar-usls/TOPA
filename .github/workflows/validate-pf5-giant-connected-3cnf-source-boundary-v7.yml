@@ -1,0 +1,134 @@
+name: Validate PF5 Giant Connected 3CNF Source Boundary v7
+
+on:
+  push:
+    branches:
+      - pf5-giant-connected-3cnf-source-boundary-v7
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_GIANT_CONNECTED_3CNF_SOURCE_BOUNDARY_GATE_V7.md'
+      - 'research/mathematics/p-vs-np/pf5_giant_connected_3cnf_source_boundary_v7.py'
+      - '.github/workflows/validate-pf5-giant-connected-3cnf-source-boundary-v7.yml'
+
+jobs:
+  connected-source-boundary:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen connected 3CNF source-boundary replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_giant_connected_3cnf_source_boundary_v7.py --json-out ../../../pf5-giant-connected-3cnf-source-boundary-v7.result.json
+
+      - name: Verify v7 contract
+        run: |
+          python - <<'PY'
+          import inspect
+          import json
+          import sys
+          sys.path.insert(0, 'research/mathematics/p-vs-np')
+          import pf5_giant_connected_3cnf_source_boundary_v7 as v7
+
+          params=list(inspect.signature(v7.solve_source).parameters)
+          assert params==['clauses','variables','frozen_order'], params
+
+          d=json.load(open('pf5-giant-connected-3cnf-source-boundary-v7.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-GIANT-CONNECTED-3CNF-SOURCE-BOUNDARY-V7'
+          assert d['star_sizes_frozen_before_provider_run']==[2,4,8,12,16,20]
+          assert d['ring_sizes_frozen_before_provider_run']==[6,8,10,12,14]
+          assert d['pipeline_order_frozen_before_provider_run']==[
+              'SIGNED_PARITY_GRAPH_CNF','ARTICULATION_BOUNDARY_3CNF','GENERIC_FROZEN_ORDER_OBDD'
+          ]
+          assert d['new_tuned_caps_added'] is False
+          assert len(d['controls'])==17
+
+          passed=0
+          star_pass=0
+          ring_seen=0
+          for r in d['controls']:
+              if r['status']=='CAP_HIT':
+                  assert r['claim']=='FINITE_CONNECTED_3CNF_REPRESENTATION_ESCAPE_ONLY'
+                  if r['external_kind_for_test_only']=='TWO_CONNECTED_RING':
+                      ring_seen += 1
+                      attempts=[(a['stage'],a['status']) for a in r['pipeline_attempts']]
+                      assert ('SIGNED_PARITY_GRAPH_CNF','REJECT') in attempts
+                      assert ('ARTICULATION_BOUNDARY_3CNF','REJECT') in attempts
+                      assert any(a[0]=='GENERIC_FROZEN_ORDER_OBDD' for a in attempts)
+                  continue
+              passed += 1
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['source_is_single_connected_3cnf'] is True
+              assert r['pipeline_api_unlabeled'] is True
+              assert r['fixed_pipeline_order_used'] is True
+              assert r['failed_pipeline_work_charged'] is True
+              assert r['path_matches_frozen_expectation'] is True
+              attempts=[(a['stage'],a['status']) for a in r['pipeline_attempts']]
+              assert attempts[0]==('SIGNED_PARITY_GRAPH_CNF','REJECT')
+
+              kind=r['external_kind_for_test_only']
+              if kind.startswith('ARTICULATION_STAR'):
+                  star_pass += 1
+                  assert r['selected_path']=='ARTICULATION_BOUNDARY_3CNF'
+                  assert attempts[1][0]=='ARTICULATION_BOUNDARY_3CNF' and attempts[1][1]=='ACCEPT'
+                  assert r['source_partition_roundtrip_exact'] is True
+                  assert r['boundary_join_exact'] is True
+                  assert r['strict_child_witness_glue'] is True
+                  if r['expected_sat']:
+                      assert r['final_scalar'] is True
+                      assert r['witness_valid'] is True
+                      assert r['witness_source']=='DISCOVERED_BOUNDARY_JOIN_PLUS_ACTUAL_CHILD_OBDD_PROOFS'
+                  else:
+                      assert r['final_scalar'] is False
+                      assert r['witness_valid'] is None
+                      assert r['witness_source']=='NO_WITNESS_EMPTY_BOUNDARY_JOIN'
+              elif kind=='TWO_CONNECTED_RING':
+                  ring_seen += 1
+                  assert r['selected_path']=='GENERIC_FROZEN_ORDER_OBDD'
+                  assert attempts==[
+                      ('SIGNED_PARITY_GRAPH_CNF','REJECT'),
+                      ('ARTICULATION_BOUNDARY_3CNF','REJECT'),
+                      ('GENERIC_FROZEN_ORDER_OBDD','ACCEPT'),
+                  ]
+                  assert r['articulation_rejected'] is True
+                  assert r['final_scalar'] is True
+                  assert r['witness_valid'] is True
+                  assert r['witness_source']=='GENERIC_SOURCE_OBDD_PROJECTION_PROOF'
+              else:
+                  raise AssertionError(kind)
+
+          assert passed>0
+          assert star_pass==12
+          assert ring_seen==5
+          assert d['passed_controls']==passed
+          assert d['all_passed_connected_3cnf'] is True
+          assert d['all_passed_pipeline_unlabeled'] is True
+          assert d['all_passed_fixed_pipeline_order'] is True
+          assert d['all_passed_failed_work_charged'] is True
+          assert d['all_passed_path_matches_expectation'] is True
+          assert d['articulation_star_sat_and_unsat_closed'] is True
+          assert d['two_connected_ring_reaches_fallback'] is True
+          assert d['width_one_separator_discovery_poly_in_explicit_source']=='PROVED_BY_TARJAN_PLUS_LINEAR_PARTITION_CHECK'
+          assert d['universal_small_separator_existence']=='OPEN'
+          assert d['universal_small_separator_discovery']=='OPEN'
+          assert d['two_connected_core_representation_discovery']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['next_front']=='TWO_CONNECTED_3CNF_CORE_GATE'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_GIANT_CONNECTED_3CNF_SOURCE_BOUNDARY_V7_CONTRACT = PASS')
+          print('PASSED_CONTROLS =', passed)
+          print('FIRST_BASE_CAP_HIT =', d['first_base_cap_hit'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Connected source does not imply indecomposable source.'
+          echo 'ARTICULATION_FAILURE != HARDNESS'
+          echo 'TWO_CONNECTED_CORE_REPRESENTATION_DISCOVERY = OPEN'
+          echo 'P_VS_NP = OPEN'
