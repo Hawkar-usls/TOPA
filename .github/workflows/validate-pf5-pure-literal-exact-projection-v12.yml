@@ -1,0 +1,71 @@
+name: Validate PF5 Pure-Literal Exact Projection v12
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_PURE_LITERAL_EXACT_PROJECTION_V12.md'
+      - 'research/mathematics/p-vs-np/pf5_pure_literal_exact_projection_v12.py'
+      - 'data/PF5-V11-SEED-907000-DIAGNOSTIC.json'
+      - '.github/workflows/validate-pf5-pure-literal-exact-projection-v12.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_PURE_LITERAL_EXACT_PROJECTION_V12.md'
+      - 'research/mathematics/p-vs-np/pf5_pure_literal_exact_projection_v12.py'
+      - 'data/PF5-V11-SEED-907000-DIAGNOSTIC.json'
+      - '.github/workflows/validate-pf5-pure-literal-exact-projection-v12.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-pure-literal-projection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen blind exact projection audit
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_pure_literal_exact_projection_v12.py \
+            --json-out ../../../pf5-pure-literal-exact-projection-v12.result.json
+      - name: Verify no-heuristic contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-pure-literal-exact-projection-v12.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-PURE-LITERAL-EXACT-PROJECTION-V12'
+          assert d['status']=='FINITE_BLIND_EXACT_PROJECTION_AUDIT_COMPLETE'
+          assert d['feature']=='PURE_LITERAL_EXISTENTIAL_PROJECTION'
+          assert d['feature_is_heuristic'] is False
+          assert d['feature_uses_sat_oracle'] is False
+          assert d['feature_uses_pswidth_score'] is False
+          assert d['feature_uses_truth_table'] is False
+          assert d['holdout_seeds_frozen_before_provider_run']==list(range(908000,908032))
+          assert d['holdout_not_conditioned_on_feature_presence'] is True
+          assert d['source_batch_frozen_before_reducer'] is True
+          assert d['all_reductions_frozen_before_exact_pswidth_judge'] is True
+          assert d['adaptive_seed_extension_after_results'] is False
+          assert d['summary']['cases']==32
+          assert d['diagnostic']['seed']==907000
+          assert d['diagnostic']['projection_steps'][0]['variable']==5
+          assert d['diagnostic']['projection_steps'][0]['positive_occurrences']==0
+          assert d['diagnostic']['projection_steps'][0]['negative_occurrences']==5
+          assert d['diagnostic']['residual']==[]
+          assert d['runtime_rule_is_polynomial_in_explicit_residual_size'] is True
+          assert d['exact_judge_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['universal_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_PURE_LITERAL_V12_NO_HEURISTIC_CONTRACT = PASS')
+          print('SUMMARY =', d['summary'])
+          print('SOURCE_BATCH_SHA256 =', d['source_batch_sha256'])
+          print('REDUCTION_BATCH_SHA256 =', d['reduction_batch_sha256'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'PURE_LITERAL_EXISTENTIAL_PROJECTION = EXACT'
+          echo 'EXACT_REDUCTION != UNIVERSAL_DECOMPOSITION_COMPLETENESS'
+          echo 'FINITE_BLIND_HOLDOUT != P_EQ_NP'
+          echo 'P_VS_NP = OPEN'
