@@ -1,0 +1,83 @@
+{
+  "artifact_id": "PF5-PROOF-CARRYING-2SAT-BACKDOOR-K2-V28-FIRST-RUN-RECEIPT",
+  "status": "AUTHORITATIVE_FIRST_FRESH_RUN_SUCCESS",
+  "provider_commit": "06cca71954b159d24a0206693481c287db5cbfe7",
+  "workflow": {
+    "name": "Validate PF5 Proof-Carrying 2-SAT Backdoor k2 v28",
+    "run_id": 32849114357,
+    "job_id": 97805623159,
+    "run_attempt": 1,
+    "conclusion": "success"
+  },
+  "frozen_protocol": {
+    "k_max": 2,
+    "groups": [
+      {"n": 6, "m": 24, "seeds": "918600..918615"},
+      {"n": 7, "m": 28, "seeds": "918700..918715"}
+    ],
+    "provider_written_after_holdout_freeze": true,
+    "terminal_branch_clarification_written_before_provider": true,
+    "adaptive_extension_after_results": false
+  },
+  "hashes": {
+    "source_manifest_sha256": "2cceaa2185a6cf9a1bc463f58c4540031fb59651f620480277a6a10d9f7e986b",
+    "baseline_manifest_sha256": "c68a683127a4710b923cb1be5038943d5db46bcc96d21e337f7291ef68a8ce5d",
+    "provider_batch_sha256": "a8438dbb79b744395de34b9375f27113d105c8a4c2d05a1791faf22c21e2741d",
+    "rows_manifest_sha256": "5796325ec5035bfb602523d6ca3acef27f9a46f66c6431628c9b3936143522ce",
+    "result_sha256": "830103432809de48e5b3bc268e397060501e65fc2b4d18bbb92c5691f1939328"
+  },
+  "summary": {
+    "cases": 32,
+    "v24_true": 13,
+    "v24_false": 3,
+    "v24_open": 16,
+    "direct_2sat_sat": 2,
+    "direct_2sat_unsat": 0,
+    "entered_dark_non2cnf": 14,
+    "backdoor_found_k0": 0,
+    "backdoor_found_k1": 4,
+    "backdoor_found_k2": 6,
+    "no_backdoor_k_le_2": 4,
+    "backdoor_branch_count": 32,
+    "backdoor_sat_cases": 9,
+    "backdoor_unsat_cases": 1,
+    "final_true": 24,
+    "final_false": 4,
+    "final_open": 4
+  },
+  "runtime_ledger": {
+    "v28_backdoor_subsets_tested": 197,
+    "v28_failed_backdoor_subsets": 187,
+    "v28_backdoor_clause_checks": 847,
+    "v28_backdoor_literal_checks": 2259,
+    "v28_backdoor_certificate_bytes": 2355,
+    "v28_branch_count": 32,
+    "v28_branch_simplification_clause_checks": 498,
+    "v28_branch_simplification_literal_checks": 1045,
+    "v28_branch_certificate_bytes": 53675,
+    "v28_branch_solver_certificate_bytes": 71,
+    "v28_branch_state_bytes": 2071,
+    "v28_terminal_branch_certificates": 1,
+    "v28_witness_default_assignments": 56,
+    "v28_witness_merge_ops": 56,
+    "v28_witness_lift_ops": 813,
+    "v28_witness_bytes": 1249,
+    "v28_verification_ops": 3133,
+    "v28_state_bytes_peak_max": 2183,
+    "v28_cumulative_state_bytes": 58172,
+    "direct_v26_certificate_bytes": 576,
+    "direct_v26_cumulative_state_bytes": 3305,
+    "branch_v26_certificate_bytes": 12975,
+    "branch_v26_cumulative_state_bytes": 43519
+  },
+  "interpretation": {
+    "fresh_v24_open_closed_by_v26_plus_v28": 12,
+    "fresh_v24_open_total": 16,
+    "closure_fraction_of_v24_open": 0.75,
+    "claim": "FINITE_RESTRICTED_STRUCTURAL_RESULT_ONLY",
+    "universal_backdoor_bound": "NOT_ESTABLISHED",
+    "universal_exact_closure": "OPEN",
+    "p_vs_np": "OPEN"
+  },
+  "next_observer": "V29_JANUS_ACTION_GRAPH_ON_FOUR_V28_SURVIVORS"
+}
