@@ -1,0 +1,46 @@
+{
+  "artifact_id": "PF5-PURE-LITERAL-EXACT-PROJECTION-V12-RECEIPT",
+  "status": "PASS",
+  "branch": "pf5-pure-literal-exact-projection-v12",
+  "provider_run": 32834782106,
+  "provider_job": 97761113486,
+  "provider_conclusion": "success",
+  "feature": "PURE_LITERAL_EXISTENTIAL_PROJECTION",
+  "feature_is_heuristic": false,
+  "feature_uses_sat_oracle": false,
+  "feature_uses_pswidth_score": false,
+  "feature_uses_truth_table": false,
+  "diagnostic_seed": 907000,
+  "diagnostic_fact": "x5 is pure negative with 0 positive and 5 negative occurrences; recursive exact projection empties the diagnostic formula",
+  "blind_holdout_seeds": [908000,908001,908002,908003,908004,908005,908006,908007,908008,908009,908010,908011,908012,908013,908014,908015,908016,908017,908018,908019,908020,908021,908022,908023,908024,908025,908026,908027,908028,908029,908030,908031],
+  "summary": {
+    "cases": 32,
+    "feature_fired_cases": 10,
+    "feature_noop_cases": 22,
+    "solved_to_empty_cases": 6,
+    "mean_projection_steps": 0.71875,
+    "mean_source_optimal_width": 3.65625,
+    "mean_residual_optimal_width": 3.0625,
+    "positive_exact_width_delta_cases": 8
+  },
+  "reducer_global_cost_ledger": {
+    "rounds": 55,
+    "literal_occurrence_checks": 837,
+    "clause_membership_checks": 321,
+    "clauses_removed": 52,
+    "certificate_bytes": 9410,
+    "witness_lift_ops": 23
+  },
+  "exact_judge_global_cost_ledger": {
+    "cuts": 223148,
+    "assignment_rows": 3004494,
+    "literal_checks": 15571412
+  },
+  "source_batch_sha256": "c53b6477442479331b7393434170abd91e0b9207aecd069053348ce3a44379ec",
+  "reduction_batch_sha256": "a2a1b9001b195b7fd0eebadbfeb900c36f00ce8e624850eac39468dafb0cf71e",
+  "result_sha256": "f3ad295e47b28bf675c4d92f0607c1d41ad1a71b6df8fb1f8208d11150af8529",
+  "runtime_rule_is_polynomial_in_explicit_residual_size": true,
+  "exact_judge_is_exponential_audit_oracle_not_runtime_algorithm": true,
+  "universal_semantic_decomposition_discovery": "OPEN",
+  "p_vs_np": "OPEN"
+}
