@@ -1,0 +1,37 @@
+{
+  "id": "TOPA-C025-AKINATOR-BOUNDED-COVER-FRONTIER-2026-08-25-v1.0",
+  "schema_version": "1.0",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "status": "FIXED_C_EXACT_SURVIVAL_POLYNOMIAL__GLOBAL_SELECTOR_OPEN",
+  "canonical_note": "research/mathematics/p-vs-np/C025_AKINATOR_RSPC_BOUNDED_COVER_EXACT_SURVIVAL.md",
+  "probe": "research/mathematics/p-vs-np/akinator_rspc_bounded_cover_probe.py",
+  "frozen_family": "DIRECT_NW_PARITY_ENCODING",
+  "input_accounting": {
+    "per_output_wrong_parity_clauses": "2^(Delta-1)",
+    "derived_bound": "2^Delta <= 2N",
+    "fixed_cover_support_bound": "|supp(e)| <= C*Delta",
+    "exact_survival_enumeration": "2^(C*Delta) <= (2N)^C"
+  },
+  "proved_in_scope": [
+    "For universal fixed constant C, exact residual nonconstancy of a macro with verified explicit cover size <= C is discoverable deterministically in polynomial time in actual encoded N, assuming explicit state serialization is polynomial in N.",
+    "All one-step NOT/AND candidates over explicit V are polynomially enumerable in V.",
+    "An explicit inherited cover certificate avoids any need to solve minimum set cover."
+  ],
+  "prior_barrier": {
+    "C_equals_1": "REFUTED_AS_UNIVERSAL_ESCAPE_IN_STATED_NW_LOCAL_ER3_SCOPE"
+  },
+  "open": [
+    "EXISTS_FIXED_C_GT_1_UNIVERSALLY_SUFFICIENT",
+    "EVERY_FIXED_C_INSUFFICIENT",
+    "COVER_GROWTH_LOWER_BOUND",
+    "GLOBAL_PROGRESS_POTENTIAL",
+    "TOTAL_STATE_SIZE_POLYNOMIAL_IN_ORIGINAL_N"
+  ],
+  "hidden_exponent": {
+    "name": "NEIGHBORHOOD_COVER_COUNT",
+    "symbol": "c(e)",
+    "route_cost": "N^O(c(e))",
+    "warning": "If c(e)=c(N) grows with input, this is not a polynomial-time bound with a universal fixed exponent."
+  },
+  "next_gate": "BC1_FIXED_C_LOWER_BOUND_TRANSFER_OR_BC2_FIXED_C_CONSTRUCTIVE_PROGRESS"
+}
