@@ -1,0 +1,60 @@
+name: Validate PF5 Order-Invariant Twin Repair v22
+on:
+  push:
+    branches: [pnp-spiral-hephaestus-crystal-v14]
+  workflow_dispatch:
+jobs:
+  order-invariant-twin:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_order_invariant_twin_repair_v22.py
+      - name: Run fresh frozen repair audit
+        working-directory: research/mathematics/p-vs-np
+        run: python pf5_order_invariant_twin_repair_v22.py --json-out ../../../pf5-order-invariant-twin-v22.result.json
+      - name: Verify repair contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-order-invariant-twin-v22.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-ORDER-INVARIANT-TWIN-REPAIR-V22'
+          assert d['status']=='FINITE_FRESH_BLIND_IMPLEMENTATION_REPAIR_AUDIT_COMPLETE'
+          assert d['repair_type']=='IMPLEMENTATION_REPAIR_OF_EXISTING_EXACT_THEOREM'
+          assert d['feature']=='ORDER_INVARIANT_COMPLEMENTARY_TWIN_REPAIR'
+          assert d['theorem_changed'] is False
+          assert d['feature_is_heuristic'] is False
+          assert d['case_count']==32
+          assert d['all_sources_frozen_before_provider_reduction'] is True
+          assert d['all_provider_outputs_frozen_before_semantic_audit'] is True
+          assert d['holdout_not_conditioned_on_feature_presence'] is True
+          assert d['adaptive_extension_after_results'] is False
+          assert d['decision_heuristic'] is False
+          assert d['uses_sat_oracle'] is False
+          assert d['uses_truth_table_in_runtime'] is False
+          assert d['uses_pswidth_score'] is False
+          assert d['uses_hephaestus_for_decision'] is False
+          assert d['runtime_rule_polynomial_in_explicit_residual_size'] is True
+          assert d['witness_lift_replayable_from_certificate'] is True
+          assert d['diagnostic']['seed']==914600
+          assert d['diagnostic']['first_v22_certificate'] is not None
+          assert d['diagnostic']['semantic_twin_remaining'] is False
+          assert d['summary']['all_semantic_audits_pass'] is True
+          assert d['summary']['all_final_residuals_semantic_twin_free'] is True
+          assert d['universal_exact_closure']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_V22_REPAIR_CONTRACT = PASS')
+          print('SUMMARY =',d['summary'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'V18-002 = IMPLEMENTATION_GAP_PRESERVED'
+          echo 'V22 = ORDER_INVARIANT_IMPLEMENTATION_REPAIR'
+          echo 'TWIN_THEOREM = UNCHANGED_EXACT_EQUIVALENCE'
+          echo 'HEPHAESTUS_CRYSTAL = ACCOUNTING_RECURRENCE_ONLY'
+          echo 'UNIVERSAL_EXACT_CLOSURE = OPEN'
+          echo 'P_VS_NP = OPEN'
