@@ -1,0 +1,53 @@
+name: Validate PF5 Representation Escape Ladder
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_REPRESENTATION_ESCAPE_LADDER_V1.md'
+      - 'research/mathematics/p-vs-np/pf5_representation_escape_ladder_v1.py'
+      - '.github/workflows/validate-pf5-representation-escape-ladder.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-composite-representation-ladder:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen composite ladder
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_representation_escape_ladder_v1.py --json-out ../../../pf5-representation-escape-ladder-v1.result.json
+      - name: Verify frozen ladder contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-representation-escape-ladder-v1.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-REPRESENTATION-ESCAPE-LADDER-V1'
+          assert d['ladder']['m_values']==[8,10,12]
+          assert d['ladder']['fanout_n']==6
+          assert d['ladder']['caps_changed_from_v0_1'] is False
+          assert d['claim_ceiling']=='P_VS_NP = OPEN'
+          for c in d['controls']:
+              assert c['reference_sat'] is True
+              assert c['kind']=='HYBRID_EQ_FANOUT'
+              lanes={x['lane']:x for x in c['lanes']}
+              assert lanes['TRANCEPTION_ORBIT_TEMPLATE']['status']=='UNSUPPORTED'
+              assert lanes['C2G_LAMINAR']['status']=='SIDECAR_ONLY'
+              if lanes['FROZEN_ORDER_OBDD']['status']=='CAP_HIT':
+                  assert lanes['FROZEN_ORDER_OBDD']['build_ops']>0
+                  assert lanes['FROZEN_ORDER_OBDD']['failed_discovery_ops']>0
+          print('PF5_REPRESENTATION_ESCAPE_LADDER_CONTRACT = PASS')
+          print('ESCAPE_RUNGS =', ','.join(d['ladder']['coverage_escape_rungs']) or 'NONE')
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Finite representation portfolio escape is not a representation lower bound.'
+          echo 'Easy explicit SAT witness means this is representation/update stress, not semantic hardness.'
+          echo 'P_VS_NP = OPEN'
