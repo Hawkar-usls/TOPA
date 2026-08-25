@@ -11,6 +11,7 @@ on:
       - 'research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py'
       - 'research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py'
       - 'research/mathematics/p-vs-np/pf5_pf1_gt12_holdout_probe.py'
+      - 'research/mathematics/p-vs-np/pf5_pf1_gt12_normalized_handoff_probe.py'
       - '.github/workflows/validate-pf5-organism-portfolio.yml'
   workflow_dispatch:
 
@@ -80,7 +81,7 @@ jobs:
           python topa/research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py
           python topa/research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py
 
-      - name: Run new PF1 on frozen historical GT12 holdout
+      - name: Run PF1 on frozen historical GT12 holdout
         run: |
           python topa/research/mathematics/p-vs-np/pf5_pf1_gt12_holdout_probe.py \
             --fundamentum-root fundamentum \
@@ -100,9 +101,38 @@ jobs:
           print('PF5_PF1_GT12_FINAL_UNITS =', r['final_units'])
           print('PF5_PF1_GT12_CUMULATIVE_GATES =', r['cumulative_b2_gates_added'])
           print('PF5_PF1_GT12_AVOIDED_PAIR_PROXY =', r['cumulative_pair_attempts_avoided_proxy'])
+          print('PF5_PF1_GT12_DIAGNOSTIC_PAIR_WORK =', r['cumulative_diagnostic_pair_materializations'])
           if r['automaton_handoff'] is not None:
               print('PF5_PF1_GT12_HANDOFF =', r['automaton_handoff']['status'])
               print('PF5_PF1_GT12_HANDOFF_STATES =', r['automaton_handoff']['residual_states'])
+          PY
+
+      - name: Run certified subsumption successor on GT12 PF1 residue
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_pf1_gt12_normalized_handoff_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/pf5_pf1_gt12_norm.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/pf5_pf1_gt12_norm.json'))
+          assert r['experiment_class']=='MECHANISTIC_SUCCESSOR_NOT_INDEPENDENT_HOLDOUT'
+          assert r['frozen_caps']['normalization_subset_probe_cap']==500000
+          assert r['frozen_caps']['handoff_encoding_cap']==20000
+          assert r['frozen_caps']['posthoc_cap_raise_allowed'] is False
+          assert r['p_vs_np']=='OPEN'
+          n=r['certified_normalization']
+          print('PF5_GT12_NORM_TERMINAL =', r['terminal'])
+          print('PF5_GT12_NORM_BEFORE_UNITS =', r['pf1_residue']['units'])
+          print('PF5_GT12_NORM_SUBSET_PROBES =', n['subset_probes'])
+          print('PF5_GT12_NORM_CERT_STEPS =', n['certificate_steps'])
+          print('PF5_GT12_NORM_CERT_VERIFIED =', n['certificate_verified'])
+          print('PF5_GT12_NORM_AFTER_UNITS =', n['normalized_units'])
+          print('PF5_GT12_NORM_AFTER_CLAUSES =', n['normalized_clauses'])
+          print('PF5_GT12_NORM_AFTER_VARIABLES =', n['normalized_variables'])
+          if r['automaton_handoff'] is not None:
+              print('PF5_GT12_NORM_HANDOFF =', r['automaton_handoff']['status'])
+              print('PF5_GT12_NORM_HANDOFF_STATES =', r['automaton_handoff']['residual_states'])
           PY
 
       - name: Portfolio scientific ceiling
