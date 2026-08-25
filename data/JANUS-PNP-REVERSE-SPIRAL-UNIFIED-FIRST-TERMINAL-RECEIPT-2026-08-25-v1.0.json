@@ -1,0 +1,109 @@
+{
+  "schema": "JANUS_PNP_REVERSE_SPIRAL_UNIFIED_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "anchor": {
+    "file": "data/JANUS-PNP-EXACT-ONLY-ANCHOR-2026-08-25T2250+0300-v1.0.json",
+    "commit": "10fee90e78dc3e205832fcec940e223c7bc0883e"
+  },
+  "frozen_reverse_spiral_manifest": {
+    "file": "data/JANUS-PNP-REVERSE-SPIRAL-METHOD-UNIFICATION-2026-08-25-v1.0.json",
+    "commit": "74db4cfa068289eaee82c5582755a19362148c48",
+    "blob_sha": "dc3f2bf922f03b438697e04cff558ef75a58aed3",
+    "frozen_before_unified_runner": true
+  },
+  "unified_runner": {
+    "file": "research/mathematics/p-vs-np/janus_exact_reverse_spiral_unified_runner.py",
+    "provider_commit": "2d67988f72bad45e39c465c546a4651231771448",
+    "workflow": ".github/workflows/validate-janus-exact-reverse-spiral-unified.yml",
+    "workflow_head_commit": "8a297fda4cd6f431361003488513e44b5731cacd",
+    "execution_policy": "EXPLICIT_EXACT_WHITELIST_ONLY_NO_DIRECTORY_DISCOVERY"
+  },
+  "first_run": {
+    "workflow_name": "Validate JANUS Exact Reverse Spiral Unified",
+    "run_id": 32892779301,
+    "job_id": 97948321899,
+    "run_number": 1,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"
+  },
+  "reverse_spiral_summary": {
+    "historical_method_rows": 76,
+    "status_counts": {
+      "ACTIVE_EXACT": 15,
+      "EXACT_RESTRICTED": 11,
+      "BARRIER_NEGATIVE": 17,
+      "ALGEBRAIZED": 3,
+      "PRUNED": 15,
+      "GOVERNANCE_ONLY": 10,
+      "PROVENANCE_ONLY": 5
+    },
+    "unified_exact_keymaster_operator_count": 14,
+    "note": "ACTIVE_EXACT=15 because KEYMASTER_FRONTIER_PRODUCT_BOUND is an exact theorem/meta-bound in addition to the 14 typed Keymaster operators."
+  },
+  "executed_exact_whitelist": [
+    {
+      "id": "KEYMASTER_BASE",
+      "file": "u1l2c2k_keymaster_exact_algebra_verifier.py",
+      "status": "PASS_EXACT_METHOD_ALGEBRA",
+      "result_sha256": "7ea717e854e8138a797050aaa399d6b1d71fa90e2f099c75225d2247fa910dc3"
+    },
+    {
+      "id": "SWAP_ORBIT_C2C1",
+      "file": "u1l2c2c1_swap_orbit_weight_quotient_verifier.py",
+      "status": "PASS_RESTRICTED_AUTOMATIC_EXACT_C2C_QUOTIENT",
+      "result_sha256": "f810c5cfc494f9e4623a1631c1ab091ff92585a0dd64d9663721b5f9f9f4b3c2"
+    },
+    {
+      "id": "KEYMASTER_EXTENSION_K1",
+      "file": "u1l2c2k1_keymaster_catalog_extension_verifier.py",
+      "status": "PASS_EXACT_CATALOG_EXTENSION",
+      "result_sha256": "0806f5120df08b8a1db755292eb893ea8c073a1830217aaaa2666b35321f2c2d"
+    }
+  ],
+  "cross_controls": {
+    "base_keymaster_exact_catalog": 12,
+    "extended_keymaster_exact_catalog": 14,
+    "heuristic_injection_refused_before_extension": true,
+    "heuristic_injection_refused_after_extension": true,
+    "frontier_explosion_input": 64,
+    "frontier_explosion_preserved": 64,
+    "silent_top_k_truncation": false,
+    "asymmetric_orbit_explosion": "REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4",
+    "swap_orbit_closed_exists_composition": true,
+    "heuristic_execution_surface": "EMPTY"
+  },
+  "unified_exact_catalog": [
+    "PURE_LITERAL_EXISTS",
+    "TAUTOLOGICAL_RESOLVENT_EXISTS",
+    "SINGLE_NTR_EXISTS",
+    "COMPLEMENTARY_TWIN",
+    "CLAUSE_SUBSUMPTION",
+    "SELF_SUBSUMING_RESOLUTION",
+    "COMPONENT_PRODUCT",
+    "TWO_SAT_SCC",
+    "AFFINE_GF2_JOIN",
+    "ACI_SHARED_FACTOR",
+    "LITERAL_ACI_EXISTS",
+    "SYMMETRIC_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"
+  ],
+  "central_frontier_theorem": "|F_N| <= M(N) * min_j product_{i!=j}(B_i(N)+1) for fixed nine-dimensional nonnegative cumulative cost vectors under exact same-state Pareto pruning.",
+  "active_universal_debt": [
+    "POLYNOMIAL_CANONICAL_TRANSITION_STATE_COUNT_FOR_ARBITRARY_CNF",
+    "POLYNOMIAL_CUMULATIVE_COST_COORDINATE_BOUNDS",
+    "EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ],
+  "next_gate": "U1-L2C2C2_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS_PLUS_GLOBAL_CANONICAL_STATE_BOUND",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
