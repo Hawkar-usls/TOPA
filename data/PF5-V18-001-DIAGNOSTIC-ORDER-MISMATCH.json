@@ -1,0 +1,24 @@
+{
+  "artifact_id": "PF5-V18-001-DIAGNOSTIC-ORDER-MISMATCH",
+  "status": "RECORDED_FAILURE",
+  "provider_run": 32837852460,
+  "provider_job": 97770628450,
+  "failing_head": "dd7c2c3fa8443a181026bb903a6d4ae2401e68dd",
+  "failure": "AssertionError at diagnostic first_certificate[variable] == 4",
+  "root_cause": "The v18 deterministic discovery rule scans variables in increasing order. On frozen residual 911600, a valid complementary twin exists first on x2: (2,-3,-4) and (-2,-3,-4), contracting to (-3,-4). The separately noted x4 twin also exists, but is not the first deterministic match.",
+  "theorem_status": "UNAFFECTED",
+  "theorem": "(A OR x) AND (A OR NOT x) == A",
+  "runtime_rule_status": "UNAFFECTED",
+  "frozen_holdout_status": "UNCHANGED",
+  "repair_scope": "Change only the diagnostic expectation to the actual first deterministic match. Do not alter source seeds, holdout sizes, discovery order, theorem, or claim ceiling.",
+  "do_not_repeat": [
+    "Do not force x4 to preserve the illustrative example.",
+    "Do not reorder variables after observing the failure.",
+    "Do not modify the frozen 913600..913615 and 913700..913715 holdout.",
+    "Do not treat this implementation mismatch as evidence for or against P vs NP."
+  ],
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
