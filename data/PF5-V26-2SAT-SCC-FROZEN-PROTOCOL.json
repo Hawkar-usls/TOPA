@@ -1,0 +1,44 @@
+{
+  "artifact_id": "PF5-V26-2SAT-SCC-FROZEN-PROTOCOL",
+  "status": "FROZEN_BEFORE_PROVIDER_CODE",
+  "selected_from": "PF5-MACHINE-STRUCTURE-MINER-V25",
+  "selected_lane": "BIJUNCTIVE_2SAT_SCC",
+  "selection_evidence_is_post_hoc": true,
+  "fresh_validation_required": true,
+  "frozen_groups": [
+    {"n":6,"m":24,"seeds":[917600,917601,917602,917603,917604,917605,917606,917607,917608,917609,917610,917611,917612,917613,917614,917615]},
+    {"n":7,"m":28,"seeds":[917700,917701,917702,917703,917704,917705,917706,917707,917708,917709,917710,917711,917712,917713,917714,917715]}
+  ],
+  "pipeline": [
+    "GENERATE_FROZEN_CONNECTED_3CNF",
+    "V24_EXACT_CLOSURE",
+    "IF_TERMINAL_KEEP_TERMINAL",
+    "IF_OPEN_AND_MAX_CLAUSE_WIDTH_LE_2_RUN_PROOF_CARRYING_2SAT_SCC",
+    "ELSE_KEEP_OPEN_UNSUPPORTED"
+  ],
+  "2sat_certificate_contract": {
+    "sat": "explicit residual assignment plus lifted original-source witness",
+    "unsat": "variable x with verified implication path x->not_x and not_x->x from source clauses",
+    "scc_algorithm": "deterministic polynomial graph algorithm",
+    "no_sat_oracle": true,
+    "no_truth_table_in_provider": true,
+    "truth_table_allowed_only_after_provider_outputs_frozen_for_finite_audit": true
+  },
+  "costs_to_charge": [
+    "implication_graph_vertices",
+    "implication_graph_edges",
+    "edge_provenance_bytes",
+    "scc_graph_visits",
+    "condensation_edges",
+    "topological_ops",
+    "certificate_bytes",
+    "witness_bytes",
+    "witness_lift_ops",
+    "verification_ops",
+    "failed_eligibility_checks",
+    "cumulative_state_bytes"
+  ],
+  "adaptive_seed_extension_after_results": false,
+  "universal_exact_closure": "OPEN",
+  "p_vs_np": "OPEN"
+}

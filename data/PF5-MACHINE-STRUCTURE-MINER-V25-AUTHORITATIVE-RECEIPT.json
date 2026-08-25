@@ -1,0 +1,28 @@
+{
+  "artifact_id": "PF5-MACHINE-STRUCTURE-MINER-V25-AUTHORITATIVE-RECEIPT",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "f0194841b606c7e2d64201a4b319f97a5cb37f54",
+  "run_id": 32841402297,
+  "job_id": 97781492920,
+  "conclusion": "success",
+  "role": "POST_HOC_MACHINE_DISCOVERY_ONLY",
+  "v24_result_sha256": "865eb2de5fdc2c7ae0687f261304bfbafa36ac61cacdd0bcb14441dba1e8a8b9",
+  "v24_terminal_counts": {"FALSE": 3, "TRUE": 18, "OPEN_RESIDUAL": 11},
+  "open_residual_cases": 11,
+  "ranked_actionable_frontier": [
+    {"lane":"BIJUNCTIVE_2SAT_SCC","survivor_coverage":6,"coverage_fraction":0.5454545454545454,"status":"STANDARD_POLY_CLASS_PROVIDER_REQUIRED"},
+    {"lane":"COMPONENT_PRODUCT","survivor_coverage":0,"coverage_fraction":0.0,"status":"EXISTING_EXACT_THEOREM"},
+    {"lane":"UNIT_PROPAGATION_CERTIFICATE","survivor_coverage":0,"coverage_fraction":0.0,"status":"STANDARD_POLY_CLASS_PROVIDER_REQUIRED"},
+    {"lane":"HORN_FORWARD_CHAIN","survivor_coverage":0,"coverage_fraction":0.0,"status":"STANDARD_POLY_CLASS_PROVIDER_REQUIRED"},
+    {"lane":"DUAL_HORN_FORWARD_CHAIN","survivor_coverage":0,"coverage_fraction":0.0,"status":"STANDARD_POLY_CLASS_PROVIDER_REQUIRED"}
+  ],
+  "dominant_actionable_lane": "BIJUNCTIVE_2SAT_SCC",
+  "next_gate": "V26_FRESH_PROOF_CARRYING_2SAT_SCC",
+  "rows_manifest_sha256": "fd0ec587edd8612eb2f797f6d3652aa660580b61a760755768cf7e2d37e499b9",
+  "observer_cost_ledger": {"clause_visits":264,"literal_visits":566,"clause_pair_tests":836,"signature_context_visits":340,"graph_edge_insertions":120},
+  "result_sha256": "eece2d91177ed8ad4f78356333cf5827aad5fa58910995d2d90bb22252274c22",
+  "admission_effect": "NONE_POST_HOC_DISCOVERY_ONLY",
+  "fresh_holdout_required_before_lane_admission": true,
+  "universal_exact_closure": "OPEN",
+  "p_vs_np": "OPEN"
+}
