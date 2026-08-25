@@ -1,0 +1,50 @@
+name: Validate PF5 PNP Spiral Survivor v21
+on:
+  push:
+    branches: [pnp-spiral-hephaestus-crystal-v14]
+  workflow_dispatch:
+jobs:
+  survivor-v21:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_pnp_spiral_survivor_v21.py
+      - name: Run exact frozen locator
+        working-directory: research/mathematics/p-vs-np
+        run: python pf5_pnp_spiral_survivor_v21.py --json-out ../../../pf5-pnp-survivor-v21.result.json
+      - name: Verify locator contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-pnp-survivor-v21.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-PNP-SPIRAL-SURVIVOR-V21'
+          assert d['status']=='FINITE_FROZEN_LOCATOR_COMPLETE'
+          assert d['input_holdout']=='V20_FRESH_FROZEN_GROUPS_UNCHANGED'
+          assert d['case_count']==32
+          assert d['decision_heuristic'] is False
+          assert d['new_solver'] is False
+          assert d['uses_sat_oracle'] is False
+          assert d['uses_pswidth_score'] is False
+          assert d['uses_hephaestus_for_decision'] is False
+          assert d['first_survivor'] is not None
+          assert d['first_terminal_true'] is not None
+          assert d['survivor_count']==31
+          assert d['terminal_true_count']==1
+          assert d['universal_exact_closure']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_V21_LOCATOR_CONTRACT = PASS')
+          print('FIRST_SURVIVOR =',(d['first_survivor']['n'],d['first_survivor']['m'],d['first_survivor']['seed']))
+          print('FIRST_TERMINAL_TRUE =',(d['first_terminal_true']['n'],d['first_terminal_true']['m'],d['first_terminal_true']['seed']))
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'V21 = LOCATOR_ONLY'
+          echo 'V20_HOLDOUT = REUSED_UNCHANGED'
+          echo 'HEPHAESTUS_CRYSTAL = ACCOUNTING_RECURRENCE_ONLY'
+          echo 'UNIVERSAL_EXACT_CLOSURE = OPEN'
+          echo 'P_VS_NP = OPEN'
