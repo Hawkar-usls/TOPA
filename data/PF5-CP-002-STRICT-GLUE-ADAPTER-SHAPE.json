@@ -1,0 +1,18 @@
+{
+  "artifact_id": "PF5-CP-002-STRICT-GLUE-ADAPTER-SHAPE",
+  "class": "INTERFACE_CONTRACT_DEFECT_NEGATIVE_RECEIPT",
+  "status": "DETECTED_IN_CP001_REPAIR_ATTEMPT",
+  "failed_provider": {
+    "workflow": "Validate PF5 Component Product v2.1",
+    "run_id": 32799441910,
+    "job_id": 97657279696,
+    "conclusion": "FAILURE"
+  },
+  "symptom": "AssertionError: selected component did not return a witness",
+  "cause": "v2.run_rung passes the whole component record into compose_witness. The strict v2.1 adapter incorrectly treated that record as the selected lane result and looked for record['witness'] instead of record['selected']['witness'].",
+  "inner_witness_status": "PRESENT_IN_SELECTED_LANE_RESULTS",
+  "mathematical_effect": "NONE_ON_CP2_THEOREM; MACHINE_GLUE_REPLAY_NOT_COMPLETED",
+  "repair": "Read only component_record['selected']['witness']; then remap local roots through the immutable component manifest, require disjoint complete global root coverage, and independently evaluate the union witness on the original hybrid.",
+  "controls_or_caps_changed": false,
+  "claim_ceiling": "P_VS_NP = OPEN"
+}
