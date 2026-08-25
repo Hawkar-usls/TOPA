@@ -1,0 +1,27 @@
+{
+  "artifact_id": "PF5-V20-001-RESOLUTION",
+  "status": "ROOT_CAUSE_LOCALIZED",
+  "parent_failure": "data/PF5-V20-001-DIAGNOSTIC-PAIR-ORDER-MISMATCH.json",
+  "fresh_holdout_provider_results_seen": false,
+  "diagnostic_seed": 913600,
+  "internal_v12_residual_order_first_match": {
+    "subsuming_index": 20,
+    "subsumed_index": 16,
+    "subsuming_clause": [-6,4],
+    "subsumed_clause": [4,2,-6]
+  },
+  "second_match_visible_in_hephaestus_display": {
+    "subsuming_clause": [-5,-3],
+    "subsumed_clause": [6,-3,-5]
+  },
+  "root_cause": "v12 canonical_formula preserves current internal clause order. Hephaestus crystal normalizes representation for identity/fingerprint display. The two representations identify the same residual but their displayed ordering is not the provider scan ordering.",
+  "scientific_consequence": "Hephaestus may detect exact state recurrence and account bytes, but must not be used to infer deterministic operational order unless that order is itself part of the crystal contract.",
+  "repair_scope": "diagnostic expectation only",
+  "holdout_changed": false,
+  "theorem_changed": false,
+  "discovery_rule_changed": false,
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
