@@ -1,0 +1,32 @@
+{
+  "schema": "JANUS_PNP_U1L2B1A_ALL_BOUNDARY_DEPENDENCY_MASK_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "991b637b75bedc042318c1a51999d81bc3fa0fe1",
+  "provider_commit": "77b584228cf6ef67af464719c0d7dae5e72de7f5",
+  "workflow_head": "d0623c08b92c04b4cd20eaa436d535afc2f49299",
+  "workflow_run": 32853443925,
+  "workflow_job": 97819593454,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "source_catalog_sha256": "d69755c8206f52f9ba398b99ebe312d1aeb1ee283b60edefdc1d5280f860179a",
+  "all_mask_catalog_sha256": "147d08d6051fb629b518cf2929b65bf82b253275daf211ec5b8e246fbee285bd",
+  "result_sha256": "d1db0083aceca0af296f8739dd105be4ba812f80e4a36e2d297c14dd1a8b3471",
+  "result": {
+    "frozen_admitted_circuits": 20792,
+    "distinct_functions": 1254,
+    "dependency_masks": 16,
+    "canonical_function_mask_classes": 20064,
+    "catalog_bytes": 2396952,
+    "strict_replacements_by_dependency_popcount": [17520,75264,109824,70080,17520],
+    "same_gate_strict_ac_drop_by_dependency_popcount": [0,5184,4704,0,0],
+    "source_circuits_with_at_least_one_strict_replacement": 19536,
+    "classes_with_multiple_pareto_costs": 0,
+    "max_pareto_points_in_one_class": 1,
+    "classes_where_lower_ac_requires_gate_growth_within_scope": 0
+  },
+  "what_closed": "SINGLETON_BOUNDARY_DEPENDENCY_ASSUMPTION_FOR_FROZEN_K4_G3_LOCAL_COST_METADATA",
+  "new_signal": "SAME_GATE_PROJECTION_CONE_CONTRACTIONS_EXIST_FOR_DEPENDENCY_POPCOUNT_1_AND_2_BUT_NOT_3_OR_4_IN_THIS_FIXED_SCOPE",
+  "claim_ceiling": "FIXED_LOCAL_EXACT_RESULT_P_VS_NP_OPEN",
+  "next_gate": "U1-L2B2_SHARING_FANOUT_AND_HIGH_DEPENDENCY_DENSITY_ESCAPE"
+}
