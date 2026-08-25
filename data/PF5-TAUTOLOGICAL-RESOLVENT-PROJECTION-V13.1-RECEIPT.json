@@ -1,0 +1,94 @@
+{
+  "artifact_id": "PF5-TAUTOLOGICAL-RESOLVENT-PROJECTION-V13.1-RECEIPT",
+  "status": "AUTHORITATIVE_PROVIDER_SUCCESS",
+  "branch": "pf5-tautological-resolvent-projection-v13",
+  "authoritative_run": 32835666475,
+  "authoritative_job": 97763826665,
+  "authoritative_head": "5010eef9bf8de399918e0b75398cfaacf37f157f",
+  "result_sha256": "9f6ff02f8121198a766731509b28793e01fd26bb29232a92def15dce6afdd9c8",
+  "source_batch_sha256": "97783097d9c161750e607f2aaaf146ab602903114568b83fd547483ec7a51441",
+  "pure_only_batch_sha256": "0549af0a5316a2c77783891dc763f11a703e2a488f093bb9c68ac942e4dbfabc",
+  "composed_reduction_batch_sha256": "a06a92ade45322e564d1c6f29ea0397e494c7c4a3c3a2dd1f71b7a3af8715cfd",
+  "diagnostic": {
+    "seed": 907003,
+    "v12_pure_only_noop": true,
+    "first_v13_variable": 1,
+    "first_v13_positive_parent_count": 2,
+    "first_v13_negative_parent_count": 2,
+    "first_v13_cross_pair_count": 4,
+    "all_four_cross_resolvents_tautological": true,
+    "composed_exact_closure_reaches_empty_cnf": true
+  },
+  "blind_holdout": {
+    "seeds": "909000..909031",
+    "cases": 32,
+    "not_conditioned_on_feature_presence": true,
+    "new_feature_fired_cases": 14,
+    "new_feature_noop_cases": 18,
+    "tautological_resolvent_projection_steps": 19,
+    "pure_only_solved_to_empty_cases": 12,
+    "composed_solved_to_empty_cases": 25,
+    "incremental_solved_to_empty_cases": 13,
+    "positive_incremental_exact_width_delta_cases": 13,
+    "mean_pure_only_optimal_width": 2.5,
+    "mean_composed_optimal_width": 1.5625,
+    "all_semantic_projection_audits_pass": true
+  },
+  "runtime_cost_ledger": {
+    "pure": {
+      "rounds": 106,
+      "literal_occurrence_checks": 1104,
+      "clause_membership_checks": 678,
+      "clauses_removed": 125,
+      "certificate_bytes": 22496,
+      "witness_lift_ops": 55
+    },
+    "tautological_resolvent": {
+      "variable_tests": 73,
+      "failed_variable_tests": 54,
+      "clause_polarity_checks": 442,
+      "pair_checks": 136,
+      "complement_literal_checks": 227,
+      "successful_projections": 19,
+      "clauses_removed": 55,
+      "certificate_bytes": 14812
+    }
+  },
+  "audit_cost_ledger": {
+    "exact_pswidth": {
+      "cuts": 77770,
+      "assignment_rows": 1042042,
+      "literal_checks": 5357544
+    },
+    "semantic_projection": {
+      "source_assignment_rows": 1024,
+      "residual_assignment_rows": 217,
+      "literal_checks": 10210,
+      "witness_lift_calls": 96,
+      "witness_lift_ops": 2132
+    }
+  },
+  "preserved_failure": {
+    "artifact": "PF5-TRP-001-WITNESS-FREE-VARIABLE-DEFAULT",
+    "run": 32835533447,
+    "job": 97763418763,
+    "blind_holdout_observed": false,
+    "theorem_impact": "NONE",
+    "repair_scope": "WITNESS_ADAPTER_ONLY"
+  },
+  "runtime_contract": {
+    "new_feature_is_heuristic": false,
+    "uses_slime": false,
+    "uses_sat_oracle": false,
+    "uses_pswidth_score": false,
+    "uses_truth_table": false,
+    "acceptance_predicate": "BOTH_POLARITIES_AND_EVERY_POSITIVE_X_NEGATIVE_RESOLVENT_TAUTOLOGICAL",
+    "polynomial_in_explicit_residual_size": true,
+    "witness_lift_replayable_given_residual_witness": true
+  },
+  "claim_ceiling": {
+    "TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION": "EXACT",
+    "UNIVERSAL_SEMANTIC_DECOMPOSITION_DISCOVERY": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
