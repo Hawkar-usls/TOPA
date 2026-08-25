@@ -1,0 +1,29 @@
+name: Validate Akinator U1C Global Potential Lemma
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1C_POLY_DECK_GLOBAL_POTENTIAL_COLLAPSE.md'
+      - 'research/mathematics/p-vs-np/akinator_u1c_global_potential_probe.py'
+      - '.github/workflows/validate-akinator-u1c-global-potential.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run global-potential finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1c_global_potential_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI validates only polynomial deck-scan and bounded strict-descent mechanics.'
+          echo 'No universal SAT descent potential has been constructed.'
+          echo 'Resolution automatability hardness is an external theorem.'
+          echo 'P_VS_NP = OPEN'
