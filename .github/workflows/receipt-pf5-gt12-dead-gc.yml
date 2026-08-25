@@ -1,0 +1,60 @@
+name: Receipt PF5 GT12 Dead Gate GC
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_gt12_dead_intact_gc_probe.py'
+      - '.github/workflows/receipt-pf5-gt12-dead-gc.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact dead intact gate GC successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_gt12_dead_intact_gc_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          g=r['gc']; a=r['after']; h=r.get('automaton_handoff')
+          out={
+              'terminal':r['terminal'],
+              'congruence_merges':r['congruence_prefix']['merges'],
+              'start_units':g['start']['units'],
+              'pruned_outputs':g['pruned_outputs'],
+              'provenance_records':g['provenance_records'],
+              'gc_work_total':g['work_total'],
+              'gc_passes':g['work']['passes'],
+              'after_units':a['units'],
+              'after_clauses':a['clauses'],
+              'after_variables':a['variables'],
+              'surviving_intact':a['surviving_intact_definitions'],
+              'nonintact_or_other':a['nonintact_or_other_extension_variables'],
+              'first_gc_pass':g['passes'][0] if g['passes'] else None,
+              'last_gc_pass':g['passes'][-1] if g['passes'] else None,
+              'handoff_status':None if h is None else h['status'],
+              'handoff_states':None if h is None else h['residual_states'],
+              'p_vs_np':r['p_vs_np'],
+          }
+          print('PF5_GT12_DEAD_GC_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
