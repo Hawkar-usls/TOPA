@@ -1,0 +1,90 @@
+name: Validate PF5 Organism Portfolio
+
+on:
+  push:
+    paths:
+      - 'data/PF5_OPERATOR_PORTFOLIO_CONTRACT.json'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PREBIRTH_PIVOT_FACTORIZATION.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF2_FUNCTION_TO_RELATION_BOUNDARY.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF3_SYNTACTIC_SHANNON_EQUALITY_BARRIER.md'
+      - 'research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py'
+      - 'research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py'
+      - 'research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py'
+      - '.github/workflows/validate-pf5-organism-portfolio.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-repo-exact-controls:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout current TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+
+      - name: Checkout frozen Fundamentum C025/BH-Q2 source
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify pinned historical source identity
+        shell: bash
+        run: |
+          test "$(git -C fundamentum rev-parse HEAD)" = "122ccf2c1082fc5967d063dc7b73ac8e26c9325d"
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          expected = {
+              'fundamentum/experiments/direct/janus_c025_core.py': '414c81edf4e20248965d12069b2fe88937f9f7e1',
+              'fundamentum/experiments/direct/janus_c025_families.py': '4385c73819a53ae624717edff7edc10a4de7b998',
+              'fundamentum/experiments/direct/janus_certified_residual_quotient.py': 'aef9ddefb9d4aff5cddc6852363c3fdc7c418693',
+          }
+          # Git blob SHA1 = sha1(b'blob '+len+NUL+bytes), not file-content SHA1.
+          import subprocess
+          for path, expected_blob in expected.items():
+              rel = path.split('/', 1)[1]
+              actual = subprocess.check_output(['git','-C','fundamentum','hash-object',rel], text=True).strip()
+              assert actual == expected_blob, (rel, actual, expected_blob)
+          print('PF5_FROZEN_C025_BLOB_IDENTITY = PASS')
+          PY
+
+      - name: Validate PF5 contract JSON
+        run: python -m json.tool topa/data/PF5_OPERATOR_PORTFOLIO_CONTRACT.json >/dev/null
+
+      - name: Replay historical certified residual quotient controls
+        working-directory: fundamentum/experiments/direct
+        run: |
+          python janus_certified_residual_quotient.py --output /tmp/pf5_c025.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/pf5_c025.json'))
+          assert r['status']=='PASS'
+          assert r['assertions']['absorption_certified_collapse']
+          assert r['assertions']['equality_true_exponential_width']
+          assert r['assertions']['equality_good_order_exact']
+          assert r['assertions']['merge_barrier_exact']
+          print('PF5_C025_CERTIFIED_RESIDUAL_QUOTIENT_CONTROLS = PASS')
+          print('PF5_C025_LOCATED_BOTTLENECK =', r['located_bottleneck']['name'])
+          PY
+
+      - name: Replay current TOPA PF1/PF2/PF3 controls
+        run: |
+          python topa/research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py
+          python topa/research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py
+          python topa/research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py
+
+      - name: Portfolio scientific ceiling
+        run: |
+          echo 'PF5_CROSS_REPO_ORGANISM_REPLAY = PASS'
+          echo 'POLYNOMIALLY_DISCOVERABLE_DECOMPOSITION_PLUS_CHEAP_CERTIFIED_QUOTIENT = OPEN'
+          echo 'PF5_UNIVERSAL_COVERAGE = OPEN'
+          echo 'P_VS_NP = OPEN'
