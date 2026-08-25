@@ -1,0 +1,47 @@
+name: Validate PF5 Fresh Escape Ladder v17
+on:
+  push:
+    branches: [pnp-spiral-hephaestus-crystal-v14]
+  workflow_dispatch:
+jobs:
+  fresh-escape:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_fresh_escape_ladder_v17.py
+      - name: Run frozen ladder
+        working-directory: research/mathematics/p-vs-np
+        run: python pf5_fresh_escape_ladder_v17.py --json-out ../../../pf5-fresh-escape-ladder-v17.result.json
+      - name: Verify freeze and no-heuristic contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-fresh-escape-ladder-v17.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-FRESH-EXACT-CLOSURE-ESCAPE-LADDER-V17'
+          assert d['status']=='FINITE_FROZEN_ESCAPE_LADDER_COMPLETE'
+          assert d['case_count']==48
+          assert d['all_sources_frozen_before_reduction'] is True
+          assert d['adaptive_extension_after_results'] is False
+          assert d['decision_heuristic'] is False
+          assert d['uses_slime'] is False
+          assert d['uses_sat_oracle'] is False
+          assert d['uses_pswidth_score'] is False
+          assert d['uses_truth_table_in_runtime'] is False
+          assert d['universal_exact_closure']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          if d['first_survivor'] is not None:
+              assert d['first_survivor_semantic_audit']['pass'] is True
+          print('PF5_V17_FREEZE_CONTRACT = PASS')
+          print('SURVIVOR_COUNT =',d['survivor_count'])
+          print('FIRST_SURVIVOR =',None if d['first_survivor'] is None else (d['first_survivor']['n'],d['first_survivor']['m'],d['first_survivor']['seed']))
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'FRESH_ESCAPE_LADDER = FINITE_ADVERSARIAL_REPLAY'
+          echo 'UNIVERSAL_EXACT_CLOSURE = OPEN'
+          echo 'P_VS_NP = OPEN'
