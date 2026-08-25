@@ -1,0 +1,34 @@
+name: Validate Akinator PF2 Canonical Sharing
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF2_CANONICAL_SHARING_TRILEMMA.md'
+      - 'research/mathematics/p-vs-np/akinator_pf2_canonical_sharing_probe.py'
+      - '.github/workflows/validate-akinator-pf2-canonical-sharing.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF2_CANONICAL_SHARING_TRILEMMA.md'
+      - 'research/mathematics/p-vs-np/akinator_pf2_canonical_sharing_probe.py'
+      - '.github/workflows/validate-akinator-pf2-canonical-sharing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run PF2 canonical-sharing finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_pf2_canonical_sharing_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks finite structural/equivalence-reduction mechanics only.'
+          echo 'coNP-completeness and ZDD lower bounds are analytical/external, not CI.'
+          echo 'PF3_UNIVERSAL_RESIDUAL_NOVELTY_BOUND = OPEN'
+          echo 'P_VS_NP = OPEN'
