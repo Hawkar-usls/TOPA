@@ -1,0 +1,43 @@
+{
+  "schema": "JANUS_PNP_RCTQ2_REVERSE_FORWARD_AUDIT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "reverse_forward_sequence": [
+    {"direction":"REVERSE","id":"RCTQ2","expected_sha256":"469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"},
+    {"direction":"REVERSE","id":"RCTQ1","expected_sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"},
+    {"direction":"REVERSE","id":"KANAMI","expected_sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"REVERSE","id":"UNIFIED","expected_sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"UNIFIED","expected_sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"KANAMI","expected_sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"FORWARD","id":"RCTQ1","expected_sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"},
+    {"direction":"FORWARD","id":"RCTQ2","expected_sha256":"469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"}
+  ],
+  "audit_questions": [
+    "Do all frozen exact results reproduce byte-stable result hashes in both directions?",
+    "Does RCTQ2 change any historical active catalog receipt? It must not.",
+    "Is E_37 outside all frozen 14 operator domains?",
+    "Does E_37 nevertheless expose a smaller exact theorem-bearing terminal schema that the frozen catalog omitted?",
+    "What is the smallest next exact repair before constructing a stronger escape family?"
+  ],
+  "exact_reverse_observation_to_verify": {
+    "id": "ALL_POSITIVE_CLAUSE_WITNESS",
+    "statement": "If every nonempty CNF clause contains at least one positive literal, the all-ones assignment satisfies the CNF.",
+    "proof": "Under the all-ones assignment every positive literal evaluates TRUE; therefore each clause containing at least one positive literal is TRUE, hence their conjunction is TRUE.",
+    "recognition_cost": "O(total_literal_occurrences)",
+    "witness_cost": "O(number_of_variables)",
+    "certificate": "For each clause, index one positive literal; replay checks that literal belongs to the clause and is positive.",
+    "dual": "If every nonempty clause contains at least one negative literal, the all-zero assignment satisfies the CNF.",
+    "status_before_reverse_verifier": "PROPOSED_EXACT_RESTRICTED_REPAIR_NOT_ACTIVE_CATALOG"
+  },
+  "catalog_history_rule": "The frozen 14-operator receipt remains immutable. Any polarity-witness terminal schema requires a new typed Keymaster extension receipt.",
+  "expected_reframing_if_verified": {
+    "RCTQ2_ESCAPE_MEANING": "CATALOG_GAP_NOT_HARDNESS",
+    "SMALLEST_REPAIR": "ADD_EXACT_POLARITY_WITNESS_TERMINAL_SCHEMA",
+    "NEXT_ESCAPE_REQUIREMENT": "A future escape control must block all-ones and all-zero polarity terminal witnesses in addition to the existing 14 domains.",
+    "NEXT_GATE": "RCTQ3_TYPED_POLARITY_WITNESS_TERMINAL_EXTENSION_THEN_STRONGER_CNF_ESCAPE"
+  },
+  "P_VS_NP": "OPEN"
+}
