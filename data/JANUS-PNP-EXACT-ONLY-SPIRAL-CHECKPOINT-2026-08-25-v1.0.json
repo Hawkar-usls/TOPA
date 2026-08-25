@@ -1,0 +1,45 @@
+{
+  "schema": "JANUS_PNP_EXACT_ONLY_SPIRAL_CHECKPOINT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2-exact-only",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_ACTIVE_PNP_PATH",
+  "exact_only_contract_commit": "f10cee2d7793eb5548ce057cb787f948dcb5a9db",
+  "frontier_theorem": {
+    "commit": "ccb783b3a9160948d1cd84b2415a12fed696a143",
+    "statement": "|F_N| <= M(N) * min_j Product_{i!=j}(B_i(N)+1)",
+    "status": "PROVED_CONDITIONAL_EXACT_THEOREM",
+    "meaning": "WITH_FIXED_9D_COST_LEDGER_POLY_CANONICAL_STATE_COUNT_PLUS_POLY_CUMULATIVE_COST_BOUNDS_IMPLIES_POLY_KEYMASTER_FRONTIER"
+  },
+  "c2c1": {
+    "receipt_commit": "c75814edaa634ce49d8285fc82b3423dbbcb5f17",
+    "run": 32889060205,
+    "job": 97936379619,
+    "result_sha256": "f810c5cfc494f9e4623a1631c1ab091ff92585a0dd64d9663721b5f9f9f4b3c2",
+    "status": "PASS_RESTRICTED_AUTOMATIC_EXACT_C2C_QUOTIENT",
+    "positive_language": "SWAP_AUTOMORPHISM_ORBIT_WEIGHT",
+    "negative_boundary": "ASYMMETRIC_N40_REFUSED_P_EQ_2^40_GT_N^4"
+  },
+  "keymaster": {
+    "receipt_commit": "80a5b1e99eb598f6fba75caff301d18accfe20d9",
+    "authoritative_run": 32889349395,
+    "authoritative_job": 97937322448,
+    "result_sha256": "0806f5120df08b8a1db755292eb893ea8c073a1830217aaaa2666b35321f2c2d",
+    "exact_operator_count": 14,
+    "heuristic_selection_authority": false,
+    "new_exact_operators": ["SWAP_ORBIT_WEIGHT_EXISTS","SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"]
+  },
+  "pruning_policy": {
+    "method_prune": "ONLY_PROVED_REFUTATION_OR_FAILURE_TO_MEET_EXACT_ADMISSION_CONTRACT",
+    "path_prune": "ONLY_IDENTICAL_CANONICAL_STATE_WITH_COMPONENTWISE_COST_DOMINANCE_OR_EXACT_DUPLICATE",
+    "silent_frontier_truncation": false
+  },
+  "active_universal_barrier": [
+    "POLYNOMIAL_M_N_CANONICAL_TRANSITION_STATE_BOUND_FOR_ARBITRARY_CNF",
+    "POLYNOMIAL_B_I_N_CUMULATIVE_COST_BOUNDS",
+    "C2C2_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS"
+  ],
+  "next_gate": "U1-L2C2C2_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS_AND_GLOBAL_CANONICAL_STATE_BOUND"
+}
