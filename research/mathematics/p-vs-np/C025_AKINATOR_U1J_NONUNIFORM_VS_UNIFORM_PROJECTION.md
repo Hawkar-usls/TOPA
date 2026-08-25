@@ -1,160 +1,156 @@
 # C025 — Akinator U1-J: nonuniform versus uniform exact projection
 
-Status: **CLAIM_CEILING_FIREWALL_PROVED / UNIFORM_CONSTRUCTOR_OPEN**  
+Status: **NONUNIFORM_SIZE_EQUIVALENCE_PROVED / UNIFORM_CONSTRUCTOR_OPEN**  
 Claim ceiling: **P_VS_NP = OPEN**
 
 ## 0. Purpose
 
-The active projection-compression program must distinguish two very different statements:
+The active projection-compression program must distinguish two different frontiers:
 
-1. every relevant existential projection **has** a polynomial-size circuit;
-2. such a circuit can be **constructed deterministically in polynomial time**.
+1. every existential projection **has** polynomial-size circuits;
+2. such circuits can be **constructed deterministically in polynomial time**.
 
-The first is nonuniform and does not by itself prove `P=NP`. The second, with the frozen exactness and total-cost conditions, would.
-
----
-
-## 1. Nonuniform projection-size hypothesis
-
-Let `L` be any language in NP. There is a polynomial-time verifier `V(x,w)` with polynomial witness length such that
-
-`x in L iff exists w V(x,w)=1`.
-
-For each input length `n`, compile the verifier into a polynomial-size Boolean/B2 circuit
-
-`C_n(x,w)`.
-
-Assume the following **existence-only** hypothesis:
-
-> there is one fixed polynomial `p` such that for every such polynomial-size circuit `C_n`, the projected Boolean function
->
-> `D_n(x) := exists w C_n(x,w)`
->
-> has some Boolean/B2 circuit of size at most `p(|C_n|)`.
-
-Then `D_n` decides `L` on n-bit inputs and has polynomial size.
-
-Therefore
-
-`L in P/poly`.
-
-Since `L` was arbitrary:
-
-**UNIVERSAL_POLY_PROJECTION_SIZE_EXISTENCE => NP subseteq P/poly.**
-
-No algorithm for finding the circuits `D_n` is implied.
+The first frontier is exactly the nonuniform question `NP subseteq P/poly` in the broad circuit-projection setting. The second is the uniform route which, with the frozen total-cost conditions, reaches `P=NP`.
 
 ---
 
-## 2. External Karp–Lipton consequence
+## 1. Universal projection-size property
 
-Karp–Lipton (with the standard Sipser refinement) gives:
+Define `UPS` (Universal Projection Succinctness): there is one fixed polynomial `p` such that for every Boolean/B2 circuit `C(w,y)` of size `s`, the projected function
+
+`D_C(y) := exists w C(w,y)`
+
+has some Boolean/B2 circuit of size at most `p(s)` (ordinary input-index encoding factors absorbed into the fixed polynomial).
+
+No algorithm for finding `D_C` is required by UPS.
+
+---
+
+## 2. UPS implies NP subseteq P/poly
+
+Let `L in NP`. For every input length n, compile a polynomial-time verifier into a polynomial-size circuit
+
+`V_n(x,w)`
+
+such that
+
+`x in L iff exists w V_n(x,w)=1`.
+
+By UPS, the projected function
+
+`D_n(x)=exists w V_n(x,w)`
+
+has polynomial-size circuits.
+
+Therefore `L in P/poly`. Since L was arbitrary:
+
+**UPS => NP subseteq P/poly.**
+
+---
+
+## 3. NP subseteq P/poly implies UPS
+
+Assume `NP subseteq P/poly`.
+
+Consider the universal projection language
+
+`U = { (<C>, y) : exists w C(w,y)=1 }`.
+
+`U` is in NP: `w` is a polynomial witness relative to the explicit circuit description and C can be evaluated in polynomial time.
+
+Hence, by the assumption, U has a polynomial-size circuit family indexed by the total input length.
+
+Now fix one particular circuit C. Take the appropriate circuit for U and hardwire the bits of `<C>` into it. The remaining live inputs are y, and the resulting circuit computes exactly
+
+`y -> exists w C(w,y)`.
+
+Hardwiring cannot increase circuit size. Since the U-circuit size is bounded by one fixed polynomial in the total encoding length, and the number of live variables/wires is bounded by the explicit size of C up to standard encoding factors, the resulting projected circuit has size polynomial in |C|.
+
+Therefore UPS holds.
+
+So:
+
+**UNIVERSAL_POLY_PROJECTION_SIZE_EXISTENCE iff NP subseteq P/poly.**
+
+This is a nonuniform equivalence.
+
+---
+
+## 4. External Karp–Lipton consequence
+
+Karp–Lipton (with the standard Sipser refinement) gives
 
 `NP subseteq P/poly => PH = Sigma_2^p`.
 
-Thus a universal polynomial existential-projection size theorem would already have a major complexity-theoretic consequence even without a uniform constructor.
+Thus UPS would collapse the Polynomial Hierarchy to its second level.
 
-References:
+References: Karp–Lipton; Arora–Barak, *Computational Complexity*, circuit-complexity chapter / Karp–Lipton theorem; standard modern complexity lecture notes.
 
-- Richard M. Karp and Richard J. Lipton, classic Karp–Lipton theorem.
-- Arora–Barak, *Computational Complexity*, Theorem 6.13: if `NP subseteq P/poly`, the polynomial hierarchy collapses to its second level.
-- Modern university lecture notes state the same theorem.
-
-This is not a contradiction: `NP subseteq P/poly` and the corresponding PH collapse are not known to be false unconditionally.
+This is not an unconditional contradiction: neither `NP subseteq P/poly` nor the corresponding PH collapse has been ruled out unconditionally.
 
 ---
 
-## 3. Why existence alone is insufficient for P=NP
+## 5. Negative size lower bound is a major circuit lower bound
 
-A `P/poly` circuit family may contain nonuniform advice. The definition only asserts that for every input length a suitable polynomial-size circuit exists; it does not require a polynomial-time Turing machine to construct that circuit family.
+Because UPS is equivalent to `NP subseteq P/poly`, disproving UPS by exhibiting a polynomial-size verifier/circuit family whose existential projections require superpolynomial circuit size would prove
 
-Therefore:
+`NP not subseteq P/poly`.
 
-`SMALL_PROJECTED_CIRCUIT_EXISTS != POLYNOMIAL_PROJECTION_ALGORITHM`.
+That would in particular imply `P != NP` and would constitute a major general circuit lower bound.
 
-In particular, the existence-only theorem must not be promoted to `SAT in P` or `P=NP`.
+Therefore a general unconditional lower bound on minimum B2/circuit projection size is not a routine representation lemma; it reaches a central open circuit-complexity frontier.
 
 ---
 
-## 4. Uniform constructor implication
+## 6. Uniform construction remains stronger
 
-Now assume a much stronger statement in the frozen JANUS setting:
+A `P/poly` circuit family may contain nonuniform advice. Existence does not give a polynomial-time machine that finds the circuit.
 
-There is a deterministic algorithm `PROJECT` which, for every polynomial-size current B2 state and selected root variable/block, outputs in polynomial total time an exactly equivalent quantifier-free projected B2 state, with globally polynomial serialized size and a polynomially checkable correctness certificate.
+Now assume instead a deterministic `PROJECT` algorithm which, for every polynomial-size current B2 state, constructs an exactly equivalent projected quantifier-free B2 state in globally polynomial total time/state and without hidden oracles/backtracking.
 
-If this operation can eliminate all SAT variables while preserving the global polynomial bounds, the algorithm reaches a zero-variable state in polynomially many certified stages and decides SAT exactly.
+Eliminate all SAT variables and evaluate the zero-variable result. This decides SAT in deterministic polynomial time.
 
-Hence:
+Hence
 
 **UNIFORM_POLY_EXACT_PROJECTION_CONSTRUCTION => SAT in P => P=NP.**
 
-This is the actual positive closure target.
+The converse semantic uniform-compilation implication is recorded separately in U1-K: under `P=NP`, polynomial-time computation can be circuitized uniformly to construct the projected Boolean function.
 
 ---
 
-## 5. Three distinct obligations
-
-The projection program should therefore track separately:
+## 7. Three obligations stay separate
 
 ### SIZE
-
-Does a polynomial-size exact projected B2 circuit exist?
+Does a polynomial-size exact projected circuit exist?
 
 ### DISCOVERY / CONSTRUCTION
-
-Can such a circuit be found deterministically in polynomial time?
+Can it be found deterministically in polynomial time?
 
 ### CERTIFICATION
+Can exact projection equivalence be justified by a polynomial proof object in the chosen proof system?
 
-Can exact projection equivalence be verified by a polynomial proof object without a semantic oracle?
-
-None of these implies the other for free.
-
-The current research has already exposed barriers in each direction:
-
-- naive projection representations can grow exponentially;
-- cofactor enumeration can be exponential even when a small projection exists;
-- semantic target recognition is coNP-complete;
-- brute-force polynomial-size block search is exponential;
-- proof verification can be cheap while proof/circuit discovery remains hard.
+None is free from the others. In particular, `P=NP` does not automatically imply that the specific Extended-Resolution system is p-bounded.
 
 ---
 
-## 6. New exact gate — U1-K uniformity before closure
+## 8. Current status
 
-Any future `P=NP` claim from projection compression must explicitly prove all of:
+`UNIVERSAL_POLY_PROJECTION_SIZE_EXISTENCE iff NP_SUBSET_P_POLY = PROVED`
 
-1. a fixed polynomial global size bound in original input `N`;
-2. a deterministic polynomial-time constructor;
-3. polynomial total proof/certificate bytes;
-4. polynomial certificate verification;
-5. no hidden nonuniform advice/table of exceptional circuits;
-6. no semantic SAT/#SAT/equivalence oracle;
-7. no exponential search over candidate replacement blocks;
-8. exact terminal SAT/UNSAT correctness.
-
-If only item 1 is proved in the broad verifier-projection setting, the correct ceiling is at most the nonuniform implication `NP subseteq P/poly`, with the Karp–Lipton PH-collapse consequence.
-
----
-
-## 7. Current status
-
-`POLY_PROJECTION_SIZE_EXISTENCE = OPEN`
+`KARP_LIPTON_CONSEQUENCE = EXTERNAL_THEOREM`
 
 `UNIVERSAL_UNIFORM_PROJECTION_CONSTRUCTOR = OPEN`
 
-`EXISTENCE_ONLY_WOULD_IMPLY_NP_SUBSET_P_POLY = PROVED`
-
-`KARP_LIPTON_CONSEQUENCE = EXTERNAL_THEOREM`
+`GENERAL_PROJECTION_SIZE_LOWER_BOUND_WOULD_IMPLY_NP_NOT_SUBSET_P_POLY`
 
 `P_VS_NP = OPEN`
 
 ---
 
-## 8. New laws
+## 9. New laws
 
-- `POLY_CIRCUIT_EXISTENCE != POLY_CIRCUIT_CONSTRUCTION`
+- `POLY_PROJECTION_SIZE_EXISTENCE = NONUNIFORM_FRONTIER`
+- `UNIVERSAL_PROJECTION_SIZE_FRONTIER iff NP_SUBSET_P_POLY`
 - `NONUNIFORM_COMPRESSION != UNIFORM_ALGORITHM`
-- `NP_SUBSET_P_POLY != P_EQUALS_NP`
+- `GENERAL_PROJECTION_SIZE_LOWER_BOUND_IS_A_GENERAL_CIRCUIT_LOWER_BOUND`
 - `PROJECTION_SIZE_THEOREM_MUST_NOT_BE_PROMOTED_TO_P_EQUALS_NP_WITHOUT_UNIFORMITY`
-- `DISCOVERY_REMAINS_A_SEPARATE_CLOSURE_OBLIGATION`
