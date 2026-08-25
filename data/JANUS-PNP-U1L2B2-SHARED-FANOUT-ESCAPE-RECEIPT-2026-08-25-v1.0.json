@@ -1,0 +1,54 @@
+{
+  "schema": "JANUS_PNP_U1L2B2_SHARED_FANOUT_ESCAPE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "theorem_commit": "c7801a503d3295f6d0878b871e662bfc4578f34d",
+  "provider_commit": "1d6de436351ce62b2286d3b8b54918362314cf01",
+  "workflow_head": "d37b5657347c605055f096ab75b253125e5f66f9",
+  "workflow_run": 32854085095,
+  "workflow_job": 97821689287,
+  "workflow_run_attempt": 1,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "frozen_scope": {
+    "family": "SF_4(m)",
+    "m_values": [2,4,8,16,32,64],
+    "lanes": 4,
+    "frozen_local_g_max": 3,
+    "equivalence_method": "EXACT_SYMBOLIC_ACI_FACTOR_SET",
+    "sampled_valuation_test": false,
+    "sat_oracle": false,
+    "semantic_equivalence_oracle": false
+  },
+  "ladder": [
+    {"m":2,"source_gate_count":13,"source_ac_x":13,"local_grammar_ac_lower_bound":2,"compact_gate_count":6,"compact_ac_x":1},
+    {"m":4,"source_gate_count":23,"source_ac_x":23,"local_grammar_ac_lower_bound":4,"compact_gate_count":8,"compact_ac_x":1},
+    {"m":8,"source_gate_count":43,"source_ac_x":43,"local_grammar_ac_lower_bound":8,"compact_gate_count":12,"compact_ac_x":1},
+    {"m":16,"source_gate_count":83,"source_ac_x":83,"local_grammar_ac_lower_bound":16,"compact_gate_count":20,"compact_ac_x":1},
+    {"m":32,"source_gate_count":163,"source_ac_x":163,"local_grammar_ac_lower_bound":32,"compact_gate_count":36,"compact_ac_x":1},
+    {"m":64,"source_gate_count":323,"source_ac_x":323,"local_grammar_ac_lower_bound":64,"compact_gate_count":68,"compact_ac_x":1}
+  ],
+  "result_sha256": "06572e835f6ef635662c035cac92087faed80e8718d14397fe84263b11f8219d",
+  "proved_in_scope": {
+    "FIXED_K4_G3_CONTEXT_CLOSED_LOCAL_GRAMMAR_UNIVERSALLY_COMPLETE": false,
+    "POLY_LOCAL_SATURATION_IMPLIES_SMALL_PROJECTION_INTERFACE": false,
+    "SF4_CURRENT_LOCAL_GRAMMAR_SURVIVING_AC": "AC_x >= m = Omega(G0)",
+    "SF4_EXACT_GLOBAL_ACI_QUOTIENT": "G=m+4 AND AC_x=1"
+  },
+  "claim_ceiling": {
+    "P_VS_NP": "OPEN",
+    "P_NOT_EQUAL_NP_RESULT": false,
+    "GENERAL_REPRESENTATION_LOWER_BOUND": false,
+    "UNIVERSAL_ACI_COMPLETENESS": false
+  },
+  "what_changed": "CURRENT_FIXED_LOCAL_GRAMMAR_IS_NOW_EXACTLY_FALSIFIED_AS_A_UNIVERSAL_CREATE_GRAMMAR_AND_THE_ESCAPE_EXHIBITS_THE_MISSING_SHARED_FACTOR_OPERATION",
+  "next_gate": "U1-L2C_PROOF_CARRYING_ACI_SHARED_FACTOR_QUOTIENT",
+  "unpaid_debt": [
+    "DETERMINISTIC_PROOF_CARRYING_ACI_QUOTIENT_CONSTRUCTOR",
+    "POLYNOMIAL_CERTIFICATE_AND_BYTE_ACCOUNTING",
+    "NEXT_EXISTENTIAL_PROJECTION_DIRECTLY_ON_QUOTIENT_WITHOUT_DECOMPRESSION",
+    "WITNESS_LIFT_AFTER_PROJECTION",
+    "NON_ACI_AND_CROSSING_ADVERSARIAL_CONTROLS",
+    "UNIVERSAL_COVERAGE_AND_COMPOSITION"
+  ]
+}
