@@ -1,0 +1,24 @@
+name: Validate U1-L2C2A 8008 Theta Transition Quotient
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/U1L2C2A_8008_THETA_TRANSITION_QUOTIENT_PROTOCOL.md'
+      - 'research/mathematics/p-vs-np/u1l2c2a_8008_theta_transition_quotient_verifier.py'
+      - '.github/workflows/validate-u1l2c2a-8008-theta-transition-quotient.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-donor-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile provider
+        run: python -m py_compile research/mathematics/p-vs-np/u1l2c2a_8008_theta_transition_quotient_verifier.py
+      - name: Verify 8008 state guard, theta sum-product, and recurrence
+        run: python research/mathematics/p-vs-np/u1l2c2a_8008_theta_transition_quotient_verifier.py
