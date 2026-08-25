@@ -1,0 +1,42 @@
+{
+  "artifact_id": "PF5-COMPONENT-PRODUCT-REPRESENTATION-V2.2-STRICT-RECEIPT",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "repairs": [
+    "PF5-CP-001-OUTER-WITNESS-BYPASS",
+    "PF5-CP-002-STRICT-GLUE-ADAPTER-SHAPE"
+  ],
+  "provider": {
+    "run_id": 32799506639,
+    "job_id": 97657461935,
+    "conclusion": "SUCCESS",
+    "result_sha256": "783dfb392ed99ee917d25bdbe5554a4f5950a5d4bf63cf013be35aa08d23f12f"
+  },
+  "strict_witness_rule": "OUTER_WITNESS_IS_DISJOINT_UNION_OF_SELECTED_COMPONENT_WITNESSES_ONLY",
+  "rungs": [
+    {
+      "name": "HYBRID_EQ8_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "global_root_count": 28,
+      "outer_witness_sha256": "c437ff239855e023cc95bfb3f255e5a83b704b783c39df0fbf5005b6346ebc64"
+    },
+    {
+      "name": "HYBRID_EQ10_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "global_root_count": 32,
+      "outer_witness_sha256": "806282adbb03f9e18cff35a0f7a10ea1b85f6ab7f2bb22c9c3cc9ee57ca9bbf3"
+    },
+    {
+      "name": "HYBRID_EQ12_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "global_root_count": 36,
+      "outer_witness_sha256": "f0387850e3034af097d6773c724be8ae5754bb582c79adf687a6791957f93e8c"
+    }
+  ],
+  "status": {
+    "component_product_separator_width_zero": "FINITE_PROOF_CARRYING_REPLAY_PASS",
+    "v1_monolithic_escape_repaired": true,
+    "universal_polynomial_coverage": "OPEN",
+    "p_vs_np": "OPEN"
+  },
+  "next_exact_front": "CONNECTED_BOUNDARY_ADHESION_GATE"
+}

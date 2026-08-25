@@ -1,0 +1,63 @@
+{
+  "artifact_id": "PF5-COMPONENT-PRODUCT-REPRESENTATION-V2-RECEIPT",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "provider": {
+    "run_id": 32799271509,
+    "job_id": 97656808074,
+    "conclusion": "SUCCESS",
+    "result_sha256": "e0331ea611e7d8a3b8871cd11861251f00e84beb1719c8716cb680b1ff0d4b50"
+  },
+  "caps_changed_from_v1": false,
+  "selection_policy": [
+    "TRANCEPTION_ORBIT_TEMPLATE",
+    "FROZEN_ORDER_OBDD",
+    "LIVE_WIDTH_FACTOR_DP",
+    "RAW_B2_SHANNON"
+  ],
+  "results": [
+    {
+      "rung": "HYBRID_EQ8_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "peak_bytes": 1065,
+      "cumulative_state_bytes": 3121,
+      "proof_bytes": 1746,
+      "witness_bytes": 552,
+      "build_ops": 2248,
+      "failed_discovery_ops": 2,
+      "root_projection_ops": 274,
+      "selected": ["TRANCEPTION_ORBIT_TEMPLATE", "FROZEN_ORDER_OBDD"]
+    },
+    {
+      "rung": "HYBRID_EQ10_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "peak_bytes": 1115,
+      "cumulative_state_bytes": 3417,
+      "proof_bytes": 1901,
+      "witness_bytes": 636,
+      "build_ops": 2252,
+      "failed_discovery_ops": 2,
+      "root_projection_ops": 278,
+      "selected": ["TRANCEPTION_ORBIT_TEMPLATE", "FROZEN_ORDER_OBDD"]
+    },
+    {
+      "rung": "HYBRID_EQ12_FAN6",
+      "status": "PASS_EXACT_CLOSED",
+      "peak_bytes": 1163,
+      "cumulative_state_bytes": 3751,
+      "proof_bytes": 2053,
+      "witness_bytes": 720,
+      "build_ops": 2256,
+      "failed_discovery_ops": 2,
+      "root_projection_ops": 282,
+      "selected": ["TRANCEPTION_ORBIT_TEMPLATE", "FROZEN_ORDER_OBDD"]
+    }
+  ],
+  "theorem_status": {
+    "component_product_cp1": "EXACT_FOR_PAIRWISE_VARIABLE_DISJOINT_CONJUNCTION",
+    "witness_composition_cp2": "EXACT_BY_DISJOINT_UNION",
+    "v1_escape_repaired": true,
+    "universal_polynomial_coverage": "OPEN"
+  },
+  "next_exact_front": "CONNECTED_BOUNDARY_ADHESION_GATE",
+  "law": "DISJOINT_COMPONENT_PRODUCT_IS_SEPARATOR_WIDTH_ZERO"
+}
