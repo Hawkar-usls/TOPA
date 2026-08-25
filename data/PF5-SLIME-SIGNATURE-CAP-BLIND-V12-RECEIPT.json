@@ -1,0 +1,43 @@
+{
+  "artifact_id": "PF5-SLIME-SIGNATURE-CAP-BLIND-V12-RECEIPT",
+  "workflow_run": 32827925623,
+  "workflow_job": 97739962543,
+  "conclusion": "SUCCESS",
+  "producer_commit": "6bb9ed246a4740e0d4488d3df6848f266e1e32f4",
+  "producer_feature": "LOG_SIGNATURE_CAP_UPPER_BOUND",
+  "manifest_batch_sha256": "1b6ff67113cd08040f94e2e272883b88b2133c88c858133db512d45336f3d525",
+  "result_sha256": "f63bf4b477db7d56353493e8e670c905f94675c15f717bebe7e6607837a33f90",
+  "calibration": {
+    "seed": 907000,
+    "old_width": 6,
+    "new_width": 6,
+    "exact_optimum": 4,
+    "excluded_from_holdout_summary": true
+  },
+  "blind_holdout": {
+    "seeds": "908000..908015",
+    "cases": 16,
+    "new_vs_old_wins": 11,
+    "new_vs_old_ties": 5,
+    "new_vs_old_losses": 0,
+    "new_exact_optimal_cases": 6,
+    "old_exact_optimal_cases": 1,
+    "mean_old_width": 6.0,
+    "mean_new_width": 5.0625,
+    "mean_optimal_width": 3.75,
+    "mean_old_gap": 2.25,
+    "mean_new_gap": 1.3125,
+    "max_new_gap": 4,
+    "first_new_suboptimal_seed": 908001
+  },
+  "global_cost_ledger": {
+    "producer_generation_ops": 163570,
+    "exact_subset_dp_cut_evaluations": 69598,
+    "exact_verifier_assignment_rows": 942780,
+    "exact_verifier_literal_checks": 4889764
+  },
+  "interpretation": "The source-only signature-cap feature transferred positively to a fresh finite holdout but did not close the exact optimality gap. It is evidence for a useful candidate feature, not candidate completeness or a polynomial SAT algorithm.",
+  "next_gate": "DIAGNOSE_908001_SIGNATURE_CAP_RESIDUAL_GAP_BEFORE_V3_MUTATION",
+  "universal_candidate_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
