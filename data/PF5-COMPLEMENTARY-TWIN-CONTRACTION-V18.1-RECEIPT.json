@@ -1,0 +1,80 @@
+{
+  "artifact_id": "PF5-COMPLEMENTARY-TWIN-CONTRACTION-V18.1-RECEIPT",
+  "status": "PASS",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "7530371e2a8649e6169dd3fc3b81dbe50b593b7c",
+  "workflow_run": 32838066254,
+  "workflow_job": 97771275353,
+  "result_sha256": "0d313d4610b6deb238ee6a0d6094c59c882bbb50cfb58050173a03481d502102",
+  "source_manifest_sha256": "3d10c0ca33179b23870cddeda7678c647114339b02127926fc32ae579b4e66eb",
+  "reduction_batch_sha256": "ccc2a2ef1583fbcf5e1a249804e7a3169cd7bed21132f9679ffe396347370c01",
+  "operator": "COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION",
+  "identity": "(A OR x) AND (A OR NOT x) == A",
+  "repair_lineage": {
+    "failure_receipt": "data/PF5-V18-001-DIAGNOSTIC-ORDER-MISMATCH.json",
+    "repair": "V18-001_DIAGNOSTIC_ORDER_ONLY",
+    "holdout_changed": false,
+    "theorem_changed": false,
+    "deterministic_discovery_order_changed": false
+  },
+  "frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "913600..913615"},
+    {"n": 7, "m": 28, "seeds": "913700..913715"}
+  ],
+  "summary": {
+    "cases": 32,
+    "feature_fired_cases": 29,
+    "feature_noop_cases": 3,
+    "total_twin_steps": 71,
+    "terminal_true_cases": 0,
+    "terminal_false_cases": 0,
+    "open_residual_cases": 32,
+    "positive_byte_delta_cases": 29,
+    "mean_baseline_crystal_bytes": 246.6875,
+    "mean_final_crystal_bytes": 220.4375,
+    "all_semantic_audits_pass": true,
+    "exact_final_revisits": 0
+  },
+  "runtime_ledger": {
+    "v13": {
+      "rounds": 103,
+      "literal_occurrence_checks": 7327,
+      "residual_bytes_peak": 46536,
+      "variable_tests": 661,
+      "failed_variable_tests": 661,
+      "clause_polarity_checks": 16109,
+      "pair_checks": 1019,
+      "complement_literal_checks": 1870,
+      "successful_projections": 0
+    },
+    "v15": {
+      "variable_tests": 661,
+      "failed_variable_tests": 661,
+      "clause_polarity_checks": 16109,
+      "pair_checks": 19545,
+      "complement_literal_checks": 34937,
+      "non_taut_resolvent_rows": 12851,
+      "unique_resolvent_insertions": 12018,
+      "successful_projections": 0
+    },
+    "v18": {
+      "variable_tests": 461,
+      "failed_variable_tests": 390,
+      "clause_polarity_checks": 11095,
+      "pair_checks": 12056,
+      "body_literal_checks": 24084,
+      "body_hashes": 14481,
+      "successful_contractions": 71,
+      "clauses_removed": 142,
+      "clauses_emitted": 71,
+      "certificate_bytes": 44719
+    }
+  },
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "interpretation": "Finite exact contraction lane passed and reduced representation bytes on 29/32 frozen cases, but every case remained an open residual. This is evidence for a useful exact local simplification, not for universal polynomial closure.",
+  "next_gate": "FIRST_RESIDUAL_SURVIVING_V12_V13_V15_V18",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
