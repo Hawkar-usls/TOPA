@@ -1,0 +1,63 @@
+name: PF5 Symbolic Count Quotient v16.2 Receipt
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate-pf5-symbolic-count-quotient-v16-2-receipt.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  persistent-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute v16.2
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_symbolic_count_quotient_v16_2.py \
+            --json-out ../../../v16-2.result.json >/dev/null
+      - name: Build compact receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.load(open('v16-2.result.json',encoding='utf-8'))
+          receipt={
+            'artifact_id':'PF5-SYMBOLIC-COUNT-QUOTIENT-V16.2-RECEIPT',
+            'source_result_sha256':d['result_sha256'],
+            'family':d['family'],
+            'incidence_graph':d['incidence_graph'],
+            'symbolic_state':d['symbolic_state'],
+            'state_bound':d['state_bound'],
+            'max_outgoing_abstract_actions':d['max_outgoing_abstract_actions'],
+            'small_control_count':len(d['small_exhaustive_controls']),
+            'small_controls':d['small_exhaustive_controls'],
+            'large_symbolic_only_controls':d['large_symbolic_only_controls'],
+            'theorem':d['theorem'],
+            'epistemic_firewall':d['epistemic_firewall'],
+            'next_gate':d['next_gate'],
+            'universal_polynomial_prefix_quotient':d['universal_polynomial_prefix_quotient'],
+            'p_vs_np':d['p_vs_np'],
+          }
+          out=Path('data/PF5-SYMBOLIC-COUNT-QUOTIENT-V16.2-RECEIPT.json')
+          out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print('V16_2_RECEIPT = PASS')
+          print('LARGE =',[(r['n'],r['quotient_state_count'],r['optimum'],r['quotient_transition_checks']) for r in receipt['large_symbolic_only_controls']])
+          print('SHA =',receipt['source_result_sha256'])
+          PY
+      - name: Commit receipt
+        run: |
+          git config user.name 'JANUS CI Receipt'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/PF5-SYMBOLIC-COUNT-QUOTIENT-V16.2-RECEIPT.json
+          if git diff --cached --quiet; then
+            echo 'Receipt unchanged.'
+          else
+            git commit -m 'Record PF5 v16.2 symbolic quotient receipt'
+            git push origin HEAD:pf5-symbolic-count-quotient-v16-2
+          fi
