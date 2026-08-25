@@ -1,0 +1,21 @@
+{
+  "artifact_id": "PF5-SLIME-V9-001-DYNAMIC-IMPORT-DATACLASS-INTEGRATION",
+  "classification": "INTEGRATION_FAILURE_NOT_SCIENTIFIC_FAILURE",
+  "workflow_run": 32824884058,
+  "workflow_job": 97730601842,
+  "status": "RECORDED_NEGATIVE_RECEIPT",
+  "failure_phase": "EXTERNAL_PRODUCER_DYNAMIC_IMPORT",
+  "exception": "AttributeError: 'NoneType' object has no attribute '__dict__' inside dataclasses._is_type",
+  "root_cause": "The TOPA dynamic loader created the pinned Janus-Demiurge producer module with module_from_spec but did not insert it into sys.modules before exec_module. Python 3.11 dataclass processing expects cls.__module__ to resolve through sys.modules.",
+  "scientific_state_reached": false,
+  "manifest_generation_reached": false,
+  "exact_pswidth_probe_reached": false,
+  "frozen_inputs_changed_by_repair": false,
+  "repair_rule": "Register the dynamic module under spec.name in sys.modules before exec_module. Do not change holdout seeds, Slime producer commit, candidate portfolio, scoring, caps, or verifier.",
+  "claim_boundary": [
+    "THIS_FAILURE_DOES_NOT_REFUTE_SLIME",
+    "THIS_FAILURE_DOES_NOT_SUPPORT_SLIME",
+    "THIS_FAILURE_DOES_NOT_CHANGE_P_VS_NP",
+    "P_VS_NP = OPEN"
+  ]
+}
