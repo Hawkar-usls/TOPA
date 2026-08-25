@@ -1,0 +1,81 @@
+name: Validate PF5 Connected Boundary Adhesion v3.2
+
+on:
+  push:
+    branches:
+      - pf5-connected-boundary-adhesion-v3
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_CONNECTED_BOUNDARY_ADHESION_V3_2_COMPRESSED_AFFINE_JOIN.md'
+      - 'research/mathematics/p-vs-np/pf5_connected_boundary_adhesion_v3_2.py'
+      - '.github/workflows/validate-pf5-connected-boundary-adhesion-v3-2.yml'
+
+jobs:
+  compressed-affine-join:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run compressed affine JOIN replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_connected_boundary_adhesion_v3_2.py --json-out ../../../pf5-connected-boundary-adhesion-v3.2.result.json
+
+      - name: Verify ADH-002 repair contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-connected-boundary-adhesion-v3.2.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-CONNECTED-BOUNDARY-ADHESION-V3.2-COMPRESSED-AFFINE-JOIN'
+          assert d['repair_of']=='ADH-002-EXPLICIT-BOUNDARY-TABLE-ESCAPE'
+          assert d['widths']==[2,4,6,8,10,12,14]
+          assert d['widths_changed_from_v3'] is False
+          assert d['caps_changed_from_v3'] is False
+          assert d['inner_representation_changed_from_v3_1'] is False
+          assert d['boundary_representation']=='AFFINE_GF2_RREF'
+          assert d['join_operator']=='J_B=RREF_GF2(Lambda_UNION_Rho)'
+          assert len(d['controls'])==14
+          for r in d['controls']:
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['connected'] is True
+              assert r['inner_representation']=='AFFINE_GF2'
+              assert r['boundary_representation']=='AFFINE_GF2_RREF'
+              assert r['private_projection_exact'] is True
+              assert r['compressed_join_exact'] is True
+              assert r['compressed_boundary_projection_exact'] is True
+              assert r['strict_witness_glue_exact'] is True
+              expect=1 << (r['k']-1)
+              assert r['left_boundary_models_reference']==expect
+              assert r['right_boundary_models_reference']==expect
+              if r['expected_sat']:
+                  assert r['join_models_reference']==expect
+                  assert r['final_scalar'] is True
+                  assert r['witness_valid'] is True
+                  assert r['witness_source']=='COMPRESSED_J_PIVOTS_PLUS_PRIVATE_AFFINE_PIVOTS'
+              else:
+                  assert r['join_models_reference']==0
+                  assert r['final_scalar'] is False
+                  assert r['witness_valid'] is None
+                  assert r['witness_source']=='NO_WITNESS_AFFINE_CONTRADICTION'
+          assert d['all_frozen_controls_pass'] is True
+          assert d['all_frozen_controls_exact'] is True
+          assert d['adh002_repaired'] is True
+          assert d['arbitrary_boundary_is_affine']=='NOT_CLAIMED'
+          assert d['next_front']=='NON_AFFINE_CONNECTED_BOUNDARY_GATE'
+          assert d['cheap_boundary_language_discovery']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_ADH_002_COMPRESSED_AFFINE_REPAIR = PASS')
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Affine boundary closure is a restricted exact representation algebra.'
+          echo 'ARBITRARY_BOUNDARY_IS_AFFINE = NOT_CLAIMED'
+          echo 'NEXT_FRONT = NON_AFFINE_CONNECTED_BOUNDARY_GATE'
+          echo 'P_VS_NP = OPEN'
