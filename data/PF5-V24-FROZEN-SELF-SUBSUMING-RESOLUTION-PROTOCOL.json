@@ -1,0 +1,80 @@
+{
+  "artifact_id": "PF5-V24-FROZEN-SELF-SUBSUMING-RESOLUTION-PROTOCOL",
+  "status": "FROZEN_BEFORE_PROVIDER",
+  "parent_audit": "data/PF5-V23-STRUCTURAL-AUDIT-SELF-SUBSUMING-RESOLUTION.json",
+  "candidate": "SELF_SUBSUMING_RESOLUTION_CONTRACTION",
+  "exact_identity": "If C_plus=(x OR A), C_minus=(NOT x OR B), and set(A) subseteq set(B), replace C_minus by B; symmetric when set(B) subseteq set(A).",
+  "diagnostic_source": {
+    "n": 6,
+    "m": 24,
+    "seed": 915600,
+    "role": "DIAGNOSTIC_ONLY_NOT_BLIND",
+    "crystal_sha256": "e16d4ee3a5fbbfacf4004b8323c4cc9900e9a3567d5c376034d805c508bb8863"
+  },
+  "fresh_frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "916600..916615"},
+    {"n": 7, "m": 28, "seeds": "916700..916715"}
+  ],
+  "semantic_clause_key": {
+    "definition": "sorted unique literal set",
+    "sort_key": "(abs(literal), literal < 0)",
+    "order_invariant": true
+  },
+  "deterministic_discovery": {
+    "variable_order": "increasing variable id",
+    "positive_parent_order": "current residual order",
+    "negative_parent_order": "current residual order",
+    "orientation_order": [
+      "test positive_body subseteq negative_body; if true strengthen negative parent",
+      "else test negative_body subseteq positive_body; if true strengthen positive parent"
+    ],
+    "strictness": "Require strict semantic-body subset. Equality belongs to v22 complementary-twin contraction and is not counted as v24.",
+    "action": "replace exactly one weakened parent by the semantic resolvent body, canonicalize current formula, emit certificate, then re-enter composed exact closure"
+  },
+  "composition": [
+    "v12 PURE_LITERAL_EXISTENTIAL_PROJECTION",
+    "v13 TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v15 SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v18 legacy COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION",
+    "v20 CLAUSE_SUBSUMPTION_CONTRACTION",
+    "v22 ORDER_INVARIANT_COMPLEMENTARY_TWIN_REPAIR",
+    "v24 SELF_SUBSUMING_RESOLUTION_CONTRACTION",
+    "repeat to fixed point"
+  ],
+  "cost_ledger_required": [
+    "variable_tests",
+    "failed_variable_tests",
+    "clause_polarity_checks",
+    "pair_checks",
+    "semantic_key_literal_visits",
+    "subset_literal_checks",
+    "successful_contractions",
+    "clauses_replaced",
+    "certificate_bytes",
+    "state_bytes_peak",
+    "cumulative_state_bytes",
+    "witness_lift_ops"
+  ],
+  "certificate_requirements": [
+    "pivot variable",
+    "both parent clauses",
+    "both semantic bodies",
+    "subset orientation",
+    "replacement clause",
+    "before/after Hephaestus crystal hashes"
+  ],
+  "runtime_forbidden": [
+    "SAT oracle",
+    "truth table",
+    "PS-width score",
+    "Slime decision",
+    "Hephaestus entropy/slack decision",
+    "post-result seed tuning"
+  ],
+  "audit_contract": "Materialize/hash all fresh sources, freeze/hash all provider outputs, then and only then run bounded exhaustive semantic audit and witness replay.",
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
