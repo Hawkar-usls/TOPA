@@ -1,0 +1,62 @@
+{
+  "artifact_id": "PF5-PNP-SPIRAL-JOURNAL-V15",
+  "status": "CHECKPOINT_CLOSED",
+  "parent": "data/PF5-PNP-SPIRAL-JOURNAL-V14.json",
+  "parent_rule": "PARENT_REMAINS_IMMUTABLE_HISTORY",
+  "new_exact_operator": "SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+  "theorem": "If Davis-Putnam elimination on x has exactly one unique non-tautological resolvent C after tautological pairs are omitted, then exists x F is exactly R AND C.",
+  "diagnostic": {
+    "seed": 907004,
+    "parent_crystal_sha256": "c4966d4fc14f224c3380eafb8bced50d6363975f0dd967e5d803bfcc53955132",
+    "projected_variable": 1,
+    "unique_resolvent": [-3,2,5],
+    "final_after_composed_closure": "EMPTY_CNF"
+  },
+  "provider": {
+    "run": 32836746315,
+    "job": 97767191948,
+    "conclusion": "SUCCESS",
+    "source_batch_sha256": "7ce681d25ea72c19909502d04b0ce0c55fe0ab4a33a05673298e04254cbd5fe1",
+    "reduction_batch_sha256": "128178d519264219104f5b09b8cf6506317994d936108b07a1ffc89b29e1a24d",
+    "result_sha256": "847e3963b1081945260f7f8349ac9c73d36cc44688c4a31a80113665f36fbbaf"
+  },
+  "blind_holdout": {
+    "seeds": "910000..910031",
+    "cases": 32,
+    "feature_fired_cases": 7,
+    "feature_noop_cases": 25,
+    "total_v15_steps": 8,
+    "solved_to_empty_cases": 28,
+    "positive_crystal_byte_delta_cases": 7,
+    "mean_base_crystal_bytes": 20.96875,
+    "mean_final_crystal_bytes": 9.84375,
+    "all_semantic_audits_pass": true
+  },
+  "runtime_discovery_ledger": {
+    "variable_tests": 34,
+    "failed_variable_tests": 26,
+    "clause_polarity_checks": 227,
+    "pair_checks": 127,
+    "complement_literal_checks": 229,
+    "non_taut_resolvent_rows": 79,
+    "unique_resolvent_insertions": 78,
+    "successful_projections": 8,
+    "clauses_removed": 23,
+    "clauses_emitted": 8,
+    "certificate_bytes": 6897
+  },
+  "hephaestus_contract": {
+    "decision_authority": false,
+    "role": "EXACT_SYNTACTIC_CRYSTALLIZATION_AND_RECURRENCE_GUARD",
+    "crystal_size_used_as_score": false,
+    "entropy_used_as_score": false
+  },
+  "do_not_repeat": [
+    "pure-literal exact projection",
+    "all-resolvents-tautological exact projection",
+    "single-unique-nontautological-resolvent exact projection",
+    "Hephaestus entropy/slack as decision metric"
+  ],
+  "next_gate": "FIRST_V11_RESIDUAL_SURVIVING_V12_V13_V15",
+  "claim_ceiling": {"P_VS_NP":"OPEN"}
+}
