@@ -5,7 +5,9 @@ on:
     paths:
       - 'research/mathematics/p-vs-np/C025_AKINATOR_PREBIRTH_PIVOT_FACTORIZATION.md'
       - 'research/mathematics/p-vs-np/C025_AKINATOR_MACRO_RESTORE_CAP_ADD_ONLY_BARRIER.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF2_FUNCTION_TO_RELATION_BOUNDARY.md'
       - 'research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py'
+      - 'research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py'
       - '.github/workflows/validate-akinator-prebirth-factor.yml'
   workflow_dispatch:
 
@@ -22,9 +24,11 @@ jobs:
           python-version: '3.11'
       - name: Run prebirth factor finite mechanics
         run: python research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py
+      - name: Run PF2 function-to-relation mechanics
+        run: python research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py
       - name: Claim ceiling reminder
         run: |
-          echo 'CI validates finite identity/witness/frontier mechanics only.'
-          echo 'PF1 and M1 are analytic derivations, not established by CI.'
-          echo 'ITERATED_FACTOR_DAG_POLY_BOUND = OPEN'
+          echo 'CI validates finite identity/witness/frontier/relation mechanics only.'
+          echo 'PF1, M1 and PF2 analytic statements are not established by CI.'
+          echo 'UNIVERSAL_POLY_BOUNDARY_QUOTIENT = OPEN'
           echo 'P_VS_NP = OPEN'
