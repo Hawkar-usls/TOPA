@@ -1,0 +1,34 @@
+{
+  "id": "TOPA-C025-AKINATOR-BOUNDED-SUPPORT-ER3-ELIMINATION-PROVIDER-PASS-2026-08-25-v1.0",
+  "schema_version": "1.0",
+  "status": "PROVIDER_FINITE_MECHANICS_PASS__ANALYTIC_THEOREM_SEPARATE",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "canonical_note": "research/mathematics/p-vs-np/C025_AKINATOR_RSPC_BOUNDED_SUPPORT_ER3_ELIMINATION.md",
+  "provider": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "c025-policy0b-fair-reason",
+    "workflow": "Validate C025 Fair Scheduler and Reasons",
+    "head_sha": "82f630a22ed0a3f0f6705823f1e5d23324600257",
+    "run_id": 32792338096,
+    "job_id": 97636265159,
+    "conclusion": "SUCCESS",
+    "markers": [
+      "C025_AKINATOR_ER3_BOOLEAN_SUBSTITUTION_SMALL_REPLAY = PASS",
+      "C025_AKINATOR_ER3_LOCAL_CLAUSE_SPACE_2O_K = PASS",
+      "C025_AKINATOR_DIRECT_PARITY_DELTA_ACCOUNTING = PASS",
+      "C025_AKINATOR_COVER_CARDINALITY = PASS",
+      "C025_AKINATOR_BOUNDED_SUPPORT_ELIMINATION = ANALYTIC_THEOREM_NOT_CI",
+      "C025_AKINATOR_RESOLUTION_LOWER_BOUND = IMPORTED_FROZEN_RESULT_NOT_CI",
+      "C025_AKINATOR_UNRESTRICTED_ER3_SIZE_LOWER_BOUND = NOT_PROVED",
+      "P_VS_NP = OPEN"
+    ]
+  },
+  "analytic_result": {
+    "simulation": "ResSize(F) <= ER3Size(pi) * 2^O(K_root(pi))",
+    "hard_family_consequence": "If ER3Size(pi)<=N^d on the frozen exp-Resolution-hard family, then K_root(pi)=Omega(N^eta).",
+    "cover_consequence": "At least one macro has minimum NW-neighborhood cover Omega(N^eta/log N).",
+    "scope": "STATED_ER3_B2_AND_FROZEN_NW_HARD_FAMILY",
+    "unrestricted_er3_size_lower_bound": "NOT_PROVED"
+  },
+  "next_gate": "LARGE_SUPPORT_SUCCINCT_PROOF_CARRYING_CERTIFICATE"
+}
