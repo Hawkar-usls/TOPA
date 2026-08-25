@@ -1,0 +1,55 @@
+{
+  "artifact_id": "PF5-SELF-SUBSUMING-RESOLUTION-V24-AUTHORITATIVE-RECEIPT",
+  "date_utc": "2026-08-25",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "efdb7008c868e33cd07bc92a8fdf2f19305dfc09",
+  "workflow": "Validate PF5 Self-Subsuming Resolution v24",
+  "run_id": 32839967096,
+  "job_id": 97777075656,
+  "conclusion": "success",
+  "source_manifest_sha256": "a6b0a3786fec240d074193dfca437bad18bd9ddfcc57dfba871b55bebd46d06d",
+  "reduction_batch_sha256": "0e233c9b03d7bd7cbd280ed6aee0171d589c996c50cfffa80494adc94ad4994d",
+  "result_sha256": "865eb2de5fdc2c7ae0687f261304bfbafa36ac61cacdd0bcb14441dba1e8a8b9",
+  "feature": "SELF_SUBSUMING_RESOLUTION_CONTRACTION",
+  "feature_is_heuristic": false,
+  "feature_is_logical_equivalence": true,
+  "frozen_groups": [
+    {"n": 6, "m": 24, "seeds": [916600,916601,916602,916603,916604,916605,916606,916607,916608,916609,916610,916611,916612,916613,916614,916615]},
+    {"n": 7, "m": 28, "seeds": [916700,916701,916702,916703,916704,916705,916706,916707,916708,916709,916710,916711,916712,916713,916714,916715]}
+  ],
+  "summary": {
+    "cases": 32,
+    "baseline_cases_with_ssr": 31,
+    "feature_fired_cases": 31,
+    "feature_noop_cases": 1,
+    "total_v24_steps": 257,
+    "terminal_true_cases": 18,
+    "terminal_false_cases": 3,
+    "open_residual_cases": 11,
+    "positive_byte_delta_cases": 31,
+    "mean_baseline_crystal_bytes": 170.21875,
+    "mean_final_crystal_bytes": 32.15625,
+    "all_semantic_audits_pass": true,
+    "all_final_residuals_ssr_free": true,
+    "exact_final_revisits": 19
+  },
+  "runtime_ledger": {
+    "v13": {"rounds":849,"literal_occurrence_checks":36691,"clause_membership_checks":652,"clauses_removed":146,"certificate_bytes":29390,"residual_bytes_peak":236343,"witness_lift_ops":57,"variable_tests":4732,"failed_variable_tests":4724,"clause_polarity_checks":86170,"pair_checks":6804,"complement_literal_checks":11198,"successful_projections":8},
+    "v15": {"variable_tests":4549,"failed_variable_tests":4473,"clause_polarity_checks":84194,"pair_checks":71013,"complement_literal_checks":119954,"non_taut_resolvent_rows":49719,"unique_resolvent_insertions":47461,"successful_projections":76,"clauses_removed":208,"clauses_emitted":76,"certificate_bytes":64983},
+    "v18": {"variable_tests":4086,"failed_variable_tests":3985,"clause_polarity_checks":75917,"pair_checks":61282,"body_literal_checks":120293,"body_hashes":76939,"successful_contractions":101,"clauses_removed":202,"clauses_emitted":101,"certificate_bytes":63408},
+    "v20": {"clause_pair_tests":167752,"failed_pair_tests":167475,"literal_membership_checks":29759,"successful_contractions":277,"clauses_removed":277,"certificate_bytes":103653,"state_bytes_peak":91207,"cumulative_state_bytes":133231},
+    "v22": {"variable_tests":1832,"failed_variable_tests":1791,"clause_polarity_checks":32259,"pair_checks":23285,"semantic_key_literal_visits":54744,"semantic_key_builds":30588,"existing_clause_key_checks":792,"successful_contractions":41,"clauses_removed":82,"clauses_emitted":41,"certificate_bytes":25394,"state_bytes_peak":46648,"cumulative_state_bytes":54273},
+    "v24": {"variable_tests":874,"failed_variable_tests":617,"clause_polarity_checks":14854,"pair_checks":8064,"semantic_key_literal_visits":18326,"subset_literal_checks":2758,"successful_contractions":257,"clauses_replaced":257,"certificate_bytes":165455,"state_bytes_peak":38537,"cumulative_state_bytes":75388}
+  },
+  "contract": {
+    "holdout_frozen_before_provider": true,
+    "provider_outputs_frozen_before_semantic_audit": true,
+    "uses_sat_oracle": false,
+    "uses_truth_table_in_runtime": false,
+    "uses_hephaestus_for_decision": false,
+    "runtime_rule_polynomial_in_explicit_residual_size": true,
+    "witness_lift_replayable_from_certificate": true,
+    "universal_exact_closure": "OPEN",
+    "p_vs_np": "OPEN"
+  }
+}
