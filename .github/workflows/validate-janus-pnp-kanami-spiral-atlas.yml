@@ -1,0 +1,37 @@
+name: Validate JANUS PNP Kanami Spiral Atlas
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'data/JANUS-PNP-KANAMI-SPIRAL-METHOD-ATLAS-2026-08-25-v1.0.json'
+      - 'research/mathematics/p-vs-np/janus_kanami_spiral_atlas_verifier.py'
+      - '.github/workflows/validate-janus-pnp-kanami-spiral-atlas.yml'
+      - 'research/mathematics/p-vs-np/C024_A1_ANNOTATED_PRUNE_INVARIANT.md'
+      - 'research/mathematics/p-vs-np/C024_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_BC1A_C_LOCAL_SUBSTITUTION_AND_RESTRICTION.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_GT_LINEAR_RESOLUTION_SCHEMA.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF5_INTACT_GATE_CONGRUENCE_REUSE.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF5_CERTIFIED_RESIDUAL_QUOTIENT_CRITERION.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PROOF_CARRYING_ELIMINATION_SELECTOR.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF5_DEAD_INTACT_GATE_GC.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF5_CLAUSE_TRACE_BOUNDARY_DP.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kanami-fixed-point-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Kanami verifier
+        run: python -m py_compile research/mathematics/p-vs-np/janus_kanami_spiral_atlas_verifier.py
+      - name: Verify reverse-forward fixed point
+        run: python research/mathematics/p-vs-np/janus_kanami_spiral_atlas_verifier.py
