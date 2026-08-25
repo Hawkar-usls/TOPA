@@ -1,0 +1,55 @@
+name: Validate PF5 Component Product v2
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_COMPONENT_PRODUCT_REPRESENTATION_V2.md'
+      - 'research/mathematics/p-vs-np/pf5_component_product_representation_v2.py'
+      - '.github/workflows/validate-pf5-component-product-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-component-product-replay:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run component-product replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_component_product_representation_v2.py --json-out ../../../pf5-component-product-v2.result.json
+      - name: Verify v1 escape repair under unchanged global caps
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-component-product-v2.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-COMPONENT-PRODUCT-REPRESENTATION-V2'
+          assert d['claim_ceiling']=='P_VS_NP = OPEN'
+          assert d['caps']['RAW_MAX_INTERNED_NODES']==5000
+          assert d['caps']['OBDD_MAX_NONTERMINAL_NODES']==192
+          assert d['caps']['FACTOR_MAX_BUCKET_SCOPE']==16
+          by={r['rung']:r for r in d['rungs']}
+          for name in ('HYBRID_EQ10_FAN6','HYBRID_EQ12_FAN6'):
+              assert by[name]['status']=='PASS_EXACT_CLOSED'
+              assert by[name]['witness_valid'] is True
+              comps=by[name]['components']
+              assert comps[0]['selected_lane']=='TRANCEPTION_ORBIT_TEMPLATE'
+              assert comps[1]['selected_lane']=='FROZEN_ORDER_OBDD'
+              # FAN component must charge the failed orbit-template attempt.
+              assert comps[1]['attempts'][0]['status']=='UNSUPPORTED'
+              assert comps[1]['attempts'][0]['failed_discovery_ops']>0
+          print('V1_ESCAPE_REPAIRED_BY_COMPONENT_PRODUCT = PASS')
+          print('NEXT_FRONT = CONNECTED_BOUNDARY_ADHESION_GATE')
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Component product is the separator-width-zero composition case.'
+          echo 'Finite repair of a disjoint hybrid does not establish universal coverage.'
+          echo 'The next adversarial target must be a connected component.'
+          echo 'P_VS_NP = OPEN'
