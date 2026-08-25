@@ -1,0 +1,69 @@
+{
+  "artifact_id": "PF5-SLIME-NEIGHBORHOOD-TREE-Q1-V15-RECEIPT",
+  "status": "AUTHORITATIVE_SOURCE_DRIVEN_Q1_COUNTEREXAMPLE_PASS",
+  "provider": {
+    "run": 32828085981,
+    "job": 97740450070,
+    "head": "29880c29b5e797a7c3ed1e8e92cd606d72923418",
+    "conclusion": "SUCCESS",
+    "frozen_batch_sha256": "88bbb44afe8512c61bbd0bde2039f8c1d1b5b4d1e8bd7010da1af3b1ca153183",
+    "result_sha256": "9151d6ef93832bc2e79303e929bec4819ebaf1d663eba5abe27742f29c2d5e03"
+  },
+  "producer": {
+    "repository": "Hawkar-usls/Janus-Demiurge",
+    "commit": "5a2ce5175049b59869c95d801b394f36ffdd3a4e",
+    "candidate_count": 5,
+    "candidate_names": [
+      "NCT_COMMON_NEIGHBORS",
+      "NCT_JACCARD_NEIGHBORS",
+      "NCT_SYMDIFF_NEIGHBORS",
+      "NCT_SIGNED_JACCARD",
+      "NCT_HYBRID_SIGNED_ADJACENCY"
+    ],
+    "partition_style": "SOURCE_DRIVEN_NONCONTIGUOUS_AGGLOMERATIVE_INCIDENCE_CLUSTERING"
+  },
+  "frozen_hypothesis": {
+    "q": 1,
+    "cap": "K=max(2,variables+clauses)",
+    "runtime_exact_width_oracle": false,
+    "runtime_sat_oracle": false,
+    "cap_escalation": false
+  },
+  "fresh_dense_ladder": {
+    "rows": [
+      [10,42,911010],[10,42,911011],[12,50,911012],[12,50,911013],
+      [14,59,911014],[14,59,911015],[16,67,911016],[16,67,911017],
+      [18,76,911018],[18,76,911019],[20,84,911020],[20,84,911021]
+    ],
+    "sources": 12
+  },
+  "outcome": {
+    "recovered_sources": 0,
+    "exhausted_sources": 12,
+    "candidate_attempts": 60,
+    "closed_candidates": 0,
+    "open_candidates": 60,
+    "selected_candidate_counts": {},
+    "terminal": "CURRENT_FIVE_NEIGHBORHOOD_TREE_HEURISTICS_Q1_EXHAUSTED_ON_FRESH_DENSE_LADDER"
+  },
+  "failure_pattern": {
+    "per_source": {"FORWARD":4,"COMPLEMENT":1},
+    "stability": "IDENTICAL_PHASE_COUNTS_ON_ALL_12_SOURCES",
+    "interpretation": "Four neighborhood objectives hit the forward PS-state cap; one hits the complement PS-state cap on every frozen source."
+  },
+  "global_ledger": {
+    "tree_generation_ops": 5879940,
+    "compiler_work_units": 765717,
+    "candidate_attempts": 60
+  },
+  "scientific_interpretation": [
+    "q=1 failure persists after moving from right-linear to balanced-contiguous to source-driven non-contiguous incidence trees.",
+    "This remains a finite falsification of the tested candidate families, not a lower bound for arbitrary branch decompositions.",
+    "The repeated q=1 failures now justify closing q=1 as a tested hypothesis for the current JANUS portfolios and opening a separately preregistered fixed exponent hypothesis on fresh sources.",
+    "Any q>1 test must use new seeds and must not retroactively reclassify v13-v15."
+  ],
+  "next_gate": "FRESH_FIXED_Q_THREE_HALVES_POLYNOMIAL_PSWIDTH_PORTFOLIO_GATE",
+  "arbitrary_binary_tree_q1_completeness": "OPEN",
+  "some_fixed_q_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
