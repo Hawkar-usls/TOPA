@@ -1,0 +1,54 @@
+name: Receipt PF5 GT12 Residual DAG
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_gt12_ordered_residual_dag_probe.py'
+      - '.github/workflows/receipt-pf5-gt12-residual-dag.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen-order exact residual DAG successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_gt12_ordered_residual_dag_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          q=r['run']
+          out={
+              'terminal':q['terminal'],
+              'input_units':r['input_state']['units'],
+              'input_clauses':r['input_state']['clauses'],
+              'input_variables':r['input_state']['variables'],
+              'literal_work':q['literal_work'],
+              'max_frontier':q['max_frontier'],
+              'max_frontier_level':q['max_frontier_level'],
+              'cumulative_state_insertions_proxy':q['cumulative_state_insertions_proxy'],
+              'trigger':q['trigger'],
+              'selected_levels':q['selected_levels'],
+              'p_vs_np':r['p_vs_np'],
+          }
+          print('PF5_GT12_RESIDUAL_DAG_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
