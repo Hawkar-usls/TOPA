@@ -1,0 +1,31 @@
+name: Validate U1-L2B1A All Boundary Dependency Masks
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1L2B1A_ALL_BOUNDARY_DEPENDENCY_MASK_LIFT.md'
+      - 'research/mathematics/p-vs-np/u1l2b1a_all_boundary_dependency_mask_lift.py'
+      - '.github/workflows/validate-u1l2b1a-all-boundary-dependency-mask-lift.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exhaustive-all-mask-lift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile provider
+        run: |
+          python -m py_compile research/mathematics/p-vs-np/u1l2b0_exact_local_equivalence_kernel.py
+          python -m py_compile research/mathematics/p-vs-np/u1l2b1a_all_boundary_dependency_mask_lift.py
+      - name: Exhaust all 16 dependency masks
+        working-directory: research/mathematics/p-vs-np
+        run: python u1l2b1a_all_boundary_dependency_mask_lift.py
