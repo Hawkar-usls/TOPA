@@ -1,0 +1,145 @@
+{
+  "schema": "JANUS_PNP_RESEARCH_JOURNAL_ENTRY",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "journal_scope": "Exact-only P=NP line through unified reverse spiral, Kanami audit, RCTQ-1, RCTQ-2 and RCTQ-2 reverse-forward reconciliation.",
+  "immutable_lineage": [
+    {
+      "stage": "EXACT_ONLY_ANCHOR",
+      "commit": "10fee90e78dc3e205832fcec940e223c7bc0883e"
+    },
+    {
+      "stage": "UNIFIED_EXACT_REVERSE_SPIRAL",
+      "run_id": 32892779301,
+      "job_id": 97948321899,
+      "result_sha256": "56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3",
+      "conclusion": "SUCCESS_FIRST_RUN"
+    },
+    {
+      "stage": "KANAMI_SPIRAL_FIXED_POINT",
+      "run_id": 32894318645,
+      "job_id": 97953257777,
+      "result_sha256": "9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586",
+      "conclusion": "SUCCESS_FIRST_RUN"
+    },
+    {
+      "stage": "RCTQ1_RESTRICTION_CLOSED_TRANSITION_QUOTIENT",
+      "run_id": 32895486382,
+      "job_id": 97957077331,
+      "result_sha256": "40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73",
+      "conclusion": "SUCCESS_FIRST_RUN",
+      "positive": [
+        "RESTRICT_EXACTNESS",
+        "RESTRICT_COMPOSITION",
+        "CERTIFIED_INTACT_B2_ALIAS_WITNESS_LIFT",
+        "CERTIFIED_INTACT_B2_ALIAS_PERSISTS_UNDER_RESTRICTION",
+        "RCTQ1_CERTIFIED_ALIAS_LANGUAGE_RESTRICTION_CLOSED"
+      ],
+      "negative": "ALL_COUNTERFACTUAL_RESTRICTION_FUTURE_CONGRUENCE_CLASSES_CAN_BE_2^n",
+      "reframing": "Bound actual materialized deterministic trace, not the whole restriction universe."
+    },
+    {
+      "stage": "RCTQ1_REVERSE_FORWARD",
+      "run_id": 32895714915,
+      "job_id": 97957815452,
+      "result_sha256": "7f7a6be8180136c44af09fd487649eef8ccdafba33b4e5cd3e6f659ae4119300",
+      "conclusion": "SUCCESS_FIRST_RUN",
+      "reframing": "KEYMASTER M(N) counts actually retained/materialized canonical states only."
+    },
+    {
+      "stage": "RCTQ2_FROZEN_CATALOG_ESCAPE",
+      "protocol_commit": "ecfc196751bb4f818535109454c83a2831a7c58c",
+      "provider_commit": "16ae5bbd544e0807cf9a454ae11dff9de23c5989",
+      "workflow_head": "79080cdc7ce5f67248a431af827790ef6696d8a1",
+      "run_id": 32896462925,
+      "job_id": 97960190219,
+      "result_sha256": "469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90",
+      "conclusion": "SUCCESS_FIRST_RUN",
+      "primary_escape": {
+        "id": "E_37",
+        "formula": "AND_i[(x_i OR x_(i+1) OR NOT x_(i+2)) AND (NOT x_i OR x_(i+3) OR x_(i+5))] mod 37",
+        "variables": 37,
+        "clauses": 74,
+        "literal_occurrences": 222,
+        "all_ones_witness": "PASS",
+        "frozen_14_operator_domains_admitting_state": 0,
+        "swap_orbit_N": 334,
+        "swap_orbit_P": 137438953472,
+        "swap_orbit_N_pow_4": 12444741136,
+        "swap_orbit_status": "REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4"
+      },
+      "theorem": "FROZEN_14_CATALOG_UNIVERSAL_NEXT_TRANSITION_AVAILABILITY = FALSE",
+      "boundary": "Catalog coverage failure is not SAT hardness and does not imply P!=NP."
+    },
+    {
+      "stage": "RCTQ2_REVERSE_FORWARD",
+      "audit_commit": "def34b3dda13a8aa2b314126dc9c3901dd56dcd8",
+      "verifier_commit": "8954a8718ad6e2621960dde1e36ab6f79cd70449",
+      "workflow_head": "87b4cd6b89aaef1c5c9ebd01ffc8eef1a9a03660",
+      "run_id": 32896674210,
+      "job_id": 97960848357,
+      "result_sha256": "627fdaa846ee428ad14b21a6da0810a9fee239ff4039dfb6d7aed75910cb02d3",
+      "conclusion": "SUCCESS_FIRST_RUN",
+      "reverse_forward_hash_stable": true,
+      "discovered_exact_schema": {
+        "id": "UNIFORM_POLARITY_CLAUSE_WITNESS",
+        "status": "PROVED_RESTRICTED_BY_DIRECT_BOOLEAN_SEMANTICS",
+        "positive_rule": "Every clause has a positive literal => all-ones SAT witness.",
+        "negative_rule": "Every clause has a negative literal => all-zero SAT witness.",
+        "recognition_bound": "O(total_literal_occurrences)",
+        "witness_bound": "O(number_of_variables)",
+        "E37_positive_certificate_rows": 74,
+        "E37_negative_certificate_rows": 74,
+        "E37_all_ones": "PASS",
+        "E37_all_zero": "PASS",
+        "active_catalog_changed": false
+      }
+    }
+  ],
+  "current_exact_catalog": {
+    "operator_count": 14,
+    "immutable_current_receipt": true,
+    "pending_exact_extensions": [
+      "EXACT_RESTRICT_PARTIAL_ASSIGNMENT_AS_TYPED_MORPHISM",
+      "CERTIFIED_INTACT_B2_ALIAS_TRANSITION",
+      "UNIFORM_POLARITY_CLAUSE_WITNESS_TERMINAL"
+    ],
+    "note": "Pending extensions are theorem-bearing/restricted candidates but are not retroactively inserted into the 14-operator catalog."
+  },
+  "current_mathematical_state": {
+    "proved_or_verified_in_scope": [
+      "Exact restriction and composition",
+      "Restricted alias congruence survives restriction with witness lift",
+      "Swap-orbit quotient exact when admitted",
+      "Keymaster exact same-state Pareto pruning",
+      "Frontier product bound conditional on materialized M(N) and polynomial cost-coordinate bounds",
+      "Frozen 14-operator catalog is not universally transition-complete",
+      "Uniform polarity clause witness gives an exact linear-time SAT terminal schema on its certified domain"
+    ],
+    "refuted_or_rejected": [
+      "Polynomial bound on all counterfactual restriction future-congruence classes",
+      "Universal transition completeness of the frozen 14-operator catalog",
+      "Treating a catalog escape as SAT hardness",
+      "Using a single arbitrary restriction branch as existential SAT equivalence"
+    ]
+  },
+  "central_target": "Construct a deterministic exact SAT execution whose actually materialized state/proof/discovery/build/update/verify/witness volume is bounded by one fixed polynomial for every CNF.",
+  "next_gate": {
+    "id": "RCTQ3_TYPED_POLARITY_WITNESS_TERMINAL_EXTENSION_THEN_STRONGER_CNF_ESCAPE",
+    "step_1": "Add UNIFORM_POLARITY_CLAUSE_WITNESS as a typed exact terminal operator through a new Keymaster extension receipt.",
+    "step_2": "Construct a stronger explicit CNF escape that defeats the prior 14 domains and also has at least one all-negative clause and at least one all-positive clause, so neither uniform all-ones nor all-zero terminal witness applies.",
+    "step_3": "Reverse-forward replay again; if a new exact schema is exposed, algebraize it and repeat without heuristic selection.",
+    "universal_debt": [
+      "UNIVERSAL_EXACT_TRANSITION_AVAILABILITY_OR_EXPLICIT_ESCAPE_FOR_EACH_FROZEN_CATALOG",
+      "POLYNOMIAL_ACTUALLY_MATERIALIZED_TRACE_VOLUME",
+      "POLYNOMIAL_STATE_BYTES",
+      "POLYNOMIAL_FULL_Q_TOTAL",
+      "EXACT_WITNESS_OR_UNSAT_CERTIFICATE",
+      "P_VS_NP"
+    ]
+  },
+  "P_VS_NP": "OPEN"
+}
