@@ -1,0 +1,48 @@
+{
+  "schema": "JANUS_PNP_U1L2B0_EXACT_LOCAL_EQUIVALENCE_KERNEL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "257dc526fc2095d557b874ac99815be11f9904c7",
+  "provider_commit": "6a0017dc3ecf7386bda293d465caef3c6a571ced",
+  "workflow_head": "d1e9ad85d1660847f70536d9f579e0a2439541ea",
+  "workflow_run": 32852352044,
+  "workflow_job": 97816003113,
+  "workflow_conclusion": "SUCCESS_FIRST_RUN",
+  "frozen_scope": {
+    "boundary_arity": 4,
+    "max_internal_b2_gates": 3,
+    "basis": "SIGNED_AND_DISTINCT_SIGNAL_IDS",
+    "truth_table_rows": 16,
+    "heuristic_search": false,
+    "semantic_input_sized_oracle": false
+  },
+  "result": {
+    "admitted_circuits": 20792,
+    "distinct_functions_reached": 1254,
+    "canonical_function_projection_classes": 5016,
+    "strict_replacement_pairs": 75264,
+    "source_circuits_with_at_least_one_strict_replacement": 19536,
+    "strict_replacements_by_projected_var": [18816,18816,18816,18816],
+    "catalog_bytes": 622519,
+    "catalog_sha256": "d69755c8206f52f9ba398b99ebe312d1aeb1ee283b60edefdc1d5280f860179a",
+    "result_sha256": "6ee5c18be3bff648c16fe7cd4d735f2dcd81456452009c93e0c7bb60d80ae0b6"
+  },
+  "verification": {
+    "complete_frozen_scope_enumeration": "PASS_BY_DETERMINISTIC_GENERATOR",
+    "bitmask_truth_evaluator": "PASS",
+    "independent_row_by_row_truth_replay": "PASS_FOR_ALL_ADMITTED_CIRCUITS",
+    "replacement_equivalence": "PASS_BY_IDENTICAL_COMPLETE_TRUTH_TABLE",
+    "catalog_determinism": "PASS_SHA256_BOUND"
+  },
+  "claim_ledger": {
+    "FIXED_LOCAL_EXACT_CATALOG_POLY_ADMISSIBLE": "PROVED_IN_FROZEN_CONSTANT_SCOPE",
+    "NONTRIVIAL_LOCAL_CONTRACTIONS_EXIST": true,
+    "ALL_REPLACEMENTS_ARE_GLOBALLY_USEFUL": false,
+    "LOCAL_SATURATION_GLOBALLY_POLYNOMIAL": "OPEN",
+    "UNIVERSAL_SEQUENTIAL_PROJECTION_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  },
+  "next_question": "DO_SAME_GATE_COUNT_IDENTITIES_EXIST_THAT_STRICTLY_REDUCE_PROJECTED_AFFECTED_CONE",
+  "note": "Large replacement counts include ordinary redundancy elimination; projection-specific value must be audited separately before U1-L2B1 saturation."
+}
