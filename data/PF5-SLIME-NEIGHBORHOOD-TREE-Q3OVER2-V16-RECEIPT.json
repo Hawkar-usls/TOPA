@@ -1,0 +1,53 @@
+{
+  "artifact_id": "PF5-SLIME-NEIGHBORHOOD-TREE-Q3OVER2-V16-RECEIPT",
+  "status": "AUTHORITATIVE_FIXED_Q3OVER2_COUNTEREXAMPLE_PASS",
+  "provider": {
+    "run": 32828413923,
+    "job": 97741450060,
+    "head": "76a2bd40917093dbf3c9df2cc6a23877bbc3aaae",
+    "conclusion": "SUCCESS",
+    "frozen_batch_sha256": "08160e8940effec54b29fdfd0f8df25c6c1e733f6e3c6cf3f4dd3799ec22ec91",
+    "result_sha256": "547971457724824132416f65727267830d4fbd5f86022f916cc4c9d2d7fc8c0f"
+  },
+  "frozen_hypothesis": {
+    "producer": "Hawkar-usls/Janus-Demiurge@5a2ce5175049b59869c95d801b394f36ffdd3a4e",
+    "candidate_count": 5,
+    "candidate_family": "SOURCE_DRIVEN_NONCONTIGUOUS_NEIGHBORHOOD_CLUSTER_TREES",
+    "q": "3/2",
+    "cap_formula": "K(r)=ceil(sqrt(r^3)) using integer arithmetic",
+    "runtime_cap_escalation": false,
+    "runtime_exact_width_oracle": false,
+    "runtime_sat_oracle": false
+  },
+  "fresh_sources": [
+    {"n":10,"m":42,"seed":912010,"r":52,"cap":375},
+    {"n":10,"m":42,"seed":912011,"r":52,"cap":375},
+    {"n":12,"m":50,"seed":912012,"r":62,"cap":489},
+    {"n":12,"m":50,"seed":912013,"r":62,"cap":489},
+    {"n":14,"m":59,"seed":912014,"r":73,"cap":624},
+    {"n":14,"m":59,"seed":912015,"r":73,"cap":624}
+  ],
+  "outcome": {
+    "sources": 6,
+    "recovered_sources": 0,
+    "exhausted_sources": 6,
+    "candidate_attempts": 30,
+    "closed_candidates": 0,
+    "open_candidates": 30,
+    "terminal": "CURRENT_NEIGHBORHOOD_PORTFOLIO_Q3OVER2_EXHAUSTED_ON_ALL_FRESH_SOURCES"
+  },
+  "global_ledger": {
+    "tree_generation_ops": 1004764,
+    "compiler_work_units": 3068857,
+    "candidate_attempts": 30
+  },
+  "scientific_interpretation": [
+    "The separately preregistered q=3/2 hypothesis fails on every fresh dense source for the frozen five-tree neighborhood portfolio.",
+    "The q=1 receipts remain negative and unchanged; v16 is a distinct fixed-exponent experiment, not a retroactive cap repair.",
+    "Serially increasing q after each failure would provide weak evidence and invite post-hoc tuning. The next useful step is a polynomially verifiable lower-bound witness for PS-state growth on concrete cuts.",
+    "A cut with t independent private projected unit clauses certifies at least 2^t distinct precisely-satisfiable signatures without enumerating assignments."
+  ],
+  "next_gate": "PRIVATE_UNIT_SIGNATURE_LOWER_BOUND_WITNESS_GATE",
+  "universal_fixed_q_candidate_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
