@@ -1,0 +1,70 @@
+{
+  "schema": "JANUS_PNP_RCTQ2_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "protocol": {
+    "path": "research/mathematics/p-vs-np/C025_AKINATOR_RCTQ2_FROZEN_CATALOG_ESCAPE.md",
+    "commit": "ecfc196751bb4f818535109454c83a2831a7c58c",
+    "frozen_before_provider": true
+  },
+  "provider": {
+    "path": "research/mathematics/p-vs-np/rctq2_frozen_catalog_escape_verifier.py",
+    "commit": "16ae5bbd544e0807cf9a454ae11dff9de23c5989"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-rctq2.yml",
+    "head_commit": "79080cdc7ce5f67248a431af827790ef6696d8a1",
+    "name": "Validate JANUS RCTQ-2"
+  },
+  "first_run": {
+    "run_id": 32896462925,
+    "job_id": 97960190219,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"
+  },
+  "primary_escape_state": {
+    "family": "E_n = AND_i[(x_i OR x_(i+1) OR NOT x_(i+2)) AND (NOT x_i OR x_(i+3) OR x_(i+5))] mod n",
+    "n": 37,
+    "variables": 37,
+    "clauses": 74,
+    "literal_occurrences": 222,
+    "all_ones_witness_replay": "PASS_SAT_WITNESS",
+    "polarity_per_variable": {"positive": 4, "negative": 2},
+    "resolvent_profile_per_pivot": {"positive_parents": 4, "negative_parents": 2, "parent_pairs": 8, "tautological_pairs": 0, "distinct_non_tautological_resolvents": 8},
+    "pure_literal": false,
+    "tautological_resolvent_pivot": false,
+    "single_ntr_pivot": false,
+    "complementary_twin": false,
+    "strict_subsumption": false,
+    "self_subsuming_resolution": false,
+    "incidence_components": 1,
+    "swap_orbit": {
+      "N": 334,
+      "P": 137438953472,
+      "N_pow_4": 12444741136,
+      "pair_comparisons": 666,
+      "blocks": "37_SINGLETONS",
+      "status": "REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4"
+    },
+    "frozen_14_operator_domains_admitting_state": 0
+  },
+  "secondary_escape_ladder": [37,41,43,47],
+  "theorem_ledger": {
+    "FROZEN_14_CATALOG_UNIVERSAL_NEXT_TRANSITION_AVAILABILITY": false,
+    "E37_IS_EXPLICIT_NONTERMINAL_SAT_STATE": true,
+    "E37_ESCAPES_EVERY_FROZEN_OPERATOR_DOMAIN": true,
+    "CATALOG_COVERAGE_FAILURE_IMPLIES_SAT_HARDNESS": false,
+    "CATALOG_COVERAGE_FAILURE_IMPLIES_P_NOT_EQUAL_NP": false,
+    "RESTRICT_ALONE_IS_EXISTENTIAL_SAT_EQUIVALENT_TRANSITION": false
+  },
+  "meaning": "The frozen exact catalog is incomplete as a universal transition algebra. The witness state is easy SAT externally, so this is a catalog-coverage counterexample, not hardness evidence.",
+  "next_gate": "RCTQ3_EXACT_BRANCH_COMPOSITION_OR_NEW_EQUIVALENCE_PRESERVING_CNF_TRANSITION",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
