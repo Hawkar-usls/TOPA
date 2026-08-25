@@ -1,0 +1,28 @@
+name: Validate JANUS RCTQ-1 Reverse Forward
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'data/JANUS-PNP-RCTQ1-REVERSE-FORWARD-AUDIT-2026-08-25-v1.0.json'
+      - 'research/mathematics/p-vs-np/rctq1_reverse_forward_audit_verifier.py'
+      - '.github/workflows/validate-janus-rctq1-reverse-forward.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reverse-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile reverse-forward verifier
+        run: python -m py_compile research/mathematics/p-vs-np/rctq1_reverse_forward_audit_verifier.py
+      - name: Execute RCTQ-1 reverse-forward exact replay
+        run: python research/mathematics/p-vs-np/rctq1_reverse_forward_audit_verifier.py
