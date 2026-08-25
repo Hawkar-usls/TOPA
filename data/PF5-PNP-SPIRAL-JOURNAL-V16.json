@@ -1,0 +1,49 @@
+{
+  "artifact_id": "PF5-PNP-SPIRAL-JOURNAL-V16",
+  "status": "CHECKPOINT_CLOSED",
+  "parent": "data/PF5-PNP-SPIRAL-JOURNAL-V15.json",
+  "parent_rule": "PARENT_REMAINS_IMMUTABLE_HISTORY",
+  "replay_scope": {
+    "frozen_seed_order": "907000..907015",
+    "source_family": "the original v11 connected-3CNF diagnostic corpus",
+    "exact_closure": [
+      "PURE_LITERAL_EXISTENTIAL_PROJECTION",
+      "TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+      "SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION"
+    ]
+  },
+  "provider": {
+    "run": 32836840958,
+    "job": 97767493962,
+    "conclusion": "SUCCESS",
+    "head": "838591f36485df3aea960454dfa0d497f1da51d2",
+    "result_sha256": "591ecac6cb1c245d542c9c378621c9d7d8887db1f035b04d89f5b0059b69ced7"
+  },
+  "result": {
+    "cases": 16,
+    "survivor_count": 0,
+    "first_survivor": null,
+    "meaning": "Every source in this fixed finite v11 corpus reduces to empty CNF under the admitted v12+v13+v15 exact closure. This is a finite corpus result only."
+  },
+  "hephaestus_contract": {
+    "role": "EXACT_SYNTACTIC_CRYSTALLIZATION_AND_RECURRENCE_GUARD",
+    "decision_authority": false,
+    "hash_claim": "CANONICAL_SYNTACTIC_IDENTITY_ONLY",
+    "entropy_slack_or_size_used_as_score": false
+  },
+  "closed_gates": [
+    "FIRST_V11_RESIDUAL_SURVIVING_V12_V13_V15 = NONE",
+    "THE_ORIGINAL_16_CASE_V11_CORPUS_IS_EXHAUSTED_BY_THE_CURRENT_EXACT_CLOSURE"
+  ],
+  "do_not_repeat": [
+    "Do not rescan 907000..907015 looking for a new survivor unless an admitted operator itself changes.",
+    "Do not promote 16/16 finite closure to an asymptotic theorem.",
+    "Do not use Hephaestus crystal metrics as a decision heuristic."
+  ],
+  "next_gate": "FROZEN_FRESH_CONNECTED_3CNF_ESCAPE_LADDER_FOR_V12_V13_V15_CLOSURE",
+  "claim_ceiling": {
+    "FINITE_V11_CORPUS_CLOSED": true,
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
