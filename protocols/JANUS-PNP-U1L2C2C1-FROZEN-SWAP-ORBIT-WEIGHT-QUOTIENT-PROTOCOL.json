@@ -1,0 +1,51 @@
+{
+  "schema": "JANUS_PNP_U1L2C2C1_FROZEN_SWAP_ORBIT_WEIGHT_QUOTIENT_PROTOCOL",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "parent_contract_commit": "f10cee2d7793eb5548ce057cb787f948dcb5a9db",
+  "frontier_theorem_commit": "ccb783b3a9160948d1cd84b2415a12fed696a143",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "goal": "DETERMINISTICALLY_DISCOVER_A_NONTRIVIAL_EXACT_TRANSITION_QUOTIENT_FROM_EXPLICIT_CNF_USING_ONLY_PROVABLE_VARIABLE_SWAP_AUTOMORPHISMS",
+  "source": "EXPLICIT_CNF",
+  "discovery": {
+    "pair_test": "u~v_IFF_CANONICAL_CNF(F)==CANONICAL_CNF(SWAP_u_v(F))",
+    "enumeration": "TEST_ALL_VARIABLE_PAIRS",
+    "randomness": false,
+    "score": false,
+    "oracle": false,
+    "equivalence_semantics_oracle": false
+  },
+  "algebra": {
+    "equivalence_classes": "TRANSITIVE_CLASSES_OF_EXACT_SWAP_AUTOMORPHISMS",
+    "group_action": "PRODUCT_OF_FULL_SYMMETRIC_GROUPS_GENERATED_BY_CERTIFIED_TRANSPOSITIONS",
+    "quotient_state": "VECTOR_OF_HAMMING_WEIGHTS_PER_SWAP_CLASS",
+    "truth_invariance": "CNF_TRUTH_CONSTANT_ON_EACH_WEIGHT_VECTOR_ORBIT",
+    "exists_update": "FOR_PIVOT_CLASS_j_Q_PRIME(w)=Q(w)+OR+Q(w+e_j)",
+    "witness_lift": "CHOOSE_b_IN_{0,1}_WHOSE_SOURCE_WEIGHT_VECTOR_IS_ACCEPTING"
+  },
+  "uniform_polynomial_admission": {
+    "fixed_exponent_K": 4,
+    "orbit_state_product": "P=PRODUCT_j(|C_j|+1)",
+    "admit_only_if": "P <= N^K",
+    "reason": "THEN_COMPLETE_QUOTIENT_TABLE_CONSTRUCTION_BY_ONE_CANONICAL_REPRESENTATIVE_PER_WEIGHT_VECTOR_IS_POLYNOMIAL_FOR_FIXED_K"
+  },
+  "required_controls": [
+    "ONE_BLOCK_FULLY_SYMMETRIC_ACCEPT",
+    "TWO_BLOCK_SYMMETRIC_ACCEPT",
+    "ASYMMETRIC_ORBIT_EXPLOSION_REFUSE_WHEN_P_GT_N^4",
+    "PAIR_SWAP_FALSE_POSITIVE_CONTROL",
+    "SEQUENTIAL_EXISTS_CLOSURE",
+    "SAT_WITNESS_REPLAY",
+    "UNSAT_TERMINAL_REPLAY"
+  ],
+  "forbidden": [
+    "HEURISTIC_PARTITION",
+    "SLIME_PRESSURE",
+    "GRAPH_AUTOMORPHISM_ORACLE",
+    "SAT_ORACLE",
+    "TRUTH_TABLE_OVER_2^n_ASSIGNMENTS",
+    "POST_RESULT_THRESHOLD_TUNING"
+  ],
+  "success_means": "A_RESTRICTED_BUT_AUTOMATICALLY_DISCOVERED_EXACT_C2C_TRANSITION_QUOTIENT_CLASS_IS_PROVED_WITH_POLYNOMIAL_DISCOVERY_BUILD_UPDATE_CERTIFICATE_AND_WITNESS_COSTS",
+  "success_does_not_mean": "ARBITRARY_CNF_HAS_POLYNOMIALLY_MANY_SWAP_ORBITS_OR_P_EQUALS_NP"
+}
