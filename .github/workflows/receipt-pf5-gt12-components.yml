@@ -1,0 +1,57 @@
+name: Receipt PF5 GT12 Components
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_gt12_component_decomposition_probe.py'
+      - '.github/workflows/receipt-pf5-gt12-components.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact component decomposition successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_gt12_component_decomposition_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          d=r['decomposition']
+          comps=d['components']
+          out={
+              'terminal':r['terminal'],
+              'input_units':r['input_state']['units'],
+              'input_clauses':r['input_state']['clauses'],
+              'input_variables':r['input_state']['variables'],
+              'component_count':d['component_count'],
+              'largest_component_units':d['largest_component_units'],
+              'largest_component_fraction':d['largest_component_fraction_of_global_units'],
+              'total_component_units_sum':d['total_component_units_sum'],
+              'discovery_work':d['total_discovery_work'],
+              'top_components':comps[:10],
+              'global_states_used':r['global_states_used'],
+              'handoff_count':len(r['handoffs']),
+              'p_vs_np':r['p_vs_np'],
+          }
+          print('PF5_GT12_COMPONENT_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
