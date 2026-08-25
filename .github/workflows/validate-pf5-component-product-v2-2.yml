@@ -1,0 +1,49 @@
+name: Validate PF5 Component Product v2.2
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_component_product_representation_v2_2.py'
+      - 'data/PF5-CP-002-STRICT-GLUE-ADAPTER-SHAPE.json'
+      - '.github/workflows/validate-pf5-component-product-v2-2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  strict-component-witness-glue:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Replay strict component witness glue
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_component_product_representation_v2_2.py --json-out ../../../pf5-component-product-v2.2.result.json
+      - name: Require strict proof-carrying witness composition
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-component-product-v2.2.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-COMPONENT-PRODUCT-REPRESENTATION-V2.2'
+          assert d['v1_escape_repaired_with_strict_inner_witness_glue'] is True
+          assert d['claim_ceiling']=='P_VS_NP = OPEN'
+          for r in d['rungs']:
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['witness_valid'] is True
+              assert r['witness_glue_source']=='SELECTED_COMPONENT_WITNESSES_ONLY'
+              assert len(r['selected_inner_witness_sha256'])==2
+              m=int(r['rung'].split('_FAN')[0].replace('HYBRID_EQ',''))
+              assert r['witness_glue_complete_root_count']==2*m+12
+          print('PF5_CP_STRICT_COMPONENT_WITNESS_GLUE = PASS')
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'No family-level witness bypass remains in the v2.2 replay.'
+          echo 'Finite component-product closure is separator width zero only.'
+          echo 'NEXT_FRONT = CONNECTED_BOUNDARY_ADHESION_GATE'
+          echo 'P_VS_NP = OPEN'
