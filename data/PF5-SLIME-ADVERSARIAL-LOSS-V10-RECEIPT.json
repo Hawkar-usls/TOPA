@@ -1,0 +1,28 @@
+{
+  "artifact_id": "PF5-SLIME-ADVERSARIAL-LOSS-V10-RECEIPT",
+  "workflow_run": 32827215908,
+  "workflow_job": 97737762656,
+  "conclusion": "SUCCESS",
+  "manifest_batch_sha256": "cd04a45393001103a5f9c5484f4ee8e042a668707cc4a593e93784d41bb90cf5",
+  "result_sha256": "6f23a47ce770c0f2b5264fb197eb42a245b266701e750fa982c0433795a2a1af",
+  "corpus": {
+    "kind": "connected_random_3cnf",
+    "seeds": "906000..906127",
+    "count": 128,
+    "sources_and_manifests_frozen_before_exact_probe": true
+  },
+  "result": {
+    "slime_wins": 128,
+    "slime_ties": 0,
+    "slime_losses": 0
+  },
+  "global_cost_ledger": {
+    "slime_generation_ops": 864478,
+    "exact_verifier_cuts": 15872,
+    "exact_verifier_assignment_rows": 464014,
+    "exact_verifier_literal_checks": 4951470
+  },
+  "interpretation": "No loss was found against the three frozen non-Slime baseline candidates in this finite corpus. This does not establish candidate completeness. The next judge must be stronger than the current heuristic baseline portfolio.",
+  "next_gate": "EXACT_SMALL_INSTANCE_OPTIMAL_CATERPILLAR_PSWIDTH_GAP",
+  "p_vs_np": "OPEN"
+}
