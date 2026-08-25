@@ -1,0 +1,63 @@
+name: Validate PF5 Slime Log Feedback Gap Microscope v15.1
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_log_feedback_gap_microscope_v15_1.py'
+      - '.github/workflows/validate-pf5-slime-log-feedback-gap-microscope-v15-1.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_log_feedback_gap_microscope_v15_1.py'
+      - '.github/workflows/validate-pf5-slime-log-feedback-gap-microscope-v15-1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  v5-residual-gap-microscope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v5.1 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: e507484a62eb29543910cd018c380150051f986f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Diagnose already-observed v15 seed 911000
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_log_feedback_gap_microscope_v15_1.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v5_1.py \
+            --json-out ../../../../pf5-slime-log-feedback-gap-microscope-v15-1.result.json
+      - name: Verify post-hoc scope
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-log-feedback-gap-microscope-v15-1.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-LOG-FEEDBACK-GAP-MICROSCOPE-V15.1'
+          assert d['status']=='POSTHOC_DIAGNOSTIC_COMPLETE'
+          assert d['seed']==911000 and d['posthoc_not_holdout'] is True
+          assert d['v5_width']==5 and d['exact_optimal_width']==4
+          assert d['optimality_gap']==1
+          assert d['next_feature_or_search_rule_must_be_source_only'] is True
+          assert d['arbitrary_relation_graph_counting_admitted'] is False
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_SLIME_LOG_FEEDBACK_GAP_V15_1_CONTRACT = PASS')
+          print('FIRST_EXACT_LOCAL_GAP =',d['first_exact_local_gap'])
+          print('FIRST_V5_CAP_TIE_FAILURE =',d['first_v5_cap_tie_failure'])
+          print('OPEN_FEEDBACK_STEPS =',d['chosen_path_open_feedback_step_count'])
+          print('DIAGNOSTIC_SPLIT =',d['diagnostic_split'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'POSTHOC_DIAGNOSTIC != BLIND_HOLDOUT'
+          echo 'LOCAL_GAP != HARDNESS'
+          echo 'P_VS_NP = OPEN'
