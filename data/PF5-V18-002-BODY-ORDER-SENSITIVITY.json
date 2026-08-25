@@ -1,0 +1,34 @@
+{
+  "artifact_id": "PF5-V18-002-BODY-ORDER-SENSITIVITY",
+  "status": "IMPLEMENTATION_GAP_CONFIRMED",
+  "discovered_by": "PF5-PNP-SPIRAL-SURVIVOR-V21",
+  "diagnostic_seed": 914600,
+  "diagnostic_crystal_sha256": "bde7a737b6d7f2232e5531b0b8cc0d7d0826ba4dda09166e66ccba191e634f13",
+  "logical_twin_visible_in_crystal": {
+    "parent_a": [-4,-5,-6],
+    "parent_b": [-4,-5,6],
+    "expected_common_body": [-4,-5]
+  },
+  "theorem": "(A OR x) AND (A OR NOT x) == A",
+  "theorem_status": "UNAFFECTED",
+  "implementation_evidence": {
+    "v18_comparison": "positive_body != negative_body",
+    "comparison_type": "ordered tuple equality",
+    "v12_canonical_formula": "preserves clause and literal order rather than normalizing clause semantics"
+  },
+  "root_cause": "The v18 provider treats clause bodies as ordered tuples. Clause semantics are invariant under literal permutation, so semantically identical complementary-twin bodies can be missed when their literal order differs in the current internal residual.",
+  "secondary_gap": "The existing-body check `positive_body in kept` is also order-sensitive and should use the same semantic body key.",
+  "hephaestus_lesson": "Hephaestus normalization correctly exposed that the residual still contains a logical twin, but its display order must not be used as runtime scan order. It remains a recurrence/fingerprint/accounting layer only.",
+  "repair_requirement": [
+    "Use a deterministic order-invariant semantic clause-body key.",
+    "Use the same semantic key for twin equality and already-present detection.",
+    "Do not modify the v18 theorem.",
+    "Do not retroactively rewrite v18/v18.1 receipts.",
+    "Freeze a fresh holdout before running the repair provider.",
+    "Charge comparison, normalization, failed discovery, certificate, state and witness costs."
+  ],
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
