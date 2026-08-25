@@ -1,0 +1,24 @@
+{
+  "artifact_id": "PF5-SLIME-LOG-FEEDBACK-GAP-V15.1-RECEIPT",
+  "workflow_run": 32830693159,
+  "workflow_job": 97748465519,
+  "conclusion": "SUCCESS",
+  "result_sha256": "dd2aafacd4c9a6faba3b8a5ac2faae2b018c8b5ee301a4104d8dde77010cbf68",
+  "seed": 911000,
+  "classification": "FIRST_OBSERVED_PURE_GREEDY_FUTURE_OBSTRUCTION_UNDER_V5",
+  "v5_width": 5,
+  "exact_optimal_width": 4,
+  "first_exact_local_gap": null,
+  "first_v5_cap_tie_failure": null,
+  "chosen_path_open_feedback_step_count": 0,
+  "diagnostic_split": {
+    "V5_SURROGATE_STILL_TOO_COARSE_ON_CHOSEN_LOCAL_STEPS": false,
+    "HAS_ANY_LOCAL_EXACT_MISSTEP": false,
+    "PURE_GREEDY_FUTURE_OBSTRUCTION": true,
+    "FEEDBACK_BUDGET_OPEN_ON_CHOSEN_PATH": false
+  },
+  "interpretation": "On this already-observed finite source, the frozen v5 order chooses an exact-next-PS-minimal leaf at every step and remains within the logarithmic-feedback capability on its chosen path, yet its final bottleneck width is 5 while an exact caterpillar order achieves 4. Therefore one-step greedy minimization is not sufficient even when local semantic scoring is exact enough to avoid immediate mistakes.",
+  "next_gate": "PROOF_CARRYING_WHOLE_ORDER_PREFIX_STATE_QUOTIENT",
+  "exact_objective": "min_order max_prefix PS(prefix)",
+  "p_vs_np": "OPEN"
+}
