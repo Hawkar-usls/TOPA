@@ -1,0 +1,72 @@
+name: Validate PF5 Certified Swap Orbit Discovery v16.3
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_CERTIFIED_SWAP_ORBIT_DISCOVERY_V16_3.md'
+      - 'research/mathematics/p-vs-np/pf5_certified_swap_orbit_discovery_v16_3.py'
+      - '.github/workflows/validate-pf5-certified-swap-orbit-discovery-v16-3.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_CERTIFIED_SWAP_ORBIT_DISCOVERY_V16_3.md'
+      - 'research/mathematics/p-vs-np/pf5_certified_swap_orbit_discovery_v16_3.py'
+      - '.github/workflows/validate-pf5-certified-swap-orbit-discovery-v16-3.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  certified-swap-orbit-discovery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run raw-CNF orbit discovery and quotient replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_certified_swap_orbit_discovery_v16_3.py \
+            --json-out ../../../pf5-certified-swap-orbit-discovery-v16-3.result.json
+      - name: Verify discovery firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-certified-swap-orbit-discovery-v16-3.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-CERTIFIED-SWAP-ORBIT-DISCOVERY-V16.3'
+          assert d['status']=='RESTRICTED_CONSTRUCTIVE_DISCOVERY_PASS'
+          assert d['api_input']=='RAW_CNF_ONLY_NO_FAMILY_TAG'
+          assert d['fixed_capability_exponent_q']==2
+          assert d['admitted_cost_language']=='DUPLICATE_FULL_SUPPORT_POSITIVE_OR'
+          assert len(d['small_exhaustive_controls'])==16
+          for r in d['small_exhaustive_controls']:
+              assert r['status']=='CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT'
+              assert r['variable_group_count']==1
+              assert r['clause_group_count']==1
+              assert r['quotient_state_count']==(r['n']+1)*(r['m']+1)
+              assert r['optimum']==r['raw_optimum']
+          assert [r['n'] for r in d['large_symbolic_only_controls']]==[16,64,256,512]
+          for r in d['large_symbolic_only_controls']:
+              assert r['status']=='CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT'
+              assert r['raw_subset_enumeration_used'] is False
+              assert r['quotient_state_count']==(r['n']+1)*(r['m']+1)
+              assert r['orbit_state_product']==r['quotient_state_count']
+              assert r['orbit_state_product']<=r['orbit_budget_L_pow_q']
+          assert all(r['status'].startswith('OPEN_') for r in d['negative_controls'])
+          t=d['theorem']
+          assert all(t.values())
+          e=d['epistemic_firewall']
+          assert all(e.values())
+          assert d['universal_polynomial_prefix_quotient']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_CERTIFIED_SWAP_ORBIT_DISCOVERY_V16_3_CONTRACT = PASS')
+          print('LARGE =',[(r['n'],r['quotient_state_count'],r['discovery_ops'],r['optimum']) for r in d['large_symbolic_only_controls']])
+          print('NEGATIVE =',[(r['name'],r['status'],r['reason']) for r in d['negative_controls']])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'CERTIFIED SWAP ORBITS = RESTRICTED SOURCE SYMMETRY DISCOVERY'
+          echo 'ORBIT DISCOVERY != GENERAL COST DECODER'
+          echo 'RESTRICTED FAMILY != ARBITRARY CNF'
+          echo 'P_VS_NP = OPEN'
