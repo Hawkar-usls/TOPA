@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """PF5 finite holdout: repeated PF1 B2 factor rewrites on frozen GT12.
 
-This is a capability experiment, not an asymptotic theorem.  The subject and
-caps are frozen in the source before execution.  Each accepted rewrite is an
+This is a capability experiment, not an asymptotic theorem. The subject and
+caps are frozen in the source before execution. Each accepted rewrite is an
 exact equisatisfiable one-pivot projection encoded only with B2 AND definitions
 and signed literals.
 
-The probe charges all emitted clauses/literals/gates.  If the cap is exceeded,
-it returns OPEN_CAP and stops.  No post-hoc cap raise is allowed.
+Important instrumentation rule: the experiment must not materialize the
+Davis–Putnam pair frontier merely to measure how much PF1 avoided. Pair volume
+is charged arithmetically as p*q. Exact distinct-resolvent counting is allowed
+only below a separate frozen diagnostic cap.
 """
 from __future__ import annotations
 
@@ -21,11 +23,13 @@ from typing import Iterable, Union
 
 Clause = tuple[int, ...]
 CNF = tuple[Clause, ...]
-Ref = Union[int, str]  # signed variable literal or constants 'T'/'F'
+Ref = Union[int, str]
 
 ORDER = 12
 ENCODING_CAP = 200_000
 STATE_BUDGET = 20_000
+HANDOFF_ENCODING_CAP = 20_000
+FRONTIER_DIAGNOSTIC_PAIR_CAP = 4_096
 ORIGINAL_ROOT_POLICY = "MIN_ORIGINAL_VARIABLE_ID"
 
 
@@ -105,9 +109,7 @@ class Builder:
         if a == -b:
             return 'F'
         e = self.fresh()
-        # e <-> (a AND b), valid for signed literals a,b.
-        defs = [(-e, a), (-e, b), (e, -a, -b)]
-        self.clauses.extend(canonical_cnf(defs))
+        self.clauses.extend(canonical_cnf(((-e, a), (-e, b), (e, -a, -b))))
         self.gates.append(Gate(e, a, b))
         return e
 
@@ -129,7 +131,6 @@ class Builder:
         return work[0]
 
     def clause_ref(self, clause: Clause) -> Ref:
-        # OR(l_1,...,l_k) = NOT(AND(NOT l_1,...,NOT l_k)).
         if not clause:
             return 'F'
         if len(clause) == 1:
@@ -144,7 +145,8 @@ class Step:
     p_count: int
     n_count: int
     pair_attempts_avoided: int
-    explicit_distinct_resolvents: int
+    explicit_distinct_resolvents_if_diagnostic: int | None
+    diagnostic_pair_materializations: int
     input_clauses: int
     input_literals: int
     input_units: int
@@ -154,16 +156,20 @@ class Step:
     output_units: int
 
 
-def explicit_frontier(cnf: CNF, pivot: int) -> set[Clause]:
+def diagnostic_frontier(cnf: CNF, pivot: int, pair_count: int) -> tuple[int | None, int]:
+    if pair_count > FRONTIER_DIAGNOSTIC_PAIR_CAP:
+        return None, 0
     pos = [tuple(l for l in c if l != pivot) for c in cnf if pivot in c]
     neg = [tuple(l for l in c if l != -pivot) for c in cnf if -pivot in c]
     out: set[Clause] = set()
+    materialized = 0
     for a in pos:
         for b in neg:
+            materialized += 1
             c = canonical_clause((*a, *b))
             if c is not None:
                 out.add(c)
-    return out
+    return len(out), materialized
 
 
 def rewrite_pf1(cnf: CNF, pivot: int) -> tuple[CNF, Step]:
@@ -181,12 +187,18 @@ def rewrite_pf1(cnf: CNF, pivot: int) -> tuple[CNF, Step]:
         else:
             rest.append(c)
 
+    pair_count = len(pos) * len(neg)
+    diag_distinct, diag_work = diagnostic_frontier(cnf, pivot, pair_count)
+
     if not pos and not neg:
+        units = encoding_units(cnf)
         step = Step(
             pivot=pivot, p_count=0, n_count=0,
-            pair_attempts_avoided=0, explicit_distinct_resolvents=0,
-            input_clauses=len(cnf), input_literals=sum(map(len, cnf)), input_units=encoding_units(cnf),
-            gates_added=0, output_clauses=len(cnf), output_literals=sum(map(len, cnf)), output_units=encoding_units(cnf),
+            pair_attempts_avoided=0,
+            explicit_distinct_resolvents_if_diagnostic=0,
+            diagnostic_pair_materializations=0,
+            input_clauses=len(cnf), input_literals=sum(map(len, cnf)), input_units=units,
+            gates_added=0, output_clauses=len(cnf), output_literals=sum(map(len, cnf)), output_units=units,
         )
         return cnf, step
 
@@ -213,13 +225,13 @@ def rewrite_pf1(cnf: CNF, pivot: int) -> tuple[CNF, Step]:
             final.append(c)
 
     out = canonical_cnf(final)
-    frontier = explicit_frontier(cnf, pivot)
     step = Step(
         pivot=pivot,
         p_count=len(pos),
         n_count=len(neg),
-        pair_attempts_avoided=len(pos) * len(neg),
-        explicit_distinct_resolvents=len(frontier),
+        pair_attempts_avoided=pair_count,
+        explicit_distinct_resolvents_if_diagnostic=diag_distinct,
+        diagnostic_pair_materializations=diag_work,
         input_clauses=len(cnf),
         input_literals=sum(map(len, cnf)),
         input_units=encoding_units(cnf),
@@ -266,6 +278,7 @@ def main() -> None:
     steps: list[Step] = []
     cumulative_gates = 0
     cumulative_pair_attempts_avoided = 0
+    cumulative_diagnostic_pair_work = 0
     peak_units = original_input_units
     terminal = 'ROOT_ELIMINATION_COMPLETE'
 
@@ -276,30 +289,34 @@ def main() -> None:
         steps.append(step)
         cumulative_gates += step.gates_added
         cumulative_pair_attempts_avoided += step.pair_attempts_avoided
+        cumulative_diagnostic_pair_work += step.diagnostic_pair_materializations
         peak_units = max(peak_units, step.output_units)
         if step.output_units > ENCODING_CAP:
             terminal = 'OPEN_ENCODING_CAP'
             break
 
     automaton = None
+    current_units = encoding_units(cnf)
     if terminal == 'ROOT_ELIMINATION_COMPLETE':
-        remaining = vars_of(cnf)
-        # Exact fail-closed handoff to the historical residual automaton.
-        result = compile_residual_automaton(cnf, remaining, state_budget=STATE_BUDGET)
-        automaton = {
-            'status': result.status,
-            'sat': result.sat,
-            'witness_valid': result.witness is not None and eval_cnf(cnf, result.witness) if result.witness is not None else False,
-            'residual_states': result.stats.residual_states,
-            'bdd_nodes': result.stats.bdd_nodes,
-            'max_frontier_states': result.stats.max_frontier_states,
-            'subsumption_steps': result.stats.subsumption_steps,
-            'error': result.stats.error,
-        }
-        terminal = 'EXACT' if result.status == 'EXACT' else 'OPEN_RESIDUAL_AUTOMATON_CAP'
+        if current_units > HANDOFF_ENCODING_CAP:
+            terminal = 'OPEN_HANDOFF_INPUT_CAP'
+        else:
+            remaining = vars_of(cnf)
+            result = compile_residual_automaton(cnf, remaining, state_budget=STATE_BUDGET)
+            automaton = {
+                'status': result.status,
+                'sat': result.sat,
+                'witness_valid': result.witness is not None and eval_cnf(cnf, result.witness) if result.witness is not None else False,
+                'residual_states': result.stats.residual_states,
+                'bdd_nodes': result.stats.bdd_nodes,
+                'max_frontier_states': result.stats.max_frontier_states,
+                'subsumption_steps': result.stats.subsumption_steps,
+                'error': result.stats.error,
+            }
+            terminal = 'EXACT' if result.status == 'EXACT' else 'OPEN_RESIDUAL_AUTOMATON_CAP'
 
     result = {
-        'artifact_id': 'PF5-PF1-GT12-FROZEN-HOLDOUT-2026-08-25-v1.0',
+        'artifact_id': 'PF5-PF1-GT12-FROZEN-HOLDOUT-2026-08-25-v1.1',
         'claim_ceiling': 'FINITE_CAPABILITY_ONLY__P_VS_NP_OPEN',
         'subject': {
             'family': 'GRAPH_TAUTOLOGY',
@@ -312,7 +329,9 @@ def main() -> None:
         'frozen_policy': {
             'root_order': ORIGINAL_ROOT_POLICY,
             'encoding_cap': ENCODING_CAP,
+            'handoff_encoding_cap': HANDOFF_ENCODING_CAP,
             'residual_automaton_state_budget': STATE_BUDGET,
+            'frontier_diagnostic_pair_cap': FRONTIER_DIAGNOSTIC_PAIR_CAP,
             'posthoc_cap_raise_allowed': False,
             'pf1_gate_basis': 'B2_AND_SIGNED_LITERALS_ONLY',
         },
@@ -321,15 +340,18 @@ def main() -> None:
         'remaining_variables': len(vars_of(cnf)),
         'final_clauses': len(cnf),
         'final_literals': sum(map(len, cnf)),
-        'final_units': encoding_units(cnf),
+        'final_units': current_units,
         'peak_units': peak_units,
         'cumulative_b2_gates_added': cumulative_gates,
         'cumulative_pair_attempts_avoided_proxy': cumulative_pair_attempts_avoided,
+        'cumulative_diagnostic_pair_materializations': cumulative_diagnostic_pair_work,
         'automaton_handoff': automaton,
         'steps': [asdict(s) for s in steps],
         'scientific_boundary': [
             'PF1 exactness is analytic; this run is finite mechanics/capability only.',
-            'Avoided pair attempts are a representation comparison, not saved universal runtime.',
+            'Avoided pair count is arithmetic p*q; large frontiers are deliberately not materialized for diagnostics.',
+            'Diagnostic pair materialization is separately charged and capped.',
+            'Residual automaton has both input-size and state-count caps.',
             'A finite GT12 success would not prove P=NP.',
             'A finite cap failure would not prove P!=NP.'
         ],
