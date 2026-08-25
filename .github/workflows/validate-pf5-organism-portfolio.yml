@@ -10,6 +10,7 @@ on:
       - 'research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py'
       - 'research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py'
       - 'research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py'
+      - 'research/mathematics/p-vs-np/pf5_pf1_gt12_holdout_probe.py'
       - '.github/workflows/validate-pf5-organism-portfolio.yml'
   workflow_dispatch:
 
@@ -41,14 +42,11 @@ jobs:
         run: |
           test "$(git -C fundamentum rev-parse HEAD)" = "122ccf2c1082fc5967d063dc7b73ac8e26c9325d"
           python - <<'PY'
-          import hashlib
-          from pathlib import Path
           expected = {
               'fundamentum/experiments/direct/janus_c025_core.py': '414c81edf4e20248965d12069b2fe88937f9f7e1',
               'fundamentum/experiments/direct/janus_c025_families.py': '4385c73819a53ae624717edff7edc10a4de7b998',
               'fundamentum/experiments/direct/janus_certified_residual_quotient.py': 'aef9ddefb9d4aff5cddc6852363c3fdc7c418693',
           }
-          # Git blob SHA1 = sha1(b'blob '+len+NUL+bytes), not file-content SHA1.
           import subprocess
           for path, expected_blob in expected.items():
               rel = path.split('/', 1)[1]
@@ -81,6 +79,31 @@ jobs:
           python topa/research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py
           python topa/research/mathematics/p-vs-np/akinator_pf2_function_relation_probe.py
           python topa/research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py
+
+      - name: Run new PF1 on frozen historical GT12 holdout
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_pf1_gt12_holdout_probe.py \
+            --fundamentum-root fundamentum \
+            --output /tmp/pf5_pf1_gt12.json
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/pf5_pf1_gt12.json'))
+          assert r['subject']['family']=='GRAPH_TAUTOLOGY'
+          assert r['subject']['order']==12
+          assert r['subject']['original_variables']==66
+          assert r['frozen_policy']['encoding_cap']==200000
+          assert r['frozen_policy']['posthoc_cap_raise_allowed'] is False
+          assert r['p_vs_np']=='OPEN'
+          print('PF5_PF1_GT12_TERMINAL =', r['terminal'])
+          print('PF5_PF1_GT12_ROOTS_PROCESSED =', r['roots_processed'])
+          print('PF5_PF1_GT12_PEAK_UNITS =', r['peak_units'])
+          print('PF5_PF1_GT12_FINAL_UNITS =', r['final_units'])
+          print('PF5_PF1_GT12_CUMULATIVE_GATES =', r['cumulative_b2_gates_added'])
+          print('PF5_PF1_GT12_AVOIDED_PAIR_PROXY =', r['cumulative_pair_attempts_avoided_proxy'])
+          if r['automaton_handoff'] is not None:
+              print('PF5_PF1_GT12_HANDOFF =', r['automaton_handoff']['status'])
+              print('PF5_PF1_GT12_HANDOFF_STATES =', r['automaton_handoff']['residual_states'])
+          PY
 
       - name: Portfolio scientific ceiling
         run: |
