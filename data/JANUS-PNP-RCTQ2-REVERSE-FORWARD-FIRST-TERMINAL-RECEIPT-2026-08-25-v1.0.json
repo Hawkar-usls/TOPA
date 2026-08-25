@@ -1,0 +1,64 @@
+{
+  "schema": "JANUS_PNP_RCTQ2_REVERSE_FORWARD_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "audit": {
+    "path": "data/JANUS-PNP-RCTQ2-REVERSE-FORWARD-AUDIT-2026-08-25-v1.0.json",
+    "commit": "def34b3dda13a8aa2b314126dc9c3901dd56dcd8"
+  },
+  "verifier": {
+    "path": "research/mathematics/p-vs-np/rctq2_reverse_forward_audit_verifier.py",
+    "commit": "8954a8718ad6e2621960dde1e36ab6f79cd70449"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-rctq2-reverse-forward.yml",
+    "head_commit": "87b4cd6b89aaef1c5c9ebd01ffc8eef1a9a03660",
+    "name": "Validate JANUS RCTQ-2 Reverse Forward"
+  },
+  "first_run": {
+    "run_id": 32896674210,
+    "job_id": 97960848357,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "627fdaa846ee428ad14b21a6da0810a9fee239ff4039dfb6d7aed75910cb02d3"
+  },
+  "hash_stable_replay": [
+    {"direction":"REVERSE","id":"RCTQ2","sha256":"469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"},
+    {"direction":"REVERSE","id":"RCTQ1","sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"},
+    {"direction":"REVERSE","id":"KANAMI","sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"REVERSE","id":"UNIFIED","sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"UNIFIED","sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"KANAMI","sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"FORWARD","id":"RCTQ1","sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"},
+    {"direction":"FORWARD","id":"RCTQ2","sha256":"469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"}
+  ],
+  "reverse_discovered_exact_schema": {
+    "id": "UNIFORM_POLARITY_CLAUSE_WITNESS",
+    "status": "PROVED_RESTRICTED_BY_DIRECT_BOOLEAN_SEMANTICS",
+    "positive_rule": "If every clause contains a positive literal, all-ones satisfies the CNF.",
+    "negative_rule": "If every clause contains a negative literal, all-zero satisfies the CNF.",
+    "recognition_bound": "O_TOTAL_LITERAL_OCCURRENCES",
+    "witness_bound": "O_NUMBER_OF_VARIABLES",
+    "E37_positive_clause_certificate_rows": 74,
+    "E37_negative_clause_certificate_rows": 74,
+    "E37_all_ones_witness_replay": "PASS_SAT_WITNESS",
+    "E37_all_zero_witness_replay": "PASS_SAT_WITNESS",
+    "E37_specific_escape_closed_if_schema_is_typed": true,
+    "frozen_14_catalog_mutated": false,
+    "frozen_14_catalog_universal_coverage_restored": false
+  },
+  "reconciliation": {
+    "RCTQ2_ESCAPE_WAS_CATALOG_GAP_NOT_HARDNESS": true,
+    "RESTRICT_STILL_NOT_A_SINGLE_BRANCH_EXISTENTIAL_EQUIVALENCE": true,
+    "KEYMASTER_FRONTIER_THEOREM_PRESERVED": true,
+    "HISTORICAL_RECEIPTS_IMMUTABLE": true
+  },
+  "next_gate": "RCTQ3_TYPED_POLARITY_WITNESS_TERMINAL_EXTENSION_THEN_STRONGER_CNF_ESCAPE",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
