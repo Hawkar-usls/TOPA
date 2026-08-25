@@ -1,0 +1,205 @@
+{
+  "schema": "JANUS_PNP_REVERSE_SPIRAL_METHOD_UNIFICATION",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "direction": "END_TO_BEGINNING_THEN_FORWARD_SYNTHESIS",
+  "anchor_commit": "10fee90e78dc3e205832fcec940e223c7bc0883e",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "admission_contract": {
+    "required": [
+      "deterministic_exact_domain_predicate",
+      "exact_transform",
+      "theorem_or_identity",
+      "replayable_certificate",
+      "polynomial_discovery_or_explicit_restricted_domain_bound",
+      "polynomial_build_update_verify_bound_in_claimed_domain",
+      "witness_lift_or_unsat_certificate_when_applicable",
+      "typed_codomain"
+    ],
+    "forbidden": [
+      "random_selection",
+      "score_selection",
+      "ema_selection",
+      "pressure_selection",
+      "entropy_selection",
+      "threshold_selection_without_theorem",
+      "top_k",
+      "beam_search",
+      "shortlist_ranking",
+      "llm_judgement",
+      "neural_confidence",
+      "finite_success_as_authority",
+      "sat_oracle_inside_runtime_discovery",
+      "truth_table_oracle_inside_runtime_discovery",
+      "exact_optimum_oracle_inside_runtime_discovery"
+    ]
+  },
+  "status_legend": {
+    "ACTIVE_EXACT": "Typed theorem-bearing operator in unified Keymaster algebra.",
+    "EXACT_RESTRICTED": "Exact polynomial method on an explicitly certified restricted class; not universal and not automatically active unless typed into Keymaster.",
+    "ALGEBRAIZED": "Historical idea retained only through a separately proved exact algebraic replacement.",
+    "BARRIER_NEGATIVE": "Exact counterexample/barrier/negative theorem; executable only as a guard against invalid universal claims.",
+    "PRUNED": "Excluded from P=NP project because its operational authority is heuristic, random, scored, thresholded, or otherwise lacks the required theorem contract.",
+    "GOVERNANCE_ONLY": "Audit, provenance, falsification or receipt role; never SAT decision authority.",
+    "PROVENANCE_ONLY": "Historical conceptual donor with no active decision authority."
+  },
+  "reverse_spiral": [
+    {
+      "phase": "R00_CURRENT_EXACT_CONVERGENCE",
+      "methods": [
+        {"id":"KEYMASTER_FRONTIER_PRODUCT_BOUND","status":"ACTIVE_EXACT","role":"frontier theorem","statement":"For fixed 9-dimensional nonnegative cumulative cost vectors, exact same-state Pareto antichain size is bounded by M(N)*min_j product_{i!=j}(B_i(N)+1).","universal_debt":"prove polynomial M(N) and polynomial cumulative B_i(N) for arbitrary CNF"},
+        {"id":"SWAP_ORBIT_WEIGHT_EXISTS","status":"ACTIVE_EXACT","role":"CNF to certified swap-orbit quotient","domain":"pair-swap classes certified and orbit-state product P<=N^4"},
+        {"id":"SWAP_ORBIT_WEIGHT_EXISTS_CLOSED","status":"ACTIVE_EXACT","role":"closed existential update on orbit weights","identity":"Q'(w)=Q(w) OR Q(w+e_j)"},
+        {"id":"SYMMETRIC_WEIGHT_EXISTS","status":"ACTIVE_EXACT","role":"closed existential update on Hamming-weight quotient","identity":"A'={t:t in A or t+1 in A}"},
+        {"id":"RAMANUJAN_THETA_EXACT_SUM_PRODUCT_RECURRENCE","status":"PROVENANCE_ONLY","role":"exact representation-switch donor","note":"theta-only SAT language was not closed under existential projection"},
+        {"id":"INTEL_8008_TRANSITION_STATE_ENCODING","status":"PROVENANCE_ONLY","role":"transition-state representation donor","note":"bijection/relabeling alone preserves semantic state count and is not compression"}
+      ]
+    },
+    {
+      "phase": "R01_CREATE_AND_SEQUENTIAL_CLOSURE",
+      "methods": [
+        {"id":"ACI_SHARED_FACTOR","status":"ACTIVE_EXACT","role":"proof-carrying pure-AND shared-factor quotient"},
+        {"id":"LITERAL_ACI_EXISTS","status":"ACTIVE_EXACT","role":"direct existential projection on literal ACI quotient"},
+        {"id":"ONE_PIVOT_PREBIRTH_FACTOR","status":"EXACT_RESTRICTED","role":"one-step factorized existential identity","identity":"exists x [R & all(x|Ai) & all(!x|Bj)] = R & ((all Ai) | (all Bj))","debt":"sequential closure outside certified quotient languages"},
+        {"id":"EXACT_LOCAL_EQUIVALENCE_KERNEL_K4_G3","status":"EXACT_RESTRICTED","role":"complete fixed-grammar identity enumeration with exact truth equivalence in a constant-size formal boundary","debt":"fixed grammar is not universal"},
+        {"id":"SHARED_FANOUT_LOCAL_GRAMMAR_ESCAPE","status":"BARRIER_NEGATIVE","role":"counterfamily showing fixed local grammar does not universally control affected cone"},
+        {"id":"ADD_ONLY_EXTENSION_FRONTIER_BARRIER","status":"BARRIER_NEGATIVE","role":"adding names while retaining old clauses cannot erase old pivot-resolvent frontier"},
+        {"id":"COMPRESSION_BLOCK_SEARCH_BARRIER","status":"BARRIER_NEGATIVE","role":"polynomial-size replacement existence does not imply polynomial exhaustive block discovery"}
+      ]
+    },
+    {
+      "phase": "R02_PF5_EXACT_LOCAL_ALGEBRA",
+      "methods": [
+        {"id":"PURE_LITERAL_EXISTS","status":"ACTIVE_EXACT","role":"exact pure-literal existential projection"},
+        {"id":"TAUTOLOGICAL_RESOLVENT_EXISTS","status":"ACTIVE_EXACT","role":"exact all-cross-resolvents-tautological existential projection"},
+        {"id":"SINGLE_NTR_EXISTS","status":"ACTIVE_EXACT","role":"exact single unique non-tautological resolvent projection"},
+        {"id":"COMPLEMENTARY_TWIN","status":"ACTIVE_EXACT","role":"(A|x)&(A|!x)=A contraction with order-invariant normalization"},
+        {"id":"CLAUSE_SUBSUMPTION","status":"ACTIVE_EXACT","role":"A&(A|B)=A"},
+        {"id":"SELF_SUBSUMING_RESOLUTION","status":"ACTIVE_EXACT","role":"exact equivalence-preserving SSR contraction"},
+        {"id":"COMPONENT_PRODUCT","status":"ACTIVE_EXACT","role":"exact incidence-component AND decomposition with witness union"},
+        {"id":"TWO_SAT_SCC","status":"ACTIVE_EXACT","role":"proof-carrying 2-SAT SAT model or UNSAT implication-cycle certificate"},
+        {"id":"AFFINE_GF2_JOIN","status":"ACTIVE_EXACT","role":"exact affine boundary join/RREF"},
+        {"id":"STRONG_2SAT_BACKDOOR_K_LE_2","status":"EXACT_RESTRICTED","role":"deterministic complete lexicographic search over fixed k<=2 with proof-carrying branches","note":"finite fixed-k exact operator; not a universal backdoor theorem and not currently typed into active Keymaster"},
+        {"id":"ADAPTIVE_ACTION_GRAPH_FIXED_DEPTH","status":"EXACT_RESTRICTED","role":"historical proof-carrying fixed-depth action language","note":"not activated here because universal fixed-depth policy remains unproved and historical v29 terminal provenance was once uncertain"},
+        {"id":"STRUCTURE_MINERS_V25_V27","status":"PRUNED","role":"observer/miner layer","note":"their exact predicates survive only where separately promoted to theorem-bearing operators; observer selection itself has no project role"}
+      ]
+    },
+    {
+      "phase": "R03_EXACT_REPRESENTATION_AND_DECOMPOSITION",
+      "methods": [
+        {"id":"FIXED_ORDER_ROBDD","status":"EXACT_RESTRICTED","role":"exact Boolean representation with fixed order","debt":"may require exponential size; order discovery barrier"},
+        {"id":"LIVE_WIDTH_FACTOR_DP","status":"EXACT_RESTRICTED","role":"exact DP for certified bounded live/boundary width"},
+        {"id":"TREEWIDTH_PROJECTION_GRAMMAR","status":"EXACT_RESTRICTED","role":"exact bounded-treewidth projection language"},
+        {"id":"PS_WIDTH_SEMANTIC_CUT_QUOTIENT","status":"EXACT_RESTRICTED","role":"exact compact computation with supplied bounded-PS decomposition","debt":"polynomial decomposition/layout discovery or symbolic signature compression"},
+        {"id":"ARTICULATION_SEPARATOR_DECOMPOSITION","status":"EXACT_RESTRICTED","role":"exact Tarjan-style articulation/separator decomposition with child certificates"},
+        {"id":"TRANCEPTION_ORBIT_TEMPLATE","status":"EXACT_RESTRICTED","role":"exact restricted orbit quotient family"},
+        {"id":"C2G_LAMINAR","status":"GOVERNANCE_ONLY","role":"progress/amortization sidecar; not primary representation language"},
+        {"id":"BLIND_LANGUAGE_RECOGNIZER_BOOTSTRAP","status":"EXACT_RESTRICTED","role":"deterministic recognition/switch among certified affine/symmetric/generic exact languages","debt":"generic fallback does not establish universal polynomial representation"}
+      ]
+    },
+    {
+      "phase": "R04_UNIVERSAL_BARRIERS_AND_KILL_SWEEPS",
+      "methods": [
+        {"id":"FUNCTION_TO_RELATION_BOUNDARY","status":"BARRIER_NEGATIVE","role":"projection can create joint relation; marginals lose correlations"},
+        {"id":"CANONICAL_SHARING_TRILEMMA","status":"BARRIER_NEGATIVE","role":"syntactic sharing cheap only syntactically; semantic canonicalization may hide equivalence hardness; restricted forms may blow up"},
+        {"id":"ARBITRARY_CNF_PROJECTED_BOUNDARY_EMBEDDING","status":"BARRIER_NEGATIVE","role":"any CNF H(Y) can appear as projected boundary via H(Y)&x"},
+        {"id":"SYNTACTIC_SHANNON_EQUALITY_BARRIER","status":"BARRIER_NEGATIVE","role":"naive Shannon recurrence can double representation"},
+        {"id":"ROBDD_ORDER_DISCOVERY_BARRIER","status":"BARRIER_NEGATIVE","role":"small OBDD under some order does not supply polynomial exact order discovery"},
+        {"id":"DAVIS_PUTNAM_STATE_EXPLOSION","status":"BARRIER_NEGATIVE","role":"exact elimination may materialize exponential state"},
+        {"id":"NAIVE_GLOBAL_POTENTIAL_KILL_SWEEP","status":"BARRIER_NEGATIVE","role":"presentation-sensitive ranks can be inflated and semantic quotient can hide hard equivalence"},
+        {"id":"DERIVATIONAL_RANK_INVARIANCE_BARRIER","status":"BARRIER_NEGATIVE","role":"guards against alias/presentation rank tricks"},
+        {"id":"INNER_PRODUCT_COFACTOR_COMPRESSION_SEPARATOR","status":"BARRIER_NEGATIVE","role":"cofactor/state compression obstruction family"},
+        {"id":"PROJECTION_TARGET_RECOGNITION_BARRIER","status":"BARRIER_NEGATIVE","role":"compact target existence does not imply cheap target recognition"},
+        {"id":"NONUNIFORM_VS_UNIFORM_PROJECTION","status":"BARRIER_NEGATIVE","role":"instance-specific compactness is not a uniform polynomial algorithm"},
+        {"id":"PROJECTION_COMPILER_EQUIVALENCE","status":"BARRIER_NEGATIVE","role":"postulating universal projection compiler essentially restates central P=NP obligation"},
+        {"id":"RSPC_KC_AND_SURVIVAL_BARRIERS","status":"BARRIER_NEGATIVE","role":"collection of exact negative controls on bounded support, semantic survival and knowledge-compilation routes"},
+        {"id":"ASYMMETRIC_SWAP_ORBIT_EXPLOSION","status":"BARRIER_NEGATIVE","role":"swap symmetry alone can leave 2^n singleton-orbit product"}
+      ]
+    },
+    {
+      "phase": "R05_HEURISTIC_FOSSILS_PRUNED",
+      "methods": [
+        {"id":"SLIME_SEMANTIC_PRESSURE_EMA_SHORTLIST","status":"PRUNED","reason":"score/pressure/EMA candidate routing lacks theorem authority"},
+        {"id":"WALKSAT","status":"PRUNED","reason":"heuristic local search"},
+        {"id":"PSO_SWARM_OPTIMIZER","status":"PRUNED","reason":"heuristic stochastic optimization"},
+        {"id":"PHYSARUM_RANDOM_WALK_THRESHOLD","status":"PRUNED","reason":"random/threshold route"},
+        {"id":"HIVE_LLM_SCORE_SYNTHESIS","status":"PRUNED","reason":"LLM/score selection"},
+        {"id":"LEGACY_KEYMASTER_THRESHOLD_CONTROL","status":"PRUNED","reason":"m2r/e thresholds without theorem"},
+        {"id":"ODONTO_M2R_EMA_CHAMPION_MUTATION","status":"PRUNED","reason":"EMA/champion/mutation selection"},
+        {"id":"RAMANUJAN_THETA_DIRECTOR_STEERING","status":"PRUNED","reason":"steering layer not mathematical verification path"},
+        {"id":"MOD_THETA_PRIME_STEERING","status":"PRUNED","reason":"historical steering/weighting without SAT-side theorem"},
+        {"id":"HEPHAESTUS_ENTROPY_PURITY_SELECTION","status":"PRUNED","reason":"entropy/purity variable or method selection"},
+        {"id":"EARLY_PVSNP_EXPLORATORY_SATVERIFIER_LOOP","status":"PRUNED","reason":"exploratory hidden-invariant search invokes brute-force satisfiability verifier"},
+        {"id":"EARLY_EVOLVE_PVSNP_RANDOM_CLAUSE_SEARCH","status":"PRUNED","reason":"random candidate-clause experimental search"},
+        {"id":"P_NP_LOGIC_XOR_PARITY_INJECTION_HEURISTIC","status":"PRUNED","reason":"archival heuristic injection, not proof"}
+      ]
+    },
+    {
+      "phase": "R06_ALGEBRAIZED_HISTORICAL_IDEAS",
+      "methods": [
+        {"id":"SLIME_EXACT_STATIC_INCIDENCE_FINGERPRINTS","status":"ALGEBRAIZED","role":"only exact assignment-independent structural invariants may be reused; all pressure routing removed"},
+        {"id":"HEPHAESTUS_CANONICAL_HASH_REVISIT","status":"ALGEBRAIZED","role":"canonical state identity, recurrence guard and cost accounting only"},
+        {"id":"KEYMASTER_STATE_GUARD_TRANSITION_MEMORY","status":"ALGEBRAIZED","role":"threshold controller replaced by exact typed operator algebra"},
+        {"id":"PHYSARUM_EXACT_FLOW_EQUATIONS","status":"PROVENANCE_ONLY","role":"mathematical donor only until exact SAT morphism exists"},
+        {"id":"RAMANUJAN_EXACT_THETA_IDENTITIES","status":"PROVENANCE_ONLY","role":"exact sum-product/recurrence donor only"}
+      ]
+    },
+    {
+      "phase": "R07_GOVERNANCE_AND_FORMAL_CORPUS",
+      "methods": [
+        {"id":"JANUS_FUNDAMENTUM_PVSNP_FORMAL_CORPUS","status":"GOVERNANCE_ONLY","role":"formal theorem/Lean corpus and bridge consistency; not a P=NP result"},
+        {"id":"TOPA_FALSIFICATION_AND_ACCOUNTING","status":"GOVERNANCE_ONLY","role":"strict science, negative controls, cost/claim ceiling"},
+        {"id":"DEMI_HEAD_GAP_LEDGER","status":"GOVERNANCE_ONLY","role":"adversarial proof-gap tracking"},
+        {"id":"JANUS_META_REGISTRY_PROVENANCE","status":"GOVERNANCE_ONLY","role":"historical lineage and immutable provenance"},
+        {"id":"AIFC_FAIL_CLOSED","status":"GOVERNANCE_ONLY","role":"fail-closed admission"},
+        {"id":"FAST_CAT_BLIND_REVIEW","status":"GOVERNANCE_ONLY","role":"independent blinded review"},
+        {"id":"GENESIS_RECEIPTS","status":"GOVERNANCE_ONLY","role":"immutable receipts"},
+        {"id":"COSMOS_HOLDOUT_DISCIPLINE","status":"GOVERNANCE_ONLY","role":"frozen holdout discipline"}
+      ]
+    },
+    {
+      "phase": "R08_EARLIEST_RECOVERABLE_ORIGIN",
+      "methods": [
+        {"id":"JANUS_SOLVER_RECURSIVE_PROOF_SEED_2026_01_23","status":"PROVENANCE_ONLY","role":"early recursive proof-under-pressure architecture; exploratory SATVerifier use excludes it from proof path"},
+        {"id":"FORMAL_METHOD_PVSNP_001_013_LINEAGE","status":"GOVERNANCE_ONLY","role":"early formal theorem-skill lane retained through Janus-Fundamentum"},
+        {"id":"EARLY_HEURISTIC_SEARCH_LINEAGE","status":"PRUNED","role":"random candidate/evolutionary SAT-search lineage; historical only"}
+      ]
+    }
+  ],
+  "unified_exact_keymaster_catalog": [
+    "PURE_LITERAL_EXISTS",
+    "TAUTOLOGICAL_RESOLVENT_EXISTS",
+    "SINGLE_NTR_EXISTS",
+    "COMPLEMENTARY_TWIN",
+    "CLAUSE_SUBSUMPTION",
+    "SELF_SUBSUMING_RESOLUTION",
+    "COMPONENT_PRODUCT",
+    "TWO_SAT_SCC",
+    "AFFINE_GF2_JOIN",
+    "ACI_SHARED_FACTOR",
+    "LITERAL_ACI_EXISTS",
+    "SYMMETRIC_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"
+  ],
+  "unified_runner_contract": {
+    "must_validate_manifest": true,
+    "must_refuse_any_active_heuristic_authority": true,
+    "must_validate_keymaster_base_and_extension": true,
+    "must_run_exact_core_verifiers_when_present": true,
+    "must_check_negative_barriers_as_guards_not_solvers": true,
+    "must_preserve_refusals_and_frontier_explosion": true,
+    "must_emit_method_counts_and_result_hash": true,
+    "must_not_claim_universal_poly_bound": true,
+    "must_not_claim_p_equals_np": true
+  },
+  "active_universal_debt": [
+    "POLYNOMIAL_CANONICAL_TRANSITION_STATE_COUNT_FOR_ARBITRARY_CNF",
+    "POLYNOMIAL_CUMULATIVE_COST_COORDINATE_BOUNDS",
+    "EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ]
+}
