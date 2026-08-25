@@ -1,0 +1,21 @@
+{
+  "artifact_id":"PF5-PROOF-CARRYING-2SAT-SCC-V26-AUTHORITATIVE-RECEIPT",
+  "branch":"pnp-spiral-hephaestus-crystal-v14",
+  "head_sha":"e050bf1cd9061117847b1aa0b38e660452c3a67d",
+  "run_id":32841762709,
+  "job_id":97782627600,
+  "conclusion":"success",
+  "source_manifest_sha256":"7a8e55ceed95c1d5363e3c872f716744c79368d57eb81389b42c1d93656c1a0f",
+  "baseline_manifest_sha256":"1ea5c0d9c2439acc7f8bd1e976c5501b15aad337c90caa1422d240b5b7f64027",
+  "provider_batch_sha256":"3868e42d7987c6e892b2fb79c8ee4020d07de96402923fdb6d09aad8053eaeae",
+  "rows_manifest_sha256":"d98c4839a16cd8da8c46ecb7e0e81baed7e3ff2447874f727f27a504382a2c4d",
+  "result_sha256":"b3b1d9361bc109ccc1454fa38f0f7fd87439b5db4f31a790f4391206b80ae498",
+  "summary":{"cases":32,"v24_true":17,"v24_false":4,"v24_open":11,"eligible_2sat":2,"provider_sat":1,"provider_unsat":1,"unsupported_open":9,"final_true":18,"final_false":5,"final_open":9},
+  "runtime_ledger":{"eligibility_clause_checks":49,"failed_eligibility_checks":9,"graph_vertices":22,"graph_edges":50,"edge_provenance_bytes":2614,"scc_graph_visits":50,"reverse_edge_visits":50,"condensation_edges":4,"topological_ops":11,"path_search_edge_visits":47,"certificate_bytes":970,"witness_bytes":107,"verification_ops":87,"state_bytes_peak":2715,"cumulative_state_bytes":3734,"witness_lift_ops":71},
+  "all_provider_proofs_verified":true,
+  "all_terminal_semantic_audits_pass":true,
+  "lane_admission_scope":"2CNF_RESIDUALS_ONLY",
+  "non_2cnf":"OPEN_UNSUPPORTED",
+  "universal_exact_closure":"OPEN",
+  "p_vs_np":"OPEN"
+}
