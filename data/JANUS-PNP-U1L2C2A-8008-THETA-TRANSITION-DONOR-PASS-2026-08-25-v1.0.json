@@ -1,0 +1,64 @@
+{
+  "schema": "JANUS_PNP_U1L2C2A_8008_THETA_TRANSITION_DONOR_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "29b1743e50753c0cb2d1fa221bd3b2b5e68bcdbf",
+  "provider_commit": "d3bca022906afb798ab98a2a5b29581bdaac6535",
+  "workflow_head_commit": "5102aa2fca0f2c210912e4b5a292e015878c0443",
+  "workflow_run": 32881307636,
+  "workflow_job": 97911214519,
+  "workflow_run_number": 1,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "SUCCESS",
+  "result_sha256": "1930c959aef2109cfbc6443ef6791d7dc153e9427d1b12a2664db71389930179",
+  "intel_8008_guard": {
+    "cycle": ["000","001","010","101","011","111","110","100"],
+    "semantic_state_count_before": 8,
+    "semantic_state_count_after_bijective_relabel": 8,
+    "minimum_fixed_width_bits_before": 3,
+    "minimum_fixed_width_bits_after": 3,
+    "state_count_reduction": 0,
+    "verdict": "RELABEL_ONLY_NOT_COMPRESSION"
+  },
+  "ramanujan_theta_audit": {
+    "specialization": "f(q,q^2)=sum_n q^(n(3n-1)/2)=(-q;q^3)_inf(-q^2;q^3)_inf(q^3;q^3)_inf",
+    "degree": 128,
+    "sum_term_count_in_window": 19,
+    "product_factor_count": 128,
+    "nonzero_coefficient_count": 19,
+    "max_abs_coefficient": 1,
+    "exact_coefficient_agreement": true,
+    "coefficient_vector_sha256": "1f39c953ec6157de5a5d8218491d8bca3ded1869a0d7d3c9a2ff0b7897eb6e7c"
+  },
+  "theta_transition_state": {
+    "coordinates": "(n,E(n))",
+    "E": "n(3n-1)/2",
+    "forward_rule": "(n,E)->(n+1,E+3n+1)",
+    "backward_rule": "(n,E)->(n-1,E-3n+2)",
+    "audited_state_count": 19,
+    "forward_transition_checks": 18,
+    "backward_transition_checks": 18,
+    "verdict": "EXACT_LOW_DIMENSIONAL_TRANSITION_STATE_FOR_THETA_FAMILY"
+  },
+  "method_consequence": {
+    "admitted_principle": "PRESERVE_EXACT_TRANSITION_SEMANTICS_NOT_HUMAN_PRESENTATION_GEOMETRY",
+    "anti_fake_compression": "BIJECTIVE_RELABELING_CANNOT_REDUCE_SEMANTIC_STATE_CARDINALITY",
+    "theta_role": "EXACT_SUM_PRODUCT_AND_RECURRENCE_DONOR_ONLY_UNTIL_A_SAT_SIDE_MORPHISM_IS_PROVED",
+    "required_next_object": "PROOF_CARRYING_NONLITERAL_SAT_FACTOR_TRANSITION_MACRO"
+  },
+  "proved_in_scope": {
+    "BIJECTIVE_TRANSITION_RELABEL_PRESERVES_STATE_CARDINALITY": true,
+    "RAMANUJAN_THETA_SPECIALIZED_SUM_PRODUCT_SLICE_EXACT": true,
+    "THETA_SPECIALIZATION_HAS_EXACT_RECURRENCE_STATE": true
+  },
+  "still_open": [
+    "ARBITRARY_B2_TO_THETA_MORPHISM",
+    "NONLITERAL_SAT_FACTOR_TRANSITION_MACRO",
+    "ARBITRARY_B2_SEQUENTIAL_CLOSURE",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ],
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "next_gate": "U1-L2C2B_PROOF_CARRYING_NONLITERAL_TRANSITION_MACRO_MORPHISM"
+}
