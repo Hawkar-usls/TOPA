@@ -1,0 +1,29 @@
+name: Validate Akinator U1E Derivational Rank Barrier
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1E_DERIVATIONAL_RANK_INVARIANCE_BARRIER.md'
+      - 'research/mathematics/p-vs-np/akinator_u1e_derivational_rank_probe.py'
+      - '.github/workflows/validate-akinator-u1e-derivational-rank.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run U1E derivational-rank finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1e_derivational_rank_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks finite alias-chain semantics and explicit Resolution-step mechanics only.'
+          echo 'General B2 equivalence coNP-completeness is analytical, not proved by CI.'
+          echo 'No universal derivational-rank impossibility theorem is claimed.'
+          echo 'P_VS_NP = OPEN'
