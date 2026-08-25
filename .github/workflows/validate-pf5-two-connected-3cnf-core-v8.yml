@@ -1,0 +1,120 @@
+name: Validate PF5 Two-Connected 3CNF Core v8
+
+on:
+  push:
+    branches:
+      - pf5-two-connected-3cnf-core-v8
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_TWO_CONNECTED_3CNF_CORE_GATE_V8.md'
+      - 'research/mathematics/p-vs-np/pf5_two_connected_3cnf_core_v8.py'
+      - '.github/workflows/validate-pf5-two-connected-3cnf-core-v8.yml'
+
+jobs:
+  width-two-separator:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen width-two separator replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_two_connected_3cnf_core_v8.py --json-out ../../../pf5-two-connected-3cnf-core-v8.result.json
+
+      - name: Verify v8 contract
+        run: |
+          python - <<'PY'
+          import inspect, json, sys
+          sys.path.insert(0,'research/mathematics/p-vs-np')
+          import pf5_two_connected_3cnf_core_v8 as v8
+          assert list(inspect.signature(v8.solve_source).parameters)==['clauses','variables','frozen_order']
+          d=json.load(open('pf5-two-connected-3cnf-core-v8.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-TWO-CONNECTED-3CNF-CORE-V8'
+          assert d['pair_sizes_frozen_before_provider_run']==[2,4,8,12,16]
+          assert d['ring_sizes_frozen_before_provider_run']==[6,8,10,12,14]
+          assert d['pipeline_order_frozen_before_provider_run']==[
+              'SIGNED_PARITY_GRAPH_CNF','ARTICULATION_BOUNDARY_3CNF',
+              'PAIR_SEPARATOR_BOUNDARY_3CNF','GENERIC_FROZEN_ORDER_OBDD'
+          ]
+          assert d['new_tuned_caps_added'] is False
+          assert len(d['controls'])==15
+          positives=0; rings=0; passed=0
+          for r in d['controls']:
+              if r['status']=='CAP_HIT':
+                  assert r['claim']=='FINITE_WIDTH_TWO_SEPARATOR_PORTFOLIO_ESCAPE_ONLY'
+                  if r['external_kind_for_test_only']=='TWO_CONNECTED_RING':
+                      rings+=1
+                  continue
+              passed+=1
+              assert r['source_is_single_connected_3cnf'] is True
+              assert r['pipeline_api_unlabeled'] is True
+              assert r['fixed_pipeline_order_used'] is True
+              assert r['failed_pipeline_work_charged'] is True
+              assert r['path_matches_frozen_expectation'] is True
+              attempts=[(a['stage'],a['status']) for a in r['pipeline_attempts']]
+              assert attempts[0]==('SIGNED_PARITY_GRAPH_CNF','REJECT')
+              assert attempts[1]==('ARTICULATION_BOUNDARY_3CNF','REJECT')
+              kind=r['external_kind_for_test_only']
+              if kind.startswith('PAIR_SEPARATOR_'):
+                  positives+=1
+                  assert r['selected_path']=='PAIR_SEPARATOR_BOUNDARY_3CNF'
+                  assert attempts[2][0]=='PAIR_SEPARATOR_BOUNDARY_3CNF' and attempts[2][1]=='ACCEPT'
+                  assert len(r['separator'])==2
+                  assert r['source_partition_roundtrip_exact'] is True
+                  assert r['boundary_join_exact'] is True
+                  assert r['strict_width_two_witness_glue'] is True
+                  if r['expected_sat']:
+                      assert r['final_scalar'] is True
+                      assert r['witness_valid'] is True
+                      assert r['witness_source']=='WIDTH_TWO_JOIN_PLUS_ACTUAL_CHILD_OBDD_PROOFS'
+                  else:
+                      assert r['final_scalar'] is False
+                      assert r['witness_valid'] is None
+                      assert r['witness_source']=='NO_WITNESS_EMPTY_WIDTH_TWO_JOIN'
+              elif kind=='TWO_CONNECTED_RING':
+                  rings+=1
+                  assert r['selected_path']=='GENERIC_FROZEN_ORDER_OBDD'
+                  assert attempts[2]==('PAIR_SEPARATOR_BOUNDARY_3CNF','REJECT')
+                  assert attempts[3][0]=='GENERIC_FROZEN_ORDER_OBDD'
+                  assert r['final_scalar'] is True
+                  assert r['witness_valid'] is True
+              else:
+                  raise AssertionError(kind)
+          assert passed>0
+          assert positives==10
+          assert rings==5
+          assert d['passed_controls']==passed
+          assert d['all_passed_connected_3cnf'] is True
+          assert d['all_passed_pipeline_unlabeled'] is True
+          assert d['all_passed_fixed_pipeline_order'] is True
+          assert d['all_passed_failed_work_charged'] is True
+          assert d['all_passed_path_matches_expectation'] is True
+          assert d['positive_sources_have_no_articulation'] is True
+          assert d['pair_separator_discovered_unlabeled'] is True
+          assert d['width_two_partition_roundtrip_exact'] is True
+          assert d['width_two_join_exact'] is True
+          assert d['strict_width_two_witness_glue'] is True
+          assert d['ring_rejects_width_one_and_width_two'] is True
+          assert d['width_two_separator_discovery_poly_in_explicit_source']=='PROVED_BY_FIXED_WIDTH_PAIR_ENUMERATION'
+          assert d['universal_bounded_separator_width']=='OPEN'
+          assert d['three_connected_core_representation_discovery']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['next_front']=='THREE_CONNECTED_3CNF_CORE_GATE'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_TWO_CONNECTED_3CNF_CORE_V8_CONTRACT = PASS')
+          print('PASSED_CONTROLS =',passed)
+          print('FIRST_BASE_CAP_HIT =',d['first_base_cap_hit'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'No articulation does not imply no small separator.'
+          echo 'PAIR_SEPARATOR_FAILURE != HARDNESS'
+          echo 'THREE_CONNECTED_CORE_REPRESENTATION_DISCOVERY = OPEN'
+          echo 'P_VS_NP = OPEN'
