@@ -1,0 +1,28 @@
+name: Validate JANUS RCTQ-3
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_RCTQ3_POLARITY_TERMINAL_AND_GAUGED_ESCAPE.md'
+      - 'research/mathematics/p-vs-np/rctq3_polarity_gauged_escape_verifier.py'
+      - '.github/workflows/validate-janus-rctq3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rctq3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile RCTQ-3 verifier
+        run: python -m py_compile research/mathematics/p-vs-np/rctq3_polarity_gauged_escape_verifier.py
+      - name: Run RCTQ-3 verifier
+        run: python research/mathematics/p-vs-np/rctq3_polarity_gauged_escape_verifier.py
