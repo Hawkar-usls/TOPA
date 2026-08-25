@@ -1,0 +1,64 @@
+name: PF5 Whole Order Prefix Quotient v16 Compact Receipt
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate-pf5-whole-order-prefix-state-quotient-v16-compact.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v5.1 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: e507484a62eb29543910cd018c380150051f986f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute identical v16 audit quietly
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_whole_order_prefix_state_quotient_v16.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v5_1.py \
+            --json-out ../../../../v16.result.json >/dev/null
+      - name: Print compact authoritative receipt
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('v16.result.json',encoding='utf-8'))
+          b=d['audit_future_bisimulation']
+          w=d['weak_scalar_label_audit']
+          o=d['first_pure_future_obstruction']
+          print('V16_COMPACT_RECEIPT = PASS')
+          print('RAW_STATES =',d['raw_subset_state_count'])
+          print('V5_WIDTH =',d['v5_width'])
+          print('OPTIMUM =',d['raw_bellman_optimum'])
+          print('FIRST_FUTURE_STEP =',o['step'])
+          print('FIRST_FUTURE_PREFIX =',o['prefix_before'])
+          print('CHOSEN =',o['chosen'])
+          print('BEST_IMMEDIATE =',o['best_immediate_exact_ps'])
+          print('BEST_BELLMAN =',o['best_bellman_action_value'])
+          print('SAME_IMMEDIATE_BETTER_FUTURE =',[(x['leaf'],x['immediate_exact_ps'],x['action_bottleneck_value']) for x in o['same_immediate_better_future_candidates']])
+          print('BISIM_CLASSES =',b['future_bisimulation_class_count'])
+          print('BISIM_NONTRIVIAL =',b['nontrivial_class_count'])
+          print('BISIM_LARGEST =',b['largest_class_size'])
+          print('BISIM_CLASSES_BY_DEPTH =',b['classes_by_depth'])
+          print('WEAK_COST_CLASSES =',w['depth_plus_current_cut']['class_count'])
+          print('WEAK_COST_UNSAFE =',w['depth_plus_current_cut']['unsafe_transition_collision_class_count'])
+          print('WEAK_VALUE_CLASSES =',w['depth_plus_current_cut_plus_exact_future_value']['class_count'])
+          print('WEAK_VALUE_UNSAFE =',w['depth_plus_current_cut_plus_exact_future_value']['unsafe_transition_collision_class_count'])
+          print('QUOTIENT_WIDTH =',d['audit_quotient_lifted_width'])
+          print('COST_LEDGER =',d['global_cost_ledger'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          print('P_VS_NP =',d['p_vs_np'])
+          PY
