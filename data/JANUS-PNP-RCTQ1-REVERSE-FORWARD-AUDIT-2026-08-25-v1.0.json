@@ -1,0 +1,93 @@
+{
+  "schema": "JANUS_PNP_RCTQ1_REVERSE_FORWARD_AUDIT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "inputs": {
+    "pre_rctq_kanami_receipt": {
+      "path": "data/JANUS-PNP-KANAMI-SPIRAL-FIRST-TERMINAL-RECEIPT-2026-08-25-v1.0.json",
+      "commit": "696a474e00083b246af1539264e3e9cd46457ab7"
+    },
+    "rctq1_receipt": {
+      "path": "data/JANUS-PNP-RCTQ1-FIRST-TERMINAL-RECEIPT-2026-08-25-v1.0.json",
+      "commit": "64399365f23cf31805907cdbbc5613bddb369477",
+      "result_sha256": "40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"
+    }
+  },
+  "execution_sequence": [
+    "REVERSE:RCTQ1_VERIFIER",
+    "REVERSE:KANAMI_ATLAS_VERIFIER",
+    "REVERSE:UNIFIED_EXACT_REVERSE_SPIRAL_RUNNER",
+    "FORWARD:UNIFIED_EXACT_REVERSE_SPIRAL_RUNNER",
+    "FORWARD:KANAMI_ATLAS_VERIFIER",
+    "FORWARD:RCTQ1_VERIFIER"
+  ],
+  "janus_reconciliation": [
+    {
+      "id": "RFA-01",
+      "before": "POLYNOMIAL_NUMBER_OF_CANONICAL_RESTRICTION_STATES_WAS_TREATED_AS_CENTRAL_TARGET",
+      "after": "POLYNOMIAL_ALL_COUNTERFACTUAL_RESTRICTION_STATES_IS_REFUTED_AS_TOO_STRONG",
+      "reason": "selector-unit family has 2^n pairwise future-distinguishable residual functions",
+      "effect": "replace state-space cardinality target by total materialized deterministic trace volume"
+    },
+    {
+      "id": "RFA-02",
+      "before": "KEYMASTER_FRONTIER_PRODUCT_BOUND_USED_M_OF_N_CANONICAL_STATES",
+      "after": "THEOREM_REMAINS_VALID_WITH_M_OF_N_DEFINED_AS_ACTUALLY_RETAINED_OR_MATERIALIZED_FRONTIER_STATES",
+      "reason": "the Pareto antichain theorem is about the actual frontier, not the entire counterfactual restriction universe",
+      "effect": "frontier theorem preserved; interpretation narrowed"
+    },
+    {
+      "id": "RFA-03",
+      "before": "FIRST_CLASS_RESTRICT_WAS_MISSING",
+      "after": "RESTRICT_EXACTNESS_AND_COMPOSITION_VERIFIED_AND_PROMOTION_READY",
+      "reason": "RCTQ-1 finite independent replay confirms the frozen theorem",
+      "effect": "may enter Keymaster only through a separate typed catalog extension"
+    },
+    {
+      "id": "RFA-04",
+      "before": "INTACT_GATE_CONGRUENCE_WAS_A_RESTRICTED_HISTORICAL_PRECURSOR",
+      "after": "CERTIFIED_ALIAS_PROVENANCE_IS_RESTRICTION_CLOSED_IN_RCTQ1_LANGUAGE",
+      "reason": "an equality certificate remains valid under restriction even when source gate syntax ceases to be intact",
+      "effect": "context-certified transition equivalence now has one exact nonliteral restricted realization"
+    },
+    {
+      "id": "RFA-05",
+      "before": "GLOBAL_PROGRESS_AND_STATE_BOUND_WERE_CO-MINGLED",
+      "after": "DP_ELIMINATION_ALREADY_GIVES_AT_MOST_N_ACCEPTED_STEPS; STATE_BYTES_AND_CUMULATIVE_TRACE_REMAIN_THE_EXPONENT",
+      "reason": "old proof-carrying Davis-Putnam theorem supplies rank=#variables",
+      "effect": "do not search for another progress score or heuristic"
+    },
+    {
+      "id": "RFA-06",
+      "before": "UNIVERSAL_QUOTIENT_WAS_THE_ONLY_NAMED_NEXT_TARGET",
+      "after": "UNIVERSAL_EXACT_CAPPED_TRANSITION_AVAILABILITY_IS_THE_SHARPER_NEXT_OBLIGATION",
+      "reason": "old ELIM-CAP_C and PF5 Q_total theorem already show that one fixed polynomial cap plus exact terminal/witness contracts is sufficient",
+      "effect": "prove a fixed C such that every reachable nonterminal state has an exact catalog transition whose full charged output/work fits N^C, or produce an infinite escape family for the frozen catalog"
+    }
+  ],
+  "two_exact_routes_after_reconciliation": {
+    "single_trace_route": {
+      "description": "Use a fixed theorem-defined operator order/schedule with no scoring; prove every reached state has a cap-admissible exact next transition.",
+      "central_gate": "UNIVERSAL_EXACT_CAPPED_TRANSITION_AVAILABILITY",
+      "sufficient_with": ["AT_MOST_POLY_ACCEPTED_STEPS","POLY_STATE_BYTES","POLY_FAILED_DISCOVERY_WORK","POLY_CERTIFICATE_AND_WITNESS_COST"]
+    },
+    "frontier_route": {
+      "description": "Retain all theorem-admissible exact nondominated transitions; prove the actually materialized Keymaster frontier and cumulative bytes/work are polynomial.",
+      "central_gate": "POLYNOMIAL_MATERIALIZED_FRONTIER_TRACE_VOLUME",
+      "sufficient_with": ["KEYMASTER_FRONTIER_PRODUCT_BOUND","POLY_COST_COORDINATE_BOUNDS","EXACT_TERMINAL_AND_WITNESS"]
+    }
+  },
+  "promotion_ready_but_not_yet_active": [
+    "EXACT_RESTRICT_PARTIAL_ASSIGNMENT",
+    "CERTIFIED_INTACT_B2_ALIAS_TRANSITION"
+  ],
+  "active_keymaster_operator_count_before": 14,
+  "active_keymaster_operator_count_after": 14,
+  "active_catalog_changed": false,
+  "new_central_gate": "RCTQ2_UNIVERSAL_EXACT_CAPPED_TRANSITION_AVAILABILITY_OR_FROZEN_CATALOG_ESCAPE_FAMILY",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
