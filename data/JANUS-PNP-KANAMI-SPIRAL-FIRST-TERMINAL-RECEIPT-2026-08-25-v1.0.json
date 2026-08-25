@@ -1,0 +1,67 @@
+{
+  "schema": "JANUS_PNP_KANAMI_SPIRAL_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "atlas": {
+    "path": "data/JANUS-PNP-KANAMI-SPIRAL-METHOD-ATLAS-2026-08-25-v1.0.json",
+    "commit": "ac26d538fad1c3132b917ffcbfed7e00c7d5e109",
+    "git_blob_sha": "4a294e9016c14bd29f6a01b0dfa4967873cd91e9",
+    "sha256": "dbc9673c60773010f4c308bd38cf0648b628c133754ea1b7ca4438210672bf16"
+  },
+  "verifier": {
+    "path": "research/mathematics/p-vs-np/janus_kanami_spiral_atlas_verifier.py",
+    "commit": "a448537da4ff8a88a3832f2eefb37e1f2a8e95e0"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-pnp-kanami-spiral-atlas.yml",
+    "head_commit": "2274d6f619c1868318ea724b195df9f9b62c956d",
+    "name": "Validate JANUS PNP Kanami Spiral Atlas"
+  },
+  "first_run": {
+    "run_id": 32894318645,
+    "job_id": 97953257777,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"
+  },
+  "verified_summary": {
+    "legacy_method_count": 76,
+    "legacy_status_counts": {
+      "ACTIVE_EXACT": 15,
+      "ALGEBRAIZED": 3,
+      "BARRIER_NEGATIVE": 17,
+      "EXACT_RESTRICTED": 11,
+      "GOVERNANCE_ONLY": 10,
+      "PROVENANCE_ONLY": 5,
+      "PRUNED": 15
+    },
+    "missed_or_underrepresented_count": 12,
+    "missed_with_current_source_receipt": 9,
+    "historical_candidates_requiring_source_reattachment": 3,
+    "active_keymaster_operator_count": 14,
+    "active_catalog_changed": false,
+    "kanami_pass_count": 6,
+    "kanami_direction_sequence": ["REVERSE","FORWARD","REVERSE","FORWARD","REVERSE","FORWARD"],
+    "audited_fixed_point": true,
+    "fixed_point_scope_limited": true
+  },
+  "janus_primary_findings": [
+    "FIRST_CLASS_EXACT_RESTRICTION_PARTIAL_ASSIGNMENT_IS_MISSING_FROM_ACTIVE_TYPED_ALGEBRA",
+    "INTACT_GATE_CONGRUENCE_REUSE_IS_A_PROVED_RESTRICTED_PRECURSOR_TO_CONTEXT_CERTIFIED_TRANSITION_EQUIVALENCE",
+    "PF5_TOTAL_CERTIFIED_RESIDUAL_QUOTIENT_CRITERION_ALREADY_CONNECTS_STATE_PROOF_DISCOVERY_AND_WITNESS_COSTS",
+    "PROOF_CARRYING_DAVIS_PUTNAM_ALREADY_HAS_AT_MOST_N_ACCEPTED_ELIMINATION_STEPS_SO_GLOBAL_PROGRESS_IS_NOT_THE_MAIN_MISSING_THEOREM",
+    "THE_MAIN_OPEN_EXPONENT_IS_UNIFORM_CANONICAL_STATE_TRANSITION_COUNT_AND_CUMULATIVE_BYTES",
+    "DEAD_INTACT_GATE_GC_CAN_REMOVE_DEAD_COMPUTATION_HISTORY_BUT_MAY_TRANSFER_COST_TO_Q_WITNESS",
+    "GT_LINEAR_RESOLUTION_SCHEMA_SHOWS_GENERIC_SEARCH_EXPLOSION_CAN_BE_POLICY_INEFFICIENCY_DESPITE_A_SHORT_EXACT_FAMILY_SCHEMA",
+    "UNIT_PROPAGATION_FAILED_LITERAL_AND_BLOCKED_CLAUSE_ELIMINATION_REQUIRE_SOURCE_REATTACHMENT_BEFORE_ANY_PROMOTION"
+  ],
+  "next_exact_gate": "U1_L2C2C2R_RESTRICTION_CONGRUENCE_BRIDGE",
+  "next_gate_instruction": "Implement and prove a typed exact RESTRICT operator; adapt current-intact B2 congruence as a typed context-certified transition equivalence; prove commuting witness/projection contracts on the declared domain; map the nine-dimensional Keymaster ledger onto Q_total; only then attempt the universal polynomial canonical transition-state bound.",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
