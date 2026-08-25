@@ -1,0 +1,64 @@
+{
+  "schema": "JANUS_PNP_U1L2C2B_SYMMETRIC_WEIGHT_TRANSITION_MACRO_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "b208b5cdda28d4d6ead4c39ab2d7b743ec87d294",
+  "provider_commit": "50ddc4b905721b13726063f8de409d81114a30ac",
+  "workflow_head_commit": "f7e7e3a13001c0613b145d77682f5226bfd26270",
+  "workflow_run": 32881594237,
+  "workflow_job": 97912143279,
+  "workflow_run_number": 1,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "SUCCESS",
+  "result_sha256": "9ef9f4e7d9ec5dba764c11d7792ff5e816995207d2355796638e8e3adbecb3d4",
+  "frozen_theta_m_values": [8,16,32,64,128,256],
+  "summary": {
+    "cases": 6,
+    "all_symmetric_weight_sequences_closed": true,
+    "all_theta_seeded_cases_terminal_true": true,
+    "all_witness_replays_pass": true,
+    "theta_first_projection_closed_cases": 0,
+    "theta_first_projection_escape_cases": 6
+  },
+  "global_ledger": {
+    "inspections": 43932,
+    "certificate_bytes": 429964,
+    "max_state_bytes": 843
+  },
+  "proved_in_scope": {
+    "SYMMETRIC_WEIGHT_EXISTS_UPDATE_EXACT": true,
+    "SYMMETRIC_WEIGHT_LANGUAGE_SEQUENTIALLY_CLOSED": true,
+    "SYMMETRIC_WEIGHT_STATE_SIZE": "O(m)",
+    "SYMMETRIC_WEIGHT_TOTAL_SEQUENTIAL_WORK": "O(m^2)_CONSERVATIVE",
+    "SYMMETRIC_WEIGHT_WITNESS_LIFT": true,
+    "ASSIGNMENT_PRESENTATION_TO_HAMMING_WEIGHT_QUOTIENT": "2^m_TO_m_PLUS_1_STATES_FOR_SYMMETRIC_FACTORS"
+  },
+  "theta_result": {
+    "initial_role": "EXACT_STRUCTURED_SPECTRUM_GENERATED_BY_C2A_RECURRENCE",
+    "sequentially_closed_by_itself": false,
+    "escape_observed_on_every_frozen_case_after_first_projection": true,
+    "correct_closed_superlanguage": "GENERIC_EXACT_ALLOWED_HAMMING_WEIGHT_SET"
+  },
+  "controls": {
+    "empty_allowed": "FALSE",
+    "full_allowed": "TRUE",
+    "exact_weight_2_first_projection": [1,2],
+    "malformed_weight": "REFUSE_WEIGHT_OUT_OF_RANGE"
+  },
+  "still_open": [
+    "ARBITRARY_CNF_TO_SYMMETRIC_WEIGHT_MORPHISM",
+    "DISCOVER_POLY_TRANSITION_QUOTIENT_FOR_ARBITRARY_NONLITERAL_FACTOR",
+    "ARBITRARY_B2_SEQUENTIAL_CLOSURE",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ],
+  "method_update": {
+    "8008_principle": "KEEP_EXACT_TRANSITION_STATE_NOT_PRESENTATION_STATE",
+    "realized_nonliteral_sat_quotient": "HAMMING_WEIGHT_CLASS",
+    "theta_role": "EXACT_INITIAL_MACRO_DONOR_NOT_CLOSED_LANGUAGE",
+    "active_search_target": "PROOF_CARRYING_PARTITION_OR_MACRO_EXPOSING_POLY_MANY_TRANSITION_STATES_FROM_ARBITRARY_FACTOR"
+  },
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "next_gate": "U1-L2C2C_DISCOVER_PROOF_CARRYING_SYMMETRY_OR_OTHER_POLY_TRANSITION_QUOTIENT_FROM_ARBITRARY_FACTOR"
+}
