@@ -1,0 +1,21 @@
+{
+  "artifact_id": "PF5-CP-001-OUTER-WITNESS-BYPASS",
+  "class": "PROOF_CARRYING_REPLAY_GAP",
+  "status": "DETECTED_AFTER_V2_PROVIDER_PASS__REPAIR_REQUIRED",
+  "original_provider": {
+    "run_id": 32799271509,
+    "job_id": 97656808074,
+    "conclusion": "SUCCESS",
+    "result_sha256": "e0331ea611e7d8a3b8871cd11861251f00e84beb1719c8716cb680b1ff0d4b50"
+  },
+  "scope": "The v2 finite replay proved component selection/global accounting and independently verified an explicit all-true hybrid witness, but the outer replay did not construct that witness by disjoint-union remapping of the actual inner witnesses returned by the selected representation lanes.",
+  "mathematical_effect": "CP2 remains an exact analytic theorem for variable-disjoint components. The implementation gap affects only whether the finite provider replay exercised the proof-carrying witness-glue path itself.",
+  "repair_rule": "Outer witness must be built exclusively from selected component witness payloads, remapped local-to-global using the immutable manifest, checked for overlap/conflict/completeness, then independently evaluated against the original monolithic hybrid.",
+  "controls_or_caps_changed": false,
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "laws": [
+    "ANALYTIC_WITNESS_COMPOSITION != MACHINE_REPLAY_OF_WITNESS_COMPOSITION",
+    "NO_EXTERNAL_FAMILY_WITNESS_MAY_BYPASS_COMPONENT_WITNESS_GLUE",
+    "ORIGINAL_PROVIDER_RECEIPT_REMAINS_HISTORICAL"
+  ]
+}
