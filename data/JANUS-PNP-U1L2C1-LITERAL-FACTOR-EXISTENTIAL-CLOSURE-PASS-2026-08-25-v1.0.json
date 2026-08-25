@@ -1,0 +1,66 @@
+{
+  "schema": "JANUS_PNP_U1L2C1_LITERAL_FACTOR_EXISTENTIAL_CLOSURE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "5db7b6cd20e44d90fd991aa5e366e203add579c1",
+  "original_provider_commit": "ad2fbf119d76043d7d2c4ec08f52dd65e476cfcc",
+  "failure_receipt_commit": "53d94adb5f653a68ac8f862734a38c3344ada0b1",
+  "repair_commit": "9f78401da334e53249033c819ac04ccf752b3296",
+  "repair_scope": "PYTHON_BOOLEAN_LITERAL_false_TO_False_ONLY",
+  "workflow_run": 32878532001,
+  "workflow_job": 97902222403,
+  "workflow_run_number": 2,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "SUCCESS_AFTER_IMPLEMENTATION_LITERAL_REPAIR",
+  "first_run_failure": {
+    "failure_id": "U1-L2C1-001",
+    "run": 32878281113,
+    "job": 97901429554,
+    "cause": "NameError false instead of False during final result assembly",
+    "theorem_impact": "NONE"
+  },
+  "frozen_scope": {
+    "state_language": ["TRUE","FALSE","LITERAL_FACTOR_SET"],
+    "four_case_update": ["IRRELEVANT","POSITIVE_ONLY","NEGATIVE_ONLY","COMPLEMENT_CONTRADICTION"],
+    "sf4_m_values": [2,4,8,16,32,64,128],
+    "adaptive_fixture_change_after_failure": false,
+    "sat_oracle": false,
+    "semantic_equivalence_oracle": false
+  },
+  "global_ledger": {
+    "literal_inspections": 12424,
+    "certificate_bytes": 86947,
+    "max_state_bytes": 6438
+  },
+  "sf4_terminal_summary": {
+    "cases": 7,
+    "all_terminal": "TRUE",
+    "all_witness_replay": "PASS_SAT_WITNESS",
+    "largest_case_m": 128,
+    "largest_case_roots": 133,
+    "largest_case_literal_inspections": 8911,
+    "largest_case_certificate_bytes": 40163,
+    "largest_case_max_state_bytes": 6438
+  },
+  "refusal_control": {
+    "name": "OPAQUE_G_X_Y",
+    "result": "REFUSE_NONLITERAL_PIVOT_DEPENDENT_FACTOR"
+  },
+  "result_sha256": "6a65d6dbfcca9c3ec5c9827b486ca16bef7596a457df8b13d08e99f4e2ca5100",
+  "proved_in_scope": {
+    "LITERAL_ACI_QUOTIENT_DIRECT_EXISTENTIAL_UPDATE": true,
+    "LITERAL_ACI_QUOTIENT_SEQUENTIAL_CLOSURE": true,
+    "LITERAL_ACI_QUOTIENT_POLY_TOTAL_STATE_WORK": "O(nL)_CONSERVATIVE_BOUND",
+    "LITERAL_ACI_QUOTIENT_WITNESS_LIFT": true
+  },
+  "still_open": [
+    "NONLITERAL_FACTOR_PROJECTION",
+    "ARBITRARY_B2_SEQUENTIAL_CLOSURE",
+    "UNIVERSAL_CREATE_GRAMMAR",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ],
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "next_gate": "U1-L2C2_CERTIFIED_NONLITERAL_FACTOR_PROJECTION"
+}
