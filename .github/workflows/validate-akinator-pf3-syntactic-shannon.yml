@@ -1,0 +1,29 @@
+name: Validate Akinator PF3 Syntactic Shannon
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF3_SYNTACTIC_SHANNON_EQUALITY_BARRIER.md'
+      - 'research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py'
+      - '.github/workflows/validate-akinator-pf3-syntactic-shannon.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run PF3 syntactic Shannon finite replay
+        run: python research/mathematics/p-vs-np/akinator_pf3_syntactic_shannon_probe.py
+      - name: Claim ceiling
+        run: |
+          echo 'Finite replay validates the frozen implementation mechanics only.'
+          echo 'S1 asymptotic route closure is an analytic theorem about the frozen projector.'
+          echo 'PF3_UNIVERSAL_ALGEBRAIC_ORBIT_QUOTIENT = OPEN'
+          echo 'P_VS_NP = OPEN'
