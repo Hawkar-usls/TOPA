@@ -1,0 +1,59 @@
+name: Receipt PF5 GT12 Normalized Handoff
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/receipt-pf5-gt12-normalized-handoff.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout current TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+
+      - name: Checkout frozen Fundamentum C025 source
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run exact same frozen GT12 normalization successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_pf1_gt12_normalized_handoff_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          n=r['certified_normalization']
+          h=r.get('automaton_handoff')
+          print('PF5_GT12_NORM_RECEIPT=' + json.dumps({
+            'terminal': r['terminal'],
+            'before_units': r['pf1_residue']['units'],
+            'before_clauses': r['pf1_residue']['clauses'],
+            'before_variables': r['pf1_residue']['variables'],
+            'subset_probes': n['subset_probes'],
+            'certificate_steps': n['certificate_steps'],
+            'certificate_verified': n['certificate_verified'],
+            'after_units': n['normalized_units'],
+            'after_clauses': n['normalized_clauses'],
+            'after_variables': n['normalized_variables'],
+            'handoff_status': None if h is None else h['status'],
+            'handoff_states': None if h is None else h['residual_states'],
+            'handoff_bdd_nodes': None if h is None else h['bdd_nodes'],
+            'p_vs_np': r['p_vs_np']
+          }, sort_keys=True, separators=(',',':')))
+PY
