@@ -1,0 +1,29 @@
+name: Validate Akinator U1I Inner Product Projection
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1I_INNER_PRODUCT_COFACTOR_COMPRESSION_SEPARATOR.md'
+      - 'research/mathematics/p-vs-np/akinator_u1i_inner_product_projection_probe.py'
+      - '.github/workflows/validate-akinator-u1i-inner-product.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Inner Product projection finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1i_inner_product_projection_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks finite cofactor counts and exact Inner Product projection identities only.'
+          echo 'No universal B2 projection-compression theorem is claimed.'
+          echo 'Local rewrite-library completeness remains OPEN.'
+          echo 'P_VS_NP = OPEN'
