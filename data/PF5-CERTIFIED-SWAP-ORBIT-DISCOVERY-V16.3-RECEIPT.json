@@ -1,0 +1,112 @@
+{
+  "admitted_cost_language": "DUPLICATE_FULL_SUPPORT_POSITIVE_OR",
+  "api_input": "RAW_CNF_ONLY_NO_FAMILY_TAG",
+  "artifact_id": "PF5-CERTIFIED-SWAP-ORBIT-DISCOVERY-V16.3-RECEIPT",
+  "clause_orbit_certificate": "EXACT_DUPLICATE_CANONICAL_CLAUSES",
+  "epistemic_firewall": {
+    "negative_controls_return_open": true,
+    "no_exact_pswidth_or_bellman_oracle_in_discovery": true,
+    "no_family_tag_in_api": true,
+    "no_general_graph_automorphism_oracle": true,
+    "no_sat_oracle": true,
+    "orbit_discovery_without_cost_language_does_not_close_instance": true,
+    "universal_orbit_message_product_bound_not_proved": true
+  },
+  "fixed_capability_exponent_q": 2,
+  "large_symbolic_only_controls": [
+    {
+      "concrete_order_sha256": "1acce824dc566b05f7c2b0c82d276d8d41ba35e46d8c354f64080ebc01510394",
+      "discovery_ops": 530,
+      "lift_checks": 32,
+      "m": 16,
+      "n": 16,
+      "optimum": 2,
+      "orbit_budget_L_pow_q": 83521,
+      "orbit_state_product": 289,
+      "quotient_state_count": 289,
+      "quotient_transition_checks": 544,
+      "raw_subset_enumeration_used": false,
+      "status": "CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT"
+    },
+    {
+      "concrete_order_sha256": "c402f4a7c2484c67100a4ce6793790eba25f73024a6c3799be195309be511fb9",
+      "discovery_ops": 8258,
+      "lift_checks": 128,
+      "m": 64,
+      "n": 64,
+      "optimum": 2,
+      "orbit_budget_L_pow_q": 17850625,
+      "orbit_state_product": 4225,
+      "quotient_state_count": 4225,
+      "quotient_transition_checks": 8320,
+      "raw_subset_enumeration_used": false,
+      "status": "CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT"
+    },
+    {
+      "concrete_order_sha256": "c52af80925c6c0b520ea41319efbb172bdbf4899085158117fa8166dddce2937",
+      "discovery_ops": 131330,
+      "lift_checks": 512,
+      "m": 256,
+      "n": 256,
+      "optimum": 2,
+      "orbit_budget_L_pow_q": 4362470401,
+      "orbit_state_product": 66049,
+      "quotient_state_count": 66049,
+      "quotient_transition_checks": 131584,
+      "raw_subset_enumeration_used": false,
+      "status": "CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT"
+    },
+    {
+      "concrete_order_sha256": "cf92c19e013d99e7c40c3c98348298fb9273529395d5bba2a71012f53ea0cc26",
+      "discovery_ops": 524802,
+      "lift_checks": 1024,
+      "m": 512,
+      "n": 512,
+      "optimum": 2,
+      "orbit_budget_L_pow_q": 69257922561,
+      "orbit_state_product": 263169,
+      "quotient_state_count": 263169,
+      "quotient_transition_checks": 525312,
+      "raw_subset_enumeration_used": false,
+      "status": "CLOSED_POLY_DISCOVERED_COUNT_QUOTIENT"
+    }
+  ],
+  "negative_controls": [
+    {
+      "clause_group_count": 2,
+      "name": "PERTURBED_DUPLICATE_OR",
+      "orbit_product_within_budget": true,
+      "orbit_state_product": 144,
+      "reason": "CLAUSES_NOT_ALL_IDENTICAL",
+      "status": "OPEN_COST_LANGUAGE",
+      "variable_group_count": 2
+    },
+    {
+      "clause_group_count": 3,
+      "name": "MIXED_SMALL_CNF",
+      "orbit_product_within_budget": true,
+      "orbit_state_product": 128,
+      "reason": "CLAUSES_NOT_ALL_IDENTICAL",
+      "status": "OPEN_COST_LANGUAGE",
+      "variable_group_count": 4
+    }
+  ],
+  "next_gate": "ORBIT_COUNTS_X_PROOF_CARRYING_SEMANTIC_MESSAGE_LANGUAGE",
+  "p_vs_np": "OPEN",
+  "small_control_count": 16,
+  "source_result_sha256": "96d37947dc7f9fce24e2c36ad92b01bef9d51b2069917e76264aaae48381b0d3",
+  "status": "RESTRICTED_CONSTRUCTIVE_DISCOVERY_PASS",
+  "theorem": {
+    "connected_transpositions_generate_full_symmetric_group_per_variable_class": true,
+    "duplicate_clause_copies_are_freely_permutable": true,
+    "equal_signed_incidence_certifies_clause_pointwise_variable_transpositions": true,
+    "fixed_orbit_product_gate": "Q_orbit <= L^2",
+    "orbit_count_vector_is_transition_closed": true,
+    "orbit_state_product_formula": "product_group(size+1)",
+    "recognized_duplicate_OR_cost_decoder_is_exact": true,
+    "variable_and_clause_copy_actions_compose_independently": true,
+    "whole_order_Bellman_and_concrete_lift_are_polynomial_on_admitted_family": true
+  },
+  "universal_polynomial_prefix_quotient": "OPEN",
+  "variable_orbit_certificate": "EQUAL_SIGNED_CLAUSE_INCIDENCE_SIGNATURES"
+}
