@@ -1,0 +1,89 @@
+{
+  "schema": "JANUS_PNP_RESEARCH_JOURNAL_ENTRY",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "inherits_journal": "data/JANUS-PNP-RESEARCH-JOURNAL-RCTQ2-2026-08-25-v1.0.json",
+  "new_lineage": [
+    {
+      "stage": "RCTQ3_TYPED_POLARITY_TERMINAL_AND_GAUGED_ESCAPE",
+      "protocol_commit": "51b0b44e9808ae69c1aab1c0e6eebcc8106ad82e",
+      "provider_commit": "5ec371ae7d6ad5f8912d5e60538e5cb005212428",
+      "workflow_head": "1d80f4d0a94319a77acbfbe3ce6cc86f9a50bbeb",
+      "run_id": 32906713727,
+      "job_id": 97992323910,
+      "result_sha256": "ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526",
+      "conclusion": "SUCCESS_FIRST_RUN",
+      "catalog": "14_TO_15_BY_UNIFORM_POLARITY_CLAUSE_WITNESS",
+      "negative": "G37_ESCAPES_ALL_15_FROZEN_OPERATOR_DOMAINS",
+      "boundary": "CATALOG_GAP_NOT_SAT_HARDNESS"
+    },
+    {
+      "stage": "RCTQ3_REVERSE_FORWARD_FAILURE_001",
+      "run_id": 32906877767,
+      "job_id": 97992808205,
+      "failure": "WRONG_KANAMI_VERIFIER_PATH",
+      "receipt_commit": "af32df571423e1ed19e0f8ae16e284c590977b69",
+      "theorem_impact": "NONE"
+    },
+    {
+      "stage": "RCTQ3_REVERSE_FORWARD_FAILURE_002",
+      "run_id": 32907196524,
+      "job_id": 97993746480,
+      "failure": "WRONG_KANAMI_RESULT_MARKER",
+      "receipt_commit": "3d91adadd39fc1abb7d0f89a54488ba24f4f6964",
+      "theorem_impact": "NONE"
+    },
+    {
+      "stage": "RCTQ3_REVERSE_FORWARD_SUCCESS",
+      "workflow_head": "dd4a517238ada15e0fba407fed03e681992ba36f",
+      "run_id": 32907355714,
+      "job_id": 97994220797,
+      "result_sha256": "6b8878066cab01018c1f86d2d9cc1a5a2a480808f1796b75d5723472b1947439",
+      "conclusion": "SUCCESS_AFTER_TWO_PRESERVED_INFRASTRUCTURE_FAILURES",
+      "reverse_forward_hash_stable": true
+    }
+  ],
+  "new_exact_schema": {
+    "id": "SIGNED_POLARITY_COUNT_NORMALIZE",
+    "status": "PROVED_EXACT_REPRESENTATION_NORMALIZATION_PENDING_FRESH_TYPED_EXTENSION",
+    "rule": "Complement variable v iff negative_occurrences(v) > positive_occurrences(v).",
+    "theorem": "Independent variable complementation is a Boolean assignment bijection preserving SAT.",
+    "certificate": "FLIP_VECTOR_PLUS_SOURCE_TARGET_HASH",
+    "complexity": "O(total_literal_occurrences + canonical_serialization)",
+    "witness_lift": "XOR flip vector",
+    "G37_to_E37_exact": true,
+    "flipped_variable_count_on_G37": 14,
+    "then_terminal": "UNIFORM_POLARITY_CLAUSE_WITNESS",
+    "is_compression": false,
+    "is_universal_progress": false
+  },
+  "current_catalog_state": {
+    "authoritative_forward_catalog_count": 15,
+    "candidate_after_reverse_schema_typed": 16,
+    "historical_receipts_mutated": false
+  },
+  "critical_reframing": "Signed literal gauge artifacts should be canonicalized away before treating them as genuinely new transition-state complexity. Canonicalization alone is not compression.",
+  "next_gate": {
+    "id": "RCTQ4_TYPED_SIGNED_NORMALIZATION_THEN_BALANCED_POLARITY_ESCAPE_WITH_NO_COUNT_GAUGE_DEFECT",
+    "requirements": [
+      "Promote SIGNED_POLARITY_COUNT_NORMALIZE through a fresh typed exact extension without mutating RCTQ3 receipts.",
+      "Build a deterministic explicit SAT family with positive_occurrences(v)=negative_occurrences(v) for every variable, so count normalization refuses everywhere.",
+      "Include at least one all-positive clause and at least one all-negative clause, so uniform polarity terminal refuses.",
+      "Escape pure, zero/single NTR, complementary twin, subsumption, SSR, disconnected components, 2-SAT and admitted swap-orbit quotient.",
+      "Carry an explicit exact mixed witness or exact UNSAT certificate.",
+      "No heuristic or oracle discovery."
+    ]
+  },
+  "universal_debt": [
+    "UNIVERSAL_EXACT_TRANSITION_AVAILABILITY_OR_EXPLICIT_ESCAPE_FOR_EACH_FROZEN_EXACT_CATALOG",
+    "POLYNOMIAL_ACTUALLY_MATERIALIZED_TRACE_VOLUME",
+    "POLYNOMIAL_STATE_BYTES",
+    "POLYNOMIAL_FULL_Q_TOTAL",
+    "EXACT_WITNESS_OR_UNSAT_CERTIFICATE",
+    "P_VS_NP"
+  ],
+  "P_VS_NP": "OPEN"
+}
