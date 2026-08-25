@@ -7,6 +7,8 @@ on:
       - 'research/mathematics/p-vs-np/akinator_rspc_semantic_survival_probe.py'
       - 'research/mathematics/p-vs-np/C025_AKINATOR_RSPC_BOUNDED_COVER_EXACT_SURVIVAL.md'
       - 'research/mathematics/p-vs-np/akinator_rspc_bounded_cover_probe.py'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_RSPC_BOUNDED_SUPPORT_ER3_ELIMINATION.md'
+      - 'research/mathematics/p-vs-np/akinator_rspc_bounded_support_elimination_probe.py'
       - '.github/workflows/validate-akinator-rspc.yml'
   workflow_dispatch:
 
@@ -25,11 +27,13 @@ jobs:
         run: python research/mathematics/p-vs-np/akinator_rspc_semantic_survival_probe.py
       - name: Run bounded-cover finite mechanics
         run: python research/mathematics/p-vs-np/akinator_rspc_bounded_cover_probe.py
+      - name: Run bounded-support elimination finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_rspc_bounded_support_elimination_probe.py
       - name: Claim ceiling reminder
         run: |
-          echo 'CI checks finite reduction/algebra/counterexample mechanics only.'
-          echo 'NP-completeness and fixed-C input-relative polynomial bounds are analytic derivations, not CI theorems.'
-          echo 'C=1 insufficiency comes from the prior Sokolov + TOPA transfer, not this workflow.'
-          echo 'No theorem excludes every fixed C>1.'
-          echo 'No superpolynomial witness-frontier lower bound is claimed.'
+          echo 'CI checks finite reduction/algebra/substitution/counterexample mechanics only.'
+          echo 'NP-completeness, bounded-support ER3 elimination, and support-growth consequences are analytic derivations, not CI theorems.'
+          echo 'The exponential Resolution lower bound is an imported frozen prior result.'
+          echo 'No unrestricted ER3 size lower bound is claimed.'
+          echo 'No P vs NP conclusion is claimed.'
           echo 'P_VS_NP = OPEN'
