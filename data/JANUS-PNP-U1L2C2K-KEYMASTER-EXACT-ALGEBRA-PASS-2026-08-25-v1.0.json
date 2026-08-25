@@ -1,0 +1,104 @@
+{
+  "schema": "JANUS_PNP_U1L2C2K_KEYMASTER_EXACT_ALGEBRA_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "protocol_commit": "ef7a4469261f63ed2ff861142fb6791ac47d32dc",
+  "provider_commit": "19fdfa31fd2715b188fd5d2c781a205cecefd61e",
+  "workflow_head_commit": "4543d7ac2f9613beec7a96953a34ec96c1427f2a",
+  "workflow_run": 32885715606,
+  "workflow_job": 97925544097,
+  "workflow_run_number": 1,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "SUCCESS",
+  "result_sha256": "7ea717e854e8138a797050aaa399d6b1d71fa90e2f099c75225d2247fa910dc3",
+  "keymaster_provenance": {
+    "historical_repo_file": "Hawkar-usls/janus-meta-registry:keymaster.py",
+    "historical_architecture_retained": "STATE_GUARD_TRANSITION_MEMORY_OUTPUT",
+    "historical_threshold_authority": "PRUNED_FROM_PROOF_PATH",
+    "uploaded_keymaster_sha256": "3e079abea62ad684649afc714f0a1956e31b5f43bb638d68a6061ca287b9230c"
+  },
+  "active_exact_catalog": {
+    "count": 12,
+    "operators": [
+      "PURE_LITERAL_EXISTS",
+      "TAUTOLOGICAL_RESOLVENT_EXISTS",
+      "SINGLE_NTR_EXISTS",
+      "COMPLEMENTARY_TWIN",
+      "CLAUSE_SUBSUMPTION",
+      "SELF_SUBSUMING_RESOLUTION",
+      "COMPONENT_PRODUCT",
+      "TWO_SAT_SCC",
+      "AFFINE_GF2_JOIN",
+      "ACI_SHARED_FACTOR",
+      "LITERAL_ACI_EXISTS",
+      "SYMMETRIC_WEIGHT_EXISTS"
+    ]
+  },
+  "exact_convergence_contract": {
+    "enumerate_all_certified_applicable_operators": true,
+    "heuristic_best_method_selection": false,
+    "canonical_syntactic_dedup": true,
+    "prune_only_identical_state_componentwise_cost_dominance": true,
+    "incomparable_exact_paths_preserved": true,
+    "silent_top_k_or_beam_truncation": false,
+    "frontier_explosion_must_be_reported": true,
+    "cost_vector": ["state","proof","discovery","failed_search","build","projection","join","verify","witness"]
+  },
+  "ci_controls": {
+    "heuristic_injection": "REFUSE_NONEXACT_SELECTION_AUTHORITY",
+    "ACI_TO_LITERAL_EXISTS": "PASS_TYPE_CHECKED_COMPOSITION",
+    "SYMMETRIC_WEIGHT_SELF_COMPOSITION": "PASS_TYPE_CHECKED_COMPOSITION",
+    "language_mismatch": "REFUSE_LANGUAGE_MISMATCH",
+    "same_state_input_paths": 4,
+    "same_state_non_dominated_kept": 2,
+    "different_state_paths_preserved": 2,
+    "frontier_explosion_fixture_input": 64,
+    "frontier_explosion_fixture_preserved": 64
+  },
+  "method_triage": {
+    "SLIME_SEMANTIC_PRESSURE": "PRUNED_FROM_PROOF_PATH",
+    "SLIME_EXACT_INCIDENCE_FINGERPRINT_FEATURES": "DONOR_ONLY_PENDING_EXACT_QUOTIENT_THEOREM",
+    "WALKSAT": "PRUNED_FROM_PROOF_PATH",
+    "PSO_SWARM": "PRUNED_FROM_PROOF_PATH",
+    "PHYSARUM_RANDOM_WALK_THRESHOLD": "PRUNED_FROM_PROOF_PATH",
+    "PHYSARUM_EXACT_FLOW_EQUATIONS": "DONOR_ONLY_PENDING_SAT_MORPHISM",
+    "HIVE_LLM_SCORE_SYNTHESIS": "PRUNED_FROM_PROOF_PATH",
+    "LEGACY_KEYMASTER_THRESHOLD_CONTROL": "PRUNED_FROM_PROOF_PATH",
+    "ODONTO_M2R_EMA_CHAMPION_MUTATION": "PRUNED_FROM_PROOF_PATH",
+    "RAMANUJAN_THETA_DIRECTOR_STEERING": "PRUNED_FROM_PROOF_PATH",
+    "RAMANUJAN_THETA_EXACT_SUM_PRODUCT_RECURRENCE": "DONOR_ONLY",
+    "MOD_THETA_PRIME": "PRUNED_FROM_PROOF_PATH",
+    "HEPHAESTUS_ENTROPY_PURITY_SELECTION": "PRUNED_FROM_PROOF_PATH",
+    "HEPHAESTUS_SYNTACTIC_HASH_REVISIT": "ALGEBRAIZED_ACTIVE",
+    "KEYMASTER_STATE_GUARD_TRANSITION_MEMORY_ARCHITECTURE": "ALGEBRAIZED_ACTIVE",
+    "AXIOM_BRIDGE": "GOVERNANCE_ONLY"
+  },
+  "algebraization_map": {
+    "SLIME": "EXACT_FEATURE_CERTIFICATES_PLUS_COMPLETE_BOUNDED_IDENTITY_KERNEL; PRESSURE_ORDER_REMOVED",
+    "KEYMASTER": "THRESHOLD_GUARDS_TO_EXACT_DOMAIN_PREDICATES_AND_TYPE_CHECKED_OPERATOR_COMPOSITION",
+    "ODONTO": "SCORE_MUTATION_TO_COMPLETE_FIXED_GRAMMAR_ENUMERATION_PLUS_EXACT_VERIFIER_WHERE_POLYNOMIALLY_BOUNDED",
+    "PHYSARUM": "RANDOM_PATH_SELECTION_REMOVED; EXACT_FLOW_CORE_IS_DONOR_ONLY_UNTIL_REDUCTION_CERTIFICATE",
+    "RAMANUJAN_THETA": "STEERING_REMOVED; EXACT_SUM_PRODUCT_AND_RECURRENCE_RETAINED_AS_DONOR",
+    "HEPHAESTUS": "ENTROPY_SELECTION_REMOVED; CANONICAL_HASH_REVISIT_AND_COST_ACCOUNTING_RETAINED"
+  },
+  "proved_in_scope": {
+    "EXACT_OPERATOR_SCHEMA_FAIL_CLOSED": true,
+    "EXACT_TYPE_CHECKED_COMPOSITION": true,
+    "COSTS_COMPONENTWISE_ADD_BY_CONTRACT": true,
+    "WITNESS_LIFTS_REVERSE_COMPOSE_BY_CONTRACT": true,
+    "IDENTICAL_STATE_DOMINANCE_PRUNING_SAFE": true,
+    "INCOMPARABLE_EXACT_PATHS_PRESERVED": true,
+    "HEURISTIC_AUTHORITY_IN_ACTIVE_PROOF_PATH": false
+  },
+  "still_open": [
+    "KEYMASTER_FRONTIER_POLY_BOUND",
+    "U1-L2C2C_DISCOVER_PROOF_CARRYING_SYMMETRY_OR_OTHER_POLY_TRANSITION_QUOTIENT_FROM_ARBITRARY_FACTOR",
+    "ARBITRARY_B2_SEQUENTIAL_CLOSURE",
+    "GLOBAL_POLY_STATE_AND_WORK_FOR_ARBITRARY_CNF",
+    "P_VS_NP"
+  ],
+  "next_gate": "KEYMASTER_FRONTIER_POLY_BOUND_AND_U1-L2C2C_EXACT_TRANSITION_QUOTIENT_DISCOVERY"
+}
