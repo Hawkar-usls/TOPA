@@ -1,0 +1,176 @@
+{
+  "schema": "JANUS_PNP_KONAMI_SPIRAL_FULL_METHOD",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "canonical_method_corpus": {
+    "file": "data/JANUS-PNP-REVERSE-SPIRAL-METHOD-UNIFICATION-2026-08-25-v1.0.json",
+    "commit": "74db4cfa068289eaee82c5582755a19362148c48",
+    "blob_sha": "dc3f2bf922f03b438697e04cff558ef75a58aed3",
+    "materialized_method_count": 76,
+    "materialization_rule": "Every reverse_spiral[].methods[] entry is part of this method. The source entry role/identity/statement/note/reason field is the authoritative WHAT_IT_GIVES description; status is the authoritative admission class.",
+    "status_counts": {
+      "ACTIVE_EXACT": 15,
+      "EXACT_RESTRICTED": 11,
+      "BARRIER_NEGATIVE": 17,
+      "ALGEBRAIZED": 3,
+      "PRUNED": 15,
+      "GOVERNANCE_ONLY": 10,
+      "PROVENANCE_ONLY": 5
+    }
+  },
+  "current_terminal_receipt": {
+    "file": "data/JANUS-PNP-REVERSE-SPIRAL-UNIFIED-FIRST-TERMINAL-RECEIPT-2026-08-25-v1.0.json",
+    "commit": "aa30c550db9f09b8bf2c074361a48c624959d00d",
+    "unified_result_sha256": "56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3",
+    "exact_keymaster_operator_count": 14
+  },
+  "what_the_unified_method_gives": {
+    "exact_local_reduction": [
+      "PURE_LITERAL_EXISTS",
+      "TAUTOLOGICAL_RESOLVENT_EXISTS",
+      "SINGLE_NTR_EXISTS",
+      "COMPLEMENTARY_TWIN",
+      "CLAUSE_SUBSUMPTION",
+      "SELF_SUBSUMING_RESOLUTION"
+    ],
+    "exact_decomposition_and_leaf_decision": [
+      "COMPONENT_PRODUCT",
+      "TWO_SAT_SCC",
+      "AFFINE_GF2_JOIN"
+    ],
+    "proof_carrying_representation_switch": [
+      "ACI_SHARED_FACTOR",
+      "SYMMETRIC_WEIGHT_EXISTS",
+      "SWAP_ORBIT_WEIGHT_EXISTS"
+    ],
+    "sequential_existential_closure_in_certified_languages": [
+      "LITERAL_ACI_EXISTS",
+      "SYMMETRIC_WEIGHT_EXISTS",
+      "SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"
+    ],
+    "exact_frontier_control": "KEYMASTER_FRONTIER_PRODUCT_BOUND gives a polynomial frontier conditional on polynomial canonical-state count M(N) and polynomial cumulative cost-coordinate bounds B_i(N).",
+    "barrier_memory": "17 exact negative/barrier nodes prevent reuse of already-refuted universal shortcuts.",
+    "formal_governance": "Receipts, falsification, fail-closed admission, provenance and formal-corpus layers prevent finite experiments or heuristic history from becoming theorem authority."
+  },
+  "synesthetic_memory_core_import": {
+    "id": "SYNESTHETIC_EXACT_TRAJECTORY_PASSPORT",
+    "status": "GOVERNANCE_ONLY",
+    "source_context": "Cousteau/Hannah mnemonic sensory layer imported as a strict measurement-to-passport memory/comparison law; connector search did not independently resolve the Cousteau source file in this pass.",
+    "law": [
+      "MEASUREMENT -> SENSORY_PASSPORT -> MEMORY_RETRIEVAL_COMPARISON",
+      "SENSORY_PASSPORT -X-> SCIENTIFIC_VERDICT"
+    ],
+    "pnp_exact_payload": [
+      "representation_language_id",
+      "canonical_state_sha256",
+      "state_bytes",
+      "proof_bytes",
+      "discovery_ops",
+      "projection_ops",
+      "verification_ops",
+      "witness_ops",
+      "frontier_size",
+      "cumulative_cost_vector",
+      "delta_cost_vector",
+      "second_delta_cost_vector"
+    ],
+    "allowed_uses": [
+      "exact trajectory retrieval",
+      "exact cost-wave finite differences",
+      "exact recurrence alert only when canonical identity certificate matches",
+      "representation-switch cycle diagnostics",
+      "comparison of certified runs"
+    ],
+    "forbidden_uses": [
+      "merge states by sensory similarity",
+      "rank methods by color/sound/shape",
+      "approximate equivalence authority",
+      "SAT/UNSAT decision authority",
+      "proof authority"
+    ],
+    "why_it_may_help": "It can expose exact oscillations, recurrence and sudden cost growth across representation changes; it cannot itself reduce complexity or establish semantic equivalence."
+  },
+  "konami_spiral": {
+    "name": "JANUS_KONAMI_REVERSE_FORWARD_FIXED_POINT",
+    "sequence": [
+      "END_TO_BEGINNING",
+      "BEGINNING_TO_END",
+      "END_TO_BEGINNING",
+      "BEGINNING_TO_END"
+    ],
+    "repeat_rule": "Continue exact passes until the set of derived capability tokens and unresolved obligations is unchanged between a full reverse+forward cycle.",
+    "selection_rule": "NONE",
+    "ranking_rule": "NONE",
+    "branch_pruning_rule": "Only exact duplicate/equivalence certificates, exact dominance on identical canonical state, or exact barrier/refutation may prune.",
+    "fixed_point_is_not_a_proof": true
+  },
+  "capability_graph": {
+    "initial_tokens": [
+      "EXPLICIT_CNF_INPUT",
+      "EXACT_INTEGER_ARITHMETIC",
+      "CANONICAL_SYNTACTIC_HASH",
+      "NO_HEURISTICS_CONTRACT"
+    ],
+    "rules": [
+      {"id":"R_LOCAL_CNF_ALGEBRA","requires":["EXPLICIT_CNF_INPUT"],"gives":["EXACT_LOCAL_CNF_REDUCTIONS","LOCAL_WITNESS_LIFTS"]},
+      {"id":"R_COMPONENT","requires":["EXPLICIT_CNF_INPUT"],"gives":["EXACT_COMPONENT_DECOMPOSITION","COMPONENT_WITNESS_GLUE"]},
+      {"id":"R_2SAT","requires":["CERTIFIED_2CNF"],"gives":["EXACT_SAT_OR_UNSAT_LEAF","REPLAYABLE_LEAF_CERTIFICATE"]},
+      {"id":"R_AFFINE","requires":["CERTIFIED_AFFINE_GF2"],"gives":["EXACT_AFFINE_STATE","REPLAYABLE_AFFINE_CERTIFICATE"]},
+      {"id":"R_ACI","requires":["CERTIFIED_PURE_AND_CONE"],"gives":["ACI_QUOTIENT","SEQUENTIAL_EXISTS_ACI"]},
+      {"id":"R_SYMMETRIC_WEIGHT","requires":["CERTIFIED_SYMMETRIC_FACTOR"],"gives":["HAMMING_WEIGHT_QUOTIENT","SEQUENTIAL_EXISTS_WEIGHT"]},
+      {"id":"R_SWAP_ORBIT","requires":["EXPLICIT_CNF_INPUT","PAIR_SWAP_DISCOVERY_POLYNOMIAL","ORBIT_PRODUCT_POLYNOMIAL"],"gives":["SWAP_ORBIT_QUOTIENT","SEQUENTIAL_EXISTS_SWAP_ORBIT"]},
+      {"id":"R_KEYMASTER_FRONTIER","requires":["POLY_CANONICAL_TRANSITION_STATE_COUNT","POLY_CUMULATIVE_COST_BOUNDS"],"gives":["POLY_EXACT_KEYMASTER_FRONTIER"]},
+      {"id":"R_GLOBAL_P_ALGORITHM","requires":["ARBITRARY_CNF_EXACT_CATALOG_COVERAGE","UNIVERSAL_SEQUENTIAL_EXISTENTIAL_CLOSURE","POLY_CANONICAL_TRANSITION_STATE_COUNT","POLY_CUMULATIVE_COST_BOUNDS","POLY_DISCOVERY_AND_BUILD","GLOBAL_CERTIFICATE_COMPOSITION","GLOBAL_WITNESS_OR_UNSAT_LIFT","WELL_FOUNDED_REPRESENTATION_SWITCHING"],"gives":["UNIVERSAL_POLYNOMIAL_SAT_ALGORITHM"]},
+      {"id":"R_P_EQUALS_NP","requires":["UNIVERSAL_POLYNOMIAL_SAT_ALGORITHM"],"gives":["P_EQUALS_NP"]}
+    ]
+  },
+  "candidate_missed_obligations_to_test_by_fixed_point": [
+    {
+      "id": "ARBITRARY_CNF_EXACT_CATALOG_COVERAGE",
+      "question": "Does every arbitrary CNF state admit at least one theorem-bearing exact transition or certified terminal leaf without heuristic selection?"
+    },
+    {
+      "id": "CROSS_LANGUAGE_SEMANTIC_EQUIVALENCE_CERTIFICATE",
+      "question": "Can CNF, ACI, affine, 2SAT, symmetric-weight and swap-orbit states that encode the same Boolean relation be recognized and merged in polynomial time by proof-carrying cross-language certificates?"
+    },
+    {
+      "id": "PIVOT_ORDER_INVARIANCE_OR_POLY_BRANCH_QUOTIENT",
+      "question": "After heuristic variable ordering is forbidden, is arbitrary pivot choice safe, or can all exact pivot branches be quotient-compressed to polynomially many transition states?"
+    },
+    {
+      "id": "POLY_CANONICAL_TRANSITION_STATE_COUNT",
+      "question": "Is the number M(N) of non-equivalent exact transition states polynomial for arbitrary CNF?"
+    },
+    {
+      "id": "POLY_CUMULATIVE_COST_BOUNDS",
+      "question": "Are all nine cumulative cost coordinates polynomial across the full n-step existential chain, including failed exact-domain checks and certificate bytes?"
+    },
+    {
+      "id": "POLY_DISCOVERY_AND_BUILD",
+      "question": "Can every representation switch and equivalence certificate used by the universal route be discovered and built in polynomial time rather than merely verified in polynomial time?"
+    },
+    {
+      "id": "GLOBAL_CERTIFICATE_COMPOSITION",
+      "question": "Is there a formally proved composition theorem for arbitrary mixtures of the active representation languages, not only locally checked pairs?"
+    },
+    {
+      "id": "GLOBAL_WITNESS_OR_UNSAT_LIFT",
+      "question": "Do SAT witnesses and UNSAT certificates compose through every allowed representation-switch chain with polynomial total size and replay cost?"
+    },
+    {
+      "id": "WELL_FOUNDED_REPRESENTATION_SWITCHING",
+      "question": "Can exact representation switches cycle across different languages without syntactic state repetition, and if so what exact well-founded measure prevents infinite or superpolynomial internal switching?"
+    },
+    {
+      "id": "UNIVERSAL_SEQUENTIAL_EXISTENTIAL_CLOSURE",
+      "question": "Does the exact language union remain closed under every next existential projection for arbitrary CNF without decompression to exponential state?"
+    }
+  ],
+  "scientific_status": {
+    "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+    "P_VS_NP": "OPEN"
+  }
+}
