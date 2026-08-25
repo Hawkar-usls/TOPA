@@ -1,0 +1,138 @@
+name: Validate PF5 Slime Balanced Branch q1 v14
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_BALANCED_BRANCH_Q1_V14.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_balanced_branch_q1_v14.py'
+      - '.github/workflows/validate-pf5-slime-balanced-branch-q1-v14.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_BALANCED_BRANCH_Q1_V14.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_balanced_branch_q1_v14.py'
+      - '.github/workflows/validate-pf5-slime-balanced-branch-q1-v14.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  balanced-q1-topology-isolation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime balanced-tree v4
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 9983b0173da9d5de1bfb5e9922fa78762160e94f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen fresh balanced q1 probe
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_balanced_branch_q1_v14.py \
+            --producer-path ../../../../demiurge/models/slime/slime_balanced_branch_tree_v4.py \
+            --json-out ../../../../pf5-slime-balanced-branch-q1-v14.result.json
+      - name: Verify outcome-neutral runtime and certificate discipline
+        run: |
+          python - <<'PY'
+          import inspect, json, sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          import pf5_slime_balanced_branch_q1_v14 as v14
+          import pf5_slime_capped_pswidth_compiler_v12 as v12
+
+          d=json.load(open('pf5-slime-balanced-branch-q1-v14.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-BALANCED-BRANCH-Q1-V14'
+          assert d['status']=='FINITE_TOPOLOGY_ISOLATION_PROBE_COMPLETE'
+          assert d['producer']['commit']=='9983b0173da9d5de1bfb5e9922fa78762160e94f'
+          assert d['q']==1
+          assert d['frozen_rows']==[list(x) for x in v14.FROZEN_ROWS]
+          assert d['all_formulas_and_tree_manifests_frozen_before_compilation'] is True
+          assert d['runtime_assignment_enumeration'] is False
+          assert d['runtime_exact_width_oracle'] is False
+          assert d['runtime_sat_oracle'] is False
+          assert len(d['results'])==12
+          assert d['closed_candidates']+d['open_candidates']==12*16
+          assert d['global_ledger']['candidate_attempts']==12*16
+          assert d['arbitrary_binary_tree_q1_completeness']=='OPEN'
+          assert d['some_fixed_q_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+
+          runtime_source=inspect.getsource(v14.compile_balanced_tree)
+          for token in ['assignment_signatures(', 'score_candidate(', 'itertools.product(', 'solve_sat(', 'sat_oracle(']:
+              assert token not in runtime_source, token
+
+          recovered=0
+          for row in d['results']:
+              p=row['portfolio']
+              assert p['cap']==row['incidence_leaves']
+              assert p['closed_candidates']+p['open_candidates']==16
+              formula=v12.random_connected_3cnf(row['seed'],row['n'],row['m'])
+              for attempt in p['attempts']:
+                  if attempt['terminal']=='OPEN_BALANCED_STATE_CAP':
+                      assert attempt['failure']['distinct_states_at_refusal']==attempt['failure']['cap']+1
+                  else:
+                      assert attempt['terminal']=='CLOSED_BALANCED_PSWIDTH_CAP'
+                      assert attempt['peak_ps_state']<=p['cap']
+                      assert attempt['certificate_replayed_before_discard'] is True
+              if p['terminal']=='CLOSED_BALANCED_PORTFOLIO_Q1':
+                  recovered += 1
+                  wrapped={'terminal':'CLOSED_BALANCED_PSWIDTH_CAP','certificate':p['selected_certificate']}
+                  assert v14.replay_balanced_certificate(formula,wrapped)
+                  assert p['selected_certificate_replay'] is True
+              else:
+                  assert p['terminal']=='OPEN_BALANCED_PORTFOLIO_Q1_EXHAUSTED'
+                  assert p['closed_candidates']==0 and p['open_candidates']==16
+          assert recovered==d['recovered_sources']
+          assert d['exhausted_sources']==12-recovered
+          if recovered:
+              assert d['terminal_interpretation']=='BALANCED_TOPOLOGY_RECOVERS_Q1_ON_FINITE_DENSE_CONTROL'
+          else:
+              assert d['terminal_interpretation']=='SIMPLE_BALANCED_TRANSFORM_Q1_REFUTED_ON_FRESH_DENSE_LADDER'
+          print('PF5_V14_RUNTIME_AND_REPLAY = PASS')
+          print('RECOVERED_SOURCES =',d['recovered_sources'])
+          print('EXHAUSTED_SOURCES =',d['exhausted_sources'])
+          print('CLOSED_CANDIDATES =',d['closed_candidates'])
+          print('OPEN_CANDIDATES =',d['open_candidates'])
+          print('BATCH_SHA256 =',d['frozen_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Independent arbitrary-tree cut audit
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          sys.path.insert(0,'demiurge/models/slime')
+          import pf5_slime_balanced_branch_q1_v14 as v14
+          import pf5_slime_pswidth_blind_probe_v9 as audit
+          from slime_balanced_branch_tree_v4 import SlimeBalancedBranchTreeV4
+
+          formula=((1,2,3),(-1,2,4),(2,-3,5),(-2,4,5),(1,-4,6),(2,5,6))
+          manifest=SlimeBalancedBranchTreeV4().generate_manifest(formula)
+          candidate=manifest.candidates[0]
+          result=v14.compile_balanced_tree(formula,candidate.tree,q=1)
+          assert result['terminal']=='CLOSED_BALANCED_PSWIDTH_CAP'
+          assert v14.replay_balanced_certificate(formula,result)
+          checked=0
+          for row in result['certificate']['nodes']:
+              selected=set(row['leaves'])
+              value,left,right=audit.ps_cut_value(formula,selected,{'cuts':0,'assignment_rows':0,'literal_checks':0})
+              assert row['forward_count']==left, (row['node_id'],row['forward_count'],left)
+              assert row['complement_count']==right, (row['node_id'],row['complement_count'],right)
+              assert max(row['forward_count'],row['complement_count'])==value
+              checked+=1
+          assert checked==2*len(candidate.leaf_order)-1
+          print('PF5_V14_ARBITRARY_TREE_C032_AUDIT = PASS')
+          print('TREE_NODES_CHECKED =',checked)
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'BALANCED_RECOVERY != UNIVERSAL_Q1_COMPLETENESS'
+          echo 'SIMPLE_BALANCED_FAILURE != ARBITRARY_TREE_LOWER_BOUND'
+          echo 'NO_Q_ESCALATION'
+          echo 'P_VS_NP = OPEN'

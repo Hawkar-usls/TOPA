@@ -1,0 +1,58 @@
+{
+  "artifact_id": "PF5-SLIME-BALANCED-BRANCH-Q1-V14-RECEIPT",
+  "status": "AUTHORITATIVE_SIMPLE_BALANCED_Q1_COUNTEREXAMPLE_PASS",
+  "provider": {
+    "run": 32827586185,
+    "job": 97738917617,
+    "head": "762e6654f4210ce39a560c39819eaff844b89675",
+    "conclusion": "SUCCESS",
+    "frozen_batch_sha256": "d19fce378b686bba35753098ea906dd5610bac6dda2134a943c0cddd221c6aa3",
+    "result_sha256": "d7b3ca60a81a09a4822d00ae3b4389a4ebdf95257ac91897f86d19cd36d36dc1"
+  },
+  "frozen_hypothesis": {
+    "producer": "Hawkar-usls/Janus-Demiurge@9983b0173da9d5de1bfb5e9922fa78762160e94f",
+    "candidate_count": 16,
+    "leaf_orders": "EXACTLY_THE_FROZEN_SLIME_V3_ORDERS",
+    "topology": "BALANCED_FULL_BINARY_BY_CONTIGUOUS_BISECTION",
+    "q": 1,
+    "cap_escalation": false
+  },
+  "fresh_dense_ladder": {
+    "rows": [
+      [10,42,910010],[10,42,910011],[12,50,910012],[12,50,910013],
+      [14,59,910014],[14,59,910015],[16,67,910016],[16,67,910017],
+      [18,76,910018],[18,76,910019],[20,84,910020],[20,84,910021]
+    ],
+    "sources": 12
+  },
+  "outcome": {
+    "recovered_sources": 0,
+    "exhausted_sources": 12,
+    "candidate_attempts": 192,
+    "closed_candidates": 0,
+    "open_candidates": 192,
+    "terminal": "SIMPLE_BALANCED_TRANSFORM_Q1_REFUTED_ON_FRESH_DENSE_LADDER"
+  },
+  "global_ledger": {
+    "topology_plus_slime_generation_ops": 8839994,
+    "compiler_work_units": 2973601,
+    "candidate_attempts": 192
+  },
+  "verification": {
+    "runtime_certificate_and_fail_fast_checks": "PASS",
+    "arbitrary_tree_c032_audit": "PASS",
+    "audit_tree_nodes_checked": 23,
+    "runtime_assignment_enumeration": false,
+    "runtime_exact_width_oracle": false,
+    "runtime_sat_oracle": false
+  },
+  "scientific_interpretation": [
+    "Changing only caterpillar depth/topology to deterministic balanced contiguous bisection does not recover q=1 closure on the fresh dense ladder.",
+    "The negative result does not establish a lower bound for arbitrary binary branch decompositions because the leaf partitions are still constrained by the original Slime linear orders and contiguous bisection.",
+    "The next meaningful topology axis is source-driven non-contiguous incidence partitioning rather than another fixed tree shape."
+  ],
+  "next_gate": "SLIME_SOURCE_DRIVEN_INCIDENCE_PARTITION_TREE_Q1_GATE",
+  "arbitrary_binary_tree_q1_completeness": "OPEN",
+  "some_fixed_q_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
