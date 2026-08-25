@@ -1,0 +1,56 @@
+name: Receipt PF5 GT12 Clause Trace DP
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_gt12_clause_trace_dp_probe.py'
+      - '.github/workflows/receipt-pf5-gt12-clause-trace-dp.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact clause-trace DP successor
+        run: |
+          python topa/research/mathematics/p-vs-np/pf5_gt12_clause_trace_dp_probe.py \
+            --topa-root topa \
+            --fundamentum-root fundamentum \
+            --output /tmp/r.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/r.json'))
+          w=r['width']; d=r['dp']
+          out={
+              'terminal':r['dp']['terminal'],
+              'input_units':r['input_state']['units'],
+              'input_clauses':r['input_state']['clauses'],
+              'input_variables':r['input_state']['variables'],
+              'max_live_variables':w['max_live_variables'],
+              'lambda_clause':w['lambda_clause'],
+              'max_live_clause_index':w['max_live_clause_index'],
+              'transition_work':d['transition_work'],
+              'max_retained_states':d['max_retained_states'],
+              'max_retained_states_clause_index':d['max_retained_states_clause_index'],
+              'trigger':d['trigger'],
+              'exact_sat_current_state':d['exact_sat_current_state'],
+              'p_vs_np':r['p_vs_np'],
+          }
+          print('PF5_GT12_CLAUSE_TRACE_DP_RECEIPT='+json.dumps(out,sort_keys=True,separators=(',',':')))
+          PY
