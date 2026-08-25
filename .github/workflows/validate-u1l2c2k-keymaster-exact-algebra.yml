@@ -1,0 +1,27 @@
+name: Validate U1-L2C2K Keymaster Exact Algebra
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/U1_L2C2K_KEYMASTER_EXACT_ALGEBRA_CONVERGENCE.md'
+      - 'research/mathematics/p-vs-np/u1l2c2k_keymaster_exact_algebra_verifier.py'
+      - '.github/workflows/validate-u1l2c2k-keymaster-exact-algebra.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keymaster-exact-algebra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile provider
+        run: python -m py_compile research/mathematics/p-vs-np/u1l2c2k_keymaster_exact_algebra_verifier.py
+      - name: Verify exact operator catalog, composition and frontier pruning
+        run: python research/mathematics/p-vs-np/u1l2c2k_keymaster_exact_algebra_verifier.py
