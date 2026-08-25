@@ -1,0 +1,34 @@
+{
+  "artifact_id": "PF5-SLIME-EXACT-OPTIMALITY-GAP-V11-RECEIPT",
+  "workflow_run": 32827411105,
+  "workflow_job": 97738365151,
+  "conclusion": "SUCCESS",
+  "manifest_batch_sha256": "0040bf0af5c6d75e13f2831b808fb7e4b88b5b2c95248d88af1130988048483d",
+  "result_sha256": "2a8cb5761cd93be5fcd471a2412030552954239f6cf820df4f6bf989a995bf96",
+  "frozen_corpus": {
+    "seeds": "907000..907015",
+    "variable_count": 5,
+    "clause_count": 7,
+    "cases": 16,
+    "all_sources_and_manifests_frozen_before_exact_dp": true
+  },
+  "summary": {
+    "slime_optimal": 0,
+    "slime_suboptimal": 16,
+    "first_gap_seed": 907000,
+    "first_gap_slime_width": 6,
+    "first_gap_exact_optimum": 4,
+    "max_optimality_gap": 4,
+    "mean_slime_width": 6.5,
+    "mean_optimal_width": 3.6875
+  },
+  "global_cost_ledger": {
+    "slime_generation_ops": 41066,
+    "exact_subset_dp_cut_evaluations": 65504,
+    "exact_verifier_assignment_rows": 866310,
+    "exact_verifier_literal_checks": 4498896
+  },
+  "interpretation": "The frozen Slime semantic-pressure candidate is not an exact optimizer of caterpillar PS-width even on the tested small connected 3-CNFs. This refutes completeness/optimality of the current heuristic only; it does not imply SAT hardness or P!=NP.",
+  "next_gate": "DIAGNOSE_SEED_907000_SOURCE_ONLY_FEATURE_GAP_BEFORE_ANY_SLIME_MUTATION",
+  "p_vs_np": "OPEN"
+}

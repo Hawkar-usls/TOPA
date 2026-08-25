@@ -1,0 +1,23 @@
+{
+  "artifact_id": "PF5-V11-SEED-907000-DIAGNOSTIC",
+  "seed": 907000,
+  "source_formula": [[-1,2,-3],[2,3,4],[-3,-4,-5],[1,-5,2],[-1,-2,-5],[1,4,-5],[2,-5,-3]],
+  "v11_slime_width": 6,
+  "v11_exact_optimal_caterpillar_ps_width": 4,
+  "diagnostic_only": true,
+  "new_feature_selection_rule": "Only an assignment-independent exact source rule with a replayable certificate may be admitted. No score-guided or trace-guided rule may be added.",
+  "observed_exact_source_fact": {
+    "variable": 5,
+    "positive_occurrences": 0,
+    "negative_occurrences": 5,
+    "status": "PURE_NEGATIVE"
+  },
+  "recursive_exact_projection": [
+    {"variable":5,"forced_witness_value":false,"reason":"pure negative; x5=false satisfies every clause containing -5","clauses_removed":5},
+    {"variable":1,"forced_witness_value":false,"reason":"pure negative in residual","clauses_removed":1},
+    {"variable":4,"forced_witness_value":true,"reason":"pure positive in residual","clauses_removed":1}
+  ],
+  "residual_clause_count": 0,
+  "interpretation": "The v11 gap source is exactly SAT-reducible by recursive pure-literal existential projection before any decomposition search. This does not explain all v11 gaps and is not a completeness theorem.",
+  "claim_ceiling": "P_VS_NP = OPEN"
+}
