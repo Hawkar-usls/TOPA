@@ -2,10 +2,12 @@
 """JANUS RCTQ-4: typed signed normalization + balanced-polarity audit.
 
 This verifier is outcome-neutral about whether B_37 escapes the frozen 16 exact
-operators.  It proves the balanced construction and exact witnesses, evaluates
+operators. It proves the balanced construction and exact witnesses, evaluates
 all frozen domains, and reports either an escape or the exact older operator(s)
-that close it.  No heuristic, randomization, SAT oracle, truth-table oracle, or
-optimum oracle is used.
+that close it. The swap-orbit domain is audited symbolically: discover exact
+swap classes and compare P=product(|C_j|+1) to the frozen N^4 cap, without
+materializing the admitted quotient table. No heuristic, randomization, SAT
+oracle, truth-table oracle, or optimum oracle is used.
 """
 from __future__ import annotations
 
@@ -18,6 +20,7 @@ import sys
 HERE = Path(__file__).resolve().parent
 PROTOCOL_COMMIT = "8d4699c79b87e3c149996b653ba5649c94a0565d"
 LADDER = (37, 41, 43, 47)
+ORBIT_K = 4
 
 
 def load_module(name: str, path: Path):
@@ -66,7 +69,6 @@ def truth_profile(clause, assignment):
 
 def verify_balanced_witness_derivation(n: int, G, B):
     w1, w0 = r3.inherited_witnesses(G)
-    # Every G clause is non-monochromatic under both inherited witnesses.
     for c in G:
         t1 = truth_profile(c, w1)
         t0 = truth_profile(c, w0)
@@ -89,6 +91,31 @@ def polarity_balance(F):
     return exact, rows
 
 
+def symbolic_orbit_domain(F):
+    blocks, _pair_rows, comparisons = r3.r2.swap.discover_swap_classes(F)
+    sizes = tuple(len(b) for b in blocks)
+    P = 1
+    for m in sizes:
+        P *= m + 1
+    N = r3.r2.swap.encoded_size(F)
+    cap = N ** ORBIT_K
+    admitted = P <= cap
+    return {
+        "status": "ADMIT_ORBIT_STATE_PRODUCT_LE_N^4" if admitted else "REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4",
+        "admitted": admitted,
+        "N": N,
+        "K": ORBIT_K,
+        "N_pow_4": cap,
+        "P": P,
+        "pair_comparisons": comparisons,
+        "block_count": len(blocks),
+        "block_sizes": list(sizes),
+        "all_singletons": all(m == 1 for m in sizes),
+        "audit_materialization_skipped": True,
+        "would_materialize_orbit_weight_states": P,
+    }
+
+
 def domain_audit(n: int, include_table: bool):
     G, F = balanced_cnf(n)
     w1, w0 = verify_balanced_witness_derivation(n, G, F)
@@ -105,7 +132,7 @@ def domain_audit(n: int, include_table: bool):
     pol = r3.polarity_terminal_certificate(F)
     balanced, balance_rows = polarity_balance(F)
     normalize_vars = [v for v, (p, m) in counts.items() if m > p]
-    orbit_state, orbit_cert = r3.r2.swap.build_quotient(F)
+    orbit = symbolic_orbit_domain(F)
 
     assert balanced is True
     assert normalize_vars == []
@@ -135,8 +162,7 @@ def domain_audit(n: int, include_table: bool):
         elif oid == "COMPONENT_PRODUCT":
             applies, reason = comps > 1, "INCIDENCE_DISCONNECTED" if comps > 1 else "INCIDENCE_CONNECTED"
         elif oid == "SWAP_ORBIT_WEIGHT_EXISTS":
-            applies = orbit_state is not None
-            reason = "PASS_SWAP_ORBIT_QUOTIENT" if applies else orbit_cert["status"]
+            applies, reason = orbit["admitted"], orbit["status"]
         elif oid == "UNIFORM_POLARITY_CLAUSE_WITNESS":
             applies = pol["all_clauses_have_positive_literal"] or pol["all_clauses_have_negative_literal"]
             reason = "UNIFORM_POLARITY_DOMAIN" if applies else "HAS_ALL_POSITIVE_AND_ALL_NEGATIVE_CLAUSE_BLOCKERS"
@@ -170,15 +196,9 @@ def domain_audit(n: int, include_table: bool):
         "ssr_certificate": ssr_cert,
         "incidence_component_count": comps,
         "polarity_terminal": pol,
-        "swap_orbit": {
-            "status": "PASS_SWAP_ORBIT_QUOTIENT" if orbit_state is not None else orbit_cert["status"],
-            "N": orbit_cert["N"],
-            "P": orbit_cert["P"],
-            "pair_comparisons": orbit_cert["pair_comparisons"],
-            "block_count": len(orbit_cert["blocks"]),
-        },
+        "swap_orbit": orbit,
         "admitted_frozen16_operator_ids": admitted,
-        "escape_count": 16 - len(admitted),
+        "escaped_all_frozen16": len(admitted) == 0,
     }
     if include_table:
         row["operator_domain_table"] = table
@@ -191,7 +211,8 @@ def main():
     primary = domain_audit(37, True)
     ladder = [domain_audit(n, False) for n in LADDER]
 
-    escaped = len(primary["admitted_frozen16_operator_ids"]) == 0
+    escaped = primary["escaped_all_frozen16"]
+    ladder_escape_ns = [row["n"] for row in ladder if row["escaped_all_frozen16"]]
     status = (
         "PASS_EXPLICIT_FROZEN_16_BALANCED_ESCAPE"
         if escaped
@@ -200,7 +221,11 @@ def main():
     next_gate = (
         "RCTQ5_REVERSE_BALANCED_ESCAPE_FOR_NEW_EXACT_INVARIANT"
         if escaped
-        else "RCTQ5_ANALYZE_EXISTING_EXACT_OPERATOR_THAT_CLOSES_BALANCED_FAMILY"
+        else (
+            "RCTQ5_USE_FIRST_CONFIRMED_BALANCED_LADDER_ESCAPE_AND_REVERSE"
+            if ladder_escape_ns
+            else "RCTQ5_ANALYZE_EXISTING_EXACT_OPERATOR_THAT_CLOSES_BALANCED_FAMILY"
+        )
     )
     result = {
         "schema": "JANUS_RCTQ4_SIGNED_NORMALIZATION_BALANCED_FAMILY_RESULT",
@@ -208,6 +233,11 @@ def main():
         "claim_ceiling": "P_VS_NP_OPEN",
         "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
         "protocol_commit": PROTOCOL_COMMIT,
+        "audit_repair": {
+            "rctq4_001_preserved": True,
+            "domain_semantics_changed": False,
+            "orbit_domain_checked_without_materialization": True,
+        },
         "catalog_extension": {
             "old_operator_count": 15,
             "new_operator_count": len(catalog),
@@ -218,12 +248,14 @@ def main():
         },
         "primary_balanced_family": primary,
         "ladder": ladder,
+        "ladder_escape_ns": ladder_escape_ns,
         "theorem_ledger": {
             "BALANCED_CONSTRUCTION_POS_EQ_NEG_FOR_EVERY_VARIABLE": primary["exact_pos_neg_balance"],
             "SIGNED_POLARITY_COUNT_NORMALIZE_APPLIES_TO_B37": "SIGNED_POLARITY_COUNT_NORMALIZE" in primary["admitted_frozen16_operator_ids"],
             "B37_HAS_EXPLICIT_SAT_WITNESS": primary["explicit_witness_1"] == "PASS",
             "B37_ESCAPES_EVERY_FROZEN_16_OPERATOR_DOMAIN": escaped,
             "CATALOG_ESCAPE_IMPLIES_SAT_HARDNESS": False,
+            "FINITE_CI_PRACTICALITY_EQUALS_ASYMPTOTIC_POLYNOMIALITY": False,
             "P_EQUALS_NP": False,
         },
         "next_gate": next_gate,
