@@ -1,0 +1,23 @@
+{
+  "artifact_id": "PF5-V28-001-PREPROVIDER-TERMINAL-BRANCH-CLARIFICATION",
+  "status": "FROZEN_BEFORE_PROVIDER_CODE_AND_BEFORE_FRESH_RESULTS",
+  "parent_protocol": "PF5-V28-2SAT-BACKDOOR-K2-FROZEN-PROTOCOL",
+  "reason": "A backdoor assignment can simplify a branch directly to the empty formula or to a formula containing an empty clause. The existing v26 SCC implementation accepts unit/binary clauses but does not encode a width-0 empty clause as implication edges.",
+  "clarification": {
+    "empty_formula_branch": "SAT with exact EMPTY_FORMULA terminal certificate; no SCC call required",
+    "empty_clause_branch": "UNSAT with exact EMPTY_CLAUSE_AFTER_SIMPLIFICATION terminal certificate identifying the reconstructed empty clause; no SCC call required",
+    "nonterminal_branch": "must be verified width<=2 and then use the existing proof-carrying v26 SCC provider"
+  },
+  "unchanged": {
+    "fresh_holdout": ["918600..918615", "918700..918715"],
+    "k_max": 2,
+    "backdoor_discovery_order": "k increasing then lexicographic variable ids",
+    "branch_order": "lexicographic Boolean tuples, false before true",
+    "all_backdoor_assignments_explored": true,
+    "failed_candidate_discovery_charged": true,
+    "no_sat_oracle": true,
+    "no_truth_table_in_provider": true,
+    "p_vs_np": "OPEN"
+  },
+  "post_hoc_tuning": false
+}
