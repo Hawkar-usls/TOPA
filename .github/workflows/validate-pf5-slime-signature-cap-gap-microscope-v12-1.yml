@@ -1,0 +1,63 @@
+name: Validate PF5 Slime Signature Cap Gap Microscope v12.1
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_signature_cap_gap_microscope_v12_1.py'
+      - '.github/workflows/validate-pf5-slime-signature-cap-gap-microscope-v12-1.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_signature_cap_gap_microscope_v12_1.py'
+      - '.github/workflows/validate-pf5-slime-signature-cap-gap-microscope-v12-1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  signature-cap-gap-microscope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v2 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 6bb9ed246a4740e0d4488d3df6848f266e1e32f4
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Diagnose already-observed v12 seed 908001
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_signature_cap_gap_microscope_v12_1.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v2.py \
+            --json-out ../../../../pf5-slime-signature-cap-gap-microscope-v12-1.result.json
+      - name: Verify post-hoc scope
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-signature-cap-gap-microscope-v12-1.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-SIGNATURE-CAP-GAP-MICROSCOPE-V12.1'
+          assert d['status']=='POSTHOC_DIAGNOSTIC_COMPLETE'
+          assert d['seed']==908001
+          assert d['posthoc_not_holdout'] is True
+          assert d['new_width']==6 and d['exact_optimal_width']==4
+          assert d['optimality_gap']==2
+          assert d['first_exact_local_gap'] is not None
+          assert d['next_feature_must_be_source_only'] is True
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_SLIME_SIGNATURE_CAP_GAP_MICROSCOPE_V12_1_CONTRACT = PASS')
+          print('FIRST_EXACT_LOCAL_GAP =',d['first_exact_local_gap'])
+          print('FIRST_SIGNATURE_CAP_TIE_FAILURE =',d['first_signature_cap_tie_failure'])
+          print('DIAGNOSTIC_SPLIT =',d['diagnostic_split'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'POSTHOC_DIAGNOSTIC != BLIND_HOLDOUT'
+          echo 'SURROGATE_GAP != HARDNESS'
+          echo 'P_VS_NP = OPEN'
