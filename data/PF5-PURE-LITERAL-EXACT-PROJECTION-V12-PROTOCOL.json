@@ -1,0 +1,16 @@
+{
+  "artifact_id": "PF5-PURE-LITERAL-EXACT-PROJECTION-V12-PROTOCOL",
+  "feature": "PURE_LITERAL_EXISTENTIAL_PROJECTION",
+  "feature_is_heuristic": false,
+  "diagnostic_seed": 907000,
+  "blind_holdout_seeds": [908000,908001,908002,908003,908004,908005,908006,908007,908008,908009,908010,908011,908012,908013,908014,908015,908016,908017,908018,908019,908020,908021,908022,908023,908024,908025,908026,908027,908028,908029,908030,908031],
+  "variable_count": 5,
+  "clause_count": 7,
+  "holdout_conditioned_on_feature_presence": false,
+  "adaptive_seed_extension": false,
+  "runtime_inputs": ["explicit CNF only"],
+  "forbidden_runtime_inputs": ["Slime trace", "PS-width", "SAT oracle", "truth table", "exact optimum order", "holdout result"],
+  "exact_rule": "If x occurs in exactly one polarity, project x by choosing the satisfying polarity value and remove every clause containing that literal; record and replay the certificate.",
+  "audit_oracle": "exact subset-DP caterpillar PS-width; finite and exponential; audit only",
+  "claim_ceiling": "P_VS_NP = OPEN"
+}
