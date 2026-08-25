@@ -1,0 +1,121 @@
+{
+  "schema": "JANUS_PNP_PROOF_OBLIGATION_GRAPH",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "base_commit": "f3cc7ce8d217437d7f30976133d8d2675df9a82f",
+  "graph": {
+    "terminal_positive": {
+      "id": "P8",
+      "statement": "UNIVERSAL_UNIFORM_EXACT_PROJECTION_REPRESENTATION_COMPILER_IMPLIES_SAT_IN_P_IMPLIES_P_EQ_NP",
+      "status": "CONDITIONAL_THEOREM_CLOSED"
+    },
+    "nodes": [
+      {"id":"P0","name":"SOURCE_CONTRACT","status":"CLOSED_AS_CONTRACT"},
+      {"id":"P1","name":"EXACTNESS","status":"LOCAL_CLOSED_GLOBAL_COMPOSITION_OPEN"},
+      {"id":"P2","name":"REPRESENTATION_SIZE","status":"OPEN_MAJOR_COMPLEXITY_FRONT"},
+      {"id":"P3","name":"UNIFORM_DISCOVERY_CONSTRUCTION","status":"OPEN_CORE_POSITIVE_BARRIER"},
+      {"id":"P4","name":"CERTIFICATION","status":"PARTIAL_GLOBAL_FORM_OPEN"},
+      {"id":"P5","name":"SEQUENTIAL_CLOSURE","status":"OPEN_CORE_COMPOSITION_BARRIER"},
+      {"id":"P6","name":"GLOBAL_COST_INVARIANT","status":"OPEN"},
+      {"id":"P7","name":"TERMINAL_DECISION_WITNESS","status":"LOCAL_CLOSED_DEPENDS_ON_P1_P6"},
+      {"id":"P8","name":"P_EQ_NP_BRIDGE","status":"CONDITIONAL_THEOREM_CLOSED"}
+    ],
+    "active_front": {
+      "id": "U1-L2",
+      "name": "CERTIFIED_STRUCTURE_CREATION_WITH_GLOBAL_POLY_RANK",
+      "attacks": ["P3","P5","P6"],
+      "status": "OPEN",
+      "positive_control": "LOG_INDUCED_WIDTH_EXACT_ELIMINATION_WITH_CERTIFIED_ORDER",
+      "universal_original_graph_route": "REFUTED_BY_HIGH_TREEWIDTH_EXPANDER_SCOPE",
+      "required_output": "DETERMINISTIC_POLY_SIZE_PROOF_CARRYING_REPRESENTATION_WITH_LOW_WIDTH_INTERFACE_OR_OTHER_PROVED_POLY_PROGRESS_RANK"
+    }
+  },
+  "global_cost_ledger": {
+    "equation": "Q_total = Q_state + Q_proof + Q_discovery + Q_failed_search + Q_build + Q_projection + Q_join + Q_verify + Q_witness",
+    "budget_reference": "ORIGINAL_SOURCE_SIZE_N",
+    "budget_reset_per_stage": false,
+    "budget_reset_per_component": false
+  },
+  "admission_rule": {
+    "machine_candidate_must_become": [
+      "DETERMINISTIC_SOURCE_PREDICATE",
+      "EXACT_IDENTITY_OR_PROJECTION_THEOREM",
+      "POLYNOMIAL_DISCOVERY_BOUND",
+      "REPLAYABLE_CERTIFICATE",
+      "POLYNOMIAL_WITNESS_LIFT",
+      "GLOBAL_COST_CHARGE"
+    ],
+    "forbidden_as_proof": [
+      "HEURISTIC_SCORE",
+      "SLIME_TRACE",
+      "NEURAL_SIMILARITY",
+      "ENTROPY_SCORE",
+      "CRYSTAL_SMALLNESS",
+      "FINITE_HOLDOUT_SUCCESS",
+      "HIDDEN_ORACLE",
+      "NONUNIFORM_ADVICE"
+    ]
+  },
+  "do_not_repeat": [
+    {"route":"ORIGINAL_GRAPH_SMALL_SEPARATOR_UNIVERSALITY","status":"CLOSED_AS_UNIVERSAL_ROUTE","reason":"HIGH_TREEWIDTH_EXPANDER_SCOPE"},
+    {"route":"MONOLITHIC_FROZEN_ORDER_OBDD","status":"FINITE_ESCAPE_OBSERVED"},
+    {"route":"EXPLICIT_BOUNDARY_TABLE","status":"FINITE_ESCAPE_OBSERVED"},
+    {"route":"SEMANTIC_TARGET_RECOGNITION","status":"BARRIER"},
+    {"route":"BRUTE_FORCE_MACRO_BLOCK_SEARCH","status":"BARRIER"},
+    {"route":"COMPLETE_COFACTOR_ENUMERATION","status":"BARRIER"},
+    {"route":"FINITE_HOLDOUT_SUCCESS_AS_THEOREM","status":"FORBIDDEN_INFERENCE"},
+    {"route":"SMALL_REPRESENTATION_EXISTENCE_AS_UNIFORM_ALGORITHM","status":"FORBIDDEN_INFERENCE"}
+  ],
+  "exact_positive_library": [
+    "PURE_LITERAL_EXISTENTIAL_PROJECTION",
+    "TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "COMPLEMENTARY_TWIN_CONTRACTION",
+    "CLAUSE_SUBSUMPTION",
+    "SELF_SUBSUMING_RESOLUTION",
+    "COMPONENT_PRODUCT",
+    "TWO_SAT_SCC_CERTIFICATE",
+    "SMALL_STRONG_BACKDOOR_TO_2SAT_PROOF_TREE",
+    "AFFINE_GF2_BOUNDARY_JOIN",
+    "RESTRICTED_COMMON_LANGUAGE_OBDD_JOIN",
+    "LIVE_WIDTH_DYNAMIC_PROGRAMMING",
+    "LOG_INDUCED_WIDTH_BUCKET_ELIMINATION"
+  ],
+  "spiral": [
+    {
+      "spiral_index": 0,
+      "checkpoint_id": "POG-U1L2-000",
+      "parent_state_hash": null,
+      "current_state_hash": "SOURCE_COMMIT:f3cc7ce8d217437d7f30976133d8d2675df9a82f",
+      "proof_obligation_node": ["P3","P5","P6","U1-L2"],
+      "hypothesis": "A_UNIVERSAL_CREATE_EXPLOIT_GRAMMAR_MAY_EXIST",
+      "source_predicate": "ARBITRARY_ADMISSIBLE_NONTERMINAL_PROOF_CARRYING_STATE",
+      "exact_theorem": "NOT_YET_PROVED",
+      "discovery_cost_bound": "UNPAID",
+      "proof_cost_bound": "UNPAID",
+      "witness_cost_bound": "UNPAID",
+      "finite_controls": "SUPPORTING_ONLY_NOT_THEOREM",
+      "result": "OPEN",
+      "what_changed": "RESEARCH_TARGET_COLLAPSED_FROM_SOLVER_VERSIONING_TO_EXPLICIT_UNIVERSAL_PROOF_OBLIGATIONS",
+      "what_was_ruled_out": [
+        "FINITE_SUCCESS_AS_P_EQ_NP_EVIDENCE",
+        "ORIGINAL_GRAPH_SEPARATOR_ONLY_UNIVERSAL_ROUTE"
+      ],
+      "unpaid_debt": [
+        "UNIVERSAL_CREATE_CONSTRUCTOR",
+        "GLOBAL_POLY_RANK",
+        "SEQUENTIAL_CLOSURE",
+        "TOTAL_COST_BOUND"
+      ],
+      "next_narrowest_gate": "U1-L2_CERTIFIED_STRUCTURE_CREATION_WITH_GLOBAL_POLY_RANK"
+    }
+  ],
+  "recurrence_guard": {
+    "engine": "HEPHAESTUS_CRYSTAL",
+    "role": ["STATE_FINGERPRINT","RECURRENCE_GUARD","BYTE_ACCOUNTING"],
+    "not_authorized_as": ["SEMANTIC_EQUIVALENCE_PROOF","VARIABLE_SELECTOR","THEOREM"]
+  }
+}
