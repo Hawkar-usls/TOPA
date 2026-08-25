@@ -1,0 +1,98 @@
+{
+  "schema": "JANUS_PNP_RCTQ4_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "protocol": {
+    "commit": "8d4699c79b87e3c149996b653ba5649c94a0565d",
+    "frozen_before_provider": true
+  },
+  "catalog_extension": {
+    "old_operator_count": 15,
+    "new_operator_count": 16,
+    "new_operator": "SIGNED_POLARITY_COUNT_NORMALIZE",
+    "exact": true,
+    "is_compression": false,
+    "is_universal_progress": false
+  },
+  "failure_lineage": [
+    {
+      "id": "RCTQ4-001",
+      "run_id": 32907640334,
+      "job_id": 97995073289,
+      "workflow_head": "5d58f2db011de4b15c4db14b5dcc1342f4bc04c2",
+      "conclusion": "CANCELLED_BY_12_MINUTE_TIMEOUT",
+      "receipt_commit": "08da360ed95cd8d549bea3cf5ca7614e48f47dfb",
+      "cause": "Exact swap-orbit domain admitted B37 and audit attempted to materialize 2^37 orbit states.",
+      "theorem_impact": "NONE"
+    }
+  ],
+  "audit_repair": {
+    "commit": "19f7c83a377cb2032b1f2823f92fede75d0fdd1f",
+    "change": "Evaluate frozen swap-orbit domain symbolically from exact swap classes and P<=N^4; do not materialize quotient during domain audit.",
+    "domain_semantics_changed": false,
+    "frozen_N_pow_4_cap_changed": false
+  },
+  "terminal_run": {
+    "run_id": 32908728775,
+    "job_id": 97998333154,
+    "run_number": 2,
+    "attempt": 1,
+    "conclusion": "SUCCESS",
+    "result_sha256": "9bb9fbd301ee3619cc920bf4ac5206705cf6796a1778e27c11624a65215361e6"
+  },
+  "primary_B37": {
+    "variables": 37,
+    "clauses": 150,
+    "literal_occurrences": 450,
+    "exact_pos_neg_balance": true,
+    "explicit_witness_0": "PASS",
+    "explicit_witness_1": "PASS",
+    "admitted_frozen16_operator_ids": ["SWAP_ORBIT_WEIGHT_EXISTS"],
+    "escape": false,
+    "swap_orbit": {
+      "all_singletons": true,
+      "N": 638,
+      "P": 137438953472,
+      "N_pow_4": 165684817936,
+      "admitted": true,
+      "would_materialize_states": 137438953472
+    }
+  },
+  "first_confirmed_escape": {
+    "id": "B_41",
+    "variables": 41,
+    "clauses": 166,
+    "literal_occurrences": 498,
+    "exact_pos_neg_balance": true,
+    "explicit_witness_0": "PASS",
+    "explicit_witness_1": "PASS",
+    "admitted_frozen16_operator_ids": [],
+    "escape": true,
+    "swap_orbit": {
+      "all_singletons": true,
+      "N": 706,
+      "P": 2199023255552,
+      "N_pow_4": 248438446096,
+      "admitted": false
+    }
+  },
+  "additional_confirmed_escape_ns": [43,47],
+  "theorem_ledger": {
+    "BALANCED_CONSTRUCTION_POS_EQ_NEG_FOR_EVERY_VARIABLE": true,
+    "FROZEN_16_CATALOG_UNIVERSAL_NEXT_TRANSITION_AVAILABILITY": false,
+    "B37_ESCAPES_FROZEN_16": false,
+    "B41_ESCAPES_FROZEN_16": true,
+    "B43_ESCAPES_FROZEN_16": true,
+    "B47_ESCAPES_FROZEN_16": true,
+    "FINITE_CI_PRACTICALITY_EQUALS_ASYMPTOTIC_POLYNOMIALITY": false,
+    "CATALOG_ESCAPE_IMPLIES_SAT_HARDNESS": false,
+    "P_EQUALS_NP": false
+  },
+  "reverse_seed": "B_41",
+  "next_gate": "RCTQ5_REVERSE_B41_FOR_EXACT_REPRESENTATION_LAW",
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
