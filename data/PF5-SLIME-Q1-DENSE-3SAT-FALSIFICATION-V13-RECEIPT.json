@@ -1,0 +1,64 @@
+{
+  "artifact_id": "PF5-SLIME-Q1-DENSE-3SAT-FALSIFICATION-V13-RECEIPT",
+  "status": "AUTHORITATIVE_Q1_PORTFOLIO_COUNTEREXAMPLE_PASS",
+  "provider": {
+    "run": 32827059075,
+    "job": 97737289385,
+    "head": "ee54cfa07e289fe9f4165411f3b7b1f927e124e5",
+    "conclusion": "SUCCESS",
+    "frozen_batch_sha256": "d70e9fed474f31b90b46d1d91b3daa8e55a3043530fb473af1dc981b882636a5",
+    "result_sha256": "98fe36a008ef2a924c0f66d9280316889c3aee631570cfa6f7065621fed75dfb"
+  },
+  "frozen_hypothesis": {
+    "producer": "Hawkar-usls/Janus-Demiurge@421794b5c7e3b96f52550cf710fe2d8d2f3b59db",
+    "candidate_count": 16,
+    "decomposition_language": "RIGHT_LINEAR_CATERPILLAR_INCIDENCE_BRANCH_DECOMPOSITION",
+    "q": 1,
+    "cap": "K=max(2,variables+clauses)",
+    "cap_escalation_after_results": false,
+    "exact_runtime_scorer": false,
+    "sat_oracle": false
+  },
+  "dense_ladder": [
+    {"n":10,"m":42,"seeds":[909010,909011],"cap":52},
+    {"n":12,"m":50,"seeds":[909012,909013],"cap":62},
+    {"n":14,"m":59,"seeds":[909014,909015],"cap":73},
+    {"n":16,"m":67,"seeds":[909016,909017],"cap":83},
+    {"n":18,"m":76,"seeds":[909018,909019],"cap":94},
+    {"n":20,"m":84,"seeds":[909020,909021],"cap":104}
+  ],
+  "outcome": {
+    "sources": 12,
+    "portfolio_exhausted_sources": 12,
+    "candidate_attempts": 192,
+    "closed_candidates": 0,
+    "open_state_cap_candidates": 192
+  },
+  "first_counterexample": {
+    "n": 10,
+    "m": 42,
+    "seed": 909010,
+    "formula_sha256": "12de08401c950d3a2773719cfe76029b23c4b29c958f612e7da1b8224e94cefb",
+    "manifest_sha256": "5a7b85a173c0171b92831371fa18562e716b8d0a19a13aadb0e4c0294a697fd0",
+    "cap": 52,
+    "compiler_total_work_units": 1039936,
+    "closed_candidates": 0,
+    "open_candidates": 16
+  },
+  "global_ledger": {
+    "slime_generation_ops": 8827650,
+    "compiler_work_units": 10452731,
+    "candidate_attempts": 192,
+    "closed_candidates": 0,
+    "open_candidates": 192
+  },
+  "scientific_interpretation": [
+    "The exact frozen Slime-v3 16-order right-linear incidence portfolio is not universally complete under the fixed linear PS-state cap q=1.",
+    "This is a finite counterexample to that portfolio/cap/decomposition-language hypothesis, not a lower bound on optimal PS-width and not a hardness result.",
+    "The result does not refute a larger predeclared fixed q, a richer polynomial candidate family, or non-linear binary branch decompositions.",
+    "Because every candidate is right-linear, the next strongest falsification/repair axis is decomposition topology before any cap escalation."
+  ],
+  "next_gate": "SLIME_BALANCED_BINARY_BRANCH_DECOMPOSITION_Q1_GATE",
+  "surviving_universal_gate": "EXISTS_FIXED_q_AND_POLY_CANDIDATE_CONSTRUCTION_SUCH_THAT_EVERY_CNF_HAS_A_CANDIDATE_OF_PSWIDTH_AT_MOST_N^q",
+  "p_vs_np": "OPEN"
+}
