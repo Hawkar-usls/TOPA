@@ -1,0 +1,29 @@
+{
+  "schema": "JANUS_PNP_RCTQ3_RF_001_FAILURE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "failure_id": "RCTQ3-RF-001",
+  "workflow": "Validate JANUS RCTQ-3 Reverse Forward",
+  "workflow_head": "55c0745af7741311ef1aeb40deca953452da95a1",
+  "run_id": 32906877767,
+  "job_id": 97992808205,
+  "attempt": 1,
+  "conclusion": "FAILURE",
+  "failure_class": "IMPLEMENTATION_PATH_ERROR",
+  "error": "Kanami replay referenced missing research/mathematics/p-vs-np/janus_pnp_kanami_spiral_atlas_verifier.py",
+  "canonical_path_recovered_from_frozen_workflow": "research/mathematics/p-vs-np/janus_kanami_spiral_atlas_verifier.py",
+  "successful_hash_checks_before_failure": [
+    {"id":"RCTQ3","sha256":"ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526"},
+    {"id":"RCTQ2","sha256":"469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"},
+    {"id":"RCTQ1","sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"}
+  ],
+  "signed_normalization_replay_reached": false,
+  "rctq3_theorem_impact": "NONE",
+  "rctq3_escape_result_impact": "NONE",
+  "frozen_protocol_changed": false,
+  "repair_scope": "ONLY_KANAMI_VERIFIER_PATH",
+  "P_VS_NP": "OPEN"
+}
