@@ -12,17 +12,18 @@ jobs:
         with:
           python-version: '3.11'
       - name: Compile
-        run: python -m py_compile research/mathematics/p-vs-np/pf5_complementary_twin_contraction_v18.py
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_complementary_twin_contraction_v18_1.py
       - name: Run frozen blind exact-equivalence audit
         working-directory: research/mathematics/p-vs-np
-        run: python pf5_complementary_twin_contraction_v18.py --json-out ../../../pf5-complementary-twin-v18.result.json
+        run: python pf5_complementary_twin_contraction_v18_1.py --json-out ../../../pf5-complementary-twin-v18-1.result.json
       - name: Verify theorem-only runtime contract
         run: |
           python - <<'PY'
           import json
-          d=json.load(open('pf5-complementary-twin-v18.result.json',encoding='utf-8'))
-          assert d['artifact_id']=='PF5-COMPLEMENTARY-TWIN-CONTRACTION-V18'
+          d=json.load(open('pf5-complementary-twin-v18-1.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-COMPLEMENTARY-TWIN-CONTRACTION-V18.1'
           assert d['status']=='FINITE_BLIND_EXACT_EQUIVALENCE_AUDIT_COMPLETE'
+          assert d['repair']=='V18-001_DIAGNOSTIC_ORDER_ONLY'
           assert d['feature']=='COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION'
           assert d['feature_is_heuristic'] is False
           assert d['feature_is_logical_equivalence'] is True
@@ -39,18 +40,19 @@ jobs:
           assert d['runtime_rule_polynomial_in_explicit_residual_size'] is True
           assert d['witness_lift_replayable_from_certificate'] is True
           assert d['diagnostic']['seed']==911600
-          assert d['diagnostic']['first_v18_certificate']['variable']==4
-          assert set(d['diagnostic']['first_v18_certificate']['common_body'])=={-3,5}
+          assert d['diagnostic']['first_v18_certificate']['variable']==2
+          assert set(d['diagnostic']['first_v18_certificate']['common_body'])=={-3,-4}
           assert d['summary']['all_semantic_audits_pass'] is True
           assert d['universal_exact_closure']=='OPEN'
           assert d['p_vs_np']=='OPEN'
-          print('PF5_V18_THEOREM_ONLY_CONTRACT = PASS')
+          print('PF5_V18_1_THEOREM_ONLY_CONTRACT = PASS')
           print('SUMMARY =',d['summary'])
           print('RESULT_SHA256 =',d['result_sha256'])
           PY
       - name: Claim ceiling
         run: |
           echo 'COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION = EXACT_EQUIVALENCE'
+          echo 'V18-001 = RECORDED_AND_REPAIRED_WITHOUT_HOLDOUT_CHANGE'
           echo 'HEPHAESTUS_CRYSTAL = ACCOUNTING_RECURRENCE_ONLY'
           echo 'UNIVERSAL_EXACT_CLOSURE = OPEN'
           echo 'P_VS_NP = OPEN'
