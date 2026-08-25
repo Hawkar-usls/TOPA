@@ -1,0 +1,67 @@
+name: Validate PF5 Relation Pseudoforest Cap v13.3.1
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_relation_pseudoforest_cap_probe_v13_3.py'
+      - 'research/mathematics/p-vs-np/pf5_relation_pseudoforest_cap_probe_v13_3_1.py'
+      - '.github/workflows/validate-pf5-relation-pseudoforest-cap-v13-3-1.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_relation_pseudoforest_cap_probe_v13_3.py'
+      - 'research/mathematics/p-vs-np/pf5_relation_pseudoforest_cap_probe_v13_3_1.py'
+      - '.github/workflows/validate-pf5-relation-pseudoforest-cap-v13-3-1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pseudoforest-cap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v3 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: cb589db77ff6fe478f65ccafc953120fcfc0ff07
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run repaired pseudoforest theorem feature probe
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_relation_pseudoforest_cap_probe_v13_3_1.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v3.py \
+            --json-out ../../../../pf5-relation-pseudoforest-cap-v13-3-1.result.json
+      - name: Verify polynomial scope
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-relation-pseudoforest-cap-v13-3-1.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-RELATION-PSEUDOFOREST-CAP-PROBE-V13.3'
+          assert d['status']=='POSTHOC_THEOREM_FEATURE_PROBE_COMPLETE'
+          assert d['seed']==909002 and d['posthoc_not_holdout'] is True
+          th=d['theorem']
+          assert th['at_most_one_cycle_per_component'] is True
+          assert th['unicyclic_count_by_break_edge_and_four_endpoint_conditions'] is True
+          assert th['source_only'] is True
+          assert th['polynomial_feature_construction'] is True
+          assert th['no_arbitrary_relation_graph_counting'] is True
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_RELATION_PSEUDOFOREST_V13_3_1_CONTRACT = PASS')
+          print('DISTINGUISHES =',d['pseudoforest_cap_distinguishes_c2_from_c5'])
+          for row in d['rows']:
+              print(row['choice'],row['cap'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'PSEUDOFOREST_RELATION_CAP = UPPER BOUND ONLY'
+          echo 'ARBITRARY_RELATION_GRAPH_COUNTING NOT ADMITTED'
+          echo 'POSTHOC_FEATURE_PROBE != HOLDOUT'
+          echo 'P_VS_NP = OPEN'
