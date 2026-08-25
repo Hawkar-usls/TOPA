@@ -10,12 +10,14 @@ import importlib.util
 from pathlib import Path
 from hashlib import sha256
 import json
+import sys
 
 HERE = Path(__file__).resolve().parent
 BASE_PATH = HERE / "u1l2c2k_keymaster_exact_algebra_verifier.py"
 spec = importlib.util.spec_from_file_location("keymaster_base", BASE_PATH)
 base = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
+sys.modules[spec.name] = base
 spec.loader.exec_module(base)
 
 NEW = base.Operator(
@@ -52,7 +54,6 @@ def main():
     self_comp = base.typecheck_compose(SELF, SELF)
     assert self_comp["admitted"] is True
 
-    # Explicitly prove that heuristic injection remains refused after extension.
     bad = base.Operator(
         "BAD_ORBIT_SCORE", "CNF", "SWAP_ORBIT_WEIGHT", "SCORE_HIGH", "NONE",
         "NONE", "NONE", "NONE", authority="HEURISTIC_ROUTER",
