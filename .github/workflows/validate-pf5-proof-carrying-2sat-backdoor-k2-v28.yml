@@ -1,0 +1,55 @@
+name: Validate PF5 Proof-Carrying 2-SAT Backdoor k2 v28
+on:
+  push:
+    branches: [pnp-spiral-hephaestus-crystal-v14]
+  workflow_dispatch:
+jobs:
+  proof-carrying-backdoor:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_proof_carrying_2sat_backdoor_k2_v28.py
+      - name: Run fresh frozen proof-carrying backdoor audit
+        working-directory: research/mathematics/p-vs-np
+        run: python pf5_proof_carrying_2sat_backdoor_k2_v28.py --json-out ../../../pf5-proof-carrying-2sat-backdoor-k2-v28.result.json
+      - name: Verify frozen contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-proof-carrying-2sat-backdoor-k2-v28.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-PROOF-CARRYING-2SAT-BACKDOOR-K2-V28'
+          assert d['status']=='FINITE_FRESH_BLIND_PROOF_CARRYING_BACKDOOR_AUDIT_COMPLETE'
+          assert d['feature']=='STRONG_2SAT_BACKDOOR_K_LE_2'
+          assert d['k_max']==2
+          assert d['case_count']==32
+          assert d['all_sources_frozen_before_provider'] is True
+          assert d['all_v24_baselines_frozen_before_provider'] is True
+          assert d['all_provider_outputs_frozen_before_semantic_audit'] is True
+          assert d['holdout_not_conditioned_on_backdoor_presence'] is True
+          assert d['adaptive_extension_after_results'] is False
+          assert d['uses_sat_oracle'] is False
+          assert d['uses_truth_table_in_provider'] is False
+          assert d['truth_table_used_only_after_provider_freeze_for_finite_audit'] is True
+          assert d['uses_hephaestus_for_decision'] is False
+          assert d['backdoor_discovery_polynomial_for_fixed_k_max'] is True
+          assert d['branch_count_bounded_by_2_pow_k_max'] is True
+          assert d['all_failed_backdoor_candidates_charged'] is True
+          assert d['all_terminal_semantic_audits_pass'] is True
+          assert d['universal_exact_closure']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_V28_FROZEN_PROOF_CONTRACT = PASS')
+          print('SUMMARY =',d['summary'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'BACKDOOR_K_MAX = 2 FIXED'
+          echo 'ALL_FAILED_DISCOVERY_CANDIDATES = CHARGED'
+          echo 'ALL_BRANCHES = PROOF_CARRYING'
+          echo 'NONMATCHING_RESIDUALS = OPEN_UNSUPPORTED'
+          echo 'UNIVERSAL_EXACT_CLOSURE = OPEN'
+          echo 'P_VS_NP = OPEN'
