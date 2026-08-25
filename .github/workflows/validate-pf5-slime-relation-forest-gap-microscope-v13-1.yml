@@ -1,0 +1,62 @@
+name: Validate PF5 Slime Relation Forest Gap Microscope v13.1
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_forest_gap_microscope_v13_1.py'
+      - '.github/workflows/validate-pf5-slime-relation-forest-gap-microscope-v13-1.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_forest_gap_microscope_v13_1.py'
+      - '.github/workflows/validate-pf5-slime-relation-forest-gap-microscope-v13-1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  residual-gap-microscope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v3 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: cb589db77ff6fe478f65ccafc953120fcfc0ff07
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Diagnose already-observed v13 seed 909002
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_relation_forest_gap_microscope_v13_1.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v3.py \
+            --json-out ../../../../pf5-slime-relation-forest-gap-microscope-v13-1.result.json
+      - name: Verify post-hoc scope
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-relation-forest-gap-microscope-v13-1.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-RELATION-FOREST-GAP-MICROSCOPE-V13.1'
+          assert d['status']=='POSTHOC_DIAGNOSTIC_COMPLETE'
+          assert d['seed']==909002 and d['posthoc_not_holdout'] is True
+          assert d['v3_width']==5 and d['exact_optimal_width']==4
+          assert d['optimality_gap']==1
+          assert d['first_exact_local_gap'] is not None
+          assert d['next_feature_or_search_rule_must_be_source_only'] is True
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_SLIME_RELATION_FOREST_GAP_V13_1_CONTRACT = PASS')
+          print('FIRST_EXACT_LOCAL_GAP =',d['first_exact_local_gap'])
+          print('FIRST_RELATION_CAP_TIE_FAILURE =',d['first_relation_cap_tie_failure'])
+          print('DIAGNOSTIC_SPLIT =',d['diagnostic_split'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'POSTHOC_DIAGNOSTIC != BLIND_HOLDOUT'
+          echo 'RELATION_FOREST_GAP != HARDNESS'
+          echo 'P_VS_NP = OPEN'
