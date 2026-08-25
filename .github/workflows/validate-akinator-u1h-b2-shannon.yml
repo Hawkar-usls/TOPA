@@ -1,0 +1,29 @@
+name: Validate Akinator U1H B2 Shannon Projection
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1H_B2_SHANNON_PROJECTION_BASELINE.md'
+      - 'research/mathematics/p-vs-np/akinator_u1h_b2_shannon_projection_probe.py'
+      - '.github/workflows/validate-akinator-u1h-b2-shannon.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run B2 Shannon finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1h_b2_shannon_projection_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks finite Shannon identity, B2 OR gadget, and explicit no-sharing recurrence only.'
+          echo 'No lower bound on minimum B2 projection size is proved.'
+          echo 'Proof-carrying smart compression remains OPEN.'
+          echo 'P_VS_NP = OPEN'
