@@ -1,0 +1,399 @@
+{
+  "schema": "JANUS_PNP_KANAMI_SPIRAL_METHOD_ATLAS",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "source_branch": "pnp-proof-obligation-graph-u1-l2-exact-only",
+  "source_head_before_atlas": "aa30c550db9f09b8bf2c074361a48c624959d00d",
+  "inherits_frozen_manifest": {
+    "path": "data/JANUS-PNP-REVERSE-SPIRAL-METHOD-UNIFICATION-2026-08-25-v1.0.json",
+    "commit": "74db4cfa068289eaee82c5582755a19362148c48",
+    "blob_sha": "dc3f2bf922f03b438697e04cff558ef75a58aed3",
+    "legacy_method_count": 76
+  },
+  "kanami_code": {
+    "meaning": "Deterministic JANUS double-ended audit: start at the newest proof obligation, walk backward through provenance and barriers, then replay forward through exact dependencies; repeat until an audited fixed point adds no new method class or missing bridge.",
+    "transition": "END -> BEGIN -> END -> BEGIN ... -> AUDITED_FIXED_POINT",
+    "rules": [
+      "reverse_pass_asks_where_each_current_obligation_came_from",
+      "forward_pass_asks_what_each_historical theorem actually enables now",
+      "no_method_is_promoted_by_frequency_or_success_rate",
+      "new_exact_authority_requires_separate theorem certificate and verifier",
+      "negative_results_remain executable guards",
+      "all_discovery_state_proof_witness_and_failed_search_costs_remain_charged",
+      "stabilization_is_claimed_only_for_the_explicitly_audited_corpus"
+    ]
+  },
+  "status_legend": {
+    "ACTIVE_EXACT": "Already admitted theorem-bearing Keymaster operator or exact frontier theorem.",
+    "EXACT_RESTRICTED": "Exact theorem or algorithm in an explicitly certified restricted domain.",
+    "BARRIER_NEGATIVE": "Exact or formally scoped negative guard against an invalid universal inference.",
+    "ALGEBRAIZED": "Historical idea retained only through an exact theorem-bearing replacement.",
+    "PRUNED": "No P-vs-NP decision authority because operational selection was heuristic, random, scored or otherwise unproved.",
+    "GOVERNANCE_ONLY": "Audit/provenance/falsification authority only.",
+    "PROVENANCE_ONLY": "Historical conceptual donor only.",
+    "MISSED_EXACT_BRIDGE": "Exact/restricted theorem present in corpus but omitted or too coarsely folded in the v1 atlas; not automatically activated.",
+    "MISSED_BARRIER": "Important negative guard present in corpus but hidden inside a coarse barrier bucket.",
+    "HISTORICAL_EXACT_CANDIDATE_NEEDS_SOURCE_REATTACHMENT": "Mathematically plausible exact primitive seen in historical lineage, but current branch needs immutable source/proof reattachment before admission."
+  },
+  "legacy_76_method_atlas": [
+    {"id":"KEYMASTER_FRONTIER_PRODUCT_BOUND","status":"ACTIVE_EXACT","gives":"Bounds exact same-state Pareto antichain size by canonical state count times bounded cost-coordinate product; converts polynomial state-count plus polynomial cost bounds into polynomial frontier size."},
+    {"id":"SWAP_ORBIT_WEIGHT_EXISTS","status":"ACTIVE_EXACT","gives":"Automatically discovers a certified literal-swap orbit quotient on the restricted P<=N^4 domain."},
+    {"id":"SWAP_ORBIT_WEIGHT_EXISTS_CLOSED","status":"ACTIVE_EXACT","gives":"Exact closed existential update on swap-orbit weight vectors by adjacent weight-state union."},
+    {"id":"SYMMETRIC_WEIGHT_EXISTS","status":"ACTIVE_EXACT","gives":"Exact existential projection in a Hamming-weight quotient."},
+    {"id":"RAMANUJAN_THETA_EXACT_SUM_PRODUCT_RECURRENCE","status":"PROVENANCE_ONLY","gives":"Exact recurrence/sum-product representation donor; theta-only SAT language lacked universal existential closure."},
+    {"id":"INTEL_8008_TRANSITION_STATE_ENCODING","status":"PROVENANCE_ONLY","gives":"Transition-state encoding intuition; bijective relabeling alone is not compression."},
+
+    {"id":"ACI_SHARED_FACTOR","status":"ACTIVE_EXACT","gives":"Proof-carrying pure-AND shared-factor quotient."},
+    {"id":"LITERAL_ACI_EXISTS","status":"ACTIVE_EXACT","gives":"Exact existential projection directly on literal ACI quotient states."},
+    {"id":"ONE_PIVOT_PREBIRTH_FACTOR","status":"EXACT_RESTRICTED","gives":"Avoids p-by-q resolvent materialization for one pivot through exact factor identity; sequential closure remains open."},
+    {"id":"EXACT_LOCAL_EQUIVALENCE_KERNEL_K4_G3","status":"EXACT_RESTRICTED","gives":"Complete exact equivalence enumeration inside a fixed constant-size grammar boundary."},
+    {"id":"SHARED_FANOUT_LOCAL_GRAMMAR_ESCAPE","status":"BARRIER_NEGATIVE","gives":"Shows fixed local grammar does not universally control the affected cone."},
+    {"id":"ADD_ONLY_EXTENSION_FRONTIER_BARRIER","status":"BARRIER_NEGATIVE","gives":"Shows adding names without replacing old constraints cannot erase the old elimination frontier."},
+    {"id":"COMPRESSION_BLOCK_SEARCH_BARRIER","status":"BARRIER_NEGATIVE","gives":"Separates existence of a compact replacement from polynomial-time discovery of that replacement."},
+
+    {"id":"PURE_LITERAL_EXISTS","status":"ACTIVE_EXACT","gives":"Exact existential deletion of a variable occurring in only one polarity with deterministic witness value."},
+    {"id":"TAUTOLOGICAL_RESOLVENT_EXISTS","status":"ACTIVE_EXACT","gives":"Exact projection when all cross-polarity resolvents are tautologies."},
+    {"id":"SINGLE_NTR_EXISTS","status":"ACTIVE_EXACT","gives":"Exact projection when exactly one unique non-tautological resolvent survives."},
+    {"id":"COMPLEMENTARY_TWIN","status":"ACTIVE_EXACT","gives":"Exact contraction (A OR x) AND (A OR NOT x) = A with order-invariant body normalization."},
+    {"id":"CLAUSE_SUBSUMPTION","status":"ACTIVE_EXACT","gives":"Exact deletion of a clause subsumed by a retained subset-clause."},
+    {"id":"SELF_SUBSUMING_RESOLUTION","status":"ACTIVE_EXACT","gives":"Exact equivalence-preserving literal deletion through self-subsuming resolution."},
+    {"id":"COMPONENT_PRODUCT","status":"ACTIVE_EXACT","gives":"Exact incidence-component AND decomposition with disjoint witness union."},
+    {"id":"TWO_SAT_SCC","status":"ACTIVE_EXACT","gives":"Polynomial proof-carrying 2-SAT decision via SCC; SAT witness or dual implication-path UNSAT certificate."},
+    {"id":"AFFINE_GF2_JOIN","status":"ACTIVE_EXACT","gives":"Exact affine boundary relation composition and normalization through GF(2) RREF."},
+    {"id":"STRONG_2SAT_BACKDOOR_K_LE_2","status":"EXACT_RESTRICTED","gives":"Complete deterministic fixed-k branch reduction to proof-carrying 2-SAT for k<=2; no universal backdoor bound."},
+    {"id":"ADAPTIVE_ACTION_GRAPH_FIXED_DEPTH","status":"EXACT_RESTRICTED","gives":"Finite proof-carrying adaptive branch policy language; universal fixed-depth policy remains unproved."},
+    {"id":"STRUCTURE_MINERS_V25_V27","status":"PRUNED","gives":"Historical observer layer that nominated structural classes; only separately proved predicates may survive."},
+
+    {"id":"FIXED_ORDER_ROBDD","status":"EXACT_RESTRICTED","gives":"Canonical exact Boolean representation for a supplied variable order; can be exponentially large."},
+    {"id":"LIVE_WIDTH_FACTOR_DP","status":"EXACT_RESTRICTED","gives":"Exact relational dynamic programming under certified small live/boundary width."},
+    {"id":"TREEWIDTH_PROJECTION_GRAMMAR","status":"EXACT_RESTRICTED","gives":"Exact projection under certified bounded treewidth."},
+    {"id":"PS_WIDTH_SEMANTIC_CUT_QUOTIENT","status":"EXACT_RESTRICTED","gives":"Exact compact computation when a bounded-PS decomposition is supplied; universal decomposition discovery remains open."},
+    {"id":"ARTICULATION_SEPARATOR_DECOMPOSITION","status":"EXACT_RESTRICTED","gives":"Deterministic exact articulation/separator decomposition with child proof/witness composition."},
+    {"id":"TRANCEPTION_ORBIT_TEMPLATE","status":"EXACT_RESTRICTED","gives":"Exact restricted orbit quotient family."},
+    {"id":"C2G_LAMINAR","status":"GOVERNANCE_ONLY","gives":"Amortization/progress accounting sidecar; never the primary SAT representation."},
+    {"id":"BLIND_LANGUAGE_RECOGNIZER_BOOTSTRAP","status":"EXACT_RESTRICTED","gives":"Deterministic switching among certified affine, symmetric and generic exact languages; generic fallback has no universal polynomial bound."},
+
+    {"id":"FUNCTION_TO_RELATION_BOUNDARY","status":"BARRIER_NEGATIVE","gives":"Shows existential projection can turn a functional gate into a joint relation and invalidate marginal provenance."},
+    {"id":"CANONICAL_SHARING_TRILEMMA","status":"BARRIER_NEGATIVE","gives":"Separates cheap syntactic sharing, hard semantic canonicalization and possible blow-up of restricted canonical forms."},
+    {"id":"ARBITRARY_CNF_PROJECTED_BOUNDARY_EMBEDDING","status":"BARRIER_NEGATIVE","gives":"Any CNF can appear as a projected boundary, preventing an unjustified easy-boundary assumption."},
+    {"id":"SYNTACTIC_SHANNON_EQUALITY_BARRIER","status":"BARRIER_NEGATIVE","gives":"Shows naive exact Shannon recurrence can duplicate state exponentially."},
+    {"id":"ROBDD_ORDER_DISCOVERY_BARRIER","status":"BARRIER_NEGATIVE","gives":"Small OBDD under some order does not imply polynomial exact order discovery."},
+    {"id":"DAVIS_PUTNAM_STATE_EXPLOSION","status":"BARRIER_NEGATIVE","gives":"Shows exact variable elimination can cause superpolynomial explicit state growth."},
+    {"id":"NAIVE_GLOBAL_POTENTIAL_KILL_SWEEP","status":"BARRIER_NEGATIVE","gives":"Rejects presentation-sensitive progress ranks and hidden semantic-equivalence work."},
+    {"id":"DERIVATIONAL_RANK_INVARIANCE_BARRIER","status":"BARRIER_NEGATIVE","gives":"Prevents alias/presentation tricks from masquerading as true progress."},
+    {"id":"INNER_PRODUCT_COFACTOR_COMPRESSION_SEPARATOR","status":"BARRIER_NEGATIVE","gives":"Supplies a family obstructing naive cofactor/state compression."},
+    {"id":"PROJECTION_TARGET_RECOGNITION_BARRIER","status":"BARRIER_NEGATIVE","gives":"Separates compact target existence from cheap recognition of that target."},
+    {"id":"NONUNIFORM_VS_UNIFORM_PROJECTION","status":"BARRIER_NEGATIVE","gives":"Instance-specific compact descriptions do not constitute one uniform polynomial algorithm."},
+    {"id":"PROJECTION_COMPILER_EQUIVALENCE","status":"BARRIER_NEGATIVE","gives":"Shows a postulated universal cheap projection compiler essentially contains the unresolved P=NP obligation."},
+    {"id":"RSPC_KC_AND_SURVIVAL_BARRIERS","status":"BARRIER_NEGATIVE","gives":"Aggregates exact negative controls on bounded support, semantic survival and knowledge-compilation routes."},
+    {"id":"ASYMMETRIC_SWAP_ORBIT_EXPLOSION","status":"BARRIER_NEGATIVE","gives":"Shows literal-swap symmetry can still leave exponentially many singleton-orbit states."},
+
+    {"id":"SLIME_SEMANTIC_PRESSURE_EMA_SHORTLIST","status":"PRUNED","gives":"Historical search intuition only; pressure/EMA/shortlist has zero proof authority."},
+    {"id":"WALKSAT","status":"PRUNED","gives":"Historical local-search baseline only."},
+    {"id":"PSO_SWARM_OPTIMIZER","status":"PRUNED","gives":"Historical stochastic optimization baseline only."},
+    {"id":"PHYSARUM_RANDOM_WALK_THRESHOLD","status":"PRUNED","gives":"Historical flow/random-walk intuition only; threshold selection removed."},
+    {"id":"HIVE_LLM_SCORE_SYNTHESIS","status":"PRUNED","gives":"Historical hypothesis generator only; LLM scores have no logical authority."},
+    {"id":"LEGACY_KEYMASTER_THRESHOLD_CONTROL","status":"PRUNED","gives":"Historical controller ancestry; threshold authority replaced by typed exact algebra."},
+    {"id":"ODONTO_M2R_EMA_CHAMPION_MUTATION","status":"PRUNED","gives":"Historical adaptive-search donor only; mutation/champion selection removed."},
+    {"id":"RAMANUJAN_THETA_DIRECTOR_STEERING","status":"PRUNED","gives":"Historical steering layer only."},
+    {"id":"MOD_THETA_PRIME_STEERING","status":"PRUNED","gives":"Historical modular weighting/steering only."},
+    {"id":"HEPHAESTUS_ENTROPY_PURITY_SELECTION","status":"PRUNED","gives":"Historical selection idea removed; only canonicalization/accounting survives."},
+    {"id":"EARLY_PVSNP_EXPLORATORY_SATVERIFIER_LOOP","status":"PRUNED","gives":"Historical exploration only because brute-force verifier entered discovery loop."},
+    {"id":"EARLY_EVOLVE_PVSNP_RANDOM_CLAUSE_SEARCH","status":"PRUNED","gives":"Historical random evolutionary search only."},
+    {"id":"P_NP_LOGIC_XOR_PARITY_INJECTION_HEURISTIC","status":"PRUNED","gives":"Historical heuristic parity injection only."},
+
+    {"id":"SLIME_EXACT_STATIC_INCIDENCE_FINGERPRINTS","status":"ALGEBRAIZED","gives":"Retains only deterministic assignment-independent structural fingerprints from the Slime lineage."},
+    {"id":"HEPHAESTUS_CANONICAL_HASH_REVISIT","status":"ALGEBRAIZED","gives":"Canonical exact state identity, recurrence guard and cost accounting; no decision authority."},
+    {"id":"KEYMASTER_STATE_GUARD_TRANSITION_MEMORY","status":"ALGEBRAIZED","gives":"Historical state/memory concept transformed into exact typed operator contracts."},
+    {"id":"PHYSARUM_EXACT_FLOW_EQUATIONS","status":"PROVENANCE_ONLY","gives":"Exact mathematical donor if a future SAT morphism is proved; none currently admitted."},
+    {"id":"RAMANUJAN_EXACT_THETA_IDENTITIES","status":"PROVENANCE_ONLY","gives":"Exact identity donor for representation algebra; no universal SAT-side morphism."},
+
+    {"id":"JANUS_FUNDAMENTUM_PVSNP_FORMAL_CORPUS","status":"GOVERNANCE_ONLY","gives":"Formal theorem/Lean corpus, proof checking and bridge consistency."},
+    {"id":"TOPA_FALSIFICATION_AND_ACCOUNTING","status":"GOVERNANCE_ONLY","gives":"Claim ceiling, negative controls and full cost accounting."},
+    {"id":"DEMI_HEAD_GAP_LEDGER","status":"GOVERNANCE_ONLY","gives":"Adversarial proof-gap ledger."},
+    {"id":"JANUS_META_REGISTRY_PROVENANCE","status":"GOVERNANCE_ONLY","gives":"Immutable historical lineage/provenance memory."},
+    {"id":"AIFC_FAIL_CLOSED","status":"GOVERNANCE_ONLY","gives":"Fail-closed admission policy."},
+    {"id":"FAST_CAT_BLIND_REVIEW","status":"GOVERNANCE_ONLY","gives":"Independent blinded review."},
+    {"id":"GENESIS_RECEIPTS","status":"GOVERNANCE_ONLY","gives":"Immutable run/result receipts."},
+    {"id":"COSMOS_HOLDOUT_DISCIPLINE","status":"GOVERNANCE_ONLY","gives":"Frozen holdout and anti-post-hoc discipline."},
+
+    {"id":"JANUS_SOLVER_RECURSIVE_PROOF_SEED_2026_01_23","status":"PROVENANCE_ONLY","gives":"Earliest recoverable recursive proof-under-pressure architecture; exploratory verifier use excludes decision authority."},
+    {"id":"FORMAL_METHOD_PVSNP_001_013_LINEAGE","status":"GOVERNANCE_ONLY","gives":"Early formal-method theorem lineage retained through Fundamentum."},
+    {"id":"EARLY_HEURISTIC_SEARCH_LINEAGE","status":"PRUNED","gives":"Historical random/evolutionary search lineage only."}
+  ],
+  "missed_or_underrepresented_nodes": [
+    {
+      "id": "C024_A1_INCOMPARABILITY_SIGNATURE_INVARIANT",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C024_A1_ANNOTATED_PRUNE_INVARIANT.md",
+      "source_blob_sha": "3a8e6738f1d3374ec7aa8c8e7adef150c647fae1",
+      "what_it_gives": "Exact preservation of the GT incomparability signature under the scoped Policy-0A key construction; constrains future exact cache congruences.",
+      "limitation": "Full oriented prune invariant and A1.2 orientation recovery are not proved; do not promote as a universal prune operator.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "C024_RESOLUTION_SINK_PADDING_COUNTERFAMILY",
+      "status": "MISSED_BARRIER",
+      "source": "research/mathematics/p-vs-np/C024_ISSUE_211_RESOLUTION_SINK_COUNTERFAMILY.md",
+      "source_blob_sha": "b6c40c31a7a6dd1c66d53b5d3c491777afb51038",
+      "what_it_gives": "Explicit route for transferring a formula-caching residual lower bound into the frozen Policy-0A lane by forcing the local Resolution budget into a tautological sink.",
+      "limitation": "Architecture-specific and recorded as a strong formal refutation candidate pending independent replay/parity; does not imply P!=NP.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "C_LOCAL_RESTRICTION_STABILITY",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_BC1A_C_LOCAL_SUBSTITUTION_AND_RESTRICTION.md",
+      "source_blob_sha": "1962d4e8fef41127e09128a320cc60497c995f3c",
+      "what_it_gives": "Proves support monotonicity under restriction, stability of a certified fixed-C cover under source self-reduction, and generalized C-hyperlocal functional-form restriction.",
+      "limitation": "Direct reuse of the published one-neighborhood source encoding for C>1 is refuted; theorem is restricted to certified C-local structure.",
+      "missed_in_v1": true,
+      "key_gap_exposed": "ACTIVE_KEYMASTER_HAS_NO_FIRST_CLASS_TYPED_RESTRICTION_PARTIAL_ASSIGNMENT_OPERATOR"
+    },
+    {
+      "id": "GT_LINEAR_RESOLUTION_SCHEMA",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_GT_LINEAR_RESOLUTION_SCHEMA.md",
+      "source_blob_sha": "a1235fd32d16bd5610a27d60e1ec3db0be3689ec",
+      "what_it_gives": "Deterministic family-specific cubic Resolution refutation generator for exact JANUS graph tautologies with inference count (n-1)n(2n-1)/6; GT12 requires 506 inferences.",
+      "limitation": "Exact family recognizer/schema, not a universal SAT classifier or universal proof-schema selector.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "INTACT_GATE_CONGRUENCE_REUSE",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_PF5_INTACT_GATE_CONGRUENCE_REUSE.md",
+      "source_blob_sha": "c3ed01ea7d47042ac3b66fce016653d64410db86",
+      "what_it_gives": "Exact congruence substitution for duplicate current intact B2 definitions with deterministic representative, witness lift d:=r and polynomial discovery in explicit current-state size.",
+      "limitation": "Only current intact functional definitions qualify; projected/stale provenance does not. Polynomial in current state is not a polynomial bound in original input.",
+      "missed_in_v1": true,
+      "key_gap_exposed": "THIS_IS_A_CONCRETE_PRECURSOR_TO_CURRENT_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS"
+    },
+    {
+      "id": "PF5_TOTAL_CERTIFIED_RESIDUAL_QUOTIENT_CRITERION",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_PF5_CERTIFIED_RESIDUAL_QUOTIENT_CRITERION.md",
+      "source_blob_sha": "2508c7f8b60fa661d261fbee5cbee3221aabaaed",
+      "what_it_gives": "Freezes Q_total = Q_state + Q_proof + Q_discovery + Q_witness and proves that one universal polynomial Q_total bound plus exact termination/witness recovery would imply SAT in P and hence P=NP.",
+      "limitation": "Criterion is conditional; universal polynomial Q_total construction remains open.",
+      "missed_in_v1": true,
+      "key_gap_exposed": "CURRENT_FRONTIER_THEOREM_SHOULD_BE_READ_AS_A_REFINEMENT_OF_THIS_OLDER_TOTAL_QUOTIENT_ACCOUNTING_CRITERION"
+    },
+    {
+      "id": "PROOF_CARRYING_DAVIS_PUTNAM_ELIMINATION_SELECTOR",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_PROOF_CARRYING_ELIMINATION_SELECTOR.md",
+      "source_blob_sha": "27566c6d447148f2f872b4b81f68358b6ef31e96",
+      "what_it_gives": "Exact complete Davis-Putnam existential elimination certificate and a true global progress potential Phi=#remaining_variables, giving at most N accepted eliminations.",
+      "limitation": "State-size degree can drift as M_{t+1}<=2M_t^2. Universal availability of one fixed polynomial cap is open.",
+      "missed_in_v1": true,
+      "key_gap_exposed": "GLOBAL_PROGRESS_IS_NOT_THE_MAIN_MISSING_THEOREM; UNIFORM_STATE_CAP_OR_QUOTIENT_IS"
+    },
+    {
+      "id": "DEAD_INTACT_GATE_GC",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_PF5_DEAD_INTACT_GATE_GC.md",
+      "source_blob_sha": "353d80472e2bda7e3febef6bd524988bd7cecf56",
+      "what_it_gives": "Exact existential deletion of a current intact B2 output that has no external use, with compact witness provenance e:=a AND b and deterministic recursive garbage collection.",
+      "limitation": "Only current intact state-dead definitions qualify; witness provenance still counts in Q_witness; universal residual-size effect is open.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "CANONICAL_CLAUSE_TRACE_BOUNDARY_DP",
+      "status": "MISSED_EXACT_BRIDGE",
+      "source": "research/mathematics/p-vs-np/C025_AKINATOR_PF5_CLAUSE_TRACE_BOUNDARY_DP.md",
+      "source_blob_sha": "53ac2886299b89fbee949deb3f622fd31a9592d9",
+      "what_it_gives": "Exact DP on a deterministic canonical clause trace; live bags are a valid path decomposition and cost is poly(state)*2^O(lambda_clause).",
+      "limitation": "Frozen trace width is not minimum pathwidth; polynomial time needs a universal O(log N) width or a stronger quotient.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "UNIT_PROPAGATION_CERTIFIED",
+      "status": "HISTORICAL_EXACT_CANDIDATE_NEEDS_SOURCE_REATTACHMENT",
+      "source_reattachment_required": true,
+      "what_it_gives": "Potential first-class exact simplification/restriction primitive with derivation trace; historically used inside multiple lanes but not isolated in the active Keymaster catalog.",
+      "limitation": "Must reattach immutable current-branch theorem/certificate contract before any promotion.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "FAILED_LITERAL_BY_UNIT_PROPAGATION",
+      "status": "HISTORICAL_EXACT_CANDIDATE_NEEDS_SOURCE_REATTACHMENT",
+      "source_reattachment_required": true,
+      "what_it_gives": "Potential exact contradiction-derived literal assignment when a deterministic trial restriction plus certified unit propagation reaches the empty clause.",
+      "limitation": "Needs frozen deterministic probe policy, full failed-probe cost and proof/witness contract; no current active authority.",
+      "missed_in_v1": true
+    },
+    {
+      "id": "BLOCKED_CLAUSE_ELIMINATION",
+      "status": "HISTORICAL_EXACT_CANDIDATE_NEEDS_SOURCE_REATTACHMENT",
+      "source_reattachment_required": true,
+      "what_it_gives": "Potential exact/equisatisfiable clause deletion when all resolvents on a certified blocking literal are tautological, with witness reconstruction.",
+      "limitation": "Needs immutable current-branch theorem, deterministic discovery and witness-lift verifier before promotion.",
+      "missed_in_v1": true
+    }
+  ],
+  "kanami_spiral_passes": [
+    {
+      "pass": 0,
+      "direction": "REVERSE",
+      "from": "CURRENT_14_OPERATOR_KEYMASTER_PLUS_FRONTIER_THEOREM",
+      "to": "EARLIEST_RECOVERABLE_METHOD_LINEAGE",
+      "new_findings": [
+        "V1_76_NODE_ATLAS_WAS_CORRECT_BUT_TOO_COARSE_FOR_SEVERAL_C024_C025_THEOREMS",
+        "RESTRICTION_WAS_USED_IMPLICITLY_BY_BRANCHING_AND_SELF_REDUCTION_LANES_WITHOUT_A_FIRST_CLASS_KEYMASTER_TYPE"
+      ]
+    },
+    {
+      "pass": 1,
+      "direction": "FORWARD",
+      "from": "C024_C025_LOCAL_THEOREMS",
+      "to": "CURRENT_EXACT_ALGEBRA",
+      "new_findings": [
+        "C_LOCAL_RESTRICTION_STABILITY_IS_A_REAL_PROVED_RESTRICTED_BRIDGE",
+        "GT_LINEAR_RESOLUTION_SCHEMA_PROVES_GENERIC_SEARCH_EXPLOSION_ON_GT_WAS_POLICY_COST_NOT_INTRINSIC_RESOLUTION_HARDNESS",
+        "C024_INCOMPARABILITY_SIGNATURE_AND_RESOLUTION_SINK_SHOULD_BE_EXPLICIT_GUARDS"
+      ]
+    },
+    {
+      "pass": 2,
+      "direction": "REVERSE",
+      "from": "EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS_DEBT",
+      "to": "OLDER_QUOTIENT_AND_CONGRUENCE_LANES",
+      "new_findings": [
+        "INTACT_GATE_CONGRUENCE_REUSE_IS_A_CONCRETE_EXACT_TRANSITION_CONGRUENCE_ON_CERTIFIED_CURRENT_FUNCTIONAL_SUBSTRUCTURE",
+        "PF5_TOTAL_CERTIFIED_RESIDUAL_QUOTIENT_CRITERION_ALREADY_FROZE_THE_FOUR_COST_CLASSES_NOW_REFINED_BY_KEYMASTER",
+        "THE_OLD_AND_NEW_QUOTIENT_PROGRAMS_SHOULD_BE_CONNECTED_EXPLICITLY_NOT_TREATED_AS_SEPARATE_ERAS"
+      ]
+    },
+    {
+      "pass": 3,
+      "direction": "FORWARD",
+      "from": "OLDER_EXACT_PROJECTION_AND_BOUNDARY_LANES",
+      "to": "CURRENT_UNIVERSAL_PROOF_OBLIGATIONS",
+      "new_findings": [
+        "DEAD_INTACT_GATE_GC_REMOVES_DEAD_COMPUTATION_HISTORY_EXACTLY_BUT_MOVES_SOME_COST_TO_Q_WITNESS",
+        "CANONICAL_CLAUSE_TRACE_DP_IS_A_DETERMINISTIC_EXACT_REPRESENTATION_LANE_WITH_EXPLICIT_WIDTH_DEBT",
+        "PROOF_CARRYING_DAVIS_PUTNAM_ALREADY_PROVIDES_A_POLYNOMIALLY_BOUNDED_GLOBAL_STEP_COUNT",
+        "THE_MAIN_UNRESOLVED_EXPONENT_IS_STATE_GROWTH_AND_CANONICAL_TRANSITION_CLASS_COUNT_NOT_STEP_COUNT"
+      ]
+    },
+    {
+      "pass": 4,
+      "direction": "REVERSE",
+      "from": "MISSING_FIRST_CLASS_RESTRICTION_AND_LOCAL_EXACT_SIMPLIFICATION_LAYER",
+      "to": "HISTORICAL_ACTION_GRAPH_AND_REDUCTION_SIGNALS",
+      "new_findings": [
+        "UNIT_PROPAGATION_FAILED_LITERAL_AND_BLOCKED_CLAUSE_ELIMINATION_SHOULD_BE_REATTACHED_AS_INDEPENDENT_PROOF_CARRYING_PRIMITIVES_OR_EXPLICITLY_REJECTED",
+        "THEY_MUST_NOT_BE_PROMOTED_FROM_MEMORY_WITHOUT_CURRENT_SOURCE_AND_VERIFIER"
+      ]
+    },
+    {
+      "pass": 5,
+      "direction": "FORWARD",
+      "from": "ALL_NEWLY_EXPOSED_BRIDGES",
+      "to": "CURRENT_KEYMASTER_PROOF_OBLIGATION_GRAPH",
+      "new_findings": [],
+      "fixed_point": true,
+      "fixed_point_scope": "Frozen 76-node manifest plus explicitly inspected current-branch C024/C025 theorem corpus and recorded historical reduction-signal lineage. This is not a claim of exhaustive mathematical knowledge or exhaustive search of every repository byte."
+    }
+  ],
+  "janus_missed_summary_ranked": [
+    {
+      "rank": 1,
+      "id": "FIRST_CLASS_EXACT_RESTRICTION_PARTIAL_ASSIGNMENT",
+      "why_it_matters": "Branching, self-reduction, backdoor and action-graph methods all require restriction, yet the active typed algebra lacks a generic proof-carrying restriction morphism. Without it, cross-method composition is underspecified.",
+      "proposed_type": "CNF_OR_TYPED_STATE x PARTIAL_ASSIGNMENT_CERT -> RESTRICTED_TYPED_STATE + WITNESS_MERGE_PROVENANCE",
+      "promotion_status": "OPEN_NEEDS_DEDICATED_EXACT_VERIFIER"
+    },
+    {
+      "rank": 2,
+      "id": "CONTEXT_CERTIFIED_TRANSITION_CONGRUENCE",
+      "why_it_matters": "Intact-gate congruence already proves one nontrivial exact state merge beyond literal-swap orbits using current local functional context. It is a concrete seed for the present transition-equivalence gate.",
+      "promotion_status": "RESTRICTED_THEOREM_EXISTS_NEEDS_TYPED_KEYMASTER_ADAPTER"
+    },
+    {
+      "rank": 3,
+      "id": "UNIFY_OLD_Q_TOTAL_CRITERION_WITH_NEW_9D_FRONTIER_ACCOUNTING",
+      "why_it_matters": "The old quotient criterion already forbids hiding cost in discovery/proof/witness/state. The new frontier theorem should inherit this as a formal projection from the 9D ledger to Q_total rather than duplicate accounting informally.",
+      "promotion_status": "FORMAL_BRIDGE_NEEDED"
+    },
+    {
+      "rank": 4,
+      "id": "UNIFORM_STATE_CAP_NOT_GLOBAL_PROGRESS",
+      "why_it_matters": "Proof-carrying Davis-Putnam gives exact existential elimination and at most N accepted pivots. Its failure mode is state-size degree drift. This sharply redirects the universal theorem target toward polynomial canonical state/transition count and bounded cumulative bytes.",
+      "promotion_status": "CENTRAL_PROOF_OBLIGATION_REFRAMED"
+    },
+    {
+      "rank": 5,
+      "id": "DEAD_STATE_GC_AND_WITNESS_BYTE_TRANSFER",
+      "why_it_matters": "Some representation blow-up is merely dead computation history and can be removed exactly, but compression may transfer bytes into witness provenance. State-only metrics are therefore insufficient.",
+      "promotion_status": "RESTRICTED_THEOREM_EXISTS_NEEDS_PORTFOLIO_INTEGRATION"
+    },
+    {
+      "rank": 6,
+      "id": "EXACT_SCHEMA_RECOGNITION_AS_TYPED_OPERATOR_FAMILY",
+      "why_it_matters": "GT has a cheap recognizer plus deterministic cubic proof generator, demonstrating that exact family schemas can bypass generic search. A universal polynomial catalog-completeness theorem is still missing.",
+      "promotion_status": "FAMILY_SPECIFIC_ONLY"
+    },
+    {
+      "rank": 7,
+      "id": "REATTACH_UP_FAILED_LITERAL_BCE",
+      "why_it_matters": "These exact local simplification ideas appeared historically but lack first-class current-branch proof contracts. Reattaching them prevents rediscovery and clarifies whether they compose with restriction and witness lifting.",
+      "promotion_status": "NO_AUTHORITY_UNTIL_REATTACHED_AND_VERIFIED"
+    }
+  ],
+  "new_proof_obligation_graph": {
+    "P_EQUALS_NP_ROUTE": [
+      "O1_TYPED_EXACT_RESTRICTION_AND_WITNESS_MERGE",
+      "O2_CONTEXT_CERTIFIED_TRANSITION_CONGRUENCE_GENERALIZING_INTACT_GATE_REUSE",
+      "O3_DETERMINISTIC_POLYNOMIAL_DISCOVERY_OF_ALL_ADMITTED_TRANSITION_CONGRUENCE_CERTIFICATES",
+      "O4_POLYNOMIAL_CANONICAL_TRANSITION_STATE_COUNT_M_OF_N_FOR_ARBITRARY_CNF",
+      "O5_POLYNOMIAL_NINE_DIMENSIONAL_CUMULATIVE_COST_BOUNDS",
+      "O6_EXACT_EXISTENTIAL_UPDATE_CLOSED_UNDER_THE_TYPED_REPRESENTATION_SWITCHES",
+      "O7_POLYNOMIAL_WITNESS_OR_UNSAT_RETURN",
+      "O8_GLOBAL_Q_TOTAL_POLY_BOUND_AND_TERMINATION",
+      "SAT_IN_P_THEREFORE_P_EQUALS_NP"
+    ],
+    "known_now": {
+      "global_step_count_under_pure_DP_elimination": "AT_MOST_N_ACCEPTED_PIVOTS",
+      "restricted_context_congruence": "PROVED_FOR_DUPLICATE_CURRENT_INTACT_B2_DEFINITIONS",
+      "restricted_swap_orbit_transition_quotient": "PROVED_UNDER_P_LE_N^4",
+      "frontier_antichain_bound_given_M_AND_B": "PROVED",
+      "full_cost_accounting_requirement": "PROVED_AS_CONDITIONAL_ARCHITECTURE_CRITERION"
+    },
+    "still_open": [
+      "UNIVERSAL_POLYNOMIAL_RESTRICTION_CLOSED_REPRESENTATION",
+      "UNIVERSAL_CONTEXT_CONGRUENCE_DISCOVERY",
+      "POLYNOMIAL_M_OF_N_FOR_ARBITRARY_CNF",
+      "POLYNOMIAL_CUMULATIVE_B_I_OF_N",
+      "GLOBAL_POLYNOMIAL_Q_TOTAL",
+      "P_VS_NP"
+    ]
+  },
+  "next_exact_gate": {
+    "id": "U1_L2C2C2R_RESTRICTION_CONGRUENCE_BRIDGE",
+    "instruction": "Before searching for a brand-new quotient, implement and prove a typed exact RESTRICT operator, then adapt INTACT_GATE_CONGRUENCE_REUSE as a context-certified transition-congruence operator and verify that restriction, congruence, existential projection and witness lifting commute on their declared domain. Integrate the old Q_total criterion as a projection of the current nine-dimensional cost ledger. Only then test whether this equivalence class extends beyond literal-swap orbits with a polynomial canonical-state bound.",
+    "why_this_gate": "It attacks three newly rediscovered missing bridges at once without adding heuristic selection or merely increasing finite search depth."
+  },
+  "active_keymaster_catalog_unchanged": [
+    "PURE_LITERAL_EXISTS",
+    "TAUTOLOGICAL_RESOLVENT_EXISTS",
+    "SINGLE_NTR_EXISTS",
+    "COMPLEMENTARY_TWIN",
+    "CLAUSE_SUBSUMPTION",
+    "SELF_SUBSUMING_RESOLUTION",
+    "COMPONENT_PRODUCT",
+    "TWO_SAT_SCC",
+    "AFFINE_GF2_JOIN",
+    "ACI_SHARED_FACTOR",
+    "LITERAL_ACI_EXISTS",
+    "SYMMETRIC_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS",
+    "SWAP_ORBIT_WEIGHT_EXISTS_CLOSED"
+  ],
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
