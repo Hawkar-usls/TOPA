@@ -1,0 +1,48 @@
+{
+  "artifact_id": "PF5-PNP-SPIRAL-JOURNAL-V14",
+  "status": "CHECKPOINT_CLOSED",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "parent_scientific_state": {
+    "v12": "PURE_LITERAL_EXISTENTIAL_PROJECTION = EXACT",
+    "v13": "TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION = EXACT",
+    "parent_head": "dfa9d8bca9f3fd24a1be5615d181f8e30c2b4fb0"
+  },
+  "hephaestus_lineage": {
+    "historical_crystal_sha256": "7609e131b71f58c4279376540f2db977e956c7caf404b28078a4df79197f067b",
+    "historical_real_role": "file metadata entropy/slack analysis",
+    "historical_p_vs_np_claim_accepted": false,
+    "safe_donor": ["immutable state snapshot", "hash", "byte accounting", "recurrence detection"]
+  },
+  "spiral_step": {
+    "input": "v11 fixed diagnostic seeds 907000..907015",
+    "exact_rules_applied": ["v12 pure literal closure", "v13 tautological-resolvent closure"],
+    "output": "Hephaestus canonical CNF crystals",
+    "provider_run": 32836423316,
+    "provider_job": 97766190820,
+    "provider_conclusion": "SUCCESS",
+    "first_surviving_obstruction_seed": 907004,
+    "first_surviving_crystal_sha256": "c4966d4fc14f224c3380eafb8bced50d6363975f0dd967e5d803bfcc53955132",
+    "first_surviving_residual": [[-2,-3,-4],[-1,2,-3],[1,-2,4],[1,2,5],[2,-3,-4],[3,-4,5],[3,4,-5]],
+    "result_sha256": "854d53c8e171f1665dbc472f3af37fb901f54d730cb01462fe189e53db5a9e34",
+    "global_ledger": {"state_bytes": 1271, "proof_bytes": 19762, "exact_syntactic_revisits": 12}
+  },
+  "closed_gates": [
+    "907000 handled by v12",
+    "907003 handled by v13",
+    "syntactic recurrence is now guarded by canonical crystal SHA-256"
+  ],
+  "do_not_repeat": [
+    "do not interpret Hephaestus storage/entropy metrics as P vs NP evidence",
+    "do not use crystal size/entropy/slack as a variable-selection score",
+    "do not revisit an identical canonical residual as new progress",
+    "do not retry pure-literal or all-tautological-resolvent claims on 907004 as if untested"
+  ],
+  "new_open_gate": {
+    "name": "SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "diagnostic_seed": 907004,
+    "reason": "x1 has two positive and one negative parent clauses; exactly one unique non-tautological Davis-Putnam resolvent remains after tautological pairs are omitted",
+    "candidate_resolvent": [-3,2,5],
+    "admission_rule": "theorem premise only; no heuristic score"
+  },
+  "claim_ceiling": {"P_VS_NP": "OPEN"}
+}
