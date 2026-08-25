@@ -1,0 +1,67 @@
+{
+  "artifact_id": "PF5-V23-STRUCTURAL-AUDIT-SELF-SUBSUMING-RESOLUTION",
+  "status": "DIAGNOSTIC_THEOREM_CANDIDATE_IDENTIFIED",
+  "source_receipt": "data/PF5-PNP-SPIRAL-SURVIVOR-V23-RECEIPT.json",
+  "diagnostic": {
+    "n": 6,
+    "m": 24,
+    "seed": 915600,
+    "crystal_sha256": "e16d4ee3a5fbbfacf4004b8323c4cc9900e9a3567d5c376034d805c508bb8863",
+    "role": "DIAGNOSTIC_ONLY_NOT_BLIND"
+  },
+  "existing_operator_audit": {
+    "v12_pure_literal": "fixed point already reached",
+    "v13_all_resolvents_tautological": "fixed point already reached",
+    "v15_single_unique_non_tautological_resolvent": "not applicable on this residual",
+    "v18_legacy_complementary_twin": "superseded for semantic twin completeness by v22",
+    "v20_clause_subsumption": "fixed point already reached",
+    "v22_order_invariant_complementary_twin": "fixed point reached and residual is semantic-twin-free",
+    "new_implementation_gap_found": false
+  },
+  "candidate": "SELF_SUBSUMING_RESOLUTION_CONTRACTION",
+  "exact_identity": {
+    "premise": "C_plus = (x OR A), C_minus = (NOT x OR B), with literal-set(A) subseteq literal-set(B)",
+    "rewrite": "C_plus AND C_minus == C_plus AND B",
+    "symmetric_case": "If literal-set(B) subseteq literal-set(A), rewrite C_plus AND C_minus == A AND C_minus",
+    "reason": "If B were false then A is false; the two parent clauses would force x and NOT x simultaneously. Thus the parents imply B. Conversely B implies (NOT x OR B), so replacing the larger parent by its resolvent body preserves equivalence."
+  },
+  "diagnostic_opportunity_count": 7,
+  "diagnostic_examples": [
+    {
+      "pivot": 2,
+      "strong_parent": [-2,-6],
+      "weakened_parent": [2,-4,-6],
+      "replacement": [-4,-6]
+    },
+    {
+      "pivot": 2,
+      "strong_parent": [-2,-6],
+      "weakened_parent": [2,-3,-6],
+      "replacement": [-3,-6]
+    },
+    {
+      "pivot": 2,
+      "strong_parent": [2,4],
+      "weakened_parent": [-2,4,6],
+      "replacement": [4,6]
+    },
+    {
+      "pivot": 4,
+      "strong_parent": [2,4],
+      "weakened_parent": [2,-4,-6],
+      "replacement": [2,-6]
+    },
+    {
+      "pivot": 6,
+      "strong_parent": [-2,-6],
+      "weakened_parent": [-2,4,6],
+      "replacement": [-2,4]
+    }
+  ],
+  "important_boundary": "This is a local exact CNF equivalence contraction, not a universal polynomial closure theorem and not evidence that P=NP.",
+  "next_gate": "V24_FRESH_FROZEN_SELF_SUBSUMING_RESOLUTION_AUDIT",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
