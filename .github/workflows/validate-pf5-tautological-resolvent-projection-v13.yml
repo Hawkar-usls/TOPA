@@ -1,0 +1,101 @@
+name: Validate PF5 Tautological-Resolvent Exact Projection v13
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_TAUTOLOGICAL_RESOLVENT_PROJECTION_V13.md'
+      - 'research/mathematics/p-vs-np/pf5_tautological_resolvent_projection_v13.py'
+      - '.github/workflows/validate-pf5-tautological-resolvent-projection-v13.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_TAUTOLOGICAL_RESOLVENT_PROJECTION_V13.md'
+      - 'research/mathematics/p-vs-np/pf5_tautological_resolvent_projection_v13.py'
+      - '.github/workflows/validate-pf5-tautological-resolvent-projection-v13.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-tautological-resolvent-projection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exact reducer
+        run: |
+          python -m py_compile research/mathematics/p-vs-np/pf5_tautological_resolvent_projection_v13.py
+      - name: Run frozen blind exact projection audit
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_tautological_resolvent_projection_v13.py \
+            --json-out ../../../pf5-tautological-resolvent-projection-v13.result.json
+      - name: Verify theorem-only runtime contract
+        run: |
+          python - <<'PY'
+          import ast
+          import inspect
+          import json
+          import sys
+          sys.path.insert(0,'research/mathematics/p-vs-np')
+          import pf5_tautological_resolvent_projection_v13 as v13
+
+          d=json.load(open('pf5-tautological-resolvent-projection-v13.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-TAUTOLOGICAL-RESOLVENT-EXACT-PROJECTION-V13'
+          assert d['status']=='FINITE_BLIND_EXACT_PROJECTION_AUDIT_COMPLETE'
+          assert d['new_feature']=='TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION'
+          assert d['new_feature_is_heuristic'] is False
+          assert d['new_feature_uses_slime'] is False
+          assert d['new_feature_uses_sat_oracle'] is False
+          assert d['new_feature_uses_pswidth_score'] is False
+          assert d['new_feature_uses_truth_table'] is False
+          assert d['new_feature_acceptance_predicate']=='BOTH_POLARITIES_AND_EVERY_POSITIVE_X_NEGATIVE_RESOLVENT_TAUTOLOGICAL'
+          assert d['holdout_seeds_frozen_before_provider_run']==list(range(909000,909032))
+          assert d['holdout_not_conditioned_on_feature_presence'] is True
+          assert d['source_batch_frozen_before_reducer'] is True
+          assert d['pure_only_batch_frozen_before_composed_reducer'] is True
+          assert d['all_composed_reductions_frozen_before_exact_judges'] is True
+          assert d['adaptive_seed_extension_after_results'] is False
+          assert d['summary']['cases']==32
+          assert d['summary']['all_semantic_projection_audits_pass'] is True
+          assert d['runtime_rule_is_polynomial_in_explicit_residual_size'] is True
+          assert d['exact_pswidth_judge_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['semantic_truth_table_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['witness_lift_is_replayable_from_certificate_given_residual_witness'] is True
+          assert d['universal_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+
+          diag=d['diagnostic']
+          assert diag['seed']==907003
+          assert diag['pure_only_is_noop'] is True
+          assert diag['semantic_audit_pass'] is True
+          assert diag['tautological_resolvent_steps']>=1
+          first=[x for x in diag['transcript'] if x['kind']=='TAUTOLOGICAL_RESOLVENT'][0]['certificate']
+          assert first['variable']==1
+          assert first['positive_parent_count']==2
+          assert first['negative_parent_count']==2
+          assert first['cross_pair_count']==4
+          assert len(first['pair_certificates'])==4
+          assert first['all_cross_resolvents_tautological'] is True
+
+          params=list(inspect.signature(v13.discover_and_project_one).parameters)
+          assert params==['formula'], params
+          runtime_source=inspect.getsource(v13.discover_and_project_one)
+          forbidden=['pswidth','sat_oracle','truth_table','SlimeSemantic','score_candidate','exact_optimal']
+          for token in forbidden:
+              assert token not in runtime_source, token
+
+          print('PF5_V13_THEOREM_ONLY_RUNTIME_CONTRACT = PASS')
+          print('SUMMARY =',d['summary'])
+          print('SOURCE_BATCH_SHA256 =',d['source_batch_sha256'])
+          print('PURE_ONLY_BATCH_SHA256 =',d['pure_only_batch_sha256'])
+          print('COMPOSED_REDUCTION_BATCH_SHA256 =',d['composed_reduction_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'PURE_LITERAL_EXISTENTIAL_PROJECTION = EXACT'
+          echo 'TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION = EXACT'
+          echo 'FINITE_BLIND_REDUCTION != UNIVERSAL_COMPLETENESS'
+          echo 'P_VS_NP = OPEN'
