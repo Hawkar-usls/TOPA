@@ -1,0 +1,63 @@
+{
+  "artifact_id": "PF5-V28-2SAT-BACKDOOR-K2-FROZEN-PROTOCOL",
+  "status": "FROZEN_BEFORE_PROVIDER_CODE",
+  "selected_from": "PF5-DARK-RESIDUAL-STRUCTURE-MINER-V27",
+  "selected_lane": "STRONG_2SAT_BACKDOOR_K_LE_2",
+  "selection_evidence_is_post_hoc": true,
+  "fresh_validation_required": true,
+  "k_max": 2,
+  "frozen_groups": [
+    {"n":6,"m":24,"seeds":[918600,918601,918602,918603,918604,918605,918606,918607,918608,918609,918610,918611,918612,918613,918614,918615]},
+    {"n":7,"m":28,"seeds":[918700,918701,918702,918703,918704,918705,918706,918707,918708,918709,918710,918711,918712,918713,918714,918715]}
+  ],
+  "pipeline": [
+    "GENERATE_FROZEN_CONNECTED_3CNF",
+    "V24_EXACT_CLOSURE",
+    "IF_TERMINAL_KEEP_TERMINAL",
+    "IF_OPEN_RUN_V26_DIRECT_2SAT_FIRST",
+    "IF_STILL_OPEN_DISCOVER_LEXICOGRAPHIC_SMALLEST_STRONG_2SAT_BACKDOOR_K_LE_2",
+    "IF_BACKDOOR_FOUND_BRANCH_ALL_ASSIGNMENTS",
+    "SIMPLIFY_EACH_BRANCH_BY_BACKDOOR_ASSIGNMENT",
+    "VERIFY_EACH_BRANCH_IS_2CNF",
+    "RUN_V26_PROOF_CARRYING_SCC_ON_EACH_BRANCH",
+    "SAT_IF_ANY_BRANCH_SAT_WITH_WITNESS_LIFT",
+    "UNSAT_IF_ALL_BRANCHES_UNSAT_WITH_COMPLETE_BRANCH_CERTIFICATE",
+    "ELSE_OPEN_UNSUPPORTED"
+  ],
+  "backdoor_definition": "B is accepted iff removing all literals whose variables lie in B leaves every clause with width at most 2; therefore every total assignment to B yields a 2-CNF simplification.",
+  "discovery_order": {
+    "k": [0,1,2],
+    "variable_sets": "lexicographic by ascending variable id",
+    "stop": "first accepted set only"
+  },
+  "branch_order": "lexicographic Boolean tuples over ascending backdoor variables, false before true",
+  "proof_contract": {
+    "sat": "one SAT branch: backdoor assignment + branch simplification certificate + v26 SCC witness + merged residual witness + replayed v24 witness lift to original source",
+    "unsat": "all 2^k branches present; each branch has simplification certificate and verified v26 SCC UNSAT mutual-implication certificate; branch manifest proves exhaustive coverage",
+    "unsupported": "no strong 2-SAT backdoor of size <=2 found after all charged candidates"
+  },
+  "costs_to_charge": [
+    "backdoor_subsets_tested",
+    "failed_backdoor_subsets",
+    "backdoor_clause_checks",
+    "backdoor_literal_checks",
+    "branch_count",
+    "branch_simplification_clause_checks",
+    "branch_simplification_literal_checks",
+    "branch_state_bytes",
+    "v26_scc_costs_per_branch",
+    "backdoor_certificate_bytes",
+    "branch_certificate_bytes",
+    "witness_bytes",
+    "witness_merge_ops",
+    "witness_lift_ops",
+    "verification_ops",
+    "cumulative_state_bytes"
+  ],
+  "no_sat_oracle": true,
+  "no_truth_table_in_provider": true,
+  "truth_table_allowed_only_after_provider_outputs_frozen_for_finite_audit": true,
+  "adaptive_seed_extension_after_results": false,
+  "universal_exact_closure": "OPEN",
+  "p_vs_np": "OPEN"
+}
