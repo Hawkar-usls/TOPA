@@ -1,0 +1,28 @@
+name: Validate U1-L2C1 Literal Factor Existential Closure
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1L2C1_ACI_QUOTIENT_EXISTENTIAL_UPDATE_CLOSURE.md'
+      - 'research/mathematics/p-vs-np/u1l2c1_literal_factor_existential_closure_verifier.py'
+      - '.github/workflows/validate-u1l2c1-literal-factor-existential-closure.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  literal-factor-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile provider
+        run: python -m py_compile research/mathematics/p-vs-np/u1l2c1_literal_factor_existential_closure_verifier.py
+      - name: Verify exact four-case update, sequential closure and witness replay
+        run: python research/mathematics/p-vs-np/u1l2c1_literal_factor_existential_closure_verifier.py
