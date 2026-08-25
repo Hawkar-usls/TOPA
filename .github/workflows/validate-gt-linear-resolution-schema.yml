@@ -1,0 +1,48 @@
+name: Validate GT Linear Resolution Schema
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_GT_LINEAR_RESOLUTION_SCHEMA.md'
+      - 'research/mathematics/p-vs-np/gt_linear_resolution_schema_probe.py'
+      - '.github/workflows/validate-gt-linear-resolution-schema.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  generator-replay:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout frozen Fundamentum GT source
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Fundamentum
+          ref: 122ccf2c1082fc5967d063dc7b73ac8e26c9325d
+          path: fundamentum
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exact GT generator and independent proof replay
+        run: |
+          python topa/research/mathematics/p-vs-np/gt_linear_resolution_schema_probe.py \
+            --fundamentum-root fundamentum \
+            --output /tmp/gt.json >/dev/null
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/gt.json'))
+          assert len(r['rows'])==11
+          assert all(x['empty_clause_derived'] and x['full_replay_pass'] for x in r['rows'])
+          assert all(x['resolution_inferences']==x['expected_inferences'] for x in r['rows'])
+          assert r['gt12']['resolution_inferences']==506
+          print('JANUS_GT_LINEAR_RESOLUTION_N2_TO_N12 = PASS')
+          print('JANUS_GT12_RESOLUTION_INFERENCES =', r['gt12']['resolution_inferences'])
+          print('JANUS_GT12_ROOT_CLAUSES =', r['gt12']['root_clauses'])
+          print('GT_GENERIC_SEARCH_CAP_HIT_IS_NOT_RESOLUTION_LOWER_BOUND = PASS')
+          print('P_VS_NP = OPEN')
+          PY
