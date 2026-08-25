@@ -1,0 +1,55 @@
+{
+  "schema": "JANUS_PNP_RCTQ1_REVERSE_FORWARD_FIRST_TERMINAL_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "audit": {
+    "path": "data/JANUS-PNP-RCTQ1-REVERSE-FORWARD-AUDIT-2026-08-25-v1.0.json",
+    "commit": "f5db0a028eb2c633db34067384c7af0c3af96b6e"
+  },
+  "verifier": {
+    "path": "research/mathematics/p-vs-np/rctq1_reverse_forward_audit_verifier.py",
+    "commit": "89da57c80a65802e6f9751655b6196e4c20eebb9"
+  },
+  "workflow": {
+    "path": ".github/workflows/validate-janus-rctq1-reverse-forward.yml",
+    "head_commit": "872b8896dbd6ed3c8d46c0cc01db87f949037e44",
+    "name": "Validate JANUS RCTQ-1 Reverse Forward"
+  },
+  "first_run": {
+    "run_id": 32895714915,
+    "job_id": 97957815452,
+    "attempt": 1,
+    "status": "COMPLETED",
+    "conclusion": "SUCCESS",
+    "repair_run_required": false,
+    "result_sha256": "7f7a6be8180136c44af09fd487649eef8ccdafba33b4e5cd3e6f659ae4119300"
+  },
+  "hash_stable_replay": [
+    {"direction":"REVERSE","id":"RCTQ1","sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"},
+    {"direction":"REVERSE","id":"KANAMI","sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"REVERSE","id":"UNIFIED","sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"UNIFIED","sha256":"56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"},
+    {"direction":"FORWARD","id":"KANAMI","sha256":"9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"},
+    {"direction":"FORWARD","id":"RCTQ1","sha256":"40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"}
+  ],
+  "reconciliation": {
+    "reverse_forward_hash_stable": true,
+    "exact_restrict_bridge_verified": true,
+    "certified_alias_restriction_closure_verified": true,
+    "all_counterfactual_restriction_state_poly_bound": "REFUTED_BY_2^n_SELECTOR_UNIT_FAMILY",
+    "keymaster_frontier_theorem": "PRESERVED_WITH_M_DEFINED_ON_ACTUALLY_MATERIALIZED_FRONTIER",
+    "active_keymaster_operator_count": 14,
+    "active_catalog_changed": false
+  },
+  "new_central_target": "BOUND_THE_ACTUAL_DETERMINISTIC_TRACE_NOT_THE_ENTIRE_RESTRICTION_UNIVERSE",
+  "next_gate": "RCTQ2_UNIVERSAL_EXACT_CAPPED_TRANSITION_AVAILABILITY_OR_FROZEN_CATALOG_ESCAPE_FAMILY",
+  "two_surviving_exact_routes": [
+    "SINGLE_TRACE_UNIVERSAL_EXACT_CAPPED_TRANSITION_AVAILABILITY",
+    "FRONTIER_POLYNOMIAL_MATERIALIZED_TRACE_VOLUME"
+  ],
+  "universal_polynomial_sat_algorithm": "NOT_ESTABLISHED",
+  "P_VS_NP": "OPEN"
+}
