@@ -1,0 +1,28 @@
+name: Validate JANUS Konami Spiral Fixed Point
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'research/mathematics/p-vs-np/janus_konami_spiral_fixed_point_v1.py'
+      - 'data/JANUS-PNP-KONAMI-SPIRAL-FULL-METHOD-2026-08-25-v1.0.json'
+      - '.github/workflows/validate-janus-kontami-spelling.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  konami-fixed-point:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile exact Konami auditor
+        run: python -m py_compile research/mathematics/p-vs-np/janus_konami_spiral_fixed_point_v1.py
+      - name: Run exact Konami reverse-forward fixed point
+        run: python research/mathematics/p-vs-np/janus_konami_spiral_fixed_point_v1.py
