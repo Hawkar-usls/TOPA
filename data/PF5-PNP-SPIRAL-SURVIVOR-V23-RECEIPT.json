@@ -1,0 +1,31 @@
+{
+  "artifact_id": "PF5-PNP-SPIRAL-SURVIVOR-V23-RECEIPT",
+  "status": "PASS",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "aadb2b59e7703569954958a70b66002a6ad4c876",
+  "workflow_run": 32839595034,
+  "workflow_job": 97775932110,
+  "result_sha256": "9b31165750c1207bb67c5faabd3837c637dc9cec2aec95568da4309aeac52c65",
+  "rows_manifest_sha256": "aea1605d1698707f2b040d195581128492e8e78add3774058274b88b048dcec3",
+  "input_holdout": "V22_FRESH_FROZEN_GROUPS_UNCHANGED",
+  "case_count": 32,
+  "survivor_count": 32,
+  "terminal_true_count": 0,
+  "terminal_false_count": 0,
+  "first_survivor": {
+    "n": 6,
+    "m": 24,
+    "seed": 915600,
+    "crystal_sha256": "e16d4ee3a5fbbfacf4004b8323c4cc9900e9a3567d5c376034d805c508bb8863",
+    "canonical_cnf": [[-4,5,-6],[-3,-4,5],[-3,4,-5],[-2,-6],[-2,4,6],[-1,-3,5],[-1,-2,5],[-1,2,3],[-1,2,6],[-1,3,-5],[-1,4,-6],[1,-3,-5],[1,-2,-3],[1,-2,4],[1,2,5],[1,5,-6],[2,-4,-6],[2,-3,-6],[2,3,-4],[2,4]]
+  },
+  "locator_only": true,
+  "new_solver": false,
+  "decision_heuristic": false,
+  "uses_hephaestus_for_decision": false,
+  "next_gate": "AUDIT_EXISTING_EXACT_OPERATORS_FOR_CANONICALIZATION_GAPS_BEFORE_NEW_THEOREM",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
