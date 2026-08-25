@@ -66,6 +66,12 @@ The exact judge records only finite facts:
 
 The subset-DP scorer remains an exponential audit oracle and is not part of the runtime algorithm.
 
+## Provider execution freeze
+
+Branch: `pf5-pure-literal-exact-projection-v12`.
+
+The feature, seeds, source generator, deterministic tie-break rule, certificate schema, and judge contract were fixed before this provider execution. Any failure is preserved; no parameter may be changed after observing the blind result.
+
 ## Claim ceiling
 
 `PURE_LITERAL_EXISTENTIAL_PROJECTION = EXACT`
