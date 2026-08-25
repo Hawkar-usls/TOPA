@@ -1,0 +1,80 @@
+name: Validate PF5 Slime Relation Pseudoforest Blind v14
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_pseudoforest_blind_v14.py'
+      - '.github/workflows/validate-pf5-slime-relation-pseudoforest-blind-v14.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_relation_pseudoforest_blind_v14.py'
+      - '.github/workflows/validate-pf5-slime-relation-pseudoforest-blind-v14.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  blind-relation-pseudoforest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v4 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 321421130fd7a0ffe53c20bdf648f1a9673e4ce4
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Freeze v4 manifests then run exact DP judge
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_relation_pseudoforest_blind_v14.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v4.py \
+            --json-out ../../../../pf5-slime-relation-pseudoforest-blind-v14.result.json
+      - name: Verify blind firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-relation-pseudoforest-blind-v14.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-RELATION-PSEUDOFOREST-BLIND-V14'
+          assert d['status']=='FINITE_BLIND_EXACT_OPTIMUM_AUDIT_COMPLETE'
+          assert d['producer_feature']=='PROJECTED_CLAUSE_RELATION_PSEUDOFOREST_CAP'
+          assert d['calibration_seed_already_observed']==909002
+          assert d['calibration_excluded_from_holdout_summary'] is True
+          assert d['holdout_seeds_frozen_before_provider_run']==list(range(910000,910016))
+          assert d['all_sources_and_manifests_frozen_before_exact_dp'] is True
+          assert d['adaptive_candidate_generation_after_exact_dp'] is False
+          assert d['exact_dp_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['pseudoforest_cap_is_upper_bound_not_exact_pswidth'] is True
+          assert d['arbitrary_relation_graph_counting_admitted'] is False
+          s=d['holdout_summary']
+          assert s['holdout_cases']==16
+          assert s['v4_vs_v3_wins']+s['v4_vs_v3_ties']+s['v4_vs_v3_losses']==16
+          assert s['v4_vs_v2_wins']+s['v4_vs_v2_ties']+s['v4_vs_v2_losses']==16
+          assert s['v4_vs_v1_wins']+s['v4_vs_v1_ties']+s['v4_vs_v1_losses']==16
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['universal_polynomial_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          for row in d['controls']:
+              for name in ['SLIME_SEMANTIC_PRESSURE','SLIME_SIGNATURE_CAP_PRESSURE','SLIME_RELATION_FOREST_PRESSURE','SLIME_RELATION_PSEUDOFOREST_PRESSURE']:
+                  assert name in row['candidate_widths']
+              assert row['exact_optimal_width'] <= min(row['candidate_widths'].values())
+              assert row['v4_gap']==row['v4_width']-row['exact_optimal_width']
+          print('PF5_SLIME_RELATION_PSEUDOFOREST_V14_CONTRACT = PASS')
+          print('CALIBRATION =',d['calibration']['v1_width'],d['calibration']['v2_width'],d['calibration']['v3_width'],d['calibration']['v4_width'],d['calibration']['exact_optimal_width'])
+          print('HOLDOUT_SUMMARY =',s)
+          print('MANIFEST_BATCH_SHA256 =',d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'KNOWN_CALIBRATION != BLIND_VALIDATION'
+          echo 'PSEUDOFOREST_RELATION_CAP != EXACT_PSWIDTH'
+          echo 'ARBITRARY_RELATION_GRAPH_COUNTING NOT ADMITTED'
+          echo 'FINITE_HOLDOUT_IMPROVEMENT != UNIVERSAL_COMPLETENESS'
+          echo 'P_VS_NP = OPEN'
