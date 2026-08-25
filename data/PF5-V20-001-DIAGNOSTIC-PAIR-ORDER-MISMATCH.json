@@ -1,0 +1,26 @@
+{
+  "artifact_id": "PF5-V20-001-DIAGNOSTIC-PAIR-ORDER-MISMATCH",
+  "status": "RECORDED_FAILURE",
+  "workflow_run": 32838573131,
+  "workflow_job": 97772835179,
+  "failing_head": "77ba06e93030857d40eea0c8ce37f99ec0370459",
+  "failure": "AssertionError: expected diagnostic first subsuming_clause == [-3,-5]",
+  "failure_phase": "NON_BLIND_DIAGNOSTIC_BEFORE_FRESH_HOLDOUT_REDUCTION",
+  "fresh_holdout_provider_results_seen": false,
+  "theorem_status": "UNAFFECTED",
+  "theorem": "A AND (A OR B) == A",
+  "fresh_holdout_status": "UNCHANGED_AND_UNSEEN",
+  "root_cause_status": "RUNTIME_PAIR_ORDER_NEEDS_EXACT_LOCALIZATION",
+  "important_distinction": "The Hephaestus crystal proves identity of the residual but its displayed canonical_cnf ordering must not be assumed to equal the provider's internal deterministic v12 canonical scan order.",
+  "repair_scope": "Locate the actual first deterministic subsumption pair on diagnostic seed 913600 without reducing any fresh v20 holdout source; then repair only the diagnostic expectation if the exact identity and replay remain valid.",
+  "do_not_repeat": [
+    "Do not alter fresh seeds 914600..914615 or 914700..914715.",
+    "Do not reorder provider discovery after seeing the fresh holdout.",
+    "Do not weaken semantic audit.",
+    "Do not infer runtime scan order from Hephaestus display order."
+  ],
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
