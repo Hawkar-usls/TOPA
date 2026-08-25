@@ -1,0 +1,99 @@
+{
+  "artifact_id": "PF5-CLAUSE-SUBSUMPTION-CONTRACTION-V20.1-RECEIPT",
+  "status": "PASS",
+  "branch": "pnp-spiral-hephaestus-crystal-v14",
+  "head_sha": "dbd91ec4be55d82d06df61b878d42926b3cd85ec",
+  "workflow_run": 32838878369,
+  "workflow_job": 97773759914,
+  "result_sha256": "7414da45288717086f188d43a8e1892309ed34e916010daf71f63abedb78c368",
+  "source_manifest_sha256": "e6a89bd57eeb7cd62a4e74946e48e10df8df9c98da9f6ab8d6ad8148050fa0f5",
+  "reduction_batch_sha256": "a698159c9996872e4971e2d4e35d986a3f79cb89bbeaaf0537f163cc71352dc7",
+  "operator": "CLAUSE_SUBSUMPTION_CONTRACTION",
+  "identity": "A AND (A OR B) == A",
+  "repair_lineage": {
+    "failure_receipt": "data/PF5-V20-001-DIAGNOSTIC-PAIR-ORDER-MISMATCH.json",
+    "resolution_receipt": "data/PF5-V20-001-RESOLUTION.json",
+    "repair": "V20-001_DIAGNOSTIC_EXPECTATION_ONLY",
+    "provider_logic_changed": false,
+    "fresh_holdout_changed": false,
+    "theorem_changed": false,
+    "discovery_rule_changed": false
+  },
+  "fresh_frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "914600..914615"},
+    {"n": 7, "m": 28, "seeds": "914700..914715"}
+  ],
+  "summary": {
+    "cases": 32,
+    "feature_fired_cases": 21,
+    "feature_noop_cases": 11,
+    "total_subsumption_steps": 58,
+    "terminal_true_cases": 1,
+    "terminal_false_cases": 0,
+    "open_residual_cases": 31,
+    "positive_byte_delta_cases": 21,
+    "mean_baseline_crystal_bytes": 221.5,
+    "mean_final_crystal_bytes": 199.71875,
+    "all_semantic_audits_pass": true,
+    "exact_final_revisits": 0
+  },
+  "runtime_ledger": {
+    "v13": {
+      "rounds": 165,
+      "literal_occurrence_checks": 10756,
+      "clause_membership_checks": 11,
+      "clauses_removed": 4,
+      "certificate_bytes": 818,
+      "residual_bytes_peak": 68785,
+      "witness_lift_ops": 2,
+      "variable_tests": 1032,
+      "failed_variable_tests": 1032,
+      "clause_polarity_checks": 23684,
+      "pair_checks": 1594,
+      "complement_literal_checks": 2864,
+      "successful_projections": 0
+    },
+    "v15": {
+      "variable_tests": 1028,
+      "failed_variable_tests": 1025,
+      "clause_polarity_checks": 23641,
+      "pair_checks": 27331,
+      "complement_literal_checks": 48421,
+      "non_taut_resolvent_rows": 18020,
+      "unique_resolvent_insertions": 16904,
+      "successful_projections": 3,
+      "clauses_removed": 15,
+      "clauses_emitted": 3,
+      "certificate_bytes": 4366
+    },
+    "v18": {
+      "variable_tests": 805,
+      "failed_variable_tests": 735,
+      "clause_polarity_checks": 18174,
+      "pair_checks": 19040,
+      "body_literal_checks": 38035,
+      "body_hashes": 22956,
+      "successful_contractions": 70,
+      "clauses_removed": 140,
+      "clauses_emitted": 70,
+      "certificate_bytes": 44069
+    },
+    "v20": {
+      "clause_pair_tests": 38381,
+      "failed_pair_tests": 38323,
+      "literal_membership_checks": 2681,
+      "successful_contractions": 58,
+      "clauses_removed": 58,
+      "certificate_bytes": 21761,
+      "state_bytes_peak": 17680,
+      "cumulative_state_bytes": 28425
+    }
+  },
+  "interpretation": "Fresh frozen finite audit confirms clause subsumption as a useful exact equivalence contraction. One of 32 cases reached TRUE under the composed exact closure; 31 remained open. This is finite evidence about the current closure algebra only, not an asymptotic result.",
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "next_gate": "FIRST_RESIDUAL_SURVIVING_V12_V13_V15_V18_V20",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
