@@ -1,0 +1,65 @@
+name: PF5 Certified Swap Orbit Discovery v16.3 Receipt
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate-pf5-certified-swap-orbit-discovery-v16-3-receipt.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  persistent-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute v16.3
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_certified_swap_orbit_discovery_v16_3.py \
+            --json-out ../../../v16-3.result.json >/dev/null
+      - name: Build compact receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.load(open('v16-3.result.json',encoding='utf-8'))
+          receipt={
+            'artifact_id':'PF5-CERTIFIED-SWAP-ORBIT-DISCOVERY-V16.3-RECEIPT',
+            'source_result_sha256':d['result_sha256'],
+            'status':d['status'],
+            'api_input':d['api_input'],
+            'fixed_capability_exponent_q':d['fixed_capability_exponent_q'],
+            'variable_orbit_certificate':d['variable_orbit_certificate'],
+            'clause_orbit_certificate':d['clause_orbit_certificate'],
+            'admitted_cost_language':d['admitted_cost_language'],
+            'small_control_count':len(d['small_exhaustive_controls']),
+            'large_symbolic_only_controls':d['large_symbolic_only_controls'],
+            'negative_controls':d['negative_controls'],
+            'theorem':d['theorem'],
+            'epistemic_firewall':d['epistemic_firewall'],
+            'next_gate':d['next_gate'],
+            'universal_polynomial_prefix_quotient':d['universal_polynomial_prefix_quotient'],
+            'p_vs_np':d['p_vs_np'],
+          }
+          out=Path('data/PF5-CERTIFIED-SWAP-ORBIT-DISCOVERY-V16.3-RECEIPT.json')
+          out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print('V16_3_RECEIPT = PASS')
+          print('LARGE =',[(r['n'],r['m'],r['quotient_state_count'],r['orbit_state_product'],r['discovery_ops'],r['optimum']) for r in receipt['large_symbolic_only_controls']])
+          print('NEGATIVE =',[(r['name'],r['status'],r['reason']) for r in receipt['negative_controls']])
+          print('SHA =',receipt['source_result_sha256'])
+          PY
+      - name: Commit receipt
+        run: |
+          git config user.name 'JANUS CI Receipt'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/PF5-CERTIFIED-SWAP-ORBIT-DISCOVERY-V16.3-RECEIPT.json
+          if git diff --cached --quiet; then
+            echo 'Receipt unchanged.'
+          else
+            git commit -m 'Record PF5 v16.3 certified swap-orbit receipt'
+            git push origin HEAD:pf5-certified-swap-orbit-discovery-v16-3
+          fi
