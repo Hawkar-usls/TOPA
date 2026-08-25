@@ -1,0 +1,65 @@
+{
+  "artifact_id": "PF5-REPRESENTATION-ESCAPE-LADDER-V1-RECEIPT",
+  "claim_ceiling": "P_VS_NP = OPEN",
+  "provider": {
+    "run_id": 32799090243,
+    "job_id": 97656304115,
+    "conclusion": "SUCCESS",
+    "result_sha256": "9e982c52c440b7b931ddf96bcc50fd3618affe90f5f969349150ab23b38448be"
+  },
+  "frozen_ladder": {
+    "m": [8, 10, 12],
+    "fanout_n": 6,
+    "caps_changed": false
+  },
+  "results": [
+    {
+      "rung": "HYBRID_EQ8_FAN6",
+      "coverage_hole": false,
+      "primary_coverage": ["RAW_B2_SHANNON"],
+      "raw_peak_bytes": 24838,
+      "raw_cumulative_bytes": 103195,
+      "raw_projection_ops": 38962,
+      "obdd": "CAP_HIT",
+      "obdd_failed_build_ops": 13445,
+      "factor": "CAP_HIT",
+      "orbit": "UNSUPPORTED"
+    },
+    {
+      "rung": "HYBRID_EQ10_FAN6",
+      "coverage_hole": true,
+      "primary_coverage": [],
+      "raw": "CAP_HIT_RAW_MAX_INTERNED_NODES",
+      "raw_peak_bytes_before_hit": 59926,
+      "raw_cumulative_bytes_before_hit": 150424,
+      "raw_projection_ops_before_hit": 36918,
+      "obdd": "CAP_HIT",
+      "obdd_failed_build_ops": 15101,
+      "factor": "CAP_HIT",
+      "factor_finalize_ops_before_hit": 196596,
+      "orbit": "UNSUPPORTED"
+    },
+    {
+      "rung": "HYBRID_EQ12_FAN6",
+      "coverage_hole": true,
+      "primary_coverage": [],
+      "raw": "CAP_HIT_RAW_MAX_INTERNED_NODES",
+      "raw_peak_bytes_before_hit": 80886,
+      "raw_cumulative_bytes_before_hit": 194775,
+      "raw_projection_ops_before_hit": 46066,
+      "obdd": "CAP_HIT",
+      "obdd_failed_build_ops": 17164,
+      "factor": "CAP_HIT",
+      "factor_finalize_ops_before_hit": 196596,
+      "orbit": "UNSUPPORTED"
+    }
+  ],
+  "interpretation": {
+    "finite_primary_representation_escape_found": true,
+    "first_escape": "HYBRID_EQ10_FAN6",
+    "representation_lower_bound": false,
+    "semantic_hardness_claim": false,
+    "explicit_easy_sat_witness": "all roots true",
+    "diagnosis": "The monolithic representation portfolio omitted exact heterogeneous disjoint-component composition."
+  }
+}
