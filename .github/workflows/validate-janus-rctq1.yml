@@ -1,0 +1,28 @@
+name: Validate JANUS RCTQ-1
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_RCTQ1_RESTRICTION_CLOSED_TRANSITION_QUOTIENT.md'
+      - 'research/mathematics/p-vs-np/rctq1_restriction_closed_transition_quotient_verifier.py'
+      - '.github/workflows/validate-janus-rctq1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rctq1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile RCTQ-1 verifier
+        run: python -m py_compile research/mathematics/p-vs-np/rctq1_restriction_closed_transition_quotient_verifier.py
+      - name: Run RCTQ-1 verifier
+        run: python research/mathematics/p-vs-np/rctq1_restriction_closed_transition_quotient_verifier.py
