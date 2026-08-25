@@ -1,0 +1,29 @@
+name: Validate Akinator U1D Naive Potentials
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1D_NAIVE_GLOBAL_POTENTIAL_KILL_SWEEP.md'
+      - 'research/mathematics/p-vs-np/akinator_u1d_naive_potential_probe.py'
+      - '.github/workflows/validate-akinator-u1d-naive-potentials.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run naive-potential counterexample mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1d_naive_potential_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks only finite conservative-extension and structural-count counterexamples.'
+          echo '#P-completeness and Resolution proof-search hardness are external theorems.'
+          echo 'No universal derivational-potential impossibility theorem is claimed.'
+          echo 'P_VS_NP = OPEN'
