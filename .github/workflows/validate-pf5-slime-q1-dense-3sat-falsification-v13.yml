@@ -1,0 +1,113 @@
+name: Validate PF5 Slime q1 Dense 3SAT Falsification v13
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_Q1_DENSE_3SAT_FALSIFICATION_V13.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_q1_dense_3sat_falsification_v13.py'
+      - '.github/workflows/validate-pf5-slime-q1-dense-3sat-falsification-v13.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_Q1_DENSE_3SAT_FALSIFICATION_V13.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_q1_dense_3sat_falsification_v13.py'
+      - '.github/workflows/validate-pf5-slime-q1-dense-3sat-falsification-v13.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  dense-q1-falsification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout unchanged pinned Slime v3
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 421794b5c7e3b96f52550cf710fe2d8d2f3b59db
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen dense q1 ladder
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_q1_dense_3sat_falsification_v13.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_swarm_v3_amortized.py \
+            --json-out ../../../../pf5-slime-q1-dense-3sat-falsification-v13.result.json
+      - name: Verify outcome-neutral q1 contract and receipts
+        run: |
+          python - <<'PY'
+          import inspect, json, sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          import pf5_slime_q1_dense_3sat_falsification_v13 as v13
+          import pf5_slime_capped_pswidth_compiler_v12 as v12
+
+          d=json.load(open('pf5-slime-q1-dense-3sat-falsification-v13.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-Q1-DENSE-3SAT-FALSIFICATION-V13'
+          assert d['status']=='FINITE_FALSIFICATION_LADDER_COMPLETE'
+          assert d['q_unchanged_from_v12']==1
+          assert d['frozen_rows']==[list(x) for x in v13.FROZEN_ROWS]
+          assert d['all_formulas_and_manifests_frozen_before_compilation'] is True
+          assert d['runtime_exact_scorer_used'] is False
+          assert d['runtime_sat_oracle_used'] is False
+          assert d['runtime_cap_escalation_used'] is False
+          assert len(d['results'])==12
+          assert d['global_ledger']['candidate_attempts']==12*16
+          assert d['global_ledger']['closed_candidates']+d['global_ledger']['open_candidates']==12*16
+          assert d['universal_some_fixed_q_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+
+          source=inspect.getsource(v13.run)
+          for token in ['score_candidate(', 'assignment_signatures(', 'sat_oracle(', 'solve_sat(']:
+              assert token not in source, token
+
+          exhausted=0
+          for row in d['results']:
+              p=row['portfolio']
+              assert p['candidate_attempts']==16
+              assert p['closed_candidates']+p['open_candidates']==16
+              assert p['cap']==row['incidence_leaves']
+              formula=v12.random_connected_3cnf(row['seed'],row['n'],row['m'])
+              for attempt in p['attempts']:
+                  if attempt['terminal']=='OPEN_STATE_CAP':
+                      assert attempt['failure']['distinct_states_at_refusal']==attempt['cap']+1
+                  else:
+                      assert attempt['terminal']=='CLOSED_PSWIDTH_CAP'
+                      assert attempt['peak_ps_state']<=attempt['cap']
+                      assert attempt['certificate_replayed_before_discard'] is True
+              if p['terminal']=='OPEN_PORTFOLIO_CAP_EXHAUSTED':
+                  exhausted+=1
+                  assert p['closed_candidates']==0 and p['open_candidates']==16
+              else:
+                  assert p['terminal']=='CLOSED_PORTFOLIO_PSWIDTH_CAP'
+                  assert p['selected_certificate_replay'] is True
+                  wrapped={
+                      'terminal':'CLOSED_PSWIDTH_CAP',
+                      'certificate':p['selected_certificate'],
+                  }
+                  assert v12.replay_closed_certificate(formula,wrapped)
+          assert exhausted==d['exhausted_sources']
+          if exhausted:
+              assert d['terminal_interpretation']=='CURRENT_SLIME_V3_Q1_UNIVERSAL_COMPLETENESS_REFUTED_BY_FINITE_COUNTEREXAMPLE'
+              assert d['first_exhausted'] is not None
+          else:
+              assert d['terminal_interpretation']=='NO_Q1_ESCAPE_FOUND_ON_THIS_FROZEN_DENSE_LADDER'
+              assert d['first_exhausted'] is None
+
+          print('PF5_V13_OUTCOME_NEUTRAL_CONTRACT = PASS')
+          print('EXHAUSTED_SOURCES =',d['exhausted_sources'])
+          print('FIRST_EXHAUSTED =',d['first_exhausted'])
+          print('GLOBAL_LEDGER =',d['global_ledger'])
+          print('FROZEN_BATCH_SHA256 =',d['frozen_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Q1_PORTFOLIO_EXHAUSTION != HARDNESS'
+          echo 'Q1_SURVIVAL != UNIVERSAL_FIXED_q_COMPLETENESS'
+          echo 'NO_CAP_ESCALATION_AFTER_RESULTS'
+          echo 'P_VS_NP = OPEN'
