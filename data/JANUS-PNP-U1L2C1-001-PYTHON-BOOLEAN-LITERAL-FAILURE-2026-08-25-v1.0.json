@@ -1,0 +1,31 @@
+{
+  "schema": "JANUS_PNP_U1L2C1_FAILURE_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "failure_id": "U1-L2C1-001",
+  "branch": "pnp-proof-obligation-graph-u1-l2",
+  "protocol_commit": "5db7b6cd20e44d90fd991aa5e366e203add579c1",
+  "provider_commit": "ad2fbf119d76043d7d2c4ec08f52dd65e476cfcc",
+  "workflow_head": "827e6ab11c9af6b3f1fb3b6a5574ee2dce6982dd",
+  "workflow_run": 32878281113,
+  "workflow_job": 97901429554,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "FAILURE",
+  "failure_stage": "FINAL_RESULT_ASSEMBLY_AFTER_COMPILE",
+  "exception": "NameError: name 'false' is not defined. Did you mean: 'False'?",
+  "offending_expression": "\"P_EQUALS_NP\": false",
+  "theorem_impact": "NONE",
+  "protocol_impact": "NONE",
+  "frozen_fixture_impact": "NONE",
+  "allowed_repair": "REPLACE_PYTHON_TOKEN_false_WITH_False_ONLY",
+  "forbidden_repairs": [
+    "CHANGE_PROTOCOL",
+    "CHANGE_FIXTURES",
+    "CHANGE_SCOPE",
+    "CHANGE_THEOREM",
+    "CHANGE_ROOT_ORDER",
+    "REMOVE_REFUSAL_CONTROL",
+    "ADAPT_TO_RESULTS"
+  ],
+  "claim_ceiling": "P_VS_NP_OPEN"
+}
