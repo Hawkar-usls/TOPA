@@ -1,0 +1,94 @@
+name: Validate PF5 Connected Boundary Adhesion v3
+
+on:
+  push:
+    branches:
+      - pf5-connected-boundary-adhesion-v3
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_CONNECTED_BOUNDARY_ADHESION_GATE_V3.md'
+      - 'research/mathematics/p-vs-np/pf5_connected_boundary_adhesion_v3.py'
+      - '.github/workflows/validate-pf5-connected-boundary-adhesion-v3.yml'
+
+jobs:
+  connected-boundary-adhesion:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen connected-boundary adhesion gate
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_connected_boundary_adhesion_v3.py --json-out ../../../pf5-connected-boundary-adhesion-v3.result.json
+
+      - name: Verify frozen v3 contract
+        run: |
+          python - <<'PY'
+          import json
+          p='pf5-connected-boundary-adhesion-v3.result.json'
+          d=json.load(open(p, encoding='utf-8'))
+          assert d['artifact_id']=='PF5-CONNECTED-BOUNDARY-ADHESION-V3'
+          assert d['widths_frozen_before_provider_run']==[2,4,6,8,10,12,14]
+          assert d['new_tuned_caps_added'] is False
+          assert d['caps']['RAW_MAX_INTERNED_NODES']==5000
+          assert d['caps']['OBDD_MAX_NONTERMINAL_NODES']==192
+          assert d['caps']['FACTOR_MAX_BUCKET_SCOPE']==16
+          assert d['caps']['MAX_PRIMARY_STATE_BYTES']==250000
+          assert d['claim_ceiling']=='P_VS_NP = OPEN'
+          assert d['join_operator']=='J_B(Lambda,Rho)=Lambda_INTERSECT_Rho'
+          assert len(d['controls'])==14
+          passed=0
+          by_width={}
+          for r in d['controls']:
+              by_width.setdefault(r['k'], []).append(r)
+              assert r['connected'] is True
+              if r['status']=='PASS_EXACT_CLOSED':
+                  passed += 1
+                  expect=1 << (r['k']-1)
+                  assert r['left_boundary_rows']==expect
+                  assert r['right_boundary_rows']==expect
+                  assert r['boundary_relations_exact'] is True
+                  assert r['adhesion_join_exact'] is True
+                  assert r['repeated_boundary_project_exact'] is True
+                  assert r['strict_witness_glue_exact'] is True
+                  assert r['explicit_table_exponential_footprint_observed'] is True
+                  if r['expected_sat']:
+                      assert r['join_rows']==expect
+                      assert r['final_scalar'] is True
+                      assert r['witness_valid'] is True
+                      assert r['witness_source']=='JOIN_ROW_PLUS_ACTUAL_WING_PROJECTION_PROOFS'
+                  else:
+                      assert r['join_rows']==0
+                      assert r['final_scalar'] is False
+                      assert r['witness_valid'] is None
+                      assert r['witness_source']=='NO_WITNESS_UNSAT_JOIN_EMPTY'
+              else:
+                  assert r['status']=='CAP_HIT'
+                  assert r['claim']=='FINITE_EXPLICIT_BOUNDARY_REPRESENTATION_CAP_ONLY'
+          assert passed > 0
+          assert set(by_width)=={2,4,6,8,10,12,14}
+          assert all(len(v)==2 for v in by_width.values())
+          assert d['all_passed_controls_exact'] is True
+          assert d['explicit_table_exponential_footprint_observed'] is True
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['universal_o_log_n_adhesion_bound']=='OPEN'
+          assert d['cheap_adhesion_discovery']=='OPEN'
+          assert d['compressed_boundary_rewrite_discovery']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_CONNECTED_BOUNDARY_ADHESION_CONTRACT = PASS')
+          print('PASSED_CONTROLS =', passed)
+          print('FIRST_BASE_CAP_HIT =', d['first_base_cap_hit'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'J_B is an exact boundary JOIN operator, not a P=NP result.'
+          echo 'Finite explicit-table cap hits are representation limits only.'
+          echo 'UNIVERSAL_O_LOG_N_ADHESION_BOUND = OPEN'
+          echo 'CHEAP_ADHESION_DISCOVERY = OPEN'
+          echo 'P_VS_NP = OPEN'
