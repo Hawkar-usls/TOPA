@@ -18,7 +18,7 @@ HERE = Path(__file__).resolve().parent
 
 EXPECTED = {
     "UNIFIED": (HERE / "janus_exact_reverse_spiral_unified_runner.py", "JANUS_EXACT_REVERSE_SPIRAL_RESULT_SHA256=", "56a1e2e236df91385c6de91c91297aa7f5d093fcc56391252775796b3dd380f3"),
-    "KANAMI": (HERE / "janus_kanami_spiral_atlas_verifier.py", "JANUS_KANAMI_SPIRAL_RESULT_SHA256=", "9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"),
+    "KANAMI": (HERE / "janus_kanami_spiral_atlas_verifier.py", "JANUS_PNP_KANAMI_SPIRAL_RESULT_SHA256=", "9a5b446c9fc012922608b01ce16e16d9c3872205f3f4db7811f5adc6d72fe586"),
     "RCTQ1": (HERE / "rctq1_restriction_closed_transition_quotient_verifier.py", "JANUS_RCTQ1_RESULT_SHA256=", "40b55b403a4ed1aca7defe163f33148b75851a309e08c66a7111ff7d85086e73"),
     "RCTQ2": (HERE / "rctq2_frozen_catalog_escape_verifier.py", "JANUS_RCTQ2_RESULT_SHA256=", "469534dfad8c8612755a3443499ae03ff51386182907f46b11fefc907f2b8b90"),
     "RCTQ3": (HERE / "rctq3_polarity_gauged_escape_verifier.py", "JANUS_RCTQ3_RESULT_SHA256=", "ffb183b16962919ac3f84420d851fae772a8ff7deaae2dc8d56a57a8a1ef2526"),
