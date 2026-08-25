@@ -1,0 +1,117 @@
+name: Validate PF5 Slime Neighborhood Tree q3over2 v16
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_NEIGHBORHOOD_TREE_Q3OVER2_V16.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_neighborhood_tree_q3over2_v16.py'
+      - '.github/workflows/validate-pf5-slime-neighborhood-tree-q3over2-v16.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_NEIGHBORHOOD_TREE_Q3OVER2_V16.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_neighborhood_tree_q3over2_v16.py'
+      - '.github/workflows/validate-pf5-slime-neighborhood-tree-q3over2-v16.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  fresh-fixed-q3over2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout unchanged pinned neighborhood-tree producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 5a2ce5175049b59869c95d801b394f36ffdd3a4e
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen q3over2 probe
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_neighborhood_tree_q3over2_v16.py \
+            --producer-path ../../../../demiurge/models/slime/slime_neighborhood_cluster_tree_v5.py \
+            --json-out ../../../../pf5-slime-neighborhood-tree-q3over2-v16.result.json
+      - name: Verify fixed-exponent outcome-neutral contract
+        run: |
+          python - <<'PY'
+          import inspect,json,math,sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          import pf5_slime_neighborhood_tree_q3over2_v16 as v16
+          import pf5_slime_capped_pswidth_compiler_v12 as v12
+
+          d=json.load(open('pf5-slime-neighborhood-tree-q3over2-v16.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-NEIGHBORHOOD-TREE-Q3OVER2-V16'
+          assert d['status']=='FINITE_FIXED_Q3OVER2_PROBE_COMPLETE'
+          assert d['producer']['commit']=='5a2ce5175049b59869c95d801b394f36ffdd3a4e'
+          assert d['q']=='3/2'
+          assert d['frozen_rows']==[list(x) for x in v16.FROZEN_ROWS]
+          assert d['all_formulas_and_manifests_frozen_before_compilation'] is True
+          assert d['runtime_assignment_enumeration'] is False
+          assert d['runtime_exact_width_oracle'] is False
+          assert d['runtime_sat_oracle'] is False
+          assert d['runtime_cap_escalation'] is False
+          assert len(d['results'])==6
+          assert d['closed_candidates']+d['open_candidates']==6*5
+          assert d['global_ledger']['candidate_attempts']==6*5
+          assert d['universal_fixed_q_candidate_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+
+          # Exact integer cap canary over a range; no floating exponent path.
+          for r in range(2,150):
+              k=v16.cap_q3over2(r)
+              assert (k-1)*(k-1) < r**3 <= k*k
+
+          source=inspect.getsource(v16.compile_tree_with_cap)
+          for token in ['score_candidate(', 'assignment_signatures(', 'solve_sat(', 'sat_oracle(', 'itertools.product(']:
+              assert token not in source, token
+
+          recovered=0
+          for row in d['results']:
+              p=row['portfolio']
+              expected=v16.cap_q3over2(row['incidence_leaves'])
+              assert row['cap']==expected and p['cap']==expected
+              assert p['closed_candidates']+p['open_candidates']==5
+              formula=v12.random_connected_3cnf(row['seed'],row['n'],row['m'])
+              for attempt in p['attempts']:
+                  if attempt['terminal']=='OPEN_Q3OVER2_STATE_CAP':
+                      assert attempt['failure']['distinct_states_at_refusal']==expected+1
+                  else:
+                      assert attempt['terminal']=='CLOSED_Q3OVER2_PSWIDTH_CAP'
+                      assert attempt['peak_ps_state']<=expected
+                      assert attempt['certificate_replayed_before_discard'] is True
+              if p['terminal']=='CLOSED_Q3OVER2_PORTFOLIO':
+                  recovered+=1
+                  wrapped={'terminal':'CLOSED_Q3OVER2_PSWIDTH_CAP','certificate':p['selected_certificate']}
+                  assert v16.replay_q3over2(formula,wrapped)
+                  assert p['selected_certificate_replay'] is True
+              else:
+                  assert p['terminal']=='OPEN_Q3OVER2_PORTFOLIO_EXHAUSTED'
+                  assert p['closed_candidates']==0 and p['open_candidates']==5
+          assert recovered==d['recovered_sources']
+          assert d['exhausted_sources']==6-recovered
+          if recovered:
+              assert d['terminal_interpretation']=='Q3OVER2_FINITE_RECOVERY_OBSERVED'
+          else:
+              assert d['terminal_interpretation']=='CURRENT_NEIGHBORHOOD_PORTFOLIO_Q3OVER2_EXHAUSTED_ON_ALL_FRESH_SOURCES'
+          print('PF5_V16_FIXED_Q3OVER2_CONTRACT = PASS')
+          print('RECOVERED_SOURCES =',d['recovered_sources'])
+          print('EXHAUSTED_SOURCES =',d['exhausted_sources'])
+          print('CLOSED_CANDIDATES =',d['closed_candidates'])
+          print('OPEN_CANDIDATES =',d['open_candidates'])
+          print('SELECTED_COUNTS =',d['selected_candidate_counts'])
+          print('BATCH_SHA256 =',d['frozen_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'Q3OVER2_FINITE_RECOVERY != UNIVERSAL_FIXED_q_COMPLETENESS'
+          echo 'Q3OVER2_FINITE_EXHAUSTION != P_NE_NP'
+          echo 'Q1_RECEIPTS_REMAIN_NEGATIVE_AND_UNCHANGED'
+          echo 'P_VS_NP = OPEN'
