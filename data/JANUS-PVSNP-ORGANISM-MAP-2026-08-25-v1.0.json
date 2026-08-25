@@ -1,0 +1,181 @@
+{
+  "artifact_id": "JANUS-PVSNP-ORGANISM-MAP-2026-08-25-v1.0",
+  "created_local": "2026-08-25T03:26:00+03:00",
+  "scope": "Repositories currently returned by the connected GitHub inventory for owner Hawkar-usls, plus verified historical aliases referenced by canonical registry artifacts.",
+  "global_claim_ceiling": "P_VS_NP = OPEN",
+  "organism_law": "WHOLE_ECOSYSTEM_MAY_PROPOSE_MECHANISMS; ONLY_EXPLICIT_PROOFS_SOURCES_AND_REPRODUCIBLE_EXPERIMENTS_MAY_RAISE_CLAIMS",
+  "authority_layers": {
+    "TOPA": "canonical strict-science synthesis, theorem bookkeeping, falsification and hidden-exponent firewall",
+    "Janus-Fundamentum": "formal/provider proof and CI authority for frozen implementations",
+    "Demi_Head": "adversarial proof-program, gap ledger, source-root comparison and disagreement preservation",
+    "janus-meta-registry": "append-only longitudinal provenance and cross-repository memory",
+    "other_repositories": "mechanism donors, testbeds, interfaces, distributed execution or domain controls; no automatic P-vs-NP theorem authority"
+  },
+  "historical_aliases": [
+    {
+      "old_reference": "Hawkar-usls/Janus-P-N-junction",
+      "current_resolution": "Hawkar-usls/Janus-Fundamentum",
+      "verification": "GitHub repository lookup of the historical name currently resolves to Janus-Fundamentum",
+      "rule": "Treat old Janus-P-N-junction URLs as historical lineage, not as a separate current repository."
+    }
+  ],
+  "active_pvsnp_organs": [
+    {
+      "repo": "Hawkar-usls/TOPA",
+      "role": ["STRICT_SCIENCE", "PNP_SYNTHESIS", "HIDDEN_EXPONENT_AUDIT", "AKINATOR_RSPC", "NEGATIVE_RESULT_LEDGER"],
+      "authority": "HIGH_WITHIN_EXPLICIT_PROOF_OR_SOURCE_SCOPE"
+    },
+    {
+      "repo": "Hawkar-usls/Janus-Fundamentum",
+      "role": ["FORMAL_PROOF_LAB", "B2_ER3", "PROVIDER_CI", "FINITE_REPLAY"],
+      "authority": "FORMAL_AND_IMPLEMENTATION_PROVIDER_WITH_CLAIM_CEILINGS"
+    },
+    {
+      "repo": "Hawkar-usls/Demi_Head",
+      "role": ["ADVERSARIAL_ARBITER", "PROOF_PROGRAMS", "GAP_LEDGER", "PRESERVE_DISAGREEMENT"],
+      "authority": "ARBITRATION_NOT_TRUTH_BY_CONSENSUS"
+    },
+    {
+      "repo": "Hawkar-usls/janus-meta-registry",
+      "role": ["PROVENANCE_MEMORY", "CROSS_REPO_OPERATOR_REGISTRY", "HISTORICAL_PNP_ARTIFACTS", "NEGATIVE_RESULTS"],
+      "authority": "PROVENANCE_NOT_TRUTH"
+    },
+    {
+      "repo": "Hawkar-usls/janus-distributed-ai-swarm",
+      "role": ["DISTRIBUTED_ROLE_EXECUTION", "PARALLEL_SCOUTS", "DEGRADED_MODE", "RESOURCE_ACCOUNTING"],
+      "authority": "EXECUTION_PATTERN_ONLY_UNLESS_INDEPENDENT_PROOF"
+    },
+    {
+      "repo": "Hawkar-usls/Janus-Demiurge",
+      "role": ["CANDIDATE_GENERATION", "ADVERSARIAL_SCOUTING", "MULTI_ROUTE_SEARCH"],
+      "authority": "PROPOSAL_ONLY"
+    },
+    {
+      "repo": "Hawkar-usls/Hrain",
+      "role": ["STRUCTURAL_CONTEXT_GRAPH", "LEFT_HEMISPHERE_PACKET", "HUMAN_INSPECTION"],
+      "authority": "STRUCTURE_NOT_COMMAND"
+    },
+    {
+      "repo": "Hawkar-usls/iNaiHR",
+      "role": ["ASSOCIATIVE_CONTEXT_GRAPH", "RIGHT_HEMISPHERE_PACKET", "SEMANTIC_CANDIDATES"],
+      "authority": "ASSOCIATION_NOT_EVIDENCE"
+    },
+    {
+      "repo": "Hawkar-usls/AIFC",
+      "role": ["FAIL_CLOSED_PROTOCOL", "APPEND_ONLY_LEDGER", "CANONICALIZATION", "INDEPENDENT_WITNESS_DISCIPLINE"],
+      "authority": "PROTOCOL_DISCIPLINE_NOT_PNP_THEOREM"
+    },
+    {
+      "repo": "Hawkar-usls/Fast-CAT-SHAiTan",
+      "role": ["BLINDED_REVIEW_PATTERN", "DISAGREEMENT_PRESERVATION", "NEGATIVE_CONTROL_DISCIPLINE"],
+      "authority": "DOMAIN_METHOD_DONOR_ONLY"
+    },
+    {
+      "repo": "Hawkar-usls/Janus_Genesis",
+      "role": ["PERSISTENT_STATE", "PORTABLE_RECEIPTS", "CAPABILITY_BOUNDARIES", "CONTINUITY"],
+      "authority": "CREATIVE_TECH_PATTERN_ONLY"
+    },
+    {
+      "repo": "Hawkar-usls/Janus-Cosmos",
+      "role": ["BLIND_HOLDOUT_DISCIPLINE", "ANTI_PSEUDOREPLICATION", "ADVERSARIAL_SPECIFICITY_TESTS"],
+      "authority": "DOMAIN_METHOD_DONOR_ONLY"
+    },
+    {
+      "repo": "Hawkar-usls/janus-lapis",
+      "role": ["EXIT_GATE_PATTERN", "TRANSIENT_STATE_LIFETIME", "REGENERATION_OPERATOR_DONOR"],
+      "authority": "DOMAIN_METHOD_DONOR_ONLY"
+    },
+    {
+      "repo": "Hawkar-usls/SCOBY-D0",
+      "role": ["PREREGISTERED_BIOLOGICAL_TEST_PATTERN", "NEGATIVE_RESULT_DONOR"],
+      "authority": "NO_COMPLEXITY_TRANSFER_WITHOUT_PROVED_REDUCTION"
+    },
+    {
+      "repo": "Hawkar-usls/aura-oracle-tg",
+      "role": ["HYPOTHESIS_ROUTE_GENERATOR"],
+      "authority": "HYPOTHESIS_ONLY_ZERO_EVIDENCE_AUTHORITY"
+    },
+    {
+      "repo": "Hawkar-usls/Janus",
+      "role": ["PORTFOLIO_CONSTITUTION", "PUBLIC_POSITIONING", "CROSS_REPO_VISIBILITY"],
+      "authority": "GOVERNANCE_NOT_MATHEMATICAL_TRUTH"
+    }
+  ],
+  "upstream_or_external_basis_repositories": [
+    {
+      "repo": "Hawkar-usls/tranception",
+      "classification": "UPSTREAM_DERIVED_WORKING_COPY",
+      "base_authorship_claimed_by_hawkar": false,
+      "pvsnp_rule": "Do not treat the upstream Tranception codebase as Hawkar-authored P-vs-NP research. Distinguish it from JANUS registry artifacts that use the word Tranception for an internal reverse/forward operator."
+    }
+  ],
+  "currently_peripheral_or_no_direct_pvsnp_authority": [
+    "Hawkar-usls/Simptomat",
+    "Hawkar-usls/BFain",
+    "Hawkar-usls/-Terminal-for-Janus",
+    "Hawkar-usls/SLOT",
+    "Hawkar-usls/SSlot",
+    "Hawkar-usls/JanusMMORPG",
+    "Hawkar-usls/DIVINE_REALM",
+    "Hawkar-usls/RadioPlayerV3",
+    "Hawkar-usls/player",
+    "Hawkar-usls/clawdbot",
+    "Hawkar-usls/M5Unit-ENV",
+    "Hawkar-usls/AI-Cardputer-adv-A-Portable-AI-Assistant",
+    "Hawkar-usls/arduino-ide",
+    "Hawkar-usls/Cardputer-Game-Station-Emulators",
+    "Hawkar-usls/Arduino-AI-Chat-Library",
+    "Hawkar-usls/emoji",
+    "Hawkar-usls/xiaozhi-esp32",
+    "Hawkar-usls/ATOM-ELITE-1989---M5stack-ATOMS3R-2026-",
+    "Hawkar-usls/vcmi",
+    "Hawkar-usls/ATOM-RPG",
+    "Hawkar-usls/janus-first-followers-club-",
+    "Hawkar-usls/janus-io",
+    "Hawkar-usls/janus-io-public",
+    "Hawkar-usls/ESP32-TWAI-CAN",
+    "Hawkar-usls/SkinGPT",
+    "Hawkar-usls/Hawkar-usls",
+    "Hawkar-usls/lineara.xyz",
+    "Hawkar-usls/Linear-A-decipherment-programme",
+    "Hawkar-usls/The-Voice-of-Janus",
+    "Hawkar-usls/Echo-Pyramid"
+  ],
+  "cross_repo_pvsnp_mechanism_synthesis": {
+    "repeated_pattern": "PREBIRTH_EXACT_COMPRESSION_PLUS_INDEPENDENT_VERIFICATION_PLUS_LINEAGE_PLUS_TOTAL_COST",
+    "evidence_nodes": [
+      {
+        "source": "janus-meta-registry/data/JANUS-TRANCEPTION-BACK-FORTH-PNP-PATH-DIAGNOSIS-2026-08-18-v1.0.json",
+        "lesson": "Discover and certify exact branch orbits before child materialization."
+      },
+      {
+        "source": "janus-meta-registry/data/JANUS-QUANTUM-PHYSARUM-PNP-FAIL-CLOSED-BRAIN-RUN-2026-08-18-v1.0.json",
+        "lesson": "Generator and verifier must be separate; problem-dependent information must enter before decision."
+      },
+      {
+        "source": "janus-meta-registry/data/JANUS-ODONTOFORGE-REGENERATION-PNP-BRIDGE-2026-08-25-v1.0.json",
+        "lesson": "Preserve state lineage, EXIT class and recovery/search cost."
+      },
+      {
+        "source": "janus-meta-registry/data/JANUS-P-N-JUNCTION-SELECTIVE-DISTRIBUTED-FIELD-v2.0.json",
+        "lesson": "Latency reduction is not total-work reduction; parallelism and communication are charged."
+      }
+    ],
+    "mathematical_translation_now": "For MACRO-RESTORE-CAP, compress/quotient the root-pivot resolvent-pair relation before expensive resolvents are materialized, and require an exact polynomial verifier plus total-cost ledger."
+  },
+  "current_exact_front": {
+    "name": "PREBIRTH_RESOLVENT_QUOTIENT_REPLACEMENT",
+    "preceded_by": "MACRO_RESTORE_CAP_ADD_ONLY_BARRIER",
+    "required_properties": [
+      "SAT-preserving or equisatisfiable exact rewrite",
+      "deterministic polynomial candidate discovery",
+      "proof-carrying verification",
+      "polynomial state/certificate bytes in original N",
+      "at least one original-root elimination per accepted atomic step",
+      "no semantic oracle",
+      "no exponential rewrite backtracking",
+      "no decompression of an exponential quotient frontier"
+    ],
+    "global_status": "P_VS_NP = OPEN"
+  }
+}
