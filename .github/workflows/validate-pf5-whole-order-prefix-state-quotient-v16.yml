@@ -1,0 +1,82 @@
+name: Validate PF5 Whole Order Prefix State Quotient v16
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_WHOLE_ORDER_PREFIX_STATE_QUOTIENT_V16.md'
+      - 'research/mathematics/p-vs-np/pf5_whole_order_prefix_state_quotient_v16.py'
+      - '.github/workflows/validate-pf5-whole-order-prefix-state-quotient-v16.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_WHOLE_ORDER_PREFIX_STATE_QUOTIENT_V16.md'
+      - 'research/mathematics/p-vs-np/pf5_whole_order_prefix_state_quotient_v16.py'
+      - '.github/workflows/validate-pf5-whole-order-prefix-state-quotient-v16.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  whole-order-prefix-quotient:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v5.1 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: e507484a62eb29543910cd018c380150051f986f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run finite whole-order Bellman and bisimulation audit
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_whole_order_prefix_state_quotient_v16.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v5_1.py \
+            --json-out ../../../../pf5-whole-order-prefix-state-quotient-v16.result.json
+      - name: Verify v16 theorem/audit firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-whole-order-prefix-state-quotient-v16.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-WHOLE-ORDER-PREFIX-STATE-QUOTIENT-V16'
+          assert d['status']=='FINITE_WHOLE_ORDER_AUDIT_COMPLETE'
+          assert d['seed']==911000 and d['posthoc_not_holdout'] is True
+          assert d['leaf_count']==12 and d['raw_subset_state_count']==4096
+          assert d['v5_width']==5 and d['raw_bellman_optimum']==4
+          assert d['v5_local_exact_failure_count']==0
+          assert d['v5_bellman_future_failure_count']>0
+          o=d['first_pure_future_obstruction']
+          assert o['chosen_is_immediate_exact_minimum'] is True
+          assert o['chosen_is_bellman_optimal'] is False
+          q=d['conditional_theorem_contract']
+          assert all(q.values())
+          e=d['epistemic_firewall']
+          assert e['exact_cut_table_is_exponential_audit_oracle'] is True
+          assert e['raw_bellman_is_exponential_audit_oracle'] is True
+          assert e['future_bisimulation_partition_is_exponential_audit_oracle'] is True
+          assert e['weak_scalar_labels_are_not_admitted_congruences'] is True
+          assert e['audit_bisimulation_is_not_claimed_polynomially_discoverable'] is True
+          assert d['audit_quotient_bellman_value']==4
+          assert d['audit_quotient_lifted_width']==4
+          assert d['audit_future_bisimulation']['replay_failures']==0
+          assert d['universal_polynomial_prefix_quotient']=='OPEN'
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_WHOLE_ORDER_PREFIX_STATE_QUOTIENT_V16_CONTRACT = PASS')
+          print('FIRST_PURE_FUTURE_OBSTRUCTION =',o)
+          print('WEAK_LABEL_AUDIT =',d['weak_scalar_label_audit'])
+          print('AUDIT_BISIMULATION =',d['audit_future_bisimulation'])
+          print('GLOBAL_COST_LEDGER =',d['global_cost_ledger'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'EXACT_SUBSET_BELLMAN = EXPONENTIAL AUDIT ONLY'
+          echo 'AUDIT_FUTURE_BISIMULATION != POLYNOMIAL DISCOVERY'
+          echo 'CONDITIONAL QUOTIENT THEOREM != EXISTENCE THEOREM'
+          echo 'P_VS_NP = OPEN'

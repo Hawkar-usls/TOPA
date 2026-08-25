@@ -1,0 +1,90 @@
+name: PF5 Whole Order Prefix Quotient v16 Compact Receipt
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate-pf5-whole-order-prefix-state-quotient-v16-compact.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  compact-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v5.1 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: e507484a62eb29543910cd018c380150051f986f
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute identical v16 audit quietly
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_whole_order_prefix_state_quotient_v16.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v5_1.py \
+            --json-out ../../../../v16.result.json >/dev/null
+      - name: Build compact immutable receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.load(open('v16.result.json',encoding='utf-8'))
+          b=d['audit_future_bisimulation']
+          w=d['weak_scalar_label_audit']
+          o=d['first_pure_future_obstruction']
+          receipt={
+            'artifact_id':'PF5-WHOLE-ORDER-PREFIX-STATE-QUOTIENT-V16-RECEIPT',
+            'source_result_sha256':d['result_sha256'],
+            'seed':d['seed'],
+            'raw_subset_state_count':d['raw_subset_state_count'],
+            'v5_width':d['v5_width'],
+            'raw_bellman_optimum':d['raw_bellman_optimum'],
+            'first_pure_future_obstruction':o,
+            'weak_scalar_label_audit':w,
+            'audit_future_bisimulation':b,
+            'audit_quotient_bellman_value':d['audit_quotient_bellman_value'],
+            'audit_quotient_lifted_width':d['audit_quotient_lifted_width'],
+            'global_cost_ledger':d['global_cost_ledger'],
+            'epistemic_firewall':d['epistemic_firewall'],
+            'next_gate':d['next_gate'],
+            'universal_polynomial_prefix_quotient':d['universal_polynomial_prefix_quotient'],
+            'p_vs_np':d['p_vs_np'],
+          }
+          out=Path('topa/data/PF5-WHOLE-ORDER-PREFIX-STATE-QUOTIENT-V16-RECEIPT.json')
+          out.write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print('V16_COMPACT_RECEIPT = PASS')
+          print('RAW_STATES =',receipt['raw_subset_state_count'])
+          print('V5_WIDTH =',receipt['v5_width'])
+          print('OPTIMUM =',receipt['raw_bellman_optimum'])
+          print('FIRST_FUTURE_STEP =',o['step'])
+          print('CHOSEN =',o['chosen'])
+          print('SAME_IMMEDIATE_BETTER_FUTURE =',[(x['leaf'],x['immediate_exact_ps'],x['action_bottleneck_value']) for x in o['same_immediate_better_future_candidates']])
+          print('BISIM_CLASSES =',b['future_bisimulation_class_count'])
+          print('BISIM_NONTRIVIAL =',b['nontrivial_class_count'])
+          print('BISIM_LARGEST =',b['largest_class_size'])
+          print('WEAK_COST_UNSAFE =',w['depth_plus_current_cut']['unsafe_transition_collision_class_count'])
+          print('WEAK_VALUE_UNSAFE =',w['depth_plus_current_cut_plus_exact_future_value']['unsafe_transition_collision_class_count'])
+          print('QUOTIENT_WIDTH =',receipt['audit_quotient_lifted_width'])
+          print('RESULT_SHA256 =',receipt['source_result_sha256'])
+          print('P_VS_NP =',receipt['p_vs_np'])
+          PY
+      - name: Commit receipt to research branch
+        working-directory: topa
+        run: |
+          git config user.name 'JANUS CI Receipt'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/PF5-WHOLE-ORDER-PREFIX-STATE-QUOTIENT-V16-RECEIPT.json
+          if git diff --cached --quiet; then
+            echo 'Receipt unchanged; no commit needed.'
+          else
+            git commit -m 'Record PF5 v16 whole-order compact receipt'
+            git push origin HEAD:pf5-whole-order-prefix-state-quotient-v16
+          fi
