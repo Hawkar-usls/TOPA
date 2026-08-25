@@ -1,0 +1,57 @@
+{
+  "schema": "JANUS_PNP_U1L2C2C1_SWAP_ORBIT_WEIGHT_QUOTIENT_RECEIPT",
+  "version": "1.0",
+  "date": "2026-08-25",
+  "branch": "pnp-proof-obligation-graph-u1-l2-exact-only",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "exact_only_contract_commit": "f10cee2d7793eb5548ce057cb787f948dcb5a9db",
+  "frontier_product_theorem_commit": "ccb783b3a9160948d1cd84b2415a12fed696a143",
+  "protocol_commit": "eb894852020fe5e70b01959d454f9f11a3f42ba9",
+  "provider_commit": "eec677012b01b1f583f2ba4370b7bd0bbbce03da",
+  "workflow_head_commit": "a5920144383634dafd5ea4f5eb5cdc1880941267",
+  "workflow_run": 32889060205,
+  "workflow_job": 97936379619,
+  "workflow_run_number": 1,
+  "workflow_attempt": 1,
+  "workflow_conclusion": "SUCCESS",
+  "result_sha256": "f810c5cfc494f9e4623a1631c1ab091ff92585a0dd64d9663721b5f9f9f4b3c2",
+  "fixed_polynomial_exponent_K": 4,
+  "proved_in_scope": {
+    "PAIR_SWAP_AUTOMORPHISM_DISCOVERY": "DETERMINISTIC_POLYNOMIAL_SYNTACTIC_TEST",
+    "SWAP_RELATION_CLASSES": "EXACT_TRANSPOSITION_GENERATED_SYMMETRY_CLASSES",
+    "ORBIT_QUOTIENT": "HAMMING_WEIGHT_VECTOR_PER_SWAP_CLASS",
+    "QUOTIENT_TRUTH_BUILD": "ONE_CANONICAL_REPRESENTATIVE_PER_ORBIT_WEIGHT_VECTOR",
+    "QUOTIENT_BUILD_POLYNOMIAL_WHEN_P_LE_N_POW_4": true,
+    "EXISTENTIAL_UPDATE": "Q_PRIME(w)=Q(w)_OR_Q(w+e_j)",
+    "SEQUENTIAL_CLOSURE": true,
+    "SAT_WITNESS_LIFT": true,
+    "UNSAT_TERMINAL_REPLAY": true
+  },
+  "controls": {
+    "pair_swap_false_positive": "PASS_REJECT",
+    "one_block_symmetric_sat": {"N":39,"P":13,"terminal":"TRUE","projection_inspections":78},
+    "one_block_symmetric_unsat": {"N":42,"P":11,"terminal":"FALSE","projection_inspections":55},
+    "two_block_symmetric": {"N":33,"P":40,"terminal":"TRUE","projection_inspections":150},
+    "asymmetric_n40": {"N":160,"P":"1099511627776","block_count":40,"result":"REFUSE_ORBIT_STATE_PRODUCT_EXCEEDS_N^4"}
+  },
+  "keymaster_integration": {
+    "new_exact_operator": "SWAP_ORBIT_WEIGHT_EXISTS",
+    "domain": "EXPLICIT_CNF_WITH_CERTIFIED_SWAP_CLASSES_AND_ORBIT_STATE_PRODUCT_P_LE_N_POW_4",
+    "codomain": "SWAP_ORBIT_WEIGHT_QUOTIENT",
+    "heuristic_content": "NONE"
+  },
+  "frontier_theorem_update": {
+    "exact_bound": "FRONTIER_LE_M(N)_TIMES_MIN_j_PRODUCT_i_NE_j(B_i(N)+1)",
+    "meaning": "FOR_FIXED_9_DIMENSION_COST_LEDGER_THE_KEYMASTER_FRONTIER_IS_POLYNOMIAL_IF_CANONICAL_TRANSITION_STATE_COUNT_AND_EACH_CUMULATIVE_COST_COORDINATE_ARE_POLYNOMIAL",
+    "remaining_state_debt": "PROVE_OR_CONSTRUCT_POLYNOMIAL_M(N)_FOR_ARBITRARY_CNF"
+  },
+  "still_open": [
+    "ARBITRARY_CNF_HAS_POLYNOMIALLY_MANY_EXACT_TRANSITION_STATES",
+    "ASYMMETRIC_CNF_EXACT_QUOTIENT_BEYOND_LITERAL_SWAP_ORBITS",
+    "GLOBAL_POLYNOMIAL_CUMULATIVE_COST_COORDINATE_BOUNDS",
+    "ARBITRARY_B2_SEQUENTIAL_CLOSURE",
+    "P_VS_NP"
+  ],
+  "next_gate": "U1-L2C2C2_EXACT_TRANSITION_EQUIVALENCE_BEYOND_LITERAL_SWAP_ORBITS_AND_GLOBAL_CANONICAL_STATE_BOUND"
+}
