@@ -1,0 +1,73 @@
+{
+  "artifact_id": "PF5-V22-FROZEN-ORDER-INVARIANT-TWIN-REPAIR-PROTOCOL",
+  "status": "FROZEN_BEFORE_PROVIDER",
+  "parent_gap": "data/PF5-V18-002-BODY-ORDER-SENSITIVITY.json",
+  "repair_type": "IMPLEMENTATION_REPAIR_OF_EXISTING_EXACT_THEOREM",
+  "theorem": "(A OR x) AND (A OR NOT x) == A",
+  "theorem_changed": false,
+  "diagnostic_source": {
+    "n": 6,
+    "m": 24,
+    "seed": 914600,
+    "role": "DIAGNOSTIC_ONLY_NOT_BLIND",
+    "crystal_sha256": "bde7a737b6d7f2232e5531b0b8cc0d7d0826ba4dda09166e66ccba191e634f13"
+  },
+  "fresh_frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "915600..915615"},
+    {"n": 7, "m": 28, "seeds": "915700..915715"}
+  ],
+  "semantic_body_key": {
+    "definition": "deterministic sorted unique literal set",
+    "sort_key": "(abs(literal), literal < 0)",
+    "order_invariant": true,
+    "duplicate_literal_invariant": true
+  },
+  "deterministic_discovery": {
+    "variable_order": "increasing variable id",
+    "positive_parent_order": "current residual order",
+    "negative_parent_order": "current residual order",
+    "accept": "semantic_body_key(parent_plus_without_x) == semantic_body_key(parent_minus_without_not_x)",
+    "already_present": "compare semantic clause keys, not raw tuple order",
+    "action": "remove first accepted parent pair and emit one normalized common-body clause if no semantically identical body already exists"
+  },
+  "composition": [
+    "v12 PURE_LITERAL_EXISTENTIAL_PROJECTION",
+    "v13 TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v15 SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v18 legacy COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION",
+    "v20 CLAUSE_SUBSUMPTION_CONTRACTION",
+    "v22 ORDER_INVARIANT_COMPLEMENTARY_TWIN_REPAIR",
+    "repeat to fixed point"
+  ],
+  "cost_ledger_required": [
+    "variable_tests",
+    "failed_variable_tests",
+    "clause_polarity_checks",
+    "pair_checks",
+    "semantic_key_literal_visits",
+    "semantic_key_builds",
+    "existing_clause_key_checks",
+    "successful_contractions",
+    "clauses_removed",
+    "clauses_emitted",
+    "certificate_bytes",
+    "state_bytes_peak",
+    "cumulative_state_bytes",
+    "witness_lift_ops"
+  ],
+  "runtime_forbidden": [
+    "SAT oracle",
+    "truth table",
+    "PS-width score",
+    "Slime selection",
+    "Hephaestus entropy/slack decision",
+    "post-result seed tuning"
+  ],
+  "audit_contract": "All fresh sources and all provider outputs must be frozen and hashed before bounded exhaustive semantic audit.",
+  "diagnostic_assertion_policy": "Do not assert a particular first runtime pair. Assert certificate validity and that the final fixed point has no remaining semantic complementary-twin pair.",
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
