@@ -1,0 +1,77 @@
+name: Validate PF5 Slime Signature Cap Blind v12
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_signature_cap_blind_v12.py'
+      - '.github/workflows/validate-pf5-slime-signature-cap-blind-v12.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_slime_signature_cap_blind_v12.py'
+      - '.github/workflows/validate-pf5-slime-signature-cap-blind-v12.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  blind-signature-cap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v2 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 6bb9ed246a4740e0d4488d3df6848f266e1e32f4
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen v12 manifests then exact DP judge
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_signature_cap_blind_v12.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v2.py \
+            --json-out ../../../../pf5-slime-signature-cap-blind-v12.result.json
+      - name: Verify blind firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-signature-cap-blind-v12.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-SIGNATURE-CAP-BLIND-V12'
+          assert d['status']=='FINITE_BLIND_EXACT_OPTIMUM_AUDIT_COMPLETE'
+          assert d['producer_feature']=='LOG_SIGNATURE_CAP_UPPER_BOUND'
+          assert d['calibration_seed_already_observed']==907000
+          assert d['calibration_excluded_from_holdout_summary'] is True
+          assert d['holdout_seeds_frozen_before_provider_run']==list(range(908000,908016))
+          assert d['variable_count']==5 and d['clause_count']==7
+          assert d['all_sources_and_manifests_frozen_before_exact_dp'] is True
+          assert d['adaptive_candidate_generation_after_exact_dp'] is False
+          assert d['exact_dp_is_exponential_audit_oracle_not_runtime_algorithm'] is True
+          assert d['signature_cap_is_upper_bound_not_exact_pswidth'] is True
+          assert d['holdout_summary']['holdout_cases']==16
+          assert d['holdout_summary']['new_vs_old_wins']+d['holdout_summary']['new_vs_old_ties']+d['holdout_summary']['new_vs_old_losses']==16
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['universal_polynomial_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          for row in d['controls']:
+              assert 'SLIME_SEMANTIC_PRESSURE' in row['candidate_widths']
+              assert 'SLIME_SIGNATURE_CAP_PRESSURE' in row['candidate_widths']
+              assert row['exact_optimal_width'] <= min(row['candidate_widths'].values())
+              assert row['old_gap']==row['old_slime_width']-row['exact_optimal_width']
+              assert row['new_gap']==row['new_slime_width']-row['exact_optimal_width']
+          print('PF5_SLIME_SIGNATURE_CAP_V12_CONTRACT = PASS')
+          print('CALIBRATION =',d['calibration']['old_slime_width'],d['calibration']['new_slime_width'],d['calibration']['exact_optimal_width'])
+          print('HOLDOUT_SUMMARY =',d['holdout_summary'])
+          print('MANIFEST_BATCH_SHA256 =',d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'CALIBRATION_REPAIR != BLIND_VALIDATION'
+          echo 'SIGNATURE_CAP_UPPER_BOUND != EXACT_PSWIDTH'
+          echo 'FINITE_HOLDOUT_IMPROVEMENT != UNIVERSAL_COMPLETENESS'
+          echo 'P_VS_NP = OPEN'
