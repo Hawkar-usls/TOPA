@@ -1,0 +1,26 @@
+{
+  "artifact_id": "PF5-TRP-001-WITNESS-FREE-VARIABLE-DEFAULT",
+  "status": "WITNESS_ADAPTER_DEFECT_PRESERVED",
+  "source_experiment": "PF5-TAUTOLOGICAL-RESOLVENT-EXACT-PROJECTION-V13",
+  "source_run": 32835533447,
+  "source_job": 97763418763,
+  "source_head": "6c2d3ec12d355828f0ce4b782fd04406f1194956",
+  "failure_phase": "DIAGNOSTIC_WITNESS_LIFT_BEFORE_BLIND_HOLDOUT_FREEZE",
+  "observed_error": "AssertionError: lift missing variable 4",
+  "root_cause": "A later exact pure-literal projection can satisfy and remove a clause containing variables that then disappear from the residual without receiving their own projection steps. Those variables are semantically free at that later stage. The original reverse witness adapter initialized only final-residual variables, so an earlier tautological-resolvent step could query an incidentally disappeared free variable before any value existed for it.",
+  "theorem_impact": "NONE",
+  "new_projection_rule_impact": "NONE",
+  "blind_holdout_observed": false,
+  "scientific_result_produced": false,
+  "repair": {
+    "scope": "WITNESS_ADAPTER_ONLY",
+    "required_change": "Initialize every source variable to deterministic false before overlaying the supplied final-residual witness; reverse projection steps then overwrite variables that have explicit lift certificates.",
+    "why_exact": "A variable absent from the later residual because a different exact projection satisfied and removed its last remaining clause is unconstrained at that later stage. Any deterministic value is valid until an earlier reverse step uses it; the earlier tautological-resolvent lift then chooses its own projected variable consistently with that value.",
+    "holdout_seeds_unchanged": "909000..909031",
+    "theorem_gate_unchanged": true,
+    "candidate_or_score_logic_added": false,
+    "reducer_unchanged": true,
+    "exact_judges_unchanged": true
+  },
+  "claim_ceiling": "P_VS_NP = OPEN"
+}
