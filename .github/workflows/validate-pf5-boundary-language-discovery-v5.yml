@@ -1,0 +1,118 @@
+name: Validate PF5 Boundary Language Discovery v5
+
+on:
+  push:
+    branches:
+      - pf5-boundary-language-discovery-v5
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_BOUNDARY_LANGUAGE_DISCOVERY_GATE_V5.md'
+      - 'research/mathematics/p-vs-np/pf5_boundary_language_discovery_v5.py'
+      - '.github/workflows/validate-pf5-boundary-language-discovery-v5.yml'
+
+jobs:
+  blind-language-discovery:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run frozen blind language discovery replay
+        working-directory: research/mathematics/p-vs-np
+        run: |
+          python pf5_boundary_language_discovery_v5.py --json-out ../../../pf5-boundary-language-discovery-v5.result.json
+
+      - name: Verify blind discovery contract
+        run: |
+          python - <<'PY'
+          import inspect
+          import json
+          import sys
+          sys.path.insert(0, 'research/mathematics/p-vs-np')
+          import pf5_boundary_language_discovery_v5 as v5
+
+          # Mechanical interface check: discovery has no family/kind/name parameter.
+          params=list(inspect.signature(v5.discover_language).parameters)
+          assert params==['source','root','boundary'], params
+
+          d=json.load(open('pf5-boundary-language-discovery-v5.result.json', encoding='utf-8'))
+          assert d['artifact_id']=='PF5-BOUNDARY-LANGUAGE-DISCOVERY-V5'
+          assert d['widths_frozen_before_provider_run']==[3,4,6,8,10,12,14]
+          assert d['recognizer_order_frozen_before_provider_run']==[
+              'AFFINE_SEMANTIC','SYMMETRIC_WEIGHT_SEMANTIC','GENERIC_OBDD_FALLBACK'
+          ]
+          assert d['new_tuned_caps_added'] is False
+          assert len(d['controls'])==28
+
+          passed=0
+          lane_counts={}
+          for r in d['controls']:
+              if r['status']=='CAP_HIT':
+                  assert r['claim']=='FINITE_DISCOVERY_PORTFOLIO_ESCAPE_ONLY'
+                  continue
+              passed += 1
+              assert r['status']=='PASS_EXACT_CLOSED'
+              assert r['discovery_input_unlabeled'] is True
+              assert r['fixed_recognizer_order_used'] is True
+              assert r['all_failed_recognizer_work_charged'] is True
+              assert r['selected_representation_equivalent'] is True
+              assert r['selected_representation_project_closed'] is True
+              assert r['strict_discovered_language_witness'] is True
+              assert r['lane_matches_frozen_expectation'] is True
+              lane_counts[r['selected_lane']]=lane_counts.get(r['selected_lane'],0)+1
+
+              kind=r['external_kind_for_test_only']
+              attempts=[(a['recognizer'],a['status']) for a in r['recognizer_attempts']]
+              if kind=='PARITY_EVEN':
+                  assert r['selected_lane']=='AFFINE_GF2'
+                  assert attempts==[('AFFINE_SEMANTIC','ACCEPT_EQUIVALENT')]
+              elif kind in ('OR','EXACTLY_ONE'):
+                  assert r['selected_lane']=='SYMMETRIC_WEIGHT_SET'
+                  assert attempts[0][0]=='AFFINE_SEMANTIC' and attempts[0][1]=='REJECT'
+                  assert attempts[1]==('SYMMETRIC_WEIGHT_SEMANTIC','ACCEPT_EQUIVALENT')
+                  assert r['failed_recognizer_ops']>0
+              elif kind=='IMPLIES_1_2':
+                  assert r['selected_lane']=='GENERIC_OBDD_FALLBACK'
+                  assert attempts==[
+                      ('AFFINE_SEMANTIC','REJECT'),
+                      ('SYMMETRIC_WEIGHT_SEMANTIC','REJECT'),
+                      ('GENERIC_OBDD_FALLBACK','ACCEPT_IDENTITY'),
+                  ]
+                  assert r['failed_recognizer_ops']>0
+              else:
+                  raise AssertionError(kind)
+
+          assert passed>0
+          assert d['passed_controls']==passed
+          assert d['all_passed_discovery_inputs_unlabeled'] is True
+          assert d['all_passed_fixed_recognizer_order'] is True
+          assert d['all_passed_failed_work_charged'] is True
+          assert d['all_passed_selected_equivalent'] is True
+          assert d['all_passed_project_closed'] is True
+          assert d['all_passed_strict_witness'] is True
+          assert d['blind_lane_selection_matches_frozen_expectation'] is True
+          assert lane_counts.get('AFFINE_GF2',0)>0
+          assert lane_counts.get('SYMMETRIC_WEIGHT_SET',0)>0
+          assert lane_counts.get('GENERIC_OBDD_FALLBACK',0)>0
+          assert d['universal_recognizer_portfolio_complete']=='OPEN'
+          assert d['universal_polynomial_discovery']=='OPEN'
+          assert d['universal_polynomial_coverage']=='OPEN'
+          assert d['global_progress_amortization']=='OPEN'
+          assert d['representation_lower_bound']=='NOT_ESTABLISHED'
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_BOUNDARY_LANGUAGE_DISCOVERY_V5_CONTRACT = PASS')
+          print('PASSED_CONTROLS =', passed)
+          print('LANE_COUNTS =', lane_counts)
+          print('FIRST_BASE_CAP_HIT =', d['first_base_cap_hit'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+
+      - name: Claim ceiling reminder
+        run: |
+          echo 'The recognizer portfolio is finite and frozen, not universal.'
+          echo 'SUPPLIED_TYPE != DISCOVERED_TYPE'
+          echo 'UNIVERSAL_RECOGNIZER_PORTFOLIO_COMPLETE = OPEN'
+          echo 'UNIVERSAL_POLYNOMIAL_DISCOVERY = OPEN'
+          echo 'P_VS_NP = OPEN'
