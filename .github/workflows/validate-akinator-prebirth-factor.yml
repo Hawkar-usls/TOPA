@@ -1,0 +1,30 @@
+name: Validate Akinator Prebirth Factor
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PREBIRTH_PIVOT_FACTORIZATION.md'
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_MACRO_RESTORE_CAP_ADD_ONLY_BARRIER.md'
+      - 'research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py'
+      - '.github/workflows/validate-akinator-prebirth-factor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run prebirth factor finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_prebirth_pivot_factor_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI validates finite identity/witness/frontier mechanics only.'
+          echo 'PF1 and M1 are analytic derivations, not established by CI.'
+          echo 'ITERATED_FACTOR_DAG_POLY_BOUND = OPEN'
+          echo 'P_VS_NP = OPEN'
