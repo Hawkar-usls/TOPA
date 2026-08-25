@@ -1,0 +1,66 @@
+{
+  "artifact_id": "PF5-SLIME-PSWIDTH-BLIND-PROBE-V9.1-RECEIPT",
+  "status": "AUTHORITATIVE_PROVIDER_PASS_AFTER_IMPORT_ONLY_REPAIR",
+  "experiment_core": "PF5-SLIME-PSWIDTH-BLIND-PROBE-V9",
+  "repair_receipt": "data/PF5-SLIME-001-DYNAMIC-IMPORT-DATACLASS-MODULE-REGISTRATION.json",
+  "provider": {
+    "run": 32825087585,
+    "job": 97731200463,
+    "topa_head": "15e4e2dd94dfceeadcbbfc078144ed6ed195eb04",
+    "slime_producer_commit": "36437e053bb151660eaed4e82634d430346343a5",
+    "conclusion": "SUCCESS",
+    "result_sha256": "703e944b7dbf3c2d304544ef1156fc4d5500ac6d7f10898f094be8a26266922d",
+    "manifest_batch_sha256": "c89f18e9bdfec890a2ca02056222b30f26b1da5b9e7e61b271b59e4b95295840"
+  },
+  "phase_firewall": {
+    "all_candidate_manifests_frozen_before_exact_probe": true,
+    "c032_cut_identity_checks": 32,
+    "producer_exact_pswidth": false,
+    "producer_sat_oracle": false,
+    "producer_truth_table": false,
+    "post_probe_candidate_repair": false
+  },
+  "blind_holdout": {
+    "seeds": [905101, 905102, 905103, 905104, 905105, 905106, 905107, 905108],
+    "count": 8,
+    "slime_vs_lexical": {"WIN": 8, "TIE": 0, "LOSS": 0},
+    "slime_vs_best_non_slime": {"WIN": 8, "TIE": 0, "LOSS": 0},
+    "mean_lexical_exact_caterpillar_ps_width": 36.0,
+    "mean_slime_exact_caterpillar_ps_width": 10.625,
+    "rows": [
+      {"seed":905101,"lexical":29,"best_non_slime":29,"slime":9},
+      {"seed":905102,"lexical":43,"best_non_slime":42,"slime":8},
+      {"seed":905103,"lexical":38,"best_non_slime":38,"slime":12},
+      {"seed":905104,"lexical":32,"best_non_slime":32,"slime":12},
+      {"seed":905105,"lexical":38,"best_non_slime":38,"slime":13},
+      {"seed":905106,"lexical":45,"best_non_slime":45,"slime":11},
+      {"seed":905107,"lexical":31,"best_non_slime":26,"slime":8},
+      {"seed":905108,"lexical":32,"best_non_slime":32,"slime":12}
+    ]
+  },
+  "calibration": [
+    {"fixture":"CAL_CONNECTED_BLOCK_G2","non_slime":8,"slime":4},
+    {"fixture":"CAL_CONNECTED_BLOCK_G3","non_slime":24,"slime":4},
+    {"fixture":"CAL_CONNECTED_BLOCK_G4","non_slime":73,"slime":4},
+    {"fixture":"CAL_CONNECTED_BLOCK_G5","non_slime":219,"slime":8}
+  ],
+  "known_controls": [
+    {"fixture":"KNOWN_DUPLICATE_K4_4","all_candidates":2},
+    {"fixture":"KNOWN_DUPLICATE_K6_6","all_candidates":2},
+    {"fixture":"PRESSURE_UNIT_N8","lexical":256,"slime":2}
+  ],
+  "global_cost_ledger": {
+    "generator_ops": 88064,
+    "verifier_cuts": 1756,
+    "verifier_assignment_rows": 78315,
+    "verifier_literal_checks": 1046844
+  },
+  "interpretation": [
+    "Slime source-only semantic pressure is a useful finite candidate producer on the frozen controls.",
+    "The exact PS-width scorer is an exponential finite verifier and is not part of a polynomial SAT algorithm.",
+    "Eight holdout wins do not prove universal candidate completeness.",
+    "A next experiment should adversarially search for Slime losses and preserve them as representation-discovery counterexamples rather than tune them away."
+  ],
+  "surviving_gate": "POLYNOMIAL_SEMANTIC_DECOMPOSITION_CANDIDATE_COMPLETENESS_WITH_CHARGED_DISCOVERY",
+  "p_vs_np": "OPEN"
+}

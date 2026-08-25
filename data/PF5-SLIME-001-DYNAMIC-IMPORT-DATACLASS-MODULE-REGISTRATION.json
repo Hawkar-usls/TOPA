@@ -1,0 +1,29 @@
+{
+  "artifact_id": "PF5-SLIME-001-DYNAMIC-IMPORT-DATACLASS-MODULE-REGISTRATION",
+  "status": "INTEGRATION_DEFECT_PRESERVED",
+  "source_experiment": "PF5-SLIME-PSWIDTH-BLIND-PROBE-V9",
+  "source_run": 32824884058,
+  "source_job": 97730601842,
+  "source_head": "c96eba0bdcc8cc8d020e71a4aefc4f5c49d8cd1d",
+  "failure_phase": "EXTERNAL_PRODUCER_IMPORT_BEFORE_ANY_MANIFEST_GENERATION",
+  "observed_error": "AttributeError: 'NoneType' object has no attribute '__dict__' inside dataclasses._is_type",
+  "root_cause": "The importlib-created external producer module was executed without first registering spec.name in sys.modules. Python 3.11 dataclass processing resolves cls.__module__ through sys.modules and therefore failed before the Slime producer could instantiate any candidate manifest.",
+  "scientific_result_produced": false,
+  "pswidth_probe_started": false,
+  "holdout_observed": false,
+  "theorem_impact": "NONE",
+  "frozen_experiment_changes_allowed": false,
+  "repair": {
+    "scope": "IMPORT_ADAPTER_ONLY",
+    "required_change": [
+      "import sys",
+      "sys.modules[spec.name] = module before spec.loader.exec_module(module)"
+    ],
+    "frozen_holdout_seeds_unchanged": true,
+    "producer_commit_unchanged": "36437e053bb151660eaed4e82634d430346343a5",
+    "candidate_portfolio_unchanged": true,
+    "exact_scoring_logic_unchanged": true,
+    "caps_and_claim_ceiling_unchanged": true
+  },
+  "claim_ceiling": "P_VS_NP = OPEN"
+}

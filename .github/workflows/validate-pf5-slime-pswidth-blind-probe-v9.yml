@@ -1,0 +1,76 @@
+name: Validate PF5 Slime PS-width Blind Probe v9
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_PSWIDTH_BLIND_PROBE_V9.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_pswidth_blind_probe_v9.py'
+      - '.github/workflows/validate-pf5-slime-pswidth-blind-probe-v9.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_PSWIDTH_BLIND_PROBE_V9.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_pswidth_blind_probe_v9.py'
+      - '.github/workflows/validate-pf5-slime-pswidth-blind-probe-v9.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  slime-pswidth-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Janus-Demiurge Slime producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 36437e053bb151660eaed4e82634d430346343a5
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen manifest generation then exact TOPA probe
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_pswidth_blind_probe_v9.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router.py \
+            --json-out ../../../../pf5-slime-pswidth-blind-probe-v9.result.json
+      - name: Verify phase firewall and frozen contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-slime-pswidth-blind-probe-v9.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-PSWIDTH-BLIND-PROBE-V9'
+          assert d['status']=='FINITE_EXACT_PROBE_COMPLETE'
+          assert d['holdout_seeds_frozen_before_provider_run']==[905101,905102,905103,905104,905105,905106,905107,905108]
+          assert d['candidate_manifest_batch_frozen_before_exact_probe'] is True
+          assert d['c032_cut_identity_checks']==32
+          assert d['exact_probe_is_finite_exponential_verifier_not_runtime_algorithm'] is True
+          assert len(d['controls'])==15
+          assert d['holdout_summary']['count']==8
+          assert d['universal_candidate_completeness']=='OPEN'
+          assert d['universal_polynomial_semantic_decomposition_discovery']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+          for row in d['controls']:
+              assert set(row['candidate_widths'])=={
+                  'LEXICAL_BASELINE','EXACT_DUPLICATE_CLAUSE_BLOCKS',
+                  'SIGNED_INCIDENCE_PROFILE_BLOCKS','SLIME_SEMANTIC_PRESSURE'
+              }
+          known={r['fixture']:r for r in d['controls']}
+          assert max(known['KNOWN_DUPLICATE_K4_4']['candidate_widths'].values())<=2
+          assert max(known['KNOWN_DUPLICATE_K6_6']['candidate_widths'].values())<=2
+          assert known['PRESSURE_UNIT_N8']['candidate_widths']['LEXICAL_BASELINE']==256
+          print('PF5_SLIME_PSWIDTH_V9_CONTRACT = PASS')
+          print('HOLDOUT_SUMMARY =', d['holdout_summary'])
+          print('MANIFEST_BATCH_SHA256 =', d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =', d['result_sha256'])
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'SLIME_PROPOSAL != DECOMPOSITION_PROOF'
+          echo 'FINITE_HOLDOUT_WIN != UNIVERSAL_CANDIDATE_COMPLETENESS'
+          echo 'EXACT_PSWIDTH_PROBE != POLYNOMIAL_RUNTIME_ALGORITHM'
+          echo 'P_VS_NP = OPEN'
