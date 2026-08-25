@@ -1,0 +1,31 @@
+name: Validate JANUS RCTQ-2
+
+on:
+  push:
+    branches:
+      - pnp-proof-obligation-graph-u1-l2-exact-only
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_RCTQ2_FROZEN_CATALOG_ESCAPE.md'
+      - 'research/mathematics/p-vs-np/rctq2_frozen_catalog_escape_verifier.py'
+      - '.github/workflows/validate-janus-rctq2.yml'
+      - 'research/mathematics/p-vs-np/u1l2c2k_keymaster_exact_algebra_verifier.py'
+      - 'research/mathematics/p-vs-np/u1l2c2k1_keymaster_catalog_extension_verifier.py'
+      - 'research/mathematics/p-vs-np/u1l2c2c1_swap_orbit_weight_quotient_verifier.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rctq2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile RCTQ-2 verifier
+        run: python -m py_compile research/mathematics/p-vs-np/rctq2_frozen_catalog_escape_verifier.py
+      - name: Run RCTQ-2 verifier
+        run: python research/mathematics/p-vs-np/rctq2_frozen_catalog_escape_verifier.py
