@@ -1,0 +1,45 @@
+name: Validate PF5 PNP Spiral Hephaestus Crystal v14
+on:
+  push:
+    branches: [pnp-spiral-hephaestus-crystal-v14]
+  workflow_dispatch:
+jobs:
+  spiral-crystal:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile
+        run: python -m py_compile research/mathematics/p-vs-np/pf5_pnp_spiral_hephaestus_crystal_v14.py
+      - name: Run exact spiral replay
+        working-directory: research/mathematics/p-vs-np
+        run: python pf5_pnp_spiral_hephaestus_crystal_v14.py --json-out ../../../pf5-pnp-spiral-hephaestus-v14.result.json
+      - name: Verify no-heuristic crystal contract
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-pnp-spiral-hephaestus-v14.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-PNP-SPIRAL-HEPHAESTUS-CRYSTAL-V14'
+          assert d['status']=='FINITE_SPIRAL_REPLAY_COMPLETE'
+          assert d['seed_order_frozen']==list(range(907000,907016))
+          assert d['heuristic_decision_logic'] is False
+          assert d['uses_sat_oracle'] is False
+          assert d['uses_pswidth_score'] is False
+          assert d['uses_truth_table'] is False
+          assert d['uses_slime'] is False
+          assert d['hash_semantics']=='HASH_EQUALITY_ONLY_SUPPORTS_CANONICAL_SYNTACTIC_IDENTITY'
+          assert d['p_vs_np']=='OPEN'
+          assert len(d['rows'])==16
+          assert d['first_surviving_obstruction'] is not None
+          print('PF5_HEPHAESTUS_CRYSTAL_NO_HEURISTIC_CONTRACT = PASS')
+          print('FIRST_SURVIVOR =',d['first_surviving_obstruction']['seed'])
+          print('RESIDUAL =',d['first_surviving_obstruction']['residual_crystal']['canonical_cnf'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'HEPHAESTUS_CRYSTAL = EXACT_SYNTACTIC_STATE_RECEIPT'
+          echo 'HEPHAESTUS_CRYSTAL != P_VS_NP_SOLVER'
+          echo 'P_VS_NP = OPEN'
