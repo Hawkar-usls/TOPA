@@ -1,0 +1,58 @@
+{
+  "artifact_id": "PF5-SLIME-CAPPED-PSWIDTH-COMPILER-V12-RECEIPT",
+  "status": "AUTHORITATIVE_FINITE_RUNTIME_SELECTOR_PASS",
+  "provider": {
+    "run": 32826770445,
+    "job": 97736405712,
+    "head": "5c896eaa5c0d3044c71c8d0a61955b75f1a3a404",
+    "conclusion": "SUCCESS",
+    "manifest_batch_sha256": "1d28a7cc2cb242422fb887afb01c76af4e99bc628897425ee54351aeff5b5da1",
+    "result_sha256": "24729dc035db142e011ae1c27344dc0ce36ff36e980d7c36d4526f9b3a319c34"
+  },
+  "frozen_runtime_cap": {
+    "q": 1,
+    "formula": "K=max(2,r^q), r=variables+clauses",
+    "input_dependent_exponent": false
+  },
+  "fresh_controls": {
+    "n7_seeds": "908000..908015",
+    "n9_seeds": "908100..908107",
+    "duplicate_control": "DUPLICATE_K6_6",
+    "source_count": 25,
+    "closed_sources": 25
+  },
+  "candidate_attempts": {
+    "total": 400,
+    "closed": 310,
+    "open_state_cap": 90,
+    "all_16_attempted_per_source": true
+  },
+  "fail_fast_canaries": {
+    "UNIT_N8_LEXICAL": {"cap":16,"refusal_distinct_states":17,"full_bad_cut_states":256},
+    "UNIT_N10_LEXICAL": {"cap":20,"refusal_distinct_states":21,"full_bad_cut_states":1024}
+  },
+  "proof_replay": {
+    "closed_certificates_replayed": 310,
+    "replay_result": "PASS",
+    "independent_old_exponential_scorer_crosschecks": 6,
+    "crosscheck_result": "EXACT_MATCH"
+  },
+  "runtime_firewall": {
+    "assignment_enumeration": false,
+    "exact_width_oracle": false,
+    "general_sat_fallback": false,
+    "post_probe_candidate_generation": false
+  },
+  "published_bridge": {
+    "source": "Saether-Telle-Vatshelle, Solving MaxSAT and #SAT on structured CNF formulas",
+    "ps_state_preprocessing": "O(k^2 log(k) m(m+n))",
+    "solver_given_decomposition": "O(k^3 s(m+n)) for #SAT and weighted MaxSAT"
+  },
+  "interpretation": [
+    "A fixed polynomial cap gives a fail-closed polynomially bounded candidate selector once a candidate incidence decomposition is supplied.",
+    "Finite q=1 closure on these controls is not a universal fixed-exponent theorem.",
+    "The remaining central gate is candidate/decomposition completeness: for every CNF, must the frozen polynomial Slime portfolio contain at least one decomposition whose PS-width is bounded by one fixed polynomial?"
+  ],
+  "remaining_gate": "EXISTS_FIXED_q_AND_POLY_SLIME_PORTFOLIO_SUCH_THAT_FOR_EVERY_CNF_SOME_CANDIDATE_HAS_PSWIDTH_AT_MOST_N^q",
+  "p_vs_np": "OPEN"
+}

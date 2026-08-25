@@ -1,0 +1,144 @@
+name: Validate PF5 Slime Capped PS-width Compiler v12
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_CAPPED_PSWIDTH_COMPILER_V12.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_capped_pswidth_compiler_v12.py'
+      - '.github/workflows/validate-pf5-slime-capped-pswidth-compiler-v12.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/PF5_SLIME_CAPPED_PSWIDTH_COMPILER_V12.md'
+      - 'research/mathematics/p-vs-np/pf5_slime_capped_pswidth_compiler_v12.py'
+      - '.github/workflows/validate-pf5-slime-capped-pswidth-compiler-v12.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  capped-runtime-compiler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned amortized Slime v3
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: 421794b5c7e3b96f52550cf710fe2d8d2f3b59db
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen capped runtime compiler
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_slime_capped_pswidth_compiler_v12.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_swarm_v3_amortized.py \
+            --json-out ../../../../pf5-slime-capped-pswidth-compiler-v12.result.json
+      - name: Verify runtime firewall, cap discipline, and certificates
+        run: |
+          python - <<'PY'
+          import inspect, json, sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          import pf5_slime_capped_pswidth_compiler_v12 as v12
+
+          d=json.load(open('pf5-slime-capped-pswidth-compiler-v12.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-SLIME-CAPPED-PSWIDTH-COMPILER-V12'
+          assert d['status']=='FINITE_CAPPED_RUNTIME_PROBE_COMPLETE'
+          assert d['q_frozen_before_provider_run']==1
+          assert d['fresh_n7_seeds']==list(range(908000,908016))
+          assert d['fresh_n9_seeds']==list(range(908100,908108))
+          assert d['all_slime_manifests_frozen_before_compilation'] is True
+          assert d['runtime_exact_width_oracle_used'] is False
+          assert d['runtime_assignment_enumeration_used'] is False
+          assert d['runtime_general_sat_fallback_used'] is False
+          assert d['universal_fixed_q_candidate_completeness']=='OPEN'
+          assert d['p_vs_np']=='OPEN'
+
+          source=inspect.getsource(v12.compile_order)
+          forbidden=['assignment_signatures(', 'score_candidate(', 'itertools.product(', 'solve_sat(', 'sat_oracle(']
+          for token in forbidden:
+              assert token not in source, token
+
+          # Fail-fast canaries must stop at exactly K+1 distinct states.
+          for name in ['UNIT_N8_LEXICAL','UNIT_N10_LEXICAL']:
+              r=d['manual_fail_fast_canaries'][name]
+              assert r['terminal']=='OPEN_STATE_CAP', (name,r['terminal'])
+              assert r['failure']['distinct_states_at_refusal']==r['cap']+1
+              assert len(r['failure']['first_cap_plus_one_signatures'])==r['cap']+1
+
+          # Reconstruct every source and replay every CLOSED certificate.
+          formulas={}
+          for seed in d['fresh_n7_seeds']:
+              formulas[f'FRESH_N7_{seed}']=v12.random_connected_3cnf(seed,7,10)
+          for seed in d['fresh_n9_seeds']:
+              formulas[f'FRESH_N9_{seed}']=v12.random_connected_3cnf(seed,9,14)
+          formulas['DUPLICATE_K6_6']=v12.duplicate_family(6,6)
+          replayed=0
+          for row in d['results']:
+              formula=formulas[row['fixture']]
+              p=row['portfolio']
+              assert p['global_ledger']['candidate_attempts']==16
+              assert p['global_ledger']['closed_candidates']+p['global_ledger']['open_candidates']==16
+              if p['terminal']=='CLOSED_PORTFOLIO_PSWIDTH_CAP':
+                  assert p['selected_certificate_replay'] is True
+              for attempt in p['attempts']:
+                  result=attempt['result']
+                  if result['terminal']=='CLOSED_PSWIDTH_CAP':
+                      assert result['peak_ps_state']<=result['cap']
+                      assert v12.replay_closed_certificate(formula,result)
+                      replayed += 1
+                  else:
+                      assert result['terminal']=='OPEN_STATE_CAP'
+                      assert result['failure']['distinct_states_at_refusal']==result['cap']+1
+
+          dup=next(row for row in d['results'] if row['fixture']=='DUPLICATE_K6_6')
+          assert dup['portfolio']['terminal']=='CLOSED_PORTFOLIO_PSWIDTH_CAP'
+          selected=next(a for a in dup['portfolio']['attempts'] if a['candidate']==dup['portfolio']['selected_candidate'])
+          assert selected['result']['peak_ps_state']<=2
+          assert replayed>0
+          print('PF5_V12_RUNTIME_FIREWALL_AND_REPLAY = PASS')
+          print('REPLAYED_CLOSED_CERTIFICATES =',replayed)
+          print('CLOSED_SOURCES =',d['closed_sources'],'/',d['source_count'])
+          print('CLOSED_CANDIDATES =',d['total_closed_candidates'])
+          print('OPEN_CANDIDATES =',d['total_open_candidates'])
+          print('MANIFEST_BATCH_SHA256 =',d['manifest_batch_sha256'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Independent bounded audit against old exponential scorer
+        run: |
+          python - <<'PY'
+          import json, sys
+          sys.path.insert(0,'topa/research/mathematics/p-vs-np')
+          import pf5_slime_capped_pswidth_compiler_v12 as v12
+          import pf5_slime_pswidth_blind_probe_v9 as audit
+
+          d=json.load(open('pf5-slime-capped-pswidth-compiler-v12.result.json',encoding='utf-8'))
+          checks=0
+          # Validation only: one fresh source + duplicate control. This scorer is
+          # never called by v12 runtime selection.
+          for fixture,formula in [
+              ('FRESH_N7_908000',v12.random_connected_3cnf(908000,7,10)),
+              ('DUPLICATE_K6_6',v12.duplicate_family(6,6)),
+          ]:
+              row=next(x for x in d['results'] if x['fixture']==fixture)
+              for attempt in row['portfolio']['attempts'][:3]:
+                  result=attempt['result']
+                  if result['terminal']!='CLOSED_PSWIDTH_CAP':
+                      continue
+                  exact=audit.score_candidate(formula,result['certificate']['order'])
+                  assert exact['exact_caterpillar_ps_width']==result['peak_ps_state'], (fixture,attempt['candidate'],exact['exact_caterpillar_ps_width'],result['peak_ps_state'])
+                  checks += 1
+          assert checks>0
+          print('PF5_V12_EXPONENTIAL_AUDIT_CROSSCHECK = PASS')
+          print('AUDIT_CHECKS =',checks)
+          PY
+      - name: Claim ceiling reminder
+        run: |
+          echo 'BOUNDED_SELECTOR_EXISTS != UNIVERSAL_GOOD_CANDIDATE_EXISTS'
+          echo 'FIXED_q=1_FINITE_SUCCESS != UNIVERSAL_FIXED_q_COMPLETENESS'
+          echo 'OPEN_STATE_CAP != HARDNESS'
+          echo 'P_VS_NP = OPEN'
