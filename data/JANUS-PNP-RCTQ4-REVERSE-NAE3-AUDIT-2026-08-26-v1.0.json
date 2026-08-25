@@ -1,0 +1,37 @@
+{
+  "schema": "JANUS_PNP_RCTQ4_REVERSE_NAE3_AUDIT_PROTOCOL",
+  "version": "1.0",
+  "date": "2026-08-26",
+  "status": "FROZEN_BEFORE_VERIFIER_NO_RESULT_YET",
+  "primary_goal": "RESOLVE_P_VS_NP",
+  "claim_ceiling": "P_VS_NP_OPEN",
+  "global_rule": "NO_HEURISTICS_ANYWHERE_IN_PNP_PROJECT",
+  "immutable_rctq4_result_sha256": "9bb9fbd301ee3619cc920bf4ac5206705cf6796a1778e27c11624a65215361e6",
+  "reverse_seed": "B_41",
+  "frozen_hypothesis": {
+    "candidate_schema": "NAE3_COMPLEMENT_CLAUSE_PAIR_MACRO",
+    "identity": "(a OR b OR c) AND (!a OR !b OR !c) == NAE(a,b,c)",
+    "required_local_truth_rows": 8,
+    "expected_B41_cnf_clauses": 166,
+    "expected_B41_complement_pairs": 83,
+    "expected_representation_role": "EXACT_REPRESENTATION_SWITCH_NOT_SAT_DECISION",
+    "expected_witness_lift": "IDENTITY_ON_VARIABLE_ASSIGNMENT",
+    "expected_discovery": "DETERMINISTIC_EXACT_COMPLEMENT_PAIR_HASHING"
+  },
+  "required_checks": [
+    "Every B41 clause has its exact literalwise complement.",
+    "Each pair is used exactly once.",
+    "The NAE3 identity is verified on all 8 local Boolean triples.",
+    "Both frozen explicit B41 mixed witnesses satisfy every NAE3 macro.",
+    "Global variable-complement symmetry is replayed exactly.",
+    "Compute the exact bipartite variable-macro incidence cycle rank; do not interpret a linear cycle rank as polynomially many semantic states.",
+    "Replay RCTQ4,RCTQ3,RCTQ2,RCTQ1,KANAMI,UNIFIED in reverse and forward order with immutable hashes."
+  ],
+  "forbidden_claims": [
+    "NAE3 macro solves SAT",
+    "constant-factor clause compression implies P=NP",
+    "global complement symmetry implies polynomial state count",
+    "cycle-rank bits are automatically compressible"
+  ],
+  "P_VS_NP": "OPEN"
+}
