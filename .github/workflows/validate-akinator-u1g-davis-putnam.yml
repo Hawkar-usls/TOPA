@@ -1,0 +1,29 @@
+name: Validate Akinator U1G Davis Putnam
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1G_DAVIS_PUTNAM_EXACT_DESCENT_STATE_EXPLOSION.md'
+      - 'research/mathematics/p-vs-np/akinator_u1g_davis_putnam_probe.py'
+      - '.github/workflows/validate-akinator-u1g-davis-putnam.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Davis-Putnam finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1g_davis_putnam_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks finite exact-projection, rank-descent, and quadratic one-step mechanics only.'
+          echo 'Galil 1977 exponential any-order Davis-Putnam lower bound is external.'
+          echo 'The lower bound is not an ER/B2 lower bound.'
+          echo 'P_VS_NP = OPEN'
