@@ -1,0 +1,29 @@
+name: Validate Akinator U1F PHP Stage Rank
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_U1F_PHP_CERTIFIED_STAGE_RANK_POSITIVE_CONTROL.md'
+      - 'research/mathematics/p-vs-np/akinator_u1f_php_stage_rank_probe.py'
+      - '.github/workflows/validate-akinator-u1f-php-stage-rank.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run PHP stage-rank finite mechanics
+        run: python research/mathematics/p-vs-np/akinator_u1f_php_stage_rank_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI checks only Cook-macro B2 truth equivalence and stage-rank arithmetic.'
+          echo 'Cook O(n^4) ER proof is an external theorem.'
+          echo 'Universal certified stage decomposition remains OPEN.'
+          echo 'P_VS_NP = OPEN'
