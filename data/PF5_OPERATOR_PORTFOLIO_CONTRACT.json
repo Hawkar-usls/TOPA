@@ -1,5 +1,5 @@
 {
-  "artifact_id": "PF5-EXACT-OPERATOR-PORTFOLIO-CONTRACT-2026-08-25-v1.0",
+  "artifact_id": "PF5-EXACT-OPERATOR-PORTFOLIO-CONTRACT-2026-08-25-v1.1",
   "schema": "janus.pvsnp.pf5.operator-portfolio.v1",
   "claim_ceiling": "P_VS_NP = OPEN",
   "original_input_measure": "N = exact serialized input CNF bytes/encoding units under the frozen experiment contract",
@@ -25,9 +25,28 @@
     "unpriced representation switching",
     "small final artifact after superpolynomial temporary construction",
     "provider PASS promoted to universal theorem",
-    "ER-certified rewrite renamed as proof-system escape"
+    "ER-certified rewrite renamed as proof-system escape",
+    "generic search cap hit promoted to minimum proof-size lower bound"
   ],
   "operators": [
+    {
+      "operator_id": "GT_LINEAR_RESOLUTION_SCHEMA",
+      "authority_repo": "Hawkar-usls/TOPA",
+      "authority_path": "research/mathematics/p-vs-np/C025_AKINATOR_GT_LINEAR_RESOLUTION_SCHEMA.md",
+      "proposal_algorithm": "Recognize the exact JANUS graph-tautology/ordering-principle family under the explicitly allowed canonical encoding or verified renaming, then emit the deterministic recursive Resolution schema.",
+      "verifier": "Replay every Resolution inference from root or earlier derived clauses, checking the complementary pivot and exact canonical resolvent.",
+      "exactness": "PROVED_BY_CONSTRUCTION_IN_FAMILY_SCOPE",
+      "success_progress": "Produce a complete UNSAT Resolution refutation with exactly (n-1)n(2n-1)/6 inferences.",
+      "known_positive_control": "GT12: 452 root clauses, 66 variables, 506 independently replayed Resolution inferences.",
+      "known_negative_or_open_boundary": "Family recognition/generation is polynomial only for this certified schema domain; it is not a universal SAT selector.",
+      "provider_receipt": {
+        "workflow": "Validate GT Linear Resolution Schema",
+        "run_id": 32797725776,
+        "job_id": 97652332775,
+        "head_sha": "86b2a59d5cd439fd1b3e5bff50291809815663f6",
+        "conclusion": "SUCCESS"
+      }
+    },
     {
       "operator_id": "PF1_PREBIRTH_PIVOT_FACTOR",
       "authority_repo": "Hawkar-usls/TOPA",
@@ -130,6 +149,7 @@
   ],
   "portfolio_acceptance": {
     "operator_order": [
+      "GT_LINEAR_RESOLUTION_SCHEMA",
       "PF1_PREBIRTH_PIVOT_FACTOR",
       "C025_CERTIFIED_SUBSUMPTION_NORMALIZER",
       "LIVE_WIDTH_RELATIONAL_DP",
@@ -141,9 +161,11 @@
     ],
     "selection_rule": "DETERMINISTIC_FIRST_ACCEPTING_OPERATOR_UNDER_FROZEN_CAPS; ALL_FAILED_PROPOSALS_ARE_CHARGED",
     "no_posthoc_reordering": true,
+    "family_schema_rule": "CHEAP_SYNTACTICALLY_CERTIFIED_FAMILY_SCHEMAS_RUN_BEFORE_GENERIC_STATE_EXPLORATION",
     "universal_success_theorem": "OPEN"
   },
-  "current_red_point": "POLYNOMIALLY_DISCOVERABLE_DECOMPOSITION_PLUS_CHEAP_CERTIFIED_QUOTIENT",
+  "benchmark_admission_rule": "A candidate red family must be audited for known polynomial upper bounds in the same or stronger admitted proof system before generic cap hits are interpreted as discovery barriers. A located upper bound reclassifies the family as a positive schema control.",
+  "current_red_point": "UNIVERSAL_POLYNOMIAL_SCHEMA_OR_QUOTIENT_DISCOVERY_WITH_FULL_Q_TOTAL_ACCOUNTING",
   "closure_condition": "If the portfolio (or a frozen polynomial extension of it) always provides an exact accepted rank-decreasing step with total cumulative work/bytes <= N^K for one universal fixed K and terminates after polynomially many rank decreases, then SAT is in P and P=NP.",
   "global_status": "P_VS_NP = OPEN"
 }
