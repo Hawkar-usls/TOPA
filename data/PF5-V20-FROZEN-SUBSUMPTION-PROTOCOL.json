@@ -1,0 +1,58 @@
+{
+  "artifact_id": "PF5-V20-FROZEN-SUBSUMPTION-PROTOCOL",
+  "status": "FROZEN_BEFORE_PROVIDER",
+  "theorem_candidate": "CLAUSE_SUBSUMPTION_CONTRACTION",
+  "identity": "A AND (A OR B) == A",
+  "diagnostic_source": {
+    "seed": 913600,
+    "role": "DIAGNOSTIC_ONLY_NOT_BLIND",
+    "observed_examples": [
+      {"subsuming_clause": [-3,-5], "subsumed_clause": [-3,-5,6]},
+      {"subsuming_clause": [4,-6], "subsumed_clause": [2,4,-6]}
+    ]
+  },
+  "fresh_frozen_holdout": [
+    {"n": 6, "m": 24, "seeds": "914600..914615"},
+    {"n": 7, "m": 28, "seeds": "914700..914715"}
+  ],
+  "deterministic_discovery": {
+    "clause_order": "canonical current clause order",
+    "outer_index": "increasing",
+    "inner_index": "increasing after outer",
+    "condition": "literal-set(subsuming) is a strict subset of literal-set(subsumed)",
+    "action": "remove only the first deterministically found subsumed clause, then re-enter exact closure"
+  },
+  "cost_ledger_required": [
+    "clause_pair_tests",
+    "literal_membership_checks",
+    "failed_pair_tests",
+    "successful_contractions",
+    "clauses_removed",
+    "certificate_bytes",
+    "state_bytes",
+    "cumulative_state_bytes",
+    "witness_lift_ops"
+  ],
+  "runtime_forbidden": [
+    "SAT oracle",
+    "truth table",
+    "PS-width score",
+    "Slime selection",
+    "Hephaestus entropy/slack decision",
+    "post-result seed tuning"
+  ],
+  "composition_order": [
+    "v12 PURE_LITERAL_EXISTENTIAL_PROJECTION",
+    "v13 TAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v15 SINGLE_NONTAUTOLOGICAL_RESOLVENT_EXISTENTIAL_PROJECTION",
+    "v18 COMPLEMENTARY_TWIN_CLAUSE_CONTRACTION",
+    "v20 CLAUSE_SUBSUMPTION_CONTRACTION",
+    "repeat to fixed point"
+  ],
+  "semantic_audit": "finite exhaustive oracle after all provider outputs are frozen; audit only",
+  "hephaestus_role": "ACCOUNTING_RECURRENCE_ONLY_NO_DECISION_AUTHORITY",
+  "claim_ceiling": {
+    "UNIVERSAL_EXACT_CLOSURE": "OPEN",
+    "P_VS_NP": "OPEN"
+  }
+}
