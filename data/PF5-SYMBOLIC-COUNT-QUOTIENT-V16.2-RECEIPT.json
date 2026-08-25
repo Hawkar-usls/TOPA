@@ -1,0 +1,466 @@
+{
+  "artifact_id": "PF5-SYMBOLIC-COUNT-QUOTIENT-V16.2-RECEIPT",
+  "epistemic_firewall": {
+    "large_controls_use_no_raw_subset_enumeration": true,
+    "small_raw_enumeration_used_only_for_independent_validation": true,
+    "supplied_family_symmetry_is_essential": true,
+    "universal_symmetry_or_message_discovery_not_proved": true
+  },
+  "family": "D(n,m)=AND_m(x1 OR ... OR xn)",
+  "incidence_graph": "K_{n,m}",
+  "large_symbolic_only_controls": [
+    {
+      "lift_checks": 32,
+      "lifted_order_length": 32,
+      "lifted_order_prefix": [
+        "c:0",
+        "c:1",
+        "c:2",
+        "c:3",
+        "c:4",
+        "c:5",
+        "c:6",
+        "c:7"
+      ],
+      "lifted_order_sha256": "1acce824dc566b05f7c2b0c82d276d8d41ba35e46d8c354f64080ebc01510394",
+      "lifted_order_suffix": [
+        "v:9",
+        "v:10",
+        "v:11",
+        "v:12",
+        "v:13",
+        "v:14",
+        "v:15",
+        "v:16"
+      ],
+      "m": 16,
+      "n": 16,
+      "optimum": 2,
+      "quotient_state_count": 289,
+      "quotient_transition_checks": 544,
+      "raw_state_count_symbolic_expression": "2^32",
+      "raw_subset_enumeration_used": false
+    },
+    {
+      "lift_checks": 128,
+      "lifted_order_length": 128,
+      "lifted_order_prefix": [
+        "c:0",
+        "c:1",
+        "c:2",
+        "c:3",
+        "c:4",
+        "c:5",
+        "c:6",
+        "c:7"
+      ],
+      "lifted_order_sha256": "c402f4a7c2484c67100a4ce6793790eba25f73024a6c3799be195309be511fb9",
+      "lifted_order_suffix": [
+        "v:57",
+        "v:58",
+        "v:59",
+        "v:60",
+        "v:61",
+        "v:62",
+        "v:63",
+        "v:64"
+      ],
+      "m": 64,
+      "n": 64,
+      "optimum": 2,
+      "quotient_state_count": 4225,
+      "quotient_transition_checks": 8320,
+      "raw_state_count_symbolic_expression": "2^128",
+      "raw_subset_enumeration_used": false
+    },
+    {
+      "lift_checks": 512,
+      "lifted_order_length": 512,
+      "lifted_order_prefix": [
+        "c:0",
+        "c:1",
+        "c:2",
+        "c:3",
+        "c:4",
+        "c:5",
+        "c:6",
+        "c:7"
+      ],
+      "lifted_order_sha256": "c52af80925c6c0b520ea41319efbb172bdbf4899085158117fa8166dddce2937",
+      "lifted_order_suffix": [
+        "v:249",
+        "v:250",
+        "v:251",
+        "v:252",
+        "v:253",
+        "v:254",
+        "v:255",
+        "v:256"
+      ],
+      "m": 256,
+      "n": 256,
+      "optimum": 2,
+      "quotient_state_count": 66049,
+      "quotient_transition_checks": 131584,
+      "raw_state_count_symbolic_expression": "2^512",
+      "raw_subset_enumeration_used": false
+    },
+    {
+      "lift_checks": 1024,
+      "lifted_order_length": 1024,
+      "lifted_order_prefix": [
+        "c:0",
+        "c:1",
+        "c:2",
+        "c:3",
+        "c:4",
+        "c:5",
+        "c:6",
+        "c:7"
+      ],
+      "lifted_order_sha256": "cf92c19e013d99e7c40c3c98348298fb9273529395d5bba2a71012f53ea0cc26",
+      "lifted_order_suffix": [
+        "v:505",
+        "v:506",
+        "v:507",
+        "v:508",
+        "v:509",
+        "v:510",
+        "v:511",
+        "v:512"
+      ],
+      "m": 512,
+      "n": 512,
+      "optimum": 2,
+      "quotient_state_count": 263169,
+      "quotient_transition_checks": 525312,
+      "raw_state_count_symbolic_expression": "2^1024",
+      "raw_subset_enumeration_used": false
+    }
+  ],
+  "max_outgoing_abstract_actions": 2,
+  "next_gate": "DISCOVER_PROOF_CARRYING_PREFIX_ORBITS_OR_STRONGER_MESSAGES_WITHOUT_SUPPLIED_SYMMETRY",
+  "p_vs_np": "OPEN",
+  "small_control_count": 16,
+  "small_controls": [
+    {
+      "cut_ledger": {
+        "assignment_rows": 6,
+        "cuts": 2,
+        "literal_checks": 4
+      },
+      "decoder_checks": 4,
+      "future_congruence_verified": true,
+      "lift_checks": 2,
+      "lifted_width": 2,
+      "m": 1,
+      "n": 1,
+      "quotient_state_count": 4,
+      "raw_bellman_transition_checks": 4,
+      "raw_optimum": 2,
+      "raw_state_count": 4,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 4
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 18,
+        "cuts": 6,
+        "literal_checks": 16
+      },
+      "decoder_checks": 8,
+      "future_congruence_verified": true,
+      "lift_checks": 3,
+      "lifted_width": 2,
+      "m": 2,
+      "n": 1,
+      "quotient_state_count": 6,
+      "raw_bellman_transition_checks": 12,
+      "raw_optimum": 2,
+      "raw_state_count": 8,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 7
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 42,
+        "cuts": 14,
+        "literal_checks": 48
+      },
+      "decoder_checks": 16,
+      "future_congruence_verified": true,
+      "lift_checks": 4,
+      "lifted_width": 2,
+      "m": 3,
+      "n": 1,
+      "quotient_state_count": 8,
+      "raw_bellman_transition_checks": 32,
+      "raw_optimum": 2,
+      "raw_state_count": 16,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 10
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 90,
+        "cuts": 30,
+        "literal_checks": 128
+      },
+      "decoder_checks": 32,
+      "future_congruence_verified": true,
+      "lift_checks": 5,
+      "lifted_width": 2,
+      "m": 4,
+      "n": 1,
+      "quotient_state_count": 10,
+      "raw_bellman_transition_checks": 80,
+      "raw_optimum": 2,
+      "raw_state_count": 32,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 13
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 22,
+        "cuts": 6,
+        "literal_checks": 20
+      },
+      "decoder_checks": 8,
+      "future_congruence_verified": true,
+      "lift_checks": 3,
+      "lifted_width": 2,
+      "m": 1,
+      "n": 2,
+      "quotient_state_count": 6,
+      "raw_bellman_transition_checks": 12,
+      "raw_optimum": 2,
+      "raw_state_count": 8,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 7
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 58,
+        "cuts": 14,
+        "literal_checks": 80
+      },
+      "decoder_checks": 16,
+      "future_congruence_verified": true,
+      "lift_checks": 4,
+      "lifted_width": 2,
+      "m": 2,
+      "n": 2,
+      "quotient_state_count": 9,
+      "raw_bellman_transition_checks": 32,
+      "raw_optimum": 2,
+      "raw_state_count": 16,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 12
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 130,
+        "cuts": 30,
+        "literal_checks": 240
+      },
+      "decoder_checks": 32,
+      "future_congruence_verified": true,
+      "lift_checks": 5,
+      "lifted_width": 2,
+      "m": 3,
+      "n": 2,
+      "quotient_state_count": 12,
+      "raw_bellman_transition_checks": 80,
+      "raw_optimum": 2,
+      "raw_state_count": 32,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 17
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 274,
+        "cuts": 62,
+        "literal_checks": 640
+      },
+      "decoder_checks": 64,
+      "future_congruence_verified": true,
+      "lift_checks": 6,
+      "lifted_width": 2,
+      "m": 4,
+      "n": 2,
+      "quotient_state_count": 15,
+      "raw_bellman_transition_checks": 192,
+      "raw_optimum": 2,
+      "raw_state_count": 64,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 22
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 66,
+        "cuts": 14,
+        "literal_checks": 76
+      },
+      "decoder_checks": 16,
+      "future_congruence_verified": true,
+      "lift_checks": 4,
+      "lifted_width": 2,
+      "m": 1,
+      "n": 3,
+      "quotient_state_count": 8,
+      "raw_bellman_transition_checks": 32,
+      "raw_optimum": 2,
+      "raw_state_count": 16,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 10
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 174,
+        "cuts": 30,
+        "literal_checks": 304
+      },
+      "decoder_checks": 32,
+      "future_congruence_verified": true,
+      "lift_checks": 5,
+      "lifted_width": 2,
+      "m": 2,
+      "n": 3,
+      "quotient_state_count": 12,
+      "raw_bellman_transition_checks": 80,
+      "raw_optimum": 2,
+      "raw_state_count": 32,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 17
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 390,
+        "cuts": 62,
+        "literal_checks": 912
+      },
+      "decoder_checks": 64,
+      "future_congruence_verified": true,
+      "lift_checks": 6,
+      "lifted_width": 2,
+      "m": 3,
+      "n": 3,
+      "quotient_state_count": 16,
+      "raw_bellman_transition_checks": 192,
+      "raw_optimum": 2,
+      "raw_state_count": 64,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 24
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 822,
+        "cuts": 126,
+        "literal_checks": 2432
+      },
+      "decoder_checks": 128,
+      "future_congruence_verified": true,
+      "lift_checks": 7,
+      "lifted_width": 2,
+      "m": 4,
+      "n": 3,
+      "quotient_state_count": 20,
+      "raw_bellman_transition_checks": 448,
+      "raw_optimum": 2,
+      "raw_state_count": 128,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 31
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 190,
+        "cuts": 30,
+        "literal_checks": 260
+      },
+      "decoder_checks": 32,
+      "future_congruence_verified": true,
+      "lift_checks": 5,
+      "lifted_width": 2,
+      "m": 1,
+      "n": 4,
+      "quotient_state_count": 10,
+      "raw_bellman_transition_checks": 80,
+      "raw_optimum": 2,
+      "raw_state_count": 32,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 13
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 514,
+        "cuts": 62,
+        "literal_checks": 1040
+      },
+      "decoder_checks": 64,
+      "future_congruence_verified": true,
+      "lift_checks": 6,
+      "lifted_width": 2,
+      "m": 2,
+      "n": 4,
+      "quotient_state_count": 15,
+      "raw_bellman_transition_checks": 192,
+      "raw_optimum": 2,
+      "raw_state_count": 64,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 22
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 1162,
+        "cuts": 126,
+        "literal_checks": 3120
+      },
+      "decoder_checks": 128,
+      "future_congruence_verified": true,
+      "lift_checks": 7,
+      "lifted_width": 2,
+      "m": 3,
+      "n": 4,
+      "quotient_state_count": 20,
+      "raw_bellman_transition_checks": 448,
+      "raw_optimum": 2,
+      "raw_state_count": 128,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 31
+    },
+    {
+      "cut_ledger": {
+        "assignment_rows": 2458,
+        "cuts": 254,
+        "literal_checks": 8320
+      },
+      "decoder_checks": 256,
+      "future_congruence_verified": true,
+      "lift_checks": 8,
+      "lifted_width": 2,
+      "m": 4,
+      "n": 4,
+      "quotient_state_count": 25,
+      "raw_bellman_transition_checks": 1024,
+      "raw_optimum": 2,
+      "raw_state_count": 256,
+      "symbolic_optimum": 2,
+      "symbolic_transition_checks": 40
+    }
+  ],
+  "source_result_sha256": "be4f712ff9b1bc7d947cff387e25249c7d3dbd0fe54e4ca9b5607088889aeede",
+  "state_bound": "(n+1)(m+1)",
+  "symbolic_state": "(selected_variable_count,selected_clause_count)",
+  "theorem": {
+    "abstract_action_coverage": true,
+    "concrete_order_lift": true,
+    "exact_cost_preserved": true,
+    "future_congruence_by_permutation_symmetry": true,
+    "quotient_bellman_work": "O(nm)",
+    "quotient_state_count_polynomial": true,
+    "rank_terminal_preserved": true,
+    "raw_structural_treewidth_may_grow_as_min_n_m": true,
+    "transition_closure": true
+  },
+  "universal_polynomial_prefix_quotient": "OPEN"
+}
