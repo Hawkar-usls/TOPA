@@ -1,0 +1,60 @@
+name: Validate PF5 Full Relation Graph Probe v13.2
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_full_relation_graph_probe_v13_2.py'
+      - '.github/workflows/validate-pf5-full-relation-graph-probe-v13-2.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/pf5_full_relation_graph_probe_v13_2.py'
+      - '.github/workflows/validate-pf5-full-relation-graph-probe-v13-2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  full-relation-diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+        with:
+          path: topa
+      - name: Checkout pinned Slime v3 producer
+        uses: actions/checkout@v4
+        with:
+          repository: Hawkar-usls/Janus-Demiurge
+          ref: cb589db77ff6fe478f65ccafc953120fcfc0ff07
+          path: demiurge
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run discarded-cycle diagnostic
+        working-directory: topa/research/mathematics/p-vs-np
+        run: |
+          python pf5_full_relation_graph_probe_v13_2.py \
+            --producer-path ../../../../demiurge/models/slime/slime_semantic_candidate_router_v3.py \
+            --json-out ../../../../pf5-full-relation-graph-probe-v13-2.result.json
+      - name: Verify diagnostic firewall
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('pf5-full-relation-graph-probe-v13-2.result.json',encoding='utf-8'))
+          assert d['artifact_id']=='PF5-FULL-RELATION-GRAPH-PROBE-V13.2'
+          assert d['status']=='POSTHOC_DIAGNOSTIC_COMPLETE'
+          assert d['seed']==909002 and d['posthoc_not_holdout'] is True
+          assert d['full_relation_count_is_exponential_audit_only'] is True
+          assert d['p_vs_np']=='OPEN'
+          print('PF5_FULL_RELATION_GRAPH_V13_2_CONTRACT = PASS')
+          print('DISTINGUISHES_C2_FROM_C5 =',d['full_relation_bound_distinguishes_c2_from_c5'])
+          print('CYCLE_EXPLAINS =',d['discarded_cycle_relations_explain_some_forest_overestimate'])
+          for row in d['choice_rows']:
+              print(row['choice'],row['forest_combined_cap'],row['full_relation_combined_cap_audit_only'],row['max_cycle_rank'])
+          print('RESULT_SHA256 =',d['result_sha256'])
+          PY
+      - name: Claim ceiling
+        run: |
+          echo 'FULL_RELATION_COUNT = EXPONENTIAL AUDIT ONLY'
+          echo 'DO_NOT_ADMIT_ARBITRARY_RELATION_GRAPH_COUNTING'
+          echo 'P_VS_NP = OPEN'
