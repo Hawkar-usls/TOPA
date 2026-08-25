@@ -2,7 +2,7 @@
 """Finite mechanics for C025 Akinator prebirth pivot factorization.
 
 This script checks finite truth-table instances of the exact one-pivot identity,
-witness lifting, and the add-only resolvent monotonicity theorem.  It does not
+witness lifting, and the add-only resolvent monotonicity theorem. It does not
 prove any asymptotic P-vs-NP statement.
 """
 
@@ -114,7 +114,6 @@ def check_pf_identity_and_lift() -> None:
         (canon_cnf(((-1, 2), (-1, -2), (3,))), 1),  # no positive pivot clauses
     ]
 
-    # Add all small pivot-block CNFs built from clauses on variables {1,2,3}.
     pool = [
         (1,), (-1,), (1, 2), (1, -2), (-1, 2), (-1, -2),
         (1, 3), (-1, 3), (2, 3), (-2, 3)
@@ -138,7 +137,6 @@ def check_pf_identity_and_lift() -> None:
 
 
 def check_add_only_resolvent_monotonicity() -> None:
-    # Original pivot x=1, ordinary roots 2,3,4 and fresh extension e=5.
     bases = [
         canon_cnf(((1, 2), (1, 3), (-1, 4), (-1, -2), (2, -4))),
         canon_cnf(((1, 2, 3), (1, -2, 4), (-1, 3), (-1, -4))),
@@ -157,8 +155,6 @@ def check_add_only_resolvent_monotonicity() -> None:
 
 
 def check_cross_product_vs_factor_size() -> None:
-    # Clauses (x OR a_i) and (~x OR b_j) have m^2 pairwise-distinct resolvents,
-    # while the factored syntax uses each residual clause once plus O(m) aggregate gates.
     for m in range(2, 33):
         x = 1
         a_vars = list(range(2, 2 + m))
@@ -166,11 +162,10 @@ def check_cross_product_vs_factor_size() -> None:
         cnf = canon_cnf([(x, a) for a in a_vars] + [(-x, b) for b in b_vars])
         q = resolvent_frontier(cnf, x)
         assert len(q) == m * m
-        # Conservative binary aggregate count: (m-1)+(m-1)+1 OR-via-DeMorgan gate.
         aggregate_gates = 2 * (m - 1) + 1
-        # Residual clauses are unit leaves in this fixture, so no clause OR-chain gates.
         assert aggregate_gates == 2 * m - 1
-        assert aggregate_gates < len(q) for m >= 3
+        if m >= 3:
+            assert aggregate_gates < len(q)
 
 
 def main() -> None:
