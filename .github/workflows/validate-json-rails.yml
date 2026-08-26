@@ -1,0 +1,38 @@
+name: Validate TOPA JSON Rails
+
+on:
+  push:
+    paths:
+      - "tools/topa_json_rails.py"
+      - "tools/topa_poss1_harmonization.py"
+      - "protocols/TOPA_JSON_RAILS_PROTOCOL-v1.0.json"
+      - "research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-v1.0.json"
+      - ".github/workflows/validate-json-rails.yml"
+  pull_request:
+    paths:
+      - "tools/topa_json_rails.py"
+      - "tools/topa_poss1_harmonization.py"
+      - "protocols/TOPA_JSON_RAILS_PROTOCOL-v1.0.json"
+      - "research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-v1.0.json"
+      - ".github/workflows/validate-json-rails.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  json-rails-self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: JSON rails self-test
+        run: python tools/topa_json_rails.py self-test
+      - name: POSS-I harmonization engine self-test
+        run: python tools/topa_poss1_harmonization.py self-test
+      - name: Validate machine-readable contracts
+        run: |
+          python -m json.tool protocols/TOPA_JSON_RAILS_PROTOCOL-v1.0.json >/dev/null
+          python -m json.tool research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-v1.0.json >/dev/null
