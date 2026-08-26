@@ -1,0 +1,8 @@
+# Reproducible CI/runtime lock observed on the first successful end-to-end self-test.
+# Update deliberately, in a separate audited commit, after rerunning the full classifier CI.
+numpy==2.4.6
+scikit-learn==1.9.0
+joblib==1.5.3
+scipy==1.17.1
+narwhals==2.25.0
+threadpoolctl==3.6.0
