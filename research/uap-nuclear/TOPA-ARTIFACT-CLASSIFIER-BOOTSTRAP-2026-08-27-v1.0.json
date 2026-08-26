@@ -1,0 +1,297 @@
+{
+  "schema": "hawkar.topa.artifact_classifier.bootstrap.v1",
+  "artifact_id": "TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T01:58:00+03:00",
+  "status": "INFRASTRUCTURE_READY__REAL_MODEL_NOT_ADMITTED_YET",
+  "mission": "Build TOPA's independent POSS-I artifact-versus-point-source image-forensics stack on public data, preserve raw score distributions, and feed a future score stream into the already frozen opportunity-normalized harmonization test without allowing nuclear outcomes to influence classifier construction.",
+  "claim_ceiling": "METHOD_AND_INFRASTRUCTURE_ONLY__NO_REAL_CLASSIFIER_PERFORMANCE_OR_NUCLEAR_ASSOCIATION_PROMOTION_FROM_THIS_BOOTSTRAP",
+  "principles": [
+    "BORROW_METHODS_NOT_CONCLUSIONS",
+    "PUBLIC_BYTES_OR_EXPLICITLY_AUTHORIZED_BYTES_ONLY",
+    "RAW_SCORE_IS_IMMUTABLE__CALIBRATION_IS_A_SIDECAR_VIEW",
+    "PLATE_AND_DATE_ARE_GROUP_PROVENANCE_NOT_PREDICTORS",
+    "NUCLEAR_CALENDAR_IS_BLINDED_FROM_CLASSIFIER",
+    "LABEL_WITNESS_FAMILY_MUST_NOT_LEAK_INTO_PREDICTORS",
+    "MISSING_MEASUREMENTS_STAY_MISSING_AT_THE_FEATURE_RAIL",
+    "POINT_SOURCE_LIKE_IS_NOT_THE_SAME_AS_REAL_TRANSIENT",
+    "GROUP_OOF_BEFORE_FULL_POPULATION_SCORING",
+    "HARMONIZATION_CANNOT_TUNE_THE_CLASSIFIER"
+  ],
+  "implemented_components": [
+    {
+      "path": "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json",
+      "role": "Scientific and semantic contract for labels, features, grouped validation, raw-score preservation, distribution-collapse diagnostics, and harmonization handoff.",
+      "creation_commit": "3f11efccc8e7621b248f082849a2396b830d905b"
+    },
+    {
+      "path": "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json",
+      "role": "Canonical machine-readable feature namespace and leakage policy spanning morphology, pixel shape, plate geometry, cross-scan evidence, modern-epoch evidence, repeat-plate persistence, duplicate geometry, acquisition provenance, field context and future cross-band reconstruction.",
+      "creation_commit": "01bdefad3c21542d89b63815fcbe56e34a776046"
+    },
+    {
+      "path": "tools/topa_artifact_features.py",
+      "role": "Feature rail builder. Adapts public CSV/CSV.GZ/CSV.BZ2 astronomy tables and TOPA JSON/JSONL/NDJSON rails into a single provenance-bearing JSONL/NDJSON feature stream.",
+      "creation_commit": "ebdb56a387740328571211c273148f173e0939dc"
+    },
+    {
+      "path": "tools/topa_artifact_classifier.py",
+      "role": "Deterministic plate/date-group OOF classifier harness with multiple model families, immutable raw member/ensemble score streams, model bundle hashes, full-population scoring and OOF replacement for training rows.",
+      "creation_commit": "3f19f356de7e5c81df8f45ae15c430caa8c2fd87"
+    },
+    {
+      "path": "tools/topa_poss1_open_intake.py",
+      "role": "Pinned public POSS-I intake with transfer/content hash checks, row invariants, optional IRSA FITS-header DATE-OBS/EXPOSURE reconstruction, WCS provenance, and generated feature-build configuration.",
+      "creation_commit": "e89eec7b21d44e1c6017faf10bb9c3daa6dfd40d",
+      "path_independence_fix_commit": "cad7eae9a3975ea5f3ce738c335123186ad8ae02"
+    },
+    {
+      "path": "tools/requirements-artifact-classifier.txt",
+      "role": "Minimal reproducible numerical/ML dependencies for the reference implementation.",
+      "creation_commit": "8fa70d31a3cd13cff044f7da4b11aa9e78772ada"
+    },
+    {
+      "path": ".github/workflows/validate-artifact-classifier.yml",
+      "role": "CI self-tests for pinned intake, feature rails, group-OOF classifier, harmonization handoff and machine-readable contracts.",
+      "creation_commit": "a96c616ed0a652e658e4b29a53ad210b4013798b",
+      "intake_validation_update_commit": "682e5f69b639e137f3d49df5a61eea0513eebd6f"
+    },
+    {
+      "path": "tools/topa_json_rails.py",
+      "role": "Existing streaming machine-readable transport for JSON, JSONL/NDJSON and gzip/bzip2 variants. Reused by the classifier stack rather than inventing a second data plane."
+    },
+    {
+      "path": "tools/topa_poss1_harmonization.py",
+      "role": "Existing frozen downstream test receiving candidate_quality_score_raw and asking the same artifact-weighted candidate-rate-per-opportunity question for all cohorts."
+    }
+  ],
+  "pinned_public_open_cohort": {
+    "repository": "jannefi/poss1-plate-slice",
+    "commit": "554aae5d4c48d800898cdd6aab261d9cba648e8c",
+    "release": "results/s0-642-20260814",
+    "why_this_commit": "The base S0 and tile manifest remain byte-identical to the earlier JANUS pin, while this later frozen commit also contains the public per-row primary_plate_flags sidecar used by the TOPA minimal feature rail. TOPA does not consume upstream main implicitly.",
+    "stage_S0": {
+      "rows": 122820,
+      "compressed_sha256": "f19cf987756c62a68f55a472992d860e73ae63b3a4664189092b0e1fda77f7bb",
+      "uncompressed_sha256": "2ff92f2210acb387ef9ef4b88d561595d3883e9aab27065042627272b96590f0"
+    },
+    "tile_manifest": {
+      "rows": 31458,
+      "compressed_sha256": "a1652db2d15470a9e8630a1a2ac3a055e49be65880ca615126a9aaa8cc2da02d",
+      "uncompressed_sha256": "5dcb90dc5d98550e5a60246aced2b097922a267c69e81f27d45d16a288142a99"
+    },
+    "primary_plate_flags": {
+      "rows": 122820,
+      "compressed_sha256": "4d5bb1e889d5e0778d4809d0d229dad20c8003062c40c1452b40d908e9330400",
+      "uncompressed_sha256": "1f86ab0d5fb96733881e58f72fda8b2dbc3401405500f30ae924b9d736fdeee9"
+    },
+    "repaired_astrometry_tiles_sha256": "8492e16077c83daa13a7449b9ae6b0a472aee9d2dcff0ab1c739b78779da222e",
+    "unpublished_vasco_catalogue_required": false,
+    "closed_vasco_ml_scores_required": false
+  },
+  "minimal_feature_rail_now_supported": [
+    "candidate_id",
+    "tile_id",
+    "plate_id",
+    "date_obs",
+    "ra_deg",
+    "dec_deg",
+    "group_id",
+    "geo_is_primary",
+    "geo_sep_primary_deg",
+    "geo_sep_margin",
+    "acq_tile_rows_emitted_s0",
+    "acq_exposure_min",
+    "acq_wcs_offset_arcsec"
+  ],
+  "expanded_feature_families_registered": [
+    "morphology_psf",
+    "pixel_shape",
+    "plate_geometry",
+    "crossscan_supercosmos",
+    "modern_epoch_ptf",
+    "neighbor_epoch_persistence",
+    "duplicate_geometry",
+    "acquisition_provenance",
+    "local_field_context",
+    "cross_band"
+  ],
+  "upstream_public_sidecars_and_generators_to_ingest_next": [
+    {
+      "family": "morphology_psf",
+      "upstream": "scripts/stage_morph_post.py",
+      "important_fields": [
+        "fwhm_image",
+        "fwhm_ratio",
+        "spread_model",
+        "spreaderr_model",
+        "spread_snr",
+        "psf_fwhm_median",
+        "psf_spread_median",
+        "psf_star_count"
+      ],
+      "rule": "Import measurements and failure states; do not inherit the upstream reject threshold as truth."
+    },
+    {
+      "family": "pixel_shape",
+      "upstream": "scripts/stage_shape_post.py",
+      "important_fields": [
+        "profile_diff",
+        "circularity",
+        "area",
+        "shape_defect",
+        "circle_deviation",
+        "elongation",
+        "shape_failed"
+      ],
+      "rule": "Keep the continuous measurements even when a hard gate would have rejected a row."
+    },
+    {
+      "family": "plate_geometry",
+      "upstream": "scripts/stage_edge_post_v2.py",
+      "important_fields": ["sep_own_deg", "edge_dist_arcmin"],
+      "rule": "Geometry is a measurement, not an automatic artifact label."
+    },
+    {
+      "family": "crossscan_supercosmos",
+      "upstream": "scripts/stage_supercosmos_post.py / tools/scos_stage_banded.py",
+      "important_fields": ["R1 match state", "match separation"],
+      "rule": "Independent digitisation agreement is strong evidence but not identical to physical source truth; if used to make labels, this family is removed from predictors for that arm."
+    },
+    {
+      "family": "modern_epoch_ptf",
+      "upstream": "scripts/stage_ptf_post.py / tools/ptf_stage_coverage.py",
+      "important_fields": ["coverage", "match", "ngoodobs"],
+      "rule": "Coverage and match must be separate fields so unobserved sky is not interpreted as non-persistence."
+    },
+    {
+      "family": "neighbor_epoch_persistence",
+      "upstream": "tools/stage_neighbor_persistence.py",
+      "important_fields": ["n_other_plates", "n_confirming", "persistent"],
+      "rule": "Single-coverage rows are undecidable, not negative. A repeat-epoch witness can be used for labels only with predictor-family exclusion."
+    },
+    {
+      "family": "duplicate_geometry",
+      "upstream": "tools/dedup_radius_sweep.py plus a future TOPA per-row duplicate sidecar",
+      "important_fields": ["dup_cluster_size", "dup_nearest_sep_arcsec"],
+      "rule": "Global aggregate dedup sweeps are insufficient for a candidate classifier; TOPA still needs per-row duplicate geometry."
+    }
+  ],
+  "classifier_reference_ensemble": {
+    "models": [
+      "L2_LOGISTIC_REGRESSION",
+      "RANDOM_FOREST",
+      "EXTRA_TREES",
+      "HIST_GRADIENT_BOOSTING"
+    ],
+    "ensemble": "UNWEIGHTED_MEAN_RAW_CLASS1_SCORE",
+    "class_1_semantics": "POINT_SOURCE_LIKE_IMAGE_EVIDENCE",
+    "analysis_field": "candidate_quality_score_raw",
+    "complement": "artifact_likelihood_raw",
+    "calibration": "DISABLED_IN_V1_PRIMARY_STREAM",
+    "nuclear_result_used_for_hyperparameter_selection": false
+  },
+  "validation_contract": {
+    "split_unit": "plate_id + date_obs group",
+    "fold_assignment": "deterministic SHA256 group hash",
+    "row_random_cross_validation": false,
+    "training_rows_primary_analysis_score": "OOF",
+    "unlabelled_population_score": "full-training-set model inference",
+    "training_rows_in_full_population_stream": "replace with their preserved OOF score when available",
+    "required_metrics": [
+      "ROC_AUC",
+      "AVERAGE_PRECISION",
+      "BALANCED_ACCURACY_AT_0P5",
+      "BRIER_AS_RAW_SCORE_DIAGNOSTIC_ONLY",
+      "RELIABILITY_TABLE",
+      "PER_FOLD_METRICS",
+      "RAW_SCORE_DISTRIBUTION_DIAGNOSTICS"
+    ]
+  },
+  "anti_self_deception_gates": {
+    "forbidden_classifier_inputs": [
+      "nuclear test dates",
+      "nuclear window labels",
+      "nuclear harmonization statistics",
+      "UAP labels",
+      "NHI labels",
+      "effect p-values",
+      "plate_id as predictor",
+      "observation date as predictor"
+    ],
+    "witness_leakage": "If SuperCOSMOS, PTF, repeat-plate persistence, cross-band evidence, or another feature family contributes to the label, that family cannot be a predictor in that training arm.",
+    "calibration_collapse": "A calibrated sidecar that collapses score resolution cannot replace the raw score stream. Raw member and ensemble streams remain immutable.",
+    "missingness": "Feature extraction failures and unobserved external-catalog regions are preserved explicitly rather than silently coerced to zero evidence.",
+    "scientific_semantics": "A high candidate_quality_score_raw means image evidence is more point-source-like under the trained label contract. It does not prove transient reality, nuclear causation, UAP status, or non-human origin."
+  },
+  "harmonization_handoff": {
+    "engine": "tools/topa_poss1_harmonization.py",
+    "score_field": "candidate_quality_score_raw",
+    "date_field": "date_obs",
+    "estimand": "SUM(candidate_quality_score_raw) PER ACTUAL OBSERVING OPPORTUNITY",
+    "same_question_for_future_closed_vasco_scores": true,
+    "classifier_is_blind_to_harmonization_until_after_score_stream_freeze": true,
+    "closed_score_stream_if_released_later": "ADD_AS_SECOND_INDEPENDENT_COHORT__DO_NOT_RETRAIN_TOPA_TO_MATCH_IT"
+  },
+  "real_execution_debts": [
+    {
+      "gate": "REAL_LABEL_RAIL_01",
+      "status": "OPEN",
+      "need": "A provenance-bearing real label rail with enough Tier-A direct pixel review and/or Tier-B independent witnesses for both classes. Tier-C heuristics cannot be the sole primary truth."
+    },
+    {
+      "gate": "EXPANDED_FORENSIC_SIDECARS_01",
+      "status": "OPEN",
+      "need": "Generate/import full-candidate morphology, shape, edge, SuperCOSMOS, PTF, repeat-plate and per-row duplicate measurements. Their inclusion must be frozen independently of nuclear-window results."
+    },
+    {
+      "gate": "REAL_GROUP_OOF_01",
+      "status": "OPEN",
+      "need": "Execute grouped OOF training/evaluation on real labels and preserve the full raw score distribution and software/model hashes."
+    },
+    {
+      "gate": "FULL_122820_SCORE_STREAM_01",
+      "status": "OPEN",
+      "need": "After acceptable real OOF performance, score the full public open population and use OOF replacement for labelled training rows."
+    },
+    {
+      "gate": "OPEN_SCORE_OPPORTUNITY_HARMONIZATION_01",
+      "status": "OPEN",
+      "need": "Restrict the frozen score stream to the scientific study window, join actual observing opportunity, and execute the already frozen DOE/calendar harmonization without changing the classifier."
+    }
+  ],
+  "execution_sequence": [
+    "python tools/topa_poss1_open_intake.py fetch-release --out-dir <workdir>",
+    "python tools/topa_poss1_open_intake.py fetch-plate-metadata --out-dir <workdir>",
+    "python tools/topa_poss1_open_intake.py write-feature-config --out-dir <workdir>",
+    "generate/freeze expanded public forensic sidecars without consulting nuclear outcomes",
+    "python tools/topa_artifact_features.py build <workdir>/topa_artifact_feature_build_config.json",
+    "construct and freeze a real label JSONL/NDJSON rail with label tiers/sources/witness_families",
+    "python tools/topa_artifact_classifier.py train <training-config.json>",
+    "python tools/topa_artifact_classifier.py score <scoring-config.json>",
+    "freeze score-stream hash before nuclear analysis",
+    "python tools/topa_poss1_harmonization.py run <harmonization-config.json>",
+    "compare only after all upstream classifier choices are frozen"
+  ],
+  "ci_state_at_bootstrap_write": {
+    "workflow": ".github/workflows/validate-artifact-classifier.yml",
+    "self_tests_defined": [
+      "pinned POSS-I intake",
+      "feature rail compressed-format/provenance",
+      "synthetic deterministic group OOF",
+      "four-model raw-score ensemble",
+      "OOF replacement",
+      "harmonization handoff",
+      "machine-readable protocol/registry validation"
+    ],
+    "result": "PENDING_OR_NOT_YET_OBSERVED_AT_TIME_OF_THIS_LEDGER_WRITE",
+    "rule": "Do not promote this to CI_PASS unless an actual GitHub Actions result is observed."
+  },
+  "current_decision": {
+    "copy_closed_vasco_model_as_topa": false,
+    "wait_for_closed_107875_before_building": false,
+    "independent_public_reconstruction": "ACTIVE_PRIMARY_ROUTE",
+    "official_future_vasco_scores": "FUTURE_COMPARISON_COHORT_ONLY",
+    "real_classifier_admitted": false,
+    "next_gate": "REAL_LABEL_RAIL_01_AND_EXPANDED_FORENSIC_SIDECARS_01_IN_PARALLEL"
+  }
+}
