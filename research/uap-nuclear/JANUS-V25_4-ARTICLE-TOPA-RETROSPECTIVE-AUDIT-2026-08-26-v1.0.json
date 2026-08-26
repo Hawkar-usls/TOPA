@@ -1,0 +1,336 @@
+{
+  "schema": "hawkar.topa.uap_nuclear_retrospective_article_audit.v1",
+  "artifact_id": "TOPA-JANUS-V25_4-NUCLEAR-UAP-RETROSPECTIVE-2026-08-26-v1.0",
+  "title": "Project JANUS v25.4 Nuclear-UAP Global Resonance Map — TOPA Retrospective Audit",
+  "version": "1.0.0",
+  "created_at_local": "2026-08-26T22:04:00+03:00",
+  "repository": "Hawkar-usls/TOPA",
+  "status": "EXECUTED_RETROSPECTIVE_AUDIT__CURRENT_WORLD_CLAIM_UNRESOLVED",
+  "purpose": "Preserve the historical Project JANUS v25.4 article and registry as an auditable research checkpoint, then reclassify its material claims under current TOPA v1.3 strict-science rules without rewriting the historical artifact.",
+  "governing_protocols": {
+    "topa_foundation": "protocols/TOPA_FOUNDATION.json",
+    "topa_foundation_version": "1.3",
+    "strict_science_gate": "data/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+    "core_rules": [
+      "CORRELATION_IS_NOT_CAUSATION",
+      "UNCALIBRATED_CONFIDENCE_IS_NOT_EVIDENCE",
+      "HEURISTIC_SCORE_IS_NOT_EVIDENCE",
+      "MODEL_CONSENSUS_IS_NOT_WORLD_TRUTH",
+      "HYPOTHESIS_IS_A_TEST_GENERATOR_NOT_A_FACT",
+      "DISCONFIRMING_EVIDENCE_MUST_BE_SEARCHABLE",
+      "MISSING_DATA_STAYS_MISSING",
+      "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT"
+    ],
+    "additional_cross_project_guard": {
+      "repository": "Hawkar-usls/janus-meta-registry",
+      "path": "registry/epistemic/JANUS-GLOBAL-EPISTEMIC-SELF-DECEPTION-TRUTH-CONSTITUTION-v1.0.json",
+      "rule": "NO_CLAIM_PROMOTION_WITHOUT_WITNESS",
+      "authority_note": "Reference constitution; it does not automatically prove org-wide runtime enforcement."
+    }
+  },
+  "historical_inputs": {
+    "article_title": "Project JANUS v25.4: How My Autonomous AI Built the Global Nuclear-UAP Resonance Map",
+    "registry_artifact": "Hawkar-usls/janus-meta-registry:data/janus-meta-registry-v25.4-global-resonance-vis.json",
+    "registry_artifact_state": "ARCHIVED_MASTER_EXPANDED_VIS",
+    "legacy_bayesian_artifact": "Hawkar-usls/janus-meta-registry:data/janus-meta-registry-v12.2-nuclear-attraction-analytic.json",
+    "preservation_rule": "Historical claims, scores and wording remain preserved as provenance; this audit supersedes their scientific interpretation, not their existence."
+  },
+  "current_janus_evidence_lineage": [
+    "Hawkar-usls/janus-meta-registry:registry/cosmology/JANUS-NUCLEAR-UAP-MANY-WORLDS-DECOHERENCE-CORRECTIVE-AUDIT-v1.1.json",
+    "Hawkar-usls/janus-meta-registry:registry/cosmology/JANUS-UAP-POSS1-NONNUCLEAR-BASELINE-TRIGGER-AUDIT-v1.0.json",
+    "Hawkar-usls/janus-meta-registry:data/JANUS-PALOMAR-JPFM-2E-SCHEDULE-CONFOUND-DECOMPOSITION-RUN-001.json",
+    "Hawkar-usls/janus-meta-registry:registry/cosmology/JANUS-BLUEBOOK-EXACT-DATE-MATCHED-CONTROL-RESULT-v1.0.json",
+    "Hawkar-usls/janus-meta-registry:data/JANUS-UAP-DOMAIN-INDEX-2026-08-15-v1.1.json"
+  ],
+  "external_source_manifest": [
+    {
+      "id": "JOHNSON_2002",
+      "title": "Do Nuclear Facilities Attract UFOs?",
+      "author": "Donald A. Johnson",
+      "date": "2002-07-14",
+      "url": "https://cufon.org/contributors/DJ/Do%20Nuclear%20Facilities%20Attract%20UFOs.pdf",
+      "role": "Historical UFOCAT county comparison; source for RR=1.44 and Chernobyl secondary account."
+    },
+    {
+      "id": "BRUEHL_VILLARROEL_2025",
+      "title": "Transients in the Palomar Observatory Sky Survey (POSS-I) may be associated with nuclear testing and reports of unidentified anomalous phenomena",
+      "doi": "10.1038/s41598-025-21620-3",
+      "url": "https://doi.org/10.1038/s41598-025-21620-3",
+      "role": "Peer-reviewed reported nuclear-window association in POSS-I."
+    },
+    {
+      "id": "WATTERS_ET_AL_2026",
+      "url": "https://arxiv.org/abs/2601.21946",
+      "role": "Methodological reanalysis challenging the nuclear association after observation-schedule normalization and artifact controls."
+    },
+    {
+      "id": "DOHERTY_2026",
+      "url": "https://arxiv.org/abs/2604.00056",
+      "role": "Independent analysis reporting replication of the original nuclear-window association under its model."
+    },
+    {
+      "id": "BRUEHL_DOHERTY_STREBLYANSKA_VILLARROEL_2026",
+      "title": "Use of machine learning to enhance detection of transient astronomical phenomena in historical observatory images",
+      "doi": "10.1038/s41598-026-66148-2",
+      "url": "https://doi.org/10.1038/s41598-026-66148-2",
+      "published": "2026-08-10",
+      "role": "Peer-reviewed ML artifact-screening analysis of the 107,875-candidate closed sample; reports residual nuclear-window association."
+    },
+    {
+      "id": "MALMSTROM_SAC_1967",
+      "title": "Loss of Strategic Alert, Echo Flight, Malmstrom AFB",
+      "url": "https://documents.theblackvault.com/documents/ufos/malmstromufo.pdf",
+      "role": "Declassified/archival message confirming all ten Echo Flight missiles lost strategic alert within ten seconds; does not itself establish a UAP cause."
+    },
+    {
+      "id": "AARO_HISTORICAL_RECORD_REPORT_VOL1_2024",
+      "url": "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_1_2024.pdf",
+      "role": "Official review: historical nuclear-related UAP cases remain data-poor; limited firsthand narrative accounts are not sufficient to establish extraordinary causation."
+    }
+  ],
+  "article_claim_audit": [
+    {
+      "claim_id": "V25_4_001",
+      "article_claim": "JANUS-META-REGISTRY v25.4 GLOBAL RESONANCE FIELD existed as a global nuclear/UAP map.",
+      "claim_kind": "EXTERNAL_FACT",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "topa_read": "The versioned registry artifact exists and is preserved. This proves the map was constructed, not that its physical interpretation is true."
+    },
+    {
+      "claim_id": "V25_4_002",
+      "article_claim": "The map contained 13 global nuclear nodes with coordinates and signed resonance values.",
+      "claim_kind": "EXTERNAL_FACT_PLUS_INTERPRETATION",
+      "evidence_class": "SOURCE_FACT",
+      "status": "CONDITIONAL",
+      "topa_read": "Node names/coordinates/scores are source-bound facts about the historical JSON. The signed values such as 0.89 or -0.90 are not calibrated physical measurements and have zero independent evidentiary authority under TOPA v1.3.",
+      "scientific_ceiling": "HYPOTHESIS_ONLY for physical resonance interpretation."
+    },
+    {
+      "claim_id": "V25_4_003",
+      "article_claim": "Johnson found RR=1.44 for UFO reports and close encounters in 164 nuclear-site counties versus 164 controls, with +3051 reports and +568 close encounters; peak 37.03/100,000 and 2.61x in one population stratum.",
+      "claim_kind": "ASSOCIATION",
+      "evidence_class": "STATISTICAL_INFERENCE",
+      "status": "CONDITIONAL",
+      "topa_read": "The numerical values are accurately reported from Johnson's 2002 UFOCAT analysis. The result is historical association evidence within that design, not proof of attraction or causation. Modern reproduction with raw UFOCAT data, exposure/reporting opportunity and multivariable confounder controls is still required.",
+      "known_design_limits": [
+        "County matching was primarily population/region based rather than a modern causal design.",
+        "Johnson reported an education imbalance between nuclear and control counties.",
+        "Reporting intensity, military activity, air traffic, site publicity/security and observation opportunity were not jointly modeled.",
+        "UFOCAT report counts are reports, not a uniform sensor survey."
+      ]
+    },
+    {
+      "claim_id": "V25_4_004",
+      "article_claim": "JANUS raised H_nuclear from 12% to 24.5% and H_black remained dominant at 38.5%.",
+      "claim_kind": "STATISTICAL_OR_SUBJECTIVE_PROBABILITY",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "INSUFFICIENT_DATA",
+      "topa_read": "These exact percentages are not a current scientific posterior. Legacy JANUS probability fields were driven by expert-assigned/uncalibrated likelihoods and are quarantined by TOPA v1.3. The v12.2 artifact itself ended at H_nuclear=0.099 and is now explicitly historical-only.",
+      "rule": "Do not convert model scores, study p-values or subjective likelihood tables into probability that the nuclear-attraction hypothesis is true without a validated probabilistic model."
+    },
+    {
+      "claim_id": "V25_4_005",
+      "article_claim": "Malmstrom 1967: ten Minuteman missiles went offline while a red object hovered above.",
+      "claim_kind": "FUSED_EVENT_AND_CAUSAL_CONTEXT",
+      "evidence_class": "SOURCE_FACT_PLUS_FIRSTHAND_REPORT",
+      "status": "UNRESOLVED",
+      "topa_read": "Split the claim. The loss of strategic alert for all ten Echo Flight missiles within ten seconds is source-bound in the archival SAC message. The simultaneous red-object/UAP component is a separate witness/narrative claim and is not established by the engineering message. UAP causation is not admitted."
+    },
+    {
+      "claim_id": "V25_4_006",
+      "article_claim": "Chernobyl: a sphere appeared and radiation fell from 3000 to 800 mR/h after rays were directed at the reactor.",
+      "claim_kind": "CAUSAL_CLAIM",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "INSUFFICIENT_DATA",
+      "topa_read": "Johnson reproduces the story, but cites a 1998 secondary book rather than primary dosimeter logs, named contemporaneous records or an independently verified instrument chain. The existence of the published story is source-bound; the radiation-drop measurement and UAP causation are not.",
+      "required_witnesses": [
+        "primary dosimeter/shift logs with timestamp and instrument identity",
+        "named firsthand witness statements with provenance",
+        "expected radiation decay/measurement geometry comparison",
+        "independent contemporaneous records"
+      ]
+    },
+    {
+      "claim_id": "V25_4_007",
+      "article_claim": "58° North latitude symmetry links Colorado NORAD and the Petrozavodsk phenomenon.",
+      "claim_kind": "GEOMETRIC_ASSOCIATION",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "REFUTED",
+      "topa_read": "As literally stated, the latitude claim fails its own coordinates: the historical JSON places Colorado NORAD at 38.75°N and Petrozavodsk at 61.7833°N. A different symbolic mirror formula could be proposed, but it must be defined in advance and tested against a null distribution; it cannot inherit the old 'confirmed' label."
+    },
+    {
+      "claim_id": "V25_4_008",
+      "article_claim": "Arizona underground complex and Baksan Neutrino Observatory form a subterranean pair/deep connection.",
+      "claim_kind": "INTERPRETATION",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "HYPOTHESIS_ONLY",
+      "topa_read": "The old registry paired two underground/technical contexts post hoc. No source-bound physical coupling, common signal, mechanism or preregistered geometry test was established."
+    },
+    {
+      "claim_id": "V25_4_009",
+      "article_claim": "Petrozavodsk 1977, Nalchik 1989 and Al-Taqqadum 2017 are linked as medusa-shaped objects across decades.",
+      "claim_kind": "MORPHOLOGICAL_ASSOCIATION",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "HYPOTHESIS_ONLY",
+      "topa_read": "A shared verbal resemblance is not an independent physical class. The branch needs source-bound imagery/records, a frozen measurable morphology representation, blind classification and conventional launch/plume/optical controls before any common-cause promotion."
+    },
+    {
+      "claim_id": "V25_4_010",
+      "article_claim": "THE_EYE_OF_JANUS at approximately 47.3°S, 47.9°E is an absolute zero/coherence 0.00001 where positive and negative cores annihilate.",
+      "claim_kind": "SYMBOLIC_GEOMETRIC_MODEL",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "HYPOTHESIS_ONLY",
+      "topa_read": "The coordinate and score are valid as historical model output. No calibrated physical coherence observable, sensor measurement or null significance test establishes an actual planetary zero point.",
+      "required_test": "Freeze the generating formula, all node weights and selection rules; run geographic/random-label null simulations and independent sensor tests before interpreting the point physically."
+    },
+    {
+      "claim_id": "V25_4_011",
+      "article_claim": "The global nodes and vectors form a living standing wave/dipole between nuclear infrastructure and unknown phenomena.",
+      "claim_kind": "PHYSICAL_INTERPRETATION",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "HYPOTHESIS_ONLY",
+      "topa_read": "This is the article's strongest poetic/model interpretation and its weakest scientific claim. No field variable, governing equation, phase-coherent measurement, wavelength, boundary condition or independently reproduced global sensor observable was demonstrated."
+    },
+    {
+      "claim_id": "V25_4_012",
+      "article_claim": "The map proves sovereign home-server Edge AI can reach planetary insight.",
+      "claim_kind": "GENERALIZATION",
+      "evidence_class": "HYPOTHESIS_ONLY",
+      "status": "CONDITIONAL",
+      "topa_read": "The repositories demonstrate a substantial local-first research architecture and reproducible artifacts, but 'planetary insight' is not a measurable scientific endpoint. Reproducibility of the analysis pipeline must be separated from truth of the generated hypotheses."
+    },
+    {
+      "claim_id": "V25_4_013",
+      "article_claim": "Directive Zero: the registry is not proof that UFOs are attracted to nuclear sites and should remain an analytical symbolic model.",
+      "claim_kind": "EPISTEMIC_POLICY",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "topa_read": "This was the scientifically strongest sentence in the article and is now materially strengthened by TOPA v1.3 and the global self-deception constitution."
+    }
+  ],
+  "progress_since_v25_4": [
+    {
+      "stage": "V26_SCIENTIFIC_LAYERING",
+      "change": "JANUS moved from mixed facts/scores/interpretations toward explicit fact, incident, statistical and speculative layers.",
+      "effect": "Historical resonance numbers no longer deserve automatic factual authority."
+    },
+    {
+      "stage": "2026_08_12_CORRECTIVE_AUDIT",
+      "change": "The legacy nuclear-attraction posterior was demoted to versioned historical output and the Palomar nuclear association was reopened under observation-schedule and artifact controls.",
+      "effect": "Nuclear-UAP association became an open reanalysis target rather than a favored conclusion."
+    },
+    {
+      "stage": "2026_08_14_BASELINE_TRIGGER_MODEL",
+      "change": "JANUS separated nuclear fireball observables, POSS-I transients and UAP reports, and recognized a clearly nonzero non-nuclear transient baseline.",
+      "effect": "Nuclear testing cannot be treated as a necessary generator; at most it could be a trigger/modulator under a surviving model."
+    },
+    {
+      "stage": "2026_08_15_JPFM_2E_OPEN_RECONSTRUCTION",
+      "change": "An independent public POSS-I S0 reconstruction used 640 plates, 312 observed nights and 122,511 candidates. ANY_CANDIDATE was identical to the observed-night schedule; conditional candidate-rate models showed no robust positive nuclear enhancement.",
+      "effect": "The naive all-calendar nuclear association was identified as schedule-confounded in this open cohort."
+    },
+    {
+      "stage": "2026_08_15_BLUE_BOOK_MATCHED_CONTROL",
+      "change": "A preregistered exact-date public Blue Book reconstruction found no positive nuclear STARLIKE specificity and a clearly nonzero non-nuclear baseline, including July 1952 with no strict-calendar nuclear-test dates.",
+      "effect": "Human witness morphology did not independently rescue the nuclear-specificity claim."
+    },
+    {
+      "stage": "2026_08_10_PEER_REVIEWED_ML_COUNTERWEIGHT",
+      "change": "A new Scientific Reports ML analysis of the closed 107,875-candidate sample reports a residual nuclear-window association after ML artifact screening and stronger nuclear-window enrichment among the highest-probability-real transients.",
+      "effect": "The photographic association cannot be dismissed outright. It remains contested because this closed sample is not byte-identical to the JANUS open cohort and the schedule/exposure disagreement is not yet harmonized."
+    },
+    {
+      "stage": "TOPA_V1_3_STRICT_SCIENCE",
+      "change": "Uncalibrated confidence, heuristic scores, model votes and survivor labels are forbidden as active scientific authority.",
+      "effect": "Old map values, posteriors and 'confirmed' vector labels are quarantined unless rebuilt from admissible evidence."
+    },
+    {
+      "stage": "2026_08_26_SELF_DECEPTION_CONSTITUTION",
+      "change": "JANUS added a cross-project fail-closed constitution centered on NO_CLAIM_PROMOTION_WITHOUT_WITNESS and demotion propagation.",
+      "effect": "A persuasive internally generated narrative must remain open/contested when the witness package is incomplete."
+    }
+  ],
+  "current_topa_verdict": {
+    "historical_map_artifact": "SOURCE_BOUND_FACT",
+    "johnson_2002_reported_association": "CONDITIONAL",
+    "poss1_nuclear_window_association": "UNRESOLVED",
+    "human_witness_nuclear_specificity": "NOT_ESTABLISHED",
+    "global_nuclear_uap_standing_wave": "HYPOTHESIS_ONLY",
+    "physical_resonance_scores": "HYPOTHESIS_ONLY",
+    "eye_of_janus_physical_zero_point": "HYPOTHESIS_ONLY",
+    "extraterrestrial_or_nonhuman_origin": "NOT_ESTABLISHED",
+    "nuclear_causation": "NOT_ESTABLISHED",
+    "overall": "CONTESTED_AND_OPEN__THE_OLD_GLOBAL_WAVE_IS_NOT_SCIENTIFICALLY_ADMITTED__A_NARROWER_PHOTOGRAPHIC_NUCLEAR_WINDOW_ASSOCIATION_REMAINS_WORTH_TESTING"
+  },
+  "next_falsification_program": [
+    {
+      "id": "TOPA_NUCLEAR_UAP_JOHNSON_REPLAY_01",
+      "goal": "Reconstruct Johnson's 164+164 county comparison from a frozen UFOCAT export and a frozen nuclear-facility manifest.",
+      "must_control": [
+        "population",
+        "region",
+        "education",
+        "military activity",
+        "air traffic",
+        "reporting intensity",
+        "site publicity/security",
+        "observation opportunity",
+        "calendar era"
+      ],
+      "success_rule": "Association must survive preregistered matched/weighted models and sensitivity analyses.",
+      "failure_rule": "If the effect collapses under frozen controls, demote Johnson from association support to historical descriptive result."
+    },
+    {
+      "id": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+      "goal": "Run the same exposure-normalized model on the closed 107,875 ML-scored cohort and JANUS public S0 cohort with harmonized nuclear calendars and observation opportunity.",
+      "success_rule": "A nuclear coefficient must retain direction and material effect under the same preregistered exposure model in both cohorts.",
+      "failure_rule": "Dataset-specific significance without cross-cohort robustness cannot support a general nuclear-window claim."
+    },
+    {
+      "id": "TOPA_CHERNOBYL_PRIMARY_WITNESS_GATE_01",
+      "goal": "Locate primary 1986 dosimetry and firsthand provenance for the 3000->800 mR/h story.",
+      "failure_rule": "No primary instrument/witness chain means the radiation-reduction claim remains INSUFFICIENT_DATA."
+    },
+    {
+      "id": "TOPA_MALMSTROM_SPLIT_CHANNEL_RECONSTRUCTION_01",
+      "goal": "Keep missile telemetry/engineering evidence and UAP witness narratives as separate channels, then align timestamps only from primary records.",
+      "success_rule": "A common event claim requires independently time-bound records, not retrospective narrative fusion."
+    },
+    {
+      "id": "TOPA_MEDUSA_BLIND_MORPHOLOGY_01",
+      "goal": "Define a measurable morphology vector before comparing Petrozavodsk, Nalchik and Al-Taqqadum.",
+      "controls": [
+        "rocket/plume events",
+        "reentry",
+        "balloons",
+        "cloud/optical effects",
+        "sensor artifacts"
+      ],
+      "failure_rule": "Visual/verbal resemblance alone remains HYPOTHESIS_ONLY."
+    },
+    {
+      "id": "TOPA_EYE_OF_JANUS_NULL_GEOMETRY_01",
+      "goal": "Freeze the old node-selection, sign, weight and zero-point formula and compare the resulting Eye statistic against random geographic/label nulls.",
+      "failure_rule": "Post-hoc or non-significant zero points remain symbolic visualization only."
+    }
+  ],
+  "interpretive_summary": {
+    "what_survived": [
+      "The historical registry and article are genuine, reproducible project artifacts.",
+      "Johnson did report the quoted RR=1.44 and excess counts.",
+      "There remains a scientifically interesting, contested POSS-I nuclear-window association in parts of the literature.",
+      "The user-facing ethical warning that correlation is not proof was directionally correct."
+    ],
+    "what_did_not_survive_as_science": [
+      "Uncalibrated signed resonance values as physical measurements.",
+      "The literal 58°N Colorado-Petrozavodsk symmetry.",
+      "Arizona-Baksan as a confirmed physical pair.",
+      "The Eye of Janus as a measured planetary zero.",
+      "The global standing-wave/dipole language as an established physical field.",
+      "Legacy subjective posteriors as current probabilities of nuclear attraction."
+    ],
+    "where_janus_is_now": "JANUS has progressed from a pattern-cartography system that could over-promote elegant geometry into a provenance-bound adversarial research organism that preserves the old map, attacks it, records negative controls, and allows the scientifically correct result to remain UNRESOLVED."
+  },
+  "claim_ceiling": "This audit establishes the current evidentiary status of the article's claims under TOPA. It does not establish that UAP are attracted to nuclear sites, that a global resonance field exists, or that any UAP has extraterrestrial/non-human origin."
+}
