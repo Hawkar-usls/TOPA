@@ -1,0 +1,214 @@
+{
+  "schema": "hawkar.topa.poss1_closed_data_recovery_routes_audit.v1",
+  "artifact_id": "TOPA-POSS1-CLOSED-DATA-RECOVERY-ROUTES-AUDIT-2026-08-27-v1.0",
+  "experiment_id": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+  "created_at_local": "2026-08-27T01:00:00+03:00",
+  "status": "EXECUTED_RECOVERY_SEARCH__NO_AUTHORIZED_EXACT_CLOSED_SCORE_STREAM_ACQUIRED__STRONG_OPEN_RECONSTRUCTION_ROUTE_AVAILABLE",
+  "purpose": "Search for legitimate mirrors, forks, backups, replacement public releases and independent reconstruction routes for the unavailable VASCO 107875-row candidate/ML-score lineage without inventing rows, bypassing redistribution restrictions, or confusing an independent reconstruction with the original closed cohort.",
+  "governing_rules": [
+    "PROVENANCE_BEFORE_CONVENIENCE",
+    "RESTRICTED_DATA_IS_NOT_A_VALID_MIRROR_ROUTE_WITHOUT_PERMISSION",
+    "RECONSTRUCTION_MUST_NOT_BE_LABELLED_ORIGINAL",
+    "RAW_SCORE_IS_IMMUTABLE__CALIBRATION_IS_A_SIDECAR_VIEW",
+    "MISSING_DATA_STAYS_MISSING",
+    "NO_CLAIM_PROMOTION_WITHOUT_WITNESS"
+  ],
+  "original_targets": {
+    "closed_candidate_universe": {
+      "reported_rows": 107875,
+      "reported_plates": 635,
+      "needed_fields_minimum": [
+        "candidate identifier",
+        "observation date/time",
+        "plate identifier",
+        "RA/Dec",
+        "raw ML ensemble score"
+      ]
+    },
+    "ml_repository": {
+      "paper_cited_url": "https://github.com/dca-doherty/VASCO-ML",
+      "current_status": "404_NOT_FOUND",
+      "direct_fork_or_renamed_copy_found": false
+    },
+    "replication_repository": {
+      "paper_cited_url": "https://github.com/dca-doherty/VASCO-Replication.git",
+      "current_status": "404_NOT_FOUND",
+      "historical_public_existence": "SOURCE_BOUND_BY_ARXIV_DATA_AVAILABILITY_AND_THIRD_PARTY_DOCUMENTATION",
+      "direct_public_fork_found": false
+    }
+  },
+  "recovery_routes": [
+    {
+      "route_id": "R1_DIRECT_GITHUB_FORK_RENAME_SEARCH",
+      "status": "NO_DIRECT_COPY_FOUND_IN_CURRENT_PASS",
+      "checks": [
+        "GitHub repository search for VASCO-ML",
+        "GitHub repository search for VASCO-Replication",
+        "global GitHub code search for exact former URLs",
+        "global GitHub code search for distinctive ML feature red_dist_to_edge_px",
+        "inspection of currently public repositories under dca-doherty"
+      ],
+      "finding": "The GitHub account dca-doherty still exists and has other public repositories, so disappearance is repository-specific rather than account-wide. No surviving public fork/rename of either VASCO repository surfaced in this pass.",
+      "next_use": "Keep as a provenance watch route; a later public restoration or fork can be admitted only after commit/content verification."
+    },
+    {
+      "route_id": "R2_DOHERTY_REPLICATION_CODE_LOCAL_COPY_TRACE",
+      "status": "HIGH_VALUE_CODE_RECOVERY_LEAD__COPY_NOT_ACQUIRED",
+      "source": "jannefi/poss1-plate-slice docs/PLATE_EDGE_MASK.md and Metabunk Aug 16 2026 discussion",
+      "finding": "Jari Sinkkonen states the formerly public Doherty VASCO-Replication repository is no longer accessible but that he has a local copy. His public technical documentation preserves details observed in that copy.",
+      "forensic_fingerprints": {
+        "dataset_filename_seen_in_supporting_code": "SUPERVIKTIG_HELAVASCO_within2deg_CENTER.csv",
+        "reported_support_run": {
+          "plate_field_radius_deg": 2.0,
+          "plates": 614,
+          "total_transients": 22309
+        }
+      },
+      "scientific_value": "The replication code could recover exact analysis mechanics and field/schema expectations even if the underlying 107875-row dataset remains restricted.",
+      "legal_provenance_guard": "A local copy should only be imported if the holder is permitted to share the code or if a provenance-verifiable archive of the formerly public code is found. The restricted source dataset is a separate object and must not be inferred to be redistributable merely because code was once public."
+    },
+    {
+      "route_id": "R3_THIRD_PARTY_107875_LIST_CIRCULATION",
+      "status": "KNOWN_TO_HAVE_CIRCULATED_ON_REQUEST__NOT_AUTHORIZED_FOR_REDISTRIBUTION",
+      "evidence": [
+        "Doherty arXiv:2604.00056 states the original authors supplied the 107875-transient catalogue on request.",
+        "Jari Sinkkonen publicly stated on 2026-04-15 that he had obtained the full 107875-row MNRAS/VASCO list.",
+        "On 2026-04-29 he explicitly stated that he did not have permission to redistribute the unpublished 107K list."
+      ],
+      "decision": "DO_NOT_RECOVER_RESTRICTED_RAW_ROWS_FROM_LEAKS_OR_UNAUTHORIZED_CACHES",
+      "acceptable_path": "Acquire from the original authors, an authorized public release, or another holder with explicit redistribution permission."
+    },
+    {
+      "route_id": "R4_EUXOA_PLATES_LOCAL_XLSX_TRACE",
+      "status": "NEGATIVE_GIT_RECOVERY_RESULT",
+      "repository": "https://github.com/euxoa/plates",
+      "referenced_local_files": [
+        "Transient_CENTER_of_PLATE_FULL_DATASET_DETAILED.xlsx",
+        "Transient_Nuclear_Analyzed_Dataset_ScientificReports.xlsx"
+      ],
+      "finding": "The repository references these local datasets, but the key XLSX was ignored from the earliest git history; no historical Git blob was recovered. Global exact-filename code search produced references rather than a public copy.",
+      "role": "Preserve file names as search fingerprints only."
+    },
+    {
+      "route_id": "R5_VASCO60_PUBLIC_DERIVED_AUDIT",
+      "status": "PUBLIC_DERIVED_EVIDENCE_AVAILABLE__RAW_THIRD_PARTY_ROWS_NOT_REPUBLISHED",
+      "repository": "https://github.com/jannefi/vasco60",
+      "current_release": "releases/final_release_v1",
+      "historical_finding": "An initial audit link existed publicly in April 2026 and was later replaced by the final release.",
+      "public_outputs": [
+        "releases/final_release_v1/docs/vasco_candidate_crossmatch.pdf",
+        "releases/final_release_v1/docs/mnras_footprint_observations.md"
+      ],
+      "useful_aggregate_findings": [
+        "The third-party reference list has 107875 sources.",
+        "Plate-edge/footprint structure is materially important.",
+        "The public derived audit does not reproduce source coordinates, respecting redistribution limits."
+      ],
+      "claim_ceiling": "AGGREGATE_CROSSMATCH_DIAGNOSTICS_ONLY"
+    },
+    {
+      "route_id": "R6_OFFICIAL_POST_PUBLICATION_VASCO_CATALOG",
+      "status": "PROMISED_BY_VASCO__NOT_DISCOVERED_IN_CURRENT_PASS_AS_OF_2026-08-27",
+      "source": "https://vasconsite.wordpress.com/2026/07/11/replications-validations-and-exciting-developments/",
+      "promise": "After publication of the machine-learning paper, VASCO stated it planned to release the full catalog with date, time, sky position, and the ML-derived score/probability for each individual transient.",
+      "paper_published": "2026-08-10",
+      "search_scope": [
+        "VASCO site",
+        "fresh web search",
+        "GitHub",
+        "Zenodo",
+        "OSF",
+        "Figshare-style repository search",
+        "supplementary-material discovery"
+      ],
+      "result": "No authoritative row-level post-publication catalog surfaced in this pass. The promise remains a high-priority legitimate acquisition route.",
+      "priority": "P0"
+    },
+    {
+      "route_id": "R7_PUBLIC_INDEPENDENT_FULL_PLATE_RECONSTRUCTION",
+      "status": "ACTIVE_STRONGEST_OPEN_WORKAROUND",
+      "repository": "https://github.com/jannefi/poss1-plate-slice",
+      "release": "results/s0-642-20260814",
+      "upstream_commit_used_by_JANUS": "4005e200541b321ead3d6608f0162a14430ef1c2",
+      "release_properties": {
+        "plates": 642,
+        "stage_S0_rows": 122820,
+        "tile_manifest_rows": 31458,
+        "stage_S0_uncompressed_sha256": "2ff92f2210acb387ef9ef4b88d561595d3883e9aab27065042627272b96590f0",
+        "tile_manifest_uncompressed_sha256": "5dcb90dc5d98550e5a60246aced2b097922a267c69e81f27d45d16a288142a99",
+        "public_inputs_only": true,
+        "claimed_detection_recall_against_published_and_unpublished_VASCO_catalogs": "minimum approximately 96 percent, potentially up to approximately 98 percent; this is an upstream author's validation claim, not TOPA ground truth",
+        "zero_candidate_tiles_retained_for_opportunity": true
+      },
+      "why_it_matters": "It reconstructs the detection/candidate universe from public plate-addressed POSS-I scans without depending on unpublished VASCO coordinates, and it preserves empty tiles needed for observing-opportunity denominators.",
+      "limitations": [
+        "It is not byte-identical to the closed 107875 VASCO list.",
+        "Its filtering and sky-coverage decisions differ from the unpublished VASCO pipeline.",
+        "It does not contain the authors' original ML ensemble scores."
+      ],
+      "topa_role": "INDEPENDENT_OPEN_COHORT_FOR_HARMONIZED_RECONSTRUCTION_AND_MODEL_RETRAINING"
+    },
+    {
+      "route_id": "R8_JANUS_EXISTING_OPEN_INTAKE",
+      "status": "ALREADY_INTEGRATED",
+      "repository": "Hawkar-usls/janus-meta-registry",
+      "runner": "research/uap_poss1/janus_poss1_open_release_intake_v0_1.py",
+      "finding": "JANUS already pins and hash-verifies the poss1-plate-slice 20260814 release, reconstructs tile-to-plate bindings, retrieves plate-addressed FITS header provenance, and does not accept unpublished VASCO files.",
+      "role": "Direct handoff into TOPA JSON rails is available without new candidate acquisition."
+    },
+    {
+      "route_id": "R9_JPFM_122820_TO_122511_RECONCILIATION",
+      "status": "RESOLVED_NO_HIDDEN_FILTER",
+      "source": "Hawkar-usls/janus-meta-registry:data/JANUS-PALOMAR-JPFM-2D-OPEN-TEMPORAL-ASSOCIATION-RUN-001.json",
+      "explanation": "The public release contains 122820 rows across 642 plates and 313 unique nights through 1957-12-19. The frozen scientific study window ends 1957-04-28, leaving 640 plates, 312 nights, and 122511 candidates. All 122820 release rows successfully map to a plate. The 309-row difference is outside-window data, not an undocumented deduplication or scientific selection.",
+      "importance": "Removes an internal provenance ambiguity before the next harmonized replay."
+    }
+  ],
+  "additional_public_reconstruction_state": {
+    "postprocessed_open_survivors_reported_by_upstream_on_2026-08-15": 71654,
+    "note": "This count follows SuperCOSMOS and PTF post-processing in the independent open pipeline. It is not treated as the canonical cohort for TOPA until the exact stage/configuration is frozen for the experiment.",
+    "plate_edge_control": "The open pipeline exposes plate-edge geometry as a measured field/instrument rather than silently cutting rows, allowing TOPA to preregister edge-aware sensitivity arms."
+  },
+  "priority_order": [
+    {
+      "priority": "P0",
+      "action": "Continue looking for the promised authorized VASCO post-publication catalog containing row-level date/time/position/ML scores."
+    },
+    {
+      "priority": "P0",
+      "action": "Recover the formerly public VASCO-Replication code from a provenance-verifiable archive or authorized local copy; keep code and restricted data as separate acquisition objects."
+    },
+    {
+      "priority": "P1",
+      "action": "Use poss1-plate-slice as the independent public candidate universe and train a TOPA artifact classifier from reproducible public pixels/labels, explicitly marked TOPA_RECONSTRUCTION rather than VASCO_ML_REPRODUCTION."
+    },
+    {
+      "priority": "P1",
+      "action": "Run the frozen DOE/NV-209 Rev.16 calendar and actual tile/plate opportunity through the open cohort before any external ML-model absorption."
+    },
+    {
+      "priority": "P2",
+      "action": "Compare aggregate VASCO60/Doherty diagnostics against TOPA reconstruction to identify plate-edge, center-definition, and observation-date incompatibilities before interpreting effect differences."
+    }
+  ],
+  "forbidden_shortcuts": [
+    "Do not scrape or republish a restricted 107875-row copy from an unauthorized cache merely because it once circulated privately.",
+    "Do not label poss1-plate-slice rows as the original VASCO closed cohort.",
+    "Do not reverse-engineer missing ML scores from published p-values or decile counts.",
+    "Do not treat a formerly public code repository as recovered until actual files/commits are obtained and provenance-checked.",
+    "Do not choose a post-processing stage because it produces a preferred nuclear-window effect.",
+    "Do not convert VASCO detection-recall claims into evidence for the nuclear association."
+  ],
+  "current_decision": {
+    "exact_closed_107875_row_stream": "NOT_ACQUIRED",
+    "exact_original_ml_score_stream": "NOT_ACQUIRED",
+    "original_vasco_ml_code": "NOT_ACQUIRED__FORMER_URL_404",
+    "doherty_replication_code": "FORMERLY_PUBLIC__LOCAL_COPY_REPORTED_BY_INDEPENDENT_RESEARCHER__NOT_ACQUIRED",
+    "authorized_official_full_catalog": "PROMISED__NOT_DISCOVERED",
+    "public_independent_candidate_reconstruction": "AVAILABLE_AND_HASH_PINNED",
+    "real_closed_vs_open_harmonization": "BLOCKED_ON_CLOSED_SCORE_STREAM",
+    "independent_TOPA_reconstruction_route": "OPEN_AND_ACTIONABLE",
+    "general_poss1_nuclear_association": "UNRESOLVED"
+  },
+  "next_gate": "PURSUE_AUTHORIZED_CODE_OR_CATALOG_RECOVERY_IN_PARALLEL_WITH_OPEN_TOPA_ARTIFACT_CLASSIFIER_RECONSTRUCTION__DO_NOT_WAIT_FOR_CLOSED_DATA_TO_IMPROVE_THE_OPEN_CONTROL"
+}
