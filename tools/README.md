@@ -20,22 +20,11 @@ Large JSONL/NDJSON dumps are processed record-by-record instead of being loaded 
 Examples:
 
 ```bash
-# deterministic capability test
 python tools/topa_json_rails.py self-test
-
-# inspect + hash a dump
 python tools/topa_json_rails.py inspect evidence.jsonl.gz
-
-# stream-search a nested field and write matching records compressed
 python tools/topa_json_rails.py search evidence.ndjson.bz2 \
-  --field source.title \
-  --contains palomar \
-  --contains nuclear \
-  --all \
-  --out matches.jsonl.gz \
-  --receipt search-receipt.json
-
-# convert while preserving a machine-readable receipt
+  --field source.title --contains palomar --contains nuclear --all \
+  --out matches.jsonl.gz --receipt search-receipt.json
 python tools/topa_json_rails.py convert input.json output.jsonl.bz2 \
   --receipt convert-receipt.json
 ```
@@ -64,24 +53,35 @@ It is **not** a calibrated physical probability, not proof that the source is a 
 
 ```bash
 python tools/topa_poss1_open_intake.py self-test
-
 python tools/topa_poss1_open_intake.py fetch-release \
   --out-dir work/topa-poss1 \
   --receipt work/topa-poss1/intake.receipt.json
-
 python tools/topa_poss1_open_intake.py fetch-plate-metadata \
   --out-dir work/topa-poss1 \
   --receipt work/topa-poss1/plate-metadata.receipt.json
-
 python tools/topa_poss1_open_intake.py write-feature-config \
   --out-dir work/topa-poss1
 ```
 
 The network-heavy plate-metadata step reads only FITS primary-header bytes needed for `DATE-OBS`/`EXPOSURE` and provenance rather than retaining full plate arrays.
 
-### 2. Build the feature rail
+### 2. Admit sidecars before using them
 
-`topa_artifact_features.py` merges the base candidate catalogue with registered sidecars into one JSONL/NDJSON stream. Public astronomy CSV/CSV.GZ/CSV.BZ2 files are accepted as adapters; the canonical TOPA output stays on JSON rails.
+A feature can be registered without having row-level bytes yet. `topa_artifact_sidecars.py` makes that distinction executable.
+
+```bash
+python tools/topa_artifact_sidecars.py self-test
+python tools/topa_artifact_sidecars.py audit sidecar-manifest.json
+python tools/topa_artifact_sidecars.py emit-config sidecar-manifest.json
+```
+
+A ready sidecar is admitted only when its family and mapped fields exist in the feature registry and its hash, candidate IDs, duplicate policy, declared fields and minimum base coverage pass. A manifest entry marked `RECONSTRUCTION_REQUIRED`, `PLANNED_NEW_TOPA_MEASUREMENT`, or `FUTURE_EXTERNAL_PUBLIC_DATA` remains a research debt and is **never** promoted into a feature config merely because the feature name exists.
+
+Current availability is recorded in [`TOPA-ARTIFACT-SIDECAR-AVAILABILITY-AUDIT-2026-08-27-v1.0.json`](../research/uap-nuclear/TOPA-ARTIFACT-SIDECAR-AVAILABILITY-AUDIT-2026-08-27-v1.0.json).
+
+### 3. Build the feature rail
+
+`topa_artifact_features.py` merges the base candidate catalogue with admitted sidecars into one JSONL/NDJSON stream. Public astronomy CSV/CSV.GZ/CSV.BZ2 files are accepted as adapters; the canonical TOPA output stays on JSON rails.
 
 ```bash
 python tools/topa_artifact_features.py self-test
@@ -107,27 +107,40 @@ future public red/blue cross-band evidence
 
 Missing measurements are preserved; this builder does not silently impute or convert “not observed” into negative evidence.
 
-### 3. Freeze a label rail
+### 4. Create and validate blind label rails
 
 Training labels live in a **separate** JSONL/NDJSON stream. Minimal contract:
 
 ```json
-{"candidate_id":"...","label":1,"label_tier":"A","label_source":"...","witness_families":[]}
+{"candidate_id":"...","label":1,"label_tier":"A","label_source":"...","witness_families":[],"evidence_refs":["sha256:..."]}
 ```
 
 `label=1` means `POINT_SOURCE_LIKE`; `label=0` means `PLATE_OR_SCAN_ARTIFACT_LIKE`.
 
 Tier A is direct preserved pixel/forensic review; Tier B is a strong independent witness; Tier C is a weak proxy/heuristic and cannot be the sole primary training truth.
 
-Critical anti-circularity rule: **if a feature family contributes to a label, that family is forbidden from predictors in that training arm.** For example, SuperCOSMOS may be used as a witness or as a predictor, but not both in the same primary experiment.
-
-### 4. Group-OOF training
-
-Install the small ML dependency set:
+`topa_artifact_labels.py` can create a deterministic group-balanced blind review manifest, validate reviewer output and combine independent reviewer rails without silently resolving disagreements:
 
 ```bash
-python -m pip install -r tools/requirements-artifact-classifier.txt
+python tools/topa_artifact_labels.py self-test
+python tools/topa_artifact_labels.py sample blind-review-config.json
+python tools/topa_artifact_labels.py validate label-validation-config.json
+python tools/topa_artifact_labels.py consensus consensus-config.json
 ```
+
+The blind review manifest contains no classifier score, nuclear context or harmonization result. Conflicting independent reviews go to `ADJUDICATION_REQUIRED`; they are never auto-resolved. Consensus cannot promote a row above the weakest agreeing evidence tier.
+
+Critical anti-circularity rule: **if a feature family contributes to a label, that family is forbidden from predictors in that training arm.** For example, SuperCOSMOS may be used as a witness or as a predictor, but not both in the same primary experiment.
+
+### 5. Group-OOF training
+
+For reproducible runs, use the locked environment that passed CI:
+
+```bash
+python -m pip install -r tools/requirements-artifact-classifier.lock.txt
+```
+
+The looser `requirements-artifact-classifier.txt` exists for development, not for a frozen scientific receipt.
 
 Then run:
 
@@ -149,7 +162,7 @@ The primary ensemble is their unweighted mean raw class-1 score. Candidate rows 
 
 The training receipt records OOF ROC-AUC, average precision, balanced accuracy, raw-score Brier diagnostic, reliability table, per-fold metrics, label-source/tier census, missingness, exact software versions, model hashes and raw-score distribution diagnostics.
 
-### 5. Score the full open population
+### 6. Score the full open population
 
 ```bash
 python tools/topa_artifact_classifier.py score scoring-config.json
@@ -161,6 +174,7 @@ Raw member-model scores and the raw ensemble score are preserved. Calibration is
 
 Canonical scientific contract: [`TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json`](../protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json).
 Bootstrap ledger: [`TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json`](../research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json).
+CI receipt: [`TOPA-ARTIFACT-CLASSIFIER-CI-RECEIPT-2026-08-27-v1.0.json`](../research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CI-RECEIPT-2026-08-27-v1.0.json).
 
 ## POSS-I Closed/Open Harmonization
 
