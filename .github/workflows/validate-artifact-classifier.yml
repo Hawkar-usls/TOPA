@@ -8,9 +8,12 @@ on:
       - "tools/topa_artifact_labels.py"
       - "tools/topa_artifact_classifier.py"
       - "tools/requirements-artifact-classifier.txt"
+      - "tools/requirements-artifact-classifier.lock.txt"
       - "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json"
       - "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CONFIG-TEMPLATES-v1.0.json"
       - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-ADDENDUM-2026-08-27-v1.0.json"
       - ".github/workflows/validate-artifact-classifier.yml"
   pull_request:
     paths:
@@ -19,9 +22,12 @@ on:
       - "tools/topa_artifact_labels.py"
       - "tools/topa_artifact_classifier.py"
       - "tools/requirements-artifact-classifier.txt"
+      - "tools/requirements-artifact-classifier.lock.txt"
       - "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json"
       - "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CONFIG-TEMPLATES-v1.0.json"
       - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-ADDENDUM-2026-08-27-v1.0.json"
       - ".github/workflows/validate-artifact-classifier.yml"
   workflow_dispatch:
 
@@ -37,9 +43,9 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-          cache-dependency-path: "tools/requirements-artifact-classifier.txt"
-      - name: Install classifier dependencies
-        run: python -m pip install -r tools/requirements-artifact-classifier.txt
+          cache-dependency-path: "tools/requirements-artifact-classifier.lock.txt"
+      - name: Install locked classifier dependencies
+        run: python -m pip install -r tools/requirements-artifact-classifier.lock.txt
       - name: Pinned public POSS-I intake self-test
         run: python tools/topa_poss1_open_intake.py self-test
       - name: Feature rail self-test
@@ -52,4 +58,6 @@ jobs:
         run: |
           python -m json.tool protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json >/dev/null
           python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json >/dev/null
+          python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CONFIG-TEMPLATES-v1.0.json >/dev/null
           python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json >/dev/null
+          python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-ADDENDUM-2026-08-27-v1.0.json >/dev/null
