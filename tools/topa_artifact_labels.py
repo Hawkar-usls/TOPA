@@ -16,7 +16,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -42,22 +41,6 @@ FORBIDDEN_REVIEW_KEYS = {
 def _resolve(base_dir: Path, value: str | Path) -> Path:
     p = Path(value)
     return p if p.is_absolute() else (base_dir / p).resolve()
-
-
-def _records(path: Path) -> list[dict[str, Any]]:
-    out = []
-    seen = set()
-    for row in iter_records(path):
-        if not isinstance(row, dict):
-            raise ValueError(f"{path}: expected object records")
-        cid = str(row.get("candidate_id", "")).strip()
-        if not cid:
-            raise ValueError(f"{path}: record missing candidate_id")
-        if cid in seen:
-            raise ValueError(f"{path}: duplicate candidate_id={cid}")
-        seen.add(cid)
-        out.append(row)
-    return out
 
 
 def _clean_witness_families(value: Any) -> list[str]:
@@ -227,11 +210,7 @@ def sample_review(config: dict[str, Any], *, base_dir: Path) -> dict[str, Any]:
         selected.append(row)
         if len(selected) >= n_target:
             break
-    if len(selected) < min(n_target, len(candidates)):
-        # This is not necessarily an error: the group cap may make the requested N impossible.
-        capacity_limited = True
-    else:
-        capacity_limited = False
+    capacity_limited = len(selected) < min(n_target, len(candidates))
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with JsonlWriter(out_path) as writer:
@@ -310,7 +289,6 @@ def consensus(config: dict[str, Any], *, base_dir: Path) -> dict[str, Any]:
                 })
                 continue
             agreements += 1
-            # Consensus tier is conservative: never promote above the weakest agreeing tier.
             tier_order = {"A": 3, "B": 2, "C": 1}
             consensus_tier = min((r["label_tier"] for r in rows), key=lambda x: tier_order[x])
             witness = sorted({fam for r in rows for fam in r["witness_families"]})
@@ -339,8 +317,8 @@ def consensus(config: dict[str, Any], *, base_dir: Path) -> dict[str, Any]:
         "agreement_output_raw_sha256": raw_sha256(agreement_path),
         "conflict_output_path": str(conflict_path),
         "conflict_output_raw_sha256": raw_sha256(conflict_path),
-        "conflicts_auto_resolved": false,
-        "tier_promotion_on_consensus": false,
+        "conflicts_auto_resolved": False,
+        "tier_promotion_on_consensus": False,
     }
     if config.get("receipt_path"):
         write_json_atomic(_resolve(base_dir, config["receipt_path"]), receipt)
@@ -371,7 +349,8 @@ def self_test() -> dict[str, Any]:
         }, base_dir=root)
         assert sample_receipt["selected_n"] == 10
 
-        r1 = root / "r1.jsonl.gz"; r2 = root / "r2.jsonl.gz"
+        r1 = root / "r1.jsonl.gz"
+        r2 = root / "r2.jsonl.gz"
         with JsonlWriter(r1) as a, JsonlWriter(r2) as b:
             for i in range(10):
                 base = {
@@ -383,7 +362,8 @@ def self_test() -> dict[str, Any]:
                 b.write(dict(base, reviewer_id="R2", label=(1-(i%2) if i == 9 else i%2)))
         valid = validate_labels({"label_path": str(r1), "feature_path": str(features)}, base_dir=root)
         assert valid["rows"] == 10
-        agree = root / "agreement.jsonl.gz"; conflict = root / "conflict.jsonl.gz"
+        agree = root / "agreement.jsonl.gz"
+        conflict = root / "conflict.jsonl.gz"
         con = consensus({
             "label_paths": [str(r1), str(r2)],
             "agreement_output_path": str(agree), "conflict_output_path": str(conflict),
@@ -404,7 +384,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="TOPA Artifact Classifier label rails")
     sp = ap.add_subparsers(dest="cmd", required=True)
     for name in ("validate", "sample", "consensus"):
-        p = sp.add_parser(name); p.add_argument("config")
+        p = sp.add_parser(name)
+        p.add_argument("config")
     sp.add_parser("self-test")
     args = ap.parse_args()
     if args.cmd == "self-test":
