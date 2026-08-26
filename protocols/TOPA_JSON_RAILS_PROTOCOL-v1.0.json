@@ -1,0 +1,76 @@
+{
+  "schema": "hawkar.topa.json_rails.protocol.v1",
+  "artifact_id": "TOPA-JSON-RAILS-PROTOCOL-2026-08-27-v1.0",
+  "version": "1.0.0",
+  "created_at_local": "2026-08-27T00:51:00+03:00",
+  "status": "ACTIVE_CAPABILITY_PROTOCOL",
+  "purpose": "Make JSON the native machine-readable rail for TOPA while allowing large evidence dumps to be read, searched, transformed, hashed and reproduced without requiring full in-memory loading when line-oriented formats are used.",
+  "canonical_tool": "tools/topa_json_rails.py",
+  "supported_formats": [
+    ".json",
+    ".json.gz",
+    ".json.bz2",
+    ".jsonl",
+    ".ndjson",
+    ".jsonl.gz",
+    ".ndjson.gz",
+    ".jsonl.bz2",
+    ".ndjson.bz2"
+  ],
+  "large_dump_policy": {
+    "preferred": [".jsonl", ".ndjson", ".jsonl.gz", ".ndjson.gz", ".jsonl.bz2", ".ndjson.bz2"],
+    "reason": "One logical record per line allows deterministic record-by-record iteration, filtering and search with bounded memory.",
+    "monolithic_json_boundary": "A top-level .json array/object is a single JSON document and the standard-library implementation parses it as one document. TOPA must not pretend that this is streaming. Very large arrays should be converted or exported as JSONL/NDJSON before heavy analysis.",
+    "compression": {
+      "gzip": "transparent UTF-8 streaming via Python gzip",
+      "bzip2": "transparent UTF-8 streaming via Python bz2"
+    }
+  },
+  "operations": {
+    "read": "iter_records(path) yields logical records; JSONL/NDJSON is line streamed.",
+    "write_json": "write_json_atomic(path,obj) writes an atomic .json[.gz|.bz2] document.",
+    "write_jsonl": "JsonlWriter writes one canonicalized record per line to plain/gzip/bzip2 rails.",
+    "inspect": "validates the rail, counts records/types, records malformed lines and emits raw plus semantic SHA-256 receipts.",
+    "search": "case-insensitive substring and optional regex search over the whole record or a dotted field; matching records may be streamed into another compressed JSONL/NDJSON rail.",
+    "convert": "converts between supported rails while explicitly recording whether the output path is streaming or requires a monolithic JSON array in memory.",
+    "self_test": "tests plain and compressed JSON/JSONL/NDJSON round-trip, search and conversion."
+  },
+  "provenance_contract": {
+    "raw_byte_hash": "SHA-256 of stored file bytes, therefore compression-sensitive.",
+    "semantic_record_stream_hash": "SHA-256 over canonical sort-key JSON representations of logical records separated by newline; useful for checking logical equivalence across compression containers.",
+    "malformed_line_policy": "strict by default; --skip-bad must be explicit and malformed-line samples remain in the receipt.",
+    "missing_data_rule": "Malformed or missing records are never silently fabricated or imputed by the I/O layer."
+  },
+  "score_distribution_preservation": {
+    "law": "RAW_SCORE_IS_IMMUTABLE__CALIBRATION_IS_A_SIDECAR_VIEW",
+    "rules": [
+      "A raw model score must be preserved exactly as produced and remain addressable after every calibration or transformation.",
+      "A calibrated output must be written to a different field/artifact and must carry the calibrator identity, training split, parameter state and provenance.",
+      "An uncalibrated model score must not be relabeled as a physical probability.",
+      "Ranking/discrimination metrics such as AUC do not prove probability calibration.",
+      "If a calibration mapping materially collapses score diversity, TOPA must flag the collapse and must not replace the raw distribution with that mapping.",
+      "Distribution-collapse thresholds belong to the preregistered experiment that uses the scores; they are not invented after seeing the target association.",
+      "Nuclear/UAP labels are forbidden from calibration selection when the classifier is supposed to estimate artifact quality independently of the nuclear hypothesis."
+    ],
+    "minimum_diagnostics": [
+      "n",
+      "min",
+      "max",
+      "mean",
+      "population_sd",
+      "distinct_values",
+      "distinct_fraction",
+      "zero_count",
+      "one_count",
+      "raw_score_stream_hash"
+    ]
+  },
+  "epistemic_guards": [
+    "JSON validity is not scientific validity.",
+    "A hash proves byte or logical identity under the declared canonicalization, not truth of the represented claim.",
+    "Search hits are retrieval results, not independent witnesses.",
+    "Compression does not change evidentiary authority.",
+    "A model-generated field is not promoted merely because it is machine-readable."
+  ],
+  "expected_ci": ".github/workflows/validate-json-rails.yml"
+}
