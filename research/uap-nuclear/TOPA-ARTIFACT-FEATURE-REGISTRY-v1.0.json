@@ -1,0 +1,404 @@
+{
+  "schema": "hawkar.topa.artifact_feature_registry.v1",
+  "artifact_id": "TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0",
+  "created_at": "2026-08-27T01:58:00+03:00",
+  "status": "FROZEN_V1_FEATURE_NAMESPACE__FEATURE_AVAILABILITY_MAY_BE_PARTIAL",
+  "purpose": "Canonical names, families, provenance roles and leakage constraints for TOPA POSS-I artifact/point-source image-forensics features.",
+  "upstream_reference": {
+    "repository": "jannefi/poss1-plate-slice",
+    "observed_commit_during_design": "554aae5d4c48d800898cdd6aab261d9cba648e8c",
+    "canonical_open_release": "results/s0-642-20260814",
+    "note": "TOPA does not treat upstream thresholds or interpretations as truth. It imports measurements and provenance, not conclusions."
+  },
+  "identity_fields_not_predictors": [
+    "candidate_id",
+    "src_id",
+    "tile_id",
+    "plate_id",
+    "date_obs",
+    "obs_date",
+    "group_id",
+    "ra_deg",
+    "dec_deg"
+  ],
+  "features": [
+    {
+      "name": "morph_fwhm_image",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:fwhm_image"],
+      "meaning": "Candidate FWHM_IMAGE from SExtractor.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_fwhm_ratio",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:fwhm_ratio"],
+      "meaning": "Candidate FWHM relative to local Gaia-derived PSF median.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_spread_model",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:spread_model"],
+      "meaning": "PSFEx SPREAD_MODEL measurement.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_spreaderr_model",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:spreaderr_model"],
+      "meaning": "Per-source uncertainty on SPREAD_MODEL.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_spread_snr",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:spread_snr"],
+      "meaning": "Deviation from local PSF SPREAD_MODEL reference divided by per-source SPREADERR_MODEL; retained as a measurement, not as an admitted hard gate.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_psf_fwhm_median",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:psf_fwhm_median"],
+      "meaning": "Local tile PSF FWHM median from reference stars.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_psf_spread_median",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:psf_spread_median"],
+      "meaning": "Local reference-star SPREAD_MODEL median.",
+      "default_predictor": true
+    },
+    {
+      "name": "morph_psf_star_count",
+      "family": "morphology_psf",
+      "type": "float",
+      "source_examples": ["stage_*_MORPH_flags.csv:psf_star_count"],
+      "meaning": "Number of reference stars supporting local PSF estimate.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_profile_diff",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:profile_diff"],
+      "meaning": "Radial-profile difference against local flux-matched stars.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_circularity",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:circularity"],
+      "meaning": "Contour circularity from pixel cutout.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_area",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:area"],
+      "meaning": "Measured contour area in candidate cutout.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_defect",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:shape_defect"],
+      "meaning": "Convexity/shape-defect measurement.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_circle_deviation",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:circle_deviation"],
+      "meaning": "Deviation from fitted circular contour.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_elongation",
+      "family": "pixel_shape",
+      "type": "float",
+      "source_examples": ["stage_*_SHAPE_flags.csv:elongation", "SExtractor:ELONGATION"],
+      "meaning": "Image elongation measurement.",
+      "default_predictor": true
+    },
+    {
+      "name": "shape_failed",
+      "family": "pixel_shape",
+      "type": "bool",
+      "source_examples": ["stage_*_SHAPE_flags.csv:shape_failed"],
+      "meaning": "Whether pixel-shape extraction failed; missingness itself can reflect acquisition quality and must be audited.",
+      "default_predictor": true
+    },
+    {
+      "name": "geo_sep_own_deg",
+      "family": "plate_geometry",
+      "type": "float",
+      "source_examples": ["stage_edge_post_v2 output:sep_own_deg"],
+      "meaning": "Angular separation from the actual detection plate centre.",
+      "default_predictor": true
+    },
+    {
+      "name": "geo_edge_dist_arcmin",
+      "family": "plate_geometry",
+      "type": "float",
+      "source_examples": ["stage_edge_post_v2 output:edge_dist_arcmin"],
+      "meaning": "Distance from candidate position to physical scanned-array boundary in that plate's own WCS.",
+      "default_predictor": true
+    },
+    {
+      "name": "geo_is_primary",
+      "family": "plate_geometry",
+      "type": "bool",
+      "source_examples": ["primary_plate_flags.csv.gz:is_primary"],
+      "meaning": "Whether the detection plate is the nearest-centre primary plate for the sky position. Partition only, not a quality truth.",
+      "default_predictor": true
+    },
+    {
+      "name": "geo_sep_primary_deg",
+      "family": "plate_geometry",
+      "type": "float",
+      "source_examples": ["primary_plate_flags.csv.gz:sep_primary_deg"],
+      "meaning": "Angular separation to primary plate centre.",
+      "default_predictor": true
+    },
+    {
+      "name": "geo_sep_margin",
+      "family": "plate_geometry",
+      "type": "float",
+      "source_examples": ["primary_plate_flags.csv.gz:sep_margin"],
+      "meaning": "Nearest-versus-second-nearest plate centre separation margin; near zero marks ambiguous boundary geometry.",
+      "default_predictor": true
+    },
+    {
+      "name": "crossscan_scos_r1_matched",
+      "family": "crossscan_supercosmos",
+      "type": "bool",
+      "source_examples": ["SuperCOSMOS R1 stage flag"],
+      "meaning": "Independent digitisation of POSS-I E material has a positional counterpart within frozen match radius.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "crossscan_scos_r1_sep_arcsec",
+      "family": "crossscan_supercosmos",
+      "type": "float",
+      "source_examples": ["SuperCOSMOS R1 stage match separation"],
+      "meaning": "Angular separation to matched independent SuperCOSMOS R1 detection.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "ptf_covered",
+      "family": "modern_epoch_ptf",
+      "type": "bool",
+      "source_examples": ["PTF stage coverage sidecar"],
+      "meaning": "Whether PTF observed this sky position sufficiently for the configured modern-epoch test.",
+      "default_predictor": true
+    },
+    {
+      "name": "ptf_match",
+      "family": "modern_epoch_ptf",
+      "type": "bool",
+      "source_examples": ["PTF stage flag"],
+      "meaning": "Modern-epoch PTF counterpart under the configured quality gate.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "ptf_ngoodobs",
+      "family": "modern_epoch_ptf",
+      "type": "float",
+      "source_examples": ["PTF stage matched record:ngoodobs"],
+      "meaning": "Number of good PTF observations for a matched source when available.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "persist_n_other_plates",
+      "family": "neighbor_epoch_persistence",
+      "type": "float",
+      "source_examples": ["neighbor_persistence.csv:n_other_plates"],
+      "meaning": "Number of other POSS-I plates whose footprints cover this position.",
+      "default_predictor": true
+    },
+    {
+      "name": "persist_n_confirming",
+      "family": "neighbor_epoch_persistence",
+      "type": "float",
+      "source_examples": ["neighbor_persistence.csv:n_confirming"],
+      "meaning": "Number of independent other POSS-I plates with a raw detection near this candidate.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "persist_any",
+      "family": "neighbor_epoch_persistence",
+      "type": "bool",
+      "source_examples": ["neighbor_persistence.csv:persistent"],
+      "meaning": "Candidate is seen on at least one other POSS-I plate/epoch.",
+      "default_predictor": true,
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "dup_cluster_size",
+      "family": "duplicate_geometry",
+      "type": "float",
+      "source_examples": ["future per-row global dedup sidecar"],
+      "meaning": "Multiplicity of near-duplicate detections before global deduplication.",
+      "default_predictor": false,
+      "availability": "PLANNED_PER_ROW_SIDE_CAR"
+    },
+    {
+      "name": "dup_nearest_sep_arcsec",
+      "family": "duplicate_geometry",
+      "type": "float",
+      "source_examples": ["future per-row dedup geometry sidecar"],
+      "meaning": "Nearest pre-dedup detection separation across tiles/plates.",
+      "default_predictor": false,
+      "availability": "PLANNED_PER_ROW_SIDE_CAR"
+    },
+    {
+      "name": "acq_wcs_offset_arcsec",
+      "family": "acquisition_provenance",
+      "type": "float",
+      "source_examples": ["data/plate_crpix_table.csv:offset_arcsec", "JANUS plate-header/WCS provenance"],
+      "meaning": "Magnitude of plate WCS correction/provenance offset.",
+      "default_predictor": true
+    },
+    {
+      "name": "acq_exposure_min",
+      "family": "acquisition_provenance",
+      "type": "float",
+      "source_examples": ["POSS-I FITS header:EXPOSURE"],
+      "meaning": "Plate exposure duration in minutes. This is ordinary photographic exposure and is unrelated to nuclear exposure.",
+      "default_predictor": true
+    },
+    {
+      "name": "acq_tile_rows_emitted_s0",
+      "family": "acquisition_provenance",
+      "type": "float",
+      "source_examples": ["tile_manifest.csv.gz:rows_emitted_to_S0"],
+      "meaning": "Candidate count emitted from this tile before global aggregation; local contamination/density context only.",
+      "default_predictor": true
+    },
+    {
+      "name": "acq_tile_raw_detection_count",
+      "family": "acquisition_provenance",
+      "type": "float",
+      "source_examples": ["MNRAS_SUMMARY.json:veto_start_rows", "tile processing ledger"],
+      "meaning": "Raw detection population feeding tile-level filters.",
+      "default_predictor": true
+    },
+    {
+      "name": "acq_astrometric_refit_residual_arcsec",
+      "family": "acquisition_provenance",
+      "type": "float",
+      "source_examples": ["slice/refit ledgers"],
+      "meaning": "Per-tile astrometric refit residual, preserving local failures rather than only plate medians.",
+      "default_predictor": true
+    },
+    {
+      "name": "context_local_detection_density",
+      "family": "local_field_context",
+      "type": "float",
+      "source_examples": ["derived from tile/raw detection ledger and usable sky area"],
+      "meaning": "Local raw detection density under a preregistered area definition.",
+      "default_predictor": true
+    },
+    {
+      "name": "context_background_median",
+      "family": "local_field_context",
+      "type": "float",
+      "source_examples": ["candidate pixel cutout"],
+      "meaning": "Local background level in candidate cutout.",
+      "default_predictor": false,
+      "availability": "P1_PIXEL_EXTRACTOR"
+    },
+    {
+      "name": "context_background_mad",
+      "family": "local_field_context",
+      "type": "float",
+      "source_examples": ["candidate pixel cutout"],
+      "meaning": "Robust local background dispersion.",
+      "default_predictor": false,
+      "availability": "P1_PIXEL_EXTRACTOR"
+    },
+    {
+      "name": "context_peak_snr",
+      "family": "local_field_context",
+      "type": "float",
+      "source_examples": ["candidate pixel cutout"],
+      "meaning": "Peak or PSF-weighted signal-to-noise under a frozen estimator.",
+      "default_predictor": false,
+      "availability": "P1_PIXEL_EXTRACTOR"
+    },
+    {
+      "name": "crossband_blue_match",
+      "family": "cross_band",
+      "type": "bool",
+      "source_examples": ["future public POSS-I O/blue plate reconstruction"],
+      "meaning": "Presence of a positionally compatible blue-band detection under an explicitly time-aware matching rule.",
+      "default_predictor": false,
+      "availability": "P1_PUBLIC_BLUE_PLATE_RECONSTRUCTION",
+      "label_witness_sensitive": true
+    },
+    {
+      "name": "crossband_red_blue_sep_arcsec",
+      "family": "cross_band",
+      "type": "float",
+      "source_examples": ["future red/blue cross-band sidecar"],
+      "meaning": "Angular separation between red and blue detections when comparable.",
+      "default_predictor": false,
+      "availability": "P1_PUBLIC_BLUE_PLATE_RECONSTRUCTION"
+    },
+    {
+      "name": "crossband_time_delta_min",
+      "family": "cross_band",
+      "type": "float",
+      "source_examples": ["future red/blue plate header pairing"],
+      "meaning": "Observation-time offset between compared red and blue plates; required to avoid treating non-simultaneous observations as spectral evidence.",
+      "default_predictor": false,
+      "availability": "P1_PUBLIC_BLUE_PLATE_RECONSTRUCTION"
+    }
+  ],
+  "training_forbidden_feature_names": [
+    "plate_id",
+    "date_obs",
+    "obs_date",
+    "group_id",
+    "nuclear_window",
+    "nuclear_test",
+    "nuclear_event",
+    "harmonization_outcome",
+    "effect_p_value",
+    "uap",
+    "nhi",
+    "label",
+    "target"
+  ],
+  "training_forbidden_name_fragments": [
+    "nuclear_",
+    "atomic_test",
+    "bomb_test",
+    "detonation_",
+    "harmonization_",
+    "uap_",
+    "nhi_",
+    "outcome_"
+  ],
+  "family_witness_rule": "A family may exist in the feature rail, but if that family contributes to labels in a given training arm, every predictor from that family must be removed for that arm.",
+  "current_claim_ceiling": "FEATURE_NAMESPACE_AND_PROVENANCE_CONTRACT_ONLY"
+}
