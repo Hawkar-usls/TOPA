@@ -1,0 +1,162 @@
+{
+  "schema": "hawkar.topa.artifact_sidecar_availability_audit.v1",
+  "artifact_id": "TOPA-ARTIFACT-SIDECAR-AVAILABILITY-AUDIT-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T02:00:00+03:00",
+  "status": "EXECUTED__PUBLIC_BYTES_AND_RECONSTRUCTION_DEBTS_SEPARATED",
+  "purpose": "Prevent TOPA from confusing a registered feature with an actually available row-level measurement. Each forensic family is classified by byte availability and reproduction path before real classifier training.",
+  "upstream": {
+    "repository": "jannefi/poss1-plate-slice",
+    "commit": "554aae5d4c48d800898cdd6aab261d9cba648e8c",
+    "release": "results/s0-642-20260814"
+  },
+  "availability_classes": {
+    "PUBLIC_BYTES_READY": "Row-level or directly joinable bytes are publicly shipped at the frozen upstream commit and can be hash-pinned now.",
+    "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED": "The generator/method is public but the full row-level sidecar is not shipped in the frozen release. TOPA must reproduce it and hash its output before use.",
+    "PLANNED_NEW_TOPA_MEASUREMENT": "No canonical per-row upstream sidecar is available; TOPA must define and preregister its own measurement before extraction.",
+    "FUTURE_EXTERNAL_PUBLIC_DATA": "Feature family is conceptually useful but requires a later public-data reconstruction not yet frozen."
+  },
+  "families": [
+    {
+      "family": "base_candidate_identity_and_position",
+      "availability": "PUBLIC_BYTES_READY",
+      "files": ["results/s0-642-20260814/stage_S0.csv.gz"],
+      "row_count": 122820,
+      "use": ["candidate_id", "tile_id", "ra", "dec"],
+      "guard": "Coordinates are provenance/grouping inputs and are not default model predictors."
+    },
+    {
+      "family": "tile_and_plate_opportunity_provenance",
+      "availability": "PUBLIC_BYTES_READY",
+      "files": [
+        "results/s0-642-20260814/tile_manifest.csv.gz",
+        "data/plate_manifest.csv",
+        "data/plate_crpix_table.csv"
+      ],
+      "row_count_tile_manifest": 31458,
+      "use": ["tile->plate binding", "rows_emitted_to_S0", "plate WCS provenance"],
+      "guard": "Actual observing opportunity is kept separate from candidate count."
+    },
+    {
+      "family": "primary_plate_geometry",
+      "availability": "PUBLIC_BYTES_READY",
+      "files": ["results/s0-642-20260814/primary_plate_flags.csv.gz"],
+      "row_count": 122820,
+      "use": ["is_primary", "sep_primary_deg", "sep_margin"],
+      "guard": "Primary-plate assignment is a coverage partition, not a quality label."
+    },
+    {
+      "family": "plate_observation_headers",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "source": "IRSA DSS1-red plate-addressed FITS primary headers",
+      "topa_generator": "tools/topa_poss1_open_intake.py fetch-plate-metadata",
+      "use": ["DATE-OBS", "EXPOSURE", "REGION", "telescope/emulsion/filter provenance"],
+      "guard": "TOPA reads primary-header bytes and hashes provenance; DATE-OBS remains group/provenance, not a predictor."
+    },
+    {
+      "family": "morphology_psf",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generator": "scripts/stage_morph_post.py",
+      "registered_measurements": [
+        "morph_fwhm_image",
+        "morph_fwhm_ratio",
+        "morph_spread_model",
+        "morph_spreaderr_model",
+        "morph_spread_snr",
+        "morph_psf_fwhm_median",
+        "morph_psf_spread_median",
+        "morph_psf_star_count"
+      ],
+      "reason": "Generator is public, but a full 122820-row morphology sidecar is not shipped in the frozen release tree.",
+      "priority": "P0",
+      "guard": "Extract continuous measurements and failures; do not inherit upstream threshold decisions as labels."
+    },
+    {
+      "family": "pixel_shape",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generator": "scripts/stage_shape_post.py",
+      "registered_measurements": [
+        "shape_profile_diff",
+        "shape_circularity",
+        "shape_area",
+        "shape_defect",
+        "shape_circle_deviation",
+        "shape_elongation",
+        "shape_failed"
+      ],
+      "priority": "P0",
+      "guard": "Keep continuous measurements for all measurable rows; hard reject thresholds are not imported as truth."
+    },
+    {
+      "family": "physical_plate_edge_geometry",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generator": "scripts/stage_edge_post_v2.py",
+      "registered_measurements": ["geo_sep_own_deg", "geo_edge_dist_arcmin"],
+      "priority": "P0",
+      "guard": "Plate-edge position is a quality/context measurement, not an artifact verdict."
+    },
+    {
+      "family": "crossscan_supercosmos",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generators": ["scripts/stage_supercosmos_post.py", "tools/scos_stage_banded.py"],
+      "registered_measurements": ["crossscan_scos_r1_matched", "crossscan_scos_r1_sep_arcsec"],
+      "priority": "P1",
+      "guard": "If SuperCOSMOS is used as a Tier-B label witness in an arm, every SuperCOSMOS feature is removed from predictors in that arm."
+    },
+    {
+      "family": "modern_epoch_ptf",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generators": ["scripts/stage_ptf_post.py", "tools/ptf_stage_coverage.py"],
+      "registered_measurements": ["ptf_covered", "ptf_match", "ptf_ngoodobs"],
+      "priority": "P1",
+      "guard": "Coverage and match are separate. No PTF coverage is not interpreted as no persistent source."
+    },
+    {
+      "family": "neighbor_epoch_persistence",
+      "availability": "PUBLIC_SOURCE_RECONSTRUCTION_REQUIRED",
+      "upstream_generator": "tools/stage_neighbor_persistence.py",
+      "registered_measurements": ["persist_n_other_plates", "persist_n_confirming", "persist_any"],
+      "priority": "P1",
+      "guard": "One-plate coverage is undecidable, not negative. If persistence creates labels, persistence features are excluded from predictors."
+    },
+    {
+      "family": "duplicate_geometry",
+      "availability": "PLANNED_NEW_TOPA_MEASUREMENT",
+      "upstream_context": "tools/dedup_radius_sweep.py provides aggregate tolerance evidence, not a canonical full per-row duplicate sidecar.",
+      "planned_measurements": ["dup_cluster_size", "dup_nearest_sep_arcsec"],
+      "priority": "P1",
+      "guard": "Freeze radius/grid/plate-overlap semantics before extraction and never choose duplicate parameters by nuclear-window result."
+    },
+    {
+      "family": "local_field_context",
+      "availability": "PLANNED_NEW_TOPA_MEASUREMENT",
+      "planned_measurements": [
+        "context_local_detection_density",
+        "context_background_median",
+        "context_background_mad",
+        "context_peak_snr"
+      ],
+      "priority": "P1",
+      "guard": "Area/opportunity denominator must be defined independently of candidate density."
+    },
+    {
+      "family": "cross_band",
+      "availability": "FUTURE_EXTERNAL_PUBLIC_DATA",
+      "planned_measurements": ["crossband_blue_match", "crossband_red_blue_sep_arcsec", "crossband_time_delta_min"],
+      "priority": "P2",
+      "guard": "A red/blue comparison is valid only with explicit plate identity and observation-time separation; non-simultaneous absence is not spectral non-detection."
+    }
+  ],
+  "freeze_rule": "A family can enter real classifier training only after its reconstruction parameters, input provenance, row-coverage semantics, output hash and missingness behavior have a machine-readable receipt frozen before any nuclear harmonization result is inspected.",
+  "priority_sequence": [
+    "P0: morphology_psf + pixel_shape + physical_plate_edge_geometry",
+    "P1: SuperCOSMOS + PTF coverage/match + neighbor-epoch persistence",
+    "P1: TOPA per-row duplicate geometry + local-field context",
+    "P2: public red/blue cross-band reconstruction"
+  ],
+  "current_admission": {
+    "minimal_feature_rail": "READY",
+    "expanded_forensic_feature_rail": "NOT_YET_READY",
+    "real_classifier_training": "BLOCKED_UNTIL_REAL_LABELS_AND_FROZEN_EXPANDED_SIDECAR_SET",
+    "nuclear_analysis": "FORBIDDEN_UNTIL_FULL_RAW_SCORE_STREAM_IS_FROZEN"
+  }
+}
