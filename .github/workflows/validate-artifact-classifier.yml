@@ -3,6 +3,7 @@ name: Validate TOPA Artifact Classifier
 on:
   push:
     paths:
+      - "tools/topa_poss1_open_intake.py"
       - "tools/topa_artifact_features.py"
       - "tools/topa_artifact_classifier.py"
       - "tools/requirements-artifact-classifier.txt"
@@ -12,6 +13,7 @@ on:
       - ".github/workflows/validate-artifact-classifier.yml"
   pull_request:
     paths:
+      - "tools/topa_poss1_open_intake.py"
       - "tools/topa_artifact_features.py"
       - "tools/topa_artifact_classifier.py"
       - "tools/requirements-artifact-classifier.txt"
@@ -36,6 +38,8 @@ jobs:
           cache-dependency-path: "tools/requirements-artifact-classifier.txt"
       - name: Install classifier dependencies
         run: python -m pip install -r tools/requirements-artifact-classifier.txt
+      - name: Pinned public POSS-I intake self-test
+        run: python tools/topa_poss1_open_intake.py self-test
       - name: Feature rail self-test
         run: python tools/topa_artifact_features.py self-test
       - name: Group-OOF classifier and harmonization handoff self-test
