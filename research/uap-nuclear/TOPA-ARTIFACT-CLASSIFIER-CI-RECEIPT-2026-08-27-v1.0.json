@@ -1,0 +1,136 @@
+{
+  "schema": "hawkar.topa.artifact_classifier.ci_receipt.v1",
+  "artifact_id": "TOPA-ARTIFACT-CLASSIFIER-CI-RECEIPT-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T02:00:00+03:00",
+  "status": "LOCKED_END_TO_END_SELF_TEST_PASS",
+  "claim_ceiling": "FUNCTIONAL_AND_REPRODUCIBILITY_SMOKE_TEST_ONLY__NOT_REAL_CLASSIFIER_PERFORMANCE",
+  "workflow": {
+    "name": "Validate TOPA Artifact Classifier",
+    "run_id": 33024300402,
+    "job_id": 98361901039,
+    "head_sha": "fd7027a0bd5fd48767343ec78b837d1fb4006eea",
+    "conclusion": "SUCCESS",
+    "started_at_utc": "2026-08-26T23:42:05Z",
+    "completed_at_utc": "2026-08-26T23:42:32Z",
+    "runner": {
+      "os": "Ubuntu 24.04.4 LTS",
+      "image": "ubuntu-24.04",
+      "python": "3.11.16"
+    }
+  },
+  "locked_dependencies": {
+    "numpy": "2.4.6",
+    "scikit_learn": "1.9.0",
+    "joblib": "1.5.3",
+    "scipy": "1.17.1",
+    "narwhals": "2.25.0",
+    "threadpoolctl": "3.6.0",
+    "lock_file": "tools/requirements-artifact-classifier.lock.txt"
+  },
+  "step_results": [
+    {
+      "step": "PINNED_PUBLIC_POSS1_INTAKE_SELF_TEST",
+      "status": "PASS",
+      "assertions": [
+        "gzip transfer hash verified",
+        "decompressed content hash verified",
+        "CSV row invariant verified",
+        "FITS primary-header parser verified",
+        "feature-registry path independent of working directory",
+        "upstream commit pin = 554aae5d4c48d800898cdd6aab261d9cba648e8c"
+      ]
+    },
+    {
+      "step": "FEATURE_RAIL_SELF_TEST",
+      "status": "PASS",
+      "assertions": [
+        "CSV gzip adapter",
+        "CSV bzip2 adapter",
+        "JSONL gzip sidecar",
+        "NDJSON bzip2 sidecar",
+        "JSONL gzip output",
+        "feature registry enforcement",
+        "group_id construction"
+      ]
+    },
+    {
+      "step": "LABEL_RAIL_SELF_TEST",
+      "status": "PASS",
+      "assertions": [
+        "compressed JSON rails",
+        "deterministic group-balanced blind sampling",
+        "label-contract validation",
+        "independent review consensus",
+        "review conflicts are not auto-resolved"
+      ]
+    },
+    {
+      "step": "GROUP_OOF_CLASSIFIER_AND_HARMONIZATION_HANDOFF_SELF_TEST",
+      "status": "PASS",
+      "synthetic_rows": 600,
+      "independent_groups": 60,
+      "reference_models": [
+        "logistic_l2",
+        "random_forest",
+        "extra_trees",
+        "hist_gradient_boosting"
+      ],
+      "synthetic_group_oof_auc": 0.6567161410018553,
+      "synthetic_group_oof_auc_semantics": "FUNCTIONAL_SMOKE_TEST_ONLY__MUST_NOT_BE_QUOTED_AS_REAL_TOPA_CLASSIFIER_ACCURACY",
+      "raw_distribution_preserved": true,
+      "oof_replacement_path_tested": true,
+      "harmonization_handoff_tested": true
+    },
+    {
+      "step": "MACHINE_READABLE_CONTRACT_VALIDATION",
+      "status": "PASS",
+      "validated": [
+        "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json",
+        "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json",
+        "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CONFIG-TEMPLATES-v1.0.json",
+        "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json",
+        "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-ADDENDUM-2026-08-27-v1.0.json"
+      ]
+    }
+  ],
+  "warning_ledger": [
+    {
+      "component": "scikit-learn LogisticRegression",
+      "type": "FutureWarning",
+      "message_summary": "Explicit penalty='l2' is deprecated in sklearn 1.9 and scheduled for removal in 1.10.",
+      "impact_now": "NONE_ON_CURRENT_LOCKED_RUN",
+      "action": "Keep environment locked for v1 reproducibility; update the estimator call deliberately in a separately audited compatibility commit before any sklearn upgrade."
+    },
+    {
+      "component": "GitHub Actions",
+      "type": "runner action warning",
+      "message_summary": "checkout/setup-python actions target deprecated Node 20 and are currently forced to Node 24 by GitHub.",
+      "impact_now": "NONE_ON_TOPA_SCIENTIFIC_CODE",
+      "action": "Track as CI-maintenance debt only."
+    }
+  ],
+  "negative_history_preserved": {
+    "first_failed_run": {
+      "run_id": 33024118109,
+      "job_id": 98361310460,
+      "head_sha": "3ef838f6a93bd282c84b02092bac8895a820d38a",
+      "failure": "Python NameError caused by JSON-style lowercase false in label consensus receipt",
+      "scientific_impact": "NONE",
+      "record": "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-ADDENDUM-2026-08-27-v1.0.json"
+    },
+    "repair_validation_run": {
+      "run_id": 33024221296,
+      "job_id": 98361642287,
+      "head_sha": "69e5cb473e34a336385a25c9645b49a60b769ec0",
+      "conclusion": "SUCCESS"
+    }
+  },
+  "epistemic_status": {
+    "artifact_classifier_infrastructure": "ADMITTED_AS_FUNCTIONAL_AND_CI_REPRODUCIBLE",
+    "real_labelled_classifier": "NOT_YET_ADMITTED",
+    "real_group_oof_performance": "NOT_YET_MEASURED",
+    "full_122820_raw_score_stream": "NOT_YET_CREATED",
+    "nuclear_harmonization_with_topa_scores": "NOT_YET_EXECUTED",
+    "reason": "Real labels and expanded row-level forensic sidecars remain open scientific gates."
+  }
+}
