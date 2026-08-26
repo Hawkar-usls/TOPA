@@ -1,0 +1,61 @@
+{
+  "schema": "hawkar.topa.geo_mirror_null_frozen_spec.v1",
+  "artifact_id": "TOPA-V25_4-GEO-MIRROR-NULL-FROZEN-SPEC-2026-08-26-v1.0",
+  "version": "1.0.0",
+  "created_at": "2026-08-26",
+  "status": "FROZEN_RETROSPECTIVE_FALSIFICATION_SPEC",
+  "registration_class": "RETROSPECTIVE_FORMALIZATION_FOR_FALSIFICATION__NOT_PROSPECTIVE_DISCOVERY",
+  "purpose": "Turn the historical v25.4 'latitude_58_symmetry' label into one explicit mathematical operator and test it against geographic nulls without changing the operator after seeing the result.",
+  "historical_source": {
+    "repository": "Hawkar-usls/janus-meta-registry",
+    "path": "data/janus-meta-registry-v25.4-global-resonance-vis.json",
+    "vector_id": "latitude_58_symmetry",
+    "historical_label": "Зеркальная симметрия командных структур на 58° с.ш. Подтверждено.",
+    "point_A": {"id": "Colorado_NORAD", "lat_deg": 38.75, "lon_deg": -104.7667},
+    "point_B": {"id": "Petrozavodsk_RU", "lat_deg": 61.7833, "lon_deg": 34.35},
+    "historical_score_both": 0.58
+  },
+  "primary_operator": {
+    "id": "M58_LITERAL_PARALLEL_REFLECTION",
+    "definition": "M58(phi, lambda) = (2*58deg - phi, lambda)",
+    "axis_latitude_deg": 58.0,
+    "longitude_rule": "unchanged",
+    "metric": "WGS84-like spherical great-circle distance using mean Earth radius R=6371.0088 km",
+    "test_statistic": "D = great_circle_km(M58(A), B); smaller is more mirror-like",
+    "rationale": "This is the most literal coordinate interpretation of the historical '58° north mirror' wording. It is not claimed to be a physical symmetry or a global spherical isometry."
+  },
+  "secondary_negative_control": {
+    "id": "M_ANTIPODE_PARAMETER_FREE",
+    "definition": "Mant(phi, lambda) = (-phi, wrap(lambda + 180deg))",
+    "metric": "same great-circle residual",
+    "role": "Parameter-free geometric negative control only; not a replacement hypothesis and not evidence if it happened to fit."
+  },
+  "nulls": [
+    {
+      "id": "GLOBAL_UNIFORM_SPHERE",
+      "sampling": "u~Uniform(-1,1); phi=asin(u); lambda~Uniform(-pi,pi)",
+      "N": 2000000,
+      "primary_seed": 20260826,
+      "secondary_seed": 20260828
+    },
+    {
+      "id": "NORTHERN_HEMISPHERE_UNIFORM_AREA",
+      "sampling": "u~Uniform(0,1); phi=asin(u); lambda~Uniform(-pi,pi)",
+      "N": 2000000,
+      "primary_seed": 20260827,
+      "secondary_seed": 20260829,
+      "rationale": "Conservative domain reflecting that both historical endpoints are in the northern hemisphere."
+    }
+  ],
+  "decision_rule": {
+    "alpha": 0.05,
+    "promotion": "No promotion from HYPOTHESIS_ONLY unless the frozen operator is unusual under the preregistered null and survives an independent point set. This retrospective pair alone can never establish a physical law.",
+    "rejection": "If p>=0.05 under the primary null, the historical 58-degree mirror claim is not geographically exceptional under this operator.",
+    "multiple_testing_guard": "Do not shop additional mirror axes/operators after observing these results. Any future operator must be registered as a new hypothesis before evaluation."
+  },
+  "epistemic_guard": [
+    "The pair was known before this formula was formalized; therefore this is a falsification-oriented retrospective test.",
+    "The historical numeric value 0.58 is not a calibrated measurement and is not used in the null.",
+    "No UAP, nuclear-causation, or physical-field inference is permitted from a geometric match."
+  ]
+}
