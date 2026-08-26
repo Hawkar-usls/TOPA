@@ -1,0 +1,49 @@
+name: Validate TOPA Artifact Classifier
+
+on:
+  push:
+    paths:
+      - "tools/topa_artifact_features.py"
+      - "tools/topa_artifact_classifier.py"
+      - "tools/requirements-artifact-classifier.txt"
+      - "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json"
+      - ".github/workflows/validate-artifact-classifier.yml"
+  pull_request:
+    paths:
+      - "tools/topa_artifact_features.py"
+      - "tools/topa_artifact_classifier.py"
+      - "tools/requirements-artifact-classifier.txt"
+      - "protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json"
+      - "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json"
+      - ".github/workflows/validate-artifact-classifier.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  artifact-classifier-self-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "tools/requirements-artifact-classifier.txt"
+      - name: Install classifier dependencies
+        run: python -m pip install -r tools/requirements-artifact-classifier.txt
+      - name: Feature rail self-test
+        run: python tools/topa_artifact_features.py self-test
+      - name: Group-OOF classifier and harmonization handoff self-test
+        run: python tools/topa_artifact_classifier.py self-test
+      - name: Validate machine-readable contracts
+        run: |
+          python -m json.tool protocols/TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0.json >/dev/null
+          python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json >/dev/null
+          if [ -f research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json ]; then
+            python -m json.tool research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-BOOTSTRAP-2026-08-27-v1.0.json >/dev/null
+          fi
