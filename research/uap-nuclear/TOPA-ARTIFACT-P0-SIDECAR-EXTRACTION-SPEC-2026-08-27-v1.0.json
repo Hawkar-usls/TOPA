@@ -1,0 +1,187 @@
+{
+  "schema": "hawkar.topa.artifact_p0_sidecar_extraction_spec.v1",
+  "artifact_id": "TOPA-ARTIFACT-P0-SIDECAR-EXTRACTION-SPEC-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T02:00:00+03:00",
+  "status": "FROZEN_BEFORE_REAL_CLASSIFIER_OR_NUCLEAR_HARMONIZATION",
+  "purpose": "Freeze the measurement instruments for the P0 morphology, pixel-shape and physical plate-edge sidecars before any real TOPA classifier performance or nuclear-window result is inspected. Threshold-based upstream reject decisions are explicitly not imported as classifier truth.",
+  "upstream_reference": {
+    "repository": "jannefi/poss1-plate-slice",
+    "commit": "554aae5d4c48d800898cdd6aab261d9cba648e8c",
+    "scripts": {
+      "morphology": {
+        "path": "scripts/stage_morph_post.py",
+        "blob_sha": "ed50ce499736725ce45807bcd94f344f6553a911"
+      },
+      "pixel_shape": {
+        "path": "scripts/stage_shape_post.py",
+        "blob_sha": "efef394a56025479dc8504de6d455155ceff2b04"
+      },
+      "plate_edge": {
+        "path": "scripts/stage_edge_post_v2.py",
+        "blob_sha": "ade37c98e0ab0c3daa5b96a8552e612d1fde3f33"
+      }
+    }
+  },
+  "global_rules": [
+    "RUN_ON_THE_FROZEN_PUBLIC_OPEN_COHORT_WITHOUT_LOADING_ANY_NUCLEAR_CALENDAR",
+    "INPUT_TO_EACH_MEASUREMENT_STAGE_IS_THE_FULL_ELIGIBLE_BASE_CANDIDATE_SET_NOT_A_PREVIOUS_HARD_REJECT_REMAINDER",
+    "OUTPUT_FULL_FLAGS_OR_MEASUREMENT_TABLE_FOR_ALL_INPUT_ROWS",
+    "KEEP_FAILURE_AND_INSUFFICIENT_REFERENCE_STATES_EXPLICIT",
+    "DO_NOT_TURN_UPSTREAM_REJECT_FLAG_INTO_TOPA_LABEL",
+    "DO_NOT_DROP_ROWS_BECAUSE_A_MEASUREMENT_IS_MISSING",
+    "FREEZE_INPUT_HASHES_SCRIPT_HASHES_PARAMETERS_SOFTWARE_VERSIONS_AND_OUTPUT_HASHES_IN_A_RECEIPT",
+    "NO_PARAMETER_MAY_BE_CHANGED_AFTER_VIEWING_NUCLEAR_HARMONIZATION_TO_IMPROVE_EFFECT_SIZE_OR_P_VALUE"
+  ],
+  "morphology_psf": {
+    "instrument": "Local per-tile PSF reference derived from SExtractor pass2 detections positionally matched to Gaia.",
+    "input_population": "Full TOPA open S0 candidate cohort, not the upstream stage_S0M kept remainder.",
+    "reference_star_selection_frozen": {
+      "sextractor_flags": 0,
+      "elongation_lt": 1.3,
+      "gaia_match_radius_arcsec": 3.0,
+      "gaia_gmag_open_interval": [12.0, 18.0],
+      "minimum_psf_reference_stars": 5,
+      "gaia_catalog_preference": "gaia_neighbourhood_at_plate.csv when present and non-empty, otherwise gaia_neighbourhood.csv"
+    },
+    "measurements_to_preserve": [
+      "fwhm_image",
+      "fwhm_ratio = FWHM_IMAGE / local_psf_fwhm_median",
+      "spread_model",
+      "spreaderr_model",
+      "spread_snr = (SPREAD_MODEL - local_psf_spread_median) / SPREADERR_MODEL",
+      "psf_fwhm_median",
+      "psf_spread_median",
+      "psf_star_count",
+      "measurement_status"
+    ],
+    "topa_feature_mapping": {
+      "fwhm_image": "morph_fwhm_image",
+      "fwhm_ratio": "morph_fwhm_ratio",
+      "spread_model": "morph_spread_model",
+      "spreaderr_model": "morph_spreaderr_model",
+      "spread_snr": "morph_spread_snr",
+      "psf_fwhm_median": "morph_psf_fwhm_median",
+      "psf_spread_median": "morph_psf_spread_median",
+      "psf_star_count": "morph_psf_star_count"
+    },
+    "upstream_thresholds_recorded_but_not_used_as_topa_truth": {
+      "fwhm_ratio_max": 1.5,
+      "spread_snr_max": 5.0,
+      "policy": "MAY_BE_RETAINED_AS_DIAGNOSTIC_COLUMNS_ONLY__NOT_TARGET_LABELS__NOT_ROW_FILTERS_FOR_PRIMARY_TOPA_FEATURE_RAIL"
+    },
+    "failure_semantics": {
+      "psf_insufficient": "MISSING_MEASUREMENT_WITH_REASON__NOT_PASS_NOT_FAIL",
+      "catalog_missing": "MISSING_MEASUREMENT_WITH_REASON__NOT_PASS_NOT_FAIL",
+      "candidate_not_found": "MISSING_MEASUREMENT_WITH_REASON__NOT_PASS_NOT_FAIL"
+    }
+  },
+  "pixel_shape": {
+    "instrument": "Public plate-pixel radial-profile and contour measurements following the upstream reference-implementation-parity code path.",
+    "input_population": "Full TOPA open S0 candidate cohort independently, not the morphology-kept subset and not a later postprocess remainder.",
+    "profile_measurement_frozen": {
+      "neighborhood_cutout_size_arcmin": 8.0,
+      "radial_edge_radii_px": "numpy.arange(30)/2 => 0.0,0.5,...,14.5",
+      "neighbor_flux_max_fraction": 0.10,
+      "self_excluded_from_neighbor_pool": true,
+      "invert_max": 65535.0,
+      "background": {
+        "algorithm": "photutils Background2D",
+        "box_size": 40,
+        "filter_size": 3,
+        "sigma_clip": 3.0,
+        "estimator": "MedianBackground",
+        "fallback": "inversion_only_if_Background2D_raises"
+      }
+    },
+    "contour_measurement_frozen": {
+      "tiny_cutout_size_px": 21,
+      "opencv_thresholds": [21, 45],
+      "valid_contour_area_gt_px2": 7,
+      "perimeter_gt": 0,
+      "pixel_coordinate_preference": ["x_fit/y_fit", "XWIN_IMAGE/YWIN_IMAGE", "X_IMAGE/Y_IMAGE"],
+      "sextractor_coordinates_converted_from_1_indexed_to_0_indexed": true
+    },
+    "measurements_to_preserve": [
+      "profile_diff",
+      "circularity",
+      "area",
+      "shape_defect",
+      "circle_deviation",
+      "elongation",
+      "stars_used",
+      "shape_confidence",
+      "shape_failed",
+      "failure_reason"
+    ],
+    "topa_feature_mapping": {
+      "profile_diff": "shape_profile_diff",
+      "circularity": "shape_circularity",
+      "area": "shape_area",
+      "shape_defect": "shape_defect",
+      "circle_deviation": "shape_circle_deviation",
+      "elongation": "shape_elongation",
+      "shape_failed": "shape_failed"
+    },
+    "upstream_thresholds_recorded_but_not_used_as_topa_truth": {
+      "profile_diff_threshold": 0.05,
+      "elongation_limit": 1.10,
+      "circularity_low_limit": 0.80,
+      "policy": "DIAGNOSTIC_ONLY_FOR_TOPA_PRIMARY_CLASSIFIER_BUILD"
+    },
+    "parallel_workers": "EXECUTION_PARAMETER_ONLY__MAY_CHANGE_WITH_HARDWARE_IF_OUTPUT_SEMANTICS_AND_HASHED_RESULTS_ARE_DETERMINISTIC"
+  },
+  "plate_geometry": {
+    "instrument": "Per-row geometry relative to the actual detection plate and its physical scanned-array boundary using the plate's own WCS.",
+    "input_population": "Full TOPA open S0 candidate cohort.",
+    "operation_mode": "FLAG_ONLY__CUT_FALSE",
+    "measurements_to_preserve": [
+      "det_plate",
+      "sep_own_deg",
+      "best_plate",
+      "sep_best_deg",
+      "cheb_own_deg",
+      "edge_dist_arcmin",
+      "beyond_corner",
+      "plate_unresolved"
+    ],
+    "topa_feature_mapping": {
+      "sep_own_deg": "geo_sep_own_deg",
+      "edge_dist_arcmin": "geo_edge_dist_arcmin"
+    },
+    "frozen_geometry_constants_for_diagnostics_only": {
+      "plate_half_width_deg": 3.308,
+      "aps_reliable_core_radius_deg": 2.7,
+      "vasco60_parity_radius_deg": 2.9071067811865476,
+      "pasp2025_radius_deg": 2.0,
+      "yield_curve_radii_deg": [2.2, 2.4, 2.5, 2.7, 2.9071067811865476, 3.0, 3.308],
+      "array_edge_curve_arcmin": [1, 2, 3, 5, 10, 15, 20, 30]
+    },
+    "primary_topa_rule": "NO_RADIAL_OR_EDGE_CUT_IN_THE_FEATURE_EXTRACTION_STAGE__DISTANCES_ARE_CONTINUOUS_CONTEXT_FEATURES_AND_SENSITIVITY_INSTRUMENTS",
+    "integrity_gates": [
+      "beyond_corner_rows must be surfaced, never silently kept as normal geometry",
+      "plate_unresolved rows remain explicit missing geometry",
+      "distance to physical array boundary must use real plate WCS rather than tile-level edge classification"
+    ]
+  },
+  "sidecar_output_contract": {
+    "canonical_format": "jsonl.gz_or_ndjson.gz_after_adapter_conversion",
+    "candidate_id_required": true,
+    "one_row_per_base_candidate_target": true,
+    "missing_measurement_represented_as_null_plus_reason": true,
+    "source_script_blob_sha_required": true,
+    "source_input_hashes_required": true,
+    "parameter_object_required": true,
+    "software_version_object_required": true,
+    "raw_output_sha256_required": true,
+    "sidecar_gatekeeper": "tools/topa_artifact_sidecars.py",
+    "admission_requires": "VERIFICATION_PASS_AND_EXPLICIT_ADMIT_TRUE"
+  },
+  "scientific_firewall": {
+    "nuclear_calendar_loaded_during_extraction": false,
+    "classifier_score_loaded_during_extraction": false,
+    "harmonization_result_loaded_during_extraction": false,
+    "upstream_reject_flags_as_labels": false,
+    "parameter_tuning_to_nuclear_effect": "FORBIDDEN"
+  },
+  "next_execution_gate": "RECONSTRUCT_THESE_THREE_FULL_ROW_LEVEL_SIDECARS_ON_PUBLIC_PLATE_ASSETS__HASH_AND_GATE_THEM__THEN_BUILD_BLIND_REVIEW_SAMPLE"
+}
