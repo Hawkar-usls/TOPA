@@ -1,0 +1,119 @@
+{
+  "schema": "hawkar.topa.poss1_closed_open_harmonization.input_acquisition_audit.v1",
+  "artifact_id": "TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-INPUT-ACQUISITION-AUDIT-2026-08-27-v1.0",
+  "experiment_id": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+  "created_at_local": "2026-08-27T00:51:00+03:00",
+  "status": "EXECUTED_INPUT_ACQUISITION_AUDIT__REAL_CLOSED_SCORE_ROWS_NOT_ACQUIRED__NO_REAL_HARMONIZED_RESULT_YET",
+  "preregistration": "research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-v1.0.json",
+  "runner": "tools/topa_poss1_harmonization.py",
+  "io_protocol": "protocols/TOPA_JSON_RAILS_PROTOCOL-v1.0.json",
+  "scientific_reports_source": {
+    "title": "Use of machine learning to enhance detection of transient astronomical phenomena in historical observatory images",
+    "journal": "Scientific Reports",
+    "published": "2026-08-10",
+    "doi": "10.1038/s41598-026-66148-2",
+    "url": "https://www.nature.com/articles/s41598-026-66148-2",
+    "reported_closed_candidate_count": 107875,
+    "reported_ml_training_pairs": 250,
+    "reported_out_of_fold_auc": 0.81,
+    "reported_primary_nuclear_window_p": 0.024,
+    "paper_claim_ceiling_here": "PEER_REVIEWED_STATISTICAL_RESULT_WITHIN_THE_AUTHORS_CLOSED_COHORT__NOT_REPRODUCED_BY_TOPA_YET"
+  },
+  "code_availability_check": {
+    "paper_named_repository": "https://github.com/dca-doherty/VASCO-ML",
+    "paper_statement": "The paper/preprint identifies this repository as the location of the final machine-learning script.",
+    "check_date": "2026-08-27",
+    "github_repository_lookup": "404_NOT_FOUND",
+    "public_web_fetch": "404_NOT_FOUND",
+    "usable_public_copy_found_in_this_pass": false,
+    "interpretation": "The paper supplies a code location, but that location is not currently retrievable in this audit. Repository unavailability does not invalidate the paper; it blocks direct code-level replay from the cited URL.",
+    "forbidden_inference": "Do not claim the original ML implementation has been reproduced from source code while the cited repository is unavailable."
+  },
+  "closed_cohort_byte_gate": {
+    "exact_107875_candidate_rows_acquired": false,
+    "exact_raw_or_ensemble_score_per_candidate_acquired": false,
+    "candidate_row_hash_available": false,
+    "score_stream_hash_available": false,
+    "exact_closed_observation_opportunity_manifest_acquired": false,
+    "status": "BLOCKED",
+    "reason": "The peer-reviewed article reports cohort-level methods and results, but this pass did not locate the exact 107875 row-level candidate+score table required for a byte-auditable TOPA harmonization run."
+  },
+  "what_is_public_but_not_equivalent_to_closed_score_rows": [
+    {
+      "input": "Public POSS-I / DSS plate imagery and plate metadata",
+      "status": "PUBLIC_OR_RECONSTRUCTABLE",
+      "role": "Can support an independent reconstruction.",
+      "equivalence_guard": "Public plates are not the same object as the authors' selected 107875 candidate rows plus their trained ensemble scores."
+    },
+    {
+      "input": "JANUS open S0 / JPFM lineage",
+      "status": "AVAILABLE_AND_REPRODUCIBLE_WITHIN_JANUS_LINEAGE",
+      "role": "Open comparator cohort with explicit opportunity accounting.",
+      "equivalence_guard": "122511 open candidates / 312 observed nights are not the closed 107875 cohort."
+    }
+  ],
+  "paper_method_elements_safe_to_encode_without_claiming_reproduction": {
+    "artifact_classifier_pattern": [
+      "supervised likely-real versus plate-defect discrimination",
+      "out-of-fold evaluation",
+      "multiple tree-based learners / ensemble scoring",
+      "candidate-level morphology and plate-level features",
+      "score-weighted nightly transient outcome"
+    ],
+    "reported_calibration_behavior": "Isotonic calibration was attempted by the authors and collapsed the score distribution; the published analysis therefore used raw mean ensemble scores.",
+    "topa_policy_difference": "TOPA keeps raw scores immutable. Any future calibrated representation is a separately named sidecar and is never allowed to overwrite the raw score distribution.",
+    "reproduction_guard": "Encoding a methodological pattern is not reproduction of the original model, weights, candidate table, or trained state."
+  },
+  "frozen_input_obligations_before_real_cross_cohort_run": [
+    {
+      "id": "CLOSED_SCORE_ROWS",
+      "requirement": "Acquire the exact 107875 candidate identifiers/dates and raw ensemble scores, or explicitly construct an independent replacement cohort and label it RECONSTRUCTION rather than CLOSED_ORIGINAL."
+    },
+    {
+      "id": "CLOSED_OPPORTUNITY",
+      "requirement": "Build an observation-opportunity denominator for every closed-cohort date from frozen plate/usable-area/patch provenance. Candidate presence must never substitute for observing opportunity."
+    },
+    {
+      "id": "NUCLEAR_MANIFEST",
+      "requirement": "Freeze one exact paper-matching U.S. above-ground nuclear-test manifest with raw bytes and SHA-256 before looking at harmonized effect sizes."
+    },
+    {
+      "id": "DATE_UNIVERSE",
+      "requirement": "Reconcile 370 reported closed observation dates against 312 JANUS JPFM observed nights and run the mandatory intersection arm."
+    },
+    {
+      "id": "MODEL_PROVENANCE",
+      "requirement": "If the original VASCO-ML code cannot be recovered, any TOPA reimplementation must be versioned as an independent reconstruction and its training labels/features/splits/model state exported to JSON/JSONL receipts."
+    }
+  ],
+  "allowed_next_runs": [
+    "Replay JANUS open candidates under the exact paper-matching frozen nuclear calendar once that manifest is acquired and hashed.",
+    "Build a closed-cohort opportunity reconstruction from public plate metadata if exact candidate dates/plate identities become available.",
+    "Independently reconstruct the described artifact-classification architecture while keeping it epistemically separate from the original VASCO-ML implementation.",
+    "Search for an archived or forked copy of the paper-named VASCO-ML repository and verify its provenance before use."
+  ],
+  "forbidden_shortcuts": [
+    "Do not treat the harmonization engine self-test as empirical POSS-I evidence.",
+    "Do not invent 107875 rows from summary statistics.",
+    "Do not convert p=0.024 into a probability that the nuclear hypothesis is true.",
+    "Do not call raw ML scores calibrated probabilities.",
+    "Do not pool incompatible opportunity units merely to obtain a combined p-value.",
+    "Do not absorb a nuclear/UAP interpretation into the artifact classifier."
+  ],
+  "current_claim_state": {
+    "closed_ml_result_exists": "SOURCE_BOUND_PEER_REVIEWED_FACT",
+    "topa_reproduced_closed_ml_result": "NO",
+    "topa_harmonized_closed_vs_open_result": "NOT_EXECUTED_REAL_DATA",
+    "nuclear_poss1_general_association": "UNRESOLVED",
+    "nuclear_causation": "NOT_ESTABLISHED",
+    "uap_or_nhi_origin": "NOT_ESTABLISHED"
+  },
+  "next_gate": "FREEZE_PAPER_MATCHING_NUCLEAR_MANIFEST_AND_ACQUIRE_OR_RECONSTRUCT_CLOSED_ROW_LEVEL_SCORE_STREAM",
+  "machine_readable_output_policy": {
+    "all_future_receipts": "JSON",
+    "large_candidate_tables": "JSONL_OR_NDJSON_PREFERRED",
+    "compressed_large_candidate_tables": [".jsonl.gz", ".ndjson.gz", ".jsonl.bz2", ".ndjson.bz2"],
+    "hash_every_input": true,
+    "raw_score_preservation": true
+  }
+}
