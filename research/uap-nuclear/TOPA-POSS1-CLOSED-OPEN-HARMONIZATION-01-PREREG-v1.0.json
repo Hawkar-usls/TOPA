@@ -1,0 +1,148 @@
+{
+  "schema": "hawkar.topa.poss1_closed_open_harmonization.prereg.v1",
+  "artifact_id": "TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-2026-08-27-v1.0",
+  "experiment_id": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+  "version": "1.0.0",
+  "created_at_local": "2026-08-27T00:51:00+03:00",
+  "status": "PREREGISTERED__BLOCKED_ON_CLOSED_COHORT_BYTES_AND_FROZEN_COMMON_MANIFEST",
+  "purpose": "Force the Scientific Reports 2026 closed ML-scored POSS-I cohort and JANUS open reconstructions to answer the same exposure-normalized temporal-association question before TOPA absorbs the external ML architecture as an operational component.",
+  "parent_crosscheck": "research/uap-nuclear/JANUS-V25_4-ARTICLE-TOPA-PREABSORPTION-CROSSCHECK-2026-08-26-v1.1.json",
+  "runner": "tools/topa_poss1_harmonization.py",
+  "io_protocol": "protocols/TOPA_JSON_RAILS_PROTOCOL-v1.0.json",
+  "core_question": "Is the artifact-score-weighted POSS-I candidate rate per actual observing opportunity higher on nights falling inside the same frozen nuclear-test window than outside it, and does that effect survive the same statistic in both closed and open cohorts?",
+  "study_window": {
+    "start": "1949-11-19",
+    "end": "1957-04-28",
+    "window_definition": "+/- 1 calendar day around each event in the frozen nuclear manifest",
+    "no_post_hoc_window_shopping": true
+  },
+  "primary_estimand": {
+    "candidate_level_score": "s_i = raw artifact-realness score in [0,1]; it is a model score, not assumed calibrated probability",
+    "nightly_weighted_outcome": "Y_d = sum_i(s_i) for candidates observed on date d",
+    "nightly_opportunity": "O_d = frozen usable observing opportunity for date d, expressed in the same denominator within a cohort (tiles, usable patches, or usable imaged area) and reconciled before cross-cohort interpretation",
+    "exposed_rate": "R_E = sum_{d in nuclear_window}(Y_d) / sum_{d in nuclear_window}(O_d)",
+    "unexposed_rate": "R_U = sum_{d outside nuclear_window}(Y_d) / sum_{d outside nuclear_window}(O_d)",
+    "effect": "RR_score = R_E / R_U",
+    "directional_hypothesis": "RR_score > 1",
+    "claim_ceiling": "TEMPORAL_ASSOCIATION_ONLY__NO_NUCLEAR_CAUSALITY__NO_UAP_ORIGIN_INFERENCE"
+  },
+  "primary_null": {
+    "method": "EXHAUSTIVE_CIRCULAR_SHIFT_OF_FROZEN_NUCLEAR_CALENDAR",
+    "preserved": [
+      "candidate scores",
+      "nightly candidate counts",
+      "nightly observing opportunity",
+      "Palomar observation schedule",
+      "nuclear-event spacing",
+      "number of nuclear events"
+    ],
+    "test": "Compare observed RR_score to every valid circular shift of the frozen nuclear calendar across the full study window.",
+    "primary_p": "one-sided exact upper-tail fraction with RR_shift >= RR_observed",
+    "secondary_p": "two-sided log-distance from the null median",
+    "alpha": 0.05
+  },
+  "mandatory_harmonization": {
+    "same_for_all_cohorts": [
+      "study window",
+      "nuclear manifest bytes/hash",
+      "+/-1 day membership algorithm",
+      "definition of observed date",
+      "primary weighted-rate statistic",
+      "circular-shift null algorithm",
+      "directional alpha",
+      "rules for missing/invalid score rows",
+      "score semantics: raw score != calibrated probability"
+    ],
+    "opportunity_reconciliation": [
+      "Document exactly what one opportunity unit means in every cohort.",
+      "Do not equate candidate count with observing opportunity.",
+      "Do not use ANY_CANDIDATE as an outcome when every observed night is candidate-positive.",
+      "If closed and open opportunity units cannot be made commensurate, run identical within-cohort rate ratios and a common-observed-date intersection analysis; do not pool raw denominators across incompatible units."
+    ],
+    "common_date_intersection": "Mandatory secondary replay on dates observed in every supplied cohort."
+  },
+  "score_preservation_contract": {
+    "raw_score_field": "artifact_score_raw",
+    "raw_score_immutable": true,
+    "raw_score_must_remain_exported": true,
+    "calibration_replaces_raw": false,
+    "calibration_is_sidecar": true,
+    "uncalibrated_score_called_probability": false,
+    "collapse_guard": [
+      "Every candidate keeps its original raw score even if a calibrator is later added.",
+      "Calibration diagnostics are evaluated independently of the nuclear association.",
+      "If a calibrator collapses the score distribution, its output may be retained for audit but cannot become the sole weighted outcome.",
+      "No calibrator is selected because it strengthens the nuclear-window p-value."
+    ]
+  },
+  "secondary_outcomes": [
+    {
+      "id": "RAW_CANDIDATE_RATE_PER_OPPORTUNITY",
+      "definition": "candidate count / opportunity",
+      "role": "Direct bridge to JPFM-2E and independent open reconstructions."
+    },
+    {
+      "id": "PRESPECIFIED_HIGH_SCORE_THRESHOLD_RATE",
+      "definition": "count of candidates with raw score >= a threshold frozen from training/OOF behavior before nuclear testing, divided by opportunity",
+      "guard": "Threshold must not be selected on nuclear-window significance."
+    },
+    {
+      "id": "COMMON_OBSERVED_DATE_INTERSECTION",
+      "definition": "Repeat all primary/secondary statistics on the intersection of observation dates across cohorts."
+    }
+  ],
+  "classifier_absorption_gate": {
+    "decision_now": "DO_NOT_ABSORB_SUBSTANTIVE_ML_INTERPRETATION_YET",
+    "allowed_to_copy_before_result": [
+      "generic out-of-fold evaluation pattern",
+      "feature provenance discipline",
+      "grouped split discipline",
+      "score-distribution diagnostics",
+      "explainability diagnostics",
+      "JSON/JSONL streaming interfaces"
+    ],
+    "must_wait_until_harmonization": [
+      "treating the external classifier as TOPA's canonical POSS-I artifact judge",
+      "treating its nuclear-window result as a prior probability of the nuclear hypothesis",
+      "using its raw score as a calibrated physical probability"
+    ],
+    "future_training_guards": [
+      "group CV by plate and/or observation date when same-plate leakage is possible",
+      "nuclear labels excluded from features, split construction and hyperparameter selection",
+      "train/validation/test provenance frozen in JSON",
+      "raw score, rank and any calibrated sidecar all exported separately",
+      "negative controls and artifact-rich holdouts required"
+    ]
+  },
+  "cross_cohort_decision_rule": {
+    "strengthen": "If RR_score > 1 with p_upper <= 0.05 under the same primary test in both closed and open cohorts, the effect has compatible direction, and the common-date intersection does not reverse the sign, classify as HARMONIZED_REPLICATION_SIGNAL. This strengthens a temporal association only.",
+    "destroy_general_claim": "If the apparent effect disappears under shared opportunity normalization, reverses direction, or survives only in one cohort, classify it as DATASET_OR_PIPELINE_SPECIFIC and do not promote a general POSS-I/nuclear-window association.",
+    "mixed": "Conflicting but valid cohort results remain UNRESOLVED; TOPA does not average them into a preferred story.",
+    "causation": "No result from this experiment alone can establish nuclear causation, UAP origin, NHI, or the historical global resonance field."
+  },
+  "known_inputs_and_blockers": {
+    "janus_open_jpfm_2e": {
+      "status": "AVAILABLE_AS_REPRODUCIBLE_OPEN_RECONSTRUCTION_LINEAGE",
+      "known_summary": "122511 candidates, 312 observed nights, 31360 tiles; opportunity-normalized positive nuclear rate not established in JPFM-2E."
+    },
+    "scientific_reports_2026_closed": {
+      "status": "PUBLIC_PAPER_AVAILABLE__EXACT_107875_CANDIDATE_BYTES_NOT_PRESENT_IN_TOPA_REPO",
+      "known_summary": "Closed 107875-candidate ML-scored cohort reports residual nuclear-window association within its own analysis design.",
+      "blocker": "TOPA cannot honestly execute the same byte-level harmonization until the closed candidate rows/scores and a compatible observing-opportunity manifest are available or independently reconstructed."
+    },
+    "common_nuclear_manifest": {
+      "status": "HASH_GATE_NOT_YET_SATISFIED",
+      "requirement": "Freeze one exact event manifest byte-for-byte before first real harmonized run. Paper-matching DOE above-ground dates should be the primary replay arm; other calendars may be preregistered as secondary arms rather than substituted afterward."
+    }
+  },
+  "expected_output": {
+    "format": "JSON receipt plus optional JSONL/NDJSON row-level derivatives",
+    "required_hashes": [
+      "candidate input raw SHA-256",
+      "opportunity input raw SHA-256",
+      "raw score stream SHA-256",
+      "nuclear manifest raw SHA-256"
+    ],
+    "required_status": "EXECUTED_ON_SUPPLIED_COHORTS or explicit BLOCKED status; never simulated as real data."
+  }
+}
