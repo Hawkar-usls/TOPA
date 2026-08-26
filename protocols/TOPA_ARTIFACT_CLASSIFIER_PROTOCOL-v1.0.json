@@ -1,0 +1,193 @@
+{
+  "schema": "hawkar.topa.artifact_classifier.protocol.v1",
+  "artifact_id": "TOPA_ARTIFACT_CLASSIFIER_PROTOCOL-v1.0",
+  "created_at": "2026-08-27T01:58:00+03:00",
+  "status": "FROZEN_FOUNDATION__REAL_MODEL_NOT_ADMITTED_UNTIL_LABELLED_GROUP_OOF_RUN",
+  "mission": "Build an independent POSS-I image-forensics classifier for TOPA using public plate data and auditable sidecars. The classifier ranks whether a candidate image is point-source-like versus plate/scan-artifact-like. It does not decide whether an object is extraterrestrial, anomalous, nuclear-caused, or even astrophysically transient.",
+  "semantic_contract": {
+    "positive_label": "POINT_SOURCE_LIKE_IMAGE_EVIDENCE",
+    "negative_label": "PLATE_OR_SCAN_ARTIFACT_LIKE_IMAGE_EVIDENCE",
+    "positive_label_does_not_mean": [
+      "confirmed astrophysical transient",
+      "confirmed disappearing object",
+      "UAP",
+      "non-human intelligence",
+      "nuclear-test response"
+    ],
+    "score_name_for_analysis": "candidate_quality_score_raw",
+    "complementary_score_name": "artifact_likelihood_raw",
+    "score_range": [0.0, 1.0],
+    "score_semantics": "UNCALIBRATED_ENSEMBLE_RANKING_SCORE__NOT_A_PHYSICAL_PROBABILITY"
+  },
+  "independence_contract": {
+    "nuclear_calendar_available_to_classifier": false,
+    "nuclear_window_available_to_classifier": false,
+    "harmonization_effect_available_to_classifier": false,
+    "uap_or_nhi_labels_available_to_classifier": false,
+    "plate_id_used_as_predictor": false,
+    "observation_date_used_as_predictor": false,
+    "plate_id_and_date_role": "GROUP_SPLIT_AND_PROVENANCE_ONLY",
+    "rule": "CLASSIFIER_MUST_BE_TRAINABLE_AND_EVALUATABLE_WITHOUT_LOADING_ANY_NUCLEAR_EVENT MANIFEST"
+  },
+  "raw_score_policy": {
+    "rule_id": "RAW_SCORE_IS_IMMUTABLE__CALIBRATION_IS_A_SIDECAR_VIEW",
+    "raw_scores_are_overwritten": false,
+    "calibration_default": "DISABLED",
+    "permitted_future_calibration": "SEPARATE_SIDECAR_ONLY",
+    "calibrated_output_must_use_distinct_field": true,
+    "calibration_must_not_replace_ranking_stream": true,
+    "distribution_collapse_action": "REJECT_CALIBRATED_VIEW_FOR_PRIMARY_ANALYSIS__PRESERVE_RAW_STREAM",
+    "auc_is_not_calibration": true
+  },
+  "data_rails": {
+    "canonical_feature_format": "JSONL_OR_NDJSON_STREAM",
+    "canonical_score_format": "JSONL_OR_NDJSON_STREAM",
+    "compression_supported": ["gzip", "bzip2"],
+    "supported_extensions": [
+      ".json",
+      ".json.gz",
+      ".json.bz2",
+      ".jsonl",
+      ".ndjson",
+      ".jsonl.gz",
+      ".ndjson.gz",
+      ".jsonl.bz2",
+      ".ndjson.bz2"
+    ],
+    "upstream_adapter_extensions": [".csv", ".csv.gz", ".csv.bz2"],
+    "hash_requirement": "RECORD_INPUT_HASHES_AND_OUTPUT_RAW_SHA256_IN_RECEIPTS",
+    "large_dump_rule": "STREAM_OUTPUTS_AND_USE_TOPA_JSON_RAILS_FOR_SEARCH_CONVERSION_AND_HASHING"
+  },
+  "feature_families": {
+    "morphology_psf": "Local PSF-relative morphology and SExtractor/PSFEx measurements.",
+    "pixel_shape": "Pixel-level radial-profile, contour and symmetry measurements.",
+    "plate_geometry": "Distance to physical array edge, plate centre and overlap geometry.",
+    "crossscan_supercosmos": "Independent digitisation agreement on POSS-I R1 material.",
+    "modern_epoch_ptf": "PTF coverage and persistent-source evidence.",
+    "neighbor_epoch_persistence": "Independent POSS-I plate overlap/repeat-epoch evidence.",
+    "duplicate_geometry": "Duplicate/near-duplicate detection and overlap multiplicity measurements.",
+    "acquisition_provenance": "WCS residuals, exposure, plate/tile quality and acquisition diagnostics.",
+    "local_field_context": "Local source density/background and neighbourhood context.",
+    "cross_band": "Optional red/blue consistency when independently reconstructed from public plates.",
+    "human_review": "Review metadata; never a predictor when it is the target label source."
+  },
+  "forbidden_predictors": {
+    "exact_names": [
+      "nuclear_window",
+      "nuclear_test",
+      "nuclear_event",
+      "detonation",
+      "uap",
+      "nhi",
+      "effect_p_value",
+      "harmonization_outcome",
+      "label",
+      "target",
+      "ground_truth",
+      "plate_id",
+      "obs_date",
+      "date_obs",
+      "group_id"
+    ],
+    "forbidden_name_fragments": [
+      "nuclear_",
+      "atomic_test",
+      "bomb_test",
+      "detonation_",
+      "uap_",
+      "nhi_",
+      "harmonization_",
+      "outcome_"
+    ],
+    "reason": "Prevent temporal/nuclear target leakage, semantic circularity, and memorisation of plate/date identity."
+  },
+  "label_contract": {
+    "label_file_is_separate_from_feature_file": true,
+    "required_fields": ["candidate_id", "label", "label_tier", "label_source"],
+    "label_values": {"0": "PLATE_OR_SCAN_ARTIFACT_LIKE", "1": "POINT_SOURCE_LIKE"},
+    "tiers": {
+      "A": "Direct pixel-level human/forensic verdict with preserved cutout/hash and preferably independent second review.",
+      "B": "Strong independent witness such as same-plate independent digitisation or independent repeat-epoch evidence, with the witness family declared.",
+      "C": "Weak proxy or heuristic label. Allowed for ablation/auxiliary experiments only; forbidden as sole primary training truth."
+    },
+    "required_witness_field_when_applicable": "witness_families",
+    "witness_leakage_rule": "IF_A_FEATURE_FAMILY_IS_USED_TO_CREATE_ANY_TRAINING_LABEL_THAT_FEATURE_FAMILY_IS_FORBIDDEN_FROM_PREDICTORS_IN_THAT_TRAINING_ARM",
+    "mixed_label_source_rule": "PRIMARY_RECEIPT_MUST_REPORT_LABEL_SOURCE_AND_TIER_CENSUS"
+  },
+  "split_policy": {
+    "primary_group": "plate_id + observation_date when both are known",
+    "fallback_group": "plate_id",
+    "fold_assignment": "DETERMINISTIC_SHA256_GROUP_HASH",
+    "default_folds": 5,
+    "same_group_in_train_and_test": false,
+    "random_row_split_allowed": false,
+    "why": "Candidates from the same plate/night share plate defects, PSF, scanning conditions and acquisition context. Row-level random CV would overstate generalisation."
+  },
+  "reference_model_ensemble": {
+    "purpose": "Provide a reproducible nonlinear baseline without making one algorithm the epistemic authority.",
+    "members": [
+      "L2_LOGISTIC_REGRESSION",
+      "RANDOM_FOREST",
+      "EXTRA_TREES",
+      "HIST_GRADIENT_BOOSTING"
+    ],
+    "ensemble_rule": "UNWEIGHTED_MEAN_OF_MEMBER_RAW_CLASS1_SCORES_UNLESS_A_NEW_WEIGHTING_RULE_IS_PREREGISTERED",
+    "nuclear_result_may_tune_model_or_hyperparameters": false,
+    "hyperparameter_search_against_nuclear_effect": "FORBIDDEN"
+  },
+  "evaluation": {
+    "primary": ["GROUP_OOF_ROC_AUC", "GROUP_OOF_AVERAGE_PRECISION"],
+    "secondary": [
+      "GROUP_OOF_BALANCED_ACCURACY_AT_0P5",
+      "RAW_SCORE_BRIER_DIAGNOSTIC_NOT_CALIBRATION_CLAIM",
+      "RAW_SCORE_RELIABILITY_TABLE",
+      "PER_FOLD_METRICS",
+      "PER_LABEL_SOURCE_METRICS_WHERE_SAMPLE_SIZE_ALLOWS"
+    ],
+    "required_distribution_diagnostics": [
+      "min",
+      "max",
+      "mean",
+      "standard_deviation",
+      "quantiles",
+      "unique_rounded_1e-6",
+      "largest_rounded_bucket_fraction"
+    ]
+  },
+  "distribution_collapse_guard": {
+    "raw_stream_must_be_preserved_even_if_warning_fires": true,
+    "warning_if_population_sd_below": 1e-06,
+    "warning_if_unique_rounded_1e-6_below": "max(10, 0.02 * N)",
+    "warning_if_largest_rounded_bucket_fraction_above": 0.50,
+    "warning_semantics": "MODEL_OUTPUT_HAS_LOW_RESOLUTION__DO_NOT_HIDE_BY_RECALIBRATING"
+  },
+  "score_origin_policy": {
+    "training_rows_for_model_evaluation": "OOF_ONLY",
+    "unlabelled_population_scoring": "FULL_TRAINING_SET_MODEL_ALLOWED_AFTER_OOF_EVALUATION",
+    "if_scored_population_contains_training_rows": "PREFER_OOF_REPLACEMENT_FOR_THOSE_ROWS_WHEN_BUILDING_ANALYSIS_STREAM",
+    "required_output_field": "score_origin"
+  },
+  "harmonization_handoff": {
+    "score_field": "candidate_quality_score_raw",
+    "date_field": "date_obs",
+    "candidate_id_field": "candidate_id",
+    "same_mathematical_question": "SUM(candidate_quality_score_raw) PER ACTUAL OBSERVING OPPORTUNITY",
+    "opportunity_is_not": ["number of candidates", "number of positive labels"],
+    "required_opportunity_examples": ["processed tiles", "usable plate area", "predeclared exposure-equivalent"],
+    "handoff_engine": "tools/topa_poss1_harmonization.py",
+    "classifier_may_read_harmonization_receipt": false
+  },
+  "admission_gates": [
+    "FEATURE_REGISTRY_VALID",
+    "NO_FORBIDDEN_PREDICTORS",
+    "NO_WITNESS_FAMILY_TARGET_LEAKAGE",
+    "DETERMINISTIC_GROUP_FOLDS",
+    "EVERY_OOF_ROW_SCORED_EXACTLY_ONCE",
+    "BOTH_CLASSES_PRESENT_IN_EVALUATION",
+    "RAW_SCORE_STREAM_HASHED",
+    "MODEL_AND_LIBRARY_VERSIONS_RECORDED",
+    "LABEL_PROVENANCE_CENSUS_RECORDED",
+    "DISTRIBUTION_COLLAPSE_DIAGNOSTIC_RECORDED"
+  ],
+  "current_claim_ceiling": "INFRASTRUCTURE_AND_METHOD_ONLY__NO_REAL_ARTIFACT_CLASSIFIER_PERFORMANCE_CLAIM_UNTIL_REAL_LABELLED_DATA_ARE_RUN"
+}
