@@ -1,0 +1,68 @@
+{
+  "schema": "hawkar.topa.artifact_classifier.ci_receipt.v1_1",
+  "artifact_id": "TOPA-ARTIFACT-CLASSIFIER-CI-RECEIPT-2026-08-27-v1.1",
+  "created_at_local": "2026-08-27T02:00:00+03:00",
+  "status": "LOCKED_END_TO_END_SELF_TEST_WITH_SIDECAR_GATE_PASS",
+  "parent": "research/uap-nuclear/TOPA-ARTIFACT-CLASSIFIER-CI-RECEIPT-2026-08-27-v1.0.json",
+  "workflow": {
+    "name": "Validate TOPA Artifact Classifier",
+    "run_id": 33024488452,
+    "job_id": 98362508491,
+    "head_sha": "be646ea57facb82f1af97a13b237e018440a48bc",
+    "conclusion": "SUCCESS",
+    "started_at_utc": "2026-08-26T23:45:37Z",
+    "completed_at_utc": "2026-08-26T23:45:59Z"
+  },
+  "all_scientific_pipeline_self_test_steps": {
+    "pinned_public_poss1_intake": "PASS",
+    "feature_rail": "PASS",
+    "sidecar_gatekeeper": "PASS",
+    "label_rail": "PASS",
+    "group_oof_classifier_and_harmonization_handoff": "PASS",
+    "machine_readable_contracts": "PASS"
+  },
+  "sidecar_gatekeeper_admission": {
+    "tool": "tools/topa_artifact_sidecars.py",
+    "creation_commit": "962371afefb81c68663f9d236ccd7ceef586b064",
+    "tested_guards": [
+      "ready sidecar raw-SHA256 gate",
+      "candidate coverage gate",
+      "feature-registry field/type gate",
+      "RECONSTRUCTION_REQUIRED entries are not promoted",
+      "hash mismatch fails closed",
+      "only verified + admit=true sidecars are emitted into feature config",
+      "compressed JSON sidecar support"
+    ],
+    "semantic_rule": "REGISTERED_FEATURE_DOES_NOT_EQUAL_AVAILABLE_MEASUREMENT"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "lock_file": "tools/requirements-artifact-classifier.lock.txt",
+    "numpy": "2.4.6",
+    "scikit_learn": "1.9.0",
+    "joblib": "1.5.3",
+    "scipy": "1.17.1",
+    "narwhals": "2.25.0",
+    "threadpoolctl": "3.6.0"
+  },
+  "negative_history_preserved": [
+    {
+      "run_id": 33024118109,
+      "conclusion": "FAILURE",
+      "reason": "label-consensus Python boolean typo",
+      "scientific_impact": "NONE"
+    },
+    {
+      "run_id": 33024221296,
+      "conclusion": "SUCCESS",
+      "role": "repair validation before dependency lock"
+    },
+    {
+      "run_id": 33024300402,
+      "conclusion": "SUCCESS",
+      "role": "locked environment validation before sidecar gate"
+    }
+  ],
+  "claim_ceiling": "INFRASTRUCTURE_AND_REPRODUCIBILITY_ONLY__REAL_LABELLED_CLASSIFIER_NOT_YET_ADMITTED",
+  "next_scientific_gate": "RECONSTRUCT_P0_ROW_LEVEL_MORPHOLOGY_SHAPE_EDGE_SIDECARS_AND_FREEZE_REAL_BLIND_LABEL_RAIL_BEFORE_MODEL_TRAINING"
+}
