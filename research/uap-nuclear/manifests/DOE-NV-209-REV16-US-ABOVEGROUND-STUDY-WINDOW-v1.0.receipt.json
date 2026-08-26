@@ -1,0 +1,62 @@
+{
+  "schema": "hawkar.topa.nuclear_manifest.receipt.v1",
+  "artifact_id": "TOPA-DOE-NV209-REV16-US-ABOVEGROUND-STUDY-WINDOW-2026-08-27-v1.0",
+  "status": "FROZEN_LITERAL_RECONSTRUCTION_FROM_OFFICIAL_DOE_TABLE__AUTHOR_EXACT_MEMBERSHIP_NOT_YET_BYTE_VERIFIED",
+  "created_at_local": "2026-08-27T00:51:00+03:00",
+  "manifest_path": "research/uap-nuclear/manifests/DOE-NV-209-REV16-US-ABOVEGROUND-STUDY-WINDOW-v1.0.jsonl",
+  "manifest_raw_sha256": "5a783a7015b19e539ad7b864c2d462c451c0a334dcb35dec04a3e3e2e85a0f31",
+  "manifest_semantic_record_stream_sha256": "575097f618ea64ed15b799de9a6cf2820b82b9de995887cf135afc6aa8babea8",
+  "study_window": ["1949-11-19", "1957-04-28"],
+  "source": {
+    "authority": "U.S. Department of Energy / National Nuclear Security Administration Nevada Field Office",
+    "document": "United States Nuclear Tests, July 1945 through September 1992",
+    "document_id": "DOE/NV--209-REV 16",
+    "published": "2015-09",
+    "official_url": "https://nnss.gov/wp-content/uploads/2023/08/DOE_NV-209_Rev16.pdf",
+    "table": "U.S. Nuclear Tests - By Date",
+    "pdf_pages_used_zero_indexed": [28, 29, 30, 31]
+  },
+  "paper_binding": {
+    "paper": "Bruehl et al., Scientific Reports 2026, DOI 10.1038/s41598-026-66148-2",
+    "paper_method_statement": "Dates of all U.S. above ground nuclear tests during 1949-11-19 through 1957-04-28 were obtained from DOE/NV-209 Rev.16; nuclear window is test date +/-1 day.",
+    "binding_class": "LITERAL_RECONSTRUCTION_OF_PUBLISHED_SELECTION_RULE",
+    "not_claimed": "This is not claimed to be byte-identical to an unpublished author-side date file because that exact file has not been acquired."
+  },
+  "selection_rule_frozen_before_harmonized_outcome": {
+    "include_country": "United States only, because that is the 2026 ML paper method statement.",
+    "include_date_range": "DOE test date inside the POSS-I study window.",
+    "include_types": ["Airdrop", "Airburst", "Balloon", "Barge", "Surface", "Tower", "Rocket"],
+    "exclude_types": ["Crater", "Underwater", "Shaft", "Tunnel"],
+    "surface_safety_experiments": "INCLUDED in the primary literal arm because DOE lists them as tests and their physical type is Surface. This choice is frozen before observing a harmonized outcome.",
+    "deduplication": "Multiple DOE tests on one GMT date become one exposure date while all event identities remain nested in that JSONL record."
+  },
+  "census": {
+    "included_doe_test_entries": 77,
+    "included_unique_test_dates": 74,
+    "same_day_multi_test_dates": {
+      "1955-03-29": [57, 58],
+      "1956-05-27": [71, 72],
+      "1956-06-12": [75, 76]
+    },
+    "explicit_source_rows_excluded_as_not_above_ground": [
+      {"doe_test_id": 22, "name": "Uncle", "date": "1951-11-29", "type": "Crater"},
+      {"doe_test_id": 56, "name": "ESS", "date": "1955-03-23", "type": "Crater"},
+      {"doe_test_id": 64, "name": "Wigwam", "date": "1955-05-14", "type": "Underwater"}
+    ],
+    "included_safety_experiment_dates": ["1955-11-01", "1955-11-03", "1955-11-05", "1956-01-18", "1957-04-24"]
+  },
+  "predeclared_sensitivity_arm": {
+    "id": "DOE_US_ABOVEGROUND_EXCLUDING_SAFETY_EXPERIMENTS",
+    "reason": "The phrase 'nuclear weapons tests' may be interpreted as excluding DOE rows whose purpose is Safety Experiment. This ambiguity is declared now rather than after seeing the result.",
+    "rule": "Remove DOE test IDs 65, 66, 67, 68, and 86 only; retain all other primary-arm dates.",
+    "unique_dates": 69,
+    "authority": "SECONDARY_SENSITIVITY_ONLY__PRIMARY_REMAINS_LITERAL_TYPE_ARM"
+  },
+  "epistemic_guard": [
+    "The official DOE table is a source-bound nuclear-test chronology, not evidence for a POSS-I association.",
+    "The manifest was frozen before the harmonized closed/open effect was available.",
+    "A difference between this 74-date reconstruction and an author-side manifest must be treated as a provenance discrepancy, not silently edited to improve significance.",
+    "The +/-1 nuclear window is applied by the harmonization runner; it is not expanded or shifted after seeing candidate data."
+  ],
+  "next_gate": "USE_THIS_HASHED_LITERAL_MANIFEST_FOR_THE_PRIMARY_OPEN_REPLAY_AND_COMPARE_TO_AUTHOR_MEMBERSHIP_IF_CLOSED_ROWS_OR_AUTHOR_MANIFEST_ARE_ACQUIRED"
+}
