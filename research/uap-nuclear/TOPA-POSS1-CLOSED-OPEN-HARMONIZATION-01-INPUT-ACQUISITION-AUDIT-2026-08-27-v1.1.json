@@ -1,0 +1,69 @@
+{
+  "schema": "hawkar.topa.poss1_closed_open_harmonization.input_acquisition_audit.v1_1",
+  "artifact_id": "TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-INPUT-ACQUISITION-AUDIT-2026-08-27-v1.1",
+  "experiment_id": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+  "created_at_local": "2026-08-27T00:51:00+03:00",
+  "status": "NUCLEAR_LITERAL_MANIFEST_FROZEN__CLOSED_SCORE_ROWS_STILL_BLOCKED__NO_REAL_CROSS_COHORT_RESULT_YET",
+  "supersedes_for_current_input_state": "research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-INPUT-ACQUISITION-AUDIT-2026-08-27-v1.0.json",
+  "preregistration_unchanged": "research/uap-nuclear/TOPA-POSS1-CLOSED-OPEN-HARMONIZATION-01-PREREG-v1.0.json",
+  "completed_gate": {
+    "id": "DOE_REV16_LITERAL_US_ABOVEGROUND_MANIFEST",
+    "manifest": "research/uap-nuclear/manifests/DOE-NV-209-REV16-US-ABOVEGROUND-STUDY-WINDOW-v1.0.jsonl",
+    "receipt": "research/uap-nuclear/manifests/DOE-NV-209-REV16-US-ABOVEGROUND-STUDY-WINDOW-v1.0.receipt.json",
+    "manifest_raw_sha256": "5a783a7015b19e539ad7b864c2d462c451c0a334dcb35dec04a3e3e2e85a0f31",
+    "manifest_semantic_record_stream_sha256": "575097f618ea64ed15b799de9a6cf2820b82b9de995887cf135afc6aa8babea8",
+    "source": "U.S. DOE/NNSA DOE/NV--209-REV 16, U.S. Nuclear Tests - By Date",
+    "study_window": ["1949-11-19", "1957-04-28"],
+    "included_doe_test_entries": 77,
+    "unique_dates": 74,
+    "selection_rule": "U.S. entries in study window whose DOE physical type is Airdrop, Airburst, Balloon, Barge, Surface, Tower or Rocket; exclude Crater, Underwater, Shaft and Tunnel.",
+    "same_day_events_are_one_exposure_date": true,
+    "author_exact_membership_byte_verified": false,
+    "reason_for_nonexact_label": "The paper states the DOE/NV-209 Rev.16 selection rule but the authors' own date file has not been acquired. TOPA therefore calls this a literal reconstruction, not a byte-identical author manifest."
+  },
+  "ambiguity_frozen_before_outcome": {
+    "issue": "DOE includes Surface safety experiments (Project 56 and Project 57 No.1) inside the period; the phrase 'nuclear weapons tests' could be parsed with or without these rows.",
+    "primary_arm": "DOE_LITERAL_US_ABOVEGROUND includes them because physical type is Surface and DOE lists them as tests.",
+    "secondary_arm": "DOE_US_ABOVEGROUND_EXCLUDING_SAFETY_EXPERIMENTS removes DOE IDs 65,66,67,68,86 only.",
+    "secondary_unique_dates": 69,
+    "guard": "Both arms are declared now. Neither may be selected after inspecting the closed/open effect."
+  },
+  "still_blocked": {
+    "exact_closed_107875_candidate_rows": true,
+    "raw_ensemble_score_per_candidate": true,
+    "closed_cohort_candidate_hash": true,
+    "closed_cohort_score_stream_hash": true,
+    "closed_cohort_observing_opportunity_by_date": true,
+    "original_vasco_ml_repository": "Paper-named https://github.com/dca-doherty/VASCO-ML currently returns 404 in this audit pass."
+  },
+  "available_now": {
+    "json_rails": "ACTIVE_AND_CI_VALIDATED",
+    "harmonization_runner": "ACTIVE_AND_CI_VALIDATED",
+    "open_janus_jpfm_lineage": "AVAILABLE_AS_EXISTING_REPRODUCIBLE_RESULT_LINEAGE",
+    "official_us_nuclear_literal_manifest": "FROZEN",
+    "scientific_reports_method_and_summary_result": "SOURCE_BOUND_PEER_REVIEWED"
+  },
+  "next_real_action_order": [
+    "Acquire exact closed 107875 row-level candidate dates/identifiers and raw ensemble scores, preferably from authors, an authenticated archive, or a provenance-verifiable mirror.",
+    "Acquire or reconstruct closed-cohort actual observing opportunity by date from plate/usable-area provenance.",
+    "Hash both streams and store them as JSONL/NDJSON rails without altering raw scores.",
+    "Run TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01 with the frozen DOE literal primary arm and the predeclared safety-experiment sensitivity arm.",
+    "Run mandatory common-observed-date intersection.",
+    "Only after that decide whether the external ML architecture deserves canonical absorption into TOPA."
+  ],
+  "decision_state": {
+    "general_poss1_nuclear_window_association": "UNRESOLVED",
+    "closed_ml_result": "SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL_WITHIN_AUTHORS_COHORT",
+    "janus_open_opportunity_normalized_result": "NO_ROBUST_POSITIVE_SIGNAL_IN_EXISTING_JPFM_2E",
+    "harmonized_result": "NOT_YET_EXECUTED_ON_REAL_CLOSED_ROWS",
+    "causation": "NOT_ESTABLISHED",
+    "uap_or_nhi_origin": "NOT_ESTABLISHED"
+  },
+  "no_shortcuts": [
+    "No synthetic replacement for 107875 real rows.",
+    "No score distribution collapse or raw-score overwrite.",
+    "No author-calendar tweaking to reproduce p=0.024.",
+    "No choosing primary versus sensitivity calendar after seeing effect size.",
+    "No converting association p-values into truth probabilities."
+  ]
+}
