@@ -1,0 +1,253 @@
+{
+  "schema": "hawkar.topa.uap_nuclear_preabsorption_crosscheck.v1",
+  "artifact_id": "TOPA-JANUS-V25_4-NUCLEAR-UAP-PREABSORPTION-CROSSCHECK-2026-08-26-v1.1",
+  "version": "1.1.0",
+  "created_at": "2026-08-26",
+  "repository": "Hawkar-usls/TOPA",
+  "status": "EXECUTED_PREABSORPTION_CROSSCHECK__DO_NOT_ABSORB_ML_YET",
+  "parent_audit": "research/uap-nuclear/JANUS-V25_4-ARTICLE-TOPA-RETROSPECTIVE-AUDIT-2026-08-26-v1.0.json",
+  "governing_gate": "NO_CLAIM_PROMOTION_WITHOUT_WITNESS",
+  "scope": [
+    "Historical v25.4 geographic mirror claim",
+    "THE_EYE_OF_JANUS geographic identity and provenance",
+    "PALOMAR_OBSERVED_NIGHT/JPFM-2E versus 2026 Scientific Reports ML result",
+    "What TOPA may later absorb from the ML method after harmonization"
+  ],
+  "geo_mirror_result": {
+    "spec": "research/uap-nuclear/TOPA-V25_4-GEO-MIRROR-NULL-FROZEN-SPEC-2026-08-26-v1.0.json",
+    "historical_pair": {
+      "A": {"id": "Colorado_NORAD", "lat_deg": 38.75, "lon_deg": -104.7667},
+      "B": {"id": "Petrozavodsk_RU", "lat_deg": 61.7833, "lon_deg": 34.35}
+    },
+    "literal_58_reflection": {
+      "operator": "M58(phi,lambda)=(116deg-phi,lambda)",
+      "A_mirrored": {"lat_deg": 77.25, "lon_deg": -104.7667},
+      "observed_residual_km": 4302.06241199452,
+      "global_uniform_sphere_null": {
+        "N": 2000000,
+        "seed": 20260826,
+        "count_le_observed": 219430,
+        "empirical_p": 0.109715,
+        "mc_se": 0.00022099504380754785,
+        "analytic_spherical_cap_p_check": 0.10972654830250039
+      },
+      "northern_hemisphere_null": {
+        "N": 2000000,
+        "seed": 20260827,
+        "count_le_observed": 439018,
+        "empirical_p": 0.219509,
+        "mc_se": 0.000292681395820609
+      },
+      "decision": "FAIL",
+      "status_update": "REFUTED_AS_A_GEOGRAPHIC_58_DEGREE_MIRROR_UNDER_THE_FROZEN_LITERAL_OPERATOR",
+      "interpretation": "The historical pair is not geographically exceptional under the literal 58°-parallel reflection. The old 'confirmed' label is withdrawn scientifically but remains preserved historically."
+    },
+    "antipodal_negative_control": {
+      "operator": "Mant(phi,lambda)=(-phi,wrap(lambda+180deg))",
+      "A_mirrored": {"lat_deg": -38.75, "lon_deg": 75.2333},
+      "observed_residual_km": 11767.629820383425,
+      "global_uniform_sphere_null": {
+        "N": 2000000,
+        "seed": 20260828,
+        "count_le_observed": 1272498,
+        "empirical_p": 0.636249,
+        "mc_se": 0.0003401736394835732,
+        "analytic_spherical_cap_p_check": 0.6363810254729084
+      },
+      "northern_hemisphere_null": {
+        "N": 2000000,
+        "seed": 20260829,
+        "count_le_observed": 860674,
+        "empirical_p": 0.430337,
+        "mc_se": 0.0003501050316912055
+      },
+      "decision": "FAIL",
+      "role": "Negative control only. No further operator shopping is permitted in this artifact."
+    }
+  },
+  "eye_of_janus": {
+    "historical_source": "Hawkar-usls/janus-meta-registry:data/janus-meta-registry-v25.4-global-resonance-vis.json",
+    "historical_output": {
+      "codename": "THE_EYE_OF_JANUS",
+      "lat_deg": -47.3,
+      "lon_deg": 47.9,
+      "coherence_value": 0.00001,
+      "old_region_label": "Южная часть Индийского океана (район Кергелен)"
+    },
+    "geographic_correction": {
+      "status": "SOURCE_BOUND_COORDINATE_WITH_CORRECTED_GEOGRAPHIC_LABEL",
+      "correct_label": "Open southern Indian Ocean, west-southwest of the Crozet Archipelago; not geographically near the Kerguelen Archipelago.",
+      "official_crozet_context": "TAAF places Crozet in the southern Indian Ocean between approximately 45°95′–46°50′ S and 50°33′–52°58′ E.",
+      "distance_to_crozet_southwest_bound_corner_approx_km": 207.2991568364636,
+      "official_kerguelen_reference_center": "TAAF public map infographic: approximately 49°20′S, 69°20′E.",
+      "distance_to_kerguelen_reference_center_approx_km": 1595.43559082599,
+      "sources": [
+        "https://taaf.fr/collectivites/presentation-des-territoires/les-iles-australes/",
+        "https://taaf.fr/content/uploads/2022/08/Expo-voyage-en-terres-australes-web.pdf"
+      ]
+    },
+    "formula_provenance_gate": {
+      "historical_generating_formula_found": false,
+      "status": "BLOCKED_MISSING_HISTORICAL_FORMULA",
+      "reason": "The v25.4 artifact stores the Eye coordinate, coherence score, and an interpretation involving 0.99 and -0.96 vectors, but it does not specify a deterministic equation that generates (-47.3,47.9) from frozen inputs.",
+      "forbidden_action": "Do not reverse-engineer a formula that lands on the already-known Eye coordinate and then present that fit as validation.",
+      "required_before_null": [
+        "freeze node inclusion/exclusion rules",
+        "freeze signs and weights",
+        "freeze exact coordinate-generating equation",
+        "freeze geographic/random-label null population",
+        "freeze test statistic and alpha",
+        "then run the null without moving the Eye"
+      ],
+      "scientific_status": "HYPOTHESIS_ONLY"
+    }
+  },
+  "palomar_crosscheck": {
+    "janus_open_jpfm_2e": {
+      "source": "Hawkar-usls/janus-meta-registry:data/JANUS-PALOMAR-JPFM-2E-SCHEDULE-CONFOUND-DECOMPOSITION-RUN-001.json",
+      "study_window": ["1949-11-19", "1957-04-28"],
+      "plates": 640,
+      "observed_nights": 312,
+      "candidate_count": 122511,
+      "tile_count": 31360,
+      "all_observed_nights_candidate_positive": true,
+      "key_identity": "In this dense S0 cohort, ANY_CANDIDATE equals PALOMAR_OBSERVED_NIGHT on every observed night.",
+      "open_all_reported_125": {
+        "naive_calendar_or": 1.4093645484949833,
+        "naive_fisher_p": 0.03907987968450547,
+        "schedule_preserving_shift_p_upper": 0.08314937454010302,
+        "schedule_preserving_shift_p_two_sided": 0.1401766004415011,
+        "candidate_per_tile_nuclear": 3.944788629737609,
+        "candidate_per_tile_non_nuclear": 3.898500309214595,
+        "crude_rate_ratio": 1.0118733658718984,
+        "opportunity_normalized_M0": {"IRR": 1.029728670850245, "p": 0.7373617539852626},
+        "M1_season": {"IRR": 1.0198084280335005, "p": 0.8228009538632833},
+        "M2_month_year": {"IRR": 1.0155891581143708, "p": 0.8653764986983075}
+      },
+      "claim": "No robust positive nuclear enhancement survives the tile-opportunity-normalized rate test in this open reconstruction."
+    },
+    "scientific_reports_2026_closed_ml": {
+      "doi": "10.1038/s41598-026-66148-2",
+      "published": "2026-08-10",
+      "study_window": ["1949-11-19", "1957-04-28"],
+      "closed_candidate_count": 107875,
+      "reported_observation_dates": 370,
+      "reported_plate_clusters": 626,
+      "training_pairs": 250,
+      "manual_labels": {"likely_real": 134, "plate_defect": 116},
+      "features": 23,
+      "ensemble": ["XGBoost", "Random Forest", "Gradient Boosting", "LightGBM"],
+      "cross_validation": "5-fold; reported out-of-fold AUC 0.81 ± 0.04, sensitivity 0.71, specificity 0.71",
+      "calibration_note": "Isotonic calibration was attempted but collapsed the probability distribution; raw mean ensemble scores were used as candidate 'probability' scores.",
+      "nuclear_test_source": "US DOE/NV-209 Rev.16; U.S. above-ground tests; ±1 day window",
+      "primary_nuclear_statistic": "For each observed date, sum ML scores across transients; compare mean weighted count for 26 nuclear-window dates versus non-nuclear dates using 10,000 random permutations of nuclear-window labels.",
+      "reported_primary_p": 0.024,
+      "reported_mann_whitney_p": 0.002,
+      "highest_decile_association_p": "<0.0001",
+      "important_limits": [
+        "The model uses expert visual labels without an objective gold standard; the paper acknowledges this.",
+        "The primary reviewer is a co-discoverer of the transient phenomenon; the second reviewer was trained by the primary reviewer and disagreements were resolved by discussion.",
+        "AUC measures discrimination, not probability calibration; raw ensemble scores should not automatically be interpreted as calibrated probabilities.",
+        "The nuclear test uses weighted nightly counts on observed dates but does not expose an explicit nightly sky-area/tile/plate-opportunity offset comparable to JPFM-2E.",
+        "The reported 370 observed dates and 626 plates do not match JANUS open S0's 312 observed nights and 640 plates; this is direct evidence that the cohorts/opportunity universes are not identical.",
+        "Lag -3..+3 analyses were post-hoc sensitivity analyses and cannot upgrade the primary claim."
+      ],
+      "scientific_status": "SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL_WITHIN_ITS_CLOSED_COHORT"
+    },
+    "independent_open_reconstruction": {
+      "source": "Hayes 2026 arXiv:2604.04810",
+      "candidate_count": 2852431,
+      "observed_nights": 368,
+      "method": "negative binomial nightly candidate counts with observed grid patches as exposure",
+      "primary_pm1": {"IRR": 1.03, "CI95": [0.89, 1.18], "p": 0.71},
+      "interpretation": "An independently constructed open pipeline also finds the opportunity-normalized temporal association inconclusive/null despite recovering substantial catalog structure."
+    },
+    "design_level_reconciliation": {
+      "current_status": "UNRESOLVED_COHORT_AND_ESTIMAND_MISMATCH",
+      "not_a_direct_contradiction_because": [
+        "closed 107,875 cohort != JANUS open 122,511 S0 cohort != Hayes 2.85M cohort",
+        "370 observation dates != 312 JANUS observed nights != 368 Hayes nights",
+        "ML-weighted nightly count != raw candidate count with explicit tile exposure offset",
+        "US DOE above-ground calendar != JANUS OPEN_ALL_REPORTED_125 SIPRI-derived calendar unless membership is harmonized",
+        "randomly permuting nuclear labels across observed dates does not by itself normalize variable nightly observed area/opportunity"
+      ],
+      "what_is_strengthened": [
+        "Artifact contamination is a real and large methodological issue and ML scoring is a promising way to reduce it.",
+        "The closed cohort contains a statistically non-null signal under the authors' frozen primary weighted-count test.",
+        "The open reconstructions demonstrate that observation opportunity must be explicitly modeled before generalizing the nuclear-window claim."
+      ],
+      "what_is_not_strengthened": [
+        "nuclear causation",
+        "UAP causation or origin",
+        "non-human technosignature",
+        "global standing wave",
+        "THE_EYE_OF_JANUS physical zero point"
+      ]
+    }
+  },
+  "janus_cosmos_role": {
+    "status": "USEFUL_PROVENANCE_TOOLING_NOT_INDEPENDENT_NUCLEAR_EVIDENCE",
+    "relevant_assets": [
+      "Hawkar-usls/Janus-Cosmos:workspace/palomar_plate_provenance_probe.py",
+      "Hawkar-usls/Janus-Cosmos:data/love/LOVE-EDEM-STARGATE-PALOMAR-PLATE-PROVENANCE-GATE-v1.json"
+    ],
+    "useful_guards": [
+      "plate dates from header/catalog metadata",
+      "plate-center nearness is not exact footprint membership",
+      "no post-hoc target movement",
+      "claim ceiling remains plate provenance only"
+    ],
+    "firewall": "LOVE/EDEM/Stargate semantics must not be pooled as evidence for the nuclear/POSS-I association merely because the same Palomar infrastructure is used."
+  },
+  "ml_absorption_gate": {
+    "decision_now": "DO_NOT_ABSORB_ML_YET",
+    "next_gate": "TOPA_POSS1_CLOSED_OPEN_HARMONIZATION_01",
+    "required_same-test_contract": [
+      "same date window",
+      "same exact nuclear-event manifest and ±1 definition",
+      "same observed-night/date universe or an explicit intersection analysis",
+      "same plate/field identity reconciliation",
+      "same opportunity denominator: tiles, patches, usable plate area, or exposure-equivalent",
+      "same candidate inclusion/exclusion semantics",
+      "both unweighted and artifact-score-weighted outcomes",
+      "same count model with log(opportunity) offset (primary: negative binomial unless preregistered diagnostics reject it)",
+      "same schedule-preserving null/permutation strategy",
+      "same nuisance ladder: season, year/month, sky footprint, acquisition/astrometry, lunar, geomagnetic where available",
+      "grouped CV by plate/date for any retrained classifier to reduce same-plate leakage",
+      "nuclear labels forbidden from classifier features and hyperparameter selection",
+      "score calibration assessed separately from discrimination; if calibration fails, call outputs scores/ranks, not probabilities"
+    ],
+    "success_condition": "A materially positive nuclear coefficient/effect survives the same exposure-normalized model in both the closed ML-scored cohort and the open reconstruction, with compatible direction and without dependence on one dataset-specific calendar/opportunity definition.",
+    "failure_condition": "Significance that disappears under shared opportunity normalization, changes sign, or exists only in one cohort remains dataset-specific and cannot support a general nuclear-window claim.",
+    "allowed_later_absorption": [
+      "supervised artifact classification architecture",
+      "out-of-fold evaluation",
+      "feature provenance",
+      "SHAP/explainability",
+      "candidate-quality scoring",
+      "calibration diagnostics",
+      "probability/score-weighted outcomes",
+      "plate-aware geometric controls"
+    ],
+    "forbidden_absorption": [
+      "authors' substantive nuclear/UAP interpretation as a prior",
+      "raw p-values as truth scores",
+      "non-human technosignature interpretation",
+      "uncalibrated ensemble outputs mislabeled as physical probabilities"
+    ]
+  },
+  "claim_state_after_crosscheck": {
+    "latitude_58_symmetry": "REFUTED",
+    "eye_coordinate_exists_in_historical_registry": "SOURCE_BOUND_FACT",
+    "eye_old_kerguelen_geographic_label": "CORRECTED",
+    "eye_physical_zero_point": "HYPOTHESIS_ONLY",
+    "poss1_artifact_contamination": "SUPPORTED",
+    "closed_ml_nuclear_window_association": "SUPPORTED_BY_STATISTICAL_INFERENCE_WITH_MODEL",
+    "open_opportunity_normalized_nuclear_rate": "NO_ROBUST_POSITIVE_SIGNAL_IN_CURRENT_OPEN_RECONSTRUCTIONS",
+    "general_poss1_nuclear_window_association": "UNRESOLVED",
+    "nuclear_causation": "NOT_ESTABLISHED",
+    "uap_or_nonhuman_origin": "NOT_ESTABLISHED",
+    "global_nuclear_uap_standing_wave": "HYPOTHESIS_ONLY"
+  },
+  "one_line_verdict": "The mirror claim dies; the Eye remains a historical coordinate with a missing generating formula; the POSS-I nuclear-window signal survives as a real contested statistical question, but ML must not enter TOPA as authority until the closed and open cohorts survive one shared exposure-normalized test."
+}
