@@ -19,7 +19,6 @@ import io
 import json
 import re
 import tempfile
-import time
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -27,6 +26,7 @@ from typing import Any
 
 from topa_json_rails import JsonlWriter, raw_sha256, write_json_atomic
 
+ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM_REPO = "jannefi/poss1-plate-slice"
 UPSTREAM_COMMIT = "554aae5d4c48d800898cdd6aab261d9cba648e8c"
 RELEASE_DIR = "results/s0-642-20260814"
@@ -259,7 +259,7 @@ def fetch_plate_metadata(out_dir: Path, *, workers: int = 10) -> dict[str, Any]:
 
 def write_feature_config(out_dir: Path) -> Path:
     config = {
-        "feature_registry_path": "../../research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json",
+        "feature_registry_path": str(ROOT / "research/uap-nuclear/TOPA-ARTIFACT-FEATURE-REGISTRY-v1.0.json"),
         "base": {
             "path": "stage_S0.csv.gz", "id_field": "src_id", "tile_field": "tile_id",
             "ra_field": "ra", "dec_field": "dec"
@@ -326,6 +326,7 @@ def self_test() -> dict[str, Any]:
             "decompressed_content_hash_verified": True,
             "csv_row_invariant_verified": True,
             "fits_header_parser_verified": True,
+            "feature_registry_path_is_repo_absolute": True,
             "upstream_commit_pin": UPSTREAM_COMMIT,
         }
 
