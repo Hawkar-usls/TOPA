@@ -1,0 +1,46 @@
+{
+  "schema": "hawkar.topa.arxiv_gateway_ci_receipt.v1",
+  "artifact_id": "TOPA-ARXIV-GATEWAY-CI-RECEIPT-2026-08-27-v1.0",
+  "status": "CI_PASS__PORTABLE_SEARCH_ENGINE_VERIFIED",
+  "repository": "Hawkar-usls/TOPA",
+  "implementation_commit": "5efe4ab46273c1b1267150f29a83b684ca3d6d74",
+  "workflow": {
+    "name": "Validate TOPA arXiv Gateway",
+    "run_id": 33039472499,
+    "job_id": 98409553863,
+    "conclusion": "success",
+    "started_at_utc": "2026-08-27T04:27:36Z",
+    "completed_at_utc": "2026-08-27T04:27:45Z"
+  },
+  "verified": {
+    "protocol_json": "PASS",
+    "atom_fixture_parser": "PASS",
+    "smart_topic_query_builder": "PASS",
+    "sqlite_fts5_fallback": "PASS",
+    "tantivy_0_26_0_install": "PASS",
+    "tantivy_embedded_index_build": "PASS",
+    "tantivy_bm25_search": "PASS",
+    "scientific_firewall": "PASS"
+  },
+  "runtime": {
+    "python": "3.11.16",
+    "runner": "ubuntu-24.04",
+    "tantivy_python_package": "0.26.0",
+    "tantivy_wheel": "manylinux_2_17_x86_64.manylinux2014_x86_64",
+    "search_server_process_required": false
+  },
+  "network_boundary": {
+    "CI_remote_network_query_to_arxiv": false,
+    "reason": "Core CI remains deterministic and must not fail because an external provider is temporarily unavailable.",
+    "live_arxiv_access_path": "https://export.arxiv.org/api/query",
+    "live_query_command": "python tools/topa_arxiv_gateway.py investigate <topic> --work-dir work/topa-arxiv/<topic> --limit 100"
+  },
+  "scientific_boundary": {
+    "search_rank_is_evidence": false,
+    "arxiv_preprint_is_truth": false,
+    "paper_claims_require_validation": true,
+    "negative_results_remain_searchable": true,
+    "failed_fetch_is_absence_proof": false
+  },
+  "claim_ceiling": "TOPA arXiv gateway local parsing, corpus, SQLite FTS5 fallback and Tantivy portable indexing/search are provider-CI verified. Live arXiv availability remains an external runtime condition and is never confused with scientific validation."
+}
