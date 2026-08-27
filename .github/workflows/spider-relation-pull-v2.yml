@@ -5,57 +5,75 @@ on:
     paths:
       - 'tools/topa_spider_v2.py'
       - 'tools/topa_spider_v21.py'
+      - 'tools/topa_spider_v22.py'
+      - 'tools/topa_spider_seed_bridge.py'
       - 'tools/topa_archive_gateway.py'
-      - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.0.json'
-      - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.1.json'
+      - 'tools/topa_repo_assimilator.py'
+      - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.2.json'
       - 'raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl'
       - '.github/workflows/spider-relation-pull-v2.yml'
   workflow_dispatch:
 
-# LIVE_SEARCH_MARKER: 2026-08-27T16:58:00+03:00
-# V2.1 correction: collection-wide tags are IDF-attenuated and cannot pull alone.
-# Hypothesis-agnostic run: no topic query steering is supplied.
+# LIVE_SEARCH_MARKER: 2026-08-27T17:03:00+03:00
+# V2.2: no fixed topic, no query steering, full TOPA research-memory seed web.
 
 jobs:
   selective-spider:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Self-test SPIDER v2.1
-        run: python tools/topa_spider_v21.py self-test
+      - name: Self-test SPIDER v2.2
+        run: python tools/topa_spider_v22.py self-test
+      - name: Self-test repo-memory bridge
+        run: python tools/topa_spider_seed_bridge.py self-test
+      - name: Assimilate complete TOPA research memory
+        run: |
+          mkdir -p work/spider-v22
+          python tools/topa_repo_assimilator.py scan \
+            --root . \
+            --out-index work/spider-v22/repo-index.jsonl \
+            --out-queue work/spider-v22/repo-routing-queue.jsonl \
+            --receipt work/spider-v22/repo-assimilation-receipt.json
+          python tools/topa_spider_seed_bridge.py build \
+            --index work/spider-v22/repo-index.jsonl \
+            --root . \
+            --out work/spider-v22/repo-spider-seeds.jsonl \
+            --receipt work/spider-v22/repo-spider-seeds-receipt.json \
+            --max-bytes 80000
+          cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
+              work/spider-v22/repo-spider-seeds.jsonl > work/spider-v22/composite-seed-web.jsonl
       - name: Broad official archive survey stays ephemeral
         run: |
-          mkdir -p work/spider-v21
           python tools/topa_archive_gateway.py ingest \
             --providers nara,cia,nsa,fbi \
             --limit 100 \
             --expand-nara \
-            --out work/spider-v21/archive-survey.jsonl \
-            --receipt work/spider-v21/archive-survey-receipt.json
+            --out work/spider-v22/archive-survey.jsonl \
+            --receipt work/spider-v22/archive-survey-receipt.json
       - name: Pull only informatively connected records
         run: |
-          python tools/topa_spider_v21.py pull \
-            --seed raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
-            --survey work/spider-v21/archive-survey.jsonl \
-            --out work/spider-v21/spider-pulled.jsonl \
-            --receipt work/spider-v21/spider-pull-receipt.json \
+          python tools/topa_spider_v22.py pull \
+            --seed work/spider-v22/composite-seed-web.jsonl \
+            --survey work/spider-v22/archive-survey.jsonl \
+            --out work/spider-v22/spider-pulled.jsonl \
+            --receipt work/spider-v22/spider-pull-receipt.json \
             --threshold 0.24 \
             --semantic-only-threshold 0.42 \
             --max-pull 100 \
             --rounds 3
-      - name: Weave prior web plus selectively pulled records
+      - name: Weave archive bootstrap plus selectively pulled records
         run: |
           cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
-              work/spider-v21/spider-pulled.jsonl > work/spider-v21/current-web.jsonl
-          python tools/topa_spider_v21.py weave \
-            --input work/spider-v21/current-web.jsonl \
-            --nodes work/spider-v21/spider-nodes.jsonl \
-            --edges work/spider-v21/spider-edges.jsonl \
-            --receipt work/spider-v21/spider-weave-receipt.json \
+              work/spider-v22/spider-pulled.jsonl > work/spider-v22/archive-web.jsonl
+          python tools/topa_spider_v22.py weave \
+            --input work/spider-v22/archive-web.jsonl \
+            --nodes work/spider-v22/spider-nodes.jsonl \
+            --edges work/spider-v22/spider-edges.jsonl \
+            --receipt work/spider-v22/spider-weave-receipt.json \
             --semantic-threshold 0.14 \
             --topk 8 \
             --keyword-nodes 12
@@ -64,22 +82,22 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          p=json.loads(Path('work/spider-v21/spider-pull-receipt.json').read_text())
-          w=json.loads(Path('work/spider-v21/spider-weave-receipt.json').read_text())
-          proto=json.loads(Path('protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.1.json').read_text())
-          assert p['status']=='PASS'
+          p=json.loads(Path('work/spider-v22/spider-pull-receipt.json').read_text())
+          w=json.loads(Path('work/spider-v22/spider-weave-receipt.json').read_text())
+          r=json.loads(Path('work/spider-v22/repo-spider-seeds-receipt.json').read_text())
+          proto=json.loads(Path('protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.2.json').read_text())
+          assert p['status']=='PASS' and r['status']=='PASS'
           assert p['survey_candidates'] >= p['pulled_documents']
           assert p.get('query') is None
-          assert p['confound_control']['generic_collection_membership_alone_can_pull'] is False
-          assert 'COLLECTION_MEMBERSHIP_IS_NOT_RELATIONSHIP' in p['laws']
           assert 'NO_FIXED_HYPOTHESIS_CENTER' in w['laws']
-          assert proto['topic_policy']['tachyon_is_privileged'] is False
-          assert proto['topic_policy']['retrocausality_is_privileged'] is False
-          assert proto['confound_controls']['generic_collection_membership_alone_can_pull'] is False
-          print('SPIDER_RELATION_PULL_V2_1_FIREWALL=PASS')
+          assert proto['topic_policy']['fixed_hypothesis_center'] is False
+          assert proto['non_relational_metadata']['provider_identity_counts_as_relationship'] is False
+          assert proto['non_relational_metadata']['transport_status_counts_as_relationship'] is False
+          assert r['seed_records'] > 0
+          print('SPIDER_RELATION_PULL_V2_2_FULL_MEMORY_FIREWALL=PASS')
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: topa-spider-relation-pull-v21
-          path: work/spider-v21
+          name: topa-spider-relation-pull-v22
+          path: work/spider-v22
           retention-days: 14
