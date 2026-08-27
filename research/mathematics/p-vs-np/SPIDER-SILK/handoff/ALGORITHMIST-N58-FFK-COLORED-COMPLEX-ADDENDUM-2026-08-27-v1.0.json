@@ -1,0 +1,50 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.n58_ffk_addendum.v1",
+  "artifact_id": "ALGORITHMIST-N58-FFK-COLORED-COMPLEX-ADDENDUM-2026-08-27-v1.0",
+  "status": "HIGH_VALUE_EXACT_SPACE_TRANSLATION__NO_NUMERIC_N58_TRANSFER_YET",
+  "boundary": "Read-only research pointer. No selector/runtime/proof algorithm change is proposed.",
+  "exact_isomorphism": {
+    "janus_space": "{OMIT,POS,NEG}^6",
+    "combinatorial_space": "Col(2,2,2,2,2,2), equivalently the face poset of the boundary of the 6-dimensional cross-polytope",
+    "mapping": "Coordinate i is a color class with two vertices +i and -i. OMIT chooses neither; POS chooses +i; NEG chooses -i. A valid signed clause chooses at most one vertex from each color class.",
+    "compatible_union": "For two JANUS tails, coordinatewise signed union exists exactly when their set union is still a face of the colored complex; opposite signs in one coordinate create a non-face and correspond to a tautological resolvent pair."
+  },
+  "primary_source": {
+    "authors": ["Peter Frankl", "Zoltan Furedi", "Gil Kalai"],
+    "title": "Shadows of colored complexes",
+    "journal": "Mathematica Scandinavica 63 (1988), 169-178",
+    "doi": "10.7146/math.scand.a-12231",
+    "primary_link": "https://doi.org/10.7146/math.scand.a-12231",
+    "theorem_statement": "For an r-colored family F of k-sets of cardinality m, Frankl-Furedi-Kalai define the colored binomial representation and prove sharp lower bounds on the ordinary and l-shadows of F; these are the colored Kruskal-Katona inequalities.",
+    "exact_model_assumptions": "Uniform k-element faces of an r-colored complex: the ground set is partitioned into r color classes and every face contains at most one vertex from each color class.",
+    "resource_required": "A uniform layer of JANUS signed clauses plus a justified use of a shadow/down-closure relation between output layers.",
+    "candidate_janus_insertion_point": "Replace ordinary Boolean-shadow analogies in the N58 support-mass lane with the exact colored/cross-polytope face poset; test whether any canonical-CNF or resolvent-generation premise forces a shadow condition beyond the already exact Wmax occupancy.",
+    "applicability": "The ambient signed clause universe is exactly an r-colored complex with r=6 and color-class size 2. This is a stronger structural match than ordinary Kruskal-Katona.",
+    "non_applicability": "The set of generated distinct resolvents is not known to be down-closed, a simplicial complex, or a colored antichain with the hypotheses needed to turn the sharp shadow bound into a smaller raw-unit ceiling. The current Wmax already exactly maximizes total width of an arbitrary K-element subset of the signed universe, so FFK gives no automatic gain without an additional structural premise.",
+    "priority": "HIGH_VALUE_STRUCTURE__TRANSLATION_GATE_REQUIRED"
+  },
+  "related_primary_routes": [
+    {
+      "source": "Eran London, A new proof of the colored Kruskal-Katona theorem, Discrete Mathematics 126 (1994) 217-223",
+      "doi": "10.1016/0012-365X(94)90266-6",
+      "role": "independent proof route; not additional theorem authority over FFK"
+    },
+    {
+      "source": "Bollobas-Radcliffe / Bollobas-Leader face-isoperimetric inequalities for cube and grid",
+      "doi_examples": ["10.1016/S0195-6698(13)80134-5", "10.1016/S0195-6698(13)80135-7"],
+      "role": "Macaulay/isoperimetric neighboring route for face-poset occupancy; exact cross-polytope/star-poset translation still requires theorem-level review"
+    }
+  ],
+  "priority_red_test": {
+    "question": "Does JANUS canonicality or the structure of compatible joins imply that the output family, or a controlled subfamily, has a nontrivial colored-shadow/downset/antichain property?",
+    "if_yes": "FFK/star-poset Macaulay inequalities may couple support layers more strongly than arbitrary-set Wmax and deserve immediate exact evaluation.",
+    "if_no": "FFK is an exact ambient-space identification but does not improve the current raw bound; record NO_GAIN rather than importing a nonexistent closure property."
+  },
+  "laws": [
+    "EXACT_AMBIENT_SPACE_ISOMORPHISM_IS_NOT_A_BOUND_IMPROVEMENT",
+    "SHADOW_THEOREM_REQUIRES_SHADOW_PREMISE",
+    "WMAX_IS_ALREADY_EXACT_FOR_ARBITRARY_SIGNED_SUBSETS",
+    "HANDOFF_IS_RESEARCH_INPUT_NOT_ALGORITHM_CHANGE",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
