@@ -53,16 +53,16 @@
     }
   ],
   "bootstrap_sources": [
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200270001-7",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003200240001-0",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200280002-5",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r002600090002-3",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00787r000200180002-1",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00792r000701040002-4",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003100080001-9",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003800360001-1",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r002200150001-1",
-    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200170016-2"
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200270001-7.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003200240001-0.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200280002-5.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002600090002-3.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00787R000200180002-1.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00792R000701040002-4.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003100080001-9.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003800360001-1.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002200150001-1.pdf",
+    "https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200170016-2.pdf"
   ],
   "laws": [
     "PATTERN_ALIAS_IS_A_RETRIEVAL_OPERATOR_NOT_A_CLAIM",
