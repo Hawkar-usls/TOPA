@@ -1,0 +1,120 @@
+name: TOPA SPIDER SILK C023 Current Needs
+
+on:
+  push:
+    paths:
+      - 'config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json'
+      - '.github/workflows/spider-silk-c023-current-needs.yml'
+      - 'tools/topa_arxiv_gateway.py'
+      - 'tools/topa_spider_silk.py'
+      - 'tools/topa_spider_silk_strict.py'
+  workflow_dispatch:
+
+jobs:
+  research-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Boundary assertion
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cfg=json.loads(Path('config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json').read_text())
+          assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in cfg['laws']
+          assert 'P_VS_NP_IS_OPEN' in cfg['laws']
+          print('SPIDER_C023_READ_ONLY_BOUNDARY=PASS')
+          PY
+      - name: Live arXiv sweep
+        shell: bash
+        run: |
+          set +e
+          mkdir -p work/c023-current-needs
+          python tools/topa_arxiv_gateway.py investigate \
+            'formula caching DPLL contradiction caching graph tautology ordering principle proof complexity' \
+            --raw-query '(all:"formula caching" OR all:"contradiction caching" OR all:"graph tautology" OR all:"ordering principle") AND (all:DPLL OR all:resolution OR all:"proof complexity")' \
+            --work-dir work/c023-current-needs/fc-gt --limit 80 --engine sqlite \
+            > work/c023-current-needs/fc-gt.stdout.json 2> work/c023-current-needs/fc-gt.stderr.txt
+          echo $? > work/c023-current-needs/fc-gt.exit
+
+          python tools/topa_arxiv_gateway.py investigate \
+            'ordering principle CDCL clause learning VSIDS regular linear resolution' \
+            --raw-query '(all:"ordering principle" OR all:"graph tautology") AND (all:CDCL OR all:"clause learning" OR all:"regular resolution" OR all:"linear resolution")' \
+            --work-dir work/c023-current-needs/op-learning --limit 80 --engine sqlite \
+            > work/c023-current-needs/op-learning.stdout.json 2> work/c023-current-needs/op-learning.stderr.txt
+          echo $? > work/c023-current-needs/op-learning.exit
+
+          python tools/topa_arxiv_gateway.py investigate \
+            'automatability automating resolution proof search regular ordered resolution hardness' \
+            --raw-query '(all:automatability OR all:automatizable OR all:"automating resolution" OR all:"proof search") AND (all:resolution OR all:SAT)' \
+            --work-dir work/c023-current-needs/automatability --limit 80 --engine sqlite \
+            > work/c023-current-needs/automatability.stdout.json 2> work/c023-current-needs/automatability.stderr.txt
+          echo $? > work/c023-current-needs/automatability.exit
+
+          python tools/topa_arxiv_gateway.py investigate \
+            'Tseitin regular resolution treewidth DNNF FBDD branching program lower bound' \
+            --raw-query '(all:Tseitin) AND (all:"regular resolution" OR all:treewidth OR all:DNNF OR all:FBDD OR all:"branching program")' \
+            --work-dir work/c023-current-needs/tseitin --limit 80 --engine sqlite \
+            > work/c023-current-needs/tseitin.stdout.json 2> work/c023-current-needs/tseitin.stderr.txt
+          echo $? > work/c023-current-needs/tseitin.exit
+
+          python tools/topa_arxiv_gateway.py investigate \
+            'bounded width resolution clause learning restarts proof complexity SAT' \
+            --raw-query '(all:"bounded-width resolution" OR all:"width-k resolution" OR all:"bounded resolution") AND (all:"clause learning" OR all:CDCL OR all:SAT)' \
+            --work-dir work/c023-current-needs/bounded --limit 80 --engine sqlite \
+            > work/c023-current-needs/bounded.stdout.json 2> work/c023-current-needs/bounded.stderr.txt
+          echo $? > work/c023-current-needs/bounded.exit
+          exit 0
+
+      - name: Assemble broad SILK
+        run: |
+          python tools/topa_spider_silk.py assemble \
+            --config config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json \
+            --arxiv work/c023-current-needs/fc-gt \
+            --arxiv work/c023-current-needs/op-learning \
+            --arxiv work/c023-current-needs/automatability \
+            --arxiv work/c023-current-needs/tseitin \
+            --arxiv work/c023-current-needs/bounded \
+            --max-candidates 160 \
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.0.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-prestrict-receipt.json
+
+      - name: Strict sieve
+        run: |
+          python tools/topa_spider_silk_strict.py refine \
+            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.0.json \
+            --config config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json \
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.0.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-receipt.json
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.0.json').read_text())
+          assert d['status']=='PASS'
+          assert d['strict_sieve']['status']=='PASS'
+          assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in d['laws']
+          assert 'P_VS_NP_IS_OPEN' in d['laws']
+          assert len(d['canonical_external_sources']) >= 9
+          print('SPIDER_C023_CURRENT_NEEDS_FIREWALL=PASS')
+          print(json.dumps({
+            'scanned':d['live_arxiv']['records_scanned'],
+            'pre_strict':d['strict_sieve']['input_candidates'],
+            'retained':d['strict_sieve']['retained'],
+            'rejected':d['strict_sieve']['rejected'],
+            'bridges':len(d['research_bridges'])
+          },sort_keys=True))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: topa-spider-silk-c023-current-needs
+          path: work/c023-current-needs
+          retention-days: 30
