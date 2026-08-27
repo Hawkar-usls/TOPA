@@ -1,0 +1,40 @@
+{
+  "schema": "hawkar.topa.spider.silk.dual_pane_run_receipt.v1",
+  "artifact_id": "SILK-DUAL-PANE-FORENSICS-RUN-002-STRICT",
+  "date": "2026-08-27",
+  "status": "PASS__STRICT_SIEVE",
+  "workflow_run_id": 33100840546,
+  "workflow_commit": "790bdf4493910d9c245716beba048f7d53fcca42",
+  "job_id": 98617793431,
+  "spider_self_test": "PASS__STRUCTURAL_FORENSICS_WORD_BOUNDARY_DOMAIN_GATE",
+  "boundary_assertion": "PASS__SPIDER_READ_ONLY_BOUNDARY",
+  "search_stats": {
+    "records_scanned_after_dedup": 130,
+    "pre_strict_candidates": 102,
+    "strict_retained": 94,
+    "strict_rejected": 8,
+    "research_bridges_after_strict": 103
+  },
+  "output": {
+    "artifact_id": 9658370800,
+    "artifact_name": "topa-spider-silk-dual-pane-forensics",
+    "artifact_zip_sha256": "ac75ba41cb73a5a064b897f8b8652115c039a2630a0857cd8d2e7a0ccf20ae21",
+    "strict_output_sha256": "bdc831b9810fea9d38b4f7aa09942aea15eee6c0750aefc6525495e69a6ffa54",
+    "strict_semantic_sha256": "a97b587f48fc73c6e23c705840441dc662b8152eae7d019bada717f4745b6aac"
+  },
+  "new_spider_capabilities": [
+    "strict word-boundary matching for structural-forensics aliases",
+    "domain compatibility gates for structural diff / trace alignment / change impact",
+    "domain compatibility gate for content-addressed / Merkle / chunking routes",
+    "domain compatibility gate for dynamic invariant mining",
+    "cross-domain overlap remains discoverable in pre-strict artifacts but is rejected from the mission bridge set"
+  ],
+  "algorithm_changes": 0,
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "SHORT_ALIAS_SUBSTRING_IS_NOT_A_PATTERN_MATCH",
+    "CROSS_DOMAIN_TERM_OVERLAP_IS_NOT_A_MISSION_BRIDGE",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
