@@ -1,0 +1,61 @@
+name: Validate TOPA Repo Assimilation
+
+on:
+  push:
+    paths:
+      - "tools/topa_repo_assimilator.py"
+      - "protocols/TOPA_REPO_ASSIMILATION_PROTOCOL-v1.0.json"
+      - "research/repo-assimilation/**"
+      - ".github/workflows/validate-repo-assimilation.yml"
+  pull_request:
+    paths:
+      - "tools/topa_repo_assimilator.py"
+      - "protocols/TOPA_REPO_ASSIMILATION_PROTOCOL-v1.0.json"
+      - "research/repo-assimilation/**"
+      - ".github/workflows/validate-repo-assimilation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-repo-assimilation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Assimilator self-test
+        run: python tools/topa_repo_assimilator.py self-test
+      - name: Validate protocol JSON
+        run: python -m json.tool protocols/TOPA_REPO_ASSIMILATION_PROTOCOL-v1.0.json >/dev/null
+      - name: Scan complete TOPA repository
+        run: |
+          mkdir -p /tmp/topa-assimilation
+          python tools/topa_repo_assimilator.py scan \
+            --root . \
+            --out-index /tmp/topa-assimilation/repo-index.jsonl \
+            --out-queue /tmp/topa-assimilation/artifact-routing-queue.jsonl \
+            --receipt /tmp/topa-assimilation/assimilation-receipt.json
+          python -m json.tool /tmp/topa-assimilation/assimilation-receipt.json
+      - name: Enforce scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          p='/tmp/topa-assimilation/assimilation-receipt.json'
+          r=json.load(open(p, encoding='utf-8'))
+          b=r['assimilation_boundary']
+          assert b['repository_corpus_is_supervised_artifact_truth'] is False
+          assert b['artifact_labels_require_dedicated_label_rail'] is True
+          assert b['nuclear_context_may_enter_classifier_training'] is False
+          assert b['legacy_status_inherits_scientific_authority'] is False
+          assert r['files_indexed'] > 0
+          print('TOPA_REPO_ASSIMILATION_FIREWALL_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-repo-assimilation
+          path: /tmp/topa-assimilation/
+          if-no-files-found: error
+          retention-days: 30
