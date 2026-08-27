@@ -1,0 +1,33 @@
+{
+  "schema": "hawkar.topa.spider_default_binding.v2",
+  "artifact_id": "TOPA-SPIDER-DEFAULT-BINDING-2026-08-27-v2.0",
+  "status": "ACTIVE_DEFAULT",
+  "default_engine": "tools/topa_spider_v2.py",
+  "governing_protocol": "protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.0.json",
+  "legacy_engine": {
+    "path": "tools/topa_spider.py",
+    "status": "HISTORICAL_V1_SMOKE__NOT_DEFAULT",
+    "reason": "V1 used a small fixed topic dictionary for entity nodes. V2 replaces that with dynamic corpus-derived keywords and relationship-driven selective archive pulling."
+  },
+  "selection_policy": "SURVEY_BROADLY__PERSIST_ONLY_CONNECTED_RECORDS",
+  "frontier_policy": "EVERY_PULLED_RECORD_MAY_BECOME_A_SEED_FOR_THE_NEXT_BOUNDED_ROUND",
+  "topic_policy": "NO_FIXED_HYPOTHESIS_CENTER",
+  "scientific_firewall": [
+    "PULL_DECISION_IS_NOT_EVIDENCE",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "UNCONNECTED_ARCHIVE_RECORDS_STAY_EXTERNAL_POINTERS",
+    "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
+  ],
+  "validation": {
+    "local_self_test": "PASS",
+    "tested_properties": [
+      "relationship-driven pull",
+      "unrelated candidate rejection",
+      "dynamic keyword graph nodes",
+      "no fixed topic center"
+    ],
+    "ci_workflow": ".github/workflows/spider-relation-pull-v2.yml"
+  },
+  "claim_ceiling": "DEFAULT_DISCOVERY_ROUTER__NOT_A_CAUSAL_INFERENCE_ENGINE"
+}
