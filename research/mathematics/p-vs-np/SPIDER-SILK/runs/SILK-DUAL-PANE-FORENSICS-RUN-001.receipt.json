@@ -1,0 +1,44 @@
+{
+  "schema": "hawkar.topa.spider.silk.dual_pane_run_receipt.v1",
+  "artifact_id": "SILK-DUAL-PANE-FORENSICS-RUN-001",
+  "date": "2026-08-27",
+  "status": "PASS",
+  "workflow": "TOPA SPIDER SILK Dual-Pane Forensics",
+  "workflow_run_id": 33100627546,
+  "workflow_commit": "8f5597b3f17e06443f35d01f045a30e3480ef1a4",
+  "job_id": 98617050323,
+  "boundary_assertion": "PASS__SPIDER_READ_ONLY_BOUNDARY",
+  "live_search": {
+    "lanes": [
+      "execution trace divergence / alignment / state comparison",
+      "structural tree / graph / AST diff",
+      "dynamic invariant mining / inference",
+      "content-defined chunking / Merkle / rolling checksum / synchronization",
+      "dynamic slicing / change impact / dependency fault localization"
+    ],
+    "records_scanned_after_dedup": 130,
+    "candidates_retained_by_SILK": 102,
+    "research_bridges": 111
+  },
+  "output": {
+    "artifact_id": 9658281253,
+    "artifact_name": "topa-spider-silk-dual-pane-forensics",
+    "artifact_zip_sha256": "b460f6d9b781c02661fb67b485c8babbff7b8f51008cf39ce3c8baf35e587228",
+    "silk_output_sha256": "e58e5080876fe83eb15e5ad86e82eb25eb4f6e2330d390e1c5176d8bef3394fa",
+    "silk_semantic_sha256": "0b32521c83f646e5793a867e3000a12e27a7c612938f16dd0d86bc7ed2942ab0"
+  },
+  "interpretation": [
+    "The search produced research routes and candidate methods only.",
+    "No algorithm file or proof-selector logic was modified by this mission.",
+    "Total Commander is treated as a dual-pane/read-only comparison workflow metaphor, not as a mathematical result.",
+    "ArtMoney remains a differential-state narrowing metaphor over explicit observed state, not a SAT speedup.",
+    "SAT/MaxSAT-based structural diff tools may be used only as offline diagnostics or negative controls and may not be hidden inside the target algorithm runtime."
+  ],
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "COMPARE_DOES_NOT_MODIFY",
+    "SYNC_PREVIEW_IS_NOT_SYNC_APPLY",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
