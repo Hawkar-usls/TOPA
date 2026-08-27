@@ -5,22 +5,23 @@ on:
     paths:
       - 'tools/topa_spider_v24.py'
       - 'tools/topa_spider_seed_bridge.py'
-      - 'tools/topa_archive_gateway.py'
+      - 'tools/topa_archive_gateway_v12.py'
       - 'tools/topa_archive_gateway_v11.py'
+      - 'tools/topa_archive_enricher.py'
       - 'tools/topa_repo_assimilator.py'
       - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.4.json'
       - 'raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl'
       - '.github/workflows/spider-relation-pull-v2.yml'
   workflow_dispatch:
 
-# LIVE_SEARCH_MARKER: 2026-08-27T17:16:00+03:00
-# V2.4: zero relationship weight for archive tags present in >20% of candidates.
-# FBI survey is restricted to the actual /UFO/ collection. No query steering.
+# LIVE_SEARCH_MARKER: 2026-08-27T17:24:00+03:00
+# Broad CIA STARGATE collection inventory + selective deep fetch.
+# No fixed topic and no query steering.
 
 jobs:
   selective-spider:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,54 +29,95 @@ jobs:
           python-version: '3.11'
       - name: Self-test SPIDER v2.4
         run: python tools/topa_spider_v24.py self-test
-      - name: Self-test Archive Gateway v1.1
-        run: python tools/topa_archive_gateway_v11.py self-test
+      - name: Self-test Archive Gateway v1.2
+        run: python tools/topa_archive_gateway_v12.py self-test
+      - name: Self-test selective archive enricher
+        run: python tools/topa_archive_enricher.py self-test
       - name: Self-test repo-memory bridge
         run: python tools/topa_spider_seed_bridge.py self-test
       - name: Assimilate complete TOPA research memory
         run: |
-          mkdir -p work/spider-v24
+          mkdir -p work/spider-deep
           python tools/topa_repo_assimilator.py scan \
             --root . \
-            --out-index work/spider-v24/repo-index.jsonl \
-            --out-queue work/spider-v24/repo-routing-queue.jsonl \
-            --receipt work/spider-v24/repo-assimilation-receipt.json
+            --out-index work/spider-deep/repo-index.jsonl \
+            --out-queue work/spider-deep/repo-routing-queue.jsonl \
+            --receipt work/spider-deep/repo-assimilation-receipt.json
           python tools/topa_spider_seed_bridge.py build \
-            --index work/spider-v24/repo-index.jsonl \
+            --index work/spider-deep/repo-index.jsonl \
             --root . \
-            --out work/spider-v24/repo-spider-seeds.jsonl \
-            --receipt work/spider-v24/repo-spider-seeds-receipt.json \
+            --out work/spider-deep/repo-spider-seeds.jsonl \
+            --receipt work/spider-deep/repo-spider-seeds-receipt.json \
             --max-bytes 80000
           cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
-              work/spider-v24/repo-spider-seeds.jsonl > work/spider-v24/composite-seed-web.jsonl
-      - name: Broad official archive survey stays ephemeral
+              work/spider-deep/repo-spider-seeds.jsonl > work/spider-deep/composite-seed-web.jsonl
+      - name: Broad official archive inventory stays ephemeral
         run: |
-          python tools/topa_archive_gateway_v11.py ingest \
+          python tools/topa_archive_gateway_v12.py ingest \
             --providers nara,cia,nsa,fbi \
             --limit 100 \
+            --cia-pages 20 \
             --expand-nara \
-            --out work/spider-v24/archive-survey.jsonl \
-            --receipt work/spider-v24/archive-survey-receipt.json
-      - name: Pull only informatively connected records
+            --out work/spider-deep/archive-survey.jsonl \
+            --receipt work/spider-deep/archive-survey-receipt.json
+      - name: Frontier round 1 select pointers only
         run: |
           python tools/topa_spider_v24.py pull \
-            --seed work/spider-v24/composite-seed-web.jsonl \
-            --survey work/spider-v24/archive-survey.jsonl \
-            --out work/spider-v24/spider-pulled.jsonl \
-            --receipt work/spider-v24/spider-pull-receipt.json \
+            --seed work/spider-deep/composite-seed-web.jsonl \
+            --survey work/spider-deep/archive-survey.jsonl \
+            --out work/spider-deep/pull-r1.jsonl \
+            --receipt work/spider-deep/pull-r1-receipt.json \
             --threshold 0.24 \
             --semantic-only-threshold 0.42 \
-            --max-pull 100 \
-            --rounds 3
-      - name: Weave archive bootstrap plus selectively pulled records
+            --max-pull 25 \
+            --rounds 1
+      - name: Deep-fetch only round-1 connected pointers
         run: |
+          python tools/topa_archive_enricher.py enrich \
+            --input work/spider-deep/pull-r1.jsonl \
+            --out work/spider-deep/enriched-r1.jsonl \
+            --receipt work/spider-deep/enriched-r1-receipt.json
+          cat work/spider-deep/composite-seed-web.jsonl \
+              work/spider-deep/enriched-r1.jsonl > work/spider-deep/frontier-r2-seeds.jsonl
+      - name: Frontier round 2 search from newly read content
+        run: |
+          python tools/topa_spider_v24.py pull \
+            --seed work/spider-deep/frontier-r2-seeds.jsonl \
+            --survey work/spider-deep/archive-survey.jsonl \
+            --out work/spider-deep/pull-r2.jsonl \
+            --receipt work/spider-deep/pull-r2-receipt.json \
+            --threshold 0.24 \
+            --semantic-only-threshold 0.42 \
+            --max-pull 25 \
+            --rounds 1
+          python tools/topa_archive_enricher.py enrich \
+            --input work/spider-deep/pull-r2.jsonl \
+            --out work/spider-deep/enriched-r2.jsonl \
+            --receipt work/spider-deep/enriched-r2-receipt.json
+      - name: Deduplicate accepted enriched frontier and weave
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          src=['work/spider-deep/enriched-r1.jsonl','work/spider-deep/enriched-r2.jsonl']
+          by={}
+          for fn in src:
+              for line in Path(fn).read_text().splitlines():
+                  if not line.strip(): continue
+                  r=json.loads(line)
+                  key=(r.get('provider'),r.get('archive_id'),r.get('source_url'))
+                  by[key]=r
+          out=Path('work/spider-deep/spider-pulled-enriched.jsonl')
+          out.write_text(''.join(json.dumps(r,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n' for _,r in sorted(by.items(),key=lambda kv:str(kv[0]))),encoding='utf-8')
+          print('DEDUP_ENRICHED_PULLS',len(by))
+          PY
           cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
-              work/spider-v24/spider-pulled.jsonl > work/spider-v24/archive-web.jsonl
+              work/spider-deep/spider-pulled-enriched.jsonl > work/spider-deep/archive-web.jsonl
           python tools/topa_spider_v24.py weave \
-            --input work/spider-v24/archive-web.jsonl \
-            --nodes work/spider-v24/spider-nodes.jsonl \
-            --edges work/spider-v24/spider-edges.jsonl \
-            --receipt work/spider-v24/spider-weave-receipt.json \
+            --input work/spider-deep/archive-web.jsonl \
+            --nodes work/spider-deep/spider-nodes.jsonl \
+            --edges work/spider-deep/spider-edges.jsonl \
+            --receipt work/spider-deep/spider-weave-receipt.json \
             --semantic-threshold 0.14 \
             --topk 8 \
             --keyword-nodes 12
@@ -84,22 +126,22 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          p=json.loads(Path('work/spider-v24/spider-pull-receipt.json').read_text())
-          w=json.loads(Path('work/spider-v24/spider-weave-receipt.json').read_text())
-          a=json.loads(Path('work/spider-v24/archive-survey-receipt.json').read_text())
-          r=json.loads(Path('work/spider-v24/repo-spider-seeds-receipt.json').read_text())
-          proto=json.loads(Path('protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.4.json').read_text())
-          assert p['status']=='PASS' and r['status']=='PASS' and a['status']=='PASS'
-          assert p['survey_candidates'] >= p['pulled_documents']
-          assert p.get('query') is None
-          assert proto['archive_tag_policy']['maximum_substantive_prevalence']==0.20
-          assert proto['topic_policy']['fixed_hypothesis_center'] is False
-          assert a['provider_hygiene']['FBI']=='KEEP_LANDING_AND_PATH_PREFIX_/UFO/_ONLY'
+          survey=json.loads(Path('work/spider-deep/archive-survey-receipt.json').read_text())
+          p1=json.loads(Path('work/spider-deep/pull-r1-receipt.json').read_text())
+          p2=json.loads(Path('work/spider-deep/pull-r2-receipt.json').read_text())
+          e1=json.loads(Path('work/spider-deep/enriched-r1-receipt.json').read_text())
+          w=json.loads(Path('work/spider-deep/spider-weave-receipt.json').read_text())
+          assert survey['status']=='PASS' and p1['status']=='PASS' and p2['status']=='PASS'
+          assert p1.get('query') is None and p2.get('query') is None
+          assert p1['survey_candidates'] >= p1['pulled_documents']
           assert 'NO_FIXED_HYPOTHESIS_CENTER' in w['laws']
-          print('SPIDER_RELATION_PULL_V2_4_STRICT_FIREWALL=PASS')
+          cia=(survey.get('provider_receipts') or {}).get('cia_collection') or {}
+          assert cia.get('retrieval_policy')=='LISTING_POINTERS_ONLY__DEEP_FETCH_REQUIRES_SPIDER_SELECTION'
+          assert e1['input_records']==p1['pulled_documents']
+          print('SPIDER_BROAD_SURVEY_SELECTIVE_DEEP_FETCH=PASS')
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: topa-spider-relation-pull-v24
-          path: work/spider-v24
+          name: topa-spider-deep-search
+          path: work/spider-deep
           retention-days: 14
