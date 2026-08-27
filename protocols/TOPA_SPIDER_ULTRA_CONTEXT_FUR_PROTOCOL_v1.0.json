@@ -1,0 +1,68 @@
+{
+  "schema": "hawkar.topa.spider_ultra_context_fur_protocol.v1",
+  "artifact_id": "TOPA-SPIDER-ULTRA-CONTEXT-FUR-PROTOCOL-2026-08-27-v1.0",
+  "status": "ACTIVE_CONTEXT_ENRICHMENT_PROTOCOL",
+  "purpose": "Make each SPIDER event/document node grow a provenance-bearing contextual fur across successive passes: temporal, spatial, environmental, astronomical, geospace, aviation, space activity, witness, sensor, institutional, media, archive, conventional-hypothesis, contradiction and missingness facets.",
+  "engine": "tools/topa_spider_context_fur.py",
+  "metaphor": {
+    "fur": "A dense set of small contextual facets around a node.",
+    "spiral_growth": "Each pass may fill previously UNKNOWN facets, add independent corroboration, preserve conflicts, or leave a facet unresolved.",
+    "critical_boundary": "More fur means richer context, not a stronger extraordinary claim."
+  },
+  "facet_families": [
+    "physical_event",
+    "witness_report",
+    "temporal",
+    "geospatial",
+    "weather",
+    "illumination_astronomy",
+    "geospace",
+    "atmospheric_environment",
+    "aviation",
+    "space_activity",
+    "sensors",
+    "institutional_routing",
+    "media_amplification",
+    "archive_provenance",
+    "conventional_hypotheses",
+    "contradiction_disconfirmation",
+    "information_flow",
+    "uncertainty_missingness"
+  ],
+  "pass_behavior": [
+    "extract source-bound facets from newly pulled records",
+    "generate acquisition tasks for every unresolved high-value field",
+    "merge new observations append-only with previous fur",
+    "do not increment evidence for identical replay",
+    "preserve contradictory values as conflicts instead of averaging",
+    "feed newly resolved facets back into SPIDER graph/frontier routing",
+    "export complete fur and pass history to HRAiN SPIDER Mode"
+  ],
+  "preferred_external_context_sources": {
+    "weather": ["NOAA/NCEI", "official meteorological archives", "ERA5 or equivalent reanalysis"],
+    "astronomy": ["deterministic ephemeris", "USNO/JPL public ephemeris"],
+    "geospace": ["NOAA SWPC", "GFZ indices", "NASA public space-weather archives"],
+    "aviation": ["FAA", "NTSB", "ATC/radar records", "public historical flight records where lawful"],
+    "space_activity": ["official launch/reentry logs", "public TLE history where available", "NASA/USSPACECOM public notices"],
+    "media": ["library/newspaper archives", "wire-service archives", "official press records"],
+    "institutional": ["NARA", "FOIA reading rooms", "presidential libraries"]
+  },
+  "facet_statuses": ["UNKNOWN", "PARTIAL", "RESOLVED", "CONFLICT"],
+  "laws": [
+    "CONTEXT_FACET_IS_NOT_CAUSATION",
+    "UNKNOWN_STAYS_UNKNOWN",
+    "REPLAY_IS_NOT_NEW_EVIDENCE",
+    "SAME_SOURCE_REPRINT_IS_NOT_INDEPENDENT_WITNESS",
+    "WEATHER_MATCH_IS_NOT_EVENT_IDENTIFICATION",
+    "ASTRONOMICAL_MATCH_IS_A_HYPOTHESIS_UNTIL_GEOMETRY_AND_TIME_AGREE",
+    "MISSING_DATA_IS_A_FIRST_CLASS_RESULT",
+    "CONFLICTS_ARE_PRESERVED_NOT_AVERAGED_AWAY",
+    "CONTEXT_COMPLETENESS_IS_NOT_CLAIM_STRENGTH"
+  ],
+  "hrain": {
+    "mode": "spider.html",
+    "display": "Per-node Context Fur panel with coverage, resolved observations, conflicts and acquisition queue.",
+    "source_authority": "ZERO; TOPA source records and receipts remain authoritative."
+  },
+  "claim_ceiling": "CONTEXTUAL_ENRICHMENT_AND_DISCOVERY_ROUTING_ONLY__NO_CAUSAL_OR_EXTRAORDINARY_PROMOTION"
+}
