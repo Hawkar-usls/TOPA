@@ -1,0 +1,91 @@
+{
+  "schema": "hawkar.topa.repo_assimilation_protocol.v1",
+  "id": "TOPA_REPO_ASSIMILATION_PROTOCOL_V1_0",
+  "version": "1.0",
+  "status": "ACTIVE_FROZEN_BEFORE_FIRST_FULL_REPO_ASSIMILATION",
+  "purpose": "Allow TOPA to traverse its own repository as append-only research memory, discover methods, failures, source routes, preregistrations, receipts, integrations and artifact-classifier-relevant evidence paths, while preventing repository text from silently becoming supervised ground truth.",
+  "core_rules": [
+    "REPOSITORY_CORPUS_IS_RESEARCH_MEMORY_NOT_WORLD_TRUTH",
+    "REPOSITORY_CORPUS_IS_NOT_ARTIFACT_CLASSIFIER_GROUND_TRUTH",
+    "LEGACY_STATUS_DOES_NOT_INHERIT_SCIENTIFIC_AUTHORITY",
+    "NEGATIVE_RESULTS_AND_FAILED_RUNS_REMAIN_SEARCHABLE",
+    "METHOD_MEMORY_MAY_ROUTE_NEW_TESTS_BUT_MAY_NOT_PROMOTE_CLAIMS",
+    "SOURCE_ROUTE_DISCOVERY_IS_NOT_SOURCE_VERIFICATION",
+    "ROUTING_SCORE_IS_NOT_EVIDENCE",
+    "ARTIFACT_LABELS_REQUIRE_THE_DEDICATED_BLIND_LABEL_RAIL",
+    "NUCLEAR_CONTEXT_IS_FORBIDDEN_FROM_ARTIFACT_CLASSIFIER_TRAINING",
+    "MODELS_MAY_NOT_REWRITE_RAW_LEDGER"
+  ],
+  "allowed_assimilation_uses": [
+    "METHOD_MEMORY",
+    "SCHEMA_DISCOVERY",
+    "FAILURE_MODE_MEMORY",
+    "NEGATIVE_RESULT_MEMORY",
+    "PROVENANCE_ROUTING",
+    "SOURCE_ROUTE_DISCOVERY",
+    "FALSIFICATION_PATTERN_DISCOVERY",
+    "INTEGRATION_DISCOVERY",
+    "RESEARCH_DEBT_DISCOVERY"
+  ],
+  "forbidden_automatic_promotions": [
+    "REPO_TEXT_TO_SOURCE_FACT",
+    "REPO_TEXT_TO_REPRODUCIBLE_EXPERIMENT",
+    "REPO_TEXT_TO_ARTIFACT_LABEL",
+    "LEGACY_CONFIDENCE_TO_EVIDENCE",
+    "SURVIVOR_STATUS_TO_EVIDENCE",
+    "MODEL_OR_AGENT_CONSENSUS_TO_WORLD_TRUTH",
+    "HISTORICAL_HYPOTHESIS_TO_ACTIVE_FACT"
+  ],
+  "artifact_classifier_firewall": {
+    "repo_files_may_become_predictor_data_directly": false,
+    "repo_files_may_become_training_labels_directly": false,
+    "repo_files_may_route_to_public_plate_assets": true,
+    "repo_files_may_supply_frozen_measurement_specs": true,
+    "repo_files_may_supply_failure_modes_and_confounders": true,
+    "repo_files_may_supply_source_and_provenance_paths": true,
+    "label_admission_tool": "tools/topa_artifact_labels.py",
+    "sidecar_admission_tool": "tools/topa_artifact_sidecars.py",
+    "classifier_tool": "tools/topa_artifact_classifier.py"
+  },
+  "repo_assimilator": {
+    "tool": "tools/topa_repo_assimilator.py",
+    "deterministic_path_order": true,
+    "raw_sha256_per_indexed_file": true,
+    "canonical_record_stream_sha256": true,
+    "canonical_routing_queue_sha256": true,
+    "json_metadata_probe": true,
+    "negative_failure_language_probe": true,
+    "artifact_lane_routing": true,
+    "artifact_routing_score_semantics": "ROUTING_ONLY_NOT_SCIENTIFIC_EVIDENCE"
+  },
+  "primary_outputs": [
+    "repo-index.jsonl",
+    "artifact-routing-queue.jsonl",
+    "assimilation-receipt.json"
+  ],
+  "required_receipt_boundaries": {
+    "repository_corpus_is_supervised_artifact_truth": false,
+    "artifact_labels_require_dedicated_label_rail": true,
+    "nuclear_context_may_enter_classifier_training": false,
+    "legacy_status_inherits_scientific_authority": false
+  },
+  "relationship_to_topa_foundation": {
+    "foundation": "protocols/TOPA_FOUNDATION.json",
+    "strict_science_gate": "protocols/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+    "epistemic_router": "integrations/janus-distributed-ai-swarm/topa_epistemic_router.py",
+    "inherit_rules": [
+      "RAW_PROVENANCE_MUST_BE_PRESERVED",
+      "NEGATIVE_RESULTS_ARE_PRESERVED",
+      "DISCONFIRMING_EVIDENCE_MUST_BE_SEARCHABLE",
+      "MODEL_CONSENSUS_IS_NOT_WORLD_TRUTH",
+      "MISSING_DATA_STAYS_MISSING",
+      "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT"
+    ]
+  },
+  "scientific_meaning_of_training": {
+    "repo_assimilation": "Methodological memory and investigation routing: TOPA learns what methods, failures, source routes and gates exist in its own organism.",
+    "artifact_classifier_training": "Supervised image-forensics fitting on separately admitted blind labels and measured feature rails.",
+    "must_not_conflate": true
+  },
+  "claim_ceiling": "A full repository assimilation can demonstrate that TOPA indexed and routed its own research memory. It cannot by itself demonstrate improved image-classifier accuracy, validate a scientific claim, or create empirical evidence."
+}
