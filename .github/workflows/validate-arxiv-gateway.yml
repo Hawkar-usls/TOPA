@@ -1,0 +1,45 @@
+name: Validate TOPA arXiv Gateway
+
+on:
+  push:
+    paths:
+      - 'tools/topa_arxiv_gateway.py'
+      - 'tools/requirements-arxiv-gateway.txt'
+      - 'protocols/TOPA_ARXIV_GATEWAY_PROTOCOL-v1.0.json'
+      - 'docs/ARXIV_GATEWAY.md'
+      - '.github/workflows/validate-arxiv-gateway.yml'
+  pull_request:
+    paths:
+      - 'tools/topa_arxiv_gateway.py'
+      - 'tools/requirements-arxiv-gateway.txt'
+      - 'protocols/TOPA_ARXIV_GATEWAY_PROTOCOL-v1.0.json'
+      - 'docs/ARXIV_GATEWAY.md'
+      - '.github/workflows/validate-arxiv-gateway.yml'
+
+jobs:
+  arxiv-gateway:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate protocol JSON
+        run: python -m json.tool protocols/TOPA_ARXIV_GATEWAY_PROTOCOL-v1.0.json >/dev/null
+      - name: Standard-library fallback self-test
+        run: python tools/topa_arxiv_gateway.py self-test
+      - name: Install Tantivy portable engine
+        run: python -m pip install --disable-pip-version-check -r tools/requirements-arxiv-gateway.txt
+      - name: Tantivy-backed self-test
+        run: |
+          python tools/topa_arxiv_gateway.py self-test | tee /tmp/topa-arxiv-self-test.json
+          python - <<'PY'
+          import json
+          p='/tmp/topa-arxiv-self-test.json'
+          r=json.load(open(p, encoding='utf-8'))
+          assert r['status']=='PASS'
+          assert r['sqlite_fts5']=='PASS'
+          assert r['tantivy']=='PASS'
+          assert r['remote_network_used'] is False
+          print('TOPA_ARXIV_GATEWAY_CI_PASS')
+          PY
