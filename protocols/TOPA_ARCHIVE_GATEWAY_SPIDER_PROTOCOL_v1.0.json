@@ -1,0 +1,79 @@
+{
+  "artifact_id": "TOPA-ARCHIVE-GATEWAY-SPIDER-PROTOCOL-2026-08-27-v1.0",
+  "claim_ceiling": "SPIDER_IS_A_DISCOVERY_AND_RELATIONSHIP_ROUTING_SYSTEM__IT_DOES_NOT_ESTABLISH_CAUSATION_OR_EXTRAORDINARY_PHYSICS",
+  "components": {
+    "archive_gateway": "tools/topa_archive_gateway.py",
+    "federated_search": "tools/topa_federated_search.py",
+    "json_rails": "tools/topa_json_rails.py",
+    "local_search_fallback": "SQLite FTS5",
+    "local_search_primary": "Tantivy BM25",
+    "spider": "tools/topa_spider.py"
+  },
+  "first_smoke": {
+    "all_edges_weak_or_speculative": true,
+    "dataset": "raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl",
+    "documents": 10,
+    "edges": 162,
+    "nodes": 45,
+    "purpose": "Engineering smoke and initial archival web, not a scientific discovery claim."
+  },
+  "graph": {
+    "edge_types": [
+      "MENTIONS",
+      "SHARED_ENTITY",
+      "SOURCE_LINEAGE",
+      "SEMANTIC_SIMILARITY",
+      "CONTRADICTION_OR_DISCONFIRMATION_RESERVED"
+    ],
+    "independence_rule": "Same-source retellings do not increase independence_count.",
+    "node_types": [
+      "document",
+      "topic",
+      "place",
+      "date",
+      "tag"
+    ],
+    "promotion_rule": "Graph density or semantic similarity alone can never promote a claim.",
+    "weak_edge_meaning": "Discovery lead only.",
+    "weak_edges_allowed": true
+  },
+  "laws": [
+    "DECLASSIFICATION_IS_PROVENANCE_NOT_TRUTH",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "ARCHIVED_REPORT_IS_NOT_DIRECT_OBSERVATION",
+    "FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+    "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS",
+    "NEGATIVE_RESULTS_ARE_PRESERVED"
+  ],
+  "providers": {
+    "CIA": {
+      "mode": "OFFICIAL_READING_ROOM_SEEDS_AND_DOCUMENTS",
+      "note": "Seeded by exact declassified Reading Room identifiers; provider interface is extensible."
+    },
+    "FBI": {
+      "landing": "https://vault.fbi.gov/UFO",
+      "mode": "OFFICIAL_VAULT_UFO_LANDING_HARVEST"
+    },
+    "NARA": {
+      "landing": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download",
+      "mode": "OFFICIAL_UAP_BULK_METADATA",
+      "note": "Uses NARA official bulk-download metadata links rather than the keyed Catalog API for mirroring; large ZIP/PDF bytes stay as source pointers unless explicitly fetched."
+    },
+    "NSA": {
+      "landing": "https://www.nsa.gov/Helpful-Links/NSA-FOIA/Frequently-Requested-Information/Unidentified-Flying-Objects-UFOs/",
+      "mode": "OFFICIAL_FOIA_UFO_LANDING_HARVEST"
+    }
+  },
+  "purpose": "Ingest official public archival metadata/text into append-only JSON rails and weave low-confidence discovery graphs that can strengthen only through explicit provenance or independent evidence.",
+  "schema": "hawkar.topa.spider_protocol.v1",
+  "status": "ACTIVE_FALSIFICATION_FIRST_ARCHIVE_GRAPH_PROTOCOL",
+  "storage_contract": {
+    "append_only": true,
+    "git_raw_unexamined": "Small JSON/JSONL metadata, extracted public text, hashes, manifests, graph receipts.",
+    "large_binaries": "Do not mirror automatically into GitHub; preserve official URL, size/hash when fetched, and provenance pointer.",
+    "review_state_default": "UNEXAMINED"
+  }
+}
