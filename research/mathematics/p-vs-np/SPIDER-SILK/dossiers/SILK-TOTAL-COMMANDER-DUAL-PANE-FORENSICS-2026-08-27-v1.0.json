@@ -1,0 +1,176 @@
+{
+  "schema": "hawkar.topa.spider.silk.total_commander_forensics.v1",
+  "artifact_id": "SILK-TOTAL-COMMANDER-DUAL-PANE-FORENSICS-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "ACTIVE_RESEARCH_ONLY__NO_ALGORITHM_MODIFICATION",
+  "scope": {
+    "location": "research/mathematics/p-vs-np/SPIDER-SILK",
+    "mission": "Collect external methods, technical analogies, diagnostic instruments, negative results and search improvements that may help the separate JANUS algorithm-development dialogue.",
+    "hard_boundary": "SPIDER_MAY_OBSERVE_INDEX_COMPARE_ROUTE_AND_ARCHIVE__SPIDER_MUST_NOT_CHANGE_THE_ALGORITHM"
+  },
+  "operational_metaphors": {
+    "ARTMONEY": {
+      "principle": "DIFFERENTIAL_STATE_NARROWING",
+      "mapping": "Repeatedly filter explicit observed state components by predicates on how they changed between controlled runs.",
+      "allowed": "Diagnostic localization over already materialized JANUS states and traces.",
+      "forbidden": "Treating the technique as polynomial search over an implicit 2^n SAT assignment space."
+    },
+    "TOTAL_COMMANDER": {
+      "principle": "DUAL_PANE_STRUCTURAL_FORENSICS",
+      "mapping": [
+        "left_pane = GOOD/reference state or trajectory",
+        "right_pane = BAD/hostile state or trajectory",
+        "compare_by_content = compare canonical structure/content, not only names or addresses",
+        "synchronize_dirs_preview = reconcile inventories and expose missing/changed/extra objects without applying changes",
+        "hide_equal = remove identical state regions from the analyst view",
+        "quick_filter = restrict the view to one clause/reason/resource family",
+        "duplicate_search = collapse repeated identical artifacts while retaining multiplicity provenance",
+        "checksums = integrity/provenance screening; exact canonical equality remains the authority",
+        "partial_branch_view = inspect only the dependency cone or branch around first divergence",
+        "plugins/custom_fields = extend SPIDER extractors without changing the algorithm"
+      ],
+      "allowed": "Read-only diagnostic shell and research UI/data model.",
+      "forbidden": "Synchronizing or copying external research conclusions into solver state, changing proof transitions, or making UI similarity evidence."
+    }
+  },
+  "scientific_routes": [
+    {
+      "id": "ZELLER_CAUSE_EFFECT",
+      "source": "https://www.st.cs.uni-saarland.de/papers/fse2002/",
+      "type": "peer_reviewed_method",
+      "finding": "Passing and failing executions can be compared as sequences of states; controlled altered executions can narrow relevant variables and values into a cause-effect chain.",
+      "janus_route": "GOOD_BAD_TRACE -> FIRST_DIVERGENCE -> CONTROLLED_VALID_STATE_PERTURBATION -> SMALLER_DIFFERENTIAL_SLICE",
+      "claim_ceiling": "METHOD_ANALOGUE_NOT_COMPLEXITY_RESULT"
+    },
+    {
+      "id": "TOTAL_COMMANDER_OFFICIAL",
+      "source": "https://www.ghisler.com/",
+      "type": "official_software_documentation",
+      "finding": "Total Commander exposes two side-by-side file panes, compare-by-content, directory synchronization, quick filtering, duplicate search, custom columns/plugins and tree/branch-oriented navigation.",
+      "janus_route": "DUAL_PANE_READ_ONLY_PROOF_STATE_FORENSICS",
+      "claim_ceiling": "INTERFACE_AND_WORKFLOW_ANALOGUE"
+    },
+    {
+      "id": "TOTAL_COMMANDER_SYNC_CONTENT",
+      "source": "https://www.ghisler.com/efaqfile.htm",
+      "type": "official_software_documentation",
+      "finding": "Synchronize dirs can compare directory trees by content and hide/show equal files.",
+      "janus_route": "STATE_INVENTORY_RECONCILIATION_PREVIEW_WITH_HIDE_EQUAL",
+      "claim_ceiling": "WORKFLOW_ANALOGUE"
+    },
+    {
+      "id": "RSYNC_TECH_REPORT",
+      "source": "https://rsync.samba.org/tech_report/",
+      "type": "technical_report",
+      "finding": "Rsync identifies matching blocks and sends only unmatched material, using a cheap rolling checksum as a screen and a stronger checksum for candidate matches.",
+      "janus_route": "FAST_SKIP_OF_IDENTICAL_SERIALIZED_STATE_REGIONS + STRONG_VERIFY_BEFORE_EQUALITY",
+      "claim_ceiling": "DATA_COMPARISON_ACCELERATOR_ONLY"
+    },
+    {
+      "id": "CONTENT_DEFINED_MERKLE",
+      "source": "https://arxiv.org/abs/2104.02158",
+      "type": "research_paper",
+      "finding": "Content-defined chunking plus Merkle indexing can localize changed blocks and avoid reprocessing unchanged content.",
+      "janus_route": "HASH_TREE_OVER_CANONICAL_STATE_COMPONENTS_TO_SKIP_EQUAL_SUBTREES",
+      "claim_ceiling": "RESEARCH_ROUTE_NOT_PROOF_STATE_SEMANTICS"
+    },
+    {
+      "id": "SAT_DIFF",
+      "source": "https://arxiv.org/abs/2404.04731",
+      "type": "research_paper",
+      "finding": "Tree-structured differences can be formulated as an optimization problem that yields correct minimal type-safe edit scripts in that framework.",
+      "janus_route": "OFFLINE_STRUCTURAL_DIFF_NEGATIVE_CONTROL_OR_MINIMAL_EDIT_BASELINE",
+      "firewall": "MAXSAT_OR_SATDIFF_MAY_NOT_BECOME_A_HIDDEN_SUBROUTINE_OF_THE_TARGET_ALGORITHM",
+      "claim_ceiling": "OFFLINE_DIAGNOSTIC"
+    },
+    {
+      "id": "DAIKON",
+      "source": "https://plse.cs.washington.edu/daikon/pubs/invariants-tse2001-abstract.html",
+      "type": "peer_reviewed_method",
+      "finding": "Likely invariants can be inferred dynamically from execution traces.",
+      "janus_route": "MINE_GOOD_TRACE_INVARIANTS -> TEST_WHERE_BAD_TRACE_FIRST_BREAKS_THEM",
+      "firewall": "DYNAMICALLY_INFERRED_INVARIANT_IS_A_HYPOTHESIS_UNTIL_PROVED",
+      "claim_ceiling": "DIAGNOSTIC_HYPOTHESIS_GENERATION"
+    },
+    {
+      "id": "DYNAMIC_SLICING_EMPIRICAL",
+      "source": "https://arxiv.org/abs/2101.03008",
+      "type": "empirical_research",
+      "finding": "Dynamic slicing follows dependencies from an observed failure and can complement ranked fault localization; a hybrid strategy performed best in the reported study.",
+      "janus_route": "DEPENDENCY_SLICE_INTERSECT_DIFFERENTIAL_SLICE",
+      "claim_ceiling": "EMPIRICAL_METHOD_ROUTE"
+    },
+    {
+      "id": "TRACERS_2026",
+      "source": "https://arxiv.org/abs/2604.09301",
+      "type": "research_paper",
+      "finding": "A trace-first debugger organizes understanding around execution history rather than isolated snapshots.",
+      "janus_route": "SPIDER_OBSERVABILITY_SHOULD_PREFER_EXECUTION_ORDERED_TRACE_VIEW",
+      "claim_ceiling": "TOOLING_DESIGN_ROUTE"
+    },
+    {
+      "id": "TRACEDIFF",
+      "source": "https://arxiv.org/abs/1708.03786",
+      "type": "research_paper",
+      "finding": "Comparing dynamic executions can highlight where an incorrect trace diverges from an expected trace.",
+      "janus_route": "TRACE_ALIGNMENT_BEFORE_COMPONENT_DIFF",
+      "claim_ceiling": "DIAGNOSTIC_ANALOGUE"
+    },
+    {
+      "id": "MERKLE_CRDTS",
+      "source": "https://arxiv.org/abs/2004.00107",
+      "type": "research_paper",
+      "finding": "Merkle-DAGs combine content addressing, deduplication, synchronization and provenance-friendly history structures.",
+      "janus_route": "SPIDER_ARCHIVE_AND_HANDOFF_DEDUP_PROVENANCE_LAYER",
+      "claim_ceiling": "SPIDER_INFRASTRUCTURE_ROUTE"
+    }
+  ],
+  "combined_diagnostic_model": {
+    "name": "DUAL_PANE_DIFFERENTIAL_FORENSICS",
+    "steps": [
+      "Freeze GOOD/reference and BAD/hostile traces without changing the algorithm.",
+      "Align comparable execution points by deterministic event identity or explicit alignment metadata.",
+      "Build canonical inventories of clauses, variables, reasons, proof nodes, cache keys, resource counters and dependency edges.",
+      "Hash/index inventories so byte-identical or canonically-identical regions can be skipped quickly.",
+      "Hide equal regions; display only added, removed, changed, reordered and missing objects.",
+      "Run ArtMoney-style differential narrowing only through validity-preserving perturbations of the generator/transition trace.",
+      "Intersect the surviving differential slice with proof/dependency slices and invariant-break locations.",
+      "Export the intersection as an obstruction candidate for the separate algorithm dialogue.",
+      "Never automatically modify algorithm code or promote the candidate to a theorem."
+    ]
+  },
+  "spider_self_improvements_allowed": [
+    "word-boundary and domain-aware search filtering",
+    "query expansion with provenance",
+    "cross-source deduplication",
+    "content-addressed storage and Merkle-style subtree fingerprints",
+    "trace alignment metadata",
+    "dual-pane comparison reports",
+    "source-family and witness-family clustering",
+    "negative-result preservation",
+    "append-only receipts and SHA-256",
+    "plugin-like extractors for new document/trace formats",
+    "handoff manifests for the separate algorithm dialogue"
+  ],
+  "spider_forbidden_actions": [
+    "edit proof-selector logic",
+    "change JANUS transition semantics",
+    "insert a SAT/MaxSAT/SMT oracle into the target runtime",
+    "rewrite proof lemmas or theorem status",
+    "select a new algorithmic route because an external paper ranks highly",
+    "apply synchronize/copy operations back into algorithm state",
+    "treat hashes as semantic equality without exact canonical verification where required"
+  ],
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "COMPARE_DOES_NOT_MODIFY",
+    "SYNC_PREVIEW_IS_NOT_SYNC_APPLY",
+    "UI_SIMILARITY_IS_NOT_MATHEMATICAL_EQUIVALENCE",
+    "HASH_MATCH_IS_A_SCREEN_NOT_SEMANTIC_AUTHORITY",
+    "LIKELY_INVARIANT_IS_NOT_PROVED_INVARIANT",
+    "MINIMAL_DIFF_IS_NOT_CAUSAL_PROOF",
+    "OFFLINE_ORACLE_IS_NOT_ALLOWED_TO_HIDE_RUNTIME_COST",
+    "RESEARCH_ROUTE_IS_NOT_THEOREM",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
