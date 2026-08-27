@@ -1,0 +1,238 @@
+{
+  "schema": "hawkar.topa.spider.silk.proof_search_result.v1",
+  "artifact_id": "TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0",
+  "silk": "Spider Investigative Link Kernel",
+  "date": "2026-08-27",
+  "status": "PASS__FIRST_SERIOUS_SPIDER_MISSION__DISCOVERY_AND_DIAGNOSTIC_ROUTING_ONLY",
+  "claim_ceiling": "P_VS_NP_OPEN__NO_EXTERNAL_METHOD_OR_FINITE_N43_RESULT_IS_A_COMPLEXITY_THEOREM",
+  "mission": {
+    "goal": "Find external methods and scientific/computational literature that can help JANUS localize hostile proof states, first divergence, proof-dependency obstructions and resource explosions without inserting an unpriced SAT oracle or changing the frozen N=43 runtime road before the exact checkpoint is run.",
+    "artmoney_translation": "DIFFERENTIAL_STATE_NARROWING",
+    "artmoney_role": "RESEARCH_ONLY_DIAGNOSTIC",
+    "forbidden_interpretation": "ARTMONEY_OR_DELTA_DEBUGGING_IS_NOT_A_POLYNOMIAL_SAT_SEARCH_MECHANISM"
+  },
+  "current_checkpoint": {
+    "provenance": "CURRENT_MISSION_INPUT__NOT_PROMOTED_BEYOND_ITS_EXISTING_PROOF_RECEIPTS",
+    "N": 43,
+    "candidate_root_cells": [[43,9,5,28],[43,9,6,27]],
+    "d_min_ceiling": 3,
+    "quadratic_envelope": 1849,
+    "P0": "Instrument and run the already-existing exact T/Smax/Uraw tail. Do not alter the proof-selector merely because SILK found new diagnostic tools."
+  },
+  "execution": {
+    "workflow": "TOPA SPIDER SILK JANUS Proof-State Search",
+    "workflow_run_id": 33097444962,
+    "workflow_commit": "4cf9223ffdc1236809315a4cd5ebbe838fcab56c",
+    "artifact_id": 9656962751,
+    "artifact_zip_sha256": "f0c0f001423d9cd962a05a3b08a7aa84efa0dd46e40bbf41b038990c9b40506f",
+    "strict_output_sha256": "34647ae9659383314ae028d5fbba34bb3845c41d63081fc1dd151fc01ab3c714",
+    "strict_semantic_sha256": "92de85705b5c1de1e2ae3810c1f5a2414fe11c617096583d609fac67a5f96ed0",
+    "arxiv_records_scanned_after_dedup": 162,
+    "broad_candidates": 80,
+    "strict_candidates": 75,
+    "strict_rejected": 5,
+    "canonical_external_sources": 9,
+    "research_bridges": 84,
+    "scientific_firewall": "PASS"
+  },
+  "live_search_lanes": [
+    {"id":"DELTA_STATE","returned":40,"scope":"delta debugging / cause-effect / dynamic slicing"},
+    {"id":"SAT_PROOF_TRACE","returned":24,"scope":"SAT + DRAT / FRAT / LRAT / proof trace"},
+    {"id":"UNSAT_CORE","returned":50,"scope":"SAT + unsatisfiable core / unsat core / MUS"},
+    {"id":"STRUCTURE","returned":50,"scope":"SAT + backdoor depth / treewidth / conflict graph / implication graph"}
+  ],
+  "strict_pattern_counts": {
+    "BACKDOOR_STRUCTURE": 4,
+    "BACKWARD_PROOF_TRIMMING": 3,
+    "BOUNDARY_WIDTH": 24,
+    "CAUSE_EFFECT_CHAIN": 3,
+    "CONFLICT_GRAPH_CUT": 5,
+    "DELTA_DEBUGGING": 12,
+    "DRAT_FRAT_LRAT": 14,
+    "DYNAMIC_SLICING": 5,
+    "PROOF_COMPLEXITY": 7,
+    "PROOF_TRACE": 2,
+    "RESOURCE_ACCOUNTING": 1,
+    "UNSAT_CORE": 13,
+    "VALIDITY_PRESERVING_PERTURBATION": 1
+  },
+  "strongest_external_routes": [
+    {
+      "id": "ZELLER_FSE_2002",
+      "title": "Isolating Cause-Effect Chains from Computer Programs",
+      "url": "https://doi.org/10.1145/587051.587053",
+      "pattern": "PASSING_RUN_vs_FAILING_RUN -> STATE_DIFFERENCE -> CONTROLLED_PERTURBATION -> NARROW_RELEVANT_VARIABLES_VALUES",
+      "janus_use": "Direct conceptual match for GOOD/BAD proof-state trajectories and DELTA_first_divergence.",
+      "insertion_points": ["C023_JANUS_FC_LOCAL","POLICY0T_TRACE_CODE"],
+      "claim": "METHOD_ANALOGUE__NOT_SAT_SPEEDUP"
+    },
+    {
+      "id": "ZELLER_HILDEBRANDT_2002",
+      "title": "Simplifying and Isolating Failure-Inducing Input",
+      "url": "https://doi.org/10.1109/32.988498",
+      "pattern": "ITERATIVE_INTERSECTION_OF_FAILURE_INDUCING_DIFFERENCES",
+      "janus_use": "Formalizes the ArtMoney-like narrowing idea as test-driven minimization rather than address guessing.",
+      "claim": "METHOD_ANALOGUE__NOT_COMPLEXITY_RESULT"
+    },
+    {
+      "id": "ARXIV_2402.04623",
+      "title": "Validity-Preserving Delta Debugging via Generator Trace Reduction",
+      "url": "https://arxiv.org/abs/2402.04623",
+      "pattern": "REDUCE_GENERATOR_EXECUTION_NOT_ARBITRARY_OUTPUT_STATE",
+      "janus_use": "Critical adaptation: perturb JANUS transition/generator trace so every trial remains a valid proof-state instead of mutating clauses/reasons arbitrarily.",
+      "priority": "P1_AFTER_HOSTILE_STATE_CAPTURE",
+      "claim": "HIGH_VALUE_DIAGNOSTIC_ROUTE"
+    },
+    {
+      "id": "DRAT_TRIM",
+      "title": "DRAT-trim backward proof checking / trimming",
+      "url": "https://www.cs.utexas.edu/~marijn/drat-trim/",
+      "pattern": "CONTRADICTION -> BACKWARD_NECESSARY_CLAUSE_MARKING -> TRIMMED_FORMULA_PROOF -> DEPENDENCY_GRAPH",
+      "janus_use": "Independent proof-side slice of clauses/lemmas actually needed for a concrete UNSAT derivation.",
+      "priority": "P1_WHERE_STANDARD_PROOF_EXPORT_EXISTS",
+      "claim": "PROOF_DEPENDENCY_LOCALIZATION__NOT_UNIQUE_CAUSE"
+    },
+    {
+      "id": "ARXIV_2109.09665",
+      "title": "A Flexible Proof Format for SAT Solver-Elaborator Communication",
+      "url": "https://arxiv.org/abs/2109.09665",
+      "pattern": "FRAT_FORWARD_BACKWARD_TRACE + OPTIONAL_HINTS -> LRAT_ELABORATION",
+      "janus_use": "Candidate richer provenance format if JANUS exports a compatible SAT proof lane; preserves more derivation context for dependency analysis.",
+      "claim": "TRACE_INFRASTRUCTURE_ROUTE"
+    },
+    {
+      "id": "LAMMICH_IJCAR_2024",
+      "title": "Fast and Verified UNSAT Certificate Checking",
+      "url": "https://doi.org/10.1007/978-3-031-63498-7_26",
+      "pattern": "UNSAT_CERTIFICATE -> FORMALLY_VERIFIED_INDEPENDENT_CHECK",
+      "janus_use": "Independent replay/checking lane so diagnostic slicing cannot inherit solver authority merely because the producer says the proof is valid.",
+      "claim": "VERIFICATION_ROUTE__DISCOVERY_COST_SEPARATE"
+    },
+    {
+      "id": "ARXIV_cs/0605085",
+      "title": "A Scalable Algorithm for Minimal Unsatisfiable Core Extraction",
+      "url": "https://arxiv.org/abs/cs/0605085",
+      "pattern": "RESOLUTION_REFUTATION -> SMALLER_UNSAT_CORE",
+      "janus_use": "Offline obstruction reducer after ordinary backward trimming; minimality is optional and its cost must be charged.",
+      "claim": "OFFLINE_DIAGNOSTIC__NO_FREE_MUS_ORACLE"
+    },
+    {
+      "id": "ARXIV_2406.14190",
+      "title": "Extended Resolution Clause Learning via Dual Implication Points",
+      "url": "https://arxiv.org/abs/2406.14190",
+      "pattern": "IMPLICATION_GRAPH -> DOMINATOR_PAIR_DIPS -> LOCAL_CONFLICT_CUT",
+      "janus_use": "Candidate graph-localization lens around conflict/reason chains; must be mapped to JANUS trace semantics before use.",
+      "claim": "STRUCTURAL_INSPIRATION_ONLY"
+    },
+    {
+      "id": "ARXIV_2202.08326",
+      "title": "SAT Backdoors: Depth Beats Size",
+      "url": "https://arxiv.org/abs/2202.08326",
+      "pattern": "BACKDOOR_DEPTH -> PARALLEL_DECOMPOSITION_TO_TRACTABLE_COMPONENTS",
+      "janus_use": "Separate structural diagnostic for hostile residual states; compare with existing live-width/boundary metrics rather than replacing them.",
+      "claim": "STRUCTURAL_ROUTE__NOT_UNIVERSAL_POLYNOMIAL_BOUND"
+    },
+    {
+      "id": "ARXIV_2102.04707",
+      "title": "Recursive Backdoors for SAT",
+      "url": "https://arxiv.org/abs/2102.04707",
+      "pattern": "PARTIAL_ASSIGNMENT -> COMPONENT_SPLIT -> RECURSIVE_BACKDOOR_DEPTH",
+      "janus_use": "Potential observable for whether apparently large hostile states decompose after the same pivots that JANUS already chooses.",
+      "claim": "DIAGNOSTIC_STRUCTURE_ONLY"
+    },
+    {
+      "id": "ARXIV_1204.6233",
+      "title": "Strong Backdoors to Bounded Treewidth SAT",
+      "url": "https://arxiv.org/abs/1204.6233",
+      "pattern": "BACKDOOR + INCIDENCE_TREEWIDTH",
+      "janus_use": "Bridge between existing JANUS boundary-width ideas and explicit SAT tractability structure.",
+      "claim": "STRUCTURAL_LANE"
+    },
+    {
+      "id": "ARXIV_1706.08611",
+      "title": "Relating Complexity-theoretic Parameters with SAT Solver Performance",
+      "url": "https://arxiv.org/abs/1706.08611",
+      "pattern": "BACKDOOR + TREEWIDTH + BACKBONE + COMMUNITY_STRUCTURE -> EMPIRICAL_SOLVER_PERFORMANCE",
+      "janus_use": "Negative-control lesson: single structural parameters may correlate only weakly; measure combinations but never equate predictive fit with proof complexity.",
+      "claim": "EMPIRICAL_DIAGNOSTIC_CONTEXT"
+    },
+    {
+      "id": "ARXIV_2402.00542",
+      "title": "Hardness of Random Reordered Encodings of Parity for Resolution and CDCL",
+      "url": "https://arxiv.org/abs/2402.00542",
+      "pattern": "REPRESENTATION_ORDERING_CAN_CHANGE_RESOLUTION_CDCL_HARDNESS",
+      "janus_use": "Adversarial control for distinguishing genuine obstruction from an artifact of serialization/representation.",
+      "claim": "PROOF_COMPLEXITY_CONTROL_ROUTE"
+    }
+  ],
+  "janus_existing_observability": {
+    "finding": "JANUS-FC_local already records the primitive telemetry required for the first differential experiments: recursive calls, residual states, unit reasons, local Resolution events, branches/restrictions, cache targets and completion order.",
+    "consequence": "Do not invent a second telemetry organism. Build DSN over the existing trace and charge the additional replay/minimization work explicitly.",
+    "anchors": [
+      "Hawkar-usls/Janus-Fundamentum:docs/C021_POLICY0T_TRACE_PROOF_BRIDGE.md",
+      "Hawkar-usls/Janus-Fundamentum:docs/C023_FORMULA_CACHING_CALCULUS.md",
+      "Hawkar-usls/Janus-Fundamentum:experiments/direct/janus_tear_policy0t_trace_certificate.py"
+    ]
+  },
+  "primary_silk_synthesis": {
+    "name": "DUAL_SLICE_OBSTRUCTION_CANDIDATE",
+    "status": "NEW_RESEARCH_COMPOSITION__NOT_A_THEOREM",
+    "construction": [
+      "1. Produce deterministic GOOD and BAD trajectories with shared valid prefix.",
+      "2. Freeze earliest divergence i* using canonical state hashes.",
+      "3. Differential slice: validity-preserving ddmin over transition/generator choices that differ at/around i*.",
+      "4. Proof slice: for a compatible UNSAT branch, backward-trim from contradiction to necessary clause/reason dependencies.",
+      "5. Compute INTERSECTION = DIFFERENTIAL_SLICE ∩ PROOF_DEPENDENCY_SLICE.",
+      "6. Perturb/intervene only through valid replay machinery and test whether the candidate intersection predicts or removes the hostile transition on held-out traces.",
+      "7. Preserve failures and counterexamples; never promote repeated observation into an asymptotic theorem."
+    ],
+    "why_promising": "The two slices use different information: outcome-sensitive state perturbation versus derivational proof dependency. Agreement can sharply reduce a huge proof state without treating either diagnostic as causal authority.",
+    "falsifiers": [
+      "No deterministic shared prefix / first divergence exists.",
+      "Validity-preserving reduction cannot shrink the delta without changing the target failure semantics.",
+      "Backward proof slice cannot be independently verified or has no overlap with the differential slice.",
+      "The intersection is equally common on GOOD controls.",
+      "Replay/test/materialization cost grows exponentially in original input size without a proved bound."
+    ]
+  },
+  "experiment_queue": [
+    {"priority":"P0","id":"N43-01","action":"Run exact existing N=43 tails for (43,9,5,28) and (43,9,6,27) with complete transition/state/resource receipts; no policy change."},
+    {"priority":"P0","id":"DSN-01","action":"On first captured hostile state, compute canonical GOOD/BAD first divergence over existing Policy0T/JANUS-FC_local trace."},
+    {"priority":"P1","id":"DSN-02","action":"Validity-preserving ddmin over the generator/transition trace around first divergence; count every replay and byte."},
+    {"priority":"P1","id":"TRACE-01","action":"Where possible, export/check a standard UNSAT proof and obtain backward dependency/core slice."},
+    {"priority":"P1","id":"DUAL-01","action":"Intersect state-delta and proof-dependency slices; test on held-out GOOD/BAD perturbations."},
+    {"priority":"P2","id":"STRUCT-01","action":"Measure backdoor depth/treewidth/live-width/community structure as diagnostics on the same frozen states; no adaptive cherry-picking after outcome."}
+  ],
+  "negative_results_and_firewalls": [
+    "NO_EXTERNAL_SOURCE_FOUND_THAT_SOLVES_THE_CURRENT_N43_TAIL_BY_ITSELF",
+    "NO_EXTERNAL_SOURCE_FOUND_THAT_PROVES_P_EQUALS_NP_OR_P_NOT_EQUALS_NP_FOR_JANUS",
+    "ARTMONEY_PRINCIPLE_IS_NOT_A_SAT_SPEEDUP",
+    "EXPLICIT_STATE_SCAN_IS_NOT_IMPLICIT_2_POW_N_SEARCH",
+    "DIAGNOSTIC_LOCALIZATION_IS_NOT_A_CAUSAL_OR_COMPLEXITY_PROOF",
+    "UNSAT_CORE_IS_NOT_A_UNIQUE_CAUSE",
+    "MINIMAL_UNSAT_CORE_EXTRACTION_COST_MUST_BE_CHARGED",
+    "PROOF_TRACE_DEPENDENCY_IS_NOT_A_GENERAL_COMPLEXITY_LOWER_BOUND",
+    "CHEAP_VERIFICATION_IS_NOT_CHEAP_DISCOVERY",
+    "SHORT_PROOF_EXISTS_IS_NOT_DETERMINISTIC_POLICY_FINDS_IT",
+    "FINITE_N43_SUCCESS_IS_NOT_AN_ASYMPTOTIC_PROOF",
+    "P_VS_NP_IS_OPEN"
+  ],
+  "full_machine_output": {
+    "format": "JSON",
+    "contains": "75 strict live arXiv candidates, rejected routing records, abstracts, query provenance, record hashes, 84 research bridges, canonical external sources, JANUS anchors, planned experiments and all claim ceilings.",
+    "github_actions_run": "https://github.com/Hawkar-usls/TOPA/actions/runs/33097444962",
+    "github_actions_artifact_id": 9656962751,
+    "artifact_retention_note": "GitHub Actions artifact is temporary; this registry JSON freezes the conclusions, hashes and high-value routes."
+  },
+  "laws": [
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "SILK_LINK_IS_A_RESEARCH_ROUTE_NOT_A_PROOF",
+    "PAPER_CLAIM_IS_NOT_A_JANUS_THEOREM",
+    "VALIDITY_PRESERVING_PERTURBATION_ONLY",
+    "REPLAY_IS_NOT_NEW_EVIDENCE",
+    "FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE",
+    "SHORT_ALIAS_SUBSTRING_IS_NOT_A_PATTERN_MATCH",
+    "CROSS_DOMAIN_TERM_OVERLAP_IS_NOT_A_MISSION_BRIDGE",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
