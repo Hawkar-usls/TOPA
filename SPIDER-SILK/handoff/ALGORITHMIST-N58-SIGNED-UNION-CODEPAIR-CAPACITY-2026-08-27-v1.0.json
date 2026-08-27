@@ -1,0 +1,60 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.n58_signed_union_codepair_capacity.v1",
+  "artifact_id": "ALGORITHMIST-N58-SIGNED-UNION-CODEPAIR-CAPACITY-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "PRIORITY_RED__GENERAL_SIGNED_UNION_CODEPAIR_OUTER_BOUND__INDEPENDENTLY_KILLS_N58_21x29_FULL_INJECTIVITY__NO_RUNTIME_CHANGE",
+  "purpose": "Freeze the coordinate-capacity lemma discovered while following uniquely-decodable two-codebook / multiple-access-channel literature. This is theorem-side research only.",
+  "definitions": {
+    "signed_tail_alphabet": ["OMIT","POS","NEG"],
+    "cross_compatible": "For every p in P and q in Q, no coordinate contains opposite nonzero signs POS/NEG across the pair.",
+    "injective_signed_union": "All coordinatewise compatible unions p union q are pairwise distinct over P x Q.",
+    "P_private_ternary_coordinate": "P uses both POS and NEG at the coordinate; cross-compatibility then forces Q to be constantly OMIT there.",
+    "Q_private_ternary_coordinate": "Q uses both POS and NEG; P is constantly OMIT there.",
+    "shared_binary_coordinate": "Neither side uses both signs; cross-compatibility permits at most one common nonzero sign plus OMIT, so the coordinate behaves as at most a binary OR output."
+  },
+  "lemma": {
+    "statement": "Let P,Q be a complete cross-compatible injective signed-union code pair on r coordinates. If e_P coordinates are P-private ternary, e_Q are Q-private ternary, and s=r-e_P-e_Q are the remaining at-most-binary coordinates, then |P|<=3^e_P*2^s, |Q|<=3^e_Q*2^s, and |P||Q|<=3^(e_P+e_Q)*2^s. Consequently a candidate pair (|P|,|Q|) is impossible whenever no nonnegative integer triple (e_P,e_Q,s) summing to r satisfies all three inequalities.",
+    "proof_sketch": [
+      "Cross-compatibility yields the three coordinate types by inspecting the projections of P and Q onto one coordinate.",
+      "P is constant OMIT on every Q-private coordinate, has at most three symbols on each P-private coordinate, and at most two on each shared coordinate, so |P|<=3^e_P*2^s. Symmetrically for Q.",
+      "The union output itself has at most three values on a private coordinate and two on a shared coordinate; global injectivity therefore gives |P||Q| no larger than the output alphabet product 3^(e_P+e_Q)*2^s."
+    ]
+  },
+  "N58_neighbor_equality_application": {
+    "state": {"n":7,"m":78,"L":350,"d":50,"p":21,"q":29,"r":6,"c":28},
+    "historical_existing_algorithmist_equality_requirement": "To attain the inherited raw_units=3365 ceiling, every one of pq=609 cross-parent pairs had to produce a new distinct non-tautological resolvent.",
+    "application": [
+      "609 distinct outputs require 3^(e_P+e_Q)*2^s >=609. For r=6, five ternary coordinates and one binary coordinate give only 3^5*2=486, so all six coordinates must be private ternary: s=0 and e_P+e_Q=6.",
+      "|P|=21 requires 3^e_P>=21, hence e_P>=3.",
+      "|Q|=29 requires 3^e_Q>=29; because 3^3=27<29, e_Q>=4.",
+      "Thus e_P+e_Q>=7, contradicting e_P+e_Q=6."
+    ],
+    "conclusion": "FULL_21x29_INJECTIVE_SIGNED_UNION_RECTANGLE_IMPOSSIBLE",
+    "relation_to_existing_algorithmist_proof": "Independent shorter channel-capacity proof of the same equality-case impossibility already frozen by Algorithmist at commit a09b5fca8b3acc29f3423c56fb70e2544814f66d. No claim of priority/novelty is made."
+  },
+  "N58_22x22_application": {
+    "source": "The separate injective-rectangle bridge from historical J>=610 extracts a 22x22 complete injective rectangle.",
+    "result": "484 outputs force at least five private ternary coordinates because 3^4*2^2=324<484. Five are impossible since both 22-word codebooks require at least three private ternary coordinates when only one shared binary coordinate remains. Therefore the rectangle must have all six coordinates private, split exactly 3+3. The omission-mass handoff then gives 164>162 and closes the case."
+  },
+  "literature_context": [
+    {"primary":"T. Kasami, S. Lin, Coding for a Multiple-Access Channel","doi":"10.1109/TIT.1976.1055529","connection":"Exact two-codebook deterministic coordinate channel with global unique decodability."},
+    {"primary":"P. Vanroose, Code construction for the noiseless binary switching multiple-access channel","doi":"10.1109/18.21242","connection":"Two-codebook zero-error capacity/finite code-pair bounds for another deterministic binary-input MAC; reinforces treating coordinate-channel type as a first-class structural resource."},
+    {"primary":"A. G. D'yachkov, N. Polyanskii, V. Shchukin, I. Vorobyev, Separable Codes for the Symmetric Multiple-Access Channel","doi":"10.1109/TIT.2019.2893234","arxiv":"1701.06085","connection":"General symmetric f-MAC and almost-separable language; inspired the output-alphabet decomposition but its published numeric bounds are not used here."}
+  ],
+  "scientific_boundary": {
+    "derived_theorem_side_lemma": true,
+    "not_a_selector_change": true,
+    "not_a_runtime_change": true,
+    "not_a_proof_system_simulation_claim": true,
+    "not_unbounded_totality": true,
+    "P_VS_NP": "OPEN"
+  },
+  "laws": [
+    "CHANNEL_ALPHABET_BOUND_IS_NOT_RUNTIME_HEURISTIC",
+    "LITERATURE_INSPIRATION_IS_NOT_THEOREM_TRANSFER",
+    "AN_INDEPENDENT_DERIVATION_IS_NOT_INDEPENDENT_EMPIRICAL_EVIDENCE",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "P_VS_NP_IS_OPEN"
+  ],
+  "seal": "IANUS VIAS SERVAT."
+}
