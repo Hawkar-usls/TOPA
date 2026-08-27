@@ -1,0 +1,182 @@
+{
+  "schema": "hawkar.topa.spider.silk.c023_current_needs_dossier.v1",
+  "artifact_id": "C023-SPIDER-CURRENT-NEEDS-WEB-RUN-004-2026-08-27-v1.2",
+  "date": "2026-08-27",
+  "status": "PASS__RESEARCH_ROUTING_ONLY",
+  "authority_boundary": {
+    "spider_role": "OBSERVER__RESEARCHER__INDEXER_ONLY",
+    "algorithmist_role": "SOLE_DECISION_AND_ALGORITHM_AUTHORITY",
+    "algorithm_changes_by_spider": 0,
+    "claim_ceiling": "P_VS_NP_OPEN__NO_LITERATURE_ROUTE_IS_A_JANUS_THEOREM"
+  },
+  "canonical_context": {
+    "public_mainline": "Hawkar-usls/Janus-Fundamentum C023 JANUS-FC_local",
+    "status": "MACHINE_CHECKABLE_FINITE_CALCULUS__REASON_INTERFACE_UNDER_ATTACK__ASYMPTOTIC_LOWER_BOUND_OPEN",
+    "algorithmist_checkpoint_note": "N=43 remains separate dialogue context and is not promoted by SPIDER to the public C023 baseline."
+  },
+  "live_execution": {
+    "workflow": ".github/workflows/spider-silk-c023-current-needs.yml",
+    "workflow_run_id": 33104709775,
+    "workflow_commit": "429486ff5c59b4ff06096c8448493287f9ecaef2",
+    "artifact_id": 9659948078,
+    "artifact_zip_sha256": "235cee2f58e414719036a3c489d4dd20d485f5df65247fe472806cc6bf2f7ac8",
+    "live_json_sha256": "a18a40feb369294750a3ecaaabe1fc6f69bad117125940588705ed315a8db9f3",
+    "semantic_sha256": "7c1274fb1e6c8125b2f028ee19b7e42ebf3347917c31648da8a358344c444c28",
+    "records_scanned": 93,
+    "broad_candidates": 21,
+    "strict_retained": 19,
+    "strict_rejected": 2,
+    "exact_publication_duplicates_collapsed": 0,
+    "research_bridges": 28,
+    "bridges_routed": 28,
+    "bridges_unrouted": 0,
+    "lineage_candidate_pairs": 1,
+    "scientific_firewall": "PASS"
+  },
+  "resource_lattice": [
+    {
+      "system": "FC / FCW / FCWS",
+      "resource": "whole residual UNSAT formula caching / Boolean-style residual reuse",
+      "relation_to_janus": "CLOSEST_BASIC_CACHE_FAMILY__JANUS_HAS_ADDITIONAL_REGISTERED_LOCAL_RESOLUTION_PASS",
+      "source": "Beame et al., Formula Caching in DPLL, ECCC TR06-140 / TOCT 2010"
+    },
+    {
+      "system": "FC_reasonW",
+      "resource": "cached residual plus returned reusable reason",
+      "known_power": "p-simulates regular Resolution in the source system",
+      "relation_to_janus": "STRICT_RESOURCE_WARNING__JANUS_BOOLEAN_CACHE_DOES_NOT_CURRENTLY_RETURN_A_CONTEXT_INDEPENDENT_REASON"
+    },
+    {
+      "system": "regular WRTI / WRTL",
+      "resource": "resolution trees with learned input/general lemmas tied to DLL clause learning",
+      "relation_to_janus": "ADJACENT_CLAUSE_LEARNING_MODEL__NOT_IDENTICAL_TO_BOOLEAN_RESIDUAL_CACHE_PLUS_LOCAL_PASS"
+    },
+    {
+      "system": "pool resolution / CDCL",
+      "resource": "learned clauses / lemmas and solver-dependent conflict analysis",
+      "relation_to_janus": "DESTRUCTION_CONTROL_FOR_GT_OP_FAMILIES__NOT_A_SIMULATION_THEOREM_FOR_JANUS"
+    },
+    {
+      "system": "JANUS-FC_local",
+      "resource": "exact residual Boolean cache + deterministic bounded non-saturating one-layer local Resolution + second unit fixpoint",
+      "classification": "OWN_EXACT_CALCULUS_UNTIL_SIMULATION_THEOREM",
+      "exact_named_match_search": "NO_EXACT_NAMED_MATCH_FOUND_IN_CURRENT_TARGETED_SEARCH__NOT_A_UNIVERSAL_LITERATURE_ABSENCE_CLAIM"
+    }
+  ],
+  "highest_value_findings": [
+    {
+      "id": "FCWS_GT_PRIMARY_WITNESS",
+      "finding": "The historical FCWS lower bound on GT_n is carried by structural distinguishability of partial orders through minimal/tops/prune and novel branch points, culminating in at least 2^(n-2) nodes.",
+      "why_relevant": "C023 robustness must track what the registered local Resolution pass does to this witness structure, not merely count resolvents.",
+      "claim": "PRIMARY_SOURCE_BOUND_LOWER_BOUND_MECHANISM"
+    },
+    {
+      "id": "GT_OP_POLY_STRONGER_PROOFS",
+      "finding": "Graph/order tautology families that are hard for weaker caching/tree-like systems can have polynomial regular/linear/pool/clause-learning refutations.",
+      "why_relevant": "A polynomial number of locally derived clauses cannot be assumed harmless; a strategically useful clause family may destroy the FC witness.",
+      "claim": "ROBUSTNESS_COUNTERPRESSURE"
+    },
+    {
+      "id": "SAT2026_DETERMINISTIC_CDCL_OP",
+      "source": "Samar, Vinyals, Ganesh, SAT 2026, DOI 10.4230/LIPIcs.SAT.2026.30, arXiv:2603.16156",
+      "finding": "A fully deterministic CDCL configuration using a VSIDS-family branching rule solves Ordering Principle formulas in polynomial time, separating it exponentially from DPLL/tree-like Resolution on this family.",
+      "why_relevant": "Provides a modern destruction atlas showing that learned-clause resource plus a concrete deterministic search policy can erase OP hardness.",
+      "claim": "PEER_REVIEWED_ADJACENT_SYSTEM_RESULT__NOT_JANUS_RESULT"
+    },
+    {
+      "id": "BOUNDED_WIDTH_LEARNING",
+      "source": "Atserias, Fichte, Thurley, JAIR 40 (2011), arXiv:1401.3868",
+      "finding": "With clause learning and many restarts, a concrete solver behaves as width-k Resolution after O(n^(2k+2)) conflicts/restarts with high probability.",
+      "why_relevant": "Separates the resource 'bounded-width learned clauses over repeated conflicts/restarts' from JANUS's one-layer local pass.",
+      "claim": "ADJACENT_RESOURCE_BOUNDARY"
+    },
+    {
+      "id": "WRTI_WRTL_CLAUSE_LEARNING_MAP",
+      "source": "Buss, Hoffmann, Johannsen, LMCS 2008, arXiv:0811.1075",
+      "finding": "DLL with unit-propagation clause learning is polynomially simulated by regular WRTI; broader DLL-Learn corresponds to regular WRTL. Variable extensions can raise strength further.",
+      "why_relevant": "Gives a named proof-system map for returned learned clauses and prevents conflating this resource with Boolean residual caching.",
+      "claim": "PROOF_SYSTEM_RESOURCE_MAP"
+    },
+    {
+      "id": "AUTOMATABILITY_BARRIER",
+      "source": "Atserias and Muller, Automating Resolution is NP-Hard, arXiv:1904.02991 / JACM",
+      "finding": "Finding a Resolution refutation polynomially close to shortest is NP-hard; short-proof existence does not supply cheap deterministic discovery.",
+      "why_relevant": "Direct firewall against importing a short proof or powerful proof system as if JANUS could discover its proof cheaply.",
+      "claim": "DISCOVERY_COST_BARRIER"
+    },
+    {
+      "id": "TSEITIN_TREEWIDTH_LANE",
+      "source": "de Colnet and Mengel, arXiv:2103.09609 / JAIR 2023",
+      "finding": "For bounded-degree unsatisfiable Tseitin formulas, polynomial regular-Resolution length is characterized by underlying treewidth O(log |V|); lower bound is 2^Omega(tw(G))/|V| and is related to DNNF size.",
+      "why_relevant": "Strong alternate structural lane if and only if an explicit simulation relation to JANUS-FC_local is later established.",
+      "claim": "MODEL_SPECIFIC_LOWER_BOUND__NO_JANUS_TRANSFER_YET"
+    }
+  ],
+  "publication_lineage": {
+    "status": "SOURCE_SUPPORTED_SHARED_LINEAGE",
+    "members": ["arXiv:1202.2296", "arXiv:1208.2469"],
+    "automatic_metrics": {
+      "authors_overlap_jaccard": 0.666667,
+      "title_sequence_similarity": 0.765432,
+      "title_token_jaccard": 0.571429,
+      "abstract_token_jaccard": 0.758065,
+      "family_jaccard": 1.0
+    },
+    "external_source_note": "Sam Buss's publication page identifies the Bonet-Buss SAT 2012 conference paper as an earlier conference paper and the Bonet-Buss-Johannsen work as the full version / later journal line.",
+    "rule": "PRESERVE_BOTH_RECORDS__DO_NOT_COUNT_SHARED_CORE_CLAIMS_AS_INDEPENDENT_REPLICATION_WITHOUT_MANUAL_REVIEW"
+  },
+  "strict_live_candidates": [
+    {"arxiv":"1401.3868","title":"Clause-Learning Algorithms with Many Restarts and Bounded-Width Resolution","tier":"P0_RESOURCE_BOUNDARY"},
+    {"arxiv":"2103.09609","title":"Characterizing Tseitin-formulas with short regular resolution refutations","tier":"P0_ALTERNATE_LOWER_BOUND_LANE"},
+    {"arxiv":"1202.2296","title":"An Improved Separation of Regular Resolution from Pool Resolution and Clause Learning","tier":"P0_GT_DESTRUCTION_LINEAGE"},
+    {"arxiv":"1208.2469","title":"Improved Separations of Regular Resolution from Clause Learning Proof Systems","tier":"P0_GT_DESTRUCTION_LINEAGE"},
+    {"arxiv":"2402.00542","title":"Hardness of Random Reordered Encodings of Parity for Resolution and CDCL","tier":"P1_REPRESENTATION_CONTROL"},
+    {"arxiv":"2603.16156","title":"An Exponential Separation between Deterministic CDCL and DPLL Solvers","tier":"P0_2026_DESTRUCTION_ATLAS"},
+    {"arxiv":"0811.1075","title":"Resolution Trees with Lemmas: Resolution Refinements that Characterize DLL Algorithms with Clause Learning","tier":"P0_RESOURCE_MAP"},
+    {"arxiv":"2605.04033","title":"Probabilistic-bit Guided CDCL for SAT Solving using Ising Consensus Assumptions","tier":"P2_CONTEXT_ONLY"},
+    {"arxiv":"1904.02991","title":"Automating Resolution is NP-Hard","tier":"P0_DISCOVERY_COST_BARRIER"},
+    {"arxiv":"2407.17951","title":"Pruning Boolean d-DNNF Circuits Through Tseitin-Awareness","tier":"P1_KNOWLEDGE_COMPILATION_CONTEXT"},
+    {"arxiv":"1506.05198","title":"SAT-based Analysis of Large Real-world Feature Models is Easy","tier":"P2_EMPIRICAL_CONTEXT"},
+    {"arxiv":"2402.10705","title":"AutoSAT: Automatically Optimize SAT Solvers via Large Language Models","tier":"P2_SOLVER_CONTEXT"},
+    {"arxiv":"2501.14630","title":"Extracting Problem Structure with LLMs for Optimized SAT Local Search","tier":"P2_SOLVER_CONTEXT"},
+    {"arxiv":"2606.28819","title":"SAT-IT: an Online Interactive SAT Tracer","tier":"P1_OBSERVABILITY"},
+    {"arxiv":"0708.1529","title":"Resolution over Linear Equations and Multilinear Proofs","tier":"P1_ADJACENT_PROOF_SYSTEM"},
+    {"arxiv":"1809.02843","title":"Resolution and the binary encoding of combinatorial principles","tier":"P1_ENCODING_CONTROL"},
+    {"arxiv":"2102.07622","title":"Depth lower bounds in Stabbing Planes for combinatorial principles","tier":"P1_CROSS_SYSTEM_CONTROL"},
+    {"arxiv":"2304.11882","title":"How can we prove that a proof search method is not an instance of another?","tier":"P1_SYSTEM_DISTINCTION_METHOD"},
+    {"arxiv":"2602.16810","title":"Separations above TFNP from Sherali-Adams Lower Bounds","tier":"P2_CROSS_SYSTEM_CONTEXT"}
+  ],
+  "negative_findings": [
+    "NO_EXACT_NAMED_PROOF_SYSTEM_MATCH_FOUND_FOR_BOOLEAN_RESIDUAL_CACHE_PLUS_REGISTERED_ONE_LAYER_LOCAL_RESOLUTION_IN_CURRENT_TARGETED_SEARCH",
+    "NO_SIMULATION_THEOREM_FOUND_IN_CURRENT_TARGETED_SEARCH_THAT_TRANSFERS_FCWS_GT_LOWER_BOUND_DIRECTLY_TO_JANUS_FC_LOCAL",
+    "NO_MODEL_SPECIFIC_TSEITIN_OR_DNNF_LOWER_BOUND_IS_TRANSFERRED_TO_JANUS_WITHOUT_AN_EXPLICIT_SIMULATION_THEOREM",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "PUBLICATION_LINEAGE_IS_NOT_INDEPENDENT_REPLICATION",
+    "P_VS_NP_IS_OPEN"
+  ],
+  "spider_self_improvements": [
+    "STRICT_WORD_BOUNDARY_AND_DOMAIN_GATE",
+    "PUBLICATION_LEVEL_DOI_OR_TITLE_AUTHOR_DEDUPE",
+    "PUBLICATION_LINEAGE_CLUSTERING_WITHOUT_FORCED_COLLAPSE",
+    "MISSION_LOCAL_FAMILY_TO_JANUS_ANCHOR_ROUTING",
+    "ZERO_UNROUTED_BRIDGES_FIREWALL"
+  ],
+  "paths": {
+    "pattern_set": "config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json",
+    "route_map": "config/spider_pattern_sets/janus-c023-family-anchor-routes-v1.json",
+    "publication_dedupe": "tools/topa_spider_silk_publication_dedupe.py",
+    "route_lineage_enricher": "tools/topa_spider_silk_route_enricher.py",
+    "workflow": ".github/workflows/spider-silk-c023-current-needs.yml"
+  },
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "ROUTING_IS_NOT_RECOMMENDATION",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "LOWER_BOUND_FOR_MODEL_X_IS_NOT_A_JANUS_LOWER_BOUND_WITHOUT_SIMULATION",
+    "POLYNOMIAL_LOCAL_RULE_COUNT_IS_NOT_AUTOMATICALLY_HARMLESS",
+    "RETURNED_REASON_IS_A_STRONGER_RESOURCE_THAN_BOOLEAN_CACHE",
+    "CLAUSE_LEARNING_IS_NOT_IDENTICAL_TO_JANUS_LOCAL_RESOLUTION",
+    "PUBLICATION_LINEAGE_IS_NOT_INDEPENDENT_REPLICATION",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
