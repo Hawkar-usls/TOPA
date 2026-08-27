@@ -1,0 +1,91 @@
+name: TOPA SPIDER SILK JANUS Proof-State Search
+
+on:
+  push:
+    paths:
+      - 'tools/topa_spider_silk.py'
+      - 'tools/topa_arxiv_gateway.py'
+      - 'config/spider_pattern_sets/janus-proof-state-differential-narrowing-v1.json'
+      - '.github/workflows/spider-silk-janus-proof-search.yml'
+  workflow_dispatch:
+
+jobs:
+  silk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: SILK self-test
+        run: python tools/topa_spider_silk.py self-test
+      - name: Live arXiv SPIDER survey
+        shell: bash
+        run: |
+          set +e
+          mkdir -p work/silk
+          python tools/topa_arxiv_gateway.py investigate \
+            'delta debugging cause effect state failure slicing' \
+            --raw-query 'all:"delta debugging" OR all:"cause-effect" OR all:"dynamic slicing"' \
+            --work-dir work/silk/delta --limit 40 --engine sqlite \
+            > work/silk/delta.stdout.json 2> work/silk/delta.stderr.txt
+          echo $? > work/silk/delta.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'SAT proof trace DRAT FRAT LRAT proof trimming' \
+            --raw-query '(all:SAT OR all:satisfiability) AND (all:DRAT OR all:FRAT OR all:LRAT OR all:"proof trace")' \
+            --work-dir work/silk/proof-trace --limit 50 --engine sqlite \
+            > work/silk/proof-trace.stdout.json 2> work/silk/proof-trace.stderr.txt
+          echo $? > work/silk/proof-trace.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'SAT unsatisfiable core minimal core extraction' \
+            --raw-query '(all:SAT OR all:satisfiability) AND (all:"unsatisfiable core" OR all:"unsat core" OR all:MUS)' \
+            --work-dir work/silk/unsat-core --limit 50 --engine sqlite \
+            > work/silk/unsat-core.stdout.json 2> work/silk/unsat-core.stderr.txt
+          echo $? > work/silk/unsat-core.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'SAT backdoor depth treewidth conflict graph implication graph' \
+            --raw-query 'all:SAT AND (all:"backdoor depth" OR all:treewidth OR all:"conflict graph" OR all:"implication graph")' \
+            --work-dir work/silk/structure --limit 50 --engine sqlite \
+            > work/silk/structure.stdout.json 2> work/silk/structure.stderr.txt
+          echo $? > work/silk/structure.exit
+          exit 0
+      - name: Assemble SILK JSON
+        run: |
+          python tools/topa_spider_silk.py assemble \
+            --config config/spider_pattern_sets/janus-proof-state-differential-narrowing-v1.json \
+            --arxiv work/silk/delta \
+            --arxiv work/silk/proof-trace \
+            --arxiv work/silk/unsat-core \
+            --arxiv work/silk/structure \
+            --max-candidates 80 \
+            --out work/silk/TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json \
+            --receipt work/silk/SILK-receipt.json
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/silk/TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json')
+          d=json.loads(p.read_text())
+          assert d['status']=='PASS'
+          assert d['silk_expansion']=='Spider Investigative Link Kernel'
+          assert len(d['canonical_external_sources'])>=8
+          assert len(d['planned_experiments'])>=6
+          assert 'ARTMONEY_PRINCIPLE_IS_DIAGNOSTIC_NOT_A_SAT_SPEEDUP' in d['laws']
+          assert 'P_VS_NP_IS_OPEN' in d['laws']
+          assert d['mission']['current_checkpoint']['N']==43
+          assert d['mission']['current_checkpoint']['candidate_root_cells']==[[43,9,5,28],[43,9,6,27]]
+          print('SILK_SCIENTIFIC_FIREWALL=PASS')
+          print(json.dumps({
+            'arxiv_scanned':d['live_arxiv']['records_scanned'],
+            'arxiv_retained':d['live_arxiv']['candidates_retained'],
+            'bridges':len(d['research_bridges'])
+          },sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: topa-spider-silk-janus-proof-search
+          path: work/silk
+          retention-days: 30
