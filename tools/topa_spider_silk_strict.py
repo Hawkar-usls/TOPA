@@ -14,9 +14,15 @@ DEBUG_FAMILIES={
  'DIFFERENTIAL_STATE_NARROWING','FIRST_DIVERGENCE','DELTA_DEBUGGING','CAUSE_EFFECT_CHAIN',
  'DYNAMIC_SLICING','VALIDITY_PRESERVING_PERTURBATION'
 }
+STRUCTURAL_FAMILIES={'STRUCTURAL_DIFF','TRACE_ALIGNMENT','CHANGE_IMPACT'}
+CONTENT_FAMILIES={'CONTENT_ADDRESSED_DIFF'}
+INVARIANT_FAMILIES={'INVARIANT_MINING'}
 SAT_TERMS=(' sat ',' satisfiability ',' cnf ',' boolean ',' unsat ',' unsatisfiable ',' drat ',' frat ',' lrat ',
            ' resolution ',' clause ',' cdcl ',' qbf ',' proof ',' solver ')
 DEBUG_TERMS=(' debug',' bug',' failure',' failing',' program',' software',' test ',' execution',' compiler',' trace reduction')
+STRUCTURAL_TERMS=(' tree ',' graph ',' ast ',' syntax ',' structural ',' diff ',' edit ',' program ',' software ',' trace ',' alignment ')
+CONTENT_TERMS=(' merkle ',' chunk',' dedup',' checksum',' synchronization ',' sync ',' delta ',' content ',' storage ',' block ')
+INVARIANT_TERMS=(' invariant ',' program ',' execution ',' trace ',' dynamic ',' analysis ',' software ')
 
 
 def norm(x: Any)->str:
@@ -35,6 +41,9 @@ def strict_match(c, families):
     title=norm(c.get('title')); body=norm(c.get('abstract')); surf=title+' '+body
     sat_context=any(t in surf for t in SAT_TERMS)
     debug_context=any(t in surf for t in DEBUG_TERMS)
+    structural_context=any(t in surf for t in STRUCTURAL_TERMS)
+    content_context=any(t in surf for t in CONTENT_TERMS)
+    invariant_context=any(t in surf for t in INVARIANT_TERMS)
     matched=[]; details={}
     for fid,aliases in families.items():
         th=[a for a in aliases if has_phrase(title,a)]
@@ -45,6 +54,15 @@ def strict_match(c, families):
             continue
         # Cause-effect/slicing terms are too broad outside software/failure analysis.
         if fid in DEBUG_FAMILIES and fid!='DELTA_DEBUGGING' and not debug_context and not has_phrase(surf,'delta debugging'):
+            continue
+        # Structural/tree/trace terms need an actual structure/program/trace context.
+        if fid in STRUCTURAL_FAMILIES and not structural_context:
+            continue
+        # Merkle/chunk/delta terms need a content/synchronization/storage context.
+        if fid in CONTENT_FAMILIES and not content_context:
+            continue
+        # Dynamic-invariant terminology must be embedded in program/execution/analysis context.
+        if fid in INVARIANT_FAMILIES and not invariant_context:
             continue
         matched.append(fid); details[fid]={'title_aliases':th,'body_aliases':bh[:12]}
     # Resource-accounting alone is not mission-specific enough.
@@ -85,14 +103,25 @@ def run(inp,cfg):
     return inp
 
 def self_test():
-    cfg={'families':[{'id':'UNSAT_CORE','aliases':['MUS','unsat core']},{'id':'CAUSE_EFFECT_CHAIN','aliases':['cause-effect chain']},{'id':'DELTA_DEBUGGING','aliases':['delta debugging']}]}
+    cfg={'families':[
+      {'id':'UNSAT_CORE','aliases':['MUS','unsat core']},
+      {'id':'CAUSE_EFFECT_CHAIN','aliases':['cause-effect chain']},
+      {'id':'DELTA_DEBUGGING','aliases':['delta debugging']},
+      {'id':'STRUCTURAL_DIFF','aliases':['tree diff']},
+      {'id':'CONTENT_ADDRESSED_DIFF','aliases':['Merkle tree']},
+      {'id':'INVARIANT_MINING','aliases':['dynamic invariant']}
+    ]}
     base={'live_arxiv':{'candidates':[
       {'arxiv_id':'a','title':'Scheduling cause-effect chains','abstract':'end to end real time scheduling','matched_families':['CAUSE_EFFECT_CHAIN']},
       {'arxiv_id':'b','title':'A MUS extraction algorithm for SAT','abstract':'minimal unsatisfiable cores for CNF satisfiability','matched_families':['UNSAT_CORE']},
-      {'arxiv_id':'c','title':'Delta debugging for compiler failures','abstract':'program test failure reduction','matched_families':['DELTA_DEBUGGING']}]},'research_bridges':[],'laws':[]}
+      {'arxiv_id':'c','title':'Delta debugging for compiler failures','abstract':'program test failure reduction','matched_families':['DELTA_DEBUGGING']},
+      {'arxiv_id':'d','title':'Tree diff for software ASTs','abstract':'structural edit scripts for program syntax trees','matched_families':['STRUCTURAL_DIFF']},
+      {'arxiv_id':'e','title':'Merkle tree synchronization','abstract':'content addressed block deduplication and storage sync','matched_families':['CONTENT_ADDRESSED_DIFF']},
+      {'arxiv_id':'f','title':'Dynamic invariant inference','abstract':'execution trace analysis for software programs','matched_families':['INVARIANT_MINING']}
+    ]},'research_bridges':[],'laws':[]}
     d=run(base,cfg); ids={x['arxiv_id'] for x in d['live_arxiv']['candidates']}
-    assert ids=={'b','c'} and d['strict_sieve']['rejected']==1
-    return {'schema':'hawkar.topa.spider.silk.strict.self_test.v1','status':'PASS','word_boundary':True,'domain_gate':True}
+    assert ids=={'b','c','d','e','f'} and d['strict_sieve']['rejected']==1
+    return {'schema':'hawkar.topa.spider.silk.strict.self_test.v2','status':'PASS','word_boundary':True,'domain_gate':True,'structural_forensics':True}
 
 def main():
     ap=argparse.ArgumentParser(); sp=ap.add_subparsers(dest='cmd',required=True); sp.add_parser('self-test')
