@@ -1,0 +1,111 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.n58_injective_rectangle_omission_contradiction.v1",
+  "artifact_id": "ALGORITHMIST-N58-INJECTIVE-RECTANGLE-OMISSION-CONTRADICTION-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "PRIORITY_RED__INDEPENDENT_THEOREM_SIDE_CLOSURE_OF_HISTORICAL_J_GE_610_CASE__NO_RUNTIME_CHANGE",
+  "scope": "Historical frozen regular N58 local state only. This is a research handoff / alternative combinatorial derivation of J<=609. It does not alter selector, runtime, proof resources, or P-vs-NP status.",
+  "frozen_state": {
+    "n": 7,
+    "m": 77,
+    "L": 350,
+    "d": 50,
+    "p": 22,
+    "q": 28,
+    "r": 6,
+    "c": 27,
+    "pair_count_pq": 616,
+    "regularity": "L=n*d=350, hence all seven live variables have incidence degree exactly 50",
+    "retained_literal_mass_T_interval": [54,162],
+    "retained_literal_mass_upper_bound": 162,
+    "existing_algorithmist_result": {"J_max":609,"raw_units_ceiling":3361,"cap":3364,"source_commit":"d2cdf05eecbebc2206072f6cbd95ad43651b927b"}
+  },
+  "theorem_statement": "In the frozen regular state above, the number J of NEW distinct non-tautological resolvents not already in the retained raw set satisfies J<=609.",
+  "proof": [
+    {
+      "step": 1,
+      "name": "Assume dangerous regime",
+      "statement": "Assume for contradiction J>=610. Choose exactly one generating parent-pair edge for each of 610 distinct new non-tautological resolvent outputs. The chosen 610 edges therefore have pairwise distinct outputs."
+    },
+    {
+      "step": 2,
+      "name": "Extract a complete injective rectangle",
+      "statement": "The full P x Q grid has 22*28=616 edges, so at most six edges are not among the chosen representatives. Delete from Q every Q-vertex incident to any unchosen edge. At most six Q-vertices are deleted, hence at least 22 Q-vertices remain. For every surviving q and every p in P, edge (p,q) is chosen; therefore all edges of P x Q_survive are non-tautological and have pairwise distinct outputs. Restrict to any 22 surviving Q-vertices. We obtain a complete cross-compatible injective rectangle P0 x Q0 with |P0|=|Q0|=22 and 484 pairwise distinct signed-union outputs."
+    },
+    {
+      "step": 3,
+      "name": "Classify each signed coordinate",
+      "statement": "For one nonpivot coordinate y, let S_P(y),S_Q(y) be the values used by P0,Q0 in {OMIT,POS,NEG}. Complete cross-compatibility forbids POS on one side together with NEG on the other. If one side uses both POS and NEG, the other side must be constantly OMIT; call y a private ternary coordinate of the first side. Every remaining coordinate uses at most one common nonzero sign plus OMIT, hence is at most a shared binary-OR coordinate. Let e_P,e_Q be the numbers of private ternary coordinates and s=6-e_P-e_Q the remaining binary coordinates."
+    },
+    {
+      "step": 4,
+      "name": "Output alphabet forces at least five ternary coordinates",
+      "statement": "The injective rectangle has 484 outputs. The coordinatewise output alphabet has at most 3^(e_P+e_Q)*2^s values. If e_P+e_Q<=4, this is at most 3^4*2^2=324<484. Hence e_P+e_Q>=5."
+    },
+    {
+      "step": 5,
+      "name": "Five ternary coordinates cannot hold 22 codewords on each side",
+      "statement": "If e_P+e_Q=5 then s=1. P0 can vary only on its e_P private ternary coordinates and on the one binary coordinate, so |P0|<=3^e_P*2. Since |P0|=22, e_P>=3. Symmetrically |Q0|=22 implies e_Q>=3, contradicting e_P+e_Q=5. Therefore e_P+e_Q=6 and s=0."
+    },
+    {
+      "step": 6,
+      "name": "The six coordinates split exactly 3+3",
+      "statement": "With s=0, |P0|<=3^e_P and |Q0|<=3^e_Q. Both sizes are 22, so e_P>=3 and e_Q>=3. Since e_P+e_Q=6, necessarily e_P=e_Q=3. Thus three coordinates are P-private and three are Q-private."
+    },
+    {
+      "step": 7,
+      "name": "Minimum omissions within three ternary coordinates",
+      "statement": "Any 22 distinct words of {OMIT,POS,NEG}^3 contain at least 16 OMIT symbols in total. Proof: there are 8 words with zero OMITs, 12 words with exactly one OMIT, 6 with exactly two, and 1 with three. The 22 words with minimum possible total omissions consist of all 8 zero-OMIT words, all 12 one-OMIT words, and 2 two-OMIT words, giving 0*8+1*12+2*2=16."
+    },
+    {
+      "step": 8,
+      "name": "Selected P parents already contribute at least 82 omissions",
+      "statement": "Every P0 parent omits all three Q-private coordinates, contributing 22*3=66 omissions. On the three P-private coordinates the 22 P0 tails must be distinct (otherwise two P parents paired with the same Q0 parent would have the same output), so Step 7 contributes at least 16 more omissions. Therefore P0 contributes at least 82 omissions across the six nonpivot coordinates."
+    },
+    {
+      "step": 9,
+      "name": "Selected Q parents also contribute at least 82 omissions",
+      "statement": "By symmetry Q0 contributes at least 22*3+16=82 omissions. Hence these 44 selected pivot-parent clauses alone contribute at least 164 omissions."
+    },
+    {
+      "step": 10,
+      "name": "Regular-incidence omission identity contradicts 164",
+      "statement": "Because every live variable has degree d=50, for a nonpivot variable y occurring t_y times in the c=27 retained clauses, y occurs exactly 50-t_y times among the 50 pivot-parent clauses and is therefore omitted from exactly t_y pivot parents. Summing over the six nonpivot variables, the TOTAL number of pivot-parent omissions equals T=sum_y t_y, the retained literal mass. But T<=c*r=27*6=162. Steps 8-9 exhibit 164 omissions inside only 44 of the 50 pivot parents, contradiction."
+    }
+  ],
+  "conclusion": {
+    "dangerous_J_ge_610": "IMPOSSIBLE",
+    "new_resolvent_ceiling_J": 609,
+    "historical_raw_alarm": "CLOSED_INDEPENDENTLY_AT_THE_RESOLVENT_COUNT_LEVEL",
+    "relation_to_existing_algorithmist_proof": "Independent shorter route discovered while translating N58 into two-codebook/zero-error-channel language; it agrees with the existing J<=609 regular-incidence occupancy result and does not supersede its verified artifact.",
+    "numeric_runtime_change": false
+  },
+  "generalizable_lemmas": {
+    "near_injective_to_rectangle": "For a p-by-q pair grid with J pairwise distinct represented outputs, selecting one edge per output leaves at most e=p*q-J unselected edges. Deleting all Q endpoints incident to unselected edges leaves a fully represented injective rectangle of size at least p*(q-e), whenever q>e. Symmetrically one may retain at least (p-e)*q by deleting P endpoints.",
+    "signed_cross_compatible_coordinate_decomposition": "Any complete cross-compatible pair of signed ternary codebooks over r coordinates decomposes coordinates into P-private ternary, Q-private ternary, and remaining at-most-binary shared coordinates.",
+    "minimum_omission_mass": "For k distinct ternary words of length t, the minimum total OMIT count is obtained by taking words in increasing order of number of OMIT coordinates; layer z contains C(t,z)*2^(t-z) words. For t=3,k=22 the exact minimum is 16."
+  },
+  "literature_inspiration_only": [
+    {"lane":"separable / almost-separable symmetric multiple-access channels","primary":"D'yachkov, Polyanskii, Shchukin, Vorobyev","doi":"10.1109/TIT.2019.2893234","arxiv":"1701.06085","role":"Suggested treating resolvents as pair-code outputs and distinguishing near-injective from fully injective code-pair rectangles."},
+    {"lane":"two-codebook uniquely decodable deterministic MAC","primary":"Kasami, Lin, Coding for a Multiple-Access Channel","doi":"10.1109/TIT.1976.1055529","role":"Provided explicit precedent for a Cartesian code pair whose coordinatewise deterministic channel output must uniquely identify the transmitted pair."},
+    {"lane":"cancellative / union code pairs","primary":"Janzer, A New Upper Bound for Cancellative Pairs","doi":"10.37236/7210","role":"Reinforced coordinatewise omission-marginal and code-pair viewpoint; no Janzer numeric bound is used in this proof."}
+  ],
+  "scientific_boundary": {
+    "finite_N58_local_transition_only": true,
+    "derived_mathematics_not_external_theorem": true,
+    "does_not_change_runtime": true,
+    "does_not_add_learning_restarts_or_reasons": true,
+    "does_not_prove_unbounded_totality": true,
+    "universal_GPEI": "OPEN",
+    "P_VS_NP": "OPEN"
+  },
+  "laws": [
+    "DERIVED_STRUCTURE_IS_NOT_RUNTIME_CHANGE",
+    "INDEPENDENT_PROOF_ROUTE_IS_NOT_INDEPENDENT_EMPIRICAL_EVIDENCE",
+    "LITERATURE_INSPIRATION_IS_NOT_THEOREM_TRANSFER",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "FAILURE_IS_DATA",
+    "P_VS_NP_IS_OPEN"
+  ],
+  "seal": "IANUS VIAS SERVAT."
+}
