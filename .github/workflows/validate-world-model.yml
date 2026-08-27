@@ -1,0 +1,59 @@
+name: Validate TOPA Physics World Model
+
+on:
+  push:
+    paths:
+      - 'tools/topa_world_model.py'
+      - 'tools/requirements-world-model.txt'
+      - 'protocols/TOPA_PHYSICS_WORLD_MODEL_PROTOCOL-v1.0.json'
+      - '.github/workflows/validate-world-model.yml'
+  pull_request:
+    paths:
+      - 'tools/topa_world_model.py'
+      - 'tools/requirements-world-model.txt'
+      - 'protocols/TOPA_PHYSICS_WORLD_MODEL_PROTOCOL-v1.0.json'
+      - '.github/workflows/validate-world-model.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  world-model:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate protocol JSON
+        run: python -m json.tool protocols/TOPA_PHYSICS_WORLD_MODEL_PROTOCOL-v1.0.json >/dev/null
+      - name: Install locked dependencies
+        run: python -m pip install --disable-pip-version-check -r tools/requirements-world-model.txt
+      - name: Run vector world-model self-test
+        run: python tools/topa_world_model.py self-test | tee /tmp/topa-world-model-self-test.json
+      - name: Enforce scientific and safety firewalls
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/topa-world-model-self-test.json', encoding='utf-8'))
+          assert r['status']=='PASS'
+          assert r['deterministic_rollout'] is True
+          assert r['uncertainty_cloud'] is True
+          assert r['latency_compensation'] is True
+          assert r['raw_physics_preserved'] is True
+          assert r['weaponization_firewall'] is True
+          print('TOPA_WORLD_MODEL_FIREWALL_PASS')
+          PY
+      - name: Verify MuJoCo portable backend
+        run: |
+          python - <<'PY'
+          import mujoco
+          xml='''<mujoco><worldbody><body name="test_box" pos="0 0 1"><freejoint/><geom type="box" size="0.1 0.1 0.1" mass="1"/></body><geom type="plane" size="2 2 0.1"/></worldbody></mujoco>'''
+          m=mujoco.MjModel.from_xml_string(xml)
+          d=mujoco.MjData(m)
+          z0=float(d.qpos[2])
+          for _ in range(10):
+              mujoco.mj_step(m,d)
+          assert float(d.qpos[2]) < z0
+          print('TOPA_MUJOCO_BACKEND_PASS', mujoco.__version__)
+          PY
