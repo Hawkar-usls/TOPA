@@ -1,0 +1,96 @@
+name: TOPA SPIDER SILK Dual-Pane Forensics
+
+on:
+  push:
+    paths:
+      - 'config/spider_pattern_sets/janus-proof-state-dual-pane-structural-forensics-v1.json'
+      - '.github/workflows/spider-silk-dual-pane-forensics.yml'
+      - 'tools/topa_arxiv_gateway.py'
+      - 'tools/topa_spider_silk.py'
+  workflow_dispatch:
+
+jobs:
+  research-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Boundary assertion
+        run: |
+          test -d research/mathematics/p-vs-np/SPIDER-SILK
+          python - <<'PY'
+          from pathlib import Path
+          txt=Path('research/mathematics/p-vs-np/SPIDER-SILK/README.md').read_text()
+          assert 'SPIDER must **not** modify proof-selector logic' in txt
+          print('SPIDER_READ_ONLY_BOUNDARY=PASS')
+          PY
+      - name: Live research sweep
+        shell: bash
+        run: |
+          set +e
+          mkdir -p work/dual-pane
+          python tools/topa_arxiv_gateway.py investigate \
+            'execution trace divergence alignment program state comparison debugging' \
+            --raw-query '(all:"trace divergence" OR all:"execution divergence" OR all:"trace alignment" OR all:"program alignment") AND (all:debugging OR all:program)' \
+            --work-dir work/dual-pane/trace --limit 60 --engine sqlite \
+            > work/dual-pane/trace.stdout.json 2> work/dual-pane/trace.stderr.txt
+          echo $? > work/dual-pane/trace.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'structural tree graph AST diff program analysis' \
+            --raw-query '(all:"tree diff" OR all:"structural diff" OR all:"AST diff" OR all:"graph diff") AND (all:program OR all:software OR all:tree)' \
+            --work-dir work/dual-pane/structure --limit 60 --engine sqlite \
+            > work/dual-pane/structure.stdout.json 2> work/dual-pane/structure.stderr.txt
+          echo $? > work/dual-pane/structure.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'dynamic invariant mining execution trace Daikon debugging' \
+            --raw-query '(all:"dynamic invariant" OR all:"invariant mining" OR all:"invariant inference") AND (all:program OR all:execution OR all:trace)' \
+            --work-dir work/dual-pane/invariants --limit 60 --engine sqlite \
+            > work/dual-pane/invariants.stdout.json 2> work/dual-pane/invariants.stderr.txt
+          echo $? > work/dual-pane/invariants.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'content defined chunking Merkle synchronization deduplication delta' \
+            --raw-query '(all:"content-defined chunking" OR all:"Merkle tree" OR all:"Merkle DAG" OR all:"rolling checksum") AND (all:synchronization OR all:deduplication OR all:delta OR all:diff)' \
+            --work-dir work/dual-pane/content --limit 60 --engine sqlite \
+            > work/dual-pane/content.stdout.json 2> work/dual-pane/content.stderr.txt
+          echo $? > work/dual-pane/content.exit
+          python tools/topa_arxiv_gateway.py investigate \
+            'dynamic slicing change impact dependency fault localization' \
+            --raw-query '(all:"dynamic slicing" OR all:"program slicing" OR all:"change impact") AND (all:debugging OR all:"fault localization" OR all:dependency)' \
+            --work-dir work/dual-pane/slicing --limit 60 --engine sqlite \
+            > work/dual-pane/slicing.stdout.json 2> work/dual-pane/slicing.stderr.txt
+          echo $? > work/dual-pane/slicing.exit
+          exit 0
+      - name: Assemble SILK research bundle
+        run: |
+          python tools/topa_spider_silk.py assemble \
+            --config config/spider_pattern_sets/janus-proof-state-dual-pane-structural-forensics-v1.json \
+            --arxiv work/dual-pane/trace \
+            --arxiv work/dual-pane/structure \
+            --arxiv work/dual-pane/invariants \
+            --arxiv work/dual-pane/content \
+            --arxiv work/dual-pane/slicing \
+            --max-candidates 120 \
+            --out work/dual-pane/SILK-DUAL-PANE-FORENSICS-LIVE-v1.0.json \
+            --receipt work/dual-pane/SILK-DUAL-PANE-FORENSICS-receipt.json
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('work/dual-pane/SILK-DUAL-PANE-FORENSICS-LIVE-v1.0.json').read_text())
+          assert d['status']=='PASS'
+          assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in d['laws']
+          assert 'P_VS_NP_IS_OPEN' in d['laws']
+          assert len(d['canonical_external_sources']) >= 8
+          print('SPIDER_DUAL_PANE_FIREWALL=PASS')
+          print(json.dumps({'scanned':d['live_arxiv']['records_scanned'],'retained':d['live_arxiv']['candidates_retained'],'bridges':len(d['research_bridges'])},sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: topa-spider-silk-dual-pane-forensics
+          path: work/dual-pane
+          retention-days: 30
