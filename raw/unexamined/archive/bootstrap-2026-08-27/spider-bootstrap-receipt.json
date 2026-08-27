@@ -1,0 +1,22 @@
+{
+  "documents": 10,
+  "edge_stream_sha256": "0206874fed63086c13e7a1c7ba243dca4094f4870d0b106fc10c4f9a21077f28",
+  "edge_types": {
+    "MENTIONS": 66,
+    "SEMANTIC_SIMILARITY": 16,
+    "SHARED_ENTITY": 80
+  },
+  "edges": 162,
+  "laws": [
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+    "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
+  ],
+  "node_stream_sha256": "50807d959faa7c4f46406ae7b67ea3a52af3b3a55488e87df2cb1d6de1a50447",
+  "nodes": 45,
+  "promotion_rule": "EDGE_STRENGTH_MAY_RISE_ONLY_WITH_EXPLICIT_SOURCE_RELATION_OR_INDEPENDENT_EVIDENCE__NEVER_FROM_DENSITY_ALONE",
+  "schema": "hawkar.topa.spider.receipt.v1",
+  "status": "PASS",
+  "weak_or_speculative_edges": 162
+}
