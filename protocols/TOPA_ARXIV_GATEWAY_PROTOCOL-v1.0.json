@@ -1,0 +1,75 @@
+{
+  "schema": "hawkar.topa.arxiv_gateway_protocol.v1",
+  "id": "TOPA_ARXIV_GATEWAY_PROTOCOL_V1_0",
+  "version": "1.0",
+  "status": "ACTIVE",
+  "purpose": "Give TOPA a reproducible, provenance-preserving search and local-index gateway for arXiv research discovery across arbitrary scientific topics without allowing paper metadata, ranking, or model output to become empirical truth by itself.",
+  "remote_source": {
+    "service": "arXiv API",
+    "endpoint": "https://export.arxiv.org/api/query",
+    "response_format": "Atom 1.0 XML",
+    "query_fields_supported": ["all", "ti", "au", "abs", "co", "jr", "cat", "rn", "id"],
+    "paging": true,
+    "sort_modes": ["relevance", "lastUpdatedDate", "submittedDate"],
+    "polite_delay_seconds_between_sequential_requests": 3.0,
+    "default_page_size": 50,
+    "maximum_page_size_used_by_TOPA": 2000,
+    "bulk_rule": "Use arXiv bulk/OAI-PMH routes rather than repeatedly hammering the search API for mass harvesting."
+  },
+  "portable_search": {
+    "primary_engine": "Tantivy",
+    "primary_binding": "tantivy-py",
+    "primary_version_family": "0.26.x",
+    "license": "MIT",
+    "mode": "embedded local index; no separate search server required",
+    "ranking": "BM25/query-parser relevance with field boosts",
+    "fallback_engine": "SQLite FTS5",
+    "fallback_reason": "Keep TOPA searchable with Python standard-library components when a Tantivy wheel is unavailable.",
+    "server_dependency_required": false
+  },
+  "ingestion_contract": {
+    "remote_responses_are_hash_receipted": true,
+    "raw_query_results_may_be_appended_to_immutable_jsonl_corpus": true,
+    "local_index_is_rebuildable_from_jsonl": true,
+    "deduplication_key": "arxiv_id",
+    "metadata_fields": [
+      "arxiv_id", "entry_id", "title", "abstract", "authors", "categories",
+      "primary_category", "published", "updated", "comments", "journal_ref",
+      "doi", "pdf_url", "abs_url", "query_provenance"
+    ],
+    "record_hash_required": true
+  },
+  "search_contract": {
+    "plain_topic_supported": true,
+    "raw_arxiv_query_supported": true,
+    "smart_plain_topic_expansion": "phrase OR conjunction of meaningful topic tokens in the arXiv all: field",
+    "local_title_boost": 3.0,
+    "local_abstract_boost": 1.5,
+    "local_authors_boost": 1.0,
+    "local_categories_boost": 1.0,
+    "remote_and_local_rank_are_provenance_not_truth": true,
+    "query_receipt_required_for_investigation_mode": true
+  },
+  "epistemic_firewall": {
+    "ARXIV_PAPER_IS_NOT_EMPIRICAL_TRUTH": true,
+    "PREPRINT_STATUS_IS_PROVENANCE_NOT_VALIDATION": true,
+    "SEARCH_RANK_IS_NOT_EVIDENCE_STRENGTH": true,
+    "CITATION_OR_AUTHOR_STATUS_IS_NOT_TRUTH": true,
+    "MODEL_SUMMARY_IS_NOT_SOURCE_FACT": true,
+    "PAPER_CLAIMS_REQUIRE_CLAIM_LEVEL_EXTRACTION_AND_VALIDATION": true,
+    "CONTRADICTORY_AND_NEGATIVE_PAPERS_MUST_REMAIN_SEARCHABLE": true,
+    "NO_RESULT_IS_NOT_PROOF_OF_ABSENCE": true,
+    "FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE": true,
+    "RAW_METADATA_AND_QUERY_PROVENANCE_MUST_BE_PRESERVED": true
+  },
+  "TOPA_integration": {
+    "repo_assimilator_relationship": "arXiv gateway supplies new external source candidates; repo assimilation supplies internal methods, failure modes and routing context.",
+    "artifact_classifier_relationship": "arXiv literature may inform methods and preregistration but may not supply nuclear labels or silently become POSS-I image ground truth.",
+    "output_route": "ARXIV_RESEARCH_CANDIDATE_QUEUE",
+    "allowed_next_steps": [
+      "SOURCE_REVIEW", "METHOD_EXTRACTION", "DATASET_ROUTE_DISCOVERY",
+      "CODE_ROUTE_DISCOVERY", "CONTRADICTION_SEARCH", "FALSIFICATION_DESIGN"
+    ]
+  },
+  "claim_ceiling": "The gateway makes arXiv discoverable and locally searchable for TOPA. It does not validate the scientific claims contained in papers and does not make search ranking a scientific authority."
+}
