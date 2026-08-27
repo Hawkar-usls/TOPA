@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install PDF text extractor
+        run: python -m pip install --disable-pip-version-check 'pypdf>=5,<7'
       - name: Sieve self-test
         run: python tools/topa_spider_chunk_sieve.py self-test
       - name: Harvest official thematic bootstrap
