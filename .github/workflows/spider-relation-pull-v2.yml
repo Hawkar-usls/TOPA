@@ -1,0 +1,78 @@
+name: Validate TOPA SPIDER Relation Pull v2
+
+on:
+  push:
+    paths:
+      - 'tools/topa_spider_v2.py'
+      - 'tools/topa_archive_gateway.py'
+      - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.0.json'
+      - 'raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl'
+      - '.github/workflows/spider-relation-pull-v2.yml'
+  workflow_dispatch:
+
+jobs:
+  selective-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Self-test SPIDER v2
+        run: python tools/topa_spider_v2.py self-test
+      - name: Broad official archive survey stays ephemeral
+        run: |
+          mkdir -p work/spider-v2
+          python tools/topa_archive_gateway.py ingest \
+            --providers nara,cia,nsa,fbi \
+            --limit 10 \
+            --expand-nara \
+            --out work/spider-v2/archive-survey.jsonl \
+            --receipt work/spider-v2/archive-survey-receipt.json
+      - name: Pull only records connected to current web
+        run: |
+          python tools/topa_spider_v2.py pull \
+            --seed raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
+            --survey work/spider-v2/archive-survey.jsonl \
+            --out work/spider-v2/spider-pulled.jsonl \
+            --receipt work/spider-v2/spider-pull-receipt.json \
+            --threshold 0.22 \
+            --semantic-only-threshold 0.42 \
+            --max-pull 100 \
+            --rounds 2
+      - name: Weave prior web plus selectively pulled records
+        run: |
+          cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
+              work/spider-v2/spider-pulled.jsonl > work/spider-v2/current-web.jsonl
+          python tools/topa_spider_v2.py weave \
+            --input work/spider-v2/current-web.jsonl \
+            --nodes work/spider-v2/spider-nodes.jsonl \
+            --edges work/spider-v2/spider-edges.jsonl \
+            --receipt work/spider-v2/spider-weave-receipt.json \
+            --semantic-threshold 0.14 \
+            --topk 5 \
+            --keyword-nodes 8
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('work/spider-v2/spider-pull-receipt.json').read_text())
+          w=json.loads(Path('work/spider-v2/spider-weave-receipt.json').read_text())
+          proto=json.loads(Path('protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.0.json').read_text())
+          assert p['status']=='PASS'
+          assert p['survey_candidates'] >= p['pulled_documents']
+          assert 'NO_FIXED_HYPOTHESIS_CENTER' in p['laws']
+          assert 'UNCONNECTED_ARCHIVE_RECORDS_STAY_EXTERNAL_POINTERS' in p['laws']
+          assert 'NO_FIXED_HYPOTHESIS_CENTER' in w['laws']
+          assert proto['topic_policy']['tachyon_is_privileged'] is False
+          assert proto['topic_policy']['retrocausality_is_privileged'] is False
+          assert proto['archive_flow']['stage_3_pull'].startswith('Only connected')
+          print('SPIDER_RELATION_PULL_V2_FIREWALL=PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-relation-pull-v2
+          path: work/spider-v2
+          retention-days: 14
