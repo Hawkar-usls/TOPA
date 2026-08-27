@@ -5,9 +5,11 @@ on:
     paths:
       - 'tools/topa_spider_v2.py'
       - 'tools/topa_spider_flywheel.py'
+      - 'tools/topa_spider_context_fur.py'
       - 'tools/topa_spider_hrain_pack.py'
       - 'tools/topa_archive_gateway.py'
       - 'protocols/TOPA_SPIDER_TIME_FLYWHEEL_HRAIN_PROTOCOL_v1.0.json'
+      - 'protocols/TOPA_SPIDER_ULTRA_CONTEXT_FUR_PROTOCOL_v1.0.json'
       - '.github/workflows/spider-flywheel-hrain.yml'
   workflow_dispatch:
 
@@ -24,6 +26,7 @@ jobs:
         run: |
           python tools/topa_spider_v2.py self-test
           python tools/topa_spider_flywheel.py self-test
+          python tools/topa_spider_context_fur.py self-test
           python tools/topa_spider_hrain_pack.py self-test
       - name: Broad live archive survey
         run: |
@@ -57,6 +60,21 @@ jobs:
             --semantic-threshold 0.14 \
             --topk 8 \
             --keyword-nodes 12
+      - name: Grow Context Fur pass 1
+        run: |
+          python tools/topa_spider_context_fur.py build \
+            --records work/flywheel/current-web.jsonl \
+            --out work/flywheel/context-fur-p1.jsonl \
+            --receipt work/flywheel/context-fur-receipt-p1.json \
+            --pass-id FUR-P1
+      - name: Grow Context Fur pass 2 replay
+        run: |
+          python tools/topa_spider_context_fur.py merge \
+            --previous work/flywheel/context-fur-p1.jsonl \
+            --records work/flywheel/current-web.jsonl \
+            --out work/flywheel/context-fur-p2.jsonl \
+            --receipt work/flywheel/context-fur-receipt-p2.json \
+            --pass-id FUR-P2
       - name: Time Flywheel pass 1
         run: |
           python tools/topa_spider_flywheel.py calibrate \
@@ -80,9 +98,12 @@ jobs:
             --nodes work/flywheel/spider-nodes.jsonl \
             --state work/flywheel/flywheel-state-p2.jsonl \
             --history work/flywheel/flywheel-history.jsonl \
+            --fur work/flywheel/context-fur-p2.jsonl \
             --receipt work/flywheel/archive-survey-receipt.json \
             --receipt work/flywheel/spider-pull-receipt.json \
             --receipt work/flywheel/spider-weave-receipt.json \
+            --receipt work/flywheel/context-fur-receipt-p1.json \
+            --receipt work/flywheel/context-fur-receipt-p2.json \
             --receipt work/flywheel/flywheel-receipt-p1.json \
             --receipt work/flywheel/flywheel-receipt-p2.json \
             --out work/flywheel/hrain-spider-package.json
@@ -93,13 +114,18 @@ jobs:
           from pathlib import Path
           p1=json.loads(Path('work/flywheel/flywheel-receipt-p1.json').read_text())
           p2=json.loads(Path('work/flywheel/flywheel-receipt-p2.json').read_text())
+          f1=json.loads(Path('work/flywheel/context-fur-receipt-p1.json').read_text())
+          f2=json.loads(Path('work/flywheel/context-fur-receipt-p2.json').read_text())
           pkg=json.loads(Path('work/flywheel/hrain-spider-package.json').read_text())
-          assert p1['status']=='PASS' and p2['status']=='PASS'
-          assert 'REPLAY_IS_NOT_NEW_EVIDENCE' in p2['laws']
+          fur2=[json.loads(x) for x in Path('work/flywheel/context-fur-p2.jsonl').read_text().splitlines() if x.strip()]
+          assert p1['status']=='PASS' and p2['status']=='PASS' and f1['status']=='PASS' and f2['status']=='PASS'
+          assert 'REPLAY_IS_NOT_NEW_EVIDENCE' in p2['laws'] and 'REPLAY_IS_NOT_NEW_EVIDENCE' in f2['laws']
+          assert all(x['history'][-1]['fresh_observations']==0 for x in fur2)
           assert pkg['schema']=='hawkar.topa.spider.hrain_package.v1'
           assert 'HRAIN_VISUAL_WEIGHT_IS_NOT_TRUTH' in pkg['laws']
-          assert pkg['stats']['edges']>0 and pkg['stats']['nodes']>0
-          print('SPIDER_FLYWHEEL_HRAIN_FIREWALL=PASS')
+          assert 'CONTEXT_COMPLETENESS_IS_NOT_CLAIM_STRENGTH' in pkg['laws']
+          assert pkg['stats']['edges']>0 and pkg['stats']['nodes']>0 and pkg['stats']['fur_subjects']>0
+          print('SPIDER_FLYWHEEL_CONTEXT_FUR_HRAIN_FIREWALL=PASS')
           PY
       - uses: actions/upload-artifact@v4
         with:
