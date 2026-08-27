@@ -1,2 +1,2 @@
 numpy==2.2.6
-mujoco==3.11.1
+mujoco==3.12.0
