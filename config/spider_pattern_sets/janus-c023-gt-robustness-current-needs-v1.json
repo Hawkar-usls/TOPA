@@ -1,0 +1,58 @@
+{
+  "schema": "hawkar.topa.spider_pattern_set.v1",
+  "pattern_set_id": "JANUS-C023-GT-ROBUSTNESS-CURRENT-NEEDS-v1",
+  "silk": "Spider Investigative Link Kernel",
+  "mission_id": "SPIDER-SILK-C023-GT-ROBUSTNESS-002",
+  "purpose": "Research-only search for literature and proof-system results that clarify the exact open gates around JANUS-FC_local: historical Formula-Caching/FCWS lower bounds for graph/order tautologies, mechanisms giving polynomial Resolution/CDCL refutations, robustness under bounded local Resolution, reusable-reason interfaces, automatability/discovery-cost barriers, and alternate Tseitin/branching-program lower-bound lanes. SPIDER must not alter the algorithm.",
+  "families": [
+    {"id":"FORMULA_CACHING","aliases":["formula caching","contradiction caching","cached residual","residual formula caching","FCWS"]},
+    {"id":"GRAPH_ORDERING_TAUTOLOGY","aliases":["graph tautology","graph tautologies","ordering principle","ordering tautology","ordering tautologies","GT_n","GTn"]},
+    {"id":"PRUNE_NOVEL_BRANCH_WITNESS","aliases":["novel branch point","novel branch","partial order residual","Hasse diagram","prune(σ)","prune(sigma)"]},
+    {"id":"REGULAR_RESOLUTION","aliases":["regular resolution","ordered resolution","Davis-Putnam resolution","linear resolution"]},
+    {"id":"CLAUSE_LEARNING_CDCL","aliases":["clause learning","CDCL","1UIP","conflict-driven clause learning","learned clause"]},
+    {"id":"BOUNDED_LOCAL_RESOLUTION","aliases":["bounded resolution","bounded-width resolution","width-k resolution","local resolution","one-step resolution","one layer resolution"]},
+    {"id":"REASON_INTERFACE","aliases":["reason for unsatisfiability","returned reason","reason clause","conflict reason","reusable reason"]},
+    {"id":"AUTOMATABILITY","aliases":["automatability","automatizable","automating resolution","proof search hardness","proof-search problem"]},
+    {"id":"TSEITIN_LIFTING","aliases":["Tseitin formula","Tseitin formulas","Tseitin contradiction","lifting theorem","lifted Tseitin"]},
+    {"id":"BRANCHING_PROGRAM_DNNF","aliases":["branching program","free binary decision diagram","FBDD","DNNF","decision DAG","residual DAG"]},
+    {"id":"TREEWIDTH_STRUCTURE","aliases":["treewidth","incidence treewidth","primal treewidth","separator width"]},
+    {"id":"PROOF_WIDTH","aliases":["resolution width","width lower bound","size-width","proof width"]},
+    {"id":"RESTARTS_LEARNING","aliases":["restarts","restart after every conflict","many restarts","no clause deletion"]}
+  ],
+  "janus_anchors": [
+    {"id":"C023_STATUS","path":"Hawkar-usls/Janus-Fundamentum/docs/C023_FORMULA_CACHING_CALCULUS.md","authority":"READ_ONLY_PROVIDER_REFERENCE"},
+    {"id":"C023_GT_ROBUSTNESS","path":"Hawkar-usls/Janus-Fundamentum/proof_attempts/C023/GT_LOCAL_RESOLUTION_ROBUSTNESS.md","authority":"READ_ONLY_PROVIDER_REFERENCE"},
+    {"id":"SILK_CURRENT_NEEDS","path":"research/mathematics/p-vs-np/SPIDER-SILK/dossiers/C023-CURRENT-NEEDS-PRIMARY-LOWER-BOUND-2026-08-27-v1.0.json","authority":"TOPA_RESEARCH_MEMORY"},
+    {"id":"SILK_HANDOFF","path":"research/mathematics/p-vs-np/SPIDER-SILK/handoff/ALGORITHMIST-TASTY-ROUTES-2026-08-27-v1.0.json","authority":"READ_ONLY_HANDOFF"}
+  ],
+  "canonical_external_sources": [
+    {"id":"BEAME_IMPAGLIAZZO_PITASSI_SEGERLIND_FC","families":["FORMULA_CACHING","GRAPH_ORDERING_TAUTOLOGY","PRUNE_NOVEL_BRANCH_WITNESS","REASON_INTERFACE"],"url":"https://eccc.weizmann.ac.il/report/2006/140/","role":"primary_formula_caching_source"},
+    {"id":"BONET_GALESI_FOCS1999","families":["GRAPH_ORDERING_TAUTOLOGY","REGULAR_RESOLUTION","PROOF_WIDTH"],"url":"https://doi.org/10.1109/SFFCS.1999.814614","role":"primary_ordering_principle_proof_search_source"},
+    {"id":"BUSS_JOHANNSEN_LINEAR_RESOLUTION","families":["GRAPH_ORDERING_TAUTOLOGY","REGULAR_RESOLUTION"],"url":"https://doi.org/10.3233/SAT190112","role":"explicit_polynomial_ordering_refutation_atlas"},
+    {"id":"SAMAR_VINYALS_GANESH_SAT2026","families":["GRAPH_ORDERING_TAUTOLOGY","CLAUSE_LEARNING_CDCL","RESTARTS_LEARNING"],"url":"https://doi.org/10.4230/LIPIcs.SAT.2026.30","role":"deterministic_CDCL_destruction_atlas"},
+    {"id":"ATSERIAS_FICHTE_THURLEY_JAIR","families":["CLAUSE_LEARNING_CDCL","BOUNDED_LOCAL_RESOLUTION","RESTARTS_LEARNING"],"url":"https://doi.org/10.1613/jair.3152","role":"bounded_width_learning_bridge"},
+    {"id":"ATSERIAS_MULLER_AUTOMATING_RESOLUTION","families":["AUTOMATABILITY"],"url":"https://arxiv.org/abs/1904.02991","role":"discovery_cost_barrier"},
+    {"id":"BELL_REGULAR_AUTOMATABILITY","families":["AUTOMATABILITY","REGULAR_RESOLUTION"],"url":"https://eccc.weizmann.ac.il/report/2020/105/","role":"restricted_proof_search_barrier"},
+    {"id":"DE_COLNET_MENGEL_TSEITIN_REGULAR","families":["TSEITIN_LIFTING","REGULAR_RESOLUTION","TREEWIDTH_STRUCTURE","BRANCHING_PROGRAM_DNNF"],"url":"https://arxiv.org/abs/2103.09609","role":"alternate_structural_lower_bound_lane"},
+    {"id":"BONET_BUSS_JOHANNSEN_POOL","families":["GRAPH_ORDERING_TAUTOLOGY","CLAUSE_LEARNING_CDCL","REGULAR_RESOLUTION"],"url":"https://arxiv.org/abs/1208.2469","role":"learned_clause_strength_control"}
+  ],
+  "research_questions": [
+    "Which exact witness objects support the FCWS lower bound on GT_n, and what operations preserve or destroy them?",
+    "What clause families and derivation depth make ordinary/regular/linear Resolution polynomial on ordering principles?",
+    "Is there a named proof system that exactly matches exact Boolean residual caching plus a deterministic bounded non-saturating one-layer local Resolution closure?",
+    "What existing simulation theorems, if any, cover such a local closure without silently adding returned reasons, arbitrary learned clauses, weakening, restarts, or extensions?",
+    "What is known about learning bounded-width/local clauses on ordering principles, and which width/number-of-round assumptions are essential?",
+    "Can alternate Tseitin/treewidth/DNNF/FBDD lower bounds be routed to JANUS only after an explicit simulation theorem?",
+    "What proof-search/automatability barriers warn against confusing short-proof existence with cheap deterministic discovery?"
+  ],
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "LOWER_BOUND_FOR_MODEL_X_IS_NOT_A_JANUS_LOWER_BOUND_WITHOUT_SIMULATION",
+    "POLYNOMIAL_LOCAL_RULE_COUNT_IS_NOT_AUTOMATICALLY_HARMLESS",
+    "RETURNED_REASON_IS_A_STRONGER_RESOURCE_THAN_BOOLEAN_CACHE",
+    "CLAUSE_LEARNING_IS_NOT_IDENTICAL_TO_JANUS_LOCAL_RESOLUTION",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
