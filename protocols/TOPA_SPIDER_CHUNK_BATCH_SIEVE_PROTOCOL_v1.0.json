@@ -1,0 +1,65 @@
+{
+  "schema": "hawkar.topa.spider_chunk_batch_sieve_protocol.v1",
+  "artifact_id": "TOPA-SPIDER-CHUNK-BATCH-SIEVE-PROTOCOL-2026-08-27-v1.0",
+  "status": "FROZEN_DISCOVERY_STRUCTURING_PROTOCOL",
+  "purpose": "Convert a broad SPIDER archive corpus into reproducible, provenance-preserving batches of locally relevant text chunks, group repeated patterns, preserve neighboring context, and expose pattern co-occurrence without promoting retrieval structure into evidence or causation.",
+  "pipeline": [
+    "archive records remain immutable raw input",
+    "normalize text without rewriting source wording",
+    "split each record into overlapping word chunks",
+    "score each chunk against a versioned pattern-family manifest",
+    "retain matching chunks plus bounded neighboring chunks",
+    "group retained chunks into deterministic batches",
+    "deduplicate exact/near-duplicate retellings",
+    "build pattern-family co-occurrence and source-family maps",
+    "emit one versioned dossier JSON plus JSONL chunk projection"
+  ],
+  "chunk_contract": {
+    "default_words": 180,
+    "default_overlap_words": 45,
+    "neighbor_radius": 1,
+    "fields": [
+      "chunk_id",
+      "provider",
+      "archive_id",
+      "source_url",
+      "record_sha256",
+      "source_family_id",
+      "chunk_index",
+      "word_start",
+      "word_end",
+      "text",
+      "text_sha256",
+      "selection_score",
+      "direct_hit",
+      "neighbor_of",
+      "pattern_matches",
+      "pattern_families",
+      "duplicate_of"
+    ]
+  },
+  "batch_contract": {
+    "deterministic": true,
+    "default_batch_size": 64,
+    "ordering": "provider/archive_id/chunk_index/chunk_id",
+    "batch_sha256": true
+  },
+  "pattern_rule": "Pattern aliases are retrieval operators, not claims. A family may include literal terms, spelling variants, and pre-registered semantic synonyms, but matching a family does not establish the mechanism named by that family.",
+  "deduplication": {
+    "exact_text_hash": true,
+    "near_duplicate_token_jaccard_threshold": 0.88,
+    "same_source_family_does_not_increment_independence": true
+  },
+  "laws": [
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "CHUNK_SELECTION_IS_NOT_EVIDENCE",
+    "PATTERN_MATCH_IS_NOT_MECHANISM",
+    "PATTERN_COOCCURRENCE_IS_NOT_CAUSATION",
+    "SAME_SOURCE_REPRINT_IS_NOT_INDEPENDENT_WITNESS",
+    "NEIGHBOR_CONTEXT_IS_PRESERVED_TO_REDUCE_QUOTE_MINING",
+    "RAW_ARCHIVE_RECORDS_ARE_IMMUTABLE",
+    "MISSING_PATTERN_IS_NOT_PROOF_OF_ABSENCE",
+    "MODEL_OUTPUT_IS_NOT_EVIDENCE"
+  ],
+  "claim_ceiling": "DISCOVERY_ROUTING_AND_STRUCTURING_ONLY__NO_PHYSICAL_OR_CAUSAL_PROMOTION"
+}
