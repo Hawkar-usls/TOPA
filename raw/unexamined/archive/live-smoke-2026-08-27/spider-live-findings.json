@@ -1,0 +1,78 @@
+{
+  "artifact_id": "TOPA-SPIDER-LIVE-BOUNDED-SMOKE-2026-08-27-v1.0",
+  "claim_ceiling": "ENGINEERING_AND_DISCOVERY_SMOKE_ONLY__NO_EXTRAORDINARY_PHYSICAL_CLAIM",
+  "graph": {
+    "edge_stream_sha256": "9599baa43c5839be6ab7e88de9562a263567dc7481e4867629c0fb1727ff798a",
+    "edges": 181,
+    "node_stream_sha256": "0ce1a146dbf3eb4b74e8c41e9d9320688e3a86ff459b1e00da559d03b00f8b1f",
+    "nodes": 57,
+    "weak_or_speculative_edges": 181
+  },
+  "input_documents": 10,
+  "laws": [
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "SAME_ARCHIVE_IS_NOT_INDEPENDENT_WITNESS",
+    "NEGATIVE_RESULTS_ARE_PRESERVED"
+  ],
+  "notable_semantic_edges": [
+    {
+      "a": "NARA:488808322",
+      "b": "NARA:493468579",
+      "interpretation": "same collection template/metadata structure",
+      "similarity": 1.0
+    },
+    {
+      "a": "CIA:0000015452",
+      "b": "CIA:CIA-RDP94-01353R002301740011-0",
+      "interpretation": "Ukraine/UAP archival report similarity",
+      "similarity": 0.841224
+    },
+    {
+      "a": "FBI:FBI-UFO",
+      "b": "NSA:NSA-UFO-PARANORMAL",
+      "interpretation": "independent agency UFO/UAP archive route similarity",
+      "similarity": 0.698314
+    },
+    {
+      "a": "CIA:CIA-RDP96-00789R003200240001-0",
+      "b": "CIA:CIA-RDP96-00791R000200270001-7",
+      "interpretation": "tachyon/reverse-information research-line similarity",
+      "similarity": 0.59354
+    },
+    {
+      "a": "CIA:0000015452",
+      "b": "CIA:CIA-RDP96-00789R003200240001-0",
+      "interpretation": "weak semantic overlap only; not a mechanism bridge",
+      "similarity": 0.255028
+    }
+  ],
+  "observations": [
+    {
+      "id": "NARA_RG615_CLUSTER",
+      "statement": "NRC, FAA, ODNI and OSD metadata form a strong lexical/structural cluster because they are sibling series in the same NARA RG615 UAP collection. This is collection structure, not independent corroboration of UAP claims.",
+      "status": "EXPECTED_STRUCTURE"
+    },
+    {
+      "id": "UKRAINE_ARCHIVE_PAIR",
+      "statement": "The 1956 Odesa report and 1983 Ukraine report cluster strongly by Ukraine/UAP/CIA context. They remain distinct archival reports and do not establish a common physical mechanism.",
+      "status": "WEAK_SOURCE_CLUSTER"
+    },
+    {
+      "id": "RETRO_TACHYON_PAIR",
+      "statement": "The two declassified tachyon/reverse-information documents cluster by shared terminology and CIA research lineage. This establishes archival thematic continuity only.",
+      "status": "WEAK_SOURCE_CLUSTER"
+    },
+    {
+      "id": "NO_UKRAINE_TACHYON_BRIDGE",
+      "statement": "No explicit or independent-evidence edge connects the Ukraine UAP reports to the tachyon/retrocausality hypothesis documents in this bounded smoke. The only cross-links are low-confidence semantic similarity or same-provider CIA tags.",
+      "status": "NEGATIVE_FINDING"
+    },
+    {
+      "id": "NSA_FBI_UAP_COLLECTION_SIMILARITY",
+      "statement": "NSA and FBI official UAP/UFO archival landing pages cluster as independent-agency discovery routes; this justifies broader ingestion, not claim corroboration.",
+      "status": "DISCOVERY_ROUTE"
+    }
+  ],
+  "schema": "hawkar.topa.spider.live_smoke_findings.v1"
+}
