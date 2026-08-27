@@ -1,0 +1,178 @@
+{
+  "schema": "hawkar.topa.spider.silk.current_needs_map.v1",
+  "artifact_id": "C023-CURRENT-NEEDS-PRIMARY-LOWER-BOUND-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "RESEARCH_ONLY__ALGORITHM_UNTOUCHED",
+  "authority_boundary": {
+    "spider_role": "OBSERVER__RESEARCHER__INDEXER_ONLY",
+    "algorithmist_role": "SOLE_DECISION_AND_ALGORITHM_AUTHORITY",
+    "algorithm_changes_by_spider": 0,
+    "laws": [
+      "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+      "SILK_LINK_IS_A_RESEARCH_ROUTE_NOT_A_PROOF",
+      "PAPER_CLAIM_IS_NOT_A_JANUS_THEOREM",
+      "FINITE_EVIDENCE_IS_NOT_ASYMPTOTIC_PROOF",
+      "P_VS_NP_IS_OPEN"
+    ]
+  },
+  "stage_reconciliation": {
+    "public_canonical_mainline": {
+      "repo": "Hawkar-usls/Janus-Fundamentum",
+      "status": "C023_JANUS_FC_LOCAL__MACHINE_CHECKABLE_FINITE_CALCULUS__REASON_INTERFACE_UNDER_ATTACK__ASYMPTOTIC_LOWER_BOUND_OPEN",
+      "baseline_commit": "f0ffb9b7afdd1797c4c6648b32f5ee5c5a80a9f0",
+      "source": "https://github.com/Hawkar-usls/Janus-Fundamentum/blob/main/docs/CURRENT_RESEARCH_STATUS.md"
+    },
+    "separate_algorithmist_checkpoint": {
+      "status": "CURRENT_MISSION_INPUT__NOT_PUBLIC_BASELINE",
+      "N": 43,
+      "candidate_root_cells": [[43,9,5,28],[43,9,6,27]],
+      "source": "research/mathematics/p-vs-np/TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json",
+      "rule": "SPIDER_MAY_COLLECT_FOR_THIS_CHECKPOINT_BUT_MUST_NOT_PROMOTE_IT_TO_CANONICAL_PROOF_STATUS"
+    }
+  },
+  "what_we_already_have": [
+    "Exact JANUS-FC_local trace objects: recursive calls, residual states, unit reasons, local Resolution events, branches, cache targets, completion order.",
+    "Serialized verifier and finite replay infrastructure.",
+    "MAJ3-K4 cache/reason-cover measurements.",
+    "GT_3..GT_9 finite state-growth and local-resolution ablations.",
+    "Weakening/subsumption ablation and explicit local-resolution shape census.",
+    "SILK diagnostic routes: differential state narrowing, first divergence, proof trimming, unsat cores, trace alignment, dynamic slicing, invariant mining, Merkle/rsync-style skip-equal comparison.",
+    "Hash-bound general P-vs-NP attack deck with discovery-cost, witness-recovery and restricted-model firewalls."
+  ],
+  "canonical_open_gates_from_c023": [
+    "Universal execution-to-JANUS-FC_local certificate induction and polynomial replay cost.",
+    "Whether the registered local Resolution pass is polynomially simulated by basic Formula Caching.",
+    "Weakest reusable reason language plus polynomial extraction cost.",
+    "Robustness of the graph-tautology Formula-Caching lower bound under the registered local pass.",
+    "Alternative direct residual-DAG or lifting lower bound on MAJ3-lifted Tseitin formulas.",
+    "Full charging of certificate size, cache lookup, canonicalization, local proof work, branch edges, reason extraction, verification and witness recovery."
+  ],
+  "primary_lower_bound_reconstruction": {
+    "source_id": "BEAME_IMPAGLIAZZO_PITASSI_SEGERLIND_FORMULA_CACHING_2006",
+    "title": "Formula Caching in DPLL",
+    "source": "https://eccc.weizmann.ac.il/report/2006/140/",
+    "pdf": "https://eccc.weizmann.ac.il/report/2006/140/download",
+    "target_result": "Theorem 4.24: any FCWS refutation of GT_n requires at least 2^(n-2) nodes.",
+    "witness_mechanism": [
+      "Restrictions whose unit-propagated residuals induce partial orders.",
+      "Definitions minimal(sigma), tops(sigma), and prune(sigma).",
+      "Lemma 4.23: under Weakening/Subsumption comparability, prune(sigma)=prune(tau) for residuals without units/contradiction.",
+      "Novel branch points branch on variables crossing distinct Hasse-diagram components.",
+      "At novelty level n-2, at least 2^(n-2) mutually incompatible residual-order states remain.",
+      "The lower bound therefore depends on structural distinguishability of residual partial orders, not merely raw node counting."
+    ],
+    "spider_interpretation": "The missing C023 robustness theorem should be tested against the exact prune/novel-branch invariant. Counting local resolvents alone cannot transfer Theorem 4.24. This is a research target description, not an algorithmic recommendation."
+  },
+  "critical_fragility_found": {
+    "finding": "GT_n also has polynomial-size regular Resolution refutations, classically O(n^3).",
+    "sources": [
+      "https://doi.org/10.1109/SFFCS.1999.814614",
+      "https://arxiv.org/abs/1208.2469"
+    ],
+    "meaning": "A polynomially bounded local Resolution rule can in principle destroy an FC/FCWS lower-bound witness even if it derives only polynomially many clauses at each state. Robustness must control what those clauses do to the prune/novel-branch structure.",
+    "claim_ceiling": "LOWER_BOUND_ATTACK_SURFACE_ONLY"
+  },
+  "new_external_routes": [
+    {
+      "id": "GT_REGULAR_PROOF_ATLAS",
+      "priority": "P0_RESEARCH",
+      "sources": [
+        "https://doi.org/10.1109/SFFCS.1999.814614",
+        "https://arxiv.org/abs/1208.2469"
+      ],
+      "need": "Extract the exact clause families and dependency depth of the known polynomial regular-resolution refutation P_n for GT_n, so later analysis can ask whether the registered one-layer local pass can realize the witness-destroying steps.",
+      "boundary": "SPIDER_EXTRACTS_AND_INDEXES_ONLY"
+    },
+    {
+      "id": "TSEITIN_TREEWIDTH_DNNF_ROUTE",
+      "priority": "P1_RESEARCH",
+      "sources": [
+        "https://doi.org/10.4230/LIPIcs.SAT.2022.6",
+        "https://arxiv.org/abs/2103.09609",
+        "https://eccc.weizmann.ac.il/report/2019/178/"
+      ],
+      "finding": "Modern Tseitin lower bounds connect regular Resolution to DNNF/read-once branching-program representations and obtain exponential lower bounds controlled by treewidth.",
+      "possible_relevance": "This supplies mature machinery for C023 Route C/D only if an independently proved simulation maps JANUS-FC_local or a restricted projection of it into the target representation model.",
+      "firewall": "LOWER_BOUND_DOES_NOT_TRANSFER_WITHOUT_SIMULATION_THEOREM"
+    },
+    {
+      "id": "FORMULA_CACHING_REASON_POWER",
+      "priority": "P1_RESEARCH",
+      "source": "https://eccc.weizmann.ac.il/report/2006/140/",
+      "finding": "Formula-caching variants that return reusable reasons are materially stronger than basic Boolean residual caching; FC_reason^W polynomially simulates regular Resolution while basic FC/FCWS does not.",
+      "need": "Keep reason existence, reason language, and reason extraction cost separate. Search for the weakest reason interface that is independently checkable and whose discovery cost is explicit.",
+      "firewall": "POST_HOC_REASON_EXISTENCE_IS_NOT_POLYNOMIAL_EXTRACTION"
+    },
+    {
+      "id": "CLAUSE_LEARNING_GT_NEGATIVE_CONTROL",
+      "priority": "P1_NEGATIVE_CONTROL",
+      "source": "https://arxiv.org/abs/1208.2469",
+      "finding": "Guarded graph tautologies have polynomial pool-resolution / clause-learning proofs under appropriate proof-search structure.",
+      "meaning": "Graph-tautology hardness is sensitive to the exact proof system. Any JANUS lower-bound transfer must name the exact rule set and cannot inherit hardness from a nearby weaker system.",
+      "firewall": "NEARBY_SYSTEM_HARDNESS_IS_NOT_TARGET_SYSTEM_HARDNESS"
+    },
+    {
+      "id": "PROOF_ANALYSIS_AND_REFUTER_ROUTE",
+      "priority": "P2_SPIDER_DIAGNOSTIC",
+      "sources": [
+        "https://arxiv.org/abs/2506.16956",
+        "https://eccc.weizmann.ac.il/report/2024/190/"
+      ],
+      "finding": "Recent proof-complexity work studies algorithms/refuter problems that locate invalid steps in purported short proofs or analyze proofs of lower-bound statements.",
+      "spider_use": "Useful for auditing candidate lower-bound certificates and designing counterexample-oriented review; not a SAT speedup and not a lower-bound theorem for JANUS-FC_local."
+    },
+    {
+      "id": "AUTOMATIZABILITY_FIREWALL",
+      "priority": "P2_CONTEXT",
+      "sources": [
+        "https://arxiv.org/abs/1904.02991",
+        "https://doi.org/10.1016/j.ic.2003.10.004"
+      ],
+      "finding": "Finding near-shortest Resolution proofs is itself hard in strong formal senses; efficient verification of a short proof must remain separate from efficient discovery.",
+      "firewall": "CHEAP_VERIFICATION_IS_NOT_CHEAP_DISCOVERY"
+    }
+  ],
+  "what_we_really_need_now": [
+    {
+      "priority": "P0",
+      "need": "A line-by-line source-bound atlas of Theorem 4.24: all definitions, invariants, induction/branch-count arguments, and exact assumptions used by prune(sigma) and novel branch points."
+    },
+    {
+      "priority": "P0",
+      "need": "A source-bound atlas of the O(n^3) regular-resolution proof P_n for GT_n, including which resolvents are essential and how many sequential resolution generations they require."
+    },
+    {
+      "priority": "P0",
+      "need": "Search specifically for existing named systems/theorems matching a deterministic one-layer, non-saturating, polynomial-budget local Resolution closure followed by branching and exact residual caching. A direct match would be more valuable than another generic SAT paper."
+    },
+    {
+      "priority": "P1",
+      "need": "For Tseitin/MAJ3 alternatives, find exact simulation bridges to DNNF/FBDD/OBDD/branching-program models and record every assumption that JANUS-FC_local does or does not satisfy."
+    },
+    {
+      "priority": "P1",
+      "need": "Reason-interface literature: context-independent failure reasons, proof-producing memoization, extraction complexity, and cases where one residual needs many context-dependent reasons."
+    },
+    {
+      "priority": "P2",
+      "need": "Continue proof-forensics literature only as SPIDER support: proof analysis, refuters, trace slicing, alignment and certificate bug localization."
+    }
+  ],
+  "negative_findings": [
+    "NO_DIRECT_THEOREM_FOUND_IN_THIS_PASS_IDENTIFYING_JANUS_FC_LOCAL_WITH_A_STANDARD_NAMED_PROOF_SYSTEM",
+    "NO_VALID_TRANSFER_FOUND_FROM_FCWS_GT_LOWER_BOUND_THROUGH_THE_REGISTERED_LOCAL_RESOLUTION_PASS",
+    "NO_EXTERNAL_RESULT_FOUND_THAT_RESOLVES_THE_N43_CHECKPOINT_OR_P_VS_NP",
+    "GT_FAMILY_HARDNESS_IS_FRAGILE_UNDER_STRONGER_LEARNING_SYSTEMS",
+    "TSEITIN_TREEWIDTH_LOWER_BOUNDS_REQUIRE_A_PROVED_MODEL_TRANSLATION_BEFORE_USE"
+  ],
+  "next_spider_search_queries": [
+    "Formula Caching GT_n prune novel branch point local resolution robustness",
+    "ordering tautology GT_n regular resolution O(n^3) explicit proof Tot clauses",
+    "DPLL memoization exact residual caching bounded local resolution proof system",
+    "one-layer resolution closure proof complexity DPLL caching",
+    "Tseitin residual DAG decision DNNF FBDD exact caching lower bound",
+    "proof producing memoization reusable reason extraction SAT",
+    "resolution refuter proof analysis invalid derivation step lower bound"
+  ],
+  "claim_ceiling": "RESEARCH_MAP_AND_SOURCE_ROUTING_ONLY__ALGORITHM_UNTOUCHED__P_VS_NP_OPEN"
+}
