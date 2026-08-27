@@ -1,0 +1,108 @@
+name: TOPA SPIDER Flywheel + HRAiN Package
+
+on:
+  push:
+    paths:
+      - 'tools/topa_spider_v2.py'
+      - 'tools/topa_spider_flywheel.py'
+      - 'tools/topa_spider_hrain_pack.py'
+      - 'tools/topa_archive_gateway.py'
+      - 'protocols/TOPA_SPIDER_TIME_FLYWHEEL_HRAIN_PROTOCOL_v1.0.json'
+      - '.github/workflows/spider-flywheel-hrain.yml'
+  workflow_dispatch:
+
+jobs:
+  flywheel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Self-tests
+        run: |
+          python tools/topa_spider_v2.py self-test
+          python tools/topa_spider_flywheel.py self-test
+          python tools/topa_spider_hrain_pack.py self-test
+      - name: Broad live archive survey
+        run: |
+          mkdir -p work/flywheel
+          python tools/topa_archive_gateway.py ingest \
+            --providers nara,cia,nsa,fbi \
+            --limit 100 \
+            --expand-nara \
+            --out work/flywheel/archive-survey.jsonl \
+            --receipt work/flywheel/archive-survey-receipt.json
+      - name: Relationship-driven pull
+        run: |
+          python tools/topa_spider_v2.py pull \
+            --seed raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
+            --survey work/flywheel/archive-survey.jsonl \
+            --out work/flywheel/spider-pulled.jsonl \
+            --receipt work/flywheel/spider-pull-receipt.json \
+            --threshold 0.22 \
+            --semantic-only-threshold 0.42 \
+            --max-pull 100 \
+            --rounds 3
+      - name: Weave graph
+        run: |
+          cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
+              work/flywheel/spider-pulled.jsonl > work/flywheel/current-web.jsonl
+          python tools/topa_spider_v2.py weave \
+            --input work/flywheel/current-web.jsonl \
+            --nodes work/flywheel/spider-nodes.jsonl \
+            --edges work/flywheel/spider-edges.jsonl \
+            --receipt work/flywheel/spider-weave-receipt.json \
+            --semantic-threshold 0.14 \
+            --topk 8 \
+            --keyword-nodes 12
+      - name: Time Flywheel pass 1
+        run: |
+          python tools/topa_spider_flywheel.py calibrate \
+            --edges work/flywheel/spider-edges.jsonl \
+            --state work/flywheel/flywheel-state-p1.jsonl \
+            --history work/flywheel/flywheel-history.jsonl \
+            --receipt work/flywheel/flywheel-receipt-p1.json \
+            --pass-id LIVE-P1
+      - name: Time Flywheel pass 2 replay calibration
+        run: |
+          python tools/topa_spider_flywheel.py calibrate \
+            --edges work/flywheel/spider-edges.jsonl \
+            --previous-state work/flywheel/flywheel-state-p1.jsonl \
+            --state work/flywheel/flywheel-state-p2.jsonl \
+            --history work/flywheel/flywheel-history.jsonl \
+            --receipt work/flywheel/flywheel-receipt-p2.json \
+            --pass-id LIVE-P2
+      - name: Build HRAiN package
+        run: |
+          python tools/topa_spider_hrain_pack.py pack \
+            --nodes work/flywheel/spider-nodes.jsonl \
+            --state work/flywheel/flywheel-state-p2.jsonl \
+            --history work/flywheel/flywheel-history.jsonl \
+            --receipt work/flywheel/archive-survey-receipt.json \
+            --receipt work/flywheel/spider-pull-receipt.json \
+            --receipt work/flywheel/spider-weave-receipt.json \
+            --receipt work/flywheel/flywheel-receipt-p1.json \
+            --receipt work/flywheel/flywheel-receipt-p2.json \
+            --out work/flywheel/hrain-spider-package.json
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p1=json.loads(Path('work/flywheel/flywheel-receipt-p1.json').read_text())
+          p2=json.loads(Path('work/flywheel/flywheel-receipt-p2.json').read_text())
+          pkg=json.loads(Path('work/flywheel/hrain-spider-package.json').read_text())
+          assert p1['status']=='PASS' and p2['status']=='PASS'
+          assert 'REPLAY_IS_NOT_NEW_EVIDENCE' in p2['laws']
+          assert pkg['schema']=='hawkar.topa.spider.hrain_package.v1'
+          assert 'HRAIN_VISUAL_WEIGHT_IS_NOT_TRUTH' in pkg['laws']
+          assert pkg['stats']['edges']>0 and pkg['stats']['nodes']>0
+          print('SPIDER_FLYWHEEL_HRAIN_FIREWALL=PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-flywheel-hrain
+          path: work/flywheel
+          retention-days: 30
