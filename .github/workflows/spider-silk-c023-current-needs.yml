@@ -4,11 +4,13 @@ on:
   push:
     paths:
       - 'config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json'
+      - 'config/spider_pattern_sets/janus-c023-family-anchor-routes-v1.json'
       - '.github/workflows/spider-silk-c023-current-needs.yml'
       - 'tools/topa_arxiv_gateway.py'
       - 'tools/topa_spider_silk.py'
       - 'tools/topa_spider_silk_strict.py'
       - 'tools/topa_spider_silk_publication_dedupe.py'
+      - 'tools/topa_spider_silk_route_enricher.py'
   workflow_dispatch:
 
 jobs:
@@ -24,12 +26,15 @@ jobs:
       - name: Boundary and SPIDER self-tests
         run: |
           python tools/topa_spider_silk_publication_dedupe.py self-test
+          python tools/topa_spider_silk_route_enricher.py self-test
           python - <<'PY'
           import json
           from pathlib import Path
           cfg=json.loads(Path('config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json').read_text())
+          routes=json.loads(Path('config/spider_pattern_sets/janus-c023-family-anchor-routes-v1.json').read_text())
           assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in cfg['laws']
-          assert 'P_VS_NP_IS_OPEN' in cfg['laws']
+          assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in routes['laws']
+          assert 'P_VS_NP_IS_OPEN' in cfg['laws'] and 'P_VS_NP_IS_OPEN' in routes['laws']
           print('SPIDER_C023_READ_ONLY_BOUNDARY=PASS')
           PY
 
@@ -84,36 +89,49 @@ jobs:
             --arxiv work/c023-current-needs/tseitin \
             --arxiv work/c023-current-needs/bounded \
             --max-candidates 160 \
-            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.1.json \
-            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-prestrict-receipt-v1.1.json
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.2.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-prestrict-receipt-v1.2.json
 
       - name: Strict word-boundary and domain sieve
         run: |
           python tools/topa_spider_silk_strict.py refine \
-            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.1.json \
+            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-PRESTRICT-v1.2.json \
             --config config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json \
-            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-STRICT-PREDEDUPE-v1.1.json \
-            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-strict-receipt-v1.1.json
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-STRICT-PREDEDUPE-v1.2.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-strict-receipt-v1.2.json
 
       - name: Publication-level canonicalization
         run: |
           python tools/topa_spider_silk_publication_dedupe.py dedupe \
-            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-STRICT-PREDEDUPE-v1.1.json \
+            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-STRICT-PREDEDUPE-v1.2.json \
             --config config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json \
-            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.1.json \
-            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-publication-dedupe-receipt-v1.1.json
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-POSTDEDUPE-v1.2.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-publication-dedupe-receipt-v1.2.json
+
+      - name: Mission-local route and lineage enrichment
+        run: |
+          python tools/topa_spider_silk_route_enricher.py enrich \
+            --input work/c023-current-needs/SILK-C023-CURRENT-NEEDS-POSTDEDUPE-v1.2.json \
+            --pattern-config config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json \
+            --route-config config/spider_pattern_sets/janus-c023-family-anchor-routes-v1.json \
+            --out work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.2.json \
+            --receipt work/c023-current-needs/SILK-C023-CURRENT-NEEDS-route-lineage-receipt-v1.2.json
 
       - name: Scientific firewall
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path('work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.1.json').read_text())
+          d=json.loads(Path('work/c023-current-needs/SILK-C023-CURRENT-NEEDS-LIVE-v1.2.json').read_text())
           assert d['status']=='PASS'
           assert d['strict_sieve']['status']=='PASS'
           assert d['live_arxiv']['publication_dedupe']['status']=='PASS'
+          assert d['routing_enrichment']['status']=='PASS'
+          assert d['routing_enrichment']['bridges_unrouted']==0
+          assert d['lineage_analysis']['status']=='PASS'
           assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in d['laws']
           assert 'DUPLICATE_PUBLICATION_RECORDS_DO_NOT_CREATE_INDEPENDENT_BRIDGES' in d['laws']
+          assert 'PUBLICATION_LINEAGE_IS_NOT_INDEPENDENT_REPLICATION' in d['laws']
           assert 'P_VS_NP_IS_OPEN' in d['laws']
           assert len(d['canonical_external_sources']) >= 9
           print('SPIDER_C023_CURRENT_NEEDS_FIREWALL=PASS')
@@ -124,13 +142,15 @@ jobs:
             'strict_rejected':d['strict_sieve']['rejected'],
             'unique_publications':d['live_arxiv']['candidates_retained'],
             'records_collapsed':d['live_arxiv']['publication_dedupe']['records_collapsed'],
-            'bridges':len(d['research_bridges'])
+            'bridges':len(d['research_bridges']),
+            'bridges_unrouted':d['routing_enrichment']['bridges_unrouted'],
+            'lineage_pairs':d['lineage_analysis']['candidate_pairs']
           },sort_keys=True))
           PY
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: topa-spider-silk-c023-current-needs-v1-1
+          name: topa-spider-silk-c023-current-needs-v1-2
           path: work/c023-current-needs
           retention-days: 30
