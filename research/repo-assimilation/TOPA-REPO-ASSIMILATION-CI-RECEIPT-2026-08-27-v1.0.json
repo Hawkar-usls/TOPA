@@ -1,0 +1,89 @@
+{
+  "schema": "hawkar.topa.repo_assimilation_ci_receipt.v1",
+  "artifact_id": "TOPA-REPO-ASSIMILATION-CI-RECEIPT-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T06:52:00+03:00",
+  "status": "FULL_REPOSITORY_ASSIMILATION_EXECUTED__CI_PASS__RESEARCH_MEMORY_INDEXED",
+  "snapshot": {
+    "repository": "Hawkar-usls/TOPA",
+    "head_sha": "d1596720bfe739468fbab5ff4f2bc06da29cdd35",
+    "workflow": "Validate TOPA Repo Assimilation",
+    "run_id": 33038744522,
+    "job_id": 98407306979,
+    "conclusion": "SUCCESS",
+    "started_at_utc": "2026-08-27T04:13:33Z",
+    "completed_at_utc": "2026-08-27T04:13:42Z"
+  },
+  "steps": {
+    "assimilator_self_test": "PASS",
+    "protocol_json_validation": "PASS",
+    "complete_repository_scan": "PASS",
+    "scientific_firewall": "PASS",
+    "artifact_upload": "PASS"
+  },
+  "scan_receipt": {
+    "files_indexed": 324,
+    "artifact_lane_candidates": 31,
+    "files_with_negative_or_failure_language": 150,
+    "json_parse_errors": 0,
+    "record_stream_sha256": "57e80ccfa807149bfe105ee0f3e49a222887c3d07a8e26c0c9adf4483378d7c1",
+    "routing_queue_sha256": "f9c6aa5b46425d3923e5da4c0f658c8ecd574d81311ebd442239adc83ebd8b5f",
+    "domain_counts": {
+      "EXECUTABLE_INFRASTRUCTURE": 45,
+      "FOUNDATION_AND_REGISTRY": 9,
+      "GENERAL": 20,
+      "HISTORICAL_CORPUS": 13,
+      "HUNTS": 24,
+      "JANUS_INTEGRATION": 12,
+      "MATHEMATICS": 146,
+      "TRAINING_AND_SIGNAL_HUNTS": 36,
+      "UAP_NUCLEAR": 19
+    },
+    "role_counts": {
+      "CONTEXT": 6,
+      "EXECUTABLE": 92,
+      "FEATURE_OR_LABEL_SPEC": 94,
+      "HUNT": 119,
+      "INTEGRATION": 30,
+      "METHOD": 225,
+      "NEGATIVE_RESULT": 171,
+      "PREREGISTRATION": 230,
+      "RECEIPT": 96,
+      "SOURCE_LEDGER": 112,
+      "TRAINING_GROUND": 10
+    }
+  },
+  "assimilation_boundary": {
+    "repository_corpus_is_supervised_artifact_truth": false,
+    "artifact_labels_require_dedicated_label_rail": true,
+    "nuclear_context_may_enter_classifier_training": false,
+    "legacy_status_inherits_scientific_authority": false,
+    "repo_content_may_teach": [
+      "METHODS",
+      "SCHEMAS",
+      "FAILURE_MODES",
+      "NEGATIVE_RESULTS",
+      "PROVENANCE",
+      "SOURCE_ROUTES",
+      "FALSIFICATION_PATTERNS"
+    ]
+  },
+  "artifact": {
+    "name": "topa-repo-assimilation",
+    "artifact_id": 9633024376,
+    "archive_size_bytes": 39607,
+    "archive_sha256": "be54d256547bd1b39e6027357732abaa373c3eade6d0e12de764318d8f299e19",
+    "contains": [
+      "repo-index.jsonl",
+      "artifact-routing-queue.jsonl",
+      "assimilation-receipt.json"
+    ],
+    "retention_days": 30
+  },
+  "scientific_interpretation": {
+    "organism_training": "PASS: TOPA has traversed and indexed its own repository as methodological and investigative memory, including methods, preregistrations, source ledgers, failures and negative results.",
+    "artifact_classifier_supervised_training": "NOT_PERFORMED_BY_THIS_REPO_SCAN",
+    "reason": "Repository content is context and routing memory. The POSS-I image classifier still requires separately admitted measured sidecars and blind image-evidence labels.",
+    "investigation_state": "31 repository-local artifact/POSS-I routes were identified and frozen into an investigation-routing queue. External evidence acquisition and P0 row-level measurement remain separate executable gates."
+  },
+  "claim_ceiling": "TOPA_SELF_REPOSITORY_ASSIMILATION_IS_EXECUTED_AND_REPRODUCIBLE_FOR_THIS_SNAPSHOT__THIS_IS_METHOD_MEMORY_AND_ROUTING_TRAINING_NOT_EMPIRICAL_VALIDATION_OF_THE_ARTIFACT_CLASSIFIER"
+}
