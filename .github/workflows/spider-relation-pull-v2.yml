@@ -5,8 +5,8 @@ on:
     paths:
       - 'tools/topa_spider_v24.py'
       - 'tools/topa_spider_seed_bridge.py'
+      - 'tools/topa_archive_gateway_v13.py'
       - 'tools/topa_archive_gateway_v12.py'
-      - 'tools/topa_archive_gateway_v11.py'
       - 'tools/topa_archive_enricher.py'
       - 'tools/topa_repo_assimilator.py'
       - 'protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.4.json'
@@ -14,8 +14,8 @@ on:
       - '.github/workflows/spider-relation-pull-v2.yml'
   workflow_dispatch:
 
-# LIVE_SEARCH_MARKER: 2026-08-27T17:24:00+03:00
-# Broad CIA STARGATE collection inventory + selective deep fetch.
+# LIVE_SEARCH_MARKER: 2026-08-27T17:31:00+03:00
+# CIA official mobile collection listing fallback; selective deep fetch only.
 # No fixed topic and no query steering.
 
 jobs:
@@ -29,8 +29,8 @@ jobs:
           python-version: '3.11'
       - name: Self-test SPIDER v2.4
         run: python tools/topa_spider_v24.py self-test
-      - name: Self-test Archive Gateway v1.2
-        run: python tools/topa_archive_gateway_v12.py self-test
+      - name: Self-test Archive Gateway v1.3
+        run: python tools/topa_archive_gateway_v13.py self-test
       - name: Self-test selective archive enricher
         run: python tools/topa_archive_enricher.py self-test
       - name: Self-test repo-memory bridge
@@ -53,10 +53,11 @@ jobs:
               work/spider-deep/repo-spider-seeds.jsonl > work/spider-deep/composite-seed-web.jsonl
       - name: Broad official archive inventory stays ephemeral
         run: |
-          python tools/topa_archive_gateway_v12.py ingest \
+          python tools/topa_archive_gateway_v13.py ingest \
             --providers nara,cia,nsa,fbi \
             --limit 100 \
             --cia-pages 20 \
+            --cia-start-page 0 \
             --expand-nara \
             --out work/spider-deep/archive-survey.jsonl \
             --receipt work/spider-deep/archive-survey-receipt.json
@@ -138,10 +139,10 @@ jobs:
           cia=(survey.get('provider_receipts') or {}).get('cia_collection') or {}
           assert cia.get('retrieval_policy')=='LISTING_POINTERS_ONLY__DEEP_FETCH_REQUIRES_SPIDER_SELECTION'
           assert e1['input_records']==p1['pulled_documents']
-          print('SPIDER_BROAD_SURVEY_SELECTIVE_DEEP_FETCH=PASS')
+          print('SPIDER_CIA_MOBILE_SELECTIVE_DEEP_FETCH=PASS')
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: topa-spider-deep-search
+          name: topa-spider-deep-search-v13
           path: work/spider-deep
           retention-days: 14
