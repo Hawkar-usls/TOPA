@@ -1,0 +1,79 @@
+{
+  "schema": "hawkar.topa.spider_time_flywheel_hrain_protocol.v1",
+  "artifact_id": "TOPA-SPIDER-TIME-FLYWHEEL-HRAIN-PROTOCOL-2026-08-27-v1.0",
+  "status": "ACTIVE_CALIBRATION_AND_VISUALIZATION_PROTOCOL",
+  "purpose": "Allow SPIDER to revisit the same graph in successive spiral passes, gently strengthen or weaken discovery-priority edges as the evidence/topology picture changes, and export the living graph to HRAiN without converting graph structure into truth claims.",
+  "components": {
+    "spider": "tools/topa_spider_v2.py",
+    "flywheel": "tools/topa_spider_flywheel.py",
+    "hrain_packer": "tools/topa_spider_hrain_pack.py",
+    "hrain_repository": "Hawkar-usls/Hrain",
+    "hrain_mode": "spider.html"
+  },
+  "flywheel": {
+    "metaphor": "TIME_FLYWHEEL",
+    "technical_meaning": "Iterative damped edge-weight recalibration over immutable evidence/provenance snapshots.",
+    "pass_behavior": [
+      "recompute local topology support",
+      "compare current edge evidence signature with previously seen signatures",
+      "move edge weight toward current evidence/topology target",
+      "weaken edges not re-observed without treating one absence as disproof",
+      "preserve complete pass history",
+      "allow later contradictory evidence to reduce an edge"
+    ],
+    "critical_boundary": "A repeated pass over identical bytes is calibration replay, not new evidence and not a new independent witness.",
+    "replay_alpha": 0.18,
+    "fresh_evidence_alpha": 0.55,
+    "absent_edge_decay": 0.93,
+    "dormancy_rule": "After repeated misses and sufficiently low discovery weight an edge may become DORMANT_CANDIDATE; it is not deleted from history."
+  },
+  "edge_history_contract": {
+    "append_only": true,
+    "fields": [
+      "pass_id",
+      "previous_weight",
+      "weight",
+      "target_weight",
+      "delta",
+      "movement",
+      "observed_this_pass",
+      "fresh_evidence_signature",
+      "independence_count",
+      "topology_support"
+    ],
+    "movements": [
+      "STRENGTHENED",
+      "WEAKENED",
+      "STABLE",
+      "WEAKENED_NOT_REOBSERVED",
+      "DORMANT_CANDIDATE"
+    ]
+  },
+  "hrain_contract": {
+    "role": "Local-first visual graph laboratory for SPIDER snapshots and edge histories.",
+    "mode": "SEPARATE_SPIDER_SIDECAR",
+    "reason": "The ordinary HRAiN workspace normalizes links to source/target and is not suitable for preserving SPIDER weight history.",
+    "package_schema": "hawkar.topa.spider.hrain_package.v1",
+    "storage": "Browser-local IndexedDB or local file import; no write authority over TOPA source evidence.",
+    "visualization": [
+      "filter by minimum current weight",
+      "filter by relation",
+      "inspect edge history across passes",
+      "show strengthened/weakened/stable state",
+      "retain full graph while rendering a bounded visible subset"
+    ]
+  },
+  "laws": [
+    "REPLAY_IS_NOT_NEW_EVIDENCE",
+    "ABSENCE_IN_ONE_PASS_IS_NOT_DISPROOF",
+    "WEIGHT_IS_DISCOVERY_PRIORITY_NOT_TRUTH",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "INDEPENDENT_EVIDENCE_MAY_STRENGTHEN",
+    "CONTRADICTION_MAY_WEAKEN",
+    "HRAIN_VISUALIZATION_HAS_ZERO_SOURCE_AUTHORITY",
+    "HISTORY_IS_NEVER_DELETED_WHEN_AN_EDGE_WEAKENS"
+  ],
+  "claim_ceiling": "TEMPORAL_GRAPH_CALIBRATION_AND_DISCOVERY_PRIORITY_ONLY__NO_CAUSAL_OR_EXTRAORDINARY_PHYSICS_PROMOTION"
+}
