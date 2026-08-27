@@ -1,0 +1,81 @@
+{
+  "schema": "hawkar.topa.spider_silk_mission.v1",
+  "silk": "Spider Investigative Link Kernel",
+  "mission_id": "JANUS-PROOF-STATE-DIFFERENTIAL-NARROWING-v1",
+  "status": "FROZEN_RESEARCH_DISCOVERY_MISSION",
+  "purpose": "Find external methods, proof-trace machinery, counterexamples and structural diagnostics that can help JANUS localize the first hostile proof-state divergence without silently changing the current exact algorithm or promoting finite diagnostics into a P-vs-NP result.",
+  "current_checkpoint": {
+    "provenance": "CURRENT_USER_MISSION_INPUT__MUST_NOT_BE_PROMOTED_TO_REPO_THEOREM_WITHOUT_LOCAL_RECEIPT",
+    "N": 43,
+    "candidate_root_cells": [[43,9,5,28],[43,9,6,27]],
+    "derived_degree_ceiling": 3,
+    "quadratic_envelope": 1849,
+    "requested_next_step": "Run the already-existing exact T/Smax/Uraw tail from the degree-3 first step; do not add a new runtime heuristic before this checkpoint is resolved."
+  },
+  "families": [
+    {"id":"DIFFERENTIAL_STATE_NARROWING","aliases":["differential state narrowing","state difference","state delta","passing failing state","good bad trajectory"]},
+    {"id":"FIRST_DIVERGENCE","aliases":["first divergence","earliest divergence","first differing state","divergence point","first failing transition"]},
+    {"id":"DELTA_DEBUGGING","aliases":["delta debugging","failure inducing difference","failure-inducing difference","ddmin","test case minimization"]},
+    {"id":"CAUSE_EFFECT_CHAIN","aliases":["cause effect chain","cause-effect chain","cause effect isolation","relevant variables and values"]},
+    {"id":"DYNAMIC_SLICING","aliases":["dynamic slicing","program slice","failure slice","execution slice","dependency slice"]},
+    {"id":"VALIDITY_PRESERVING_PERTURBATION","aliases":["validity preserving","validity-preserving","generator trace reduction","valid perturbation","trace reduction"]},
+    {"id":"PROOF_TRACE","aliases":["proof trace","proof logging","proof certificate","proof replay","resolution trace"]},
+    {"id":"DRAT_FRAT_LRAT","aliases":["DRAT","FRAT","LRAT","DRUP","proof elaboration"]},
+    {"id":"BACKWARD_PROOF_TRIMMING","aliases":["backward checking","proof trimming","trimmed proof","dependency graph","necessary clauses"]},
+    {"id":"UNSAT_CORE","aliases":["unsat core","unsatisfiable core","minimal unsatisfiable core","MUS","core extraction"]},
+    {"id":"CONFLICT_GRAPH_CUT","aliases":["conflict graph","implication graph","first UIP","unique implication point","dominator","dual implication point"]},
+    {"id":"BACKDOOR_STRUCTURE","aliases":["SAT backdoor","backdoor depth","backdoor set","tractable class","Horn backdoor","Krom backdoor"]},
+    {"id":"BOUNDARY_WIDTH","aliases":["treewidth","pathwidth","live width","separator","boundary state","branchwidth"]},
+    {"id":"PROOF_COMPLEXITY","aliases":["proof complexity","resolution lower bound","formula caching","clause learning","proof system"]},
+    {"id":"RESOURCE_ACCOUNTING","aliases":["proof size","discovery cost","verification cost","total runtime","memory usage","state count","search cost"]}
+  ],
+  "arxiv_queries": [
+    {"id":"Q_DELTA","topic":"delta debugging cause effect state failure slicing","raw_query":"all:\"delta debugging\" OR all:\"cause-effect\" OR all:\"dynamic slicing\""},
+    {"id":"Q_PROOF_TRACE","topic":"SAT proof trace DRAT FRAT LRAT proof trimming","raw_query":"(all:SAT OR all:satisfiability) AND (all:DRAT OR all:FRAT OR all:LRAT OR all:\"proof trace\")"},
+    {"id":"Q_UNSAT_CORE","topic":"SAT unsatisfiable core minimal core extraction","raw_query":"(all:SAT OR all:satisfiability) AND (all:\"unsatisfiable core\" OR all:\"unsat core\" OR all:MUS)"},
+    {"id":"Q_STRUCTURE","topic":"SAT backdoor depth treewidth conflict graph implication graph","raw_query":"all:SAT AND (all:\"backdoor depth\" OR all:treewidth OR all:\"conflict graph\" OR all:\"implication graph\")"}
+  ],
+  "canonical_external_sources": [
+    {"id":"ZELLER_HILDEBRANDT_2002","title":"Simplifying and Isolating Failure-Inducing Input","url":"https://doi.org/10.1109/32.988498","families":["DELTA_DEBUGGING","FIRST_DIVERGENCE","DIFFERENTIAL_STATE_NARROWING"],"contribution":"Systematic minimization of failure-inducing differences between passing and failing executions.","authority":"PEER_REVIEWED_METHOD_SOURCE"},
+    {"id":"ZELLER_FSE_2002","title":"Isolating Cause-Effect Chains from Computer Programs","url":"https://doi.org/10.1145/587051.587053","families":["CAUSE_EFFECT_CHAIN","DELTA_DEBUGGING","DIFFERENTIAL_STATE_NARROWING"],"contribution":"Treats a failing execution as a sequence of states and experimentally narrows variables/values relevant to failure.","authority":"PEER_REVIEWED_METHOD_SOURCE"},
+    {"id":"DRAT_TRIM","title":"DRAT-trim","url":"https://www.cs.utexas.edu/~marijn/drat-trim/","families":["DRAT_FRAT_LRAT","BACKWARD_PROOF_TRIMMING","UNSAT_CORE","PROOF_TRACE"],"contribution":"Backward checking can identify necessary clauses, emit a trimmed formula/proof and a dependency graph.","authority":"PRIMARY_TOOL_DOCUMENTATION"},
+    {"id":"FRAT_2109_09665","title":"A Flexible Proof Format for SAT Solver-Elaborator Communication","url":"https://arxiv.org/abs/2109.09665","families":["DRAT_FRAT_LRAT","PROOF_TRACE","RESOURCE_ACCOUNTING"],"contribution":"Forward/backward parseable proof logging with optional hints and elaboration to LRAT.","authority":"PAPER_CLAIMS_REQUIRE_VALIDATION"},
+    {"id":"LAMMICH_IJCAR_2024","title":"Fast and Verified UNSAT Certificate Checking","url":"https://doi.org/10.1007/978-3-031-63498-7_26","families":["DRAT_FRAT_LRAT","PROOF_TRACE","RESOURCE_ACCOUNTING"],"contribution":"Formally verified UNSAT certificate checking suitable as an independent replay lane.","authority":"PEER_REVIEWED_METHOD_SOURCE"},
+    {"id":"DERSHOWITZ_HANNA_NADEL_2006","title":"A Scalable Algorithm for Minimal Unsatisfiable Core Extraction","url":"https://arxiv.org/abs/cs/0605085","families":["UNSAT_CORE","BACKWARD_PROOF_TRIMMING"],"contribution":"Resolution-refutation based core minimization; useful as an offline obstruction reducer, with extraction cost charged explicitly.","authority":"PAPER_CLAIMS_REQUIRE_VALIDATION"},
+    {"id":"GREDUCE_2402_04623","title":"Validity-Preserving Delta Debugging via Generator Trace Reduction","url":"https://arxiv.org/abs/2402.04623","families":["VALIDITY_PRESERVING_PERTURBATION","DELTA_DEBUGGING","PROOF_TRACE"],"contribution":"Perturb the generator execution rather than arbitrary output state so reduced objects remain valid; directly relevant to proof-state invariants.","authority":"PAPER_CLAIMS_REQUIRE_VALIDATION"},
+    {"id":"BACKDOOR_DEPTH_2202_08326","title":"SAT Backdoors: Depth Beats Size","url":"https://arxiv.org/abs/2202.08326","families":["BACKDOOR_STRUCTURE","BOUNDARY_WIDTH","PROOF_COMPLEXITY"],"contribution":"Backdoor depth captures parallel decomposition into tractable structure and supplies a separate structural diagnostic lane.","authority":"PAPER_CLAIMS_REQUIRE_VALIDATION"},
+    {"id":"ERCL_DIP_2406_14190","title":"Extended Resolution Clause Learning via Dual Implication Points","url":"https://arxiv.org/abs/2406.14190","families":["CONFLICT_GRAPH_CUT","PROOF_COMPLEXITY","PROOF_TRACE"],"contribution":"Implication-graph dominator pairs provide candidate localized conflict cuts; inspiration only until mapped soundly to JANUS trace semantics.","authority":"PAPER_CLAIMS_REQUIRE_VALIDATION"}
+  ],
+  "janus_anchors": [
+    {"id":"C021_TRACE_PROOF_BRIDGE","repository":"Hawkar-usls/Janus-Fundamentum","path":"docs/C021_POLICY0T_TRACE_PROOF_BRIDGE.md","role":"Exact deterministic transition trace already exists; recursive unit-reason/lifting treatment remains open."},
+    {"id":"C023_JANUS_FC_LOCAL","repository":"Hawkar-usls/Janus-Fundamentum","path":"docs/C023_FORMULA_CACHING_CALCULUS.md","role":"Already records calls, residual states, unit reasons, local Resolution events, branches, cache targets and completion order."},
+    {"id":"POLICY0T_TRACE_CODE","repository":"Hawkar-usls/Janus-Fundamentum","path":"experiments/direct/janus_tear_policy0t_trace_certificate.py","role":"Concrete instrumentation insertion point for before/after state snapshots and first-divergence comparison."},
+    {"id":"C023_GT_ROBUSTNESS","repository":"Hawkar-usls/Janus-Fundamentum","path":"proof_attempts/C023/GT_LOCAL_RESOLUTION_ROBUSTNESS.md","role":"Open lower-bound robustness lane where local learned clauses may destroy many witnesses; differential localization can measure finite witness destruction but cannot prove asymptotics."},
+    {"id":"TOPA_FORENSIC_JOURNAL","repository":"Hawkar-usls/TOPA","path":"research/mathematics/p-vs-np/C024_C025_FORENSIC_RESEARCH_JOURNAL_2026-08-24.md","role":"Forensic dependency journal and claim-ceiling ledger."},
+    {"id":"PF2_SHARING_TRILEMMA","repository":"Hawkar-usls/TOPA","path":"research/mathematics/p-vs-np/C025_AKINATOR_PF2_CANONICAL_SHARING_TRILEMMA.md","role":"Prevents free semantic equivalence/canonicalization and requires discovery cost accounting."},
+    {"id":"LIVE_WIDTH_DP","repository":"Hawkar-usls/TOPA","path":"research/mathematics/p-vs-np/C025_AKINATOR_LIVE_WIDTH_PATH_DP_CERTIFICATE.md","role":"Existing deterministic boundary-width diagnostic and exact DP lane."}
+  ],
+  "planned_experiments": [
+    {"id":"DSN-01","name":"GOOD_BAD_FIRST_DIVERGENCE","action":"Replay matched GOOD and BAD exact trajectories and identify the earliest state index whose canonical state hash differs under a controlled perturbation or hostile fixture.","success":"A reproducible earliest divergence with primitive-field delta and independent replay receipt.","falsifier":"No stable first divergence across deterministic replays or the compared runs do not share a valid prefix."},
+    {"id":"DSN-02","name":"VALIDITY_PRESERVING_DDMIN","action":"Minimize the first-divergence delta by perturbing the deterministic transition/generator trace, never by injecting arbitrary invalid proof states.","success":"A smaller replay-valid failure-inducing difference set.","falsifier":"Reduction repeatedly creates invalid states or test count/materialized candidate volume hides exponential work."},
+    {"id":"TRACE-01","name":"BACKWARD_PROOF_SLICE","action":"Where an UNSAT branch can export a standard proof log, backward-trim from contradiction to clauses/lemmas actually needed and compare that slice with the state-delta slice.","success":"Nonempty overlap between independently derived state-delta and proof-dependency slices, with all proof checks passing.","falsifier":"No valid export, replay rejection, or slices remain unrelated."},
+    {"id":"TRACE-02","name":"FRAT_LRAT_INDEPENDENT_REPLAY","action":"Use richer proof provenance/hints and an independently checked LRAT-style view where technically compatible.","success":"Same UNSAT result independently verifies and dependency provenance survives elaboration.","falsifier":"Elaboration cannot preserve the relevant dependencies or verification fails."},
+    {"id":"CORE-01","name":"UNSAT_CORE_INTERSECTION","action":"Extract non-minimal/trimmed UNSAT cores first; compare repeated core membership across hostile states before attempting expensive minimality.","success":"A stable small clause/reason intersection predicts the bad transition on held-out perturbations.","falsifier":"Core intersection is unstable or equally common on GOOD trajectories."},
+    {"id":"GRAPH-01","name":"CONFLICT_CUT_DIAGNOSTIC","action":"Project implication/reason dependencies around a conflict and test UIP/dominator-like cuts as diagnostic graph slices only.","success":"A small cut consistently precedes the first divergence and is replay-verifiable.","falsifier":"Cut depends on arbitrary traversal/order or does not survive replay."},
+    {"id":"N43-01","name":"EXACT_TAIL_CAPTURE","action":"Instrument the existing N=43 candidate cells without changing pivot policy; record every T/Smax/Uraw transition, canonical state hash, min-degree pivot data, resource counters and terminal status.","success":"Exact tail receipts for both (43,9,5,28) and (43,9,6,27), including negative/OPEN outcomes.","falsifier":"Instrumentation changes algorithm semantics or fails independent replay."}
+  ],
+  "laws": [
+    "ARTMONEY_PRINCIPLE_IS_DIAGNOSTIC_NOT_A_SAT_SPEEDUP",
+    "EXPLICIT_STATE_SCAN_IS_NOT_IMPLICIT_2_POW_N_SEARCH",
+    "DIAGNOSTIC_LOCALIZATION_IS_NOT_A_CAUSAL_OR_COMPLEXITY_PROOF",
+    "UNSAT_CORE_IS_NOT_A_UNIQUE_CAUSE",
+    "MINIMAL_CORE_EXTRACTION_COST_MUST_BE_CHARGED",
+    "PROOF_TRACE_DEPENDENCY_IS_NOT_A_GENERAL_COMPLEXITY_LOWER_BOUND",
+    "VALIDITY_PRESERVING_PERTURBATION_ONLY",
+    "CHEAP_VERIFICATION_IS_NOT_CHEAP_DISCOVERY",
+    "REPLAY_IS_NOT_NEW_EVIDENCE",
+    "FINITE_N43_SUCCESS_IS_NOT_AN_ASYMPTOTIC_PROOF",
+    "P_VS_NP_IS_OPEN"
+  ],
+  "claim_ceiling": "RESEARCH_ROUTING_DIAGNOSTICS_AND_EXACT_FINITE_EXPERIMENT_DESIGN_ONLY__P_VS_NP_OPEN"
+}
