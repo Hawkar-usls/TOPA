@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tools/topa_spider_silk.py'
+      - 'tools/topa_spider_silk_strict.py'
       - 'tools/topa_arxiv_gateway.py'
       - 'config/spider_pattern_sets/janus-proof-state-differential-narrowing-v1.json'
       - '.github/workflows/spider-silk-janus-proof-search.yml'
@@ -18,8 +19,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: SILK self-test
-        run: python tools/topa_spider_silk.py self-test
+      - name: SILK self-tests
+        run: |
+          python tools/topa_spider_silk.py self-test
+          python tools/topa_spider_silk_strict.py self-test
       - name: Live arXiv SPIDER survey
         shell: bash
         run: |
@@ -50,7 +53,7 @@ jobs:
             > work/silk/structure.stdout.json 2> work/silk/structure.stderr.txt
           echo $? > work/silk/structure.exit
           exit 0
-      - name: Assemble SILK JSON
+      - name: Assemble broad SILK JSON
         run: |
           python tools/topa_spider_silk.py assemble \
             --config config/spider_pattern_sets/janus-proof-state-differential-narrowing-v1.json \
@@ -59,6 +62,13 @@ jobs:
             --arxiv work/silk/unsat-core \
             --arxiv work/silk/structure \
             --max-candidates 80 \
+            --out work/silk/SILK-PRESTRICT.json \
+            --receipt work/silk/SILK-prestrict-receipt.json
+      - name: Strict word-boundary and domain sieve
+        run: |
+          python tools/topa_spider_silk_strict.py refine \
+            --input work/silk/SILK-PRESTRICT.json \
+            --config config/spider_pattern_sets/janus-proof-state-differential-narrowing-v1.json \
             --out work/silk/TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json \
             --receipt work/silk/SILK-receipt.json
       - name: Scientific firewall assertions
@@ -70,16 +80,21 @@ jobs:
           d=json.loads(p.read_text())
           assert d['status']=='PASS'
           assert d['silk_expansion']=='Spider Investigative Link Kernel'
+          assert d['strict_sieve']['status']=='PASS'
+          assert d['strict_sieve']['retained']>0
           assert len(d['canonical_external_sources'])>=8
           assert len(d['planned_experiments'])>=6
           assert 'ARTMONEY_PRINCIPLE_IS_DIAGNOSTIC_NOT_A_SAT_SPEEDUP' in d['laws']
+          assert 'SHORT_ALIAS_SUBSTRING_IS_NOT_A_PATTERN_MATCH' in d['laws']
           assert 'P_VS_NP_IS_OPEN' in d['laws']
           assert d['mission']['current_checkpoint']['N']==43
           assert d['mission']['current_checkpoint']['candidate_root_cells']==[[43,9,5,28],[43,9,6,27]]
-          print('SILK_SCIENTIFIC_FIREWALL=PASS')
+          print('SILK_STRICT_SCIENTIFIC_FIREWALL=PASS')
           print(json.dumps({
             'arxiv_scanned':d['live_arxiv']['records_scanned'],
-            'arxiv_retained':d['live_arxiv']['candidates_retained'],
+            'pre_strict':d['strict_sieve']['input_candidates'],
+            'retained':d['strict_sieve']['retained'],
+            'rejected':d['strict_sieve']['rejected'],
             'bridges':len(d['research_bridges'])
           },sort_keys=True))
           PY
