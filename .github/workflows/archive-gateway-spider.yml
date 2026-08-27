@@ -1,0 +1,93 @@
+name: Validate TOPA Archive Gateway + SPIDER
+
+on:
+  push:
+    paths:
+      - 'tools/topa_archive_gateway.py'
+      - 'tools/topa_spider.py'
+      - 'tools/topa_federated_search.py'
+      - 'protocols/TOPA_ARCHIVE_GATEWAY_SPIDER_PROTOCOL_v1.0.json'
+      - 'raw/unexamined/archive/**'
+      - '.github/workflows/archive-gateway-spider.yml'
+  workflow_dispatch:
+
+jobs:
+  archive-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Self-test Archive Gateway
+        run: python tools/topa_archive_gateway.py self-test
+      - name: Self-test SPIDER
+        run: python tools/topa_spider.py self-test
+      - name: Self-test Federated Search SQLite
+        run: python tools/topa_federated_search.py self-test
+      - name: Install Tantivy
+        run: python -m pip install --disable-pip-version-check tantivy==0.26.0
+      - name: Live bounded official archive ingestion
+        run: |
+          mkdir -p work/archive-spider
+          python tools/topa_archive_gateway.py ingest \
+            --providers nara,cia,nsa,fbi \
+            --limit 4 \
+            --expand-nara \
+            --out work/archive-spider/archive-live.jsonl \
+            --receipt work/archive-spider/archive-live-receipt.json
+      - name: Weave bounded live SPIDER graph
+        run: |
+          python tools/topa_spider.py weave \
+            --input work/archive-spider/archive-live.jsonl \
+            --nodes work/archive-spider/spider-nodes.jsonl \
+            --edges work/archive-spider/spider-edges.jsonl \
+            --receipt work/archive-spider/spider-receipt.json \
+            --semantic-threshold 0.14 \
+            --topk 5
+      - name: Build current repository memory
+        run: |
+          python tools/topa_repo_assimilator.py scan \
+            --root . \
+            --out-index work/archive-spider/repo-index.jsonl \
+            --out-queue work/archive-spider/repo-queue.jsonl \
+            --receipt work/archive-spider/repo-receipt.json
+      - name: Add arXiv fixture lane for federated integration smoke
+        run: |
+          cat > work/archive-spider/arxiv-fixture.jsonl <<'EOF'
+          {"arxiv_id":"fixture:retro","title":"Retrocausal information models","abstract":"tachyon advanced waves reverse information Ukraine UAP methodology","authors":["fixture"],"categories":["physics.hist-ph"]}
+          EOF
+      - name: Federated Tantivy index repo + arXiv + archive
+        run: |
+          python tools/topa_federated_search.py build \
+            --repo work/archive-spider/repo-index.jsonl \
+            --arxiv work/archive-spider/arxiv-fixture.jsonl \
+            --archive work/archive-spider/archive-live.jsonl \
+            --engine tantivy \
+            --out work/archive-spider/federated-index
+          python tools/topa_federated_search.py search \
+            --engine tantivy \
+            --index work/archive-spider/federated-index \
+            --query 'tachyon Ukraine UAP' \
+            --limit 10 > work/archive-spider/federated-search.json
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('work/archive-spider/archive-live-receipt.json').read_text())
+          s=json.loads(Path('work/archive-spider/spider-receipt.json').read_text())
+          assert a['status']=='PASS' and a['records']>0
+          assert 'GRAPH_EDGE_IS_NOT_CAUSATION' in s['laws']
+          assert s['weak_or_speculative_edges'] >= 0
+          p=json.loads(Path('protocols/TOPA_ARCHIVE_GATEWAY_SPIDER_PROTOCOL_v1.0.json').read_text())
+          assert p['storage_contract']['append_only'] is True
+          assert 'SEMANTIC_SIMILARITY_IS_NOT_MECHANISM' in p['laws']
+          print('ARCHIVE_GATEWAY_SPIDER_FIREWALL=PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-archive-spider-smoke
+          path: work/archive-spider
+          retention-days: 14
