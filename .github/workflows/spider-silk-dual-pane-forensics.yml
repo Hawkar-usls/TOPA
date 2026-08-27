@@ -7,6 +7,7 @@ on:
       - '.github/workflows/spider-silk-dual-pane-forensics.yml'
       - 'tools/topa_arxiv_gateway.py'
       - 'tools/topa_spider_silk.py'
+      - 'tools/topa_spider_silk_strict.py'
   workflow_dispatch:
 
 jobs:
@@ -18,9 +19,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Boundary assertion
+      - name: Boundary and SPIDER self-tests
         run: |
           test -d research/mathematics/p-vs-np/SPIDER-SILK
+          python tools/topa_spider_silk_strict.py self-test
           python - <<'PY'
           from pathlib import Path
           txt=Path('research/mathematics/p-vs-np/SPIDER-SILK/README.md').read_text()
@@ -63,7 +65,7 @@ jobs:
             > work/dual-pane/slicing.stdout.json 2> work/dual-pane/slicing.stderr.txt
           echo $? > work/dual-pane/slicing.exit
           exit 0
-      - name: Assemble SILK research bundle
+      - name: Assemble broad SILK research bundle
         run: |
           python tools/topa_spider_silk.py assemble \
             --config config/spider_pattern_sets/janus-proof-state-dual-pane-structural-forensics-v1.json \
@@ -73,6 +75,13 @@ jobs:
             --arxiv work/dual-pane/content \
             --arxiv work/dual-pane/slicing \
             --max-candidates 120 \
+            --out work/dual-pane/SILK-DUAL-PANE-FORENSICS-PRESTRICT-v1.0.json \
+            --receipt work/dual-pane/SILK-DUAL-PANE-FORENSICS-prestrict-receipt.json
+      - name: Strict word-boundary and domain sieve
+        run: |
+          python tools/topa_spider_silk_strict.py refine \
+            --input work/dual-pane/SILK-DUAL-PANE-FORENSICS-PRESTRICT-v1.0.json \
+            --config config/spider_pattern_sets/janus-proof-state-dual-pane-structural-forensics-v1.json \
             --out work/dual-pane/SILK-DUAL-PANE-FORENSICS-LIVE-v1.0.json \
             --receipt work/dual-pane/SILK-DUAL-PANE-FORENSICS-receipt.json
       - name: Scientific firewall assertions
@@ -82,11 +91,13 @@ jobs:
           from pathlib import Path
           d=json.loads(Path('work/dual-pane/SILK-DUAL-PANE-FORENSICS-LIVE-v1.0.json').read_text())
           assert d['status']=='PASS'
+          assert d['strict_sieve']['status']=='PASS'
           assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in d['laws']
+          assert 'SHORT_ALIAS_SUBSTRING_IS_NOT_A_PATTERN_MATCH' in d['laws']
           assert 'P_VS_NP_IS_OPEN' in d['laws']
           assert len(d['canonical_external_sources']) >= 8
-          print('SPIDER_DUAL_PANE_FIREWALL=PASS')
-          print(json.dumps({'scanned':d['live_arxiv']['records_scanned'],'retained':d['live_arxiv']['candidates_retained'],'bridges':len(d['research_bridges'])},sort_keys=True))
+          print('SPIDER_DUAL_PANE_STRICT_FIREWALL=PASS')
+          print(json.dumps({'scanned':d['live_arxiv']['records_scanned'],'pre_strict':d['strict_sieve']['input_candidates'],'retained':d['strict_sieve']['retained'],'rejected':d['strict_sieve']['rejected'],'bridges':len(d['research_bridges'])},sort_keys=True))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
