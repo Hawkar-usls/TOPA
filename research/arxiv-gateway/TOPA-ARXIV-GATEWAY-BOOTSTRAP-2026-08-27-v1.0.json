@@ -1,0 +1,49 @@
+{
+  "schema": "hawkar.topa.arxiv_gateway_bootstrap.v1",
+  "artifact_id": "TOPA-ARXIV-GATEWAY-BOOTSTRAP-2026-08-27-v1.0",
+  "status": "IMPLEMENTED__CI_PENDING_AT_RECORD_CREATION",
+  "repository": "Hawkar-usls/TOPA",
+  "implemented_components": [
+    "protocols/TOPA_ARXIV_GATEWAY_PROTOCOL-v1.0.json",
+    "tools/topa_arxiv_gateway.py",
+    "tools/requirements-arxiv-gateway.txt",
+    "docs/ARXIV_GATEWAY.md",
+    ".github/workflows/validate-arxiv-gateway.yml"
+  ],
+  "capabilities": {
+    "official_arxiv_atom_api_search": true,
+    "plain_topic_search": true,
+    "raw_arxiv_query_search": true,
+    "paging": true,
+    "relevance_and_date_sort": true,
+    "append_only_jsonl_research_corpus": true,
+    "response_sha256_receipts": true,
+    "per_record_sha256": true,
+    "local_tantivy_bm25_index": true,
+    "sqlite_fts5_fallback": true,
+    "one_command_investigation_mode": true,
+    "research_candidate_queue": true
+  },
+  "portable_engine": {
+    "primary": "Tantivy via tantivy-py 0.26.0",
+    "license": "MIT",
+    "runtime_model": "embedded; no external search daemon",
+    "fallback": "SQLite FTS5"
+  },
+  "arxiv_api_discipline": {
+    "minimum_inter_request_delay_seconds": 3.0,
+    "topa_max_page_size": 2000,
+    "bulk_search_api_hammering_forbidden": true,
+    "bulk_route": "arXiv OAI-PMH/bulk metadata route"
+  },
+  "epistemic_firewall": {
+    "arxiv_paper_is_empirical_truth": false,
+    "search_rank_is_evidence_strength": false,
+    "preprint_status_is_validation": false,
+    "failed_fetch_is_absence_proof": false,
+    "negative_and_contradictory_papers_preserved": true,
+    "paper_claims_require_TOPA_claim_level_validation": true
+  },
+  "next_gate": "CI_PASS_THEN_FIRST_LIVE_TOPIC_INVESTIGATION",
+  "claim_ceiling": "TOPA now has an implemented arXiv discovery and portable local-index gateway. Until CI passes and a live query is executed, this record does not claim provider-verified runtime operation against arXiv."
+}
