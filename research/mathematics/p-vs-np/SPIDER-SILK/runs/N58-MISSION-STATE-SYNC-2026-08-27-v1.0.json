@@ -1,0 +1,61 @@
+{
+  "schema": "hawkar.topa.spider.silk.n58_state_sync.v1",
+  "artifact_id": "N58-MISSION-STATE-SYNC-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "MISSION_TARGET_SUPERSEDED_BY_NEWER_ALGORITHMIST_PROGRESS__LITERATURE_HUNT_CONTINUES",
+  "boundary": "SPIDER is read-only research support. No selector/runtime/proof algorithm changes are made here.",
+  "mission_message_frozen_target": {
+    "state": {"n": 7, "m": 77, "L": 350, "d_min": 50, "p": 22, "q": 28},
+    "raw_bound": 3389,
+    "cap": 3364,
+    "excess": 25,
+    "source_role": "ALGORITHMIST_MISSION_INPUT"
+  },
+  "verified_newer_algorithmist_state": {
+    "repository": "Hawkar-usls/Janus-Fundamentum",
+    "branch": "research/c025-n58-regular-occupancy-2026-08-27",
+    "target_repair_commit": "d2cdf05eecbebc2206072f6cbd95ad43651b927b",
+    "target_repair_path": "research/C025_REGULAR_INCIDENCE_RETAINED_OCCUPANCY_RESOLVENT_CEILING_2026-08-27.json",
+    "target_repair": {
+      "same_state": {"n": 7, "m": 77, "L": 350, "d": 50, "p": 22, "q": 28},
+      "regularity": "L=n*d, so all seven live variables have degree 50",
+      "r": 6,
+      "c": 27,
+      "pq": 616,
+      "T_interval": [54, 162],
+      "worst_T": 162,
+      "support_lower_at_worst_T": 2603,
+      "J_610_support_upper": 2601,
+      "new_resolvent_ceiling_J": 609,
+      "raw_clause_ceiling_K": 636,
+      "Wmax_6_636": 2724,
+      "raw_units_ceiling": 3361,
+      "cap": 3364,
+      "margin": 3
+    },
+    "later_full_replay_commit": "85ab51e729c20ddf19e67d5b4842d6d69b2b3e6f",
+    "latest_validation_commit_seen": "4a09bf4f0746b5f19ee80ba9ea420b0c8b7eab91",
+    "full_replay_expected_status": "PROVED_FINITE_CAP_AVAILABILITY_BY_EXACT_INCIDENCE_SURPLUS_OVERAPPROX",
+    "claim_ceiling": "FINITE_N58_CAP_AVAILABILITY_ONLY__UNBOUNDED_TOTALITY_OPEN__P_VS_NP_OPEN"
+  },
+  "updated_spider_mission": {
+    "keep_original_120_primary_source_quota": true,
+    "effort_split": {"N58_and_generalizable_combinatorial_bounds_percent": 70, "JANUS_FC_local_percent": 30},
+    "priority": [
+      "Find primary extremal-set inequalities that independently explain or sharpen the regular-incidence/support-mass argument.",
+      "Find exact formulations for image-size/support-mass of coordinatewise unions of two signed/ternary set families under forbidden complementary coordinates and omission constraints.",
+      "Find whether the N58 finite inequality is a special case of a known set-pair, cross-intersection, shadow, cancellative/recovering-pair, or signed-set theorem.",
+      "Find asymptotic/general-n versions or barriers, because the local N58 numerical gap is already repaired.",
+      "Continue exact proof-resource mapping for JANUS-FC_local without importing stronger resources."
+    ],
+    "priority_red_now": "THE_ORIGINAL_25_UNIT_N58_LOCAL_GAP_IS_ALREADY_CLOSED_BY_ALGORITHMIST_WITH_A_THEOREM_SIDE_BOUND; SEARCH MUST NOT REPORT THE OLD OPEN AS CURRENT."
+  },
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "FAILURE_IS_DATA",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "LOWER_BOUND_FOR_MODEL_X_IS_NOT_A_JANUS_LOWER_BOUND_WITHOUT_SIMULATION",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
