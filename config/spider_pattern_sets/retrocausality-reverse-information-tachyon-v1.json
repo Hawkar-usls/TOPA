@@ -1,0 +1,73 @@
+{
+  "schema": "hawkar.topa.spider_pattern_set.v1",
+  "pattern_set_id": "RETROCAUSALITY-REVERSE-INFORMATION-TACHYON-v1",
+  "scope_note": "First validation target for the SPIDER chunk/batch sieve. Broad by design: tachyon is only one family among several temporal/information-flow hypotheses and experimental labels.",
+  "families": [
+    {
+      "id": "TACHYON",
+      "aliases": ["tachyon", "tachyons", "tachyonic", "faster than light", "superluminal"]
+    },
+    {
+      "id": "REVERSE_INFORMATION_FLOW",
+      "aliases": ["reverse information flow", "reverse information", "information leakage from the future", "information-leakage from the future", "information from future to past", "future to past"]
+    },
+    {
+      "id": "RETROCAUSALITY",
+      "aliases": ["retrocausality", "retrocausal", "backward causation", "backwards causation", "reverse causality", "reversal of causality", "causality reversal", "causality-reversing"]
+    },
+    {
+      "id": "ADVANCED_TIME_SOLUTIONS",
+      "aliases": ["advanced potential", "advanced-potential", "advanced potentials", "advanced solution", "advanced solutions", "time advanced solution", "time-advanced solution", "advanced time", "advanced wave", "advanced waves"]
+    },
+    {
+      "id": "PRECOGNITION",
+      "aliases": ["precognition", "precognitive", "probable futures", "future state of the mind"]
+    },
+    {
+      "id": "DECISION_AUGMENTATION_THEORY",
+      "aliases": ["decision augmentation theory", "DAT", "decision augmentation"]
+    },
+    {
+      "id": "STOCHASTIC_CAUSALITY",
+      "aliases": ["stochastic causality", "statistical reversal", "statistical breach of causality", "statistical component of causality"]
+    },
+    {
+      "id": "RETROACTIVE_PK",
+      "aliases": ["retroactive pk", "retro-pk", "retro pk", "backward pk", "backwards in time", "time displacement"]
+    },
+    {
+      "id": "TIME_SYMMETRY",
+      "aliases": ["time symmetry", "time-symmetric", "time symmetric", "time reversal", "time reversed", "time-reversed"]
+    },
+    {
+      "id": "WORMHOLE_TIME_TRAVEL",
+      "aliases": ["worm hole", "worm holes", "wormhole", "wormholes", "time travel", "remote space-time points"]
+    },
+    {
+      "id": "QUANTUM_CAUSALITY_CONTEXT",
+      "aliases": ["EPR", "Einstein Podolsky Rosen", "wave function", "quantum mechanical", "quantum theory", "quantum reality"]
+    },
+    {
+      "id": "TEMPORAL_INFORMATION_ACQUISITION",
+      "aliases": ["transtemporal", "temporal acquisition", "data is received before", "before the source emits", "received before", "future information"]
+    }
+  ],
+  "bootstrap_sources": [
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200270001-7",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003200240001-0",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200280002-5",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r002600090002-3",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00787r000200180002-1",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00792r000701040002-4",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003100080001-9",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r003800360001-1",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00789r002200150001-1",
+    "https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200170016-2"
+  ],
+  "laws": [
+    "PATTERN_ALIAS_IS_A_RETRIEVAL_OPERATOR_NOT_A_CLAIM",
+    "TACHYON_IS_NOT_THE_CENTER_OF_THE_PATTERN_SET",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "PATTERN_COOCCURRENCE_IS_NOT_CAUSATION"
+  ]
+}
