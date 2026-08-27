@@ -6,6 +6,7 @@ on:
       - 'config/spider_pattern_sets/janus-n58-bound-destruction-hunt-v1.json'
       - '.github/workflows/spider-n58-bound-destruction-hunt.yml'
       - 'tools/topa_arxiv_gateway.py'
+      - 'tools/topa_spider_n58_quota_assign.py'
   workflow_dispatch:
 
 jobs:
@@ -18,13 +19,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Boundary assertion
+      - name: Boundary and quota self-test
         run: |
+          python tools/topa_spider_n58_quota_assign.py self-test
           python - <<'PY'
           import json
           from pathlib import Path
           c=json.loads(Path('config/spider_pattern_sets/janus-n58-bound-destruction-hunt-v1.json').read_text())
           assert c['primary_source_target']==120
+          assert sum(x['quota'] for x in c['quota_families'])==120
           assert c['effort_split']=={'N58_COMBINATORIAL_BOUND':70,'JANUS_FC_LOCAL':30}
           assert 'SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR' in c['laws']
           assert 'P_VS_NP_IS_OPEN' in c['laws']
@@ -37,96 +40,51 @@ jobs:
           set +e
           mkdir -p work/n58-hunt
           runq () {
-            lane="$1"; shift
-            q="$1"; shift
-            rq="$1"; shift
+            lane="$1"; q="$2"; rq="$3"
             python tools/topa_arxiv_gateway.py investigate "$q" --raw-query "$rq" --work-dir "work/n58-hunt/$lane" --limit 100 --engine sqlite > "work/n58-hunt/$lane.stdout.json" 2> "work/n58-hunt/$lane.stderr.txt"
             echo $? > "work/n58-hunt/$lane.exit"
           }
           runq extremal 'Bollobas set pairs cross intersecting signed sets Kruskal Katona shadows cancellative recovering pairs' '(cat:math.CO) AND (all:"Bollobas" OR all:"set-pair" OR all:"cross-intersecting" OR all:"signed sets" OR all:cancellative OR all:"recovering pairs" OR all:"Kruskal-Katona" OR all:shadow)'
-          runq unions 'union intersecting union families forbidden intersections set systems' '(cat:math.CO) AND (all:"union-intersecting" OR all:"union family" OR all:"restricted intersection" OR all:"forbidden intersection" OR all:"cross union")'
+          runq unions 'distinct unions union free Sidon set systems cancellative recovering' '(cat:math.CO) AND (all:"distinct unions" OR all:"union-free" OR all:"Sidon family" OR all:cancellative OR all:"recovering pair")'
+          runq lattices 'recovering cancellative pairs lattices product chains semilattice' '(cat:math.CO) AND (all:"recovering" OR all:cancellative) AND (all:lattice OR all:"product of chains" OR all:semilattice)'
           runq elimination 'Davis Putnam variable elimination bucket elimination induced width treewidth SAT CNF' '((cat:cs.LO OR cat:cs.AI OR cat:cs.CC) AND (all:"variable elimination" OR all:"bucket elimination" OR all:"induced width" OR all:"elimination width" OR all:"bounded variable elimination") AND (all:SAT OR all:CNF OR all:constraint))'
+          runq elimination2 'directional resolution elimination ordering fill in minimum degree SAT constraint graph' '((cat:cs.LO OR cat:cs.AI OR cat:cs.CC) AND (all:"directional resolution" OR all:"elimination ordering" OR all:"minimum fill" OR all:"min-fill" OR all:"minimum degree") AND (all:SAT OR all:constraint OR all:CNF OR all:treewidth))'
+          runq elimination3 'Davis Putnam resolution variable elimination preprocessing SAT clause growth' '((cat:cs.LO OR cat:cs.CC) AND (all:"Davis-Putnam" OR all:"resolution elimination" OR all:"variable elimination") AND (all:preprocessing OR all:"clause growth" OR all:SAT))'
           runq prime 'prime implicates irredundant canonical minimal CNF subsumption' '((cat:cs.LO OR cat:cs.AI OR cat:math.CO) AND (all:"prime implicate" OR all:"irredundant CNF" OR all:"canonical CNF" OR all:"minimal CNF" OR all:"clause subsumption"))'
           runq proof 'formula caching regular resolution pool WRTI WRTL clause learning CDCL' '((cat:cs.CC OR cat:cs.LO) AND (all:"formula caching" OR all:"regular resolution" OR all:"pool resolution" OR all:WRTI OR all:WRTL OR all:"clause learning" OR all:CDCL))'
           runq destruction 'ordering principle Tseitin pigeonhole pebbling guarded graph stone tautology resolution' '((cat:cs.CC OR cat:cs.LO) AND (all:"ordering principle" OR all:"graph tautology" OR all:Tseitin OR all:"pigeonhole principle" OR all:pebbling OR all:"stone tautology") AND all:resolution)'
           runq automatability 'automatability automating resolution proof search hardness' '((cat:cs.CC OR cat:cs.LO) AND (all:automatability OR all:automatizable OR all:"automating resolution" OR all:"proof search"))'
+          runq automatability2 'non automatizability proof search shortest proof regular tree-like resolution' '((cat:cs.CC OR cat:cs.LO) AND (all:"non-automatizability" OR all:"not automatizable" OR all:"proof search" OR all:"shortest proof") AND (all:resolution OR all:"proof system"))'
+          runq automatability3 'hardness finding resolution proofs proof-search complexity' '((cat:cs.CC OR cat:cs.LO) AND (all:"finding" OR all:"search") AND (all:"resolution proof" OR all:"resolution refutation") AND (all:hardness OR all:complexity))'
           runq kc 'knowledge compilation decision DNNF DNNF OBDD FBDD DPLL treewidth' '((cat:cs.CC OR cat:cs.AI OR cat:cs.LO) AND (all:"decision-DNNF" OR all:DNNF OR all:OBDD OR all:FBDD OR all:"knowledge compilation") AND (all:DPLL OR all:SAT OR all:treewidth OR all:branchwidth))'
           exit 0
 
-      - name: Build quota candidate ledger
+      - name: Assign distinct publications to quota slots
         run: |
-          python - <<'PY'
-          import json,re,hashlib
-          from pathlib import Path
-          cfg=json.loads(Path('config/spider_pattern_sets/janus-n58-bound-destruction-hunt-v1.json').read_text())
-          rows={}
-          lanes=[]
-          for p in Path('work/n58-hunt').glob('*/arxiv-corpus.jsonl'):
-              lanes.append(str(p))
-              for line in p.read_text().splitlines():
-                  if not line.strip(): continue
-                  r=json.loads(line); aid=str(r.get('arxiv_id') or '')
-                  if not aid: continue
-                  prev=rows.get(aid)
-                  if prev is None or str(r.get('updated') or '')>=str(prev.get('updated') or ''): rows[aid]=r
-          def norm(x): return ' '.join(re.findall(r'[a-z0-9]+',str(x or '').lower()))
-          pool=[]
-          for r in rows.values():
-              surface=norm(' '.join([str(r.get('title') or ''),str(r.get('abstract') or ''),' '.join(r.get('authors') or [])]))
-              fam=[]
-              for f in cfg['quota_families']:
-                  hits=[a for a in f['aliases'] if norm(a) and norm(a) in surface]
-                  if hits: fam.append((f['id'],len(set(hits))))
-              if fam:
-                  score=sum(1+n for _,n in fam)
-                  pool.append((score,r,fam))
-          pool.sort(key=lambda x:(-x[0],str(x[1].get('arxiv_id'))))
-          selected=[]; counts={f['id']:0 for f in cfg['quota_families']}; quotas={f['id']:f['quota'] for f in cfg['quota_families']}; used=set()
-          # greedy quota fill, allowing one paper to satisfy multiple lanes but counting publication once toward total
-          for score,r,fam in pool:
-              ids=[f for f,_ in fam]
-              if not any(counts[f]<quotas[f] for f in ids): continue
-              aid=r['arxiv_id']
-              if aid in used: continue
-              used.add(aid)
-              for f in ids:
-                  if counts[f]<quotas[f]: counts[f]+=1
-              selected.append({
-                  'arxiv_id':aid,'title':r.get('title'),'authors':r.get('authors'),'published':r.get('published'),'updated':r.get('updated'),'doi':r.get('doi'),'abs_url':r.get('abs_url'),'pdf_url':r.get('pdf_url'),'abstract':r.get('abstract'),'matched_quota_families':ids,'route_score':score,
-                  'theorem_statement':'PENDING_PRIMARY_TEXT_REVIEW__ABSTRACT_AVAILABLE_AS_DISCOVERY_CONTEXT_ONLY',
-                  'exact_model_assumptions':'PENDING_PRIMARY_TEXT_REVIEW',
-                  'resource_required':'PENDING_PRIMARY_TEXT_REVIEW',
-                  'candidate_janus_insertion_point':'PENDING_ROUTING_REVIEW',
-                  'applicability':'PENDING_PRIMARY_TEXT_REVIEW',
-                  'non_applicability':'PENDING_PRIMARY_TEXT_REVIEW',
-                  'primary_link':r.get('doi') or r.get('abs_url'),
-                  'review_status':'ABSTRACT_INDEXED_NOT_PRIMARY_TEXT_REVIEWED'
-              })
-          out={
-            'schema':'hawkar.topa.spider.n58_candidate_ledger.v1','status':'PASS','mission_id':cfg['mission_id'],'raw_unique_arxiv_records':len(rows),'matched_candidate_pool':len(pool),'selected_unique_candidate_publications':len(selected),'quota_progress_candidate_only':counts,'quota_targets':quotas,'primary_sources_fully_reviewed':0,'primary_source_target':120,'candidate_records':selected,'source_lanes':sorted(lanes),
-            'laws':['SEARCH_HIT_IS_NOT_EVIDENCE','ABSTRACT_ONLY_IS_NOT_FULL_THEOREM_REVIEW','PRIMARY_SOURCE_QUOTA_COUNTS_ONLY_PRIMARY_PAPERS','SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR','P_VS_NP_IS_OPEN']
-          }
-          payload=json.dumps(out,ensure_ascii=False,sort_keys=True,indent=2)
-          Path('work/n58-hunt/N58-PRIMARY-CANDIDATE-LEDGER-v1.json').write_text(payload)
-          print(json.dumps({'raw':len(rows),'pool':len(pool),'selected':len(selected),'counts':counts},sort_keys=True))
-          PY
+          python tools/topa_spider_n58_quota_assign.py assign \
+            --root work/n58-hunt \
+            --config config/spider_pattern_sets/janus-n58-bound-destruction-hunt-v1.json \
+            --out work/n58-hunt/N58-DISTINCT-PRIMARY-CANDIDATE-LEDGER-v2.json
 
       - name: Scientific firewall
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          d=json.loads(Path('work/n58-hunt/N58-PRIMARY-CANDIDATE-LEDGER-v1.json').read_text())
+          d=json.loads(Path('work/n58-hunt/N58-DISTINCT-PRIMARY-CANDIDATE-LEDGER-v2.json').read_text())
           assert d['status']=='PASS'
           assert d['primary_sources_fully_reviewed']==0
+          assert d['assigned_distinct_publications']<=120
+          assert 'ONE_PUBLICATION_COUNTS_TOWARD_AT_MOST_ONE_QUOTA' in d['laws']
           assert 'ABSTRACT_ONLY_IS_NOT_FULL_THEOREM_REVIEW' in d['laws']
           assert 'P_VS_NP_IS_OPEN' in d['laws']
-          print('N58_CANDIDATE_LEDGER_FIREWALL=PASS')
+          print('N58_DISTINCT_QUOTA_FIREWALL=PASS')
+          print(json.dumps({'assigned':d['assigned_distinct_publications'],'counts':d['quota_candidate_assignment'],'missing':d['missing_candidate_slots']},sort_keys=True))
           PY
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: topa-spider-n58-bound-destruction-hunt
+          name: topa-spider-n58-bound-destruction-hunt-v2
           path: work/n58-hunt
           retention-days: 30
