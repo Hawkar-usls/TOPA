@@ -1,0 +1,169 @@
+{
+  "schema": "hawkar.topa.spider.silk.n58_bound_destruction_dossier.v1",
+  "artifact_id": "SPIDER-N58-BOUND-DESTRUCTION-DOSSIER-v1",
+  "date": "2026-08-27",
+  "status": "ACTIVE_PRIMARY_REVIEW__ORIGINAL_N58_LOCAL_GAP_ALREADY_REPAIRED",
+  "mission": {
+    "id": "N58-BOUND-DESTRUCTION-HUNT",
+    "primary_source_target": 120,
+    "effort_split": {"N58_COMBINATORIAL_BOUND_PERCENT":70,"JANUS_FC_LOCAL_PERCENT":30},
+    "algorithm_changes_by_spider": 0,
+    "selector_runtime_changes_by_spider": 0
+  },
+  "state_sync": {
+    "historical_algorithmist_message": {"n":7,"m":77,"L":350,"d_min":50,"p":22,"q":28,"raw_bound":3389,"cap":3364,"gap":25,"RESOURCE_SIMPLEX_COUPLED_OUTPUT_CONSTRAINT":"NO_GAIN"},
+    "newer_verified_algorithmist_branch":"Hawkar-usls/Janus-Fundamentum:research/c025-n58-regular-occupancy-2026-08-27",
+    "local_repair_commit":"d2cdf05eecbebc2206072f6cbd95ad43651b927b",
+    "local_repair": {"r":6,"c":27,"pq":616,"T_interval":[54,162],"worst_T":162,"pair_support_lower":2603,"J_610_support_upper":2601,"J_max":609,"K_max":636,"Wmax_6_636":2724,"raw_units_max":3361,"cap":3364,"margin":3},
+    "full_N58_replay_commit":"85ab51e729c20ddf19e67d5b4842d6d69b2b3e6f",
+    "latest_validation_seen":"4a09bf4f0746b5f19ee80ba9ea420b0c8b7eab91",
+    "finite_status":"PROVED_FINITE_CAP_AVAILABILITY_BY_EXACT_INCIDENCE_SURPLUS_OVERAPPROX",
+    "still_open":["UNBOUNDED_TOTALITY","UNIVERSAL_GPEI","P_VS_NP"]
+  },
+  "internal_N58_bound_anatomy": {
+    "regular_case":"L=n*d forces all seven live variables to have degree d=50.",
+    "parent_families":"The pivot has p=22 positive and q=28 negative parents; c=m-d=27 clauses are retained.",
+    "signed_tail_model":"Each parent tail is a vector in {OMIT,POS,NEG}^6. Opposite signs on a coordinate make a parent pair tautological; otherwise the resolvent is the compatible coordinatewise union.",
+    "omission_marginals":"For nonpivot coordinate y, parent omissions split as a_y+b_y=t_y; total T=sum_y t_y.",
+    "support_lower":"Regular incidence yields a coordinatewise upper bound on cross-polarity pairs omitting y and therefore a lower bound S >= r*p*q - floor(c*T/4).",
+    "output_upper":"If J distinct new resolvents are represented, the representatives plus c retained clauses are bounded by Wmax_r(c+J), while unrepresented parent pairs contribute at most r each.",
+    "collision":"At J=610 and worst T=162 the output support upper is 2601 while required pair support is at least 2603, contradiction.",
+    "research_translation":"External literature should explain/generalize this as a near-injective bipartite partial-join image-size/support-mass problem with constrained coordinate omissions."
+  },
+  "search_runs": [
+    {
+      "run_id":33111119686,
+      "artifact_id":9662557110,
+      "mode":"INITIAL_ARXIV_CANDIDATE_SWEEP",
+      "raw_unique_records":462,
+      "matched_candidate_pool":263,
+      "selected_unique_candidates":91,
+      "warning":"Initial quota counter allowed one publication to contribute to multiple family quotas; superseded for quota accounting."
+    },
+    {
+      "run_id":33111939641,
+      "artifact_id":9662882942,
+      "artifact_sha256":"0efafa5f9d4cdbb1dee63b664a73d4227fb4f6a5a890c1c4cceee33bebdad885",
+      "mode":"DISTINCT_PUBLICATION_ONE_SLOT_QUOTA_SWEEP",
+      "raw_unique_arxiv_records":682,
+      "matched_candidate_publications":233,
+      "assigned_distinct_publications":98,
+      "quota_candidate_assignment": {
+        "EXTREMAL_SIGNED_UNION":40,
+        "VARIABLE_ELIMINATION_GROWTH":11,
+        "PRIME_CANONICAL_CNF":15,
+        "PROOF_RESOURCE_LATTICE":15,
+        "DESTRUCTION_FAMILIES":5,
+        "AUTOMATABILITY_DISCOVERY":2,
+        "KNOWLEDGE_COMPILATION":10
+      },
+      "missing_candidate_slots": {"VARIABLE_ELIMINATION_GROWTH":9,"DESTRUCTION_FAMILIES":5,"AUTOMATABILITY_DISCOVERY":8},
+      "scientific_firewall":"PASS",
+      "important":"These are discovery candidates, not 98 fully reviewed primary sources."
+    }
+  ],
+  "spider_search_upgrades": [
+    {"tool":"tools/topa_spider_n58_quota_assign.py","commit":"69059402c092dc44d802e15c4733dd04fb2790ae","effect":"Maximum bipartite quota assignment: one publication can count toward at most one of the 120 quota slots."},
+    {"workflow_commit":"01017d686e84e125d8f050d9e10752bacaf78fd8","effect":"Broadened distinct-union/lattice, elimination and automatability lanes while preserving read-only boundary."}
+  ],
+  "exact_equivalent_problem_hunt": {
+    "current_best_formulation":"Bipartite near-injective partial-join problem on six signed coordinates.",
+    "formal_objects":"P subset {0,+,-}^6 with |P|=22; Q subset {0,+,-}^6 with |Q|=28; a pair is compatible iff no coordinate contains opposing nonzero signs; compatible join is coordinatewise union.",
+    "output":"Distinct new compatible joins after excluding retained clauses C, |C|=27.",
+    "historical_danger":"J>=610 among pq=616 means at least 610 pair representatives have globally distinct new outputs, so the join map is extremely close to injective on the full parent rectangle.",
+    "nearest_named_literature":["cancellative pairs","recovering pairs in lattices","distinct-union hypergraphs","union-free/Sidon set families","signed intersecting set systems","set-pair inequalities","shadow/isoperimetric inequalities","separable/superimposed codes"],
+    "exact_named_equivalence_found":false,
+    "negative_result":"No primary source reviewed so far gives an exact theorem for this signed partial-join + retained-family + incidence-marginal model."
+  },
+  "priority_findings": [
+    {
+      "id":"N58-RED-01",
+      "status":"PRIORITY_RED_INTERNAL_STATE_SYNC",
+      "finding":"The requested historical 25-unit local gap was already destroyed by the Algorithmist: raw_units<=3361<3364. Literature search must target independent explanation/generalization, not re-solve the obsolete local gap."
+    },
+    {
+      "id":"N58-RED-02",
+      "status":"PRIORITY_RED_TRANSLATION_REQUIRED",
+      "finding":"Holzman-Korner/Janzer cancellative-pair entropy uses coordinate omission fractions p_i,q_i and proves log2(|A||B|)<=sum_i[p_i h(q_i)+q_i h(p_i)]. This is the closest external structural match found to the N58 a_y,b_y,t_y omission argument. Ordinary Boolean cancellativity is not established for JANUS, so no numeric transfer is admitted."
+    },
+    {
+      "id":"N58-RED-03",
+      "status":"PRIORITY_RED_MODEL_TRANSLATION_REQUIRED",
+      "finding":"Recovering-pair theory extends union/recovery questions to lattices and products of chains. JANUS signed coordinates form a partial join structure with incompatible +/-, not a product of chains. A faithful lattice/poset translation would be genuinely valuable; none is admitted yet."
+    },
+    {
+      "id":"N58-HIGH-04",
+      "status":"HIGH_ANALOGUE",
+      "finding":"Furedi and Frankl-Furedi give collision/size theorems for families with distinct pair unions. They attack the exact failure mode J near pq, but require unsigned uniform one-family models."
+    },
+    {
+      "id":"N58-HIGH-05",
+      "status":"HIGH_SUPPORT_MASS_ROUTE",
+      "finding":"Kruskal-Katona/Katona shadow inequalities may constrain how many outputs can simultaneously occupy low-support layers, potentially sharpening a Wmax-style occupancy envelope. No signed-shadow closure premise has been established."
+    }
+  ],
+  "primary_theorem_review_core": [
+    {"source":"Holzman & Korner 1995, Cancellative pairs of families of sets","doi":"10.1016/0195-6698(95)90031-4","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_THEOREM_AND_ASSUMPTIONS_EXTRACTED","janus_status":"TRANSLATION_REQUIRED"},
+    {"source":"Janzer 2018, A New Upper Bound for Cancellative Pairs","doi":"10.37236/7210","arxiv":"1708.02833","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_FULL_ARXIV_HTML_THEOREM_CONTEXT_REVIEWED","janus_status":"TRANSLATION_REQUIRED"},
+    {"source":"Furedi 1984, Hypergraphs in which all disjoint pairs have distinct unions","doi":"10.1007/BF02579216","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_THEOREM_STATEMENT_EXTRACTED","janus_status":"ANALOGUE_ONLY"},
+    {"source":"Frankl 1982, An Extremal Problem for two Families of Sets","doi":"10.1016/S0195-6698(82)80025-5","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_THEOREM_STATEMENT_EXTRACTED","janus_status":"TRANSLATION_TEST"},
+    {"source":"Frankl & Furedi 1986, Union-free families of sets and equations over fields","doi":"10.1016/0022-314X(86)90091-0","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_MAIN_THEOREM_EXTRACTED","janus_status":"ANALOGUE_ONLY"},
+    {"source":"Ahlswede & Simonyi 1994, recovering set pairs in lattices","doi":"10.1016/0012-365X(94)90129-5","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_DEFINITION_AND_K2_THEOREM_EXTRACTED","janus_status":"MODEL_TRANSLATION_REQUIRED"},
+    {"source":"Csakany 2000, Some Results on the Sandglass Conjecture","doi":"10.1016/S1571-0653(05)80131-3","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_ABSTRACT_THEOREM_EXTRACTED","janus_status":"MODEL_TRANSLATION_REQUIRED"},
+    {"source":"Soltesz, New bounds on Simonyi's conjecture","arxiv":"1510.07597","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_ARXIV_THEOREM_EXTRACTED","janus_status":"ANALOGUE_ONLY"},
+    {"source":"Bollobas & Leader 1997, An Erdos-Ko-Rado Theorem For Signed Sets","doi":"10.1016/S0898-1221(97)00215-0","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_THEOREM_STATEMENT_EXTRACTED","janus_status":"SIGNED_CONTROL_NOT_DIRECT"},
+    {"source":"Meshalkin 1963, Generalization of Sperner's Theorem","doi":"10.1137/1108023","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_EXACT_THEOREM_EXTRACTED","janus_status":"TERNARY_DECOMPOSITION_TRANSLATION_TEST"},
+    {"source":"Kruskal 1963, The Number of Simplices in a Complex","doi":"10.1525/9780520319875-014","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_CLASSICAL_SHADOW_THEOREM_ROUTED","janus_status":"SUPPORT_LAYER_ROUTE"},
+    {"source":"Katona 1968, Shadows of finite sets","doi":"10.1016/S0021-9800(68)80085-7","category":"EXTREMAL_SIGNED_UNION","review_level":"PRIMARY_ABSTRACT_THEOREM_EXTRACTED","janus_status":"SUPPORT_LAYER_ROUTE"},
+    {"source":"Dechter & Rish 1994, Directional Resolution: The Davis-Putnam Procedure, Revisited","doi":"10.1016/B978-1-4832-1452-8.50109-3","category":"VARIABLE_ELIMINATION_GROWTH","review_level":"PRIMARY_MODEL_AND_COMPLEXITY_PARAMETERS_EXTRACTED","janus_status":"STRUCTURAL_CONTROL"},
+    {"source":"Dechter 1999, Bucket Elimination: A Unifying Framework for Probabilistic Inference","doi":"10.1016/S0004-3702(99)00059-4","category":"VARIABLE_ELIMINATION_GROWTH","review_level":"PRIMARY_INDUCED_WIDTH_BOUND_EXTRACTED","janus_status":"STRUCTURAL_CONTROL"},
+    {"source":"Een & Biere 2005, Effective Preprocessing in SAT Through Variable and Clause Elimination","doi":"10.1007/11499107_5","category":"VARIABLE_ELIMINATION_GROWTH","review_level":"PRIMARY_RESOURCE_ASSUMPTIONS_EXTRACTED","janus_status":"NONAPPLICABILITY_POST_ELIMINATION_SUBSUMPTION_FIREWALL"},
+    {"source":"Atserias & Bonet 2004, On the automatizability of resolution and related propositional proof systems","doi":"10.1016/j.ic.2003.10.004","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_EQUIVALENCES_EXTRACTED","janus_status":"DISCOVERY_COST_FIREWALL"},
+    {"source":"Atserias & Muller 2020, Automating Resolution is NP-hard","doi":"10.1145/3409472","arxiv":"1904.02991","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_HARDNESS_THEOREM_EXTRACTED","janus_status":"DISCOVERY_COST_FIREWALL"},
+    {"source":"Alekhnovich & Razborov 2008, Resolution Is Not Automatizable Unless W[P] Is Tractable","doi":"10.1137/06066850X","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_HARDNESS_THEOREM_EXTRACTED","janus_status":"DISCOVERY_COST_FIREWALL"},
+    {"source":"Alekhnovich, Buss, Moran, Pitassi 2001, Minimum propositional proof length is NP-hard to linearly approximate","doi":"10.2307/2694916","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_APPROXIMATION_HARDNESS_EXTRACTED","janus_status":"SHORTEST_PROOF_LENGTH_FIREWALL"},
+    {"source":"de Rezende 2021, Automating Tree-Like Resolution in Time n^{o(log n)} Is ETH-Hard","doi":"10.1016/j.procs.2021.11.021","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_ETH_THEOREM_EXTRACTED","janus_status":"TREE_LIKE_CONTROL"},
+    {"source":"Buss & Yolcu 2024, Regular resolution effectively simulates resolution","doi":"10.1016/j.ipl.2024.106489","arxiv":"2402.15871","category":"AUTOMATABILITY_DISCOVERY","review_level":"PRIMARY_MAIN_EFFECTIVE_SIMULATION_THEOREM_EXTRACTED","janus_status":"EFFECTIVE_SIMULATION_NOT_DIRECT_RESOURCE_EQUIVALENCE"},
+    {"source":"Buss & Johannsen 2016, On Linear Resolution","doi":"10.3233/SAT190112","category":"DESTRUCTION_FAMILIES","review_level":"PRIMARY_MAIN_ORDERING_UPPER_BOUND_EXTRACTED","janus_status":"DESTRUCTION_ATLAS"},
+    {"source":"Bonet, Buss, Johannsen 2014, Improved Separations of Regular Resolution from Clause Learning Proof Systems","category":"DESTRUCTION_FAMILIES","review_level":"PRIMARY_GGT_AND_GUARDED_PEBBLING_RESOURCE_THEOREMS_EXTRACTED","janus_status":"DESTRUCTION_ATLAS"},
+    {"source":"Buss & Kolodziejczyk 2014, Small Stone in Pool","doi":"10.2168/LMCS-10(2:16)2014","category":"DESTRUCTION_FAMILIES","review_level":"PRIMARY_STONE_RESOURCE_THEOREM_EXTRACTED","janus_status":"DESTRUCTION_ATLAS"},
+    {"source":"Samar, Vinyals, Ganesh 2026, An Exponential Separation Between Deterministic CDCL and DPLL Solvers","doi":"10.4230/LIPIcs.SAT.2026.30","category":"DESTRUCTION_FAMILIES","review_level":"PRIMARY_MAIN_DETERMINISTIC_CDCL_THEOREM_EXTRACTED","janus_status":"DESTRUCTION_ATLAS"},
+    {"source":"Huang & Darwiche 2007, The Language of Search","doi":"10.1613/JAIR.2097","category":"KNOWLEDGE_COMPILATION","review_level":"PRIMARY_TRACE_LANGUAGE_RELATION_EXTRACTED","janus_status":"SIMULATION_ROUTE_ONLY"}
+  ],
+  "primary_review_progress": {
+    "source_bound_core_records_listed":26,
+    "target":120,
+    "warning":"The 26 reviewed-core records may overlap the 98 automatically assigned discovery candidates. They are a review-status set, not an additive count. Mission is not declared 120/120 complete.",
+    "remaining_work":"Continue theorem-level primary review, especially old non-arXiv elimination/automatability/destruction lineages, then deduplicate by DOI/title before any final 120/120 receipt."
+  },
+  "proof_resource_lattice_snapshot": [
+    {"system":"FC/FCWS","whole_residual_cache":"YES","returned_reason":"NO","learned_clause":"NO_AS_GENERAL_RESOURCE","restart":"NO_AS_NAMED_RESOURCE","janus_relation":"historical lower-bound baseline"},
+    {"system":"FC_reasonW","whole_residual_cache":"YES","returned_reason":"YES","learned_clause":"REASON_RESOURCE","janus_relation":"STRICTLY_STRONGER_RESOURCE_THAN_BOOLEAN_CACHE"},
+    {"system":"regular Resolution","whole_residual_cache":"NOT_ITS_DEFINITION","returned_reason":"N/A","learned_clause":"DAG_REUSE_OF_DERIVED_CLAUSES","janus_relation":"external proof-system control"},
+    {"system":"pool/WRTI/WRTL","whole_residual_cache":"NO_AS_DEFINING_RESOURCE","returned_reason":"LEMMA_REUSE","learned_clause":"YES","janus_relation":"stronger learned-lemma control"},
+    {"system":"CDCL","whole_residual_cache":"NO_AS_DEFINING_RESOURCE","returned_reason":"CONFLICT_ANALYSIS_REASONS","learned_clause":"YES","restart":"CONFIGURATION_DEPENDENT","janus_relation":"destruction control only"},
+    {"system":"JANUS-FC_local","whole_residual_cache":"YES_BOOLEAN_RESULT","returned_reason":"NO_GENERAL_RETURNED_REASON_ASSUMED","learned_clause":"NO_GENERAL_CLAUSE_LEARNING_ASSUMED","restart":"NO_RETROACTIVE_RESOURCE_ASSUMED","local_resolution":"BOUNDED_DETERMINISTIC_ONE_LAYER_PLUS_SECOND_UP","janus_relation":"TARGET_MODEL__EXACT_NAMED_EXTERNAL_MATCH_NOT_FOUND"}
+  ],
+  "negative_findings": [
+    "NO_DIRECT_EXTERNAL_SIGNED_PARTIAL_JOIN_THEOREM_REVIEWED_YET that exactly matches P=22,Q=28,r=6, retained C=27 and incidence/omission constraints.",
+    "NO_EXTERNAL_RESULT_IS_NEEDED_TO_CLOSE_THE_HISTORICAL_25_UNIT_N58_LOCAL_GAP because Algorithmist already proved raw<=3361 internally.",
+    "BOOLEAN_CANCELLATIVE_PAIR_BOUNDS_CANNOT_BE_NUMERICALLY_APPLIED_TO_THE_SIGNED_MODEL_WITHOUT_A_VALID_TRANSLATION.",
+    "PRODUCT_OF_CHAINS_RECOVERING_PAIR_THEOREMS_DO_NOT_DIRECTLY_APPLY_TO_THE_V_SHAPED_SIGNED_COORDINATE_POSET.",
+    "POST_ELIMINATION_SUBSUMPTION_OR_LEARNING_IS_NOT_A_FREE_JANUS_RAW_BOUND_RESOURCE.",
+    "SHORT_PROOF_EXISTENCE_DOES_NOT_ESTABLISH_CHEAP_DETERMINISTIC_DISCOVERY.",
+    "THE_120_PRIMARY_SOURCE_MISSION_IS_NOT_YET_COMPLETE; CURRENT_CANDIDATE_AND_REVIEW_COUNTS_ARE_EXPLICITLY_SEPARATED."
+  ],
+  "handoff":"../handoff/ALGORITHMIST-N58-TOP-10-EXACT-INEQUALITIES-HANDOFF.json",
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "ONE_PUBLICATION_COUNTS_TOWARD_AT_MOST_ONE_QUOTA",
+    "PRIMARY_SOURCE_QUOTA_COUNTS_ONLY_PRIMARY_WORKS",
+    "ABSTRACT_ONLY_IS_NOT_FULL_THEOREM_REVIEW",
+    "ANALOGUE_IS_NOT_TRANSFER_THEOREM",
+    "FAILURE_IS_DATA",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "LOWER_BOUND_FOR_MODEL_X_IS_NOT_A_JANUS_LOWER_BOUND_WITHOUT_SIMULATION",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
