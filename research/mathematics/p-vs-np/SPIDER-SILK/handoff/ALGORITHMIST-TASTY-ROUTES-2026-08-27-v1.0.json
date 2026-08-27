@@ -1,0 +1,65 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.v1",
+  "artifact_id": "ALGORITHMIST-TASTY-ROUTES-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "purpose": "Research-only pointer for the separate Algorithmist dialogue. SPIDER reports where potentially useful material lives and does not recommend, modify, or implement algorithmic changes.",
+  "authority_boundary": {
+    "spider_role": "OBSERVER__RESEARCHER__INDEXER_ONLY",
+    "algorithmist_role": "SOLE_DECISION_AND_ALGORITHM_AUTHORITY",
+    "algorithm_changes_by_spider": 0,
+    "laws": [
+      "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+      "SILK_LINK_IS_A_RESEARCH_ROUTE_NOT_A_PROOF",
+      "PAPER_CLAIM_IS_NOT_A_JANUS_THEOREM",
+      "P_VS_NP_IS_OPEN"
+    ]
+  },
+  "where_to_look": [
+    {
+      "path": "research/mathematics/p-vs-np/TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json",
+      "contains": [
+        "ArtMoney -> differential state narrowing analogues",
+        "delta debugging / cause-effect isolation",
+        "validity-preserving generator-trace reduction",
+        "DRAT/FRAT/LRAT proof tracing and backward trimming",
+        "UNSAT-core / MUS routes",
+        "backdoor / structural diagnostics",
+        "live arXiv candidates and provenance"
+      ]
+    },
+    {
+      "path": "research/mathematics/p-vs-np/SPIDER-SILK/dossiers/DUAL-PANE-FORENSICS-TOTAL-COMMANDER-ARTMONEY-v1.0.json",
+      "contains": [
+        "Total Commander -> dual-pane comparison metaphor",
+        "trace alignment before diff",
+        "hide-equal / compare-by-content ideas",
+        "rsync rolling-checksum delta",
+        "Merkle/content-addressed subtree comparison",
+        "dynamic invariant mining",
+        "dynamic slicing / change-impact",
+        "structural tree/graph diff"
+      ]
+    },
+    {
+      "path": "research/mathematics/p-vs-np/SPIDER-SILK/sources/",
+      "contains": [
+        "append-only source notes",
+        "external methods",
+        "technical papers",
+        "negative findings",
+        "provenance and hashes"
+      ]
+    },
+    {
+      "path": "research/mathematics/p-vs-np/SPIDER-SILK/runs/",
+      "contains": [
+        "search receipts",
+        "scientific-firewall results",
+        "candidate counts",
+        "artifact hashes"
+      ]
+    }
+  ],
+  "message_to_algorithmist": "SPIDER found potentially useful material in the paths above. No recommendation is implied. Please evaluate, reject, adapt, or ignore it independently. SPIDER will continue collecting and organizing research without touching the algorithm.",
+  "claim_ceiling": "LOCATION_AND_RESEARCH_HANDOFF_ONLY"
+}
