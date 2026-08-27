@@ -10,10 +10,13 @@ on:
       - '.github/workflows/spider-relation-pull-v2.yml'
   workflow_dispatch:
 
+# LIVE_SEARCH_MARKER: 2026-08-27T16:54:00+03:00
+# Hypothesis-agnostic run: no tachyon/retrocausality/UAP query steering is supplied.
+
 jobs:
   selective-spider:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,7 +29,7 @@ jobs:
           mkdir -p work/spider-v2
           python tools/topa_archive_gateway.py ingest \
             --providers nara,cia,nsa,fbi \
-            --limit 10 \
+            --limit 100 \
             --expand-nara \
             --out work/spider-v2/archive-survey.jsonl \
             --receipt work/spider-v2/archive-survey-receipt.json
@@ -40,7 +43,7 @@ jobs:
             --threshold 0.22 \
             --semantic-only-threshold 0.42 \
             --max-pull 100 \
-            --rounds 2
+            --rounds 3
       - name: Weave prior web plus selectively pulled records
         run: |
           cat raw/unexamined/archive/bootstrap-2026-08-27/archive-bootstrap-seeds.jsonl \
@@ -51,8 +54,8 @@ jobs:
             --edges work/spider-v2/spider-edges.jsonl \
             --receipt work/spider-v2/spider-weave-receipt.json \
             --semantic-threshold 0.14 \
-            --topk 5 \
-            --keyword-nodes 8
+            --topk 8 \
+            --keyword-nodes 12
       - name: Scientific firewall assertions
         run: |
           python - <<'PY'
@@ -63,6 +66,7 @@ jobs:
           proto=json.loads(Path('protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.0.json').read_text())
           assert p['status']=='PASS'
           assert p['survey_candidates'] >= p['pulled_documents']
+          assert p.get('query') is None
           assert 'NO_FIXED_HYPOTHESIS_CENTER' in p['laws']
           assert 'UNCONNECTED_ARCHIVE_RECORDS_STAY_EXTERNAL_POINTERS' in p['laws']
           assert 'NO_FIXED_HYPOTHESIS_CENTER' in w['laws']
