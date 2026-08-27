@@ -1,0 +1,47 @@
+{
+  "schema": "hawkar.topa.archive_provider_registry.v1",
+  "artifact_id": "TOPA-ARCHIVE-PROVIDER-REGISTRY-v1.0",
+  "status": "ACTIVE",
+  "providers": {
+    "NARA": {
+      "status": "EXHAUSTIVE_UAP_BULK_METADATA_DISCOVERY_READY",
+      "official_landing": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download",
+      "mechanism": "Parse every official catalog-export-<NAID>.json link published on the NARA UAP bulk-download page; optionally expand each small JSON metadata object.",
+      "binary_policy": "Large ZIP/PDF/image/video payloads remain official-source pointers unless an explicit bounded fetch is justified.",
+      "notes": "This avoids using the keyed Catalog API as a bulk mirror and follows NARA's dedicated bulk-download publication path."
+    },
+    "CIA": {
+      "status": "PARTIAL_EXACT_ID_SEED_INGEST_READY",
+      "mechanism": "Fetch exact CIA Reading Room document/PDF identifiers with provenance hashes.",
+      "blocker": "A polite exhaustive collection enumerator is not yet implemented; do not describe the current six-seed lane as the whole CIA Reading Room."
+    },
+    "NSA": {
+      "status": "OFFICIAL_UFO_FOIA_LANDING_HARVEST_READY",
+      "official_landing": "https://www.nsa.gov/Helpful-Links/NSA-FOIA/Frequently-Requested-Information/Unidentified-Flying-Objects-UFOs/",
+      "mechanism": "Harvest bounded same-domain UFO/FOIA/paranormal links and preserve negative/no-responsive-material routes.",
+      "blocker": "Deep pagination/file enumeration still requires a provider-specific crawler."
+    },
+    "FBI": {
+      "status": "OFFICIAL_VAULT_UFO_LANDING_HARVEST_READY",
+      "official_landing": "https://vault.fbi.gov/UFO",
+      "mechanism": "Harvest bounded official Vault UFO links and metadata.",
+      "blocker": "Deep all-parts enumeration is not yet declared exhaustive."
+    },
+    "ARXIV": {
+      "status": "SEPARATE_GATEWAY_READY",
+      "binding": "tools/topa_arxiv_gateway.py",
+      "federation": "tools/topa_federated_search.py"
+    },
+    "TOPA_REPO": {
+      "status": "SELF_INDEX_READY",
+      "binding": "tools/topa_repo_assimilator.py",
+      "federation": "tools/topa_federated_search.py"
+    }
+  },
+  "laws": [
+    "PROVIDER_READY_IS_NOT_ARCHIVE_EXHAUSTED",
+    "FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE",
+    "RESTRICTED_OR_MISSING_BYTES_STAY_MISSING",
+    "SOURCE_METADATA_IS_NOT_CLAIM_TRUTH"
+  ]
+}
