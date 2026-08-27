@@ -1,0 +1,51 @@
+{
+  "artifact_id": "TOPA-SPIDER-RETROCAUSALITY-REVERSE-INFORMATION-TACHYON-DOSSIER-2026-08-27-v1.0",
+  "claim_ceiling": "ARCHIVAL_DISCOVERY_AND_PATTERN_STRUCTURING_ONLY__NO_RETROCAUSAL_OR_TACHYONIC_PHYSICS_CONFIRMED",
+  "date": "2026-08-27",
+  "direct_fetch_blocker": "CIA GitHub Actions direct fetch returned HTTP 302 redirect loop; the indexed official-CIA snapshot is used as a derived discovery view, not as source bytes.",
+  "execution": {
+    "artifact_id": 9655573848,
+    "artifact_zip_sha256": "80fa05c1ca33a11b21039a2ef0be1e7388ee6e991b8c67608b287779ec3e07f8",
+    "batches": 1,
+    "full_dossier_sha256": "7095aaee139cd879ef969f1a933d3b7bff1501cdd398ffeeb2b31dcfbad68a6f",
+    "input_records": 141,
+    "selected_chunks": 13,
+    "selected_documents": 13,
+    "workflow_run_id": 33093975130
+  },
+  "findings": [
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["TACHYON"],"id":"CIA-RDP96-00787R000100030001-9","score":0.58,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00787R000100030001-9.pdf","states":["EXPERIMENT_OR_TEST"],"title":"Tachyon theoretical-physics article (CIA-held copy)"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["REVERSE_INFORMATION_FLOW","ADVANCED_TIME_SOLUTIONS","PRECOGNITION"],"id":"CIA-RDP96-00787R000200180002-1","score":0.925,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00787R000200180002-1.pdf","states":["EXPERIMENT_OR_TEST","NEGATIVE_OR_LIMITATION","PHYSICS_CONTEXT","INFORMATION_FLOW_CLAIM"],"title":"Quantum Physics and Parapsychology — Precognition: A History of Things Future"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["RETROACTIVE_PK"],"id":"CIA-RDP96-00788R001300210001-5","score":0.505,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001300210001-5.pdf","states":["EXPERIMENT_OR_TEST","PROGRAM_OR_RESEARCH_PLAN"],"title":"Electronic System Perturbation — Final Report"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["METHODOLOGICAL_CRITIQUE"],"id":"CIA-RDP96-00789R002200120001-4","score":0.605,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002200120001-4.pdf","states":["NEGATIVE_OR_LIMITATION","PHYSICS_CONTEXT","RETROACTIVE_EFFECT_CLAIM"],"title":"Parapsychology: Science of the Anomalous? — critique lane"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["ADVANCED_TIME_SOLUTIONS"],"id":"CIA-RDP96-00789R002200150001-1","score":0.555,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002200150001-1.pdf","states":["NEGATIVE_OR_LIMITATION","PHYSICS_CONTEXT"],"title":"Advanced-potential / timing analysis discussion (archival working label)"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["REVERSE_INFORMATION_FLOW","PRECOGNITION","STOCHASTIC_CAUSALITY","WORMHOLE_TIME_TRAVEL","TEMPORAL_INFORMATION_ACQUISITION"],"id":"CIA-RDP96-00789R002600090002-3","score":1.0,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002600090002-3.pdf","states":["EXPERIMENT_OR_TEST","NEGATIVE_OR_LIMITATION","PROGRAM_OR_RESEARCH_PLAN","INFORMATION_FLOW_CLAIM"],"title":"Notes: Research Plan"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["STOCHASTIC_CAUSALITY","RETROACTIVE_PK","TIME_SYMMETRY"],"id":"CIA-RDP96-00789R003100080001-9","score":0.875,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003100080001-9.pdf","states":["PROGRAM_OR_RESEARCH_PLAN","RETROACTIVE_EFFECT_CLAIM"],"title":"A Comprehensive Research Plan for Anomalous Mental Phenomena"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["TACHYON","REVERSE_INFORMATION_FLOW","PRECOGNITION","STOCHASTIC_CAUSALITY","WORMHOLE_TIME_TRAVEL","QUANTUM_CAUSALITY_CONTEXT"],"id":"CIA-RDP96-00789R003200240001-0","score":1.0,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003200240001-0.pdf","states":["HYPOTHESIS_OR_MODEL","PROGRAM_OR_RESEARCH_PLAN","PHYSICS_CONTEXT","INFORMATION_FLOW_CLAIM"],"title":"Phenomenological Research and Analysis: Final Report"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["PRECOGNITION","RETROACTIVE_PK"],"id":"CIA-RDP96-00789R003800360001-1","score":0.69,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R003800360001-1.pdf","states":["INFORMATION_FLOW_CLAIM","RETROACTIVE_EFFECT_CLAIM"],"title":"An Evaluative Report on the Current Status of Parapsychology"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["DECISION_AUGMENTATION_THEORY"],"id":"CIA-RDP96-00791R000200170016-2","score":0.555,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200170016-2.pdf","states":["UNCLASSIFIED_CONTEXT"],"title":"Annotated Bibliography"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["TACHYON","RETROCAUSALITY","ADVANCED_TIME_SOLUTIONS","PRECOGNITION"],"id":"CIA-RDP96-00791R000200270001-7","score":1.0,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200270001-7.pdf","states":["HYPOTHESIS_OR_MODEL","INFORMATION_FLOW_CLAIM"],"title":"Precognition mechanism discussion (archival working label)"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["REVERSE_INFORMATION_FLOW","DECISION_AUGMENTATION_THEORY","TEMPORAL_INFORMATION_ACQUISITION"],"id":"CIA-RDP96-00791R000200280002-5","score":0.925,"source":"https://www.cia.gov/readingroom/document/cia-rdp96-00791r000200280002-5","states":["HYPOTHESIS_OR_MODEL","EXPERIMENT_OR_TEST","NEGATIVE_OR_LIMITATION","PHYSICS_CONTEXT","INFORMATION_FLOW_CLAIM"],"title":"Decision Augmentation Theory: Toward a Model of Anomalous Mental Phenomena"},
+    {"claim":"ARCHIVAL_CONTEXT_ONLY","families":["RETROCAUSALITY","RETROACTIVE_PK"],"id":"CIA-RDP96-00792R000701040002-4","score":0.69,"source":"https://www.cia.gov/readingroom/docs/CIA-RDP96-00792R000701040002-4.pdf","states":["EXPERIMENT_OR_TEST","RETROACTIVE_EFFECT_CLAIM"],"title":"Backward Causation / The Relentless Question"}
+  ],
+  "laws": ["SEARCH_HIT_IS_NOT_EVIDENCE","CHUNK_SELECTION_IS_NOT_EVIDENCE","PATTERN_MATCH_IS_NOT_MECHANISM","PATTERN_COOCCURRENCE_IS_NOT_CAUSATION","DECLASSIFICATION_IS_PROVENANCE_NOT_TRUTH","INDEXED_DERIVED_SNAPSHOT_IS_NOT_SOURCE_BYTES","DISCONFIRMING_AND_METHODOLOGICAL_LANES_ARE_FIRST_CLASS","FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE"],
+  "multi_source_pattern_bridges": [
+    {"a":"ADVANCED_TIME_SOLUTIONS","b":"PRECOGNITION","documents":["CIA-RDP96-00787R000200180002-1","CIA-RDP96-00791R000200270001-7"],"source_families":2},
+    {"a":"PRECOGNITION","b":"REVERSE_INFORMATION_FLOW","documents":["CIA-RDP96-00787R000200180002-1","CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":3},
+    {"a":"PRECOGNITION","b":"STOCHASTIC_CAUSALITY","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":2},
+    {"a":"PRECOGNITION","b":"TACHYON","documents":["CIA-RDP96-00789R003200240001-0","CIA-RDP96-00791R000200270001-7"],"source_families":2},
+    {"a":"PRECOGNITION","b":"WORMHOLE_TIME_TRAVEL","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":2},
+    {"a":"REVERSE_INFORMATION_FLOW","b":"STOCHASTIC_CAUSALITY","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":2},
+    {"a":"REVERSE_INFORMATION_FLOW","b":"TEMPORAL_INFORMATION_ACQUISITION","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00791R000200280002-5"],"source_families":2},
+    {"a":"REVERSE_INFORMATION_FLOW","b":"WORMHOLE_TIME_TRAVEL","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":2},
+    {"a":"STOCHASTIC_CAUSALITY","b":"WORMHOLE_TIME_TRAVEL","documents":["CIA-RDP96-00789R002600090002-3","CIA-RDP96-00789R003200240001-0"],"source_families":2}
+  ],
+  "negative_findings": ["NO_DIRECT_TACHYON_DETECTION_IN_SELECTED_ARCHIVAL_SET","NO_ARCHIVAL_PATTERN_MATCH_PROMOTES_RETROCAUSALITY_TO_ESTABLISHED_PHYSICS","DIRECT_CIA_FETCH_FROM_GITHUB_ACTIONS_BLOCKED__NOT_ABSENCE"],
+  "observed_documentary_lineage": ["early physical speculation: tachyon / advanced-time solutions","heuristic information model: reverse information flow / stochastic causality","phenomenological statistical model: Decision Augmentation Theory / future-to-past information","experimental taxonomy: retroactive PK / time displacement / RNG lineage","methodological counter-lane: controls / replication / falsifiability"],
+  "pattern_counts": {"ADVANCED_TIME_SOLUTIONS":3,"DECISION_AUGMENTATION_THEORY":2,"METHODOLOGICAL_CRITIQUE":1,"PRECOGNITION":5,"QUANTUM_CAUSALITY_CONTEXT":1,"RETROACTIVE_PK":4,"RETROCAUSALITY":2,"REVERSE_INFORMATION_FLOW":4,"STOCHASTIC_CAUSALITY":3,"TACHYON":3,"TEMPORAL_INFORMATION_ACQUISITION":2,"TIME_SYMMETRY":1,"WORMHOLE_TIME_TRAVEL":2},
+  "receipt_sha256": "e6d8d0529d372176e0366d23d708a2375218994618955bbc86b2f5e42ab95ca9",
+  "schema": "hawkar.topa.spider.retrocausality_dossier_receipt.v1",
+  "source_snapshot": "raw/unexamined/archive/retrocausality-2026-08-27/official-cia-web-index-snapshot-v1.jsonl",
+  "state_counts": {"EXPERIMENT_OR_TEST":6,"HYPOTHESIS_OR_MODEL":3,"INFORMATION_FLOW_CLAIM":6,"NEGATIVE_OR_LIMITATION":5,"PHYSICS_CONTEXT":5,"PROGRAM_OR_RESEARCH_PLAN":4,"RETROACTIVE_EFFECT_CLAIM":4,"UNCLASSIFIED_CONTEXT":1},
+  "status": "PASS"
+}
