@@ -1,0 +1,42 @@
+{
+  "schema":"hawkar.topa.spider_relation_driven_pull_protocol.v2.4",
+  "artifact_id":"TOPA-SPIDER-RELATION-DRIVEN-PULL-PROTOCOL-2026-08-27-v2.4",
+  "status":"ACTIVE_DEFAULT_FALSIFICATION_FIRST_SELECTIVE_ARCHIVE_CRAWL",
+  "engine":"tools/topa_spider_v24.py",
+  "archive_gateway":"tools/topa_archive_gateway_v11.py",
+  "repo_seed_bridge":"tools/topa_spider_seed_bridge.py",
+  "supersedes_for_default_use":"protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.3.json",
+  "purpose":"Run a hypothesis-agnostic archive crawler from the full TOPA research-memory web while suppressing collection, provider, transport-status and archive-wide subject-label confounds.",
+  "failure_lineage":[
+    {"run_id":33081878342,"engine":"v2.0","finding":"122/128 overpull from generic collection tags","repair":"IDF collection control"},
+    {"run_id":33082734668,"engine":"v2.1","finding":"rare FAILED_FETCH/provider-status relation artifact","repair":"provider/status firewall"},
+    {"run_id":33083372858,"engine":"v2.2","finding":"TOPA memory distorted archive tag base rates; 103/128 pulled","repair":"archive-universe IDF"},
+    {"run_id":33083767128,"engine":"v2.3","finding":"broad archive subject label UAP still contributed at 97/128 prevalence; 49/128 pulled","repair":"zero substantive tag weight above 20% archive prevalence plus FBI collection-hygiene gateway"}
+  ],
+  "archive_tag_policy":{
+    "frequency_universe":"NON_TOPA_REPO_ARCHIVE_RECORDS",
+    "maximum_substantive_prevalence":0.20,
+    "above_ceiling":"ZERO_RELATIONSHIP_WEIGHT__SEARCHABLE_CONTEXT_ONLY"
+  },
+  "provider_hygiene":{
+    "FBI":"Only Vault UFO landing and /UFO/ descendants enter the FBI UFO survey.",
+    "law":"SAME_HOST_IS_NOT_COLLECTION_MEMBERSHIP"
+  },
+  "topic_policy":{"fixed_hypothesis_center":false,"query_default":null,"privileged_topics":[]},
+  "laws":[
+    "NO_FIXED_HYPOTHESIS_CENTER",
+    "PULL_DECISION_IS_NOT_EVIDENCE",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+    "COLLECTION_MEMBERSHIP_IS_NOT_RELATIONSHIP",
+    "PROVIDER_IDENTITY_IS_NOT_RELATIONSHIP",
+    "TRANSPORT_STATUS_IS_NOT_RELATIONSHIP",
+    "REPOSITORY_MEMORY_MUST_NOT_DISTORT_ARCHIVE_BASE_RATES",
+    "ARCHIVE_WIDE_SUBJECT_LABEL_IS_CONTEXT_NOT_RELATIONSHIP",
+    "UNCONNECTED_ARCHIVE_RECORDS_STAY_EXTERNAL_POINTERS",
+    "NEGATIVE_RESULTS_ARE_PRESERVED"
+  ],
+  "default_thresholds":{"relationship_score":0.24,"semantic_only_minimum":0.42,"semantic_graph_edge":0.14,"max_pull_per_round":100,"rounds":3},
+  "claim_ceiling":"SPIDER_SELECTS_DISCOVERY_ROUTES_ONLY__NO_PULL_OR GRAPH EDGE ESTABLISHES CAUSATION MECHANISM OR EXTRAORDINARY PHYSICS"
+}
