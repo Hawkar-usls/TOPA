@@ -6,6 +6,7 @@ on:
       - 'tools/topa_spider_chunk_sieve.py'
       - 'config/spider_pattern_sets/retrocausality-reverse-information-tachyon-v1.json'
       - 'protocols/TOPA_SPIDER_CHUNK_BATCH_SIEVE_PROTOCOL_v1.0.json'
+      - 'raw/unexamined/archive/retrocausality-2026-08-27/official-cia-web-index-snapshot-v1.jsonl'
       - '.github/workflows/spider-retrocausality-chunk-sieve.yml'
   workflow_dispatch:
 
@@ -23,6 +24,7 @@ jobs:
       - name: Sieve self-test
         run: python tools/topa_spider_chunk_sieve.py self-test
       - name: Harvest official thematic bootstrap
+        continue-on-error: true
         run: |
           mkdir -p work/retro-sieve
           python tools/topa_spider_chunk_sieve.py harvest \
@@ -40,6 +42,7 @@ jobs:
       - name: Select chunks and build dossier
         run: |
           python tools/topa_spider_chunk_sieve.py sieve \
+            --input raw/unexamined/archive/retrocausality-2026-08-27/official-cia-web-index-snapshot-v1.jsonl \
             --input work/retro-sieve/thematic-bootstrap.jsonl \
             --input work/retro-sieve/archive-survey.jsonl \
             --config config/spider_pattern_sets/retrocausality-reverse-information-tachyon-v1.json \
@@ -60,9 +63,12 @@ jobs:
           assert 'CHUNK_SELECTION_IS_NOT_EVIDENCE' in d['laws']
           fam={x['family']:x for x in d['pattern_families']}
           assert 'TACHYON' in fam and 'RETROCAUSALITY' in fam and 'REVERSE_INFORMATION_FLOW' in fam
+          # Zero hits in any family are valid scientific output; the family must still be represented.
           print('RETRO_CHUNK_BATCH_SIEVE_FIREWALL=PASS')
+          print(json.dumps(d['stats'],sort_keys=True))
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: topa-spider-retrocausality-chunk-sieve
           path: work/retro-sieve
