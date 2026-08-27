@@ -1,0 +1,37 @@
+{
+  "schema": "hawkar.topa.spider_pattern_set.v1",
+  "pattern_set_id": "JANUS-N58-BOUND-DESTRUCTION-HUNT-v1",
+  "mission_id": "N58-BOUND-DESTRUCTION-HUNT",
+  "purpose": "Research-only primary-source hunt for exact combinatorial inequalities and proof-resource results relevant to the N58 theorem-side bound and its generalization. The original 3389>3364 local target has already been repaired by the Algorithmist; SPIDER therefore searches for independent formulations, sharper/general bounds, impossibility/barrier results, and exact resource mappings without changing JANUS runtime or selector.",
+  "effort_split": {"N58_COMBINATORIAL_BOUND": 70, "JANUS_FC_LOCAL": 30},
+  "historical_target": {"n":7,"m":77,"L":350,"d":50,"p":22,"q":28,"raw_bound":3389,"cap":3364},
+  "current_verified_local_repair": {"J_max":609,"K_max":636,"Wmax_6_636":2724,"raw_units_ceiling":3361,"cap":3364,"margin":3,"source_commit":"d2cdf05eecbebc2206072f6cbd95ad43651b927b"},
+  "primary_source_target": 120,
+  "quota_families": [
+    {"id":"EXTREMAL_SIGNED_UNION","quota":40,"aliases":["Bollobas set pairs","two families theorem","set-pair inequality","skew set pairs","cross-intersecting","cross-union","signed sets","signed set system","union-intersecting","union family","cancellative pair","recovering pair","forbidden intersection","forbidden complementary","shadow theorem","Kruskal-Katona","LYM inequality","Sperner theorem","set systems with restricted intersections"]},
+    {"id":"VARIABLE_ELIMINATION_GROWTH","quota":20,"aliases":["Davis Putnam variable elimination","variable elimination SAT","bucket elimination","induced width","elimination width","minimum degree elimination","minimum fill","resolution elimination","bounded variable elimination","clause growth elimination"]},
+    {"id":"PRIME_CANONICAL_CNF","quota":15,"aliases":["prime implicate","prime implicates","irredundant CNF","subsumption-free CNF","canonical CNF","minimal CNF","implicate generation","clause subsumption"]},
+    {"id":"PROOF_RESOURCE_LATTICE","quota":15,"aliases":["formula caching","FC_reasonW","regular resolution","pool resolution","WRTI","WRTL","clause learning","CDCL","resolution trees with lemmas","proof DAG"]},
+    {"id":"DESTRUCTION_FAMILIES","quota":10,"aliases":["ordering principle","graph tautology","Tseitin formula","pigeonhole principle resolution","pebbling contradiction","guarded graph tautology","stone tautology","hardness clause learning"]},
+    {"id":"AUTOMATABILITY_DISCOVERY","quota":10,"aliases":["automatability resolution","automatizable resolution","automating resolution","proof search hardness","proof search problem","find short resolution proof"]},
+    {"id":"KNOWLEDGE_COMPILATION","quota":10,"aliases":["decision-DNNF","DNNF","OBDD","FBDD","knowledge compilation DPLL","DPLL trace","branchwidth knowledge compilation","treewidth DNNF","decision diagram SAT"]}
+  ],
+  "exact_problem_fingerprint": {
+    "description": "Maximize number J and/or total support mass of distinct compatible coordinatewise unions of two signed/ternary parent families over r=6 nonpivot coordinates, with |P|=22, |Q|=28, no complementary sign collision in counted pairs, a retained canonical family C of size 27, and regular-incidence omission constraints induced by L=n*d.",
+    "coordinate_alphabet": ["OMIT","POS","NEG"],
+    "pair_operation": "coordinatewise compatible union; complementary POS/NEG at any coordinate makes the pair tautological and excluded",
+    "historical_numeric_goal": "Any sound theorem yielding raw_units<=3364 was PRIORITY_RED; Algorithmist has already obtained 3361 locally, so current RED target is a stronger/generalized theorem or a proof that the abstraction cannot be sharpened further without reachability information."
+  },
+  "primary_source_record_fields": ["theorem_statement","exact_model_assumptions","resource_required","candidate_janus_insertion_point","applicability","non_applicability","primary_link","review_status"],
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "PRIMARY_SOURCE_QUOTA_COUNTS_ONLY_PRIMARY_PAPERS",
+    "ABSTRACT_ONLY_IS_NOT_FULL_THEOREM_REVIEW",
+    "FAILURE_IS_DATA",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "LOWER_BOUND_FOR_MODEL_X_IS_NOT_A_JANUS_LOWER_BOUND_WITHOUT_SIMULATION",
+    "POST_ELIMINATION_SUBSUMPTION_IS_NOT_A_FREE_PRE_RAW_RESOURCE",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
