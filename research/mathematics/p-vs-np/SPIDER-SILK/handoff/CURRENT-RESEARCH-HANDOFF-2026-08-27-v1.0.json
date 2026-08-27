@@ -1,0 +1,58 @@
+{
+  "schema": "hawkar.topa.spider.silk.handoff.v1",
+  "artifact_id": "CURRENT-RESEARCH-HANDOFF-2026-08-27-v1.0",
+  "status": "READY_FOR_SEPARATE_ALGORITHM_DIALOGUE__READ_ONLY_INPUT",
+  "boundary": "This artifact may inform the separate algorithm-development dialogue but does not change the algorithm by itself.",
+  "current_research_bundle": [
+    "../dossiers/SILK-TOTAL-COMMANDER-DUAL-PANE-FORENSICS-2026-08-27-v1.0.json",
+    "../sources/SILK-SOURCE-SEEDS-2026-08-27-v1.0.jsonl",
+    "../../TOPA-SPIDER-SILK-JANUS-PROOF-STATE-FIRST-DIVERGENCE-2026-08-27-v1.0.json"
+  ],
+  "highest_value_routes": [
+    {
+      "route": "DUAL_PANE_GOOD_BAD_TRACE",
+      "idea": "Total Commander style side-by-side read-only comparison with equal regions hidden."
+    },
+    {
+      "route": "DIFFERENTIAL_STATE_NARROWING",
+      "idea": "ArtMoney/Zeller style repeated controlled narrowing over already-materialized state."
+    },
+    {
+      "route": "TRACE_ALIGNMENT_FIRST_DIVERGENCE",
+      "idea": "Align executions before diffing so reordering or different trace length does not masquerade as a causal difference."
+    },
+    {
+      "route": "DEPENDENCY_SLICE_INTERSECTION",
+      "idea": "Intersect differential slice with proof/dependency/dynamic slices rather than trusting either alone."
+    },
+    {
+      "route": "GOOD_TRACE_LIKELY_INVARIANTS",
+      "idea": "Mine candidate invariants on controls and ask where hostile traces first violate them; every inferred invariant remains hypothesis-only until proved."
+    },
+    {
+      "route": "CONTENT_ADDRESSED_SKIP_EQUAL",
+      "idea": "Rsync/Merkle-style fingerprints can let SPIDER skip identical large trace/state regions, with exact canonical verification behind hash screening."
+    }
+  ],
+  "do_not_import_as_algorithm": [
+    "Total Commander synchronization actions",
+    "SAT-DIFF or MaxSAT as a hidden runtime oracle",
+    "Daikon likely invariants as proof lemmas",
+    "hash equality as semantic equivalence",
+    "any paper ranking or external benchmark result as theorem evidence"
+  ],
+  "next_spider_jobs": [
+    "search trace-alignment and divergence-localization literature",
+    "search structural/tree/graph diff methods",
+    "search change-impact and dynamic slicing methods",
+    "search content-addressed/Merkle/rsync techniques for scalable comparison",
+    "search invariant mining and counterexample-guided diagnostics",
+    "deduplicate and route results into this folder",
+    "preserve negative and irrelevant-result receipts"
+  ],
+  "laws": [
+    "HANDOFF_IS_RESEARCH_INPUT_NOT_ALGORITHM_CHANGE",
+    "SPIDER_DOES_NOT_SELECT_THE_ALGORITHM",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
