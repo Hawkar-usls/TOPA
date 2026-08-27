@@ -1,0 +1,37 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.n58_ahlswede_daykin_direct_product.v1",
+  "artifact_id": "ALGORITHMIST-N58-AHLSWEDE-DAYKIN-DIRECT-PRODUCT-ADDENDUM-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "NEW_PRIMARY_LITERATURE_LANE__STRUCTURAL_MATCH__NO_DIRECT_NUMERIC_GAIN",
+  "primary_source": {
+    "authors": ["Rudolf Ahlswede", "David E. Daykin"],
+    "title": "Inequalities for a Pair of Maps S x S -> S with S a Finite Set",
+    "journal": "Mathematische Zeitschrift",
+    "volume": 165,
+    "year": 1979,
+    "pages": "267-289",
+    "doi": "10.1007/BF01437563",
+    "primary_pdf": "https://www.math.uni-bielefeld.de/ahlswede/homepage/public/33.pdf"
+  },
+  "theorem_statement_relevant": "The paper defines several expansiveness notions for pairs of finite-set maps phi,psi:SxS->S and proves direct-product transfer theorems. In particular, Theorem 1 states that the direct product of component pairs satisfying the corresponding strong expansiveness hypotheses retains the product expansiveness property; Theorems 2-3 give weaker variants. In the Boolean case the paper classifies expansive pairs of Boolean operations and derives union/intersection and symmetric-difference/intersection cardinality/weight inequalities.",
+  "exact_model_assumptions": "Total binary maps on finite sets, usually considered in pairs; direct products are total coordinatewise products. The strongest transfer theorem requires the paper's M-expansiveness hypotheses on each coordinate component.",
+  "resource_required": "A total coordinate completion of the JANUS signed partial union together with a second map/weight choice for which the required local expansiveness hypothesis can actually be verified.",
+  "candidate_janus_insertion_point": "Theorem-side abstraction of signed parent-tail interaction as a direct product of six local coordinate channels. Potentially use a conflict-completed alphabet {OMIT,POS,NEG,CONFLICT} and seek a companion map or weight that recovers omission/support information while retaining an Ahlswede-Daykin expansiveness property.",
+  "applicability": "HIGH STRUCTURAL MATCH. The newly derived JANUS code-pair capacity proof already reasons coordinate-by-coordinate and multiplies local output alphabets; Ahlswede-Daykin is classical primary literature built precisely around direct-product preservation of finite-operation inequalities.",
+  "non_applicability": "The JANUS resolvent operation is partial on {OMIT,POS,NEG}: opposite signs reject the pair as tautological instead of producing an ordinary output. Completing the map with a CONFLICT symbol changes the codomain and may weaken the bound. No companion operation/weight satisfying the published hypotheses has yet been proved for the exact JANUS channel. Therefore no Ahlswede-Daykin numeric inequality is imported into N58 at this stage.",
+  "related_primary": {
+    "authors": ["Rudolf Ahlswede", "David E. Daykin"],
+    "title": "An Inequality for the Weights of Two Families of Sets, Their Unions and Intersections",
+    "year": 1978,
+    "doi": "10.1007/BF00536201",
+    "relevance": "Four-functions style weighted inequality for two set families and their union/intersection images; useful as a weight-design template, but its direct unweighted use with an injective union map is not stronger than the current N58 argument."
+  },
+  "current_result": "NO_GAIN_NUMERICALLY__KEEP_AS_GENERALIZATION_ROUTE",
+  "laws": [
+    "TOTAL_MAP_THEOREM_IS_NOT_PARTIAL_CHANNEL_THEOREM",
+    "CONFLICT_COMPLETION_MUST_BE_AUDITED_BEFORE_TRANSFER",
+    "STRUCTURAL_MATCH_IS_NOT_NUMERIC_BOUND",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
