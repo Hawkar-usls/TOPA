@@ -1,0 +1,63 @@
+{
+  "schema": "hawkar.topa.spider_relation_driven_pull_protocol.v2",
+  "artifact_id": "TOPA-SPIDER-RELATION-DRIVEN-PULL-PROTOCOL-2026-08-27-v2.0",
+  "status": "ACTIVE_FALSIFICATION_FIRST_SELECTIVE_ARCHIVE_CRAWL",
+  "purpose": "Survey archives broadly but persist locally only records that exhibit explicit, structural, temporal, tag-level, query-level, or sufficiently strong semantic relationships to the current TOPA web. Newly pulled records become the next frontier.",
+  "engine": "tools/topa_spider_v2.py",
+  "laws": [
+    "NO_FIXED_HYPOTHESIS_CENTER",
+    "PULL_DECISION_IS_NOT_EVIDENCE",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+    "UNCONNECTED_ARCHIVE_RECORDS_STAY_EXTERNAL_POINTERS",
+    "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS",
+    "NEGATIVE_RESULTS_ARE_PRESERVED"
+  ],
+  "topic_policy": {
+    "tachyon_is_privileged": false,
+    "retrocausality_is_privileged": false,
+    "uap_is_privileged": false,
+    "ukraine_is_privileged": false,
+    "default": "HYPOTHESIS_AGNOSTIC_DYNAMIC_DISCOVERY",
+    "query_role": "Optional initial steering signal only; the crawler may discover unrelated but connected clusters through graph expansion."
+  },
+  "archive_flow": {
+    "stage_1_survey": "Archive Gateway enumerates broad official metadata into ephemeral work storage.",
+    "stage_2_relation_test": "SPIDER scores each survey candidate against the current local web using explicit source links, shared tags, shared dates, semantic similarity and optional query overlap.",
+    "stage_3_pull": "Only connected candidates cross into local raw/unexamined persistence.",
+    "stage_4_frontier": "Pulled records become new seeds for the next bounded round.",
+    "stage_5_weave": "The union of prior web plus pulled records is re-woven into a dynamic graph.",
+    "stage_6_review": "Edges remain discovery routes until independent evidence or explicit provenance supports stronger status."
+  },
+  "default_thresholds": {
+    "relationship_score": 0.22,
+    "semantic_only_minimum": 0.42,
+    "semantic_graph_edge": 0.14,
+    "max_pull_per_round": 100,
+    "rounds": 2
+  },
+  "relationship_features": [
+    "EXPLICIT_SOURCE_LINK",
+    "SHARED_TAGS",
+    "SHARED_DATES",
+    "SEMANTIC_SIMILARITY",
+    "QUERY_OVERLAP",
+    "DIFFERENT_PROVIDER_DISCOVERY_BONUS"
+  ],
+  "dynamic_graph": {
+    "fixed_topic_dictionary_required": false,
+    "keyword_nodes": "Derived dynamically from TF-IDF-salient terms in the current corpus.",
+    "tag_nodes": "Derived from provider metadata and record relation_tags.",
+    "date_nodes": "Derived from archival/document text.",
+    "semantic_edges": "Low-confidence discovery edges only.",
+    "source_lineage_edges": "High-confidence provenance relation but independence_count remains zero for same-source lineage."
+  },
+  "storage": {
+    "ephemeral_archive_inventory": "work/ or CI artifact; not committed as raw knowledge by default",
+    "local_pulled_records": "raw/unexamined/archive/spider-pulled/*.jsonl",
+    "unconnected_records": "remain external pointers / inventory only",
+    "large_binaries": "pointer/hash only unless explicitly bounded and justified"
+  },
+  "claim_ceiling": "SPIDER_SELECTS_AND_ROUTES_POTENTIALLY_RELATED_ARCHIVAL_RECORDS__IT_DOES_NOT_ESTABLISH_CAUSATION_MECHANISM_OR_EXTRAORDINARY_PHYSICS"
+}
