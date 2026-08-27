@@ -1,0 +1,77 @@
+{
+  "schema": "hawkar.topa.physics_world_model.protocol.v1",
+  "id": "TOPA-PHYSICS-WORLD-MODEL-V1",
+  "status": "ACTIVE_SAFE_GENERAL_PHYSICS_PREDICTION_LAYER",
+  "purpose": "Provide TOPA with a provenance-preserving, uncertainty-aware world-model layer for benign robotics, navigation, environmental dynamics, latency compensation, simulation and scientific hypothesis generation.",
+  "architecture": [
+    "SENSOR_OR_ESTIMATED_STATE",
+    "PHYSICS_KERNEL",
+    "PARAMETER_UNCERTAINTY_CLOUD",
+    "MULTI_SCENARIO_ROLLOUT",
+    "OPTIONAL_LEARNED_RESIDUAL_SIDECAR",
+    "PREDICTED_STATE_DISTRIBUTION",
+    "SCIENTIFIC_GATE"
+  ],
+  "core_rules": [
+    "PHYSICS_PREDICTION_IS_NOT_OBSERVATION",
+    "MODEL_OUTPUT_IS_NOT_WORLD_TRUTH",
+    "RAW_INPUTS_AND_PARAMETERS_ARE_IMMUTABLE",
+    "UNCERTAINTY_MUST_BE_PRESERVED",
+    "RESIDUAL_MODEL_MAY_NOT_OVERWRITE_PHYSICS_BASELINE",
+    "FAILED_PREDICTIONS_REMAIN_SEARCHABLE",
+    "LATENCY_COMPENSATION_REQUIRES_RECORDED_LATENCY",
+    "SIMULATION_TO_REALITY_GAP_MUST_BE_RECORDED",
+    "I_DO_NOT_KNOW_IS_A_VALID_OUTPUT"
+  ],
+  "primary_backend": {
+    "name": "TOPA vector world kernel",
+    "dependency": "numpy",
+    "reason": "portable deterministic baseline with no external simulator process"
+  },
+  "optional_backend": {
+    "name": "MuJoCo",
+    "license": "Apache-2.0",
+    "role": "high-fidelity rigid-body/contact rollout adapter for benign robotics and scientific simulation",
+    "required_for_primary": false
+  },
+  "state_contract": {
+    "canonical_safe_mobile_state": ["x_m", "y_m", "yaw_rad", "speed_mps", "yaw_rate_rps"],
+    "control": ["linear_accel_mps2", "yaw_accel_rps2"],
+    "environment": ["drag_per_s", "rolling_loss_mps2", "drift_x_mps", "drift_y_mps"],
+    "time": ["dt_s", "horizon_s", "sensor_latency_s"]
+  },
+  "uncertainty": {
+    "method": "DETERMINISTIC_LATIN_HYPERCUBE",
+    "seed_required": true,
+    "raw_scenarios_preserved": true,
+    "recommended_outputs": ["endpoint_quantiles", "trajectory_envelope", "scenario_count", "parameter_draws"]
+  },
+  "learned_residual": {
+    "allowed": true,
+    "must_be_separate_sidecar": true,
+    "must_record_training_data_hash": true,
+    "must_record_validation": true,
+    "may_replace_raw_physics_prediction": false
+  },
+  "scientific_boundary": {
+    "simulation_is_empirical_evidence": false,
+    "prediction_must_be_validated_against_observation": true,
+    "uncalibrated_confidence_forbidden": true,
+    "rank_or_model_vote_is_truth": false
+  },
+  "safety_boundary": {
+    "weapon_targeting_or_aiming": "FORBIDDEN",
+    "ballistic_fire_control": "FORBIDDEN",
+    "projectile_impact_optimization": "FORBIDDEN",
+    "weaponized_interception": "FORBIDDEN",
+    "allowed_examples": [
+      "mobile robot navigation",
+      "industrial robot motion prediction",
+      "warehouse vehicle latency compensation",
+      "environmental drift forecasting",
+      "contact dynamics research",
+      "simulation-based controller testing"
+    ]
+  },
+  "claim_ceiling": "A TOPA world-model rollout is a model-conditioned prediction with explicit uncertainty. It is not observation, proof, or permission to promote a hypothesis without external validation."
+}
