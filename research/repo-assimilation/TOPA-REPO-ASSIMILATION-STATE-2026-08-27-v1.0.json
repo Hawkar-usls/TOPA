@@ -1,0 +1,60 @@
+{
+  "schema": "hawkar.topa.repo_assimilation_state.v1",
+  "artifact_id": "TOPA-REPO-ASSIMILATION-STATE-2026-08-27-v1.0",
+  "created_at_local": "2026-08-27T06:52:00+03:00",
+  "status": "FULL_REPOSITORY_ASSIMILATION_ENGINE_WIRED__FIRST_CI_SCAN_PENDING_OR_RUNNING",
+  "purpose": "Wire TOPA's artifact-classifier lane into the wider TOPA organism without contaminating supervised image-forensics labels with unrelated repository text.",
+  "repo_head_before_assimilation_engine": "668e36ff9d1f86868744f7b2b6a188bfe54037ef",
+  "components": {
+    "repo_assimilator": "tools/topa_repo_assimilator.py",
+    "protocol": "protocols/TOPA_REPO_ASSIMILATION_PROTOCOL-v1.0.json",
+    "workflow": ".github/workflows/validate-repo-assimilation.yml",
+    "artifact_classifier": "tools/topa_artifact_classifier.py",
+    "feature_rail": "tools/topa_artifact_features.py",
+    "sidecar_gate": "tools/topa_artifact_sidecars.py",
+    "label_gate": "tools/topa_artifact_labels.py",
+    "strict_science_router": "integrations/janus-distributed-ai-swarm/topa_epistemic_router.py",
+    "corpus_index": "registry/TOPA-CORPUS-INDEX.json",
+    "hunt_index": "registry/TOPA-HUNT-INDEX.json"
+  },
+  "assimilation_targets": [
+    "protocols",
+    "registry",
+    "corpus",
+    "data",
+    "docs",
+    "hunts",
+    "integrations",
+    "research",
+    "tools",
+    ".github/workflows",
+    ".janus"
+  ],
+  "what_repo_assimilation_means": [
+    "TOPA indexes its own methods and schemas",
+    "TOPA preserves and rediscovers failed and negative runs",
+    "TOPA discovers preregistrations and frozen gates",
+    "TOPA discovers source ledgers and provenance routes",
+    "TOPA discovers JANUS integration and swarm routing paths",
+    "TOPA routes artifact-classifier-relevant files into a dedicated investigation queue"
+  ],
+  "what_repo_assimilation_does_not_mean": [
+    "Repository prose is not image ground truth",
+    "Historical claims are not promoted to facts",
+    "P versus NP or Hessdalen files do not become POSS-I classifier labels",
+    "Routing score is not evidence",
+    "Nuclear context cannot enter artifact-classifier fitting",
+    "A repo scan alone cannot improve or validate classifier accuracy"
+  ],
+  "training_split": {
+    "organism_training": "Repository assimilation acts as methodological and investigative memory: methods, failures, confounders, source routes and epistemic rules become searchable context.",
+    "artifact_classifier_training": "Separately admitted blind image labels plus measured POSS-I feature rails are used for supervised fitting.",
+    "reason_for_firewall": "Prevents unrelated project lore, historical hypotheses or downstream nuclear results from contaminating the image-forensics target."
+  },
+  "expected_first_ci_outputs": [
+    "repo-index.jsonl",
+    "artifact-routing-queue.jsonl",
+    "assimilation-receipt.json"
+  ],
+  "claim_ceiling": "TOPA is now wired to assimilate its own repository as research memory while keeping the artifact classifier scientifically isolated. The first full repository CI scan must pass before claiming the assimilation run itself executed successfully."
+}
