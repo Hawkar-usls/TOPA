@@ -1,0 +1,52 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.v1",
+  "artifact_id": "ALGORITHMIST-TASTY-ROUTES-C023-RUN-004-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "purpose": "Pointer only. SPIDER reports where new C023-relevant material is stored. No recommendation, algorithm change, proof claim, or implementation request is implied.",
+  "authority_boundary": {
+    "spider_role": "OBSERVER__RESEARCHER__INDEXER_ONLY",
+    "algorithmist_role": "SOLE_DECISION_AND_ALGORITHM_AUTHORITY",
+    "algorithm_changes_by_spider": 0
+  },
+  "where_the_new_material_is": [
+    {
+      "path": "research/mathematics/p-vs-np/SPIDER-SILK/dossiers/C023-SPIDER-CURRENT-NEEDS-WEB-RUN-004-2026-08-27-v1.2.json",
+      "contains": [
+        "FCWS GT_n prune/novel-branch witness mechanism",
+        "regular/linear/pool/CDCL destruction controls for graph/order tautologies",
+        "SAT 2026 deterministic CDCL Ordering Principle result",
+        "FC_reasonW versus Boolean residual-cache resource distinction",
+        "WRTI/WRTL clause-learning proof-system map",
+        "Resolution automatability barrier",
+        "Tseitin/treewidth/DNNF alternate lower-bound lane",
+        "19 strict live candidates",
+        "publication lineage warning",
+        "negative exact-system-match result"
+      ]
+    },
+    {
+      "path": "config/spider_pattern_sets/janus-c023-gt-robustness-current-needs-v1.json",
+      "contains": ["current C023 search families and canonical external source routes"]
+    },
+    {
+      "path": "config/spider_pattern_sets/janus-c023-family-anchor-routes-v1.json",
+      "contains": ["family-to-read-only-JANUS research anchor map"]
+    }
+  ],
+  "new_source_ids_worth_opening_if_desired": [
+    "BEAME_IMPAGLIAZZO_PITASSI_SEGERLIND_FC",
+    "SAMAR_VINYALS_GANESH_SAT2026",
+    "ATSERIAS_FICHTE_THURLEY_JAIR",
+    "BUSS_HOFFMANN_JOHANNSEN_WRTI_WRTL",
+    "ATSERIAS_MULLER_AUTOMATING_RESOLUTION",
+    "DE_COLNET_MENGEL_TSEITIN_REGULAR",
+    "BONET_BUSS_JOHANNSEN_POOL_CLAUSE_LEARNING"
+  ],
+  "message_to_algorithmist": "SPIDER found and organized the material above. Please inspect, reject, use, reinterpret, or ignore it independently. SPIDER makes no algorithmic recommendation.",
+  "laws": [
+    "HANDOFF_IS_RESEARCH_INPUT_NOT_ALGORITHM_CHANGE",
+    "ROUTING_IS_NOT_RECOMMENDATION",
+    "SPIDER_DOES_NOT_SELECT_THE_ALGORITHM",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
