@@ -1,0 +1,78 @@
+{
+  "schema": "hawkar.topa.physics_world_model.ci_receipt.v1",
+  "artifact_id": "TOPA-PHYSICS-WORLD-MODEL-CI-RECEIPT-2026-08-27-v1.0",
+  "status": "WORLD_MODEL_CORE_ADMITTED__CI_PASS__MUJOCO_BACKEND_VERIFIED",
+  "repository": "Hawkar-usls/TOPA",
+  "implementation": {
+    "protocol": "protocols/TOPA_PHYSICS_WORLD_MODEL_PROTOCOL-v1.0.json",
+    "tool": "tools/topa_world_model.py",
+    "dependencies": "tools/requirements-world-model.txt",
+    "documentation": "docs/PHYSICS_WORLD_MODEL.md",
+    "workflow": ".github/workflows/validate-world-model.yml"
+  },
+  "failure_repair_lineage": [
+    {
+      "head_sha": "735ea90c2ad64a09574eda0887a9a174a2cdf219",
+      "run_id": 33039702780,
+      "job_id": 98410274050,
+      "conclusion": "FAILURE",
+      "failure_class": "DEPENDENCY_PIN_NOT_AVAILABLE",
+      "detail": "mujoco==3.11.1 was not available from the runner package index; the physics kernel had not yet executed.",
+      "preserved": true
+    },
+    {
+      "repair_commit": "87e50b28e2d0ef7e5a5acb2f628d470bb0dce951",
+      "repair": "Pin mujoco==3.12.0, a package version actually available to CPython 3.11 on the CI runner."
+    }
+  ],
+  "passing_run": {
+    "head_sha": "87e50b28e2d0ef7e5a5acb2f628d470bb0dce951",
+    "run_id": 33039740611,
+    "job_id": 98410391516,
+    "conclusion": "SUCCESS",
+    "started_at_utc": "2026-08-27T04:32:58Z",
+    "completed_at_utc": "2026-08-27T04:33:09Z",
+    "runtime": {
+      "python": "3.11.16",
+      "os": "ubuntu-24.04",
+      "numpy": "2.2.6",
+      "mujoco": "3.12.0"
+    }
+  },
+  "verified": {
+    "protocol_json": "PASS",
+    "deterministic_vector_rollout": "PASS",
+    "latin_hypercube_uncertainty_cloud": "PASS",
+    "latency_compensation": "PASS",
+    "raw_physics_preservation": "PASS",
+    "model_output_not_observation": "PASS",
+    "weaponization_firewall": "PASS",
+    "mujoco_install": "PASS",
+    "mujoco_rigid_body_step_smoke_test": "PASS"
+  },
+  "capabilities": {
+    "multi_scenario_future_cloud": true,
+    "parameter_draws_preserved": true,
+    "endpoint_quantiles": ["q05", "q25", "q50", "q75", "q95"],
+    "deterministic_seeded_replay": true,
+    "input_sha256": true,
+    "result_sha256": true,
+    "learned_residual_sidecar_contract": true,
+    "mujoco_optional_high_fidelity_backend": true
+  },
+  "scientific_boundary": {
+    "prediction_is_observation": false,
+    "simulation_is_validation": false,
+    "uncalibrated_confidence_is_evidence": false,
+    "failed_predictions_must_be_preserved": true,
+    "sim_to_real_validation_required": true
+  },
+  "safety_boundary": {
+    "weapon_targeting": "FORBIDDEN",
+    "ballistic_fire_control": "FORBIDDEN",
+    "projectile_impact_optimization": "FORBIDDEN",
+    "weaponized_interception": "FORBIDDEN",
+    "admitted_scope": "benign robotics, navigation, environmental dynamics, latency compensation, contact dynamics research and simulation-based controller testing"
+  },
+  "claim_ceiling": "TOPA now has a reproducible uncertainty-aware physics world-model core and a verified MuJoCo backend for admitted benign domains. It predicts model-conditioned future state distributions; it does not convert simulations into observations or scientific truth."
+}
