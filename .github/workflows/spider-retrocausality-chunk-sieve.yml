@@ -1,0 +1,67 @@
+name: TOPA SPIDER Retrocausality Chunk/Batch Sieve
+
+on:
+  push:
+    paths:
+      - 'tools/topa_spider_chunk_sieve.py'
+      - 'config/spider_pattern_sets/retrocausality-reverse-information-tachyon-v1.json'
+      - 'protocols/TOPA_SPIDER_CHUNK_BATCH_SIEVE_PROTOCOL_v1.0.json'
+      - '.github/workflows/spider-retrocausality-chunk-sieve.yml'
+  workflow_dispatch:
+
+jobs:
+  retro-sieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Sieve self-test
+        run: python tools/topa_spider_chunk_sieve.py self-test
+      - name: Harvest official thematic bootstrap
+        run: |
+          mkdir -p work/retro-sieve
+          python tools/topa_spider_chunk_sieve.py harvest \
+            --config config/spider_pattern_sets/retrocausality-reverse-information-tachyon-v1.json \
+            --out work/retro-sieve/thematic-bootstrap.jsonl \
+            --receipt work/retro-sieve/thematic-bootstrap-receipt.json
+      - name: Broad archive survey
+        run: |
+          python tools/topa_archive_gateway.py ingest \
+            --providers nara,cia,nsa,fbi \
+            --limit 100 \
+            --expand-nara \
+            --out work/retro-sieve/archive-survey.jsonl \
+            --receipt work/retro-sieve/archive-survey-receipt.json
+      - name: Select chunks and build dossier
+        run: |
+          python tools/topa_spider_chunk_sieve.py sieve \
+            --input work/retro-sieve/thematic-bootstrap.jsonl \
+            --input work/retro-sieve/archive-survey.jsonl \
+            --config config/spider_pattern_sets/retrocausality-reverse-information-tachyon-v1.json \
+            --out-json work/retro-sieve/TOPA-SPIDER-RETROCAUSALITY-REVERSE-INFORMATION-TACHYON-DOSSIER-2026-08-27-v1.0.json \
+            --out-jsonl work/retro-sieve/selected-chunks.jsonl \
+            --words 180 --overlap 45 --neighbor-radius 1 --batch-size 64 --near-dup 0.88
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/retro-sieve/TOPA-SPIDER-RETROCAUSALITY-REVERSE-INFORMATION-TACHYON-DOSSIER-2026-08-27-v1.0.json')
+          d=json.loads(p.read_text())
+          assert d['status']=='PASS'
+          assert d['stats']['selected_documents']>0
+          assert d['stats']['direct_hit_chunks']>0
+          assert 'PATTERN_COOCCURRENCE_IS_NOT_CAUSATION' in d['laws']
+          assert 'CHUNK_SELECTION_IS_NOT_EVIDENCE' in d['laws']
+          fam={x['family']:x for x in d['pattern_families']}
+          assert 'TACHYON' in fam and 'RETROCAUSALITY' in fam and 'REVERSE_INFORMATION_FLOW' in fam
+          print('RETRO_CHUNK_BATCH_SIEVE_FIREWALL=PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-retrocausality-chunk-sieve
+          path: work/retro-sieve
+          retention-days: 30
