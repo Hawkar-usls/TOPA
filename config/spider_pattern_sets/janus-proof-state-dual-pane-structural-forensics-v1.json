@@ -1,0 +1,54 @@
+{
+  "schema": "hawkar.topa.spider_pattern_set.v1",
+  "pattern_set_id": "JANUS-PROOF-STATE-DUAL-PANE-STRUCTURAL-FORENSICS-v1",
+  "silk": "Spider Investigative Link Kernel",
+  "mission_id": "SPIDER-SILK-DUAL-PANE-FORENSICS-001",
+  "purpose": "Search for research and technical methods useful to read-only GOOD-vs-BAD proof-state comparison, trace alignment, structural diffing, invariant-break localization, dependency slicing and scalable skip-equal comparison. Results are handoff material only and must not alter the target algorithm.",
+  "families": [
+    {"id":"DIFFERENTIAL_STATE_NARROWING","aliases":["differential debugging","state difference","state differences","differential state","execution difference"]},
+    {"id":"FIRST_DIVERGENCE","aliases":["first divergence","trace divergence","execution divergence","divergence point"]},
+    {"id":"DYNAMIC_SLICING","aliases":["dynamic slicing","dynamic slice","program slicing","dependency slice"]},
+    {"id":"STRUCTURAL_DIFF","aliases":["structural diff","tree diff","tree differencing","graph diff","abstract syntax tree diff","AST diff"]},
+    {"id":"TRACE_ALIGNMENT","aliases":["trace alignment","execution alignment","program alignment","aligned traces","trace comparison"]},
+    {"id":"INVARIANT_MINING","aliases":["dynamic invariant","invariant mining","invariant inference","likely invariants","invariant detection"]},
+    {"id":"CONTENT_ADDRESSED_DIFF","aliases":["content-defined chunking","content defined chunking","Merkle tree","Merkle DAG","content addressing","rolling checksum","delta synchronization","deduplication"]},
+    {"id":"CHANGE_IMPACT","aliases":["change impact analysis","impact analysis","change propagation","program dependence"]},
+    {"id":"CAUSE_EFFECT_CHAIN","aliases":["cause-effect chain","cause effect chain","failure-inducing difference"]},
+    {"id":"RESOURCE_ACCOUNTING","aliases":["incremental computation","change localization","skip unchanged","unchanged regions"]}
+  ],
+  "janus_anchors": [
+    {"id":"POLICY0T_TRACE_CODE","path":"Janus-Fundamentum trace/proof-state instrumentation","authority":"READ_ONLY_PROVIDER_REFERENCE"},
+    {"id":"C023_JANUS_FC_LOCAL","path":"Janus-Fundamentum/proof_attempts/C023","authority":"READ_ONLY_PROVIDER_REFERENCE"},
+    {"id":"TOPA_FORENSIC_JOURNAL","path":"research/mathematics/p-vs-np/C024_C025_FORENSIC_RESEARCH_JOURNAL_2026-08-24.md","authority":"TOPA_RESEARCH_MEMORY"},
+    {"id":"SPIDER_SILK_FOLDER","path":"research/mathematics/p-vs-np/SPIDER-SILK","authority":"SPIDER_READ_ONLY_RESEARCH_LAYER"}
+  ],
+  "canonical_external_sources": [
+    {"id":"TOTAL_COMMANDER_HOME","families":["STRUCTURAL_DIFF"],"url":"https://www.ghisler.com/","role":"workflow_metaphor"},
+    {"id":"ZELLER_FSE_2002","families":["DIFFERENTIAL_STATE_NARROWING","CAUSE_EFFECT_CHAIN"],"url":"https://www.st.cs.uni-saarland.de/papers/fse2002/","role":"method_analogue"},
+    {"id":"RSYNC_TECH_REPORT","families":["CONTENT_ADDRESSED_DIFF","RESOURCE_ACCOUNTING"],"url":"https://rsync.samba.org/tech_report/","role":"comparison_acceleration"},
+    {"id":"DAIKON_TSE_2001","families":["INVARIANT_MINING"],"url":"https://plse.cs.washington.edu/daikon/pubs/invariants-tse2001-abstract.html","role":"diagnostic_hypothesis_generation"},
+    {"id":"SAT_DIFF_2404.04731","families":["STRUCTURAL_DIFF"],"url":"https://arxiv.org/abs/2404.04731","role":"offline_structural_diff_baseline"},
+    {"id":"TRACERS_2604.09301","families":["TRACE_ALIGNMENT","FIRST_DIVERGENCE"],"url":"https://arxiv.org/abs/2604.09301","role":"trace_first_observability"},
+    {"id":"TRACEDIFF_1708.03786","families":["TRACE_ALIGNMENT","FIRST_DIVERGENCE"],"url":"https://arxiv.org/abs/1708.03786","role":"dynamic_trace_divergence"},
+    {"id":"DYNAMIC_SLICING_2101.03008","families":["DYNAMIC_SLICING"],"url":"https://arxiv.org/abs/2101.03008","role":"dependency_localization"},
+    {"id":"CONTENT_DEFINED_MERKLE_2104.02158","families":["CONTENT_ADDRESSED_DIFF"],"url":"https://arxiv.org/abs/2104.02158","role":"skip_equal_change_localization"}
+  ],
+  "planned_experiments": [
+    {"id":"TC-01","name":"DUAL_PANE_TRACE_REPORT","mode":"READ_ONLY","goal":"Produce aligned GOOD|BAD inventories with equal entries hidden."},
+    {"id":"ALIGN-01","name":"TRACE_ALIGNMENT_NEGATIVE_CONTROL","mode":"READ_ONLY","goal":"Compare naive positional diff against event-identity/alignment-aware diff and measure false cascade size."},
+    {"id":"HASH-01","name":"SKIP_EQUAL_FINGERPRINTING","mode":"SPIDER_ONLY","goal":"Measure how much trace/state comparison work is avoided by canonical subtree fingerprints with exact verification."},
+    {"id":"INV-01","name":"GOOD_TRACE_LIKELY_INVARIANTS","mode":"DIAGNOSTIC_ONLY","goal":"Mine likely invariants on controls and locate first hostile violations; never promote mined invariants to lemmas."},
+    {"id":"SLICE-01","name":"DIFF_X_DEPENDENCY_INTERSECTION","mode":"DIAGNOSTIC_ONLY","goal":"Intersect differential, dependency and invariant-break slices to produce obstruction candidates."},
+    {"id":"HANDOFF-01","name":"ALGORITHM_DIALOGUE_EXPORT","mode":"READ_ONLY","goal":"Export compact source-bound candidates into SPIDER-SILK/handoff without changing algorithm code."}
+  ],
+  "laws": [
+    "SPIDER_IS_OBSERVER_AND_RESEARCHER_NOT_ALGORITHM_AUTHOR",
+    "COMPARE_DOES_NOT_MODIFY",
+    "SYNC_PREVIEW_IS_NOT_SYNC_APPLY",
+    "SEARCH_HIT_IS_NOT_EVIDENCE",
+    "HASH_MATCH_IS_A_SCREEN_NOT_SEMANTIC_AUTHORITY",
+    "LIKELY_INVARIANT_IS_NOT_PROVED_INVARIANT",
+    "OFFLINE_ORACLE_IS_NOT_ALLOWED_TO_HIDE_RUNTIME_COST",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
