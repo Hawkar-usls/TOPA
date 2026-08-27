@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, hashlib, json, re, time
+import argparse, hashlib, io, json, re, time
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -89,6 +89,22 @@ def jac(a,b):
     if not a or not b: return 0.0
     return len(a&b)/len(a|b)
 
+def extract_pdf_text(payload):
+    try:
+        from pypdf import PdfReader
+    except Exception:
+        return '',{'status':'PYPDF_NOT_AVAILABLE','pages':None,'pages_with_text':0}
+    try:
+        reader=PdfReader(io.BytesIO(payload)); parts=[]; pages_with_text=0
+        for page in reader.pages:
+            try: t=page.extract_text() or ''
+            except Exception: t=''
+            if t.strip(): pages_with_text+=1; parts.append(t)
+        text='\n'.join(parts)
+        return text,{'status':'PASS' if text.strip() else 'NO_EXTRACTABLE_TEXT','pages':len(reader.pages),'pages_with_text':pages_with_text}
+    except Exception as e:
+        return '',{'status':'PDF_EXTRACT_ERROR','error':f'{type(e).__name__}: {e}','pages':None,'pages_with_text':0}
+
 def harvest_from_config(config_path,out_path,receipt_path):
     from topa_archive_gateway import fetch, html_text, LinkParser, archive_record
     cfg=read_json(config_path); rows=[]; errors=[]
@@ -96,7 +112,9 @@ def harvest_from_config(config_path,out_path,receipt_path):
         try:
             b,m=fetch(u); ct=(m.get('content_type') or '').lower(); aid=u.rstrip('/').rsplit('/',1)[-1].replace('.pdf','')
             if 'pdf' in ct or u.lower().endswith('.pdf'):
-                rows.append(archive_record('CIA',u,aid,archive_id=aid,extra={'content_type':ct,'binary_policy':'POINTER_AND_HASH_ONLY','relation_tags':['CIA','DECLASSIFIED','RETRO_TEMPORAL_PATTERN_SET']},source_meta=m))
+                text,pdf_meta=extract_pdf_text(b)
+                rows.append(archive_record('CIA',u,aid,text[:200000],archive_id=aid,extra={'content_type':ct,'binary_policy':'POINTER_HASH_AND_LOCAL_TEXT_EXTRACTION','pdf_text_extraction':pdf_meta,'relation_tags':['CIA','DECLASSIFIED','RETRO_TEMPORAL_PATTERN_SET']},source_meta=m))
+                if not text.strip(): errors.append({'url':u,'error':'NO_EXTRACTABLE_PDF_TEXT','pdf_text_extraction':pdf_meta})
             else:
                 p=LinkParser(); p.feed(b.decode('utf-8','replace'))
                 rows.append(archive_record('CIA',u,p.title or aid,html_text(b)[:200000],aid,{'relation_tags':['CIA','DECLASSIFIED','RETRO_TEMPORAL_PATTERN_SET']},m))
@@ -107,13 +125,14 @@ def harvest_from_config(config_path,out_path,receipt_path):
     for r in rows: ded[(r.get('provider'),r.get('archive_id'),r.get('source_url'))]=r
     rows=sorted(ded.values(),key=lambda r:(r.get('provider',''),r.get('archive_id',''),r.get('source_url','')))
     write_jsonl(out_path,rows)
-    receipt={'schema':SCHEMA+'.harvest_receipt','status':'PASS' if rows else 'FAIL_EMPTY','records':len(rows),'errors':errors,
-             'stream_sha256':sha_text(''.join(canon(r)+'\n' for r in rows)),'laws':['DECLASSIFICATION_IS_PROVENANCE_NOT_TRUTH','FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE']}
+    text_records=sum(bool(str(r.get('text') or '').strip()) for r in rows)
+    receipt={'schema':SCHEMA+'.harvest_receipt','status':'PASS' if rows else 'FAIL_EMPTY','records':len(rows),'records_with_text':text_records,'errors':errors,
+             'stream_sha256':sha_text(''.join(canon(r)+'\n' for r in rows)),'laws':['DECLASSIFICATION_IS_PROVENANCE_NOT_TRUTH','FAILED_FETCH_IS_NOT_PROOF_OF_ABSENCE','PDF_TEXT_EXTRACTION_IS_A_DERIVED_VIEW_NOT_SOURCE_BYTES']}
     Path(receipt_path).parent.mkdir(parents=True,exist_ok=True); Path(receipt_path).write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return receipt
 
 def sieve(records, cfg, words=180, overlap=45, neighbor_radius=1, batch_size=64, near_dup=0.88):
-    compiled=compile_patterns(cfg); all_chunks=[]; by_record=defaultdict(list); records_by_key={}
+    compiled=compile_patterns(cfg); by_record=defaultdict(list); records_by_key={}
     for r in records:
         sf=source_family(r); rk=(sf,str(r.get('source_url') or '')); records_by_key[rk]=r
         for c in chunk_record(r,words,overlap):
@@ -125,32 +144,28 @@ def sieve(records, cfg, words=180, overlap=45, neighbor_radius=1, batch_size=64,
               'selection_score':round(min(1.0,(0.32 if direct else 0.0)+0.16*len(fams)+0.025*sum(sum(a['count'] for a in m['aliases']) for m in matches)),6),
               'duplicate_of':None
             }
-            x['chunk_id']=f"{sf}:{c['chunk_index']}:{c['text_sha256'][:12]}"; all_chunks.append(x); by_record[rk].append(x)
+            x['chunk_id']=f"{sf}:{c['chunk_index']}:{c['text_sha256'][:12]}"; by_record[rk].append(x)
     retained={}
-    for rk,chunks in by_record.items():
+    for _rk,chunks in by_record.items():
         direct_idxs=[i for i,c in enumerate(chunks) if c['direct_hit']]
         for i in direct_idxs:
             for j in range(max(0,i-neighbor_radius),min(len(chunks),i+neighbor_radius+1)):
                 c=chunks[j]; retained[c['chunk_id']]=c
                 if j!=i: c['neighbor_of'].append(chunks[i]['chunk_id']); c['selection_score']=max(c['selection_score'],0.12)
     kept=sorted(retained.values(),key=lambda c:(c['provider'] or '',c['archive_id'] or '',c['chunk_index'],c['chunk_id']))
-    # deterministic exact/near dedup; duplicates stay in dossier but are explicitly linked
-    canonical=[]; shingle_cache={}
+    canonical=[]; exact={}
     for c in kept:
-        if c['text_sha256'] in shingle_cache:
-            c['duplicate_of']=shingle_cache[c['text_sha256']]['chunk_id']; continue
+        if c['text_sha256'] in exact:
+            c['duplicate_of']=exact[c['text_sha256']]['chunk_id']; continue
         cs=shingles(c['text']); dup=None
         for prev,ps in canonical:
             if c['pattern_families'] and prev['pattern_families'] and not (set(c['pattern_families']) & set(prev['pattern_families'])): continue
-            if jac(cs,ps)>=near_dup:
-                dup=prev; break
+            if jac(cs,ps)>=near_dup: dup=prev; break
         if dup: c['duplicate_of']=dup['chunk_id']
-        else:
-            canonical.append((c,cs)); shingle_cache[c['text_sha256']]=c
+        else: canonical.append((c,cs)); exact[c['text_sha256']]=c
     batches=[]
     for i in range(0,len(kept),batch_size):
-        chunk=kept[i:i+batch_size]
-        payload=''.join(canon(c)+'\n' for c in chunk)
+        chunk=kept[i:i+batch_size]; payload=''.join(canon(c)+'\n' for c in chunk)
         batches.append({'batch_id':f'BATCH-{i//batch_size+1:04d}','chunk_ids':[c['chunk_id'] for c in chunk],'size':len(chunk),'sha256':sha_text(payload)})
     fam_summary=[]
     for fid,_aliases in compiled:
@@ -167,12 +182,11 @@ def sieve(records, cfg, words=180, overlap=45, neighbor_radius=1, batch_size=64,
     dup_groups=defaultdict(list)
     for c in kept:
         if c['duplicate_of']: dup_groups[c['duplicate_of']].append(c['chunk_id'])
-    docs=[]
-    selected_rks={(c['source_family_id'],str(c['source_url'] or '')) for c in kept}
+    docs=[]; selected_rks={(c['source_family_id'],str(c['source_url'] or '')) for c in kept}
     for rk in sorted(selected_rks):
         r=records_by_key.get(rk)
         if not r: continue
-        docs.append({'provider':r.get('provider'),'archive_id':r.get('archive_id'),'source_url':r.get('source_url'),'title':r.get('title'),'record_sha256':r.get('record_sha256'),'source_family_id':source_family(r),'claim_ceiling':r.get('claim_ceiling'),'scientific_authority':r.get('scientific_authority')})
+        docs.append({'provider':r.get('provider'),'archive_id':r.get('archive_id'),'source_url':r.get('source_url'),'title':r.get('title'),'record_sha256':r.get('record_sha256'),'source_family_id':source_family(r),'claim_ceiling':r.get('claim_ceiling'),'scientific_authority':r.get('scientific_authority'),'source_fetch':r.get('source_fetch'),'pdf_text_extraction':r.get('pdf_text_extraction')})
     states=Counter(l for c in kept for l in c['state_labels'])
     dossier={
       'schema':SCHEMA,'status':'PASS','pattern_set_id':cfg.get('pattern_set_id'),'scope_note':cfg.get('scope_note'),
