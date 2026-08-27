@@ -1,0 +1,111 @@
+{
+  "schema": "hawkar.topa.spider.silk.algorithmist_handoff.n58_missed_lanes.v1",
+  "artifact_id": "ALGORITHMIST-N58-MISSED-LANES-HANDOFF-2026-08-27-v1.0",
+  "date": "2026-08-27",
+  "status": "READY_READ_ONLY_RESEARCH_HANDOFF__NEW_TRANSLATION_LANES__NO_RUNTIME_CHANGE__NO_NEW_DIRECT_NUMERIC_CLOSURE",
+  "state": {
+    "historical_target": {"n":7,"m":77,"L":350,"d":50,"p":22,"q":28,"pq":616,"historical_dangerous_J":610,"old_raw":3389,"cap":3364},
+    "current_algorithmist_result": {"J_max":609,"raw_units_ceiling":3361,"cap":3364,"status":"LOCAL_TARGET_ALREADY_REPAIRED"}
+  },
+  "bridge_lemma_for_external_exact_code_pair_theorems": {
+    "status": "ELEMENTARY_DERIVED_BRIDGE__NOT_A_NEW_JANUS_RUNTIME_RULE",
+    "statement": "If a p-by-q parent-pair grid contains J pair edges with pairwise distinct acceptable outputs, select one edge for each distinct output. The complement has e=p*q-J edges. Deleting a vertex cover of those e complement edges removes at most e parent vertices and leaves a complete Cartesian sub-rectangle P' x Q' consisting only of selected edges; hence every remaining pair has a distinct acceptable output.",
+    "N58_historical_instantiation": {
+      "p":22,"q":28,"J_assumption":610,"bad_edge_count_at_most":6,
+      "worst_case_guaranteed_injective_subrectangle_product":448,
+      "witness_lower_bound_explanation":"For any deletion split a+b<=6, |P'||Q'|=(22-a)(28-b); the minimum over a+b=6, 0<=a,b<=6 is 16*28=448."
+    },
+    "use":"Allows exact fully-separable/cancellative two-codebook theorems to be tested soundly against a guaranteed subrectangle rather than being rejected solely because the original N58 regime was only near-injective.",
+    "current_result":"No located external exact-code-pair upper bound forbids the resulting >=448 rectangle under the full JANUS signed/partial-transversal assumptions; therefore NO_GAIN numerically."
+  },
+  "top_new_lanes": [
+    {
+      "rank":1,
+      "lane":"BIPARTITE_ALMOST_SEPARABLE_PARTIAL_SYMMETRIC_MAC",
+      "primary":"A. G. D'yachkov, N. Polyanskii, V. Shchukin, I. Vorobyev, Separable Codes for the Symmetric Multiple-Access Channel",
+      "doi":"10.1109/TIT.2019.2893234",
+      "arxiv":"1701.06085",
+      "theorem_or_definition":"For any symmetric coordinatewise f-MAC, separability means distinct messages have distinct output vectors. The paper additionally defines almost separability by the fraction of bad messages and develops entropy/combinatorial bounds.",
+      "JANUS_translation":"Use input alphabet {OMIT,POS,NEG}; define the JANUS coordinate channel to emit the signed union on compatible pairs and a conflict symbol on POS/NEG clashes. JANUS counts only all-conflict-free pair vectors, so it is a partial/rejected-output variant and has two separate codebooks P,Q.",
+      "why_priority":"This is the closest located published language to the historical 610/616 near-injective regime.",
+      "why_not_direct":"Published bounds are not stated for the exact bipartite partial channel; no numeric transfer allowed yet."
+    },
+    {
+      "rank":2,
+      "lane":"MULTISET_UNION_FREE_TWO_CODEBOOK_ENTROPY",
+      "primary":"Or Ordentlich, Ofer Shayevitz, An Upper Bound on the Sizes of Multiset-Union-Free Families",
+      "doi":"10.1137/15M1021118",
+      "arxiv":"1412.8415",
+      "theorem_or_definition":"Two families F1,F2 are multiset-union-free when every pair has a unique multiset union; the paper gives zero-error capacity-region upper bounds using soft Sauer-Perles-Shelah/shattering and information-theoretic arguments.",
+      "JANUS_translation":"The guaranteed injective subrectangle can be encoded as partial-transversal subsets of 12 literal elements. Unique ordinary signed unions imply unique multiset unions, so any sound finite multiset-union-free bound may be applied as a necessary condition after this embedding.",
+      "why_priority":"P and Q are native separate codebooks and coordinate marginals drive the inequalities, close to JANUS omission counts a_y,b_y,t_y.",
+      "why_not_direct":"Main bounds are asymptotic and multiplicity retains more information; no finite contradiction at N58 was found."
+    },
+    {
+      "rank":3,
+      "lane":"UNION_DISTINCT_SUPERIMPOSED_CODES",
+      "primary":"Mausumi Bose, Rahul Mukerjee, Union Distinct Families of Sets, with an Application to Cryptography, Ars Combinatoria 110 (2013) 179-192",
+      "primary_link":"https://combinatorialpress.com/ars-articles/volume-110-ars-articles/union-distinct-families-of-sets-with-an-application-to-cryptography/",
+      "theorem_or_definition":"K-union-distinct means all unions of at most K family members are distinct; cover-free is sufficient but not necessary.",
+      "JANUS_translation":"Signed tails are ordinary partial-transversal subsets in a 12-literal ground set and compatible resolvent union is literal-set union.",
+      "why_priority":"Exact operation match: union uniqueness rather than sum or intersection.",
+      "why_not_direct":"One-family/global-pair condition rather than bipartite P x Q with partial compatibility."
+    },
+    {
+      "rank":4,
+      "lane":"DP_SIMPLICIAL_BETA_ACYCLIC_STRUCTURE",
+      "primary":"Sebastian Ordyniak, Daniël Paulusma, Stefan Szeider, Satisfiability of acyclic and almost acyclic CNF formulas",
+      "doi":"10.1016/j.tcs.2012.12.039",
+      "theorem_or_definition":"Beta-acyclic CNFs admit an elimination ordering by DP-simplicial variables whose resolvents are controlled by parent containment, preventing generic clause explosion.",
+      "JANUS_translation":"Only a theorem-side structural/reachability test is relevant: ask whether a frozen reachable canonical state independently satisfies an analogous DP-simplicial local condition before elimination.",
+      "why_priority":"This is a genuine exact mechanism by which DP resolvent growth collapses.",
+      "why_not_direct":"No such structural premise is proved for N58/JANUS; post-elimination subsumption cannot be imported as a free resource."
+    },
+    {
+      "rank":5,
+      "lane":"WEAK_AND_2_CANCELLATIVE_NEAR_INJECTIVITY",
+      "primaries":[
+        {"title":"New Bounds for Union-free Families of Sets","authors":["Don Coppersmith","James B. Shearer"],"doi":"10.37236/1377"},
+        {"title":"2-Cancellative Hypergraphs and Codes","authors":["Zoltan Furedi"],"doi":"10.1017/S0963548311000563","arxiv":"1103.1934"}
+      ],
+      "theorem_or_definition":"Published variants relax exact cancellativity/union uniqueness and bound families avoiding specified union collisions.",
+      "why_priority":"Conceptually matches near-injective output rather than perfect cancellativity.",
+      "why_not_direct":"Known published results located so far are unsigned, one-family and mostly asymptotic. The very-close Balakirsky almost-cancellative manuscript is unpublished and is navigation only."
+    },
+    {
+      "rank":6,
+      "lane":"SEPARABLE_DESCENDANT_CODES_AND_C4_SUPERSATURATION",
+      "primaries":[
+        {"title":"On Codes with the Identifiable Parent Property","doi":"10.1006/jcta.1997.2851"},
+        {"title":"New bounds on bar-2-separable codes of length 2","doi":"10.1007/s10623-013-9849-9"},
+        {"title":"Supersaturation of C4: From Zarankiewicz towards Erdos-Simonovits-Sidorenko","doi":"10.1016/j.ejc.2018.07.015","arxiv":"1711.09282"}
+      ],
+      "theorem_or_definition":"Separable/IPP codes distinguish parent pairs by coordinatewise descendant signatures; length-two cases connect to packing and C4-free bipartite graphs, with C4 supersaturation controlling near-extremal excess.",
+      "why_priority":"Offers collision-forcing graph machinery.",
+      "why_not_direct":"Descendant signatures contain strictly more information than JANUS unions, and no proof currently maps a JANUS union collision to a C4."
+    }
+  ],
+  "discovery_lower_bound_backfill": {
+    "message":"The arXiv sweep missed classical proof-search literature. The dossier addendum backfills 8 primary automatability sources including Atserias-Bonet, Alekhnovich-Razborov, Iwama, Alekhnovich-Buss-Moran-Pitassi, Bell, de Rezende, Carenini-de Rezende, and Buss-Yolcu.",
+    "key_firewall":"Effective simulation may translate the formula; it is not same-formula simulation and cannot grant JANUS extra resources."
+  },
+  "coverage_update": {
+    "prior_distinct_candidates":98,
+    "new_distinct_classical_primary_backfill":22,
+    "candidate_coverage_now":120,
+    "full_120_theorem_review_complete":false,
+    "status":"120_DISTINCT_PRIMARY_CANDIDATE_COVERAGE_ONLY__FULL_THEOREM_REVIEW_CONTINUES"
+  },
+  "red_result": "NO_NEW_EXTERNAL_NUMERIC_N58_CLOSURE. The major gain is a sharper exact problem class and a sound bridge from historical near-injectivity to a fully injective Cartesian subrectangle.",
+  "laws": [
+    "HANDOFF_IS_RESEARCH_INPUT_NOT_ALGORITHM_CHANGE",
+    "ALMOST_SEPARABLE_IS_NOT_SEPARABLE",
+    "PARTIAL_CHANNEL_IS_NOT_TOTAL_CHANNEL",
+    "CANDIDATE_COVERAGE_120_IS_NOT_120_FULL_TEXT_REVIEWS",
+    "EFFECTIVE_SIMULATION_IS_NOT_SAME_FORMULA_SIMULATION",
+    "ANALOGUE_IS_NOT_TRANSFER_THEOREM",
+    "THEOREM_RUNTIME_HEURISTICS_IS_FORBIDDEN",
+    "SHORT_PROOF_EXISTS_IS_NOT_CHEAP_DISCOVERY",
+    "P_VS_NP_IS_OPEN"
+  ]
+}
