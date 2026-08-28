@@ -1,0 +1,34 @@
+{
+  "schema": "janus.topa.seam-continuity-precheck.v1",
+  "hunt_id": "HUNT-0001",
+  "slug": "HESSDALEN",
+  "observed_at_local": "2026-08-28T18:10:00+03:00",
+  "target": "CAM1_12_30__12_45_01__13_00_SEAM",
+  "files": [
+    {"name":"Cam1_2024-09-29__12-30-00.mkv","size_bytes":474623174},
+    {"name":"Cam1_2024-09-29__12-45-01.mkv","size_bytes":465996405},
+    {"name":"Cam1_2024-09-29__13-00-00.mkv","size_bytes":479470861}
+  ],
+  "provider_metadata": {
+    "mime_type": "video/x-matroska",
+    "provider_checksum_exposed_by_connector": false,
+    "source_visibility": "ACCESS_NOT_VERIFIED",
+    "metadata_identity_and_size_resolved": true
+  },
+  "byte_acquisition_attempt": {
+    "central_segment_attempted": true,
+    "result": "BLOCKED_BY_CONNECTOR_TRANSFER_LIMIT",
+    "connector_limit_bytes": 268435456,
+    "central_segment_size_bytes": 465996405,
+    "local_bytes_acquired": false,
+    "local_sha256_computed": false,
+    "ffprobe_completed": false,
+    "seam_continuity_completed": false,
+    "remote_desktop_fallback_available_now": false
+  },
+  "interpretation": "The one-second filename deviation remains a continuity-test target only. Transfer failure is a tooling/transport limitation and is not evidence of a data gap, corrupt segment, missing coverage, or physical anomaly.",
+  "next": "WHEN_A_BYTE_TRANSPORT_PATH_WITH_GT_480MB_FILE_SUPPORT_IS_AVAILABLE: ACQUIRE_THE_THREE_FROZEN_SEAM_FILES -> SHA256 -> FFPROBE_CONTAINER_DURATION_TIMECODES -> TEST_12_30_TO_12_45_01_AND_12_45_01_TO_13_00",
+  "complete_raw_day_proven": false,
+  "k2": "BLOCKED",
+  "world_truth": false
+}
