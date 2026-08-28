@@ -19,8 +19,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Self-test Keymaster pivot spider
-        run: python tools/topa_keymaster_pivot_spider.py self-test
+      - name: Self-test Keymaster pivot tools
+        run: |
+          python tools/topa_keymaster_pivot_spider.py self-test
+          python tools/topa_keymaster_cross_scale_shadow.py self-test
 
       - name: Analyze exact pivot relationships
         run: |
@@ -28,12 +30,19 @@ jobs:
             --input raw/unexamined/janus/keymaster-pivot-calibration-2026-08-28/keymaster-pivot-exact-features.jsonl \
             --out work/keymaster-pivot/TOPA-KEYMASTER-PIVOT-RELATIONS-2026-08-28-v1.0.json
 
+      - name: Run cross-scale shadow transfer simulation
+        run: |
+          python tools/topa_keymaster_cross_scale_shadow.py run \
+            --input raw/unexamined/janus/keymaster-pivot-calibration-2026-08-28/keymaster-pivot-exact-features.jsonl \
+            --out work/keymaster-pivot/TOPA-KEYMASTER-CROSS-SCALE-SHADOW-2026-08-28-v1.0.json
+
       - name: Scientific firewall and calibration assertions
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
           p=json.loads(Path('work/keymaster-pivot/TOPA-KEYMASTER-PIVOT-RELATIONS-2026-08-28-v1.0.json').read_text())
+          s=json.loads(Path('work/keymaster-pivot/TOPA-KEYMASTER-CROSS-SCALE-SHADOW-2026-08-28-v1.0.json').read_text())
           assert p['status']=='PASS'
           assert p['P_VS_NP']=='OPEN'
           assert p['rows']==15
@@ -48,11 +57,23 @@ jobs:
           assert c['overflow_local_pivots']==[1,2]
           assert c['safe_local_pivots']==[3,4,5,6,7,8]
           assert c['local_ids_are_provenance_only'] is True
-          assert 'P_VS_NP_IS_OPEN' in p['laws']
-          assert 'CORRELATION_IS_NOT_CAUSATION' in p['laws']
+          assert s['status']=='NEGATIVE_TRANSFER_CERTIFICATE'
+          assert s['P_VS_NP']=='OPEN'
+          a,b=s['results']
+          assert a['train_case']=='25x25-n7' and a['test_case']=='250x250-n8'
+          assert a['chosen_local_pivot']==1
+          assert a['exact_best_local_pivot']==3
+          assert a['peak_raw_regret']==62
+          assert a['stress_104_squared_fit'] is False
+          assert b['train_case']=='250x250-n8' and b['test_case']=='25x25-n7'
+          assert b['chosen_local_pivot']==7
+          assert b['exact_best_local_pivot']==5
+          assert b['peak_raw_regret']==231
+          assert 'P_VS_NP_IS_OPEN' in p['laws'] and 'P_VS_NP_IS_OPEN' in s['laws']
           print('TOPA_KEYMASTER_PIVOT_SPIDER=PASS')
-          print('TOPA_ROWS=15')
-          print('TOPA_FORMULA_FAMILIES=2')
+          print('CROSS_SCALE_NAIVE_TRANSFER=NEGATIVE_CERTIFICATE')
+          print('25_TO_250_CHOSEN=1_OVERFLOW_AT_104SQ')
+          print('250_TO_25_CHOSEN=7_WORST_LOCAL')
           print('P_VS_NP=OPEN')
           PY
 
