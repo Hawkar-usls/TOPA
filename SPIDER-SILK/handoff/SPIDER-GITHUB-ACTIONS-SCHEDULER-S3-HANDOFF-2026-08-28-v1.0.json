@@ -1,0 +1,51 @@
+{
+  "schema": "hawkar.topa.spider.github_actions_scheduler_s3_handoff.v1",
+  "artifact_id": "SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-HANDOFF-2026-08-28-v1.0",
+  "date": "2026-08-28",
+  "status": "ACTIVE_INVESTIGATION_HANDOFF",
+  "profile": "TOPA_DETECTIVE_SPIDER",
+  "dossier": "SPIDER-SILK/dossiers/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0.json",
+  "mission": "Continue falsification-first investigation of the GitHub Actions schedule-event materialization S3 regime jump using JANUS journals plus live public primary sources.",
+  "inputs": {
+    "all_journals": "Use every journal reference in dossier.journal_ingestion.journal_manifest read-only; fetch the raw current bytes and verify against the recorded Git blob before extracting timing fields.",
+    "scheduler_audit": "Hawkar-usls/janus-meta-registry:registry/audit/JANUS-RECORD-DRIFT-SCHEDULER-LATENCY-AUDIT-2026-08-16.json",
+    "official_status": [
+      "https://www.githubstatus.com/incidents/y1t7p9fzrlj2",
+      "https://www.githubstatus.com/incidents/hcbtzksccj2f",
+      "https://www.githubstatus.com/incidents/kfspvrz14xr0"
+    ],
+    "community_cases": [
+      "https://github.com/orgs/community/discussions/206019",
+      "https://github.com/orgs/community/discussions/205976",
+      "https://github.com/orgs/community/discussions/206027",
+      "https://github.com/orgs/community/discussions/202066",
+      "https://github.com/orgs/community/discussions/203353"
+    ]
+  },
+  "priority_questions": [
+    "Did schedule-event creation remain degraded after GitHub's 2026-08-27T00:26Z incident resolution?",
+    "Are post-recovery failures specific to schedule while workflow_dispatch/push remain healthy?",
+    "Do affected cases span public/private repositories, hosted/self-hosted runners, account ages and off-hour cron minutes?",
+    "Does evidence favor transient backlog, lost/stale schedule registration, recurring trigger-processing saturation, deployment fallout, or another control-plane mechanism?",
+    "What evidence would falsify the platform-side interpretation?"
+  ],
+  "required_outputs": [
+    "source-normalized timeline",
+    "case graph with source independence labels",
+    "schedule-vs-manual contrast table",
+    "incident-window overlap classification",
+    "hypothesis ranking with explicit falsifiers",
+    "negative cases and counterexamples",
+    "superseding receipt when GitHub publishes a detailed RCA"
+  ],
+  "do_not_do": [
+    "Do not modify historical Record Drift journals.",
+    "Do not treat several GitHub Community posts as independent platform telemetry without accounting for copied claims.",
+    "Do not infer malicious intent from incomplete status scope.",
+    "Do not call scheduler latency R6/R9/R10 record drift.",
+    "Do not generate abusive request load; use bounded fetches and cached evidence."
+  ],
+  "current_best_answer": "Observable schedule-specific impact extended beyond the public recovery window and is strongly platform-side in class. Exact causal continuity to the Aug26 database/event-processing defect remains unresolved; deliberate understatement has no evidence.",
+  "next_gate": "LIVE_SPIDER_WEB_RECEIPT_WITH_ALL_JOURNAL_HASH_CHECKS_AND_PRIMARY_SOURCE_REFRESH",
+  "claim_ceiling": "DISCOVERY_AND_FALSIFICATION_PACKET_ONLY"
+}
