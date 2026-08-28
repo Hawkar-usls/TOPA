@@ -21,7 +21,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install bounded parser dependencies
-        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
+        run: python -m pip install --disable-pip-version-check pypdf==5.9.0 cryptography==45.0.6
 
       - name: TOPA SPIDER self-test
         run: |
