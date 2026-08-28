@@ -1,0 +1,52 @@
+{
+  "schema": "hawkar.janus.primary_artifact_freeze.v1",
+  "artifact": {
+    "filename": "0019_20151018_073226_JCR.zip",
+    "bytes": 36570124,
+    "sha256": "994b92c22166270e91a725dc7b204d47819b6bcc86abd071d9a5965f6032f4ae",
+    "mime_type": "application/zip",
+    "processing_state": "RAW_UNCORRECTED",
+    "instrument": "Kongsberg EM122",
+    "payload_type": "raw .all data",
+    "semantic_opened": false
+  },
+  "provenance": {
+    "provider": "UK Polar Data Centre / British Antarctic Survey",
+    "ticket": "#3872",
+    "dataset_context": "GB/NERC/BAS/PDC/01236",
+    "cruise": "JR15001",
+    "custodian_note": "Only JR15001 had soundings around the H10N1 area of interest in the checked BAS/PDC holdings; data are raw and uncorrected.",
+    "google_drive_file_id": "1f_O5q3atkg9LKHxSF3h49Z9gmmftU-2v"
+  },
+  "frozen_targets": {
+    "H10N1": {"lat": -7.845673, "lon": -14.480230, "datum": "WGS84"},
+    "H10S2": {"lat": -8.959100, "lon": -14.645310, "datum": "WGS84"}
+  },
+  "calibration_debt": {
+    "last_svp_relative_age": "about 2 days before opportunistic acquisition",
+    "must_be_carried_forward": true
+  },
+  "blind_procedure": [
+    "Do not inspect bathymetric morphology, rendered surfaces, hillshade, point clouds, or swath-derived relief before the intersection gate is decided.",
+    "Perform only container/integrity checks needed to verify the frozen ZIP hash and preserve original bytes.",
+    "Parse only navigation/time/beam-footprint information strictly necessary to determine whether the frozen H10N1 coordinate is geometrically intersected by the raw EM122 swath.",
+    "Predefine the geometric inclusion rule and tolerance before reading any depth or morphology values at or around H10N1.",
+    "Return EXACT_H10N1_SWATH_INTERSECTION as PASS, FAIL, or UNRESOLVED with machine-readable provenance and without describing seafloor shape.",
+    "Only after that result is frozen may JANUS open the morphology branch.",
+    "No retargeting, coordinate nudging, nearest-feature substitution, or reinterpretation of the target after seeing the data."
+  ],
+  "gates": {
+    "RAW_PRIMARY_BYTES_ACQUIRED": "PASS",
+    "RAW_PRIMARY_BYTES_FROZEN": "PASS",
+    "EXACT_H10N1_SWATH_INTERSECTION": "NOT_YET_MACHINE_VERIFIED",
+    "H10N1_PHYSICAL_ANOMALY_GATE": "NOT_ADVANCED",
+    "TARGET_IDENTITY": "UNCONFIRMED",
+    "NO_UNDERWATER_PYRAMID_DETECTED": true
+  },
+  "laws": [
+    "RAW_FILE_AVAILABILITY_IS_NOT_TARGET_EVIDENCE",
+    "DERIVED_GRID_IS_NOT_EXACT_RAW_SWATH_INTERSECTION",
+    "NO_POSTHOC_RETARGETING",
+    "SVP_STALENESS_MUST_BE_CARRIED_AS_CALIBRATION_DEBT"
+  ]
+}
