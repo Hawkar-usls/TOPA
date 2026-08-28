@@ -1,0 +1,170 @@
+name: TOPA SPIDER GOLDMEMBER JR15001 acquisition
+
+on:
+  push:
+    branches:
+      - research/goldmember-jr15001-topa-spider-2026-08-28
+    paths:
+      - '.github/workflows/goldmember-jr15001-topa-spider.yml'
+      - 'SPIDER-SILK/dossiers/goldmember-jr15001-2026-08-28/**'
+  workflow_dispatch:
+
+jobs:
+  topa-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install bounded parser dependencies
+        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
+
+      - name: TOPA SPIDER self-test
+        run: |
+          python tools/topa_spider_v2.py self-test
+          python tools/topa_spider_context_fur.py self-test
+
+      - name: Acquire public provenance sources without touching private raw share link
+        run: |
+          set -euo pipefail
+          mkdir -p work/goldmember-jr15001/public
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://www.bodc.ac.uk/data/documents/series/1762365/' \
+            -o work/goldmember-jr15001/public/bodc-series-1762365.html
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://www.bodc.ac.uk/resources/inventories/cruise_inventory/report/15726/' \
+            -o work/goldmember-jr15001/public/bodc-cruise-15726.html
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://www.bodc.ac.uk/resources/inventories/cruise_inventory/reports/jr15001.pdf' \
+            -o work/goldmember-jr15001/public/jr15001.pdf
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://data.bas.ac.uk/full-record.php?id=GB%2FNERC%2FBAS%2FPDC%2F01236' \
+            -o work/goldmember-jr15001/public/bas-pdc-01236.html
+          sha256sum work/goldmember-jr15001/public/* > work/goldmember-jr15001/public/SHA256SUMS.txt
+          wc -c work/goldmember-jr15001/public/* > work/goldmember-jr15001/public/SIZES.txt
+
+      - name: Extract public identifiers and freeze acquisition receipt
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from pypdf import PdfReader
+          import json, re
+
+          root=Path('work/goldmember-jr15001')
+          pub=root/'public'
+          files=[]
+          for p in sorted(pub.iterdir()):
+              if not p.is_file() or p.name in {'SHA256SUMS.txt','SIZES.txt'}:
+                  continue
+              b=p.read_bytes()
+              files.append({'filename':p.name,'bytes':len(b),'sha256':sha256(b).hexdigest()})
+
+          pdf_text='\n'.join((page.extract_text() or '') for page in PdfReader(str(pub/'jr15001.pdf')).pages)
+          low=pdf_text.lower()
+          snippets=[]
+          for needle in ['swath bathymetry survey started','swath bathymetry complete','ascension island']:
+              pos=low.find(needle)
+              if pos>=0:
+                  snippets.append({'needle':needle,'context':pdf_text[max(0,pos-260):pos+420].replace('\n',' ')})
+
+          series=(pub/'bodc-series-1762365.html').read_text(errors='replace')
+          bas=(pub/'bas-pdc-01236.html').read_text(errors='replace')
+          identifiers={
+              'JR15001_PRODQXF_NAV': 'JR15001_PRODQXF_NAV' in series,
+              'em122.ACO': 'em122.ACO' in series,
+              'MBANSWCB': 'MBANSWCB' in series,
+              'BODC_SERIES_1762365': '1762365' in series,
+              'BAS_DATASET_01236': 'GB/NERC/BAS/PDC/01236' in bas or '01236' in bas,
+              'JR15001_IN_BAS_LINEAGE': 'JR15001' in bas,
+              'JR53_AMT11_IN_BAS_LINEAGE': 'JR53-AMT11' in bas,
+              'JR287_IN_BAS_LINEAGE': 'JR287' in bas,
+              'JR16_NG_IN_BAS_LINEAGE': 'JR16-NG' in bas,
+          }
+
+          hrefs=sorted(set(re.findall(r'href=[\"\']([^\"\']+)', series, flags=re.I)))
+          download_candidates=[h for h in hrefs if any(x in h.lower() for x in ['download','odv','qxf','series'])]
+
+          receipt={
+              'schema':'hawkar.topa.goldmember.jr15001_acquisition_receipt.v1',
+              'status':'PASS_PUBLIC_PROVENANCE_ACQUIRED__RAW_PRIMARY_BYTES_STILL_EXTERNAL',
+              'frozen_targets':{
+                  'H10N1':{'lat':-7.845673,'lon':-14.480230,'datum':'WGS84'},
+                  'H10S2':{'lat':-8.959100,'lon':-14.645310,'datum':'WGS84'}
+              },
+              'raw_offer':{
+                  'filename':'0019_20151018_073226_JCR.zip',
+                  'format':'raw uncorrected Kongsberg EM122 .all',
+                  'byte_state':'NOT_ACQUIRED_IN_PUBLIC_CI',
+                  'reason':'private custodian share link intentionally not committed to a public repository',
+                  'semantic_opened':False
+              },
+              'custodian_constraints':{
+                  'H10S2_soundings_in_checked_material':'NO',
+                  'last_SVP_relative_age':'about 2 days before opportunistic acquisition',
+                  'source':'private BAS/PDC correspondence summary; no private URL embedded'
+              },
+              'public_files':files,
+              'identifier_checks':identifiers,
+              'series_download_candidates':download_candidates[:50],
+              'cruise_report_hits':snippets,
+              'scientific_boundaries':[
+                  'RAW_FILE_AVAILABILITY_IS_NOT_TARGET_EVIDENCE',
+                  'DERIVED_GRID_IS_NOT_EXACT_RAW_SWATH_INTERSECTION',
+                  'DEPTH_RANGE_IS_NOT_COVERAGE_GEOMETRY',
+                  'NO_POSTHOC_RETARGETING',
+                  'H10N1_PHYSICAL_ANOMALY_GATE_NOT_ADVANCED',
+                  'TARGET_IDENTITY_UNCONFIRMED',
+                  'NO_UNDERWATER_PYRAMID_DETECTED',
+                  'SVP_STALENESS_MUST_BE_CARRIED_AS_CALIBRATION_DEBT'
+              ],
+              'next_gate':'ACQUIRE_RAW_ZIP_BYTES_LOCALLY_OR_FROM_CUSTODIAN_CHANNEL__SHA256_FREEZE__THEN_MACHINE_VERIFY_EXACT_H10N1_SWATH_INTERSECTION_BEFORE_MORPHOLOGY'
+          }
+          (root/'acquisition-receipt.json').write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n')
+          print(json.dumps(receipt,indent=2,ensure_ascii=False))
+          PY
+
+      - name: Weave TOPA SPIDER provenance graph
+        run: |
+          python tools/topa_spider_v2.py weave \
+            --input SPIDER-SILK/dossiers/goldmember-jr15001-2026-08-28/seeds.jsonl \
+            --nodes work/goldmember-jr15001/spider-nodes.jsonl \
+            --edges work/goldmember-jr15001/spider-edges.jsonl \
+            --receipt work/goldmember-jr15001/spider-receipt.json \
+            --semantic-threshold 0.14 \
+            --topk 8 \
+            --keyword-nodes 12
+
+      - name: Grow SPIDER context fur
+        run: |
+          python tools/topa_spider_context_fur.py build \
+            --records SPIDER-SILK/dossiers/goldmember-jr15001-2026-08-28/seeds.jsonl \
+            --out work/goldmember-jr15001/context-fur.jsonl \
+            --receipt work/goldmember-jr15001/context-fur-receipt.json \
+            --pass-id GOLDMEMBER-JR15001-P1
+
+      - name: JANUS scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('work/goldmember-jr15001/acquisition-receipt.json').read_text())
+          s=json.loads(Path('work/goldmember-jr15001/spider-receipt.json').read_text())
+          assert a['raw_offer']['semantic_opened'] is False
+          assert a['raw_offer']['byte_state']=='NOT_ACQUIRED_IN_PUBLIC_CI'
+          assert a['frozen_targets']['H10N1']=={'lat':-7.845673,'lon':-14.48023,'datum':'WGS84'}
+          assert 'NO_POSTHOC_RETARGETING' in a['scientific_boundaries']
+          assert 'GRAPH_EDGE_IS_NOT_CAUSATION' in s['laws']
+          assert all(a['identifier_checks'][k] for k in ['JR15001_PRODQXF_NAV','em122.ACO','MBANSWCB','BODC_SERIES_1762365','JR15001_IN_BAS_LINEAGE'])
+          print('TOPA_SPIDER_GOLDMEMBER_JR15001_FIREWALL=PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-goldmember-jr15001
+          path: work/goldmember-jr15001
+          retention-days: 30
