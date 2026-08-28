@@ -1,0 +1,131 @@
+{
+  "schema": "hawkar.topa.spider.github_actions_scheduler_s3.v1",
+  "artifact_id": "SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0",
+  "date": "2026-08-28",
+  "status": "OPEN__PLATFORM_SIDE_SCHEDULE_TRIGGER_DEGRADATION_STRONGLY_SUPPORTED__POST_RECOVERY_PERSISTENCE_SUPPORTED__EXACT_INTERNAL_ROOT_CAUSE_UNRESOLVED",
+  "mode": "TOPA_DETECTIVE_SPIDER",
+  "activation_contract": "protocols/TOPA_DETECTIVE_SPIDER_ACTIVATION_v1.0.json",
+  "spider_protocol": "protocols/TOPA_SPIDER_RELATION_DRIVEN_PULL_PROTOCOL_v2.2.json",
+  "mission": "Determine how much of the 2026-08-26/27 GitHub Actions disruption affected schedule-event materialization beyond the publicly stated incident windows, distinguish chronic schedule jitter from the severe S3 regime shift, and identify the strongest falsifiable explanation without claiming undocumented internals as fact.",
+  "question": "Was the observable impact on GitHub Actions scheduled-trigger creation broader or longer than the public status summaries captured, and what layer best explains the JANUS 11h15m23s S3 materialization delay?",
+  "hard_boundaries": [
+    "SCHEDULER_DRIFT != RECORD_DRIFT",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "CORRELATION_WITH_INCIDENT != SAME_ROOT_CAUSE_PROVED",
+    "PUBLIC_STATUS_SCOPE_MISMATCH != INTENTIONAL_DECEPTION",
+    "RUN_OBJECT_ABSENCE != RUNNER_QUEUE_DELAY",
+    "REPLAY_IS_NOT_NEW_EVIDENCE",
+    "HISTORICAL_JOURNALS_ARE_READ_ONLY"
+  ],
+  "journal_ingestion": {
+    "mode": "READ_ONLY_PROVENANCE_REFERENCES_AND_LIVE_RAW_FETCH",
+    "source_repository": "Hawkar-usls/janus-meta-registry",
+    "directory": "registry/record_drift",
+    "historical_entries_rewritten": false,
+    "writer_remains": "GitHub Action in janus-meta-registry",
+    "journal_manifest": [
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260814T083123Z.json","blob_sha":"dd91f4fe0f634889c1650704dc25af158fe0cf6a"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260815T051844Z.json","blob_sha":"ca77acbee95ff48451644d47f3553da299cba636"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260815T120926Z.json","blob_sha":"0d7d5ceb6a5709f74c4b82e3d509ac3aa5beee7f"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260815T121043Z.json","blob_sha":"d14862e4d718b4006f5cef6b337017dbca554a9a"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260816T052125Z.json","blob_sha":"845c8af5653f381d42dada0d85aea33c11e319df"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260817T055237Z.json","blob_sha":"69ac9fb6099f78eebcd56e44a4d44b97728d9007"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260818T054641Z.json","blob_sha":"03e42df4df0f2f3c162b5b4fd85a59320583a613"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260819T054748Z.json","blob_sha":"c405bc909bded1a1f956c7d82d546a80830b285a"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260820T054816Z.json","blob_sha":"a5d2443d66f85a3367aee96a756b07cebd84523a"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260821T054944Z.json","blob_sha":"5cf9f7617f1b72f7910ee52f266b444e36a43901"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260822T054419Z.json","blob_sha":"62d90ad13f072637f67a379f3171ea0c4b9ab2df"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260823T054657Z.json","blob_sha":"3eb2b17b94dc9748f71605eff6daaf68cd8d5271"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260824T055508Z.json","blob_sha":"563aa10a9ba1d1d5861b3402e7ef47d10f69e606"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260825T054909Z.json","blob_sha":"5277f38944dc27db8c33a655cacf05fcdbd47621"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260826T055143Z.json","blob_sha":"a252f4ec428a7f35b721a9d09533599e4e47da0b"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-20260827T163235Z.json","blob_sha":"59bfe5f380b7d404cedfc0361d9c80567e7f6298"},
+      {"path":"registry/record_drift/JANUS-RECORD-DRIFT-JOURNAL-GENESIS-v0.1.json","blob_sha":"f4c53b73902233a35b56a8db32298f9eb324a04e"}
+    ],
+    "scheduler_audit": "registry/audit/JANUS-RECORD-DRIFT-SCHEDULER-LATENCY-AUDIT-2026-08-16.json"
+  },
+  "c28_series": [
+    {"date":"2026-08-15","cron":"0 5 * * *","delay_seconds":1118,"class":"S1","note":"pre-C28 audit measurement"},
+    {"date":"2026-08-16","cron":"0 5 * * *","delay_seconds":1276,"class":"S1","note":"pre-C28 audit measurement"},
+    {"date":"2026-08-17","cron":"17 5 * * *","delay_seconds":2126,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-18","cron":"17 5 * * *","delay_seconds":1771,"class":"S1","runner_queue_seconds":0.0},
+    {"date":"2026-08-19","cron":"17 5 * * *","delay_seconds":1835,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-20","cron":"17 5 * * *","delay_seconds":1865,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-21","cron":"17 5 * * *","delay_seconds":1952,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-22","cron":"17 5 * * *","delay_seconds":1629,"class":"S1","runner_queue_seconds":0.0},
+    {"date":"2026-08-23","cron":"17 5 * * *","delay_seconds":1784,"class":"S1","runner_queue_seconds":0.0},
+    {"date":"2026-08-24","cron":"17 5 * * *","delay_seconds":2276,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-25","cron":"17 5 * * *","delay_seconds":1920,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-26","cron":"17 5 * * *","delay_seconds":2073,"class":"S2","runner_queue_seconds":0.0},
+    {"date":"2026-08-27","cron":"17 5 * * *","delay_seconds":40523,"class":"S3","runner_queue_seconds":0.0,"expected_schedule_utc":"2026-08-27T05:17:00Z","run_created_at_utc":"2026-08-27T16:32:23Z","observer_start_after_creation_seconds":9.194902}
+  ],
+  "pre_s3_baseline_2026_08_17_to_26": {
+    "n": 10,
+    "mean_delay_seconds": 1923.1,
+    "median_delay_seconds": 1892.5,
+    "min_delay_seconds": 1629,
+    "max_delay_seconds": 2276,
+    "s3_to_prior_median_ratio": 21.4124,
+    "interpretation": "The schedule path was chronically late before the outage, but 2026-08-27 is a regime jump rather than ordinary continuation of the prior 27-38 minute band."
+  },
+  "instrument_controls": {
+    "latest_s3_instrument_self_tests_all_pass": true,
+    "latest_s3_runner_queue_seconds": 0.0,
+    "latest_s3_clock_quality": "SYNCHRONIZED",
+    "latest_s3_record_result": "8xR0_STABLE + 1xR3_DECLARED_SOURCE_REVISION",
+    "latest_s3_R6": 0,
+    "latest_s3_R9": 0,
+    "latest_s3_R10": 0,
+    "localization": "DELAY_BEFORE_RUN_OBJECT_MATERIALIZATION__NOT_RUNNER_ALLOCATION"
+  },
+  "external_evidence": {
+    "official": [
+      {"id":"GH_STATUS_ACTIONS_2026_08_26","url":"https://www.githubstatus.com/incidents/y1t7p9fzrlj2","finding":"GitHub reports write saturation on the database primary used by the service processing triggers for Actions workflows; failover did not fully recover the system; event-processing burst amplification and throttle tuning contributed; webhook queues burned down by 17:40 UTC; follow-up scalability changes were still deploying."},
+      {"id":"GH_STATUS_UPSTREAM_2026_08_26","url":"https://www.githubstatus.com/incidents/hcbtzksccj2f","finding":"GitHub separately acknowledged an upstream disruption in event-processing infrastructure during the first Actions incident."},
+      {"id":"GH_STATUS_ACTIONS_PR_2026_08_26_27","url":"https://www.githubstatus.com/incidents/kfspvrz14xr0","finding":"A later Actions/Pull Requests incident reported 20% of PR-triggered runs delayed over five minutes and up to 4% failing to trigger; GitHub stated full recovery beginning 23:58 UTC and resolved at 00:26 UTC Aug 27."},
+      {"id":"GH_DOCS_SCHEDULE","url":"https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule","finding":"GitHub documents that schedule events may be delayed under high Actions load and that some queued jobs may be dropped; moving away from minute 00 is recommended."}
+    ],
+    "independent_user_reports": [
+      {"id":"COMMUNITY_206019","url":"https://github.com/orgs/community/discussions/206019","finding":"Public repo: schedule runs progressed from 39m late to 3h27m late to about 10h41m late, then later schedule fires created no run object; workflow_dispatch started within seconds."},
+      {"id":"COMMUNITY_205976","url":"https://github.com/orgs/community/discussions/205976","finding":"Multiple scheduled pipelines stopped; a minimal */5 test on ubuntu-24.04 also failed to fire."},
+      {"id":"COMMUNITY_206027","url":"https://github.com/orgs/community/discussions/206027","finding":"Private repo with off-hour :23 and :17 schedules: about 33 consecutive hourly schedule slots and a daily slot missed while manual workflow_dispatch succeeded; failures persisted after status returned green."}
+    ],
+    "pre_incident_controls": [
+      {"id":"COMMUNITY_202066","url":"https://github.com/orgs/community/discussions/202066","finding":"July report of schedule-triggered runs delayed 2-3h while workflow_dispatch was fast, showing schedule-specific degradation predates Aug 26."},
+      {"id":"COMMUNITY_203353","url":"https://github.com/orgs/community/discussions/203353","finding":"July report of scheduled triggers stopping while workflow_dispatch continued to work, another pre-incident control against attributing the entire phenomenon to Aug 26."}
+    ]
+  },
+  "timeline_bridge": {
+    "github_claimed_full_recovery_begin_utc":"2026-08-26T23:58:00Z",
+    "github_second_incident_resolved_utc":"2026-08-27T00:26:00Z",
+    "janus_expected_fire_utc":"2026-08-27T05:17:00Z",
+    "hours_from_claimed_full_recovery_to_janus_expected_fire":5.3167,
+    "janus_materialized_utc":"2026-08-27T16:32:23Z",
+    "observation":"The JANUS scheduled event was due more than five hours after GitHub's stated full-recovery point yet materialized 11h15m23s late. Independent users reported similar schedule-only delays or missing run objects in the same post-recovery period."
+  },
+  "competing_hypotheses": [
+    {"id":"H1","name":"RESIDUAL_OR_RECURRENT_ACTIONS_TRIGGER_CONTROL_PLANE_DEGRADATION","status":"STRONGLY_SUPPORTED_AS_CLASS__EXACT_DEFECT_UNPROVEN","for":["official trigger-processing DB/event-infrastructure incident","zero JANUS runner queue","independent schedule-only reports after recovery","manual dispatch controls in external reports"],"against":["GitHub reported inbound queues recovered and later full recovery"]},
+    {"id":"H2","name":"SCHEDULE_REGISTRATION_OR_DISPATCH_STATE_DAMAGE","status":"PLAUSIBLE__UNPROVEN","for":["some independent reports show no run object at all across repeated off-hour slots and successful manual dispatch"],"against":["JANUS eventually materialized its Aug27 event rather than permanently losing it"]},
+    {"id":"H3","name":"ORDINARY_DOCUMENTED_SCHEDULE_LOAD_JITTER","status":"INSUFFICIENT_FOR_S3_AS_SOLE_EXPLANATION","for":["GitHub documents schedule delays under load","JANUS had chronic 18-38m delays before incident"],"against":["11h15m23s regime jump","off-hour cron","multiple users report multi-hour or missing fires"]},
+    {"id":"H4","name":"RUNNER_CAPACITY_SHORTAGE","status":"STRONGLY_DISFAVORED_FOR_JANUS_S3","for":[],"against":["run_started_at equals run_created_at","runner_queue_seconds=0","observer begins seconds after creation"]},
+    {"id":"H5","name":"JANUS_REPOSITORY_LOCAL_CONFIGURATION_ERROR","status":"STRONGLY_DISFAVORED","for":[],"against":["unchanged valid workflow","event eventually materialized","multiple unrelated repositories show same schedule/manual split"]},
+    {"id":"H6","name":"JANUS_CLOCK_OR_MEASUREMENT_BUG","status":"STRONGLY_DISFAVORED","for":[],"against":["instrument self-tests pass","clock synchronized on S3 run","GitHub server-side run creation timestamp supplies independent timing anchor"]},
+    {"id":"H7","name":"PUBLIC_STATUS_UNDERDESCRIBED_SCHEDULE_SPECIFIC_SCOPE_OR_DURATION","status":"LIKELY_AS_OBSERVABLE_SCOPE_MISMATCH__NOT_INTENT_EVIDENCE","for":["post-recovery JANUS S3","multiple post-recovery schedule-only community reports","status incident text focused on broad Actions and PR-trigger paths rather than schedule registration/materialization"],"against":["status pages report aggregate service impact, not every sub-path; no internal schedule metrics are public"]}
+  ],
+  "current_verdict": {
+    "platform_side_schedule_trigger_or_materialization_problem": "STRONGLY_SUPPORTED",
+    "observable_schedule_specific_impact_persisted_beyond_public_recovery_window": "STRONGLY_SUPPORTED_BY_JANUS_PLUS_MULTIPLE_INDEPENDENT_REPORTS",
+    "same_exact_aug26_database_or_event_processing_defect_caused_aug27_s3": "PLAUSIBLE_HIGH_BUT_NOT_PROVEN",
+    "public_status_scope_or_duration_was_incomplete_for_schedule_specific_symptoms": "LIKELY",
+    "github_intentionally_concealed_or_lied": "NO_EVIDENCE",
+    "exact_internal_root_cause": "UNRESOLVED"
+  },
+  "falsifiers_and_next_gates": [
+    "A GitHub RCA showing schedule-event materialization was isolated from the Aug26 trigger-processing path would lower H1 same-defect confidence.",
+    "A broad matched canary set showing normal schedule materialization while JANUS alone remains delayed would raise repository-local hypotheses.",
+    "A dual-trigger control using schedule and an authorized external workflow_dispatch path on the same minimal workflow can separate schedule control-plane latency from runner/job latency.",
+    "Collect provider-independent schedule cases with server timestamps and preserve negative cases where schedules fire normally.",
+    "Watch for GitHub's promised detailed RCA or engineering follow-up and update this dossier by supersession, never by rewriting source journals."
+  ],
+  "claim_ceiling": "The evidence supports a schedule-trigger/control-plane degradation class and a post-recovery observable mismatch. It does not prove GitHub's private internal mechanism, the exact causal continuity from the Aug26 incident into every Aug27 schedule failure, or intentional understatement."
+}
