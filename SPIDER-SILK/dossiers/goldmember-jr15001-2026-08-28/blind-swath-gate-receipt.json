@@ -1,0 +1,92 @@
+{
+  "schema": "hawkar.topa.goldmember.blind_swath_intersection_gate.v1",
+  "gate": "EXACT_H10N1_SWATH_INTERSECTION",
+  "status": "PASS",
+  "target": {
+    "name": "H10N1",
+    "lat": -7.845673,
+    "lon": -14.48023,
+    "datum": "WGS84"
+  },
+  "raw_freeze": {
+    "filename": "0019_20151018_073226_JCR.zip",
+    "bytes": 36570124,
+    "sha256": "994b92c22166270e91a725dc7b204d47819b6bcc86abd071d9a5965f6032f4ae",
+    "all_member": "0019_20151018_073226_JCR.all",
+    "all_member_bytes": 69058610,
+    "raw_state": "RAW_UNCORRECTED_KONGSBERG_EM122_ALL",
+    "freeze_verified_before_parse": true
+  },
+  "blind_firewall": {
+    "depth_z_decoded": false,
+    "bathymetry_values_emitted": false,
+    "morphology_viewed": false,
+    "reflectivity_used": false,
+    "seabed_image_used": false,
+    "allowed_fields": [
+      "position latitude/longitude/time/quality",
+      "XYZ88 ping time/heading",
+      "XYZ88 horizontal acrosstrack y",
+      "XYZ88 horizontal alongtrack x",
+      "detection validity",
+      "realtime cleaning status",
+      "installation horizontal position offsets"
+    ],
+    "method": "interpolate P-position to XYZ88 ping time; georeference valid horizontal beam footprints; create swept swath quads between consecutive pings; test frozen target point against quads"
+  },
+  "registration": {
+    "position_system_descriptor_unique": [193],
+    "P1X_m": "0.000",
+    "P1Y_m": "0.000",
+    "P1Z_m": "0.000",
+    "P1G": "WGS84",
+    "SID": "jr150001_c",
+    "RFN": "0019_20151018_073226_JCR.all",
+    "COM": "Ascension survey part 2 - after station 1",
+    "note": "P1 horizontal offsets are zero in installation datagram; XYZ88 x/y registered from active P1 position and ping heading."
+  },
+  "counts": {
+    "position_datagrams": 3598,
+    "xyz88_datagrams": 832,
+    "xyz88_georeferenced": 830,
+    "xyz88_without_nav": 2,
+    "swept_quads": 829,
+    "covering_quads": 1
+  },
+  "diagnostics": {
+    "nearest_ship_track_distance_m": 523.7089543495495,
+    "nearest_valid_beam_footprint_distance_m": 6.991571590328904,
+    "nearest_valid_beam_ping": 59737,
+    "nearest_valid_beam_index": 194,
+    "nearest_swath_edge_distance_m": 1939.9657106171983,
+    "distance_to_swath_coverage_m": 0.0,
+    "coverage_union_boundary_margin_m_if_inside": 2155.8180304783345,
+    "covering_examples": [
+      {
+        "ping_a": 59737,
+        "ping_b": 59738,
+        "t_a_abs_ms": 1741047983001445,
+        "t_b_abs_ms": 1741047983001605,
+        "heading_a_deg": 28.93,
+        "heading_b_deg": 28.92,
+        "valid_beams_a": 394,
+        "valid_beams_b": 383,
+        "port_y_a_m": -3455.577392578125,
+        "stbd_y_a_m": 3407.82373046875,
+        "port_y_b_m": -3454.203125,
+        "stbd_y_b_m": 3408.461181640625,
+        "target_margin_to_quad_boundary_m": 2.4676621057766805
+      }
+    ]
+  },
+  "scientific_boundaries": [
+    "SWATH_INTERSECTION_IS_COVERAGE_ONLY",
+    "SWATH_INTERSECTION_IS_NOT_MORPHOLOGY",
+    "SWATH_INTERSECTION_IS_NOT_ANOMALY_EVIDENCE",
+    "SVP_STALENESS_REMAINS_CALIBRATION_DEBT",
+    "TARGET_IDENTITY_REMAINS_UNCONFIRMED",
+    "NO_UNDERWATER_PYRAMID_DETECTED_BY_THIS_GATE",
+    "NO_POSTHOC_RETARGETING"
+  ],
+  "next_gate": "FREEZE_THIS_COVERAGE_RESULT__THEN_SEPARATELY_AUTHORIZE_DEPTH_MORPHOLOGY_ANALYSIS"
+}
