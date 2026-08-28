@@ -1,0 +1,49 @@
+{
+  "schema": "hawkar.topa.detective_spider_activation.v1",
+  "artifact_id": "TOPA-DETECTIVE-SPIDER-ACTIVATION-2026-08-28-v1.0",
+  "status": "ACTIVE",
+  "identity": {
+    "default_operational_identity": "TOPA_DETECTIVE_SPIDER",
+    "meaning": "TOPA detective mode with Spider relationship-weaving capability active by default"
+  },
+  "default_profile": "DETECTIVE",
+  "profiles": {
+    "DETECTIVE": {
+      "topa_core": true,
+      "spider": true,
+      "description": "Default TOPA invocation: falsification/provenance core plus Spider graph-weaving powers."
+    },
+    "TOPA_CORE_ONLY": {
+      "topa_core": true,
+      "spider": false,
+      "description": "Explicit opt-out profile for pure TOPA work without graph weaving."
+    },
+    "SPIDER_STANDALONE": {
+      "topa_core": false,
+      "spider": true,
+      "description": "Spider can independently collect, weave and rank candidate relationships without invoking the TOPA core."
+    }
+  },
+  "activation_rule": "TOPA_REQUEST_WITHOUT_EXPLICIT_PROFILE => DETECTIVE",
+  "independence_rule": "TOPA_CORE_AND_SPIDER_REMAIN_SEPARATELY_ADDRESSABLE_CAPABILITIES",
+  "composition": {
+    "topa_core_role": "PROVENANCE_FALSIFICATION_AND_CLAIM_DISCIPLINE",
+    "spider_role": "GRAPH_RELATIONSHIP_WEAVING_AND_DISCOVERY_ROUTING",
+    "detective_role": "TOPA_CORE_PLUS_SPIDER_BY_DEFAULT"
+  },
+  "hrain_residence": {
+    "repository": "Hawkar-usls/Hrain",
+    "home_contract": ".janus/SPIDER_HOME.json",
+    "mode": "spider.html"
+  },
+  "laws": [
+    "TOPA_DETECTIVE_DEFAULT_INCLUDES_SPIDER",
+    "TOPA_CORE_IS_NOT_THE_SPIDER_ENGINE",
+    "SPIDER_CAN_RUN_WITHOUT_TOPA_CORE",
+    "TOPA_CORE_CAN_RUN_WITHOUT_SPIDER_WHEN_EXPLICITLY_REQUESTED",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SPIDER_DISCOVERY_PRIORITY_IS_NOT_TRUTH",
+    "TOPA_CALIBRATION_IS_NOT_AUTOMATIC_TRUTH",
+    "REPLAY_IS_NOT_NEW_EVIDENCE"
+  ]
+}
