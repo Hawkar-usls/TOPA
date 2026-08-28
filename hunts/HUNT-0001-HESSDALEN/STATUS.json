@@ -2,8 +2,8 @@
   "schema": "janus.topa.hunt.status.v1",
   "hunt_id": "HUNT-0001",
   "slug": "HESSDALEN",
-  "updated_at_local": "2026-08-24T13:55:00+03:00",
-  "status": "ACTIVE_AFTER_PASS_003",
+  "updated_at_local": "2026-08-28T17:51:00+03:00",
+  "status": "ACTIVE_DATA_OFFER_RECEIVED",
   "current_state": "UNRESOLVED_EVENT_FAMILY__REPLICATION_WORTHY",
   "promotion_allowed": false,
   "extraordinary_interpretation": "NOT_ESTABLISHED",
@@ -11,20 +11,21 @@
   "archival_event_occurrence": "SUPPORTED_IN_STATED_SCOPE",
   "multi_channel_overlap": "PARTIAL_SAME_PROJECT_DOCUMENTED",
   "video_ingest": "IMPLEMENTED_RETINA_BRIDGE",
-  "public_drive_acquisition_path": "IMPLEMENTED_WITH_OPTIONAL_GDOWN__LIVE_HESSDALEN_FOLDER_NOT_YET_REPLAYED",
-  "raw_day_membership": "OPEN_PENDING_EXACT_SEGMENT_MANIFEST_OR_INDEPENDENT_COMPLETE_DAY_ENUMERATION",
+  "public_drive_acquisition_path": "CUSTODIAN_DATA_OFFER_DIRECTORY_LISTABLE__LOCAL_FULL_BYTE_ACQUISITION_PENDING",
+  "raw_day_membership": "DIRECTORY_ENUMERATION_OBTAINED__FULL_COMPLETENESS_NOT_YET_PROVEN",
   "raw_replay": "NOT_YET_EXECUTED",
   "k2_stereo_baseline": "BLOCKED_PENDING_SURVEYED_BASELINE_CLOCK_AND_CALIBRATION",
-  "external_data_request": "SENT_AWAITING_REPLY",
-  "highest_priority_next_action": "RESOLVE_EXACT_COMPLETE_RAW_DAY_DATASET_THEN_RUN_K1_MODERN_RAW_DAY_REPLAY",
+  "external_data_request": "REPLIED_DATA_OFFER__METADATA_FOLLOWUP_SENT",
+  "highest_priority_next_action": "ACQUIRE_HASH_CONTINUITY_THEN_RUN_K1_MODERN_RAW_DAY_REPLAY",
   "authority": {
     "preregistration": "hunts/HUNT-0001-HESSDALEN/PREREGISTRATION.json",
     "source_ledger": "hunts/HUNT-0001-HESSDALEN/SOURCE_LEDGER.json",
     "latest_pass": "hunts/HUNT-0001-HESSDALEN/PASS-003-RETINA-VIDEO-BRIDGE.json",
     "video_bridge": "tools/topa_retina_video.py",
     "video_bridge_method": "docs/RETINA_VIDEO_BRIDGE.md",
-    "external_contact": "hunts/HUNT-0001-HESSDALEN/CONTACT-001-HESSDALEN-RAW-DATA-REQUEST.json"
+    "external_contact": "hunts/HUNT-0001-HESSDALEN/CONTACT-001-HESSDALEN-RAW-DATA-REQUEST.json",
+    "data_offer_receipt": "hunts/HUNT-0001-HESSDALEN/DATA-OFFER-RECEIPT-2026-08-28.json"
   },
-  "boundary": "Hessdalen is a replication-worthy observational testbed. Video decoding, Drive acquisition, Retina recognition or an unexplained residual do not establish paranormal, extraterrestrial, intelligent or unknown-physics causation.",
+  "boundary": "Hessdalen remains a replication-worthy observational testbed. Reply or folder access is not validation; complete raw-day membership requires continuity evidence; video decoding, Drive acquisition, Retina recognition or an unexplained residual do not establish paranormal, extraterrestrial, intelligent or unknown-physics causation.",
   "world_truth": false
 }
