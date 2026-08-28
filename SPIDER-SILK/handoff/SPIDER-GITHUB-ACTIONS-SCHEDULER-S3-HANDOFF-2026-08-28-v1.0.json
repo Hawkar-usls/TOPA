@@ -2,9 +2,10 @@
   "schema": "hawkar.topa.spider.github_actions_scheduler_s3_handoff.v1",
   "artifact_id": "SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-HANDOFF-2026-08-28-v1.0",
   "date": "2026-08-28",
-  "status": "ACTIVE_INVESTIGATION_HANDOFF",
+  "status": "ACTIVE_INVESTIGATION_HANDOFF__LIVE_WEB_PASS_ARMED",
   "profile": "TOPA_DETECTIVE_SPIDER",
   "dossier": "SPIDER-SILK/dossiers/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0.json",
+  "live_workflow": ".github/workflows/spider-github-actions-scheduler-s3.yml",
   "mission": "Continue falsification-first investigation of the GitHub Actions schedule-event materialization S3 regime jump using JANUS journals plus live public primary sources.",
   "inputs": {
     "all_journals": "Use every journal reference in dossier.journal_ingestion.journal_manifest read-only; fetch the raw current bytes and verify against the recorded Git blob before extracting timing fields.",
@@ -38,6 +39,16 @@
     "negative cases and counterexamples",
     "superseding receipt when GitHub publishes a detailed RCA"
   ],
+  "live_pass_contract": {
+    "journal_count_expected": 17,
+    "journal_verification": "recompute Git blob SHA-1 from fetched raw bytes and fail closed on mismatch",
+    "external_fetch": "bounded primary-source refresh only",
+    "graph_engine": "tools/topa_spider_v22.py",
+    "write_back_to_record_drift": false,
+    "artifact_retention_days": 30,
+    "cadence": "every 6 hours at minute 41 plus workflow_dispatch and mission pushes",
+    "note": "The scheduled cadence is itself non-authoritative because GitHub schedule is the phenomenon under investigation; push/manual runs are the contrast path."
+  },
   "do_not_do": [
     "Do not modify historical Record Drift journals.",
     "Do not treat several GitHub Community posts as independent platform telemetry without accounting for copied claims.",
