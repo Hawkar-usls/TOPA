@@ -1,0 +1,214 @@
+name: TOPA SPIDER — GitHub Actions Scheduler S3 Hunt
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'SPIDER-SILK/dossiers/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0.json'
+      - 'SPIDER-SILK/handoff/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-HANDOFF-2026-08-28-v1.0.json'
+      - '.github/workflows/spider-github-actions-scheduler-s3.yml'
+      - 'tools/topa_spider_v22.py'
+      - 'tools/topa_spider_v21.py'
+  schedule:
+    - cron: '41 */6 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  investigate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Spider scientific self-test
+        run: python tools/topa_spider_v22.py self-test
+
+      - name: Read every JANUS journal and refresh public web evidence
+        shell: bash
+        run: |
+          mkdir -p work/github-actions-scheduler-s3
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, html, json, re, urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          dossier_path = Path('SPIDER-SILK/dossiers/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0.json')
+          dossier = json.loads(dossier_path.read_text(encoding='utf-8'))
+          out = Path('work/github-actions-scheduler-s3')
+          ua = {'User-Agent': 'TOPA-Detective-Spider/1.0 evidence-refresh'}
+
+          def fetch(url: str, max_bytes: int = 2_000_000):
+              req = urllib.request.Request(url, headers=ua)
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      b = r.read(max_bytes + 1)
+                      truncated = len(b) > max_bytes
+                      if truncated:
+                          b = b[:max_bytes]
+                      return {
+                          'ok': True,
+                          'status': getattr(r, 'status', None),
+                          'final_url': r.geturl(),
+                          'bytes': b,
+                          'truncated': truncated,
+                          'content_type': r.headers.get('content-type')
+                      }
+              except Exception as e:
+                  return {'ok': False, 'error': f'{type(e).__name__}: {e}', 'bytes': b''}
+
+          def git_blob_sha(raw: bytes) -> str:
+              return hashlib.sha1(f'blob {len(raw)}\0'.encode() + raw).hexdigest()
+
+          records = []
+          journal_checks = []
+          base_raw = 'https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/main/'
+
+          for j in dossier['journal_ingestion']['journal_manifest']:
+              url = base_raw + j['path']
+              f = fetch(url)
+              observed_blob = git_blob_sha(f['bytes']) if f['ok'] else None
+              blob_ok = bool(f['ok'] and observed_blob == j['blob_sha'])
+              row = {
+                  'path': j['path'],
+                  'expected_blob_sha': j['blob_sha'],
+                  'observed_blob_sha': observed_blob,
+                  'blob_ok': blob_ok,
+                  'fetch_ok': f['ok'],
+                  'error': f.get('error')
+              }
+              journal_checks.append(row)
+              if not f['ok']:
+                  continue
+              obj = json.loads(f['bytes'].decode('utf-8'))
+              c = obj.get('global_controls', {})
+              c28 = c.get('C28_SCHEDULER_LATENCY') or {}
+              st = c.get('instrument_self_tests') or obj.get('instrument_self_tests') or {}
+              summary = {
+                  'artifact_uuid': obj.get('artifact_uuid'),
+                  'observed_at_utc': obj.get('observed_at_utc'),
+                  'instrument_all_pass': st.get('all_pass'),
+                  'expected_schedule_utc': c28.get('expected_schedule_utc'),
+                  'run_created_at_utc': c28.get('run_created_at_utc'),
+                  'scheduler_materialization_delay_seconds': c28.get('scheduler_materialization_delay_seconds'),
+                  'runner_queue_after_creation_seconds': c28.get('runner_queue_after_creation_seconds'),
+                  'operational_classification': c28.get('operational_classification')
+              }
+              records.append({
+                  'provider': 'JANUS_RECORD_DRIFT',
+                  'archive_id': obj.get('artifact_uuid') or j['path'],
+                  'title': obj.get('artifact_uuid') or j['path'],
+                  'text': json.dumps(summary, ensure_ascii=False, sort_keys=True),
+                  'source_url': url,
+                  'relation_tags': ['github-actions', 'schedule', 'C28', 'record-drift-observatory'],
+                  'record_sha256': hashlib.sha256(f['bytes']).hexdigest(),
+                  'raw_metadata': {'git_blob_sha': observed_blob, 'blob_ok': blob_ok}
+              })
+
+          external = []
+          for group in ('official', 'independent_user_reports', 'pre_incident_controls'):
+              for src in dossier['external_evidence'].get(group, []):
+                  x = dict(src)
+                  x['group'] = group
+                  external.append(x)
+
+          external_checks = []
+          tag_re = re.compile(r'<[^>]+>')
+          ws_re = re.compile(r'\s+')
+          for src in external:
+              f = fetch(src['url'])
+              raw = f['bytes']
+              external_checks.append({
+                  'id': src['id'], 'group': src['group'], 'url': src['url'],
+                  'fetch_ok': f['ok'], 'status': f.get('status'),
+                  'sha256': hashlib.sha256(raw).hexdigest() if raw else None,
+                  'error': f.get('error'), 'truncated': f.get('truncated', False)
+              })
+              if f['ok']:
+                  text = raw.decode('utf-8', errors='replace')
+                  if 'html' in str(f.get('content_type', '')).lower() or '<html' in text[:1000].lower():
+                      text = html.unescape(tag_re.sub(' ', text))
+                  text = ws_re.sub(' ', text).strip()[:12000]
+              else:
+                  text = src.get('finding', '')
+              records.append({
+                  'provider': 'GITHUB_STATUS' if src['group'] == 'official' else 'GITHUB_COMMUNITY',
+                  'archive_id': src['id'],
+                  'title': src['id'],
+                  'text': src.get('finding', '') + ' LIVE_CAPTURE: ' + text,
+                  'source_url': src['url'],
+                  'relation_tags': ['github-actions', 'schedule', src['group']],
+                  'record_sha256': hashlib.sha256(raw).hexdigest() if raw else None,
+                  'raw_metadata': {'fetch_ok': f['ok'], 'status': f.get('status'), 'error': f.get('error')}
+              })
+
+          records_path = out / 'evidence-records.jsonl'
+          with records_path.open('w', encoding='utf-8', newline='\n') as h:
+              for r in records:
+                  h.write(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(',', ':')) + '\n')
+
+          receipt = {
+              'schema': 'hawkar.topa.spider.github_actions_scheduler_s3.live_receipt.v1',
+              'status': 'PASS' if all(x['blob_ok'] for x in journal_checks) else 'FAIL_JOURNAL_BLOB_CHECK',
+              'captured_at_utc': datetime.now(timezone.utc).isoformat(),
+              'dossier': str(dossier_path),
+              'journals_expected': len(journal_checks),
+              'journals_blob_verified': sum(x['blob_ok'] for x in journal_checks),
+              'journal_checks': journal_checks,
+              'external_sources': len(external_checks),
+              'external_fetch_ok': sum(x['fetch_ok'] for x in external_checks),
+              'external_checks': external_checks,
+              'records_emitted': len(records),
+              'laws': [
+                  'HISTORICAL_JOURNALS_ARE_READ_ONLY',
+                  'FETCH_SUCCESS_IS_NOT_TRUTH',
+                  'GRAPH_EDGE_IS_NOT_CAUSATION',
+                  'PUBLIC_STATUS_SCOPE_MISMATCH_IS_NOT_INTENT_EVIDENCE',
+                  'SCHEDULER_DRIFT_IS_NOT_RECORD_DRIFT'
+              ]
+          }
+          (out / 'live-receipt.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          if receipt['status'] != 'PASS':
+              raise SystemExit('JOURNAL_BLOB_VERIFICATION_FAILED')
+          print(f"JOURNALS_VERIFIED={receipt['journals_blob_verified']}/{receipt['journals_expected']}")
+          print(f"EXTERNAL_FETCH_OK={receipt['external_fetch_ok']}/{receipt['external_sources']}")
+          PY
+
+      - name: Weave evidence graph
+        run: |
+          python tools/topa_spider_v22.py weave \
+            --input work/github-actions-scheduler-s3/evidence-records.jsonl \
+            --nodes work/github-actions-scheduler-s3/spider-nodes.jsonl \
+            --edges work/github-actions-scheduler-s3/spider-edges.jsonl \
+            --receipt work/github-actions-scheduler-s3/spider-weave-receipt.json \
+            --semantic-threshold 0.14 \
+            --topk 8 \
+            --keyword-nodes 12
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          live=json.loads(Path('work/github-actions-scheduler-s3/live-receipt.json').read_text())
+          weave=json.loads(Path('work/github-actions-scheduler-s3/spider-weave-receipt.json').read_text())
+          assert live['status']=='PASS'
+          assert live['journals_expected']==17
+          assert live['journals_blob_verified']==17
+          assert weave['status']=='PASS'
+          laws=set(weave.get('laws', []))
+          assert 'GRAPH_EDGE_IS_NOT_CAUSATION' in laws
+          print('TOPA_SPIDER_GITHUB_ACTIONS_S3_FIREWALL=PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-github-actions-scheduler-s3
+          path: work/github-actions-scheduler-s3
+          retention-days: 30
