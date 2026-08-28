@@ -1,0 +1,153 @@
+{
+  "schema": "hawkar.topa.longevity.mechanical_lock.mui_gate_audit.freeze.v1",
+  "artifact_id": "TOPA-SPIDER-MUI-GATE-AUDIT-RESULT-2026-08-28-v1.0",
+  "created_at_utc": "2026-08-28T19:25:11Z",
+  "repository": "Hawkar-usls/TOPA",
+  "branch": "research/longevity-mechanical-lock-topa-spider-2026-08-28",
+  "workflow_run": {
+    "name": "TOPA SPIDER Longevity Mechanical Lock Mui 2026",
+    "run_id": 33203759330,
+    "job_id": 98959465141,
+    "head_sha": "f4fb1e1a55652ca57a100748153c827a76724a90",
+    "conclusion": "SUCCESS",
+    "firewall": "TOPA_SPIDER_LONGEVITY_MECHANICAL_LOCK_FIREWALL=PASS"
+  },
+  "workflow_artifact": {
+    "name": "topa-spider-longevity-mechanical-lock-mui-2026",
+    "artifact_id": 9698799197,
+    "zip_sha256": "d244f348fed657f419d850c35b7de712d76e959daa559b294ad75e94d33fba4c",
+    "bytes": 58346,
+    "file_count": 15,
+    "retention_days": 30
+  },
+  "source": {
+    "doi": "10.1126/science.ady3136",
+    "pmid": "41955369",
+    "pmcid": "PMC7619039",
+    "dataset": "GSE274858",
+    "public_code": "JosephJYW/HA_TissueMechanics_Science2026",
+    "zenodo_record": "18458384"
+  },
+  "spider": {
+    "status": "PASS",
+    "documents": 7,
+    "nodes": 145,
+    "edges": 186,
+    "edge_types": {
+      "MENTIONS": 155,
+      "SEMANTIC_SIMILARITY": 4,
+      "SHARED_ENTITY": 25,
+      "SOURCE_LINEAGE": 2
+    },
+    "weak_or_speculative_edges": 184,
+    "node_stream_sha256": "81c2e5683b5f258029b0a6dff46cf04e94187297bf6e8aaed2a69a379aaad158",
+    "edge_stream_sha256": "536e47343b98ebc3f26764d7e5cac94fcd48842c1dbf0500cde483a2f5aaf4c4",
+    "laws": [
+      "GRAPH_EDGE_IS_NOT_CAUSATION",
+      "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+      "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+      "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
+    ]
+  },
+  "context_fur": {
+    "status": "PASS",
+    "pass_id": "LONGEVITY-MECHANICAL-LOCK-MUI-P1",
+    "subjects": 7,
+    "facet_status_counts": {
+      "PARTIAL": 11,
+      "UNKNOWN": 115
+    },
+    "acquisition_tasks": 126,
+    "conflicts": 0,
+    "stream_sha256": "6722c891e007b7195a69498a9cb63ea8feee6c5e168bc3c697719a297540e9a5"
+  },
+  "frozen_prior": {
+    "broad_three_tissue_causal_mechanics_gate": "PASS_ALREADY_AS_OF_2026-08-24",
+    "broad_strong_tissues": [
+      "HEART",
+      "SKIN",
+      "SPINAL_CORD"
+    ],
+    "broad_status": "P0_CROSS_TISSUE_CAUSAL_MECHANICAL_STATE_GATE",
+    "strict_delayed_mechanical_clock": "OPEN_WITH_ONE_STRICT_5_OF_5_SKIN_ROOT",
+    "strict_admitted_tissues": 1,
+    "strict_required_tissues": 2
+  },
+  "topa_attacks": [
+    {
+      "claim": "MUI_IS_THE_THIRD_TISSUE_NEEDED_TO_PASS_BROAD_MECHANICAL_GATE",
+      "verdict": "REJECTED_AS_OBSOLETE_PRIOR",
+      "reason": "The broad three-tissue gate had already passed on HEART, SKIN and SPINAL_CORD before this paper was screened."
+    },
+    {
+      "claim": "MUI_PROVES_PURE_MECHANICAL_CAUSALITY_ISOLATED_FROM_ECM_CHEMISTRY",
+      "verdict": "NOT_ADMITTED",
+      "reason": "HA depletion and HAPLN1 intervention alter ECM chemistry, organization and mechanics together."
+    },
+    {
+      "claim": "MUI_CLOSES_MECHANICAL_STATE_TIMING_GATE",
+      "verdict": "NOT_ADMITTED",
+      "reason": "No explicit delayed post-established-repair direct physical retuning root was established; late outcome timepoints are not intervention timing."
+    },
+    {
+      "claim": "PUBMED_PMC_GEO_GITHUB_ZENODO_ARE_FIVE_INDEPENDENT_BIOLOGICAL_REPLICATIONS",
+      "verdict": "REJECTED_LINEAGE_INFLATION",
+      "reason": "They are publication, dataset, code and archive views of the same experimental program."
+    },
+    {
+      "claim": "MOUSE_DIGIT_REGENERATION_IMPLIES_HUMAN_REGENERATIVE_EFFICACY",
+      "verdict": "REJECTED_TRANSLATIONAL_OVERREACH"
+    }
+  ],
+  "keymaster_survivors": [
+    {
+      "claim": "MUI_ADDS_AN_INDEPENDENT_CAUSAL_DIGIT_MODEL_SUPPORTING_CONTEXT_SPECIFIC_ECM_MECHANICAL_NICHE_CONTROL",
+      "status": "SURVIVES_WITH_CONFOUNDER_BOUNDARY",
+      "claim_ceiling": "Causal ECM/niche support; not pure mechanics isolation and not a universal stiffness law."
+    },
+    {
+      "claim": "GSE274858_AND_PUBLIC_CODE_CREATE_A_REPLAYABLE_CELL_STATE_SUBGATE",
+      "status": "SURVIVES",
+      "claim_ceiling": "Replay can test the transcriptomic analysis and perturbation-associated cell states but is not an independent animal replication."
+    },
+    {
+      "claim": "STRICT_DELAYED_MECHANICAL_CLOCK_REMAINS_OPEN",
+      "status": "SURVIVES"
+    }
+  ],
+  "gate_delta": {
+    "broad_causal_mechanical_state_gate": "NO_CHANGE_ALREADY_PASS",
+    "evidence_base": "STRENGTHENED_BY_DISTINCT_DIGIT_MODEL",
+    "mechanical_state_timing_gate": "NO_UPGRADE",
+    "pure_mechanics_isolation": "OPEN",
+    "human_efficacy": "NOT_ESTABLISHED"
+  },
+  "observer_correction": {
+    "previous_bad_wording": "Mui may be the third strong causal mechanical-lock tissue needed to change the broad gate.",
+    "corrected_wording": "Mui strengthens the already-passed broad causal mechanical-niche evidence base with a distinct digit model. It does not close the remaining strict delayed mechanical-clock gate.",
+    "status": "CORRECTED_BY_TOPA_SPIDER"
+  },
+  "next_gate": {
+    "name": "MECHANICAL_STATE_TIMING_GATE",
+    "target": "ONE_ADDITIONAL_INDEPENDENT_STRICT_DELAYED_5_OF_5_DIRECT_PHYSICAL_RETUNING_ROOT",
+    "highest_value_tissues": [
+      "HEART",
+      "SPINAL_CORD",
+      "TENDON"
+    ]
+  },
+  "next_actions": [
+    "Replay GSE274858 with frozen contrasts for HA-inhibition-associated cell-state changes.",
+    "Inspect supplementary methods for exact intervention timing and AFM/force-map pairing without inferring intervention timing from later outcome timepoints.",
+    "Search HEART, SPINAL_CORD and TENDON for an independent delayed direct physical retuning root satisfying the existing 5-of-5 protocol.",
+    "Keep Mui as a distinct digit-model causal support node with chemistry-mechanics coupling explicit."
+  ],
+  "hard_boundaries": [
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SAME_EXPERIMENT_MULTIPLE_REPOSITORIES_IS_NOT_INDEPENDENT_REPLICATION",
+    "MEASURED_STIFFNESS_PLUS_COUPLED_ECM_INTERVENTION_IS_NOT_PURE_MECHANICS_ISOLATION",
+    "OUTCOME_TIME_IS_NOT_INTERVENTION_TIME",
+    "ANIMAL_REGENERATION_IS_NOT_HUMAN_EFFICACY",
+    "NO_GATE_RELAXATION"
+  ]
+}
