@@ -1,11 +1,14 @@
 {
   "schema": "janus.topa.hunt.next-gate.v1",
   "hunt_id": "HUNT-0001",
-  "updated_at_local": "2026-08-24T13:43:00+03:00",
+  "updated_at_local": "2026-08-28T17:51:00+03:00",
   "active_gate": "K1_MODERN_RAW_DAY_REPLAY",
-  "state": "ACQUISITION_OPEN",
-  "blocked_on": "Exact enumeration/download path for the public full raw day",
+  "state": "ACQUIRE_HASH_CONTINUITY_OPEN",
+  "blocked_on": "Local byte acquisition, hash manifest and duration/timecode continuity; Cam1 12:45:01 naming deviation requires explicit seam test before full-day completeness can be claimed",
+  "continuity_priority": "Cam1 12:30 -> 12:45:01 -> 13:00",
   "after_k1": "K2_STEREO_BASELINE_GATE",
-  "k2_note": "Do not use the two co-mounted Blue Box mast cameras as a stereo parallax pair without a nontrivial surveyed baseline.",
+  "k2_state": "BLOCKED",
+  "k2_open_only_if": ["surveyed separated positions", "overlapping FOV", "bounded clock synchronization", "calibration"],
+  "k2_note": "Two camera streams do not establish a stereo baseline. Do not triangulate without surveyed separation, overlap, clock bounds and calibration.",
   "world_truth": false
 }
