@@ -1,0 +1,180 @@
+{
+  "schema": "hawkar.topa.detective_spider.sacred_texts_rerun.v1",
+  "artifact_id": "TOPA-DETECTIVE-SPIDER-SACRED-TEXTS-RERUN-2026-08-28-v1.0",
+  "status": "BOUNDED_RECONSTRUCTED_SUMMARY_PASS",
+  "activation_profile": "DETECTIVE",
+  "activation_meaning": "TOPA_CORE_PLUS_SPIDER",
+  "scope_note": "The exact earlier full sacred-scripture bundle requested on 2026-08-26 was not physically recovered by repository/file search. This rerun therefore freezes a reconstructed comparative layer rather than pretending the lost bundle was found.",
+  "claim_ceiling": "COMPARATIVE_MOTIF_AND_DISCOVERY_GRAPH_ONLY__NOT_SHARED_SUPERNATURAL_SOURCE__NOT_HISTORICAL_EVENT_PROOF__NOT_THEOLOGICAL_VERDICT",
+  "corpus": {
+    "document_count": 30,
+    "representation": "bounded neutral summaries plus primary-text anchors; not full copyrighted text",
+    "texts": [
+      ["TORAH","Judaism","Torah / Pentateuch"],
+      ["NEVIIM","Judaism","Nevi'im / Prophets"],
+      ["KETUVIM","Judaism","Ketuvim / Writings"],
+      ["PSALMS","Judaism","Psalms"],
+      ["NT","Christianity","New Testament"],
+      ["QURAN","Islam","Qur'an"],
+      ["AVESTA","Zoroastrianism","Avesta / Gathas"],
+      ["RIGVEDA","Vedic","Rig Veda"],
+      ["SAMAVEDA","Vedic","Sama Veda"],
+      ["YAJURVEDA","Vedic","Yajur Veda"],
+      ["ATHARVAVEDA","Vedic","Atharva Veda"],
+      ["UPANISHADS","Hindu","Principal Upanishads"],
+      ["TAITTIRIYA","Hindu","Taittiriya Upanishad"],
+      ["KATHA","Hindu","Katha Upanishad"],
+      ["ISA","Hindu","Isha Upanishad"],
+      ["GITA","Hindu","Bhagavad Gita"],
+      ["DHAMMAPADA","Theravada Buddhism","Dhammapada"],
+      ["SUTTANIPATA","Theravada Buddhism","Sutta Nipata"],
+      ["HEART","Mahayana Buddhism","Heart Sutra"],
+      ["LOTUS","Mahayana Buddhism","Lotus Sutra"],
+      ["ACARANGA","Jainism","Acaranga Sutra"],
+      ["GGS","Sikhism","Guru Granth Sahib"],
+      ["DAO","Daoism","Dao De Jing"],
+      ["ZHUANGZI","Daoism","Zhuangzi"],
+      ["KOJIKI","Shinto","Kojiki"],
+      ["POPOL","Maya","Popol Vuh"],
+      ["PYRAMID","Ancient Egyptian","Pyramid Texts"],
+      ["BOD","Ancient Egyptian","Book of the Dead"],
+      ["AQDAS","Baha'i","Kitab-i-Aqdas"],
+      ["BOM","Latter-day Saint","Book of Mormon"]
+    ]
+  },
+  "primary_anchors_checked": [
+    {"text":"Torah / Genesis 1","finding":"unformed deep/waters, divine speech, light and separation/order","url":"https://www.sefaria.org/Genesis.1.1-3"},
+    {"text":"Qur'an 2:117","finding":"creation/origination by divine command: Be, and it is","url":"https://corpus.quran.com/translation.jsp?chapter=2&verse=117"},
+    {"text":"New Testament / John 1","finding":"Logos/Word, creation, life and light","url":"https://www.biblegateway.com/passage/?search=John+1&version=KJV"},
+    {"text":"Rig Veda 10.129","finding":"creation hymn preserves primordial darkness/waters and explicit uncertainty about ultimate origin","url":"https://sacred-texts.com/hin/rvsan/rv10129.htm"},
+    {"text":"Bhagavad Gita 15.1","finding":"inverted sacred tree with roots above and branches below","url":"https://www.gitasupersite.iitk.ac.in/en/bhagavadgita/15.1"},
+    {"text":"Avesta / Yasna 30","finding":"choice between better and bad orientations in thought, word and action; life/not-life and final moral horizon","url":"https://www.avesta.org/yasna/yasna.htm"},
+    {"text":"Daoist classical layer","finding":"nameless beginning/origin and mother imagery; naming/distinction follows source","url":"https://ctext.org/heshanggong/1"},
+    {"text":"Dhammapada ch.1","finding":"mind/conduct, hatred answered by non-hatred, mortality awareness","url":"https://en.wikisource.org/wiki/Translation:Dhammapada/Chapter_1"},
+    {"text":"Pyramid Texts","finding":"ancient Egyptian funerary utterance corpus with ritual, cosmology and afterlife transformation","url":"https://www.sacred-texts.com/egy/pyt/index.htm"},
+    {"text":"Revelation 22","finding":"river/water of life, tree of life, healing, divine light and renewed order","url":"https://www.biblegateway.com/passage/?search=Revelation+22&version=KJV"}
+  ],
+  "spider_candidate_clusters": [
+    {
+      "id": "C1_INFORMATION_TO_ORDER",
+      "label": "word / speech / name / sound as ordering interface",
+      "members": ["TORAH","QURAN","NT","RIGVEDA","SAMAVEDA","UPANISHADS","GGS","DAO","POPOL"],
+      "spider_status": "STRONG_DISCOVERY_CLUSTER",
+      "topa_status": "SURVIVES_AS_COMPARATIVE_STRUCTURE_ONLY",
+      "topa_attack": "Split cosmogenic speech, Logos ontology, sacred chant, Naam/Shabad, and naming philosophy; semantic similarity is not one mechanism.",
+      "best_remaining_statement": "Many traditions use information-like acts (speech, word, name, chant, distinction) as a bridge between undifferentiated reality and experienced order."
+    },
+    {
+      "id": "C2_TREE_AXIS_LIFE",
+      "label": "sacred tree / axis / life structure",
+      "members": ["TORAH","NT","GITA","KATHA"],
+      "spider_status": "VISIBLE_CROSS_CORPUS_CLUSTER",
+      "topa_status": "PARTIALLY_COLLAPSED_BY_LINEAGE_AND_SYMBOLIC_PRIOR",
+      "topa_attack": "Gita-Katha are not independent; Torah-New Testament are not independent; remaining cross-family similarity is symbolic, not causal evidence.",
+      "best_remaining_statement": "Tree imagery repeatedly models life, cosmos or connection between levels, but the graph does not establish a common historical source across all branches."
+    },
+    {
+      "id": "C3_JUDGMENT_ACCOUNTABILITY",
+      "label": "moral accounting / judgment after or beyond ordinary life",
+      "members": ["NEVIIM","NT","QURAN","AVESTA","BOD","BOM"],
+      "spider_status": "STRONG_FUNCTIONAL_CLUSTER",
+      "topa_status": "UNRESOLVED_COMPARATIVE_CONVERGENCE",
+      "topa_attack": "Near-Eastern textual contact and later lineage explain part of the cluster; Egyptian, Iranian and Abrahamic concepts are not interchangeable.",
+      "best_remaining_statement": "Moral behavior is repeatedly projected into a larger accounting horizon, but the mechanisms and metaphysics differ sharply."
+    },
+    {
+      "id": "C4_PRIMORDIAL_WATER_LIGHT",
+      "label": "water/darkness/light/order in origin imagery",
+      "members": ["TORAH","RIGVEDA","KOJIKI","DAO","POPOL","NT"],
+      "spider_status": "BROAD_CROSS_TRADITION_CLUSTER",
+      "topa_status": "WEAKENED_BY_UNIVERSAL_METAPHOR_PRIOR",
+      "topa_attack": "Water, darkness and light are globally available human experiences; motif recurrence alone has low specificity.",
+      "best_remaining_statement": "Origin narratives often turn perceptual primitives such as darkness, water and light into models of transition from indeterminacy to order."
+    },
+    {
+      "id": "C5_ETHICAL_CONVERGENCE",
+      "label": "restraint / mercy / compassion / non-hatred / justice",
+      "members": ["NEVIIM","NT","QURAN","DHAMMAPADA","LOTUS","ACARANGA","GGS"],
+      "spider_status": "ROBUST_CROSS_TRADITION_FUNCTIONAL_CLUSTER",
+      "topa_status": "SURVIVES_BUT_HAS_STRONG_SOCIAL_PSYCHOLOGICAL_ALTERNATIVE",
+      "topa_attack": "Prosocial norms can converge because cooperative communities face recurrent coordination, violence and ego-control problems.",
+      "best_remaining_statement": "Very different traditions repeatedly promote regulation of aggression and ego through justice, compassion, restraint or nonviolence."
+    },
+    {
+      "id": "C6_DEATH_RENEWAL_TRANSFORMATION",
+      "label": "death / renewal / resurrection / rebirth / liberation",
+      "members": ["NT","AVESTA","UPANISHADS","GITA","KOJIKI","POPOL","PYRAMID","BOD","BOM","KATHA"],
+      "spider_status": "VERY_DENSE_CLUSTER",
+      "topa_status": "OVERBROAD_UMBRELLA__DO_NOT_PROMOTE",
+      "topa_attack": "Resurrection, rebirth, funerary transformation, cosmic renewal and liberation are distinct ideas; density here is partly category inflation.",
+      "best_remaining_statement": "Mortality is a nearly universal pressure that generates multiple sacred models for continuity or transformation, not one shared doctrine."
+    },
+    {
+      "id": "C7_FIRE_ORDER",
+      "label": "fire as sacred order / transformation",
+      "members": ["AVESTA","RIGVEDA","YAJURVEDA","ATHARVAVEDA"],
+      "spider_status": "HIGH_SIMILARITY",
+      "topa_status": "COLLAPSED_AS_INDEPENDENT_CONFIRMATION",
+      "topa_attack": "The Indo-Iranian historical relationship is a strong common-heritage explanation; multiple texts do not count as independent witnesses.",
+      "best_remaining_statement": "Excellent lineage signal, poor independent-confirmation signal."
+    },
+    {
+      "id": "C8_INNER_TRANSFORMATION",
+      "label": "mind / ego / desire / insight as the main battlefield",
+      "members": ["KETUVIM","AVESTA","UPANISHADS","GITA","DHAMMAPADA","SUTTANIPATA","HEART","ACARANGA","GGS","KATHA"],
+      "spider_status": "BROAD_FUNCTIONAL_CLUSTER",
+      "topa_status": "SURVIVES_AS_HUMAN_PSYCHOLOGICAL_CONVERGENCE",
+      "topa_attack": "Different traditions define self, desire and liberation differently; shared inward focus does not imply shared metaphysics.",
+      "best_remaining_statement": "A striking fraction of the corpus treats disciplined attention, desire or ego as a lever for changing lived reality."
+    }
+  ],
+  "topa_ranked_takeaways": [
+    {
+      "rank": 1,
+      "candidate": "INFORMATION_TO_ORDER",
+      "why_interesting": "It crosses several otherwise distant textual families and is structurally more specific than generic light/water symbolism.",
+      "promotion": "COMPARATIVE_PATTERN_ONLY"
+    },
+    {
+      "rank": 2,
+      "candidate": "ETHICAL_CONVERGENCE",
+      "why_interesting": "Prosocial restraint appears through substantially different metaphysical systems.",
+      "promotion": "HUMAN_CONVERGENCE_PATTERN"
+    },
+    {
+      "rank": 3,
+      "candidate": "INNER_TRANSFORMATION",
+      "why_interesting": "Many corpora relocate the decisive struggle from external power to attention, desire, ego, wisdom or conduct.",
+      "promotion": "HUMAN_COGNITIVE_PATTERN"
+    },
+    {
+      "rank": 4,
+      "candidate": "JUDGMENT_ACCOUNTABILITY",
+      "why_interesting": "Functionally similar moral-accounting structures recur, but historical contact and semantic non-equivalence remain major confounds.",
+      "promotion": "UNRESOLVED_COMPARATIVE_PATTERN"
+    }
+  ],
+  "falsification_firewall": [
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "SEMANTIC_SIMILARITY_IS_NOT_SHARED_ORIGIN",
+    "TRANSLATION_WORD_MATCH_IS_NOT_CONCEPT_IDENTITY",
+    "TEXTUAL_LINEAGE_IS_NOT_INDEPENDENT_WITNESS",
+    "UNIVERSAL_HUMAN_METAPHOR_HAS_HIGH_PRIOR",
+    "MOTIF_DICTIONARY_CAN_CREATE_LOOK_ELSEWHERE_BIAS",
+    "SUMMARY_LAYER_IS_NOT_FULL_TEXT",
+    "RELIGIOUS_SIMILARITY_IS_NOT_SUPERNATURAL_EVIDENCE",
+    "DIFFERENCE_AND_CONTRADICTION_MUST_BE_PRESERVED"
+  ],
+  "next_gate": {
+    "id": "SACRED_TEXTS_FULL_TEXT_BLIND_GRAPH_V2",
+    "requirements": [
+      "recover or rebuild exact source corpus with edition and translation provenance",
+      "freeze motif vocabulary before scoring",
+      "run language-aware embeddings plus lexical controls",
+      "collapse known textual lineages before counting independence",
+      "include negative-control secular corpora matched by era/genre",
+      "test whether sacred cross-tradition similarity exceeds generic mythic/philosophical literature"
+    ],
+    "status": "OPEN"
+  }
+}
