@@ -1,0 +1,240 @@
+name: TOPA SPIDER Longevity Mechanical Lock Mui 2026
+
+on:
+  push:
+    branches:
+      - research/longevity-mechanical-lock-topa-spider-2026-08-28
+    paths:
+      - '.github/workflows/longevity-mechanical-lock-topa-spider.yml'
+      - 'SPIDER-SILK/dossiers/longevity-mechanical-lock-mui-2026-08-28/**'
+  workflow_dispatch:
+
+jobs:
+  topa-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: TOPA SPIDER self-tests
+        run: |
+          python tools/topa_spider_v2.py self-test
+          python tools/topa_spider_context_fur.py self-test
+
+      - name: Acquire and hash public evidence roots
+        run: |
+          set -euo pipefail
+          mkdir -p work/longevity-mui/public
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=41955369&retmode=xml' \
+            -o work/longevity-mui/public/pubmed-41955369.xml
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/PMC7619039/unicode' \
+            -o work/longevity-mui/public/pmc7619039.bioc.json
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE274858&targ=self&form=text&view=full' \
+            -o work/longevity-mui/public/GSE274858.txt
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://api.github.com/repos/JosephJYW/HA_TissueMechanics_Science2026' \
+            -o work/longevity-mui/public/code-repo.json
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://zenodo.org/api/records/18458384' \
+            -o work/longevity-mui/public/zenodo-18458384.json
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://raw.githubusercontent.com/Hawkar-usls/janus-lapis/LONGEVITY-SURVIVOR/longevity-survivor/MECHANICAL-LOCK-CROSS-TISSUE-CLOSEOUT-2026-08-24-v1.0.json' \
+            -o work/longevity-mui/public/frozen-cross-tissue-closeout.json
+          curl -L --fail --retry 3 --connect-timeout 20 \
+            'https://raw.githubusercontent.com/Hawkar-usls/janus-lapis/LONGEVITY-SURVIVOR/longevity-survivor/MECHANICAL-STATE-TIMING-GATE-2026-08-25-v0.1.2.json' \
+            -o work/longevity-mui/public/frozen-timing-gate.json
+          sha256sum work/longevity-mui/public/* > work/longevity-mui/public/SHA256SUMS.txt
+          wc -c work/longevity-mui/public/* > work/longevity-mui/public/SIZES.txt
+
+      - name: Spider weave
+        run: |
+          python tools/topa_spider_v2.py weave \
+            --input SPIDER-SILK/dossiers/longevity-mechanical-lock-mui-2026-08-28/seeds.jsonl \
+            --nodes work/longevity-mui/spider-nodes.jsonl \
+            --edges work/longevity-mui/spider-edges.jsonl \
+            --receipt work/longevity-mui/spider-receipt.json \
+            --semantic-threshold 0.12 \
+            --topk 10 \
+            --keyword-nodes 16
+
+      - name: Spider context fur
+        run: |
+          python tools/topa_spider_context_fur.py build \
+            --records SPIDER-SILK/dossiers/longevity-mechanical-lock-mui-2026-08-28/seeds.jsonl \
+            --out work/longevity-mui/context-fur.jsonl \
+            --receipt work/longevity-mui/context-fur-receipt.json \
+            --pass-id LONGEVITY-MECHANICAL-LOCK-MUI-P1
+
+      - name: TOPA adversarial gate attack and Keymaster survivor receipt
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import json, re
+
+          root=Path('work/longevity-mui')
+          pub=root/'public'
+          cross=json.loads((pub/'frozen-cross-tissue-closeout.json').read_text())
+          timing=json.loads((pub/'frozen-timing-gate.json').read_text())
+          pubmed=(pub/'pubmed-41955369.xml').read_text(errors='replace')
+          bioc=(pub/'pmc7619039.bioc.json').read_text(errors='replace')
+          geo=(pub/'GSE274858.txt').read_text(errors='replace')
+          repo=json.loads((pub/'code-repo.json').read_text())
+          zen=json.loads((pub/'zenodo-18458384.json').read_text())
+          full=(pubmed+'\n'+bioc).lower()
+
+          def has(*needles):
+              return all(n.lower() in full for n in needles)
+
+          checks={
+            'doi_present': '10.1126/science.ady3136' in full,
+            'pmid_present': '41955369' in pubmed,
+            'geo_accession_present': 'GSE274858' in geo,
+            'public_code_repo_identified': repo.get('full_name')=='JosephJYW/HA_TissueMechanics_Science2026',
+            'zenodo_record_identified': str(zen.get('id'))=='18458384',
+            'physical_mechanics_measured': any(x in full for x in ['atomic force microscopy','force mapping','stiffness']),
+            'ha_perturbation_present': ('hyaluronic' in full or 'hyaluronan' in full) and any(x in full for x in ['deplet','inhibit']),
+            'hapln1_intervention_present': 'hapln1' in full and any(x in full for x in ['overexpress','lentivirus','transplant']),
+            'regenerative_outcome_present': any(x in full for x in ['bone repair','bone elongation','reduced scarring','promoted fibrosis','inhibited regeneration']),
+          }
+
+          # Strict timing requires an explicit delayed post-establishment direct physical retuning.
+          # Absence of an explicit qualifying timing statement is preserved as NOT_ESTABLISHED, never inferred from wording order.
+          delay_hits=[]
+          for m in re.finditer(r'(.{0,220}(?:day|dpa|days post|after amputation|after injury).{0,260})', full, flags=re.I|re.S):
+              s=' '.join(m.group(1).split())
+              if any(k in s for k in ['hapln1','hyaluron','stiff','mechan','collagen']):
+                  delay_hits.append(s[:480])
+          explicit_delayed_post_establishment=False
+          # The frozen gate itself requires intervention after the repair/scar state is established.
+          # We intentionally do not promote generic 'after amputation' wording or outcome measurement at later DPA.
+
+          attacks=[
+            {
+              'claim':'MUI_IS_THE_THIRD_TISSUE_NEEDED_TO_PASS_BROAD_MECHANICAL_GATE',
+              'verdict':'REJECTED_AS_OBSOLETE_PRIOR',
+              'reason':'Frozen 2026-08-24 closeout already has HEART, SKIN, SPINAL_CORD and broad three-tissue causal gate PASS.'
+            },
+            {
+              'claim':'MUI_PROVES_PURE_MECHANICAL_CAUSALITY_ISOLATED_FROM_ECM_CHEMISTRY',
+              'verdict':'NOT_ADMITTED',
+              'reason':'HA depletion/HAPLN1 alter ECM chemistry, organization and mechanics together; physical mechanics are measured, but the intervention is not a chemistry-invariant mechanics-only manipulation.'
+            },
+            {
+              'claim':'MUI_CLOSES_MECHANICAL_STATE_TIMING_GATE',
+              'verdict':'NOT_ADMITTED',
+              'reason':'No explicit delayed post-established-repair direct physical retuning root is established by the acquired public text; later outcome measurements are not intervention timing.'
+            },
+            {
+              'claim':'PUBMED_PMC_GEO_GITHUB_ZENODO_ARE_FIVE_INDEPENDENT_BIOLOGICAL_REPLICATIONS',
+              'verdict':'REJECTED_LINEAGE_INFLATION',
+              'reason':'They are publication/data/code/archive views of the same experimental program. Reproducibility/provenance can strengthen, but biological independence does not multiply.'
+            },
+            {
+              'claim':'MOUSE_DIGIT_REGENERATION_IMPLIES_HUMAN_REGENERATIVE_EFFICACY',
+              'verdict':'REJECTED_TRANSLATIONAL_OVERREACH',
+              'reason':'Animal causal evidence is not human therapy or efficacy.'
+            }
+          ]
+
+          survivors=[
+            {
+              'claim':'MUI_ADDS_AN_INDEPENDENT_CAUSAL_DIGIT_MODEL_SUPPORTING_CONTEXT_SPECIFIC_ECM_MECHANICAL_NICHE_CONTROL',
+              'status':'SURVIVES_WITH_CONFOUNDER_BOUNDARY',
+              'basis':'Measured mechanics plus HA loss-of-function and HAPLN1 gain-of-function/rescue-like interventions change fibrosis/regeneration-related outcomes.',
+              'ceiling':'Causal ECM/niche support; not pure mechanics isolation and not universal stiffness law.'
+            },
+            {
+              'claim':'GSE274858_AND_PUBLIC_CODE_CREATE_A_REPLAYABLE_CELL_STATE_SUBGATE',
+              'status':'SURVIVES',
+              'basis':'Public raw scRNA-seq accession and analysis code are available.',
+              'ceiling':'Replay can validate transcriptomic analysis and perturbation-associated cell states, not independently replicate the animal intervention.'
+            },
+            {
+              'claim':'STRICT_DELAYED_MECHANICAL_CLOCK_REMAINS_OPEN',
+              'status':'SURVIVES',
+              'basis':'Frozen gate requires one additional independent delayed 5-of-5 physical-retuning root; Mui does not establish that criterion from acquired public evidence.'
+            }
+          ]
+
+          receipt={
+            'schema':'hawkar.topa.longevity.mechanical_lock.mui_gate_audit.v1',
+            'status':'PASS_ADVERSARIAL_AUDIT',
+            'source_doi':'10.1126/science.ady3136',
+            'source_pmid':'41955369',
+            'source_pmcid':'PMC7619039',
+            'dataset':'GSE274858',
+            'frozen_prior':{
+              'broad_gate':cross['gate_decision']['three_tissue_causal_mechanics_gate'],
+              'broad_status':cross['gate_decision']['new_status'],
+              'strict_timing_status':timing['status'],
+              'strict_admitted_tissues':timing['cross_tissue_status']['strict_delayed_mechanical_clock_admitted_tissues'],
+              'strict_required_tissues':timing['cross_tissue_status']['strict_delayed_mechanical_clock_required_tissues'],
+            },
+            'checks':checks,
+            'timing_search':{
+              'candidate_snippets_count':len(delay_hits),
+              'candidate_snippets':delay_hits[:20],
+              'explicit_delayed_post_establishment_direct_physical_retuning':explicit_delayed_post_establishment,
+              'rule':'OUTCOME_AT_LATE_DPA_IS_NOT_DELAYED_INTERVENTION_TIMING'
+            },
+            'topa_attacks':attacks,
+            'keymaster_survivors':survivors,
+            'gate_delta':{
+              'broad_causal_mechanical_state_gate':'NO_CHANGE_ALREADY_PASS',
+              'evidence_base':'STRENGTHENED_BY_DISTINCT_DIGIT_MODEL',
+              'mechanical_state_timing_gate':'NO_UPGRADE',
+              'pure_mechanics_isolation':'OPEN',
+              'human_efficacy':'NOT_ESTABLISHED'
+            },
+            'next_actions':[
+              'Replay GSE274858 with frozen contrasts for HA-inhibition-associated cell-state changes.',
+              'Inspect supplementary methods for exact intervention timing and AFM/force-map pairing without inferring delayed timing from later outcome timepoints.',
+              'Search HEART/SPINAL_CORD/TENDON for an independent delayed direct physical retuning root satisfying the existing 5-of-5 protocol.',
+              'Keep Mui as a distinct digit-model causal support node with chemistry-mechanics coupling explicitly recorded.'
+            ],
+            'laws':[
+              'GRAPH_EDGE_IS_NOT_CAUSATION',
+              'SAME_EXPERIMENT_MULTIPLE_REPOSITORIES_IS_NOT_INDEPENDENT_REPLICATION',
+              'ASSOCIATION_IS_NOT_CAUSALITY',
+              'MEASURED_STIFFNESS_PLUS_COUPLED_ECM_INTERVENTION_IS_NOT_PURE_MECHANICS_ISOLATION',
+              'OUTCOME_TIME_IS_NOT_INTERVENTION_TIME',
+              'ANIMAL_REGENERATION_IS_NOT_HUMAN_EFFICACY',
+              'NO_GATE_RELAXATION'
+            ]
+          }
+          assert all(checks.values()), checks
+          assert receipt['frozen_prior']['broad_gate']=='PASS'
+          assert receipt['frozen_prior']['strict_admitted_tissues']==1
+          assert receipt['frozen_prior']['strict_required_tissues']==2
+          (root/'topa-adversarial-receipt.json').write_text(json.dumps(receipt,indent=2,ensure_ascii=False)+'\n')
+          print(json.dumps(receipt,indent=2,ensure_ascii=False))
+          PY
+
+      - name: JANUS anti-self-deception firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('work/longevity-mui/topa-adversarial-receipt.json').read_text())
+          s=json.loads(Path('work/longevity-mui/spider-receipt.json').read_text())
+          assert r['gate_delta']['broad_causal_mechanical_state_gate']=='NO_CHANGE_ALREADY_PASS'
+          assert r['gate_delta']['mechanical_state_timing_gate']=='NO_UPGRADE'
+          assert r['gate_delta']['pure_mechanics_isolation']=='OPEN'
+          assert r['gate_delta']['human_efficacy']=='NOT_ESTABLISHED'
+          assert 'GRAPH_EDGE_IS_NOT_CAUSATION' in s['laws']
+          print('TOPA_SPIDER_LONGEVITY_MECHANICAL_LOCK_FIREWALL=PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: topa-spider-longevity-mechanical-lock-mui-2026
+          path: work/longevity-mui
+          retention-days: 30
