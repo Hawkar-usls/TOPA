@@ -1,0 +1,99 @@
+{
+  "schema": "hawkar.topa.goldmember.jr15001_spider_run_receipt.v1",
+  "run": {
+    "workflow": "TOPA SPIDER GOLDMEMBER JR15001 acquisition",
+    "run_id": 33190656161,
+    "head_sha": "db753ecd7410185e9dd7ab2bf8ed4d9f5fcec2da",
+    "status": "SUCCESS",
+    "artifact_id": 9693590494,
+    "artifact_name": "topa-spider-goldmember-jr15001",
+    "artifact_size_bytes": 5717094,
+    "artifact_digest": "sha256:af2d3b6509f23953f29b915287cfb6e92b7159d34e8f1a05290d3817a27f61f0"
+  },
+  "frozen_targets": {
+    "H10N1": {"lat": -7.845673, "lon": -14.480230, "datum": "WGS84"},
+    "H10S2": {"lat": -8.959100, "lon": -14.645310, "datum": "WGS84"}
+  },
+  "public_provenance_acquisition": {
+    "status": "PASS",
+    "files": [
+      {"filename": "bas-pdc-01236.html", "bytes": 59341, "sha256": "54a07d077381c830faef88de27c1276eb738379500ff47e0f2b4cae4b9728333"},
+      {"filename": "bodc-cruise-15726.html", "bytes": 200234, "sha256": "ceb3ea01fcefef29a1aff48ee4dcba09b23b4ca3c60587a7743aa27db4117cab"},
+      {"filename": "bodc-series-1762365.html", "bytes": 55992, "sha256": "a9317a58b54e77c0784027d77cb6a9145c72433fa9419a89baa959df7c9112c8"},
+      {"filename": "jr15001.pdf", "bytes": 5752742, "sha256": "f829adb6df915f41384d9aeed91a806be4620abd05252f59db94046f18aba8de"}
+    ]
+  },
+  "identifier_checks": {
+    "JR15001_PRODQXF_NAV": true,
+    "em122.ACO": true,
+    "MBANSWCB": true,
+    "BODC_SERIES_1762365": true,
+    "BAS_DATASET_01236": true,
+    "JR15001_IN_BAS_LINEAGE": true,
+    "JR53_AMT11_IN_BAS_LINEAGE": true,
+    "JR287_IN_BAS_LINEAGE": true,
+    "JR16_NG_IN_BAS_LINEAGE": true
+  },
+  "cruise_report_findings": {
+    "ascension_swath_bathymetry_started": "2015-10-14T13:31 context record near -7.8584,-14.4413",
+    "ascension_swath_bathymetry_complete": "2015-10-18T13:30 context record near -7.9976,-14.3587",
+    "claim_ceiling": "CRUISE_OPERATION_CONTEXT__NOT_EXACT_H10N1_SWATH_INTERSECTION"
+  },
+  "spider": {
+    "status": "PASS",
+    "documents": 7,
+    "nodes": 101,
+    "edges": 193,
+    "weak_or_speculative_edges": 193,
+    "node_stream_sha256": "b50e5b07344a2d75d988dc2a9811326b023d95b566df2d0067dba9e7ec06eb53",
+    "edge_stream_sha256": "fb2601ccc20f860bcec0d0c4f99e890d6fd8998d5cb4c54e3f21dd076a7b87a9",
+    "laws": [
+      "GRAPH_EDGE_IS_NOT_CAUSATION",
+      "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+      "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+      "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS",
+      "NO_FIXED_HYPOTHESIS_CENTER"
+    ]
+  },
+  "context_fur": {
+    "status": "PASS",
+    "subjects": 7,
+    "partial_facets": 10,
+    "unknown_facets": 116,
+    "acquisition_tasks": 126,
+    "conflicts": 0,
+    "stream_sha256": "eb33371a20ebed2eccb67d14c9b752f72287ba7b82e0a95923dfeb1494a4406e",
+    "note": "Generic context-fur tasks include facets irrelevant to bathymetry; they are acquisition prompts, not evidence and not automatically promoted."
+  },
+  "raw_primary_offer": {
+    "filename": "0019_20151018_073226_JCR.zip",
+    "format": "raw uncorrected Kongsberg EM122 .all",
+    "byte_state": "NOT_ACQUIRED",
+    "semantic_opened": false,
+    "blocker": "Custodian-provided private SharePoint route could not be fetched by the currently connected SharePoint connector; private share URL is intentionally not committed to the public repository.",
+    "required_when_acquired": [
+      "PRESERVE_ORIGINAL_BYTES_WITHOUT_TRANSFORMATION",
+      "RECORD_BYTE_SIZE",
+      "SHA256_FREEZE",
+      "RECORD_BAS_PDC_TICKET_3872_PROVENANCE",
+      "JANUS_COUNCIL_BEFORE_SEMANTIC_OR_QUANTITATIVE_USE",
+      "MACHINE_VERIFY_EXACT_H10N1_SWATH_INTERSECTION_BEFORE_MORPHOLOGY"
+    ]
+  },
+  "custodian_constraints": {
+    "H10S2_soundings_in_checked_material": "NO",
+    "last_SVP_relative_age": "about 2 days before opportunistic acquisition",
+    "SVP_status": "CALIBRATION_DEBT"
+  },
+  "scientific_boundaries": [
+    "RAW_FILE_AVAILABILITY_IS_NOT_TARGET_EVIDENCE",
+    "DERIVED_GRID_IS_NOT_EXACT_RAW_SWATH_INTERSECTION",
+    "DEPTH_RANGE_IS_NOT_COVERAGE_GEOMETRY",
+    "NO_POSTHOC_RETARGETING",
+    "H10N1_PHYSICAL_ANOMALY_GATE_NOT_ADVANCED",
+    "TARGET_IDENTITY_UNCONFIRMED",
+    "NO_UNDERWATER_PYRAMID_DETECTED",
+    "SVP_STALENESS_MUST_BE_CARRIED_AS_CALIBRATION_DEBT"
+  ],
+  "next_gate": "ACQUIRE_0019_20151018_073226_JCR_ZIP_BYTES__SHA256_FREEZE__THEN_MACHINE_VERIFY_EXACT_H10N1_SWATH_INTERSECTION_BEFORE_MORPHOLOGY"
+}
