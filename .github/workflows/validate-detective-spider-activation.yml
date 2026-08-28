@@ -1,0 +1,37 @@
+name: Validate TOPA Detective Spider Activation
+
+on:
+  push:
+    paths:
+      - 'protocols/TOPA_DETECTIVE_SPIDER_ACTIVATION_v1.0.json'
+      - 'tools/topa_detective_spider.py'
+      - 'tools/topa_spider_v2.py'
+      - 'integrations/janus-distributed-ai-swarm/topa_epistemic_router.py'
+      - '.github/workflows/validate-detective-spider-activation.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Default Detective profile
+        run: |
+          python tools/topa_detective_spider.py > /tmp/default.json
+          python - <<'PY'
+          import json
+          j=json.load(open('/tmp/default.json'))
+          assert j['mode']=='DETECTIVE'
+          assert j['activated']['topa_core'] is True
+          assert j['activated']['spider'] is True
+          print('TOPA_DETECTIVE_DEFAULT_INCLUDES_SPIDER=PASS')
+          PY
+      - name: Joint self-test
+        run: python tools/topa_detective_spider.py --mode DETECTIVE --self-test
+      - name: TOPA core-only self-test
+        run: python tools/topa_detective_spider.py --mode TOPA_CORE_ONLY --self-test
+      - name: Spider standalone self-test
+        run: python tools/topa_detective_spider.py --mode SPIDER_STANDALONE --self-test
