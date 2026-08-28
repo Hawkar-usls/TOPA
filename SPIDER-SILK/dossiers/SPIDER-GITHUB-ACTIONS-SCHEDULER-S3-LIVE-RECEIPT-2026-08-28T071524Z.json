@@ -1,0 +1,84 @@
+{
+  "schema": "hawkar.topa.spider.github_actions_scheduler_s3.persisted_live_receipt.v1",
+  "artifact_id": "SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-LIVE-RECEIPT-2026-08-28T071524Z",
+  "captured_at_utc": "2026-08-28T07:15:24.365498+00:00",
+  "status": "PASS",
+  "source_dossier": "SPIDER-SILK/dossiers/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-2026-08-28-v1.0.json",
+  "source_handoff": "SPIDER-SILK/handoff/SPIDER-GITHUB-ACTIONS-SCHEDULER-S3-HANDOFF-2026-08-28-v1.0.json",
+  "workflow": ".github/workflows/spider-github-actions-scheduler-s3.yml",
+  "run": {
+    "run_id": 33150778824,
+    "event": "push",
+    "head_sha": "0fa3e2a8f81f05b78f7f3673d816b7320e22ea55",
+    "created_at_utc": "2026-08-28T07:15:15Z",
+    "run_started_at_utc": "2026-08-28T07:15:15Z",
+    "conclusion": "success",
+    "job_id": 98781994128
+  },
+  "spider_self_test": {
+    "status": "PASS",
+    "provider_identity_not_relation": true,
+    "transport_status_not_relation": true,
+    "collection_idf_control": true,
+    "explicit_lineage_preserved": true,
+    "substantive_relation_preserved": true,
+    "no_fixed_topic_center": true
+  },
+  "journal_verification": {
+    "expected": 17,
+    "verified": 17,
+    "status": "PASS",
+    "method": "raw GitHub bytes -> canonical Git blob SHA-1 recomputation -> compare against dossier manifest",
+    "historical_journals_modified": false
+  },
+  "external_refresh": {
+    "sources": 9,
+    "fetch_ok": 9,
+    "status": "PASS",
+    "source_classes": ["GitHub Status", "GitHub Docs", "GitHub Community"],
+    "fetch_success_is_truth": false
+  },
+  "graph": {
+    "documents": 26,
+    "nodes": 176,
+    "edges": 1834,
+    "edge_types": {"MENTIONS": 431, "SEMANTIC_SIMILARITY": 58, "SHARED_ENTITY": 1345},
+    "status": "PASS",
+    "node_stream_sha256": "888e97f82d7dc81e80ff16e75be1f95181068544959c5ea58b1f39a5bb21535d",
+    "edge_stream_sha256": "de68f6df536980b455d2ee0c3353c29419b4a99c5fde48c97bf19349e29b1570",
+    "promotion_rule": "EDGE_STRENGTH_MAY_RISE_ONLY_WITH_EXPLICIT_SOURCE_RELATION_OR_INDEPENDENT_EVIDENCE__NEVER_FROM_DENSITY_ALONE"
+  },
+  "scientific_firewall": {
+    "status": "PASS",
+    "required_law_present": "GRAPH_EDGE_IS_NOT_CAUSATION"
+  },
+  "run_artifact": {
+    "artifact_id": 9677598645,
+    "name": "topa-spider-github-actions-scheduler-s3",
+    "size_bytes": 35751,
+    "zip_sha256": "a9bb914976ee2ada0a97a9236ff5b43e8d9e2d24411001107100bfd60793e3f2",
+    "expires_at_utc": "2026-09-27T07:15:24Z",
+    "contained_file_sha256": {
+      "live-receipt.json": "e4e551dcc6b4c8658588553b83d73d4188ccfae25e6b161eed203f49c86cae55",
+      "spider-weave-receipt.json": "905129eb329baf63162017b671557d2af8993f97611b6e4d400b9fea0b50b4b1",
+      "evidence-records.jsonl": "c69dd4ac5402cafbf49dd3b702bd3ca5399937dae08ec12cb58d3aec9e3bd87b",
+      "spider-nodes.jsonl": "888e97f82d7dc81e80ff16e75be1f95181068544959c5ea58b1f39a5bb21535d",
+      "spider-edges.jsonl": "de68f6df536980b455d2ee0c3353c29419b4a99c5fde48c97bf19349e29b1570"
+    }
+  },
+  "contrast_observation": "The push-triggered investigative run object was created and started at the same second. This demonstrates that the general run/runner path was responsive for this TOPA control at 07:15 UTC on Aug 28; it does not by itself prove the schedule path was degraded at that exact instant.",
+  "current_case_verdict": {
+    "platform_side_schedule_trigger_or_materialization_problem": "STRONGLY_SUPPORTED",
+    "post_public_recovery_schedule_specific_symptoms": "STRONGLY_SUPPORTED",
+    "same_exact_aug26_internal_defect_caused_aug27_janus_s3": "PLAUSIBLE_HIGH_BUT_NOT_PROVEN",
+    "intentional_understatement": "NO_EVIDENCE",
+    "exact_internal_root_cause": "UNRESOLVED"
+  },
+  "laws": [
+    "HISTORICAL_JOURNALS_ARE_READ_ONLY",
+    "GRAPH_EDGE_IS_NOT_CAUSATION",
+    "FETCH_SUCCESS_IS_NOT_TRUTH",
+    "PUBLIC_STATUS_SCOPE_MISMATCH_IS_NOT_INTENT_EVIDENCE",
+    "SCHEDULER_DRIFT_IS_NOT_RECORD_DRIFT"
+  ]
+}
