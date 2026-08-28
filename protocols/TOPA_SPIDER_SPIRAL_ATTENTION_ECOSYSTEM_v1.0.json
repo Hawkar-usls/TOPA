@@ -1,0 +1,52 @@
+{
+  "schema": "TOPA/SPIDER/SPIRAL-ATTENTION-ECOSYSTEM/v1.0.0",
+  "status": "ACTIVE",
+  "canonical_engine": "tools/topa_spider_attention_ecosystem.py",
+  "purpose": "Add a volatile attention ecology above evidence-calibrated Spider edges: repeated patterns become visible, stale replay saturates and loses attention, fresh independent evidence can renew attention, and node focus migrates through bounded spiral graph propagation.",
+  "separation_of_weights": {
+    "evidence_weight": "Existing topa_spider_flywheel.py discovery/evidence-calibrated edge weight. Replaying identical evidence does not create new evidence or independence.",
+    "attention_weight": "Volatile discovery priority. Repetition may raise it temporarily so a pattern is inspected, then replay fatigue lowers it when no new information arrives.",
+    "node_attention_A_t": "Dynamic focus weight on graph nodes derived from incident attention plus bounded ring propagation. It is not truth, causality or proof."
+  },
+  "edge_attention_dynamics": {
+    "repetition_burst": "0.18 * (1 - exp(-0.9 * min(replay_streak, 6)))",
+    "replay_fatigue": "0.58 * (1 - exp(-0.45 * max(0, replay_streak - 3)))",
+    "fresh_novelty_bonus": 0.14,
+    "contradiction_inspection_urgency_cap": 0.16,
+    "interpretation": "Early repetition raises salience; after saturation, fatigue dominates. Contradictions may receive inspection attention without increasing truth-confidence."
+  },
+  "node_attention_dynamics": {
+    "local_signal": "Weighted blend of max incident attention, top-3 mean incident attention and fresh-edge fraction, with mild high-degree normalization.",
+    "spiral_rings_default": 3,
+    "propagation_default": 0.34,
+    "focus_rule": "Dynamic upper-quartile attention threshold with at least one focus when a non-empty graph exists; at most five focus centers by default.",
+    "focus_states": ["PRIMARY_FOCUS", "ACTIVE_FOCUS", "PERIPHERY", "DORMANT"],
+    "no_fixed_center": true
+  },
+  "ecology_cycle": [
+    "Observe current Spider edge state.",
+    "Give fresh evidence a novelty pulse.",
+    "Allow repeated patterns to accumulate temporary salience.",
+    "Apply replay fatigue once repetition ceases to add information.",
+    "Propagate attention across bounded graph rings so nearby context can become visible.",
+    "Select temporary focus centers from current attention only.",
+    "Decay stale edges/nodes and free attention for new patterns.",
+    "Renew attention when genuinely fresh evidence arrives.",
+    "Append all movements to history; never rewrite negative/stale history."
+  ],
+  "anti_self_deception": {
+    "REPETITION_IS_NOT_NEW_EVIDENCE": true,
+    "ATTENTION_WEIGHT_IS_NOT_EVIDENCE_WEIGHT": true,
+    "FOCUS_CENTER_IS_NOT_HYPOTHESIS_TRUTH": true,
+    "GRAPH_DENSITY_IS_NOT_EVIDENCE": true,
+    "CONTRADICTION_URGENCY_IS_NOT_CONFIRMATION": true,
+    "NO_FIXED_HYPOTHESIS_CENTER": true,
+    "FOCUS_MAY_MIGRATE_OR_DIE": true,
+    "FRESH_INDEPENDENT_EVIDENCE_CAN_RENEW_ATTENTION": true,
+    "P_VS_NP": "OPEN"
+  },
+  "pippi_binding": {
+    "role": "PIPPI may supply chunk/relation history as Spider input and may store attention snapshots/movements. PIPPI Mirror may expose focus migration and stale-pattern decay to Pivot-Slime and Keymaster as advisory context only.",
+    "training_label_rule": "Attention states never become exact training labels unless backed by exact/source receipts appropriate to the domain."
+  }
+}
