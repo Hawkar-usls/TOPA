@@ -1,0 +1,28 @@
+{
+  "schema":"janus.topa.data-offer-receipt.v1",
+  "hunt_id":"HUNT-0001",
+  "slug":"HESSDALEN",
+  "observed_at_local":"2026-08-28T17:51:00+03:00",
+  "classification":"DATA_OFFER",
+  "source_class":"PROJECT_HESSDALEN_CUSTODIAN_REPLY",
+  "private_correspondence_quoted":false,
+  "external_locator_publication":"WITHHELD_PENDING_VISIBILITY_OR_PERMISSION_CHECK",
+  "directory_enumeration":{
+    "accessible":true,
+    "nominal_date":"2024-09-29",
+    "camera_prefixes":["Cam1","Cam2"],
+    "nominal_cadence":"15_MINUTES",
+    "day_edges_observed":true,
+    "cam1_12_45_nominal_name_present":false,
+    "cam1_12_45_01_present":true,
+    "cam1_12_45_interpretation":"ONE_SECOND_FILENAME_OR_START_DEVIATION__NOT_A_GAP_DETECTION",
+    "full_day_completeness_proven":false,
+    "local_byte_acquisition_complete":false,
+    "local_hash_manifest_complete":false
+  },
+  "metadata_open":["authoritative manifest/missing-corrupt declaration","camera IDs","timestamp basis/timezone","clock sync/offset/drift","coordinates","azimuth/elevation/roll/FOV","intrinsics/extrinsics","third-camera surveyed baseline/status/FOV overlap"],
+  "next":"ACQUIRE -> HASH -> CONTINUITY (priority seam 12:30 -> 12:45:01 -> 13:00) -> FULL-RATE K1",
+  "k2":"BLOCKED_PENDING_SURVEYED_SEPARATION_OVERLAP_CLOCK_AND_CALIBRATION",
+  "boundary":"REPLY != VALIDATION; ABLE_TO_DOWNLOAD_FOLDER != COMPLETE_RAW_DAY_PROVEN; TWO_VIDEOS != STEREO_BASELINE.",
+  "world_truth":false
+}
