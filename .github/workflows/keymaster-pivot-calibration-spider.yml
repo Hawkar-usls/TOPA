@@ -1,0 +1,65 @@
+name: TOPA SPIDER Keymaster Pivot Calibration
+
+on:
+  push:
+    branches:
+      - research/keymaster-pivot-calibration-spider-2026-08-28
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pivot-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Self-test Keymaster pivot spider
+        run: python tools/topa_keymaster_pivot_spider.py self-test
+
+      - name: Analyze exact pivot relationships
+        run: |
+          python tools/topa_keymaster_pivot_spider.py analyze \
+            --input raw/unexamined/janus/keymaster-pivot-calibration-2026-08-28/keymaster-pivot-exact-features.jsonl \
+            --out work/keymaster-pivot/TOPA-KEYMASTER-PIVOT-RELATIONS-2026-08-28-v1.0.json
+
+      - name: Scientific firewall and calibration assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('work/keymaster-pivot/TOPA-KEYMASTER-PIVOT-RELATIONS-2026-08-28-v1.0.json').read_text())
+          assert p['status']=='PASS'
+          assert p['P_VS_NP']=='OPEN'
+          assert p['rows']==15
+          assert p['formula_families']==2
+          ids={h['id'] for h in p['hypotheses']}
+          assert 'H-UNIQUE-SURVIVING-RESOLVENT-MASS' in ids
+          assert 'H-COLLISION-PROTECTS-RAW-CAP' in ids
+          assert 'NEG-SINGLE-FEATURE-MONOCULTURE' in ids
+          assert 'H-RAW-BEFORE-CANONICAL-COMPRESSION' in ids
+          c=p['cases']['250x250-n8']['stress_contrast_104_squared']
+          assert c['safe_count']==6 and c['overflow_count']==2
+          assert c['overflow_local_pivots']==[1,2]
+          assert c['safe_local_pivots']==[3,4,5,6,7,8]
+          assert c['local_ids_are_provenance_only'] is True
+          assert 'P_VS_NP_IS_OPEN' in p['laws']
+          assert 'CORRELATION_IS_NOT_CAUSATION' in p['laws']
+          print('TOPA_KEYMASTER_PIVOT_SPIDER=PASS')
+          print('TOPA_ROWS=15')
+          print('TOPA_FORMULA_FAMILIES=2')
+          print('P_VS_NP=OPEN')
+          PY
+
+      - name: Upload TOPA relation weave
+        uses: actions/upload-artifact@v4
+        with:
+          name: topa-keymaster-pivot-relations
+          path: work/keymaster-pivot
+          retention-days: 90
+          if-no-files-found: error
