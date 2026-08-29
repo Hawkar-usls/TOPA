@@ -1,0 +1,71 @@
+{
+  "schema": "hawkar.topa.goldmember.jr15001.coverage_svp_clarification.v1",
+  "artifact_id": "BAS-PDC-COVERAGE-SVP-CLARIFICATION-2026-08-28",
+  "created": "2026-08-29",
+  "branch": "research/goldmember-jr15001-topa-spider-2026-08-28",
+  "hunt_context": "GOLDMEMBER / Ascension bathymetry / JR15001",
+  "source_class": "EXTERNAL_DATA_CUSTODIAN_CLARIFICATION",
+  "source_institution": "UK Polar Data Centre / British Antarctic Survey",
+  "source_correspondence": {
+    "verbatim_content_published": false,
+    "personal_contact_details_published": false,
+    "classification": "PRIVATE_CORRESPONDENCE_USED_ONLY_FOR_PROVENANCE_AND_METHOD_LIMITS",
+    "independent_physical_evidence": false
+  },
+  "public_context": {
+    "cruise": "JR15001",
+    "cruise_report": "https://www.bodc.ac.uk/resources/inventories/cruise_inventory/reports/jr15001.pdf",
+    "raw_artifact": "0019_20151018_073226_JCR.zip",
+    "raw_format": "Kongsberg EM122 .all"
+  },
+  "evidence_nodes": [
+    {
+      "node_id": "H10S2_NO_SOUNDINGS_IN_QUERIED_SOURCE_CONTEXT",
+      "target": "H10S2 / Southern Seamount",
+      "coordinate": "8.959100 S, 14.645310 W",
+      "observation": "No soundings were reported around the second queried point in the checked JR15001/BAS-PDC source context.",
+      "canonical_interpretation": "NO_MEASUREMENT_COVERAGE",
+      "forbidden_interpretations": [
+        "NEGATIVE_DETECTION",
+        "OBJECT_ABSENT",
+        "FLAT_SEAFLOOR_PROVEN",
+        "MORPHOLOGY_RESULT"
+      ],
+      "law": "NO_SOUNDINGS != NEGATIVE_DETECTION"
+    },
+    {
+      "node_id": "JR15001_SVP_AGE_APPROX_TWO_DAYS",
+      "target": "JR15001 relevant pass near first area of interest",
+      "observation": "The most recent reported sound-velocity-profile update before the relevant pass was approximately two days earlier.",
+      "canonical_interpretation": "CALIBRATION_REFRACTION_UNCERTAINTY",
+      "uncertainty_action": "Propagate SVP age as an explicit sound-speed/refraction limitation in any depth or morphology interpretation derived from the raw EM122 data.",
+      "forbidden_interpretations": [
+        "RAW_DATA_INVALID",
+        "MORPHOLOGY_FALSE",
+        "KNOWN_DEPTH_ERROR_MAGNITUDE",
+        "CORRECTION_VALUE_INFERRED_WITHOUT_SVP_BYTES"
+      ],
+      "law": "SVP_AGE != KNOWN_ERROR_MAGNITUDE"
+    }
+  ],
+  "gate_effect": {
+    "coverage_gate_h10s2": "NO_LOCAL_SOUNDINGS_IN_THIS_SOURCE_CONTEXT",
+    "h10s2_physical_result": "UNRESOLVED_NO_MEASUREMENT",
+    "jr15001_first_point_raw_pointer": "UNCHANGED",
+    "depth_morphology_gate": "MUST_CARRY_SVP_UNCERTAINTY",
+    "scientific_validation": "NO_UPGRADE"
+  },
+  "next_actions": [
+    "Preserve original JR15001 bytes and hashes before any reinterpretation.",
+    "Obtain or reconstruct the closest applicable SVP metadata/bytes if available.",
+    "Propagate sound-speed/refraction uncertainty through depth and morphology outputs rather than treating the raw .all geometry as exact.",
+    "Do not use H10S2 as a negative control or replicate when this acquisition has no local soundings there."
+  ],
+  "hard_boundaries": [
+    "CUSTODIAN_CLARIFICATION != INDEPENDENT_PHYSICAL_EVIDENCE",
+    "NO_SOUNDINGS != NEGATIVE_DETECTION",
+    "MISSING_COVERAGE != OBJECT_ABSENCE",
+    "SVP_AGE != KNOWN_ERROR_MAGNITUDE",
+    "RAW_POINTER != MORPHOLOGY_RESULT"
+  ]
+}
