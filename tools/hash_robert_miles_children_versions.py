@@ -43,7 +43,6 @@ def find_tralbum(page_bytes: bytes):
             if isinstance(obj, dict) and "trackinfo" in obj:
                 candidates.append(obj)
     if not candidates:
-        # Last-resort extraction around a JSON object containing trackinfo.
         idx = text.find('"trackinfo"')
         if idx >= 0:
             start = text.rfind("{", 0, idx)
@@ -73,7 +72,6 @@ def choose_stream(tralbum, expected_label: str):
     if chosen is None and len(tracks) == 1:
         chosen = tracks[0]
     if chosen is None:
-        # Track pages often flag the active item with track_num/current.
         for t in tracks:
             if "children" in (t.get("title") or "").lower():
                 chosen = t
@@ -85,16 +83,6 @@ def choose_stream(tralbum, expected_label: str):
     if not stream:
         raise RuntimeError(f"No public stream URL in Bandcamp trackinfo for {expected_label}")
     return chosen, stream
-
-
-def sha256_file(path: Path):
-    h = hashlib.sha256()
-    n = 0
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            h.update(chunk)
-            n += len(chunk)
-    return h.hexdigest(), n
 
 
 def download_to(url: str, path: Path):
@@ -122,13 +110,15 @@ def download_to(url: str, path: Path):
 
 
 def pcm_hash(input_path: Path):
-    # Decode the public stream deterministically to 44.1 kHz stereo signed-16 PCM.
     cmd = [
         "ffmpeg", "-v", "error", "-i", str(input_path),
         "-map_metadata", "-1", "-ac", "2", "-ar", "44100",
         "-f", "s16le", "pipe:1"
     ]
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except FileNotFoundError:
+        return {"status": "UNAVAILABLE", "reason": "FFMPEG_NOT_PRESENT_ON_RUNNER"}
     h = hashlib.sha256()
     n = 0
     while True:
@@ -140,7 +130,7 @@ def pcm_hash(input_path: Path):
     stderr = p.stderr.read().decode("utf-8", errors="replace")
     rc = p.wait()
     if rc != 0:
-        return {"status": "UNAVAILABLE", "error": stderr[-1000:]}
+        return {"status": "UNAVAILABLE", "reason": "FFMPEG_DECODE_FAILED", "error": stderr[-1000:]}
     return {
         "status": "PASS",
         "format": "s16le_stereo_44100",
