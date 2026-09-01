@@ -1,0 +1,39 @@
+name: TOPA — Robert Miles Children SHA-256 Two-Version Audit
+
+on:
+  push:
+    paths:
+      - 'tools/hash_robert_miles_children_versions.py'
+      - '.github/workflows/hash-robert-miles-children-versions.yml'
+  workflow_dispatch:
+
+jobs:
+  hash-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hash exact public Bandcamp witnesses
+        run: |
+          mkdir -p work/children-sha
+          python tools/hash_robert_miles_children_versions.py \
+            --out work/children-sha/ROBERT-MILES-CHILDREN-TWO-VERSION-SHA256-AUDIT.json
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/children-sha/ROBERT-MILES-CHILDREN-TWO-VERSION-SHA256-AUDIT.json')
+          d=json.loads(p.read_text())
+          assert d['status']=='PASS'
+          assert len(d['versions'])==2
+          assert all(len(v['public_stream']['sha256'])==64 for v in d['versions'])
+          assert d['versions'][0]['public_stream']['sha256'] != d['versions'][1]['public_stream']['sha256']
+          assert 'SHA256 IS AN IDENTITY CHECK FOR BYTES' in d['canonical_seal']
+          print('CHILDREN_SHA256_FIREWALL=PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: robert-miles-children-sha256-audit
+          path: work/children-sha/ROBERT-MILES-CHILDREN-TWO-VERSION-SHA256-AUDIT.json
+          retention-days: 30
