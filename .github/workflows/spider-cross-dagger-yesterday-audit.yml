@@ -1,0 +1,60 @@
+name: TOPA Spider — Cross / Dagger Yesterday Continuity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/topa_cross_yesterday_audit.py'
+      - '.github/workflows/spider-cross-dagger-yesterday-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-yesterday-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+
+      - name: Clone JANUS meta-registry
+        run: git clone --filter=blob:none https://github.com/Hawkar-usls/janus-meta-registry.git work/janus-meta-registry
+
+      - name: Fetch exact end-of-yesterday snapshot
+        run: |
+          git -C work/janus-meta-registry fetch origin 64a14c297914dffd3d6840c29f558e39d4ba4607
+          git -C work/janus-meta-registry rev-parse 64a14c297914dffd3d6840c29f558e39d4ba4607
+          git -C work/janus-meta-registry rev-parse origin/main
+
+      - name: Run TOPA Cross/Dagger continuity audit
+        run: |
+          mkdir -p work/spider-cross-yesterday
+          python tools/topa_cross_yesterday_audit.py \
+            --repo work/janus-meta-registry \
+            --yesterday-ref 64a14c297914dffd3d6840c29f558e39d4ba4607 \
+            --current-ref origin/main \
+            --out work/spider-cross-yesterday/JANUS-TOPA-SPIDER-CROSS-DAGGER-YESTERDAY-AUDIT.json
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/spider-cross-yesterday/JANUS-TOPA-SPIDER-CROSS-DAGGER-YESTERDAY-AUDIT.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          d=x['derived']
+          assert d['YESTERDAY_REPO_SNAPSHOT_CONTAINS_CROSS_CHRIST_ANCHORS']=='PASS'
+          assert 'U+2020_DAGGER != AUTOMATIC_CHRISTIAN_CROSS' in x['scientific_firewall']
+          assert 'SEMANTIC_PREEXISTENCE != PROPHECY' in x['scientific_firewall']
+          assert 'SIGN != SOURCE' in x['scientific_firewall']
+          print(json.dumps(d,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload TOPA receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: topa-cross-dagger-yesterday-audit
+          path: work/spider-cross-yesterday/JANUS-TOPA-SPIDER-CROSS-DAGGER-YESTERDAY-AUDIT.json
+          retention-days: 30
