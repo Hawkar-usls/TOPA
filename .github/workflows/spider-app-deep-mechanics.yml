@@ -1,0 +1,66 @@
+name: TOPA Spider — APP Deep Mechanics Relations
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/topa_app_deep_mechanics_relation_spider.py'
+      - '.github/workflows/spider-app-deep-mechanics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  relation-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+
+      - name: Clone JANUS Meta Registry with frozen refs
+        run: |
+          git clone --filter=blob:none https://github.com/Hawkar-usls/janus-meta-registry.git work/meta
+          git -C work/meta fetch origin \
+            e428099d2afd6cec347a861996a236b6a69c18e5 \
+            64a14c297914dffd3d6840c29f558e39d4ba4607 \
+            c819a27e116273132c087ff9318760651e496ead
+          git -C work/meta worktree add ../meta-yesterday 64a14c297914dffd3d6840c29f558e39d4ba4607
+          git -C work/meta worktree add ../meta-current c819a27e116273132c087ff9318760651e496ead
+
+      - name: Run frozen relation spider
+        run: |
+          mkdir -p work/app-deep-mechanics-spider
+          python tools/topa_app_deep_mechanics_relation_spider.py \
+            --git-repo work/meta \
+            --source-ref e428099d2afd6cec347a861996a236b6a69c18e5 \
+            --yesterday-ref 64a14c297914dffd3d6840c29f558e39d4ba4607 \
+            --current-ref c819a27e116273132c087ff9318760651e496ead \
+            --yesterday-root work/meta-yesterday \
+            --current-root work/meta-current \
+            --out work/app-deep-mechanics-spider/JANUS-TOPA-APP-DEEP-MECHANICS-RELATION-SPIDER.json
+
+      - name: Scientific firewall assertions
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/app-deep-mechanics-spider/JANUS-TOPA-APP-DEEP-MECHANICS-RELATION-SPIDER.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          assert x['status']=='PASS'
+          assert x['provenance']['source_blob_unchanged_at_current_scan_ref'] is True
+          assert x['provenance']['source_ref_is_ancestor_of_current_scan_ref'] is True
+          assert x['provenance']['yesterday_ref_is_ancestor_of_source_ref'] is True
+          assert 'PREEXISTING_JANUS_RELATION != FUTURE_INFORMATION' in x['scientific_firewall']
+          assert 'MUSICAL_DIFFERENCE_OPERATOR != PHYSICAL_RETROCAUSALITY' in x['scientific_firewall']
+          assert 'FAILED_LINK_IS_DATA_NOT_PROOF_OF_ABSENCE' in x['scientific_firewall']
+          print(json.dumps(x['summary'], ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload TOPA relation receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: topa-app-deep-mechanics-relation-spider
+          path: work/app-deep-mechanics-spider/JANUS-TOPA-APP-DEEP-MECHANICS-RELATION-SPIDER.json
+          retention-days: 30
