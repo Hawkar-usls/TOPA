@@ -1,0 +1,58 @@
+name: TOPA — Robert Miles SHA256 Prospective Control
+
+on:
+  push:
+    paths:
+      - '.github/workflows/robert-miles-sha256-prospective-control.yml'
+      - 'tools/robert_miles_sha256_prospective_control.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prospective-sha:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch exact frozen preregistration
+        run: |
+          mkdir -p work/sha-prospective
+          curl -fL --retry 3 \
+            'https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/33e2e34e05fa8e8564fc0b664b5a8a4f0757680c/data/JANUS-ROBERT-MILES-SHA256-PROSPECTIVE-CONTROL-PREREG-2026-09-01-v1.0.json' \
+            -o work/sha-prospective/prereg.json
+          python - <<'PY'
+          import json
+          p=json.load(open('work/sha-prospective/prereg.json',encoding='utf-8'))
+          assert p['status']=='FROZEN_BEFORE_NEW_HASH_RETRIEVAL'
+          assert p['artifact_id']=='JANUS-ROBERT-MILES-SHA256-PROSPECTIVE-CONTROL-PREREG-2026-09-01-v1.0'
+          print('PREREG_LOCK_PASS')
+          PY
+
+      - name: Run prospective related-vs-control SHA audit
+        run: |
+          python tools/robert_miles_sha256_prospective_control.py \
+            --prereg work/sha-prospective/prereg.json \
+            --prereg-commit 33e2e34e05fa8e8564fc0b664b5a8a4f0757680c \
+            --out work/sha-prospective/ROBERT-MILES-SHA256-PROSPECTIVE-CONTROL.json
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('work/sha-prospective/ROBERT-MILES-SHA256-PROSPECTIVE-CONTROL.json',encoding='utf-8'))
+          assert p['status']=='PASS'
+          assert p['prereg']['known_children_excluded_from_inference'] is True
+          assert len(p['rows'])==10
+          assert sum(r['group']=='related' for r in p['rows'])==5
+          assert sum(r['group']=='control' for r in p['rows'])==5
+          print('SCIENTIFIC_FIREWALL_PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: robert-miles-sha256-prospective-control
+          path: work/sha-prospective/ROBERT-MILES-SHA256-PROSPECTIVE-CONTROL.json
+          if-no-files-found: error
