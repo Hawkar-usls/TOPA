@@ -1,0 +1,63 @@
+name: TOPA — Robert Miles Audio Similarity Witness
+
+on:
+  push:
+    paths:
+      - '.github/workflows/robert-miles-audio-similarity-witness.yml'
+      - 'tools/robert_miles_audio_similarity_witness.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audio-witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install deterministic audio dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          python -m pip install --disable-pip-version-check --no-cache-dir numpy
+
+      - name: Fetch exact frozen audio preregistration
+        run: |
+          mkdir -p work/audio-witness
+          curl -fL --retry 3 \
+            'https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/362e988da3d980b011e5928ca7ab2b00f66b7d23/data/JANUS-ROBERT-MILES-AUDIO-SIMILARITY-PROSPECTIVE-PREREG-2026-09-01-v1.0.json' \
+            -o work/audio-witness/prereg.json
+          python - <<'PY'
+          import json
+          p=json.load(open('work/audio-witness/prereg.json',encoding='utf-8'))
+          assert p['status']=='FROZEN_BEFORE_AUDIO_FEATURE_EXTRACTION'
+          assert p['artifact_id']=='JANUS-ROBERT-MILES-AUDIO-SIMILARITY-PROSPECTIVE-PREREG-2026-09-01-v1.0'
+          print('AUDIO_PREREG_LOCK_PASS')
+          PY
+
+      - name: Run decoded-audio witness
+        run: |
+          python tools/robert_miles_audio_similarity_witness.py \
+            --prereg work/audio-witness/prereg.json \
+            --prereg-commit 362e988da3d980b011e5928ca7ab2b00f66b7d23 \
+            --out work/audio-witness/ROBERT-MILES-AUDIO-SIMILARITY-WITNESS.json
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('work/audio-witness/ROBERT-MILES-AUDIO-SIMILARITY-WITNESS.json',encoding='utf-8'))
+          assert p['status']=='PASS'
+          assert len(p['rows'])==6
+          assert sum(r['group']=='related' for r in p['rows'])==3
+          assert sum(r['group']=='control' for r in p['rows'])==3
+          print('AUDIO_SCIENTIFIC_FIREWALL_PASS')
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: robert-miles-audio-similarity-witness
+          path: work/audio-witness/ROBERT-MILES-AUDIO-SIMILARITY-WITNESS.json
+          if-no-files-found: error
