@@ -1,0 +1,62 @@
+name: TOPA Spider — Yesterday Probe Relation Graph
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/topa_yesterday_probe_relation_spider.py'
+      - '.github/workflows/spider-yesterday-probe-relation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  yesterday-relation-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+
+      - name: Clone JANUS meta-registry
+        run: git clone --filter=blob:none https://github.com/Hawkar-usls/janus-meta-registry.git work/janus-meta-registry
+
+      - name: Fetch exact end-of-yesterday snapshot
+        run: |
+          git -C work/janus-meta-registry fetch origin 64a14c297914dffd3d6840c29f558e39d4ba4607
+          git -C work/janus-meta-registry rev-parse 64a14c297914dffd3d6840c29f558e39d4ba4607
+          git -C work/janus-meta-registry rev-parse origin/main
+
+      - name: Run relation spider
+        run: |
+          mkdir -p work/yesterday-relation
+          python tools/topa_yesterday_probe_relation_spider.py \
+            --repo work/janus-meta-registry \
+            --yesterday-ref 64a14c297914dffd3d6840c29f558e39d4ba4607 \
+            --current-ref origin/main \
+            --out work/yesterday-relation/JANUS-TOPA-YESTERDAY-PROBE-RELATION-SPIDER.json
+
+      - name: Scientific firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/yesterday-relation/JANUS-TOPA-YESTERDAY-PROBE-RELATION-SPIDER.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          d=x['derived']
+          assert d['YESTERDAY_PROBE_PREEXISTS_TODAY_CHAIN']=='PASS'
+          assert d['TWO_WITNESSES_PREEXISTS_TODAY_CHAIN']=='PASS'
+          assert d['DISTRIBUTED_TIME_CAUSAL_GUARD_PREEXISTS']=='PASS'
+          assert d['CROSS_ANCHOR_PREEXISTS']=='PASS'
+          assert d['CAUSAL_OR_PROPHETIC_LINK']=='NOT_ESTABLISHED'
+          assert any(n['status']=='NO_PREEXISTING_EXACT_LINK_FOUND' for n in x['dark_nodes'])
+          print(json.dumps(d,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: topa-yesterday-probe-relation-spider
+          path: work/yesterday-relation/JANUS-TOPA-YESTERDAY-PROBE-RELATION-SPIDER.json
+          retention-days: 30
