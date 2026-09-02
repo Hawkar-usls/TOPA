@@ -15,12 +15,12 @@ permissions:
 
 concurrency:
   group: topa-janus-autolearning-architecture
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   architecture-spider:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     steps:
       - name: Checkout TOPA
         uses: actions/checkout@v4
