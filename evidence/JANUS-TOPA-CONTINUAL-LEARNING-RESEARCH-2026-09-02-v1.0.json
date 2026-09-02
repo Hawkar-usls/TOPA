@@ -1,0 +1,107 @@
+{
+  "schema": "topa.janus_continual_learning_research_crosscheck.v1",
+  "status": "RESEARCH_CONTEXT_ONLY",
+  "created_at_utc": "2026-09-02T00:49:00Z",
+  "purpose": "Cross-check JANUS autolearning architecture recommendations against recent public research without converting papers into automatic training truth.",
+  "sources": [
+    {
+      "id": "PMLR-LLA-2026-REPLAY-GRADIENT-ALIGNMENT",
+      "title": "Revisiting Replay and Gradient Alignment for Continual Pre-Training of Large Language Models",
+      "venue": "Proceedings of The 4th Conference on Lifelong Learning Agents, PMLR 330",
+      "year": 2026,
+      "url": "https://proceedings.mlr.press/v330/abbes26a.html",
+      "finding": "Across large continual-pretraining experiments, replay and gradient alignment improve stability under distribution shift; small replay rates can be an efficient use of compute.",
+      "janus_translation": "Supports bounded replay as a candidate anti-forgetting mechanism, not unrestricted replay. JANUS still requires verifier/provenance eligibility and a separate holdout."
+    },
+    {
+      "id": "ACL-2026-MEMORY-MANAGEMENT",
+      "title": "How Memory Management Impacts LLM Agents: An Empirical Study of Experience-Following Behavior",
+      "venue": "ACL 2026",
+      "year": 2026,
+      "url": "https://aclanthology.org/2026.acl-long.27/",
+      "finding": "Agent behavior can strongly follow retrieved experiences; poor or misaligned experiences can propagate errors. Future task evaluations can provide quality signals for stored memory.",
+      "janus_translation": "Strong support for R2 verifier-stratified replay: a past success must carry explicit local verifier identity, target context and provenance before it can influence future decisions."
+    },
+    {
+      "id": "ACL-2025-CONTEXTUAL-EXPERIENCE-REPLAY",
+      "title": "Contextual Experience Replay for Self-Improvement of Language Agents",
+      "venue": "ACL 2025",
+      "year": 2025,
+      "url": "https://aclanthology.org/2025.acl-long.694/",
+      "finding": "A dynamic memory buffer of past environment experiences can improve later agent behavior without parameter training when relevant experiences are retrieved contextually.",
+      "janus_translation": "Supports separating contextual replay from gradient updates. JANUS can first use verified outcomes as bounded selector/context priors before considering any parameter-level feedback."
+    },
+    {
+      "id": "ARXIV-2602.22406-AUTONOMOUS-MEMORY-AGENTS",
+      "title": "Towards Autonomous Memory Agents",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2602.22406",
+      "finding": "Proposes memory agents that actively acquire, validate and curate knowledge using a cascade from cheap signals toward tool-verified research and expert feedback when uncertainty warrants it.",
+      "janus_translation": "Supports R6 layered research ingestion and uncertainty-driven evidence acquisition: DISCOVERY -> CORROBORATED -> TRAINING_ELIGIBLE."
+    },
+    {
+      "id": "ARXIV-2512.23760-AUDITED-SKILL-GRAPH",
+      "title": "Audited Skill-Graph Self-Improvement for Agentic LLMs via Verifiable Rewards, Experience Synthesis, and Continual Memory",
+      "year": 2025,
+      "url": "https://arxiv.org/abs/2512.23760",
+      "finding": "Frames self-improvement as accumulation of auditable skills promoted after verifier-backed replay and contract checks, with reconstructible evidence for learning signals.",
+      "janus_translation": "Conceptually aligns with proposal -> target-local VERIFY -> sealed receipt -> bounded learning, while JANUS keeps its own independent authority and provenance contracts."
+    },
+    {
+      "id": "ARXIV-2607.13104-SELF-IMPROVING-AGENTS-SURVEY",
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2607.13104",
+      "finding": "Organizes self-improvement by update target and feedback signal, emphasizing controllable adaptation across model parameters and operational scaffolds.",
+      "janus_translation": "Supports evaluating JANUS as both a weight-learning system and a scaffold-learning system; improvements to memory, verifier routing and proposal policy should be measured separately from checkpoint training."
+    },
+    {
+      "id": "BERKELEY-CONTINUAL-LEARNING-BENCH-2026",
+      "title": "Continual Learning Bench 1.0",
+      "organization": "UC Berkeley Sky Computing Lab",
+      "year": 2026,
+      "url": "https://sky.cs.berkeley.edu/project/continual-learning-bench/",
+      "finding": "Evaluates systems on dependent task sequences where systems are expected to change during evaluation and performance depends on use of prior experience.",
+      "janus_translation": "Supports a future JANUS frozen sequential benchmark in addition to token-level loss: test whether verified prior experience improves later bounded tasks without increasing unsafe action or reducing abstention quality."
+    }
+  ],
+  "topa_synthesis": {
+    "supported_priorities": [
+      "R1_STABLE_ANCHOR_EVAL",
+      "R2_VERIFIER_STRATIFIED_REPLAY",
+      "R6_RESEARCH_EVIDENCE_LAYERS",
+      "R8_SHADOW_CHALLENGER"
+    ],
+    "new_candidate": {
+      "id": "R9_SEQUENTIAL_RETENTION_BENCH",
+      "priority": "P1",
+      "title": "Frozen sequential retention benchmark",
+      "purpose": "Measure whether JANUS uses verified experience to improve later tasks while retaining earlier capabilities, rather than relying only on language-model loss.",
+      "minimum_metrics": [
+        "forward_transfer",
+        "retention_or_forgetting",
+        "target_local_verify_pass_rate",
+        "abstention_precision",
+        "authority_violation_count",
+        "provenance_rejection_count",
+        "compute_per_verified_improvement"
+      ],
+      "authority": "EVALUATION_ONLY"
+    }
+  },
+  "firewalls": [
+    "PAPER_RESULT != JANUS_RUNTIME_PROOF",
+    "RESEARCH_CONTEXT != GRADIENT_SIGNAL",
+    "CITATION_COUNT != EVIDENCE_QUALITY",
+    "REPLAY != AUTOMATIC_TRUTH",
+    "PAST_VERIFY_PASS != FUTURE_VERIFY_PASS",
+    "EXTERNAL_ARCHITECTURE != EXECUTION_GRANT",
+    "TOPA_SYNTHESIS != AUTHORITY_ELEVATION"
+  ],
+  "training_policy": {
+    "direct_training_eligible": false,
+    "direct_selector_prior_eligible": false,
+    "research_context_eligible": true,
+    "requires_domain_gate_before_any_learning_effect": true
+  }
+}
