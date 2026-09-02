@@ -1,0 +1,172 @@
+{
+  "schema": "topa.janus_autolearning_architecture_canonical_receipt.v1",
+  "status": "PASS",
+  "generated_at": "2026-09-02T00:36:44Z",
+  "source": {
+    "workflow_run_id": 33575981269,
+    "job_id": 100079982150,
+    "artifact_id": 9826640494,
+    "artifact_digest": "sha256:3d0c4a54f979b1cc2b1f74a3063f729960aa3c03b529b67f9ff8831523511c28",
+    "spider_head": "c06e1bf2574a696d160515ab9bf035f7c2b03da6",
+    "spider_schema": "topa.janus_autolearning_architecture_spider.v1",
+    "spider_mode": "READ_ONLY_EVIDENCE_AUDIT",
+    "repo_count": 16,
+    "files_scanned": 9131,
+    "bytes_scanned": 288943404
+  },
+  "source_heads": {
+    "Janus-Demiurge": "498d3bec5cfac8962522dd1ae5834c2f14d74f17",
+    "janus-meta-registry": "e83f4ee0880e1e19603f7e61f1a46d38aabccd19",
+    "Hrain": "1bcd0173d0cd6f53cc8594b22b9871f3cc502651",
+    "-Terminal-for-Janus": "208d174ddac0c2ce403354ec9b6097096080eb34",
+    "Janus_Genesis": "89a97b73603dec70100e691c88016f9ab686998b",
+    "Janus-Fundamentum": "bc159ecf07dda90eaae85cdf818a7e753f2b9d01",
+    "Demi_Head": "78fd00c684940b466f9e471384e59ee2ced1a046",
+    "TOPA": "c06e1bf2574a696d160515ab9bf035f7c2b03da6",
+    "janus-lapis": "62d20d7a5c08f8a733b2b755b31ef7404d71803c",
+    "janus-distributed-ai-swarm": "e5d907adacfe92d8f87c76e2e6e92ebbbdfef535",
+    "JANUS-MACHINE-MARKET": "1bad878cdf6ab310305a063adc7ec3d3f2b31a6e",
+    "Janus": "98655f2cb573ee13e0da56aab43583ed6d2d8352",
+    "aura-oracle-tg": "66c51740d3cbe97860f018ff954c709e65c85af4",
+    "janus-io-public": "41b1c9b6af6629a551d2814aa69c5dfcac042620",
+    "Janus-Cosmos": "1c5359bb0a8e5d8d471190d1dcee008d302c370b",
+    "Janus-HELIOS": "f04fd291835998491f244ac4bee2fa708e2f7705"
+  },
+  "recommendations": [
+    {
+      "id": "R1_STABLE_ANCHOR_EVAL",
+      "priority": "P0",
+      "title": "Dual evaluation: adaptive corpus + frozen anchor benchmark",
+      "why": "Historical eval loss is not reliably comparable when the training/evaluation corpus changes between generations.",
+      "implementation": [
+        "Create versioned immutable JANUS_ANCHOR_EVAL with sha256.",
+        "Evaluate incumbent and candidate on both current-corpus eval and frozen anchor eval.",
+        "Require current-corpus improvement and anchor regression within a frozen tolerance; otherwise HOLD or ABSTAIN.",
+        "Persist corpus_digest, anchor_digest, tokenizer/config digest and seed in every lineage record."
+      ],
+      "gates": [
+        "Repeated evaluation of one checkpoint on one anchor is deterministic within frozen tolerance.",
+        "An easier changed corpus cannot promote a candidate that materially regresses on the anchor.",
+        "Historical lineage is explicitly tagged COMPARABLE or NON_COMPARABLE."
+      ]
+    },
+    {
+      "id": "R2_VERIFIER_STRATIFIED_REPLAY",
+      "priority": "P0",
+      "title": "Verifier-stratified bounded replay memory",
+      "implementation": [
+        "Train only from explicit target-local VERIFY_PASS or VERIFY_FAIL carrying proposal hash, verifier version, target head, diff hash and receipt hash.",
+        "Keep bounded per-verifier/per-organ replay buckets with capped selector influence and recency decay.",
+        "REJECTED_PROVENANCE, STALE_BASE, NO_RECEIPT and TIMEOUT remain non-training states.",
+        "Reserve a verified holdout slice for calibration only, never gradient updates."
+      ],
+      "gates": [
+        "Replay cannot override a hard verifier failure.",
+        "Removing all eligible receipts reproduces baseline selector behavior.",
+        "Duplicate receipt replay is idempotent."
+      ]
+    },
+    {
+      "id": "R3_HASH_CHAINED_DECISION_CAS",
+      "priority": "P0",
+      "title": "Hash-chained monotonic durable decision register",
+      "implementation": [
+        "Add decision_epoch, previous_decision_sha256, checkpoint_sha256 and source_run_id to every durable decision.",
+        "Accept latest-pointer update only when previous_decision_sha256 equals the current durable head.",
+        "On conflict preserve both candidate receipts and reconcile; never resolve solely by timestamp.",
+        "Use one canonical latest-pointer writer; all other workflows publish candidate receipts only."
+      ],
+      "gates": [
+        "A stale concurrent writer cannot lower decision_epoch or replace latest.",
+        "Replay of an accepted decision is idempotent.",
+        "Broken previous hash fails closed without discarding evidence."
+      ]
+    },
+    {
+      "id": "R4_FRESHNESS_LEASE_RECOMPUTE",
+      "priority": "P0",
+      "title": "Freshness lease with automatic Scout refresh and proposal recomputation",
+      "implementation": [
+        "Scout receipt records repo, observed_head, observed_at, TTL and content-manifest hash.",
+        "Before action compare target current HEAD to observed_head.",
+        "If stale emit STALE_EVIDENCE, refresh Scout and recompute decision/proposal.",
+        "Never auto-rebase an old proposal onto a new target HEAD."
+      ],
+      "gates": [
+        "Target HEAD drift triggers refresh/recompute, never patch application.",
+        "Unchanged HEAD can reuse a valid lease.",
+        "STALE_EVIDENCE is not VERIFY_FAIL."
+      ]
+    },
+    {
+      "id": "R5_EVENT_CLASS_RECEIPTS",
+      "priority": "P1",
+      "title": "Event-class receipts for autonomous-life evidence",
+      "implementation": [
+        "Seal event_name, workflow_ref, run_id, run_attempt, head_sha, created_at and actor_class into each life receipt.",
+        "Natural-life counter accepts only unique receipts satisfying the frozen schedule policy.",
+        "Push, workflow_run and manual activity remain observable but cannot elevate ALIVE_BOUNDED."
+      ]
+    },
+    {
+      "id": "R6_RESEARCH_EVIDENCE_LAYERS",
+      "priority": "P1",
+      "title": "Three-tier research ingestion before training",
+      "implementation": [
+        "Tier A DISCOVERY: raw TOPA/Demi_Head/Fundamentum evidence with source/hash/date.",
+        "Tier B CORROBORATED: independent-source grouping, contradiction ledger and provenance score.",
+        "Tier C TRAINING_ELIGIBLE: only after a frozen domain-specific gate.",
+        "All tiers may inform context; only explicitly eligible fields may affect gradients or selector priors."
+      ]
+    },
+    {
+      "id": "R7_NEXUS_READ_INSPECT_GRAPH",
+      "priority": "P1",
+      "title": "NEXUS organization-wide read/inspect knowledge graph",
+      "implementation": [
+        "Create immutable per-repo manifests with head SHA, relevant file hashes, concepts, tests/workflows and cross-repo references.",
+        "NEXUS edges are evidence references, never authority edges.",
+        "Mutation stays target-local proposal -> verifier -> receipt.",
+        "Every decision records the immutable NEXUS snapshot that informed it."
+      ]
+    },
+    {
+      "id": "R8_SHADOW_CHALLENGER",
+      "priority": "P1",
+      "title": "Shadow challenger before autonomous promotion",
+      "implementation": [
+        "Run a challenger selector/model on the exact same frozen evidence snapshot without actuation authority.",
+        "Compare calibration, verifier-pass, abstention, disagreement and authority metrics.",
+        "Promote only against predeclared gates and retain hash-addressable rollback state."
+      ]
+    }
+  ],
+  "training_policy": {
+    "research_context_eligible": true,
+    "direct_gradient_training_eligible": false,
+    "direct_selector_prior_eligible": false,
+    "requires_downstream_domain_gate": true
+  },
+  "authority": {
+    "write_target_repos": false,
+    "merge": false,
+    "secrets": false,
+    "admin": false,
+    "nexus_edges_are_authority_edges": false
+  },
+  "epistemic_firewall": [
+    "CODE_PRESENCE != RUNTIME_EXECUTION",
+    "CO_OCCURRENCE != DATAFLOW_PROOF",
+    "WORKFLOW_SUCCESS != MODEL_CORRECTNESS",
+    "VERIFY_PASS != GLOBAL_TRUTH",
+    "SILENCE != NEGATIVE_EVIDENCE",
+    "OBSERVABILITY_ACTIVITY != NATURAL_GIT_LIFE_WITNESS",
+    "NEXUS_READ_INSPECT != WRITE_AUTHORITY",
+    "REJECTED_PROVENANCE != NEGATIVE_TRAINING_SIGNAL",
+    "TOPA_RECOMMENDATION != EXECUTION_GRANT",
+    "TOPA_EVIDENCE != TRAINING_TRUTH",
+    "RESEARCH_CONTEXT != GRADIENT_SIGNAL",
+    "SPIDER_RUN != NATURAL_GIT_LIFE_WITNESS"
+  ],
+  "canonical_seal": "LEARN FROM VERIFIED OUTCOMES, NOT FROM SELF-BELIEF. KEEP EVIDENCE FRESH, EVALUATION COMPARABLE, MEMORY MONOTONIC, AND AUTHORITY LOCAL."
+}
