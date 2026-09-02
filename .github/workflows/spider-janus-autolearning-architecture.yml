@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/topa_janus_autolearning_architecture_spider.py'
       - 'tools/topa_janus_autolearning_architecture_spider_fast.py'
+      - 'tools/topa_janus_autolearning_architecture_spider_indexed.py'
       - '.github/workflows/spider-janus-autolearning-architecture.yml'
   workflow_dispatch:
   schedule:
@@ -60,7 +61,7 @@ jobs:
       - name: Run TOPA JANUS architecture spider
         run: |
           mkdir -p work/results
-          python tools/topa_janus_autolearning_architecture_spider_fast.py \
+          python tools/topa_janus_autolearning_architecture_spider_indexed.py \
             --root work/repos \
             --out work/results/JANUS-TOPA-AUTOLEARNING-ARCHITECTURE-SPIDER.json
 
