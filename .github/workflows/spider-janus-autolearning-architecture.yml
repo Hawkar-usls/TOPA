@@ -1,0 +1,105 @@
+name: TOPA Spider — JANUS Autolearning Architecture
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/topa_janus_autolearning_architecture_spider.py'
+      - '.github/workflows/spider-janus-autolearning-architecture.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */12 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: topa-janus-autolearning-architecture
+  cancel-in-progress: false
+
+jobs:
+  architecture-spider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout TOPA
+        uses: actions/checkout@v4
+
+      - name: Clone fresh JANUS read-only surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work/repos
+          cd work/repos
+          repos=(
+            Janus-Demiurge
+            janus-meta-registry
+            Hrain
+            -Terminal-for-Janus
+            Janus_Genesis
+            Janus-Fundamentum
+            Demi_Head
+            TOPA
+            janus-lapis
+            janus-distributed-ai-swarm
+            JANUS-MACHINE-MARKET
+            Janus
+            aura-oracle-tg
+            janus-io-public
+            Janus-Cosmos
+            Janus-HELIOS
+          )
+          for repo in "${repos[@]}"; do
+            echo "::group::clone ${repo}"
+            git clone --depth 1 --filter=blob:none "https://github.com/Hawkar-usls/${repo}.git" "./${repo}"
+            git -C "./${repo}" rev-parse HEAD
+            echo "::endgroup::"
+          done
+
+      - name: Run TOPA JANUS architecture spider
+        run: |
+          mkdir -p work/results
+          python tools/topa_janus_autolearning_architecture_spider.py \
+            --root work/repos \
+            --out work/results/JANUS-TOPA-AUTOLEARNING-ARCHITECTURE-SPIDER.json
+
+      - name: Evidence firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('work/results/JANUS-TOPA-AUTOLEARNING-ARCHITECTURE-SPIDER.json')
+          x=json.loads(p.read_text(encoding='utf-8'))
+          assert x['status']=='PASS'
+          assert x['architecture_summary']['repo_count'] >= 12
+          assert x['architecture_summary']['files_scanned'] > 0
+          fw=set(x['epistemic_firewall'])
+          required={
+              'CODE_PRESENCE != RUNTIME_EXECUTION',
+              'SILENCE != NEGATIVE_EVIDENCE',
+              'OBSERVABILITY_ACTIVITY != NATURAL_GIT_LIFE_WITNESS',
+              'NEXUS_READ_INSPECT != WRITE_AUTHORITY',
+              'REJECTED_PROVENANCE != NEGATIVE_TRAINING_SIGNAL',
+          }
+          assert required <= fw
+          recs={r['id']:r for r in x['recommendations']}
+          assert 'R1_STABLE_ANCHOR_EVAL' in recs
+          assert 'R2_VERIFIER_STRATIFIED_REPLAY' in recs
+          assert 'R3_HASH_CHAINED_DECISION_CAS' in recs
+          assert 'R4_FRESHNESS_LEASE_RECOMPUTE' in recs
+          print(json.dumps({
+              'repo_count': x['architecture_summary']['repo_count'],
+              'files_scanned': x['architecture_summary']['files_scanned'],
+              'priority_recommendations': [
+                  {'id':r['id'],'priority':r['priority'],'title':r['title']}
+                  for r in x['recommendations']
+              ]
+          }, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Upload architecture evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: janus-topa-autolearning-architecture
+          path: work/results/JANUS-TOPA-AUTOLEARNING-ARCHITECTURE-SPIDER.json
+          retention-days: 30
