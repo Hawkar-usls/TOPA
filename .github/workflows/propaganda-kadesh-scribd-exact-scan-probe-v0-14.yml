@@ -1,0 +1,33 @@
+name: propaganda-kadesh-scribd-exact-scan-probe-v0-14
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_scribd_exact_scan_probe_v0_14.py'
+      - '.github/workflows/propaganda-kadesh-scribd-exact-scan-probe-v0-14.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deterministic PDF parser
+        run: python -m pip install 'pypdf==6.0.0'
+      - name: Probe exact Wilson scan transports on Scribd
+        run: python tools/propaganda_kadesh_scribd_exact_scan_probe_v0_14.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-scribd-exact-scan-probe-v0-14
+          path: research/propaganda-defense/execution/KADESH_SCRIBD_EXACT_SCAN_PROBE.v0.14.json
+          if-no-files-found: error
+          retention-days: 30
