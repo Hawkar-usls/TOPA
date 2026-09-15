@@ -1,0 +1,34 @@
+name: Validate Akinator PF3 Boundary Embedding
+
+on:
+  push:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF3_BOUNDARY_QUOTIENT_REPRESENTATION_CLOSURES.md'
+      - 'research/mathematics/p-vs-np/akinator_pf3_boundary_embedding_probe.py'
+      - '.github/workflows/validate-akinator-pf3-boundary-embedding.yml'
+  pull_request:
+    paths:
+      - 'research/mathematics/p-vs-np/C025_AKINATOR_PF3_BOUNDARY_QUOTIENT_REPRESENTATION_CLOSURES.md'
+      - 'research/mathematics/p-vs-np/akinator_pf3_boundary_embedding_probe.py'
+      - '.github/workflows/validate-akinator-pf3-boundary-embedding.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-mechanics:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run PF3 boundary embedding finite replay
+        run: python research/mathematics/p-vs-np/akinator_pf3_boundary_embedding_probe.py
+      - name: Claim ceiling reminder
+        run: |
+          echo 'CI validates only the finite dummy-pivot boundary embedding.'
+          echo 'OBDD/DNNF/ZDD lower bounds are external analytical results.'
+          echo 'UNIVERSAL_POLY_BOUNDARY_QUOTIENT_WITH_UPDATE = OPEN'
+          echo 'P_VS_NP = OPEN'
