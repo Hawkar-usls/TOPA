@@ -1,0 +1,31 @@
+name: propaganda-kadesh-academia-transport-probe-v0-10
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_academia_transport_probe_v0_10.py'
+      - '.github/workflows/propaganda-kadesh-academia-transport-probe-v0-10.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover exact Wilson transport on Academia
+        run: python tools/propaganda_kadesh_academia_transport_probe_v0_10.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-academia-transport-probe-v0-10
+          path: research/propaganda-defense/execution/KADESH_ACADEMIA_TRANSPORT_PROBE.v0.10.json
+          if-no-files-found: error
+          retention-days: 30
