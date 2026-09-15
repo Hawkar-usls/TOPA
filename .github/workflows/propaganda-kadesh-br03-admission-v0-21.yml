@@ -1,0 +1,30 @@
+name: propaganda-kadesh-br03-admission-v0-21
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_br03_admission_v0_21.py'
+      - '.github/workflows/propaganda-kadesh-br03-admission-v0-21.yml'
+      - 'research/propaganda-defense/KADESH_BR03_TRANSPORT_ADMISSION_POLICY.v0.21.json'
+
+jobs:
+  admission:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute pre-frozen BR03 transport admission policy
+        run: python tools/propaganda_kadesh_br03_admission_v0_21.py
+      - name: Upload admission receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-br03-admission-v0-21
+          path: research/propaganda-defense/execution/KADESH_BR03_TRANSPORT_ADMISSION_RUN.v0.21.json
+          if-no-files-found: error
+          retention-days: 30
