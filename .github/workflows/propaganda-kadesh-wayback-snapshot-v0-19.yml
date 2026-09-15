@@ -1,0 +1,30 @@
+name: propaganda-kadesh-wayback-snapshot-v0-19
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_wayback_snapshot_probe_v0_19.py'
+      - '.github/workflows/propaganda-kadesh-wayback-snapshot-v0-19.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe only the two frozen Wayback snapshot coordinates
+        run: python tools/propaganda_kadesh_wayback_snapshot_probe_v0_19.py
+      - name: Upload diagnostic receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-wayback-snapshot-v0-19
+          path: research/propaganda-defense/execution/KADESH_WAYBACK_SNAPSHOT_PROBE.v0.19.json
+          if-no-files-found: error
+          retention-days: 30
