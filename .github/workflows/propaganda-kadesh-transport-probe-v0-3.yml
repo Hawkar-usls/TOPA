@@ -1,0 +1,31 @@
+name: propaganda-kadesh-transport-probe-v0-3
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_transport_probe_v0_3.py'
+      - '.github/workflows/propaganda-kadesh-transport-probe-v0-3.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe BR03 same-source public transports
+        run: python tools/propaganda_kadesh_transport_probe_v0_3.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-transport-probe-v0-3
+          path: research/propaganda-defense/execution/KADESH_TRANSPORT_PROBE.v0.3.json
+          if-no-files-found: error
+          retention-days: 30
