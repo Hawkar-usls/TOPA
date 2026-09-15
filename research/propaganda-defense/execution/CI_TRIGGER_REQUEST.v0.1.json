@@ -1,0 +1,16 @@
+{
+  "schema": "topa.propaganda_defense.ci_trigger_request.v0.1",
+  "date": "2026-08-24",
+  "purpose": "Expose a reviewable pull-request-triggered GitHub Actions run for the defensive propaganda corpus guardrails without targeting main or changing research claims.",
+  "base_branch": "topa-propaganda-defense",
+  "requested_checks": [
+    "NOT_EXHAUSTIVE_CORPUS",
+    "DEFENSIVE_OPERATIONAL_FIREWALL",
+    "SOURCE_AUTHORITY_SYMMETRY_GATE",
+    "RIGHTS_AND_USE_FIELDS",
+    "SACRED_TEXT_A_B_GATE_UNCHANGED",
+    "SCORE_PERMISSION_FALSE"
+  ],
+  "research_claim_changed": false,
+  "merge_intent": false
+}
