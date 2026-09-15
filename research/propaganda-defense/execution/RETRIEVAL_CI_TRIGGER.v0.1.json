@@ -1,0 +1,16 @@
+{
+  "schema": "topa.propaganda_defense.retrieval_ci_trigger.v0.1",
+  "date": "2026-08-24",
+  "purpose": "Technical PR-only trigger for the ancient base-rate external retrieval seal workflow.",
+  "base_branch": "topa-propaganda-defense",
+  "expected_invariants": {
+    "source_authorities": "8/8_FROZEN",
+    "exact_loci": "8/8_FROZEN",
+    "descriptor_commitments": "8/8_FROZEN",
+    "semantic_values_populated": 0,
+    "base_rate_coding_permission": false,
+    "score_permission": false
+  },
+  "required_behavior": "Preserve PARTIAL/METADATA_ONLY/BLOCKED outcomes as receipts; do not substitute frozen loci or sources.",
+  "merge_intent": false
+}
