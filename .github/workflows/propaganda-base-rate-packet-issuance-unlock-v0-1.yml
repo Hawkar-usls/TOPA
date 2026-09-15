@@ -1,0 +1,30 @@
+name: propaganda-base-rate-packet-issuance-unlock-v0-1
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_base_rate_packet_issuance_unlock_v0_1.py'
+      - '.github/workflows/propaganda-base-rate-packet-issuance-unlock-v0-1.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute pre-frozen 8-of-8 reverse-consistency and packet-issuance gate
+        run: python tools/propaganda_base_rate_packet_issuance_unlock_v0_1.py
+      - name: Upload unlock receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-rate-packet-issuance-unlock-v0-1
+          path: research/propaganda-defense/execution/BASE_RATE_PACKET_ISSUANCE_UNLOCK_RUN.v0.1.json
+          if-no-files-found: error
+          retention-days: 30
