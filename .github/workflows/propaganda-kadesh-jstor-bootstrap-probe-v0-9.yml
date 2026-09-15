@@ -1,0 +1,31 @@
+name: propaganda-kadesh-jstor-bootstrap-probe-v0-9
+
+on:
+  pull_request:
+    branches:
+      - topa-propaganda-defense
+    paths:
+      - 'tools/propaganda_kadesh_jstor_bootstrap_probe_v0_9.py'
+      - '.github/workflows/propaganda-kadesh-jstor-bootstrap-probe-v0-9.yml'
+      - 'research/propaganda-defense/**'
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover JSTOR bootstrap routes for stable 528771
+        run: python tools/propaganda_kadesh_jstor_bootstrap_probe_v0_9.py
+      - name: Upload diagnostic receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kadesh-jstor-bootstrap-probe-v0-9
+          path: research/propaganda-defense/execution/KADESH_JSTOR_BOOTSTRAP_PROBE.v0.9.json
+          if-no-files-found: error
+          retention-days: 30
