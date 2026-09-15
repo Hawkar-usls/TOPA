@@ -1,0 +1,14 @@
+{
+  "schema":"topa.propaganda_defense.retrieval_ci_trigger.v0.2",
+  "date":"2026-08-24",
+  "purpose":"Technical PR-only replay of frozen BR01-BR08 through transport/parser repair v0.2.",
+  "frozen_inputs_unchanged":true,
+  "repair_scope":"TRANSPORT_AND_REPRESENTATION_VALIDATION_ONLY",
+  "attempt_1_authority":"execution/BASE_RATE_RETRIEVAL_ATTEMPT_1_FAIL_CLOSED.v0.1.json",
+  "expected_locks":{
+    "semantic_values_populated":0,
+    "base_rate_coding_permission":false,
+    "score_permission":false
+  },
+  "merge_intent":false
+}
