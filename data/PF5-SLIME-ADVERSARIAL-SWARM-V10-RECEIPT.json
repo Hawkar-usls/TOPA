@@ -1,0 +1,56 @@
+{
+  "artifact_id": "PF5-SLIME-ADVERSARIAL-SWARM-V10-RECEIPT",
+  "status": "AUTHORITATIVE_COUNTEREXAMPLE_MINING_PASS",
+  "provider": {
+    "run": 32825437827,
+    "job": 97732261731,
+    "head": "2000b4cb0745f2a67ec75c9d65ab44253a13f3b7",
+    "slime_producer_commit": "36437e053bb151660eaed4e82634d430346343a5",
+    "conclusion": "SUCCESS",
+    "frozen_candidate_batch_sha256": "08b64c7a21c704c3be12093fda2a5405d59067a7a0d5cea078f3dc43ba9708d6",
+    "result_sha256": "90020877145fac00f049cf141ee1f2affc659462899b253272d5cbd82626169e"
+  },
+  "frozen_sources": {
+    "seeds": [906500,906501,906502,906503,906504,906505,906506,906507,906508,906509,906510,906511,906512,906513,906514,906515,906516,906517,906518,906519,906520,906521,906522,906523,906524,906525,906526,906527,906528,906529,906530,906531],
+    "connected_3cnf_n": 7,
+    "connected_3cnf_m": 10,
+    "random_challengers_per_source": 32,
+    "all_orders_frozen_before_exact_probe": true,
+    "challenger_generation_used_exact_score": false
+  },
+  "outcome_vs_best_random": {
+    "WIN": 5,
+    "TIE": 4,
+    "LOSS": 23
+  },
+  "sources_with_random_escape": 23,
+  "maximum_loss_ratio": 1.875,
+  "worst_loss": {
+    "seed": 906528,
+    "source_sha256": "61e626d79b39a7432c7378598b5d826e468d1a09d9aa47865744dff4fbcd3147",
+    "slime_manifest_sha256": "724edbd59ededc69c5cc1d283e1745886fd9b3240f3d479f19c73c8fa092bc8d",
+    "slime_width": 15,
+    "best_random_width": 8,
+    "slime_tie_aware_rank_among_33": 23,
+    "strictly_better_random_challengers": 22,
+    "best_random_challenger_index": 30,
+    "best_random_order_sha256": "32076725c82b8440aac4310b97d671f605c6cc8a5eb894bf27c13905522dbe28"
+  },
+  "cost_ledger": {
+    "slime_generation_ops": 216814,
+    "random_order_generation_ops": 17408,
+    "total_generation_ops": 234222,
+    "exact_verifier_cuts": 32736,
+    "exact_verifier_assignment_rows": 494273,
+    "exact_verifier_literal_checks": 2539230
+  },
+  "scientific_interpretation": [
+    "The current single-front Slime semantic-pressure order is not complete even against a fixed polynomial-size random-order challenger portfolio on these finite controls.",
+    "The loss is a candidate-discovery counterexample, not a SAT hardness result.",
+    "The failure mode supports expanding Slime from one greedy front to a deterministic multi-front candidate swarm while preserving the generator-verifier firewall.",
+    "The exact scorer remains an exponential finite audit oracle and cannot be used at runtime to select a candidate in a polynomial SAT claim."
+  ],
+  "next_gate": "SLIME_MULTI_FRONT_PROOF_CARRYING_CANDIDATE_SWARM",
+  "universal_candidate_completeness": "OPEN",
+  "p_vs_np": "OPEN"
+}
