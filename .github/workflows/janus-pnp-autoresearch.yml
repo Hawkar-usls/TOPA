@@ -1,6 +1,12 @@
 name: TOPA JANUS P-vs-NP Autoresearch Spider
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/janus_pnp_autoresearch.py'
+      - 'protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.0.json'
+      - '.github/workflows/janus-pnp-autoresearch.yml'
   schedule:
     - cron: '27 */2 * * *'
   workflow_dispatch:
