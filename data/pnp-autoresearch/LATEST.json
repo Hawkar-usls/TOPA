@@ -1,0 +1,49 @@
+{
+  "schema": "janus.topa.pnp_autoresearch_cycle.v1",
+  "status": "BOOTSTRAP_READY_FIRST_NETWORK_CYCLE_PENDING",
+  "source_commit": "70718d5ad4817327b521d08e0b769354ef059346",
+  "query_seed_count": 6,
+  "query_receipts": [],
+  "record_count": 0,
+  "node_count": 0,
+  "edge_count": 0,
+  "query_seeds": [
+    {
+      "id": "Q-PNP-SAT-POLY",
+      "focus": "P vs NP / SAT polynomial-time algorithm",
+      "query": "SAT polynomial time algorithm exact proof complexity structural decomposition"
+    },
+    {
+      "id": "Q-C023-CACHE",
+      "focus": "C023 formula caching",
+      "query": "formula caching DPLL clause learning proof complexity lower bounds resolution simulation"
+    },
+    {
+      "id": "Q-REASON-REUSE",
+      "focus": "reason reuse",
+      "query": "reason reuse memoization SAT proof systems cache contextual soundness"
+    },
+    {
+      "id": "Q-A3-PRIOR",
+      "focus": "A3 prior art",
+      "query": "subspace arrangement pathwidth endpoint compression ternary dynamic programming matroid pathwidth"
+    },
+    {
+      "id": "Q-LOWER-BOUND",
+      "focus": "lower-bound barriers",
+      "query": "proof complexity lower bounds resolution caching branching programs SAT"
+    },
+    {
+      "id": "Q-REPRESENTATION",
+      "focus": "representation preservation",
+      "query": "SAT representation change semantic equivalence polynomial reconstruction verification"
+    }
+  ],
+  "authority": {
+    "truth": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "fundamentum_mutation": false
+  },
+  "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION"
+}
