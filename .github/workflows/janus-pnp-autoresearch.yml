@@ -1,0 +1,71 @@
+name: TOPA JANUS P-vs-NP Autoresearch Spider
+
+on:
+  schedule:
+    - cron: '27 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: topa-janus-pnp-autoresearch
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Self-test TOPA research tools
+        run: |
+          set -euo pipefail
+          python tools/topa_arxiv_gateway.py self-test
+          python tools/topa_spider.py self-test
+      - name: Run bounded internet research cycle
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pnp-autoresearch
+          python tools/janus_pnp_autoresearch.py --out /tmp/pnp-autoresearch --max-queries 6 --per-source 12
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/pnp-autoresearch/LATEST.json').read_text())
+          assert x['schema']=='janus.topa.pnp_autoresearch_cycle.v1'
+          assert x['authority']['truth'] is False
+          assert x['authority']['proof'] is False
+          assert x['authority']['fundamentum_mutation'] is False
+          assert x['query_seed_count'] > 0
+          print('TOPA_PNP_AUTORESEARCH_GATE=PASS')
+          PY
+      - name: Persist isolated TOPA research state
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin janus/pnp-autoresearch-state >/dev/null 2>&1; then
+            git fetch origin janus/pnp-autoresearch-state
+            git switch -C janus/pnp-autoresearch-state origin/janus/pnp-autoresearch-state
+          else
+            git switch --orphan janus/pnp-autoresearch-state
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+          mkdir -p data/pnp-autoresearch/history
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          cp /tmp/pnp-autoresearch/LATEST.json data/pnp-autoresearch/LATEST.json
+          cp /tmp/pnp-autoresearch/spider-receipt.json data/pnp-autoresearch/spider-receipt.json
+          cp /tmp/pnp-autoresearch/spider-nodes.jsonl data/pnp-autoresearch/spider-nodes.jsonl
+          cp /tmp/pnp-autoresearch/spider-edges.jsonl data/pnp-autoresearch/spider-edges.jsonl
+          cp /tmp/pnp-autoresearch/source-records.jsonl data/pnp-autoresearch/source-records.jsonl
+          cp /tmp/pnp-autoresearch/LATEST.json "data/pnp-autoresearch/history/${stamp}.json"
+          git config user.name 'janus-topa-spider[bot]'
+          git config user.email 'janus-topa-spider[bot]@users.noreply.github.com'
+          git add data/pnp-autoresearch
+          git diff --cached --quiet && exit 0
+          git commit -m "topa: autonomous P-vs-NP research cycle ${stamp}"
+          git push origin HEAD:janus/pnp-autoresearch-state

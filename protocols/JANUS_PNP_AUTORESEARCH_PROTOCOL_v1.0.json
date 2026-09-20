@@ -1,0 +1,45 @@
+{
+  "schema": "janus.topa.pnp_autoresearch_protocol.v1",
+  "status": "ACTIVE_CANDIDATE_RESEARCH",
+  "goal": "Continuously search for literature, methods, counterexamples, prior art and attack routes relevant to P vs NP and the current Janus-Fundamentum open gates.",
+  "inputs": {
+    "fundamentum": "Hawkar-usls/Janus-Fundamentum@main",
+    "hrain": "Hawkar-usls/Hrain@janus/fundamentum-structural-memory",
+    "inaihr": "Hawkar-usls/iNaiHR@janus/fundamentum-associative-memory"
+  },
+  "internet_sources": [
+    {"id":"ARXIV","mode":"BOUNDED_REMOTE_SEARCH","authority":"DISCOVERY_METADATA_ONLY"},
+    {"id":"OPENALEX","mode":"BOUNDED_REMOTE_SEARCH","authority":"DISCOVERY_METADATA_ONLY"}
+  ],
+  "weaver": {
+    "tool": "tools/topa_spider.py",
+    "relations": ["MENTIONS","SHARED_ENTITY","SEMANTIC_SIMILARITY","SOURCE_LINEAGE"],
+    "graph_is_proof": false
+  },
+  "state": {
+    "branch": "janus/pnp-autoresearch-state",
+    "root": "data/pnp-autoresearch"
+  },
+  "automation": {
+    "schedule": "EVERY_2_HOURS",
+    "max_queries_per_cycle": 6,
+    "max_records_per_query_per_source": 12,
+    "no_change_is_new_evidence": false
+  },
+  "authority": {
+    "truth": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "fundamentum_mutation": false,
+    "automatic_merge": false
+  },
+  "laws": [
+    "SEARCH_RESULT != TRUTH",
+    "PAPER != INDEPENDENT_REPLICATION",
+    "GRAPH_EDGE != CAUSATION",
+    "SEMANTIC_SIMILARITY != MECHANISM",
+    "TOPA_DISCOVERY != FUNDAMENTUM_VERDICT",
+    "P_VS_NP_REMAINS_OPEN_UNLESS_EXPLICIT_PROOF_GATE_PASSES",
+    "NEGATIVE_AND_CONTRADICTORY_RESULTS_ARE_PRESERVED"
+  ]
+}
