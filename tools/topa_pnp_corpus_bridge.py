@@ -362,7 +362,7 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
     auth = index.get("scientific_authority") or {}
     if index.get("schema") != "JANUS_P_VS_NP_MATERIALS_INDEX":
         raise RuntimeError("PNP_CORPUS_INDEX_SCHEMA_REJECTED")
-    if auth.get("P_VS_NP") != "OPEN" or auth.get("SUCCESSOR_ALGORITHM") != "LOCKED":
+    if auth.get("P_VS_NP") != "OPEN" or auth.get("D1") != "EMPTY" or auth.get("SUCCESSOR_ALGORITHM") != "LOCKED":
         raise RuntimeError("PNP_CORPUS_AUTHORITY_FIREWALL_REJECTED")
 
     drive_rows = flatten_drive_index(index)
@@ -527,7 +527,7 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
         "schema": SCHEMA_CORPUS,
         "status": "READY_READ_ONLY_RESEARCH_CORPUS",
         "P_VS_NP": "OPEN",
-        "D1": auth.get("D1", "EMPTY"),
+        "D1": "EMPTY",
         "successor_algorithm": "LOCKED",
         "record_count": len(corpus_records),
         "new_publication_count": new_count,
