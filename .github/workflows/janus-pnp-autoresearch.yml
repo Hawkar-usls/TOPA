@@ -29,16 +29,57 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Self-test TOPA research tools
+      - name: Self-test TOPA research tools and corpus fabric
         run: |
           set -euo pipefail
           python tools/topa_arxiv_gateway.py self-test
           python tools/topa_spider.py self-test
+          python tools/topa_pnp_drive_bridge.py self-test
+          python tools/topa_pnp_corpus_bridge.py self-test
+
+      - name: Recover previous isolated PNP corpus state
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pnp-prev
+          mkdir -p /tmp/pnp-prev
+          if git ls-remote --exit-code --heads origin janus/pnp-autoresearch-state >/dev/null 2>&1; then
+            git fetch origin janus/pnp-autoresearch-state
+            for F in CORPUS.json CORPUS_WEIGHT_LEDGER.json; do
+              git show "origin/janus/pnp-autoresearch-state:data/pnp-autoresearch/$F" > "/tmp/pnp-prev/$F" 2>/dev/null || true
+            done
+          fi
+
+      - name: Resolve private Google Drive corpus index or pinned fallback
+        env:
+          JANUS_GDRIVE_CLIENT_ID: ${{ secrets.JANUS_GDRIVE_CLIENT_ID }}
+          JANUS_GDRIVE_CLIENT_SECRET: ${{ secrets.JANUS_GDRIVE_CLIENT_SECRET }}
+          JANUS_GDRIVE_REFRESH_TOKEN: ${{ secrets.JANUS_GDRIVE_REFRESH_TOKEN }}
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pnp-corpus
+          mkdir -p /tmp/pnp-corpus
+          python tools/topa_pnp_drive_bridge.py fetch-index \
+            --file-id 1lL5lftT64eojjeNcd0RqvS9XpCFyaqE9 \
+            --fallback config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json \
+            --out /tmp/pnp-corpus/MATERIALS_INDEX.json \
+            --receipt /tmp/pnp-corpus/DRIVE_INDEX_RECEIPT.json
       - name: Run bounded internet research cycle
         run: |
           set -euo pipefail
           rm -rf /tmp/pnp-autoresearch
-          python tools/janus_pnp_autoresearch.py --out /tmp/pnp-autoresearch --max-queries 6 --per-source 12
+          python tools/janus_pnp_autoresearch.py \
+            --out /tmp/pnp-autoresearch \
+            --max-queries 6 \
+            --per-source 12 \
+            --corpus-index /tmp/pnp-corpus/MATERIALS_INDEX.json
+          python tools/topa_pnp_corpus_bridge.py build \
+            --index /tmp/pnp-corpus/MATERIALS_INDEX.json \
+            --discoveries /tmp/pnp-autoresearch/source-records.jsonl \
+            --previous-corpus /tmp/pnp-prev/CORPUS.json \
+            --previous-ledger /tmp/pnp-prev/CORPUS_WEIGHT_LEDGER.json \
+            --out-corpus /tmp/pnp-autoresearch/CORPUS.json \
+            --out-ledger /tmp/pnp-autoresearch/CORPUS_WEIGHT_LEDGER.json \
+            --receipt /tmp/pnp-autoresearch/DEDUPE_RECEIPT.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -48,8 +89,39 @@ jobs:
           assert x['authority']['proof'] is False
           assert x['authority']['fundamentum_mutation'] is False
           assert x['query_seed_count'] > 0
+          c=json.load(open('/tmp/pnp-autoresearch/CORPUS.json'))
+          w=json.load(open('/tmp/pnp-autoresearch/CORPUS_WEIGHT_LEDGER.json'))
+          d=json.load(open('/tmp/pnp-autoresearch/DEDUPE_RECEIPT.json'))
+          assert c['schema']=='janus.topa.pnp_corpus.v1'
+          assert c['P_VS_NP']=='OPEN'
+          assert c['successor_algorithm']=='LOCKED'
+          assert c['authority']['truth'] is False
+          assert w['authority']['weights_are_truth'] is False
+          assert w['authority']['source_documents_immutable'] is True
+          assert d['near_semantic_duplicate_policy']=='FLAG_ONLY__DO_NOT_AUTO_MERGE'
           print('TOPA_PNP_AUTORESEARCH_GATE=PASS')
+          print('TOPA_PNP_CORPUS_FABRIC=PASS')
           PY
+      - name: Publish deduplicated corpus and weight sidecar to private Drive when authorized
+        env:
+          JANUS_GDRIVE_CLIENT_ID: ${{ secrets.JANUS_GDRIVE_CLIENT_ID }}
+          JANUS_GDRIVE_CLIENT_SECRET: ${{ secrets.JANUS_GDRIVE_CLIENT_SECRET }}
+          JANUS_GDRIVE_REFRESH_TOKEN: ${{ secrets.JANUS_GDRIVE_REFRESH_TOKEN }}
+        run: |
+          set -euo pipefail
+          python tools/topa_pnp_drive_bridge.py publish \
+            --input /tmp/pnp-autoresearch/CORPUS.json \
+            --folder-id 1JPo-GtCtIO6yMDIsOvB9RTCDdZMNFDAk \
+            --name TOPA_PNP_CORPUS_LATEST.json \
+            --mime-type application/json \
+            --receipt /tmp/pnp-autoresearch/DRIVE_CORPUS_PUBLISH_RECEIPT.json
+          python tools/topa_pnp_drive_bridge.py publish \
+            --input /tmp/pnp-autoresearch/CORPUS_WEIGHT_LEDGER.json \
+            --folder-id 1IwRcwQ9VCvku8P4AKJd2TkKiG1CU4b2F \
+            --name TOPA_PNP_WEIGHT_LEDGER.json \
+            --mime-type application/json \
+            --receipt /tmp/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json
+
       - name: Persist isolated TOPA research state
         shell: bash
         run: |
@@ -68,6 +140,13 @@ jobs:
           cp /tmp/pnp-autoresearch/spider-nodes.jsonl data/pnp-autoresearch/spider-nodes.jsonl
           cp /tmp/pnp-autoresearch/spider-edges.jsonl data/pnp-autoresearch/spider-edges.jsonl
           cp /tmp/pnp-autoresearch/source-records.jsonl data/pnp-autoresearch/source-records.jsonl
+          cp /tmp/pnp-autoresearch/CORPUS.json data/pnp-autoresearch/CORPUS.json
+          cp /tmp/pnp-autoresearch/CORPUS_WEIGHT_LEDGER.json data/pnp-autoresearch/CORPUS_WEIGHT_LEDGER.json
+          cp /tmp/pnp-autoresearch/DEDUPE_RECEIPT.json data/pnp-autoresearch/DEDUPE_RECEIPT.json
+          cp /tmp/pnp-corpus/MATERIALS_INDEX.json data/pnp-autoresearch/MATERIALS_INDEX_SNAPSHOT.json
+          cp /tmp/pnp-corpus/DRIVE_INDEX_RECEIPT.json data/pnp-autoresearch/DRIVE_INDEX_RECEIPT.json
+          cp /tmp/pnp-autoresearch/DRIVE_CORPUS_PUBLISH_RECEIPT.json data/pnp-autoresearch/DRIVE_CORPUS_PUBLISH_RECEIPT.json
+          cp /tmp/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json data/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json
           cp /tmp/pnp-autoresearch/LATEST.json "data/pnp-autoresearch/history/${stamp}.json"
           git config user.name 'janus-topa-spider[bot]'
           git config user.email 'janus-topa-spider[bot]@users.noreply.github.com'
