@@ -5,7 +5,13 @@ on:
     branches: [main]
     paths:
       - 'tools/janus_pnp_autoresearch.py'
+      - 'tools/topa_pnp_drive_bridge.py'
+      - 'tools/topa_pnp_corpus_bridge.py'
+      - 'config/JANUS_PNP_CORPUS_FABRIC.json'
+      - 'config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json'
       - 'protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.0.json'
+      - 'protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.1.json'
+      - 'registry/JANUS-PNP-CORPUS-FABRIC-BINDING-v1.0.json'
       - '.github/workflows/janus-pnp-autoresearch.yml'
   schedule:
     - cron: '27 */2 * * *'
