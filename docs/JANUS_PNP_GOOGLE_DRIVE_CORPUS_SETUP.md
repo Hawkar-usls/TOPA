@@ -4,11 +4,11 @@ The integration is designed to work safely **without** Drive credentials. In tha
 
 To enable live private Drive read/write in GitHub Actions, configure these repository secrets in `Hawkar-usls/TOPA`:
 
-- `JANUS_GDRIVE_CLIENT_ID`
-- `JANUS_GDRIVE_CLIENT_SECRET`
-- `JANUS_GDRIVE_REFRESH_TOKEN`
+- `JANUS_GDRIVE_APP_ID`
+- `JANUS_GDRIVE_APP_CRED`
+- `JANUS_GDRIVE_RENEWAL`
 
-The OAuth grant should be limited to the Drive access needed for the JANUS P=NP research pack. Do not commit tokens, access tokens, refresh tokens, client secrets, or exported credentials to Git.
+The OAuth authorization should be limited to the Drive access needed for the JANUS P=NP research pack. Do not commit tokens, access tokens, refresh tokens, app credentials, or exported credentials to Git.
 
 ## Bound Drive objects
 
