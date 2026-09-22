@@ -1,0 +1,78 @@
+{
+  "schema": "janus.topa.pnp_corpus_fabric.v1",
+  "status": "ACTIVE_FAIL_CLOSED_PRIVATE_DRIVE_OPTIONAL",
+  "goal": "P_VS_NP",
+  "authority": {
+    "scientific_repository": "Hawkar-usls/Janus-Fundamentum",
+    "drive_pack_is_truth": false,
+    "topa_rank_is_truth": false,
+    "automatic_claim_promotion": false,
+    "fundamentum_mutation": false,
+    "automatic_merge": false
+  },
+  "drive": {
+    "root_folder_id": "1afNpNkT1KcTZie1SJQz6drmIg5kEfVMZ",
+    "index_file_id": "1lL5lftT64eojjeNcd0RqvS9XpCFyaqE9",
+    "auto_ingest_folder_id": "1JPo-GtCtIO6yMDIsOvB9RTCDdZMNFDAk",
+    "weight_state_folder_id": "1IwRcwQ9VCvku8P4AKJd2TkKiG1CU4b2F",
+    "oauth_secret_names": {
+      "client_id": "JANUS_GDRIVE_CLIENT_ID",
+      "client_secret": "JANUS_GDRIVE_CLIENT_SECRET",
+      "refresh_token": "JANUS_GDRIVE_REFRESH_TOKEN"
+    },
+    "fallback_index": "config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json",
+    "unavailable_semantics": "USE_PINNED_FALLBACK_AND_MARK_DRIVE_DEGRADED",
+    "never_make_public": true
+  },
+  "dedupe": {
+    "hard_identity_order": [
+      "DOI",
+      "CANONICAL_ARXIV_ID",
+      "NORMALIZED_TITLE_PLUS_FIRST_AUTHOR",
+      "NORMALIZED_SOURCE_URL",
+      "EXACT_CONTENT_SHA256"
+    ],
+    "semantic_near_duplicate": "FLAG_ONLY",
+    "mirror_independence_credit": 1,
+    "preserve_provenance": true,
+    "preserve_negative_and_contradictory_results": true
+  },
+  "weighting": {
+    "mutable_surface": "SIDECAR_LEDGER_ONLY",
+    "source_documents_immutable": true,
+    "dimensions": [
+      "source_quality_hint",
+      "frontier_relevance_weight",
+      "novelty_weight",
+      "attention_priority"
+    ],
+    "attention_priority_formula": "CLAMP01(0.35*source_quality_hint + 0.45*frontier_relevance_weight + 0.20*novelty_weight)",
+    "weights_are_truth": false,
+    "weights_are_evidence": false,
+    "weights_change_theorem_status": false,
+    "history_required": true,
+    "rationale_required": true
+  },
+  "discovery": {
+    "sources": [
+      "ARXIV",
+      "OPENALEX"
+    ],
+    "cadence": "EVERY_2_HOURS",
+    "derive_queries_from_drive_frontier": true,
+    "derive_queries_from_inaihr": true,
+    "max_queries_per_cycle": 6,
+    "max_records_per_query_per_source": 12,
+    "no_change_is_new_evidence": false
+  },
+  "laws": [
+    "SOURCE_DOCUMENTS_ARE_IMMUTABLE",
+    "ATTENTION_WEIGHT != TRUTH",
+    "SEARCH_RANK != EVIDENCE",
+    "DUPLICATE_PUBLICATION != INDEPENDENT_CONFIRMATION",
+    "NEAR_SEMANTIC_DUPLICATE_REQUIRES_REVIEW",
+    "DRIVE_NOTE != PRIMARY_SOURCE",
+    "TOPA_DISCOVERY != FUNDAMENTUM_VERDICT",
+    "P_VS_NP = OPEN"
+  ]
+}
