@@ -30,9 +30,15 @@ DRIVE_UPLOAD = "https://www.googleapis.com/upload/drive/v3"
 ENV_APP_ID = "JANUS_GDRIVE_APP_ID"
 ENV_APP_CRED = "JANUS_GDRIVE_APP_CRED"
 ENV_RENEWAL = "JANUS_GDRIVE_RENEWAL"
+EXPECTED_PINNED_FALLBACK_CANONICAL_SHA256 = "3af808225b11c2e62bc0f467ffb1264743b951d99311478e7b2dc49756b89898"
 
 
 def sha256_bytes(raw: bytes) -> str:
+    return hashlib.sha256(raw).hexdigest()
+
+
+def canonical_sha256(obj: Any) -> str:
+    raw = json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(raw).hexdigest()
 
 
@@ -88,8 +94,18 @@ def validate_index(obj: Any) -> dict[str, Any]:
     auth = obj.get("scientific_authority") or {}
     if auth.get("P_VS_NP") != "OPEN":
         raise RuntimeError("PNP_DRIVE_INDEX_P_VS_NP_MUST_REMAIN_OPEN")
+    if auth.get("D1") != "EMPTY":
+        raise RuntimeError("PNP_DRIVE_INDEX_D1_MUST_REMAIN_EMPTY")
     if auth.get("SUCCESSOR_ALGORITHM") != "LOCKED":
         raise RuntimeError("PNP_DRIVE_INDEX_SUCCESSOR_LOCK_REQUIRED")
+    return obj
+
+
+def validate_pinned_fallback(raw: bytes) -> dict[str, Any]:
+    obj = validate_index(json.loads(raw.decode("utf-8-sig")))
+    digest = canonical_sha256(obj)
+    if digest != EXPECTED_PINNED_FALLBACK_CANONICAL_SHA256:
+        raise RuntimeError(f"PNP_PINNED_FALLBACK_CANONICAL_SHA256_MISMATCH:{digest}")
     return obj
 
 
@@ -109,12 +125,12 @@ def fetch_index(file_id: str, fallback: Path, out: Path, receipt: Path) -> dict[
             source = "PINNED_GITHUB_FALLBACK"
             error = f"{type(exc).__name__}:{exc}"
             raw = fallback.read_bytes()
-            validate_index(json.loads(raw.decode("utf-8-sig")))
+            validate_pinned_fallback(raw)
     else:
         status = "FALLBACK_SNAPSHOT_AUTH_NOT_CONFIGURED"
         source = "PINNED_GITHUB_FALLBACK"
         raw = fallback.read_bytes()
-        validate_index(json.loads(raw.decode("utf-8-sig")))
+        validate_pinned_fallback(raw)
 
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(raw)
@@ -126,6 +142,7 @@ def fetch_index(file_id: str, fallback: Path, out: Path, receipt: Path) -> dict[
         "file_id": file_id,
         "output_path": out.as_posix(),
         "output_sha256": sha256_bytes(raw),
+        "output_canonical_sha256": canonical_sha256(json.loads(raw.decode("utf-8-sig"))),
         "oauth_configured": _credentials_available(),
         "error": error,
         "authority": {
@@ -235,20 +252,21 @@ def publish(inp: Path, folder_id: str, name: str, receipt: Path, mime_type: str 
 def self_test() -> dict[str, Any]:
     good = {
         "schema": "JANUS_P_VS_NP_MATERIALS_INDEX",
-        "scientific_authority": {"P_VS_NP": "OPEN", "SUCCESSOR_ALGORITHM": "LOCKED"},
+        "scientific_authority": {"P_VS_NP": "OPEN", "D1": "EMPTY", "SUCCESSOR_ALGORITHM": "LOCKED"},
     }
     validate_index(good)
     rejected = 0
     for bad in (
         {},
-        {"schema": "JANUS_P_VS_NP_MATERIALS_INDEX", "scientific_authority": {"P_VS_NP": "CLOSED", "SUCCESSOR_ALGORITHM": "LOCKED"}},
-        {"schema": "JANUS_P_VS_NP_MATERIALS_INDEX", "scientific_authority": {"P_VS_NP": "OPEN", "SUCCESSOR_ALGORITHM": "UNLOCKED"}},
+        {"schema": "JANUS_P_VS_NP_MATERIALS_INDEX", "scientific_authority": {"P_VS_NP": "CLOSED", "D1": "EMPTY", "SUCCESSOR_ALGORITHM": "LOCKED"}},
+        {"schema": "JANUS_P_VS_NP_MATERIALS_INDEX", "scientific_authority": {"P_VS_NP": "OPEN", "D1": "NONEMPTY", "SUCCESSOR_ALGORITHM": "LOCKED"}},
+        {"schema": "JANUS_P_VS_NP_MATERIALS_INDEX", "scientific_authority": {"P_VS_NP": "OPEN", "D1": "EMPTY", "SUCCESSOR_ALGORITHM": "UNLOCKED"}},
     ):
         try:
             validate_index(bad)
         except RuntimeError:
             rejected += 1
-    assert rejected == 3
+    assert rejected == 4
     return {
         "schema": "janus.topa.pnp_drive_bridge.self_test.v1",
         "status": "PASS",
