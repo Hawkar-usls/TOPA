@@ -1,0 +1,55 @@
+name: TOPA PNP Corpus Fabric CI
+
+on:
+  pull_request:
+    paths:
+      - 'tools/topa_pnp_*.py'
+      - 'tools/janus_pnp_autoresearch.py'
+      - 'config/JANUS_PNP_CORPUS_FABRIC.json'
+      - 'config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json'
+      - 'protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.1.json'
+      - '.github/workflows/janus-pnp-autoresearch.yml'
+      - '.github/workflows/pnp-corpus-fabric-ci.yml'
+  push:
+    branches:
+      - 'integration/pnp-corpus-fabric-v1'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and self-test corpus fabric
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            tools/topa_pnp_drive_bridge.py \
+            tools/topa_pnp_corpus_bridge.py \
+            tools/janus_pnp_autoresearch.py
+          python tools/topa_pnp_drive_bridge.py self-test
+          python tools/topa_pnp_corpus_bridge.py self-test
+      - name: Verify fail-closed Drive fallback
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pnp-corpus-ci
+          mkdir -p /tmp/pnp-corpus-ci
+          python tools/topa_pnp_drive_bridge.py fetch-index \
+            --file-id 1lL5lftT64eojjeNcd0RqvS9XpCFyaqE9 \
+            --fallback config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json \
+            --out /tmp/pnp-corpus-ci/index.json \
+            --receipt /tmp/pnp-corpus-ci/receipt.json
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/pnp-corpus-ci/index.json'))
+          r=json.load(open('/tmp/pnp-corpus-ci/receipt.json'))
+          assert x['scientific_authority']['P_VS_NP']=='OPEN'
+          assert x['scientific_authority']['SUCCESSOR_ALGORITHM']=='LOCKED'
+          assert r['status']=='FALLBACK_SNAPSHOT_AUTH_NOT_CONFIGURED'
+          print('TOPA_PNP_DRIVE_FAIL_CLOSED=PASS')
+          PY
