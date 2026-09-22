@@ -166,6 +166,9 @@ def _find_named_file(token: str, folder_id: str, name: str) -> str | None:
     params = urllib.parse.urlencode({"q": q, "fields": "files(id,name,modifiedTime)", "pageSize": "10"})
     raw = api_bytes(f"{DRIVE_API}/files?{params}", token=token)
     files = json.loads(raw).get("files") or []
+    if len(files) > 1:
+        ids = ",".join(sorted(str(row.get("id") or "") for row in files))
+        raise RuntimeError(f"GDRIVE_DUPLICATE_TARGET_NAME:{name}:{ids}")
     return str(files[0]["id"]) if files else None
 
 
@@ -273,6 +276,7 @@ def self_test() -> dict[str, Any]:
         "index_firewall": True,
         "secret_material_committed": False,
         "degraded_fallback_supported": True,
+        "ambiguous_publish_target_fails_closed": True,
     }
 
 
