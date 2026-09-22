@@ -127,6 +127,12 @@ jobs:
             --name TOPA_PNP_WEIGHT_LEDGER.json \
             --mime-type application/json \
             --receipt /tmp/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json
+          python tools/topa_pnp_drive_bridge.py publish \
+            --input /tmp/pnp-autoresearch/DEDUPE_RECEIPT.json \
+            --folder-id 1JPo-GtCtIO6yMDIsOvB9RTCDdZMNFDAk \
+            --name TOPA_PNP_DEDUPE_RECEIPT.json \
+            --mime-type application/json \
+            --receipt /tmp/pnp-autoresearch/DRIVE_DEDUPE_PUBLISH_RECEIPT.json
 
       - name: Persist isolated TOPA research state
         shell: bash
@@ -153,6 +159,7 @@ jobs:
           cp /tmp/pnp-corpus/DRIVE_INDEX_RECEIPT.json data/pnp-autoresearch/DRIVE_INDEX_RECEIPT.json
           cp /tmp/pnp-autoresearch/DRIVE_CORPUS_PUBLISH_RECEIPT.json data/pnp-autoresearch/DRIVE_CORPUS_PUBLISH_RECEIPT.json
           cp /tmp/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json data/pnp-autoresearch/DRIVE_WEIGHT_PUBLISH_RECEIPT.json
+          cp /tmp/pnp-autoresearch/DRIVE_DEDUPE_PUBLISH_RECEIPT.json data/pnp-autoresearch/DRIVE_DEDUPE_PUBLISH_RECEIPT.json
           cp /tmp/pnp-autoresearch/LATEST.json "data/pnp-autoresearch/history/${stamp}.json"
           git config user.name 'janus-topa-spider[bot]'
           git config user.email 'janus-topa-spider[bot]@users.noreply.github.com'
