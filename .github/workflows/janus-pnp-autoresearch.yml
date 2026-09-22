@@ -51,9 +51,9 @@ jobs:
 
       - name: Resolve private Google Drive corpus index or pinned fallback
         env:
-          JANUS_GDRIVE_CLIENT_ID: ${{ secrets.JANUS_GDRIVE_CLIENT_ID }}
-          JANUS_GDRIVE_CLIENT_SECRET: ${{ secrets.JANUS_GDRIVE_CLIENT_SECRET }}
-          JANUS_GDRIVE_REFRESH_TOKEN: ${{ secrets.JANUS_GDRIVE_REFRESH_TOKEN }}
+          JANUS_GDRIVE_APP_ID: ${{ secrets.JANUS_GDRIVE_APP_ID }}
+          JANUS_GDRIVE_APP_CRED: ${{ secrets.JANUS_GDRIVE_APP_CRED }}
+          JANUS_GDRIVE_RENEWAL: ${{ secrets.JANUS_GDRIVE_RENEWAL }}
         run: |
           set -euo pipefail
           rm -rf /tmp/pnp-corpus
@@ -104,9 +104,9 @@ jobs:
           PY
       - name: Publish deduplicated corpus and weight sidecar to private Drive when authorized
         env:
-          JANUS_GDRIVE_CLIENT_ID: ${{ secrets.JANUS_GDRIVE_CLIENT_ID }}
-          JANUS_GDRIVE_CLIENT_SECRET: ${{ secrets.JANUS_GDRIVE_CLIENT_SECRET }}
-          JANUS_GDRIVE_REFRESH_TOKEN: ${{ secrets.JANUS_GDRIVE_REFRESH_TOKEN }}
+          JANUS_GDRIVE_APP_ID: ${{ secrets.JANUS_GDRIVE_APP_ID }}
+          JANUS_GDRIVE_APP_CRED: ${{ secrets.JANUS_GDRIVE_APP_CRED }}
+          JANUS_GDRIVE_RENEWAL: ${{ secrets.JANUS_GDRIVE_RENEWAL }}
         run: |
           set -euo pipefail
           python tools/topa_pnp_drive_bridge.py publish \
