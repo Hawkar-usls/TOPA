@@ -1,0 +1,113 @@
+{
+  "authority": {
+    "fundamentum_mutation": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "truth": false
+  },
+  "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
+  "edge_count": 3008,
+  "node_count": 59,
+  "query_receipts": [
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-PNP-SAT-POLY",
+      "openalex": {
+        "records": 12,
+        "status": "PASS"
+      },
+      "query": "SAT polynomial time algorithm exact proof complexity structural decomposition"
+    },
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-C023-CACHE",
+      "openalex": {
+        "records": 12,
+        "status": "PASS"
+      },
+      "query": "formula caching DPLL clause learning proof complexity lower bounds resolution simulation"
+    },
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-REASON-REUSE",
+      "openalex": {
+        "records": 9,
+        "status": "PASS"
+      },
+      "query": "reason reuse memoization SAT proof systems cache contextual soundness"
+    },
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-A3-PRIOR",
+      "openalex": {
+        "records": 0,
+        "status": "PASS"
+      },
+      "query": "subspace arrangement pathwidth endpoint compression ternary dynamic programming matroid pathwidth"
+    },
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-LOWER-BOUND",
+      "openalex": {
+        "records": 12,
+        "status": "PASS"
+      },
+      "query": "proof complexity lower bounds resolution caching branching programs SAT"
+    },
+    {
+      "arxiv": {
+        "error": "HTTPError:HTTP Error 406: Not Acceptable",
+        "status": "UNAVAILABLE"
+      },
+      "id": "Q-REPRESENTATION",
+      "openalex": {
+        "records": 12,
+        "status": "PASS"
+      },
+      "query": "SAT representation change semantic equivalence polynomial reconstruction verification"
+    }
+  ],
+  "query_seed_count": 6,
+  "record_count": 53,
+  "schema": "janus.topa.pnp_autoresearch_cycle.v1",
+  "source_commit": "ca34495f22d4c0672441d3589f0ccc5704d8fcee",
+  "source_records_sha256": "91cdd7170587ff94bcbc675e8132cc7df2f753304b37f83a451f3c265478dba3",
+  "spider_receipt": {
+    "documents": 53,
+    "edge_stream_sha256": "48e09a13be223f79ceaed8dccc2923f7abf5569b189609f1865b4ba4c1ec01a0",
+    "edge_types": {
+      "MENTIONS": 110,
+      "SEMANTIC_SIMILARITY": 142,
+      "SHARED_ENTITY": 2756
+    },
+    "edges": 3008,
+    "laws": [
+      "GRAPH_EDGE_IS_NOT_CAUSATION",
+      "SEMANTIC_SIMILARITY_IS_NOT_MECHANISM",
+      "GRAPH_DENSITY_IS_NOT_EVIDENCE",
+      "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
+    ],
+    "node_stream_sha256": "0d8fd93dea238a7d1d803004591355016e28fdf6e388473e8bdca8930706d711",
+    "nodes": 59,
+    "promotion_rule": "EDGE_STRENGTH_MAY_RISE_ONLY_WITH_EXPLICIT_SOURCE_RELATION_OR_INDEPENDENT_EVIDENCE__NEVER_FROM_DENSITY_ALONE",
+    "schema": "hawkar.topa.spider.receipt.v1",
+    "status": "PASS",
+    "weak_or_speculative_edges": 3008
+  },
+  "status": "PASS_WITH_DEGRADED_SOURCES_ALLOWED"
+}
