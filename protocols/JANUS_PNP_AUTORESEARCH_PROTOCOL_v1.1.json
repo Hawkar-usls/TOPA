@@ -1,0 +1,64 @@
+{
+  "schema": "janus.topa.pnp_autoresearch_protocol.v1.1",
+  "status": "ACTIVE_CANDIDATE_RESEARCH_WITH_PRIVATE_DRIVE_CORPUS",
+  "supersedes_for_default_use": "protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.0.json",
+  "goal": "Continuously search for literature, methods, counterexamples, prior art and attack routes relevant to P vs NP and the current Janus-Fundamentum frontier, while maintaining a deduplicated private corpus and non-authoritative attention ledger.",
+  "inputs": {
+    "fundamentum": "Hawkar-usls/Janus-Fundamentum@READ_ONLY_CURRENT_DRAFT_OR_MAIN",
+    "drive_index": "PRIVATE_GOOGLE_DRIVE:P_VS_NP_MATERIALS_INDEX.json",
+    "drive_fallback": "config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json",
+    "hrain": "Hawkar-usls/Hrain@janus/fundamentum-structural-memory",
+    "inaihr": "Hawkar-usls/iNaiHR@janus/fundamentum-associative-memory"
+  },
+  "internet_sources": [
+    {
+      "id": "ARXIV",
+      "mode": "BOUNDED_REMOTE_SEARCH",
+      "authority": "DISCOVERY_METADATA_ONLY"
+    },
+    {
+      "id": "OPENALEX",
+      "mode": "BOUNDED_REMOTE_SEARCH",
+      "authority": "DISCOVERY_METADATA_ONLY"
+    }
+  ],
+  "corpus": {
+    "builder": "tools/topa_pnp_corpus_bridge.py",
+    "drive_bridge": "tools/topa_pnp_drive_bridge.py",
+    "publication_dedupe": true,
+    "semantic_near_duplicate_auto_merge": false,
+    "source_documents_immutable": true,
+    "weight_surface": "SIDECAR_ONLY"
+  },
+  "state": {
+    "branch": "janus/pnp-autoresearch-state",
+    "root": "data/pnp-autoresearch"
+  },
+  "automation": {
+    "schedule": "EVERY_2_HOURS",
+    "max_queries_per_cycle": 6,
+    "max_records_per_query_per_source": 12,
+    "drive_publish_when_oauth_configured": true,
+    "drive_unavailable": "PINNED_FALLBACK_EXPLICIT_DEGRADED_STATUS",
+    "no_change_is_new_evidence": false
+  },
+  "authority": {
+    "truth": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "fundamentum_mutation": false,
+    "automatic_merge": false,
+    "topa_weight_is_truth": false,
+    "drive_note_is_primary_source": false
+  },
+  "laws": [
+    "SEARCH_RESULT != TRUTH",
+    "PAPER != INDEPENDENT_REPLICATION",
+    "DUPLICATE_PUBLICATION != INDEPENDENT_CONFIRMATION",
+    "ATTENTION_WEIGHT != EVIDENCE",
+    "DRIVE_CORPUS != FUNDAMENTUM_AUTHORITY",
+    "TOPA_DISCOVERY != FUNDAMENTUM_VERDICT",
+    "NEGATIVE_AND_CONTRADICTORY_RESULTS_ARE_PRESERVED",
+    "P_VS_NP_REMAINS_OPEN_UNLESS_EXPLICIT_PROOF_GATE_PASSES"
+  ]
+}
