@@ -22,7 +22,9 @@
       "app_id": "JANUS_GDRIVE_APP_ID",
       "app_credential": "JANUS_GDRIVE_APP_CRED",
       "renewal_credential": "JANUS_GDRIVE_RENEWAL"
-    }
+    },
+    "fallback_snapshot_observed_sha256": "d9c8651402707d1dce661a3372022eed542b4545f5bf22179d9e3a9b0503b49b",
+    "fallback_snapshot_canonical_sha256": "3af808225b11c2e62bc0f467ffb1264743b951d99311478e7b2dc49756b89898"
   },
   "dedupe": {
     "hard_identity_order": [
@@ -35,7 +37,8 @@
     "semantic_near_duplicate": "FLAG_ONLY",
     "mirror_independence_credit": 1,
     "preserve_provenance": true,
-    "preserve_negative_and_contradictory_results": true
+    "preserve_negative_and_contradictory_results": true,
+    "strong_identity_conflict_policy": "WEAK_TITLE_OR_URL_MATCH_MUST_NOT_MERGE_CONFLICTING_DOI_OR_ARXIV_GROUPS"
   },
   "weighting": {
     "mutable_surface": "SIDECAR_LEDGER_ONLY",
@@ -78,10 +81,15 @@
   ],
   "meta_registry_fallback": {
     "repository": "Hawkar-usls/janus-meta-registry",
-    "branch": "integration/pnp-corpus-fabric-v1",
-    "materials_index_url": "https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/integration/pnp-corpus-fabric-v1/registry/p_vs_np/corpus/P_VS_NP_MATERIALS_INDEX_META_FALLBACK.json",
-    "corpus_manifest_url": "https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/integration/pnp-corpus-fabric-v1/registry/p_vs_np/corpus/P_VS_NP_CORPUS_MANIFEST_2026-09-22_v1.0.json",
-    "scientific_authority": false
+    "branch": "main",
+    "materials_index_url": "https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/main/registry/p_vs_np/corpus/P_VS_NP_MATERIALS_INDEX_META_FALLBACK.json",
+    "corpus_manifest_url": "https://raw.githubusercontent.com/Hawkar-usls/janus-meta-registry/main/registry/p_vs_np/corpus/P_VS_NP_CORPUS_MANIFEST_2026-09-22_v1.0.json",
+    "scientific_authority": false,
+    "canonical_json_sha256": "3af808225b11c2e62bc0f467ffb1264743b951d99311478e7b2dc49756b89898",
+    "required_counts": {
+      "internal_authority": 14,
+      "open_access_materials": 16
+    }
   },
   "failover": {
     "order": [
