@@ -324,6 +324,25 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
             ("novelty_weight", novelty),
             ("attention_priority", priority),
         ))
+        rationale = [
+            "SOURCE_STATUS_ROUTING_HINT_ONLY",
+            "FRONTIER_TERM_OVERLAP",
+            "UNSEEN_PUBLICATION_BONUS" if novelty == 1.0 else "ALREADY_PRESENT_IN_PREVIOUS_CORPUS",
+        ]
+        previous_priority = old.get("attention_priority") if old else None
+        history = list(old.get("history") or []) if old else []
+        if changed or not history:
+            history.append({
+                "revision": (int(history[-1].get("revision", len(history))) + 1) if history else 1,
+                "from_attention_priority": previous_priority,
+                "to_attention_priority": round(priority, 6),
+                "delta": round(priority - float(previous_priority or 0.0), 6) if previous_priority is not None else None,
+                "source_quality_hint": round(q, 6),
+                "frontier_relevance_weight": round(rel, 6),
+                "novelty_weight": round(novelty, 6),
+                "rationale": rationale,
+            })
+        history = history[-16:]
         weight_rows.append({
             "record_id": record_id,
             "publication_key": key,
@@ -332,13 +351,10 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
             "frontier_relevance_weight": round(rel, 6),
             "novelty_weight": round(novelty, 6),
             "attention_priority": round(priority, 6),
-            "previous_attention_priority": old.get("attention_priority") if old else None,
+            "previous_attention_priority": previous_priority,
             "changed": changed,
-            "rationale": [
-                "SOURCE_STATUS_ROUTING_HINT_ONLY",
-                "FRONTIER_TERM_OVERLAP",
-                "UNSEEN_PUBLICATION_BONUS" if novelty == 1.0 else "ALREADY_PRESENT_IN_PREVIOUS_CORPUS",
-            ],
+            "rationale": rationale,
+            "history": history,
         })
         if len(rows) > 1:
             merged_groups.append({
@@ -411,6 +427,8 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
             "source_documents_immutable": True,
         },
         "formula": "0.35*source_quality_hint + 0.45*frontier_relevance_weight + 0.20*novelty_weight",
+        "history_required": True,
+        "history_limit_per_record": 16,
     }
     ledger["semantic_sha256"] = sha(ledger)
 
@@ -462,6 +480,8 @@ def self_test() -> dict[str, Any]:
     assert d["records_collapsed"] == 1
     assert c["records"][0]["independence_credit"] == 1
     assert w["authority"]["weights_are_truth"] is False
+    assert w["history_required"] is True
+    assert w["weights"][0]["history"]
     return {
         "schema": "janus.topa.pnp_corpus_bridge.self_test.v1",
         "status": "PASS",
