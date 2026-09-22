@@ -18,6 +18,7 @@ import sqlite3
 import sys
 import tempfile
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -151,8 +152,17 @@ def fetch_page(search_query: str, start: int, max_results: int, sort_by: str, so
         raise ValueError("TOPA page size must be 1..2000")
     url = build_api_url(search_query, start, max_results, sort_by, sort_order)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/atom+xml"})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read(), url
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.read(), url
+    except urllib.error.HTTPError as exc:
+        if exc.code != 406:
+            raise
+        # Some arXiv edge paths reject a narrow Accept header. Retry the same
+        # request without changing the query; this is transport recovery only.
+        retry = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
+        with urllib.request.urlopen(retry, timeout=timeout) as resp:
+            return resp.read(), url
 
 
 def remote_search(search_query: str, limit: int = 50, page_size: int = 50,

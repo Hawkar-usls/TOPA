@@ -1,0 +1,56 @@
+{
+  "schema": "janus.topa.pnp_corpus_fabric_binding.v1",
+  "artifact_id": "JANUS-PNP-CORPUS-FABRIC-BINDING-v1.0",
+  "status": "ACTIVE_DYNAMIC_CORPUS_LANE",
+  "purpose": "Register the P=NP Drive/TOPA/Demiurge/Terminal corpus lane without pretending the dynamic isolated state branch is part of the old static TOPA-CORPUS-INDEX snapshot.",
+  "components": {
+    "protocol": "protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.1.json",
+    "fabric_config": "config/JANUS_PNP_CORPUS_FABRIC.json",
+    "fallback_index": "config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json",
+    "internet_research": "tools/janus_pnp_autoresearch.py",
+    "corpus_builder": "tools/topa_pnp_corpus_bridge.py",
+    "drive_bridge": "tools/topa_pnp_drive_bridge.py",
+    "workflow": ".github/workflows/janus-pnp-autoresearch.yml",
+    "ci": ".github/workflows/pnp-corpus-fabric-ci.yml"
+  },
+  "state": {
+    "branch": "janus/pnp-autoresearch-state",
+    "root": "data/pnp-autoresearch",
+    "artifacts": [
+      "LATEST.json",
+      "source-records.jsonl",
+      "CORPUS.json",
+      "CORPUS_WEIGHT_LEDGER.json",
+      "DEDUPE_RECEIPT.json",
+      "MATERIALS_INDEX_SNAPSHOT.json",
+      "DRIVE_INDEX_RECEIPT.json",
+      "DRIVE_CORPUS_PUBLISH_RECEIPT.json",
+      "DRIVE_WEIGHT_PUBLISH_RECEIPT.json"
+    ]
+  },
+  "drive": {
+    "root_folder_id": "1afNpNkT1KcTZie1SJQz6drmIg5kEfVMZ",
+    "auto_ingest_folder_id": "1JPo-GtCtIO6yMDIsOvB9RTCDdZMNFDAk",
+    "weight_state_folder_id": "1IwRcwQ9VCvku8P4AKJd2TkKiG1CU4b2F",
+    "direct_public_access": false
+  },
+  "downstream": {
+    "demiurge": "Hawkar-usls/Janus-Demiurge:janus_model/extensions/pnp_corpus_memory.py",
+    "terminal": "Hawkar-usls/-Terminal-for-Janus:config/JANUS_PNP_CORPUS_FABRIC.json",
+    "fundamentum": "Hawkar-usls/Janus-Fundamentum:registry/JANUS_P_VS_NP_CORPUS_FABRIC_2026-09-22_v1.0.json"
+  },
+  "authority": {
+    "truth": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "fundamentum_mutation": false,
+    "attention_weight_is_evidence": false,
+    "drive_sync_is_evidence": false
+  },
+  "laws": [
+    "DYNAMIC_CORPUS_STATE != STATIC_TOPA_CORPUS_INDEX",
+    "ATTENTION_WEIGHT != TRUTH",
+    "DRIVE_NOTE != PRIMARY_SOURCE",
+    "P_VS_NP = OPEN"
+  ]
+}
