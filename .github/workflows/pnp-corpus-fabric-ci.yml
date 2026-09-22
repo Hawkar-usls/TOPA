@@ -46,10 +46,12 @@ jobs:
             --receipt /tmp/pnp-corpus-ci/receipt.json
           python - <<'PY'
           import json
-          x=json.load(open('/tmp/pnp-corpus-ci/index.json'))
+          x=json.load(open('/tmp/pnp-corpus-ci/index.json',encoding='utf-8-sig'))
           r=json.load(open('/tmp/pnp-corpus-ci/receipt.json'))
           assert x['scientific_authority']['P_VS_NP']=='OPEN'
+          assert x['scientific_authority']['D1']=='EMPTY'
           assert x['scientific_authority']['SUCCESSOR_ALGORITHM']=='LOCKED'
           assert r['status']=='FALLBACK_SNAPSHOT_AUTH_NOT_CONFIGURED'
+          assert r['output_canonical_sha256']=='3af808225b11c2e62bc0f467ffb1264743b951d99311478e7b2dc49756b89898'
           print('TOPA_PNP_DRIVE_FAIL_CLOSED=PASS')
           PY
