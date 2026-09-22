@@ -1,6 +1,6 @@
 # JANUS P=NP private Google Drive corpus setup
 
-The integration is designed to work safely **without** Drive credentials. In that mode TOPA uses the pinned Git fallback and emits an explicit degraded receipt.
+The integration is designed to work safely **without** Drive credentials. Failover is explicit and authority-neutral: live private Drive → the canonically bound Meta Registry JSON mirror on `main` → the exact local pinned Git fallback. If either remote source is unavailable or fails its binding checks, TOPA retains the next safe fallback and records the degraded state.
 
 To enable live private Drive read/write in GitHub Actions, configure these repository secrets in `Hawkar-usls/TOPA`:
 
@@ -51,3 +51,15 @@ FUNDAMENTUM_AUTHORITY = UNCHANGED
 ```
 
 No Drive outage is negative scientific evidence and no search/ranking result may promote a P=NP claim.
+
+
+## Failover integrity
+
+The Meta Registry entrypoint and the local fallback must both match the frozen Drive materials index canonically:
+
+- canonical JSON SHA-256: `3af808225b11c2e62bc0f467ffb1264743b951d99311478e7b2dc49756b89898`
+- expected internal-authority records: `14`
+- expected open-access materials: `16`
+- required firewall: `P_VS_NP=OPEN`, `D1=EMPTY`, `SUCCESSOR_ALGORITHM=LOCKED`
+
+A mismatch is a failover-integrity failure, not scientific evidence.
