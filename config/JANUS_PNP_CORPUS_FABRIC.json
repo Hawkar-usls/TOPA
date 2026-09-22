@@ -15,14 +15,14 @@
     "index_file_id": "1lL5lftT64eojjeNcd0RqvS9XpCFyaqE9",
     "auto_ingest_folder_id": "1JPo-GtCtIO6yMDIsOvB9RTCDdZMNFDAk",
     "weight_state_folder_id": "1IwRcwQ9VCvku8P4AKJd2TkKiG1CU4b2F",
-    "oauth_secret_names": {
-      "client_id": "JANUS_GDRIVE_CLIENT_ID",
-      "client_secret": "JANUS_GDRIVE_CLIENT_SECRET",
-      "refresh_token": "JANUS_GDRIVE_REFRESH_TOKEN"
-    },
     "fallback_index": "config/P_VS_NP_MATERIALS_INDEX_FALLBACK.json",
     "unavailable_semantics": "USE_PINNED_FALLBACK_AND_MARK_DRIVE_DEGRADED",
-    "never_make_public": true
+    "never_make_public": true,
+    "oauth_environment": {
+      "app_id": "JANUS_GDRIVE_APP_ID",
+      "app_credential": "JANUS_GDRIVE_APP_CRED",
+      "renewal_credential": "JANUS_GDRIVE_RENEWAL"
+    }
   },
   "dedupe": {
     "hard_identity_order": [
