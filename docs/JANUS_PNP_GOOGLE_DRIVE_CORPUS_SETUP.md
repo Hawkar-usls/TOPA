@@ -63,3 +63,16 @@ The Meta Registry entrypoint and the local fallback must both match the frozen D
 - required firewall: `P_VS_NP=OPEN`, `D1=EMPTY`, `SUCCESSOR_ALGORITHM=LOCKED`
 
 A mismatch is a failover-integrity failure, not scientific evidence.
+
+## Production activation prerequisite
+
+The corpus-fabric code is currently validated in coordinated draft PR lineages. Adding the three Drive secrets **does not by itself activate the new scheduled corpus workflow while TOPA PR #56 remains unmerged**, because scheduled workflows execute from the repository default branch (`main`).
+
+Before treating live sync as active:
+
+1. promote/merge TOPA PR #56 so the corpus-fabric workflow exists on `main`;
+2. promote/merge janus-meta-registry PR #250 so the production Meta Registry fallback URLs on `main` resolve;
+3. promote/merge Janus-Demiurge PR #196 and Terminal PR #31 before those production consumers are expected to read `CORPUS.json`, `CORPUS_WEIGHT_LEDGER.json`, and the bound receipts from `janus/pnp-autoresearch-state`;
+4. only then configure the private Drive OAuth values when live Drive read/write is desired.
+
+Until coordinated promotion, the validated draft code and pinned local fallback remain research/integration surfaces. Missing draft promotion, missing Meta-main fallback, or missing Drive authorization are operational states only and are never scientific evidence.
