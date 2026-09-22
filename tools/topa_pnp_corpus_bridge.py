@@ -117,25 +117,137 @@ def normalized_url(rec: dict[str, Any]) -> str:
         return norm(raw)
 
 
-def publication_key(rec: dict[str, Any]) -> tuple[str, str]:
+HARD_IDENTITY_ORDER = (
+    "DOI",
+    "CANONICAL_ARXIV_ID",
+    "NORMALIZED_TITLE_PLUS_FIRST_AUTHOR",
+    "NORMALIZED_SOURCE_URL",
+    "EXACT_CONTENT_SHA256",
+)
+
+
+def publication_keys(rec: dict[str, Any]) -> list[tuple[str, str]]:
+    """Return every hard identity carried by a record, strongest first.
+
+    A single-primary-key implementation misses cross-provider duplicates when,
+    for example, one provider exposes a DOI while another exposes only arXiv
+    plus the same title/author.  Keep every usable identity so records can be
+    joined transitively, while weaker joins are blocked on conflicting strong
+    identifiers.
+    """
+    out: list[tuple[str, str]] = []
     doi = extract_doi(rec)
     if doi:
-        return "DOI", f"doi:{doi}"
+        out.append(("DOI", f"doi:{doi}"))
     arxiv = extract_arxiv(rec)
     if arxiv:
-        return "CANONICAL_ARXIV_ID", f"arxiv:{arxiv}"
+        out.append(("CANONICAL_ARXIV_ID", f"arxiv:{arxiv}"))
     title = norm(rec.get("title"))
     authors = rec.get("authors") or []
     first_author = norm(authors[0]) if isinstance(authors, list) and authors else norm(rec.get("first_author"))
     if title and first_author:
-        return "NORMALIZED_TITLE_PLUS_FIRST_AUTHOR", f"title_author:{title}|{first_author}"
+        out.append(("NORMALIZED_TITLE_PLUS_FIRST_AUTHOR", f"title_author:{title}|{first_author}"))
     url = normalized_url(rec)
     if url:
-        return "NORMALIZED_SOURCE_URL", f"url:{url}"
+        out.append(("NORMALIZED_SOURCE_URL", f"url:{url}"))
     digest = str(rec.get("source_record_sha256") or rec.get("record_sha256") or "")
     if digest:
-        return "EXACT_CONTENT_SHA256", f"sha256:{digest}"
-    return "EXACT_CONTENT_SHA256", f"record:{sha(rec)}"
+        out.append(("EXACT_CONTENT_SHA256", f"sha256:{digest.casefold()}"))
+    if not out:
+        out.append(("EXACT_CONTENT_SHA256", f"record:{sha(rec)}"))
+    return out
+
+
+def publication_key(rec: dict[str, Any]) -> tuple[str, str]:
+    return publication_keys(rec)[0]
+
+
+def hard_identity_groups(rows: list[dict[str, Any]]) -> tuple[list[tuple[str, str, list[dict[str, Any]]]], list[dict[str, Any]]]:
+    """Union records across all hard identifiers without weakly bridging contradictory IDs."""
+    n = len(rows)
+    parent = list(range(n))
+    rank = [0] * n
+    keys_by_row = [publication_keys(row) for row in rows]
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: int, b: int) -> int:
+        ra, rb = find(a), find(b)
+        if ra == rb:
+            return ra
+        if rank[ra] < rank[rb]:
+            ra, rb = rb, ra
+        parent[rb] = ra
+        if rank[ra] == rank[rb]:
+            rank[ra] += 1
+        return ra
+
+    def component_strong_ids(root: int, mode: str) -> set[str]:
+        vals: set[str] = set()
+        for i, candidates in enumerate(keys_by_row):
+            if find(i) != root:
+                continue
+            vals.update(key for m, key in candidates if m == mode)
+        return vals
+
+    conflicts: list[dict[str, Any]] = []
+    weak_modes = {"NORMALIZED_TITLE_PLUS_FIRST_AUTHOR", "NORMALIZED_SOURCE_URL"}
+    for mode in HARD_IDENTITY_ORDER:
+        owners: dict[str, list[int]] = {}
+        for i, candidates in enumerate(keys_by_row):
+            for m, key in candidates:
+                if m == mode:
+                    owners.setdefault(key, []).append(i)
+        for token, idxs in sorted(owners.items()):
+            if len(idxs) < 2:
+                continue
+            anchor = idxs[0]
+            for idx in idxs[1:]:
+                ra, rb = find(anchor), find(idx)
+                if ra == rb:
+                    continue
+                if mode in weak_modes:
+                    doi_a, doi_b = component_strong_ids(ra, "DOI"), component_strong_ids(rb, "DOI")
+                    ax_a, ax_b = component_strong_ids(ra, "CANONICAL_ARXIV_ID"), component_strong_ids(rb, "CANONICAL_ARXIV_ID")
+                    doi_conflict = bool(doi_a and doi_b and doi_a.isdisjoint(doi_b))
+                    arxiv_conflict = bool(ax_a and ax_b and ax_a.isdisjoint(ax_b))
+                    if doi_conflict or arxiv_conflict:
+                        conflicts.append({
+                            "identity_mode": mode,
+                            "identity": token,
+                            "action": "FLAG_ONLY__STRONG_ID_CONFLICT__DO_NOT_MERGE",
+                            "doi_left": sorted(doi_a),
+                            "doi_right": sorted(doi_b),
+                            "arxiv_left": sorted(ax_a),
+                            "arxiv_right": sorted(ax_b),
+                        })
+                        continue
+                union(ra, rb)
+                anchor = find(anchor)
+
+    components: dict[int, list[int]] = {}
+    for i in range(n):
+        components.setdefault(find(i), []).append(i)
+
+    grouped: list[tuple[str, str, list[dict[str, Any]]]] = []
+    for idxs in components.values():
+        chosen: tuple[str, str] | None = None
+        for mode in HARD_IDENTITY_ORDER:
+            vals = sorted({key for i in idxs for m, key in keys_by_row[i] if m == mode})
+            if len(vals) == 1:
+                chosen = (mode, vals[0])
+                break
+        if chosen is None:
+            chosen = ("EXACT_CONTENT_SHA256", "component:" + sha(sorted(
+                key for i in idxs for _, key in keys_by_row[i]
+            )))
+        grouped.append((chosen[0], chosen[1], [rows[i] for i in idxs]))
+    grouped.sort(key=lambda item: item[1])
+    return grouped, conflicts
 
 
 def stable_id(key: str) -> str:
@@ -255,16 +367,22 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
 
     drive_rows = flatten_drive_index(index)
     all_rows = drive_rows + discoveries
-    groups: dict[str, list[dict[str, Any]]] = {}
-    key_modes: dict[str, str] = {}
-    for row in all_rows:
-        mode, key = publication_key(row)
-        groups.setdefault(key, []).append(row)
-        key_modes[key] = mode
+    grouped_rows, identity_conflicts = hard_identity_groups(all_rows)
 
-    prev_keys = set()
+    prev_keys: set[str] = set()
+    prev_identity_to_record_ids: dict[str, set[str]] = {}
     if isinstance(previous_corpus, dict):
-        prev_keys = {str(r.get("publication_key")) for r in previous_corpus.get("records") or [] if r.get("publication_key")}
+        for row in previous_corpus.get("records") or []:
+            if not isinstance(row, dict):
+                continue
+            rid = str(row.get("record_id") or "")
+            primary = str(row.get("publication_key") or "")
+            keys = {primary} if primary else set()
+            keys.update(key for _, key in publication_keys(row))
+            prev_keys.update(keys)
+            if rid:
+                for key in keys:
+                    prev_identity_to_record_ids.setdefault(key, set()).add(rid)
 
     old_weights = {}
     if isinstance(previous_ledger, dict):
@@ -274,24 +392,43 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
     corpus_records = []
     weight_rows = []
     merged_groups = []
-    for key, rows in sorted(groups.items()):
+    new_record_ids: set[str] = set()
+    for identity_mode, key, rows in grouped_rows:
         rows = sorted(rows, key=lambda r: (
             quality_hint(r),
             float(r.get("route_score") or 0),
             str(r.get("updated") or r.get("published") or ""),
         ), reverse=True)
         base = dict(rows[0])
-        record_id = stable_id(key)
+        current_identity_keys = {identity for r in rows for _, identity in publication_keys(r)}
+        previous_record_ids = sorted({
+            rid for identity in current_identity_keys
+            for rid in prev_identity_to_record_ids.get(identity, set())
+        })
+        if len(previous_record_ids) == 1:
+            record_id = previous_record_ids[0]
+            novelty = 0.15
+        else:
+            record_id = stable_id(key)
+            novelty = 0.15 if key in prev_keys else 1.0
+        if len(previous_record_ids) > 1:
+            identity_conflicts.append({
+                "identity_mode": "PREVIOUS_CORPUS_LINEAGE",
+                "identity": key,
+                "action": "FLAG_ONLY__AMBIGUOUS_PREVIOUS_RECORD_IDS",
+                "previous_record_ids": previous_record_ids,
+            })
+        if novelty == 1.0:
+            new_record_ids.add(record_id)
         q = max(quality_hint(r) for r in rows)
         rel = max(relevance(r, frontier) for r in rows)
-        novelty = 0.15 if key in prev_keys else 1.0
         priority = max(0.0, min(1.0, 0.35*q + 0.45*rel + 0.20*novelty))
         aliases = sorted({str(r.get("archive_id") or r.get("id") or "") for r in rows if r.get("archive_id") or r.get("id")})
         titles = sorted({str(r.get("title") or "") for r in rows if r.get("title")})
         rec = {
             "record_id": record_id,
             "publication_key": key,
-            "identity_mode": key_modes[key],
+            "identity_mode": identity_mode,
             "title": base.get("title") or (titles[0] if titles else ""),
             "authors": base.get("authors") or [],
             "doi": extract_doi(base) or None,
@@ -359,7 +496,7 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
         if len(rows) > 1:
             merged_groups.append({
                 "publication_key": key,
-                "identity_mode": key_modes[key],
+                "identity_mode": identity_mode,
                 "record_count": len(rows),
                 "title": rec["title"],
                 "aliases": aliases,
@@ -385,7 +522,7 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
 
     corpus_records.sort(key=lambda r: (-float(r["routing"]["attention_priority"]), r["record_id"]))
     weight_rows.sort(key=lambda r: (-float(r["attention_priority"]), r["record_id"]))
-    new_count = sum(1 for r in corpus_records if r["publication_key"] not in prev_keys)
+    new_count = len(new_record_ids)
     corpus = {
         "schema": SCHEMA_CORPUS,
         "status": "READY_READ_ONLY_RESEARCH_CORPUS",
@@ -441,6 +578,7 @@ def build(index: dict[str, Any], discoveries: list[dict[str, Any]],
         "unique_hard_identities": len(corpus_records),
         "records_collapsed": len(all_rows) - len(corpus_records),
         "merged_groups": merged_groups,
+        "hard_identity_conflicts": identity_conflicts,
         "near_duplicate_review_flags": near,
         "new_publication_count": new_count,
         "hard_identity_order": [
@@ -474,11 +612,15 @@ def self_test() -> dict[str, Any]:
     disc = [
         {"provider": "ARXIV", "archive_id": "2601.00001v1", "arxiv_id": "2601.00001v1", "title": "Projection Invariant", "authors": ["A"], "text": "projection invariant certificate", "status": "DISCOVERY_METADATA_ONLY"},
         {"provider": "OPENALEX", "archive_id": "x", "title": "Projection Invariant", "authors": ["A"], "source_url": "https://arxiv.org/abs/2601.00001v2", "text": "same paper", "status": "DISCOVERY_METADATA_ONLY"},
+        {"provider": "OPENALEX", "archive_id": "doi-mirror", "doi": "10.1234/projection.1", "title": "Projection Invariant", "authors": ["A"], "source_url": "https://doi.org/10.1234/projection.1", "text": "same publication with DOI metadata only", "status": "DISCOVERY_METADATA_ONLY"},
+        {"provider": "OPENALEX", "archive_id": "different-doi", "doi": "10.1234/projection.2", "title": "Projection Invariant", "authors": ["A"], "source_url": "https://doi.org/10.1234/projection.2", "text": "different strong identifier", "status": "DISCOVERY_METADATA_ONLY"},
     ]
     c, w, d = build(idx, disc, None, None)
-    assert c["record_count"] == 1
-    assert d["records_collapsed"] == 1
-    assert c["records"][0]["independence_credit"] == 1
+    assert c["record_count"] == 2
+    assert d["records_collapsed"] == 2
+    assert any(g["record_count"] == 3 for g in d["merged_groups"])
+    assert d["hard_identity_conflicts"]
+    assert all(r["independence_credit"] == 1 for r in c["records"])
     assert w["authority"]["weights_are_truth"] is False
     assert w["history_required"] is True
     assert w["weights"][0]["history"]
