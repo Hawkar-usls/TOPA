@@ -55,11 +55,79 @@ jobs:
           assert seeds[0]['authority']=='DISCOVERY_QUERY_ONLY'
           print('TOPA_KEYMASTER_TARGETED_QUERY_SELFTEST=PASS')
           PY
+      - name: Recover prior autoresearch corpus without erasing history
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > /tmp/pnp-prior-source-records.jsonl
+          rm -f /tmp/pnp-prior-candidate.jsonl
+          git fetch origin janus/pnp-autoresearch-state || true
+          if git rev-parse --verify origin/janus/pnp-autoresearch-state >/dev/null 2>&1; then
+            for REV in $(git rev-list --max-count=12 origin/janus/pnp-autoresearch-state); do
+              if git show "$REV:data/pnp-autoresearch/source-records.jsonl" > /tmp/pnp-prior-candidate.jsonl 2>/dev/null; then
+                if [ -s /tmp/pnp-prior-candidate.jsonl ]; then
+                  cp /tmp/pnp-prior-candidate.jsonl /tmp/pnp-prior-source-records.jsonl
+                  echo "TOPA_PNP_PRIOR_CORPUS_REV=$REV"
+                  break
+                fi
+              fi
+            done
+          fi
+          echo "TOPA_PNP_PRIOR_RECORDS=$(grep -cve '^          python - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/pnp-autoresearch/LATEST.json').read_text())
+          assert x['schema']=='janus.topa.pnp_autoresearch_cycle.v1'
+          assert x['authority']['truth'] is False
+          assert x['authority']['proof'] is False
+          assert x['authority']['fundamentum_mutation'] is False
+          assert x['query_seed_count'] > 0
+          assert x['record_count'] >= x['prior_record_count']
+          assert x['corpus_merge_policy']=='APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY'
+          k=x['keymaster_forge']
+          assert k['query_is_evidence'] is False
+          assert k['query_grants_authority'] is False
+          if k['status']!='UNAVAILABLE':
+              assert k['targeted_query_count'] > 0
+          print('TOPA_PNP_AUTORESEARCH_GATE=PASS')
+          print('TOPA_KEYMASTER_TARGETED_QUERIES=' + str(k['targeted_query_count']))
+          PY
+      - name: Persist isolated TOPA research state
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin janus/pnp-autoresearch-state >/dev/null 2>&1; then
+            git fetch origin janus/pnp-autoresearch-state
+            git switch -C janus/pnp-autoresearch-state origin/janus/pnp-autoresearch-state
+          else
+            git switch --orphan janus/pnp-autoresearch-state
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+          mkdir -p data/pnp-autoresearch/history
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+          cp /tmp/pnp-autoresearch/LATEST.json data/pnp-autoresearch/LATEST.json
+          cp /tmp/pnp-autoresearch/spider-receipt.json data/pnp-autoresearch/spider-receipt.json
+          cp /tmp/pnp-autoresearch/spider-nodes.jsonl data/pnp-autoresearch/spider-nodes.jsonl
+          cp /tmp/pnp-autoresearch/spider-edges.jsonl data/pnp-autoresearch/spider-edges.jsonl
+          cp /tmp/pnp-autoresearch/source-records.jsonl data/pnp-autoresearch/source-records.jsonl
+          cp /tmp/pnp-autoresearch/LATEST.json "data/pnp-autoresearch/history/${stamp}.json"
+          git config user.name 'janus-topa-spider[bot]'
+          git config user.email 'janus-topa-spider[bot]@users.noreply.github.com'
+          git add data/pnp-autoresearch
+          git diff --cached --quiet && exit 0
+          git commit -m "topa: autonomous P-vs-NP research cycle ${stamp}"
+          git push origin HEAD:janus/pnp-autoresearch-state
+ /tmp/pnp-prior-source-records.jsonl || true)"
+
       - name: Run bounded internet research cycle
         run: |
           set -euo pipefail
           rm -rf /tmp/pnp-autoresearch
-          python tools/janus_pnp_autoresearch.py --out /tmp/pnp-autoresearch --max-queries 6 --per-source 12
+          python tools/janus_pnp_autoresearch.py \
+            --out /tmp/pnp-autoresearch \
+            --prior-records /tmp/pnp-prior-source-records.jsonl \
+            --max-queries 6 \
+            --per-source 12
           python - <<'PY'
           import json
           from pathlib import Path
