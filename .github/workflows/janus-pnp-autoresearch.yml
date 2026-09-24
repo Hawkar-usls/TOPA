@@ -34,6 +34,27 @@ jobs:
           set -euo pipefail
           python tools/topa_arxiv_gateway.py self-test
           python tools/topa_spider.py self-test
+          python - <<'PY'
+          import sys
+          sys.path.insert(0,'tools')
+          from janus_pnp_autoresearch import merge_query_seeds
+          assoc={'topa_query_seeds':[{'id':'GEN','query':'generic SAT search'}]}
+          forge={
+            'schema':'janus.keymaster.autonomous_forge.v1',
+            'status':'NEW_CANDIDATE_ALGORITHM_PROPOSED',
+            'keymaster_shadow_admission':False,
+            'target':{'from_type':'A','to_type':'B'},
+            'search_queries':['A B exact polynomial algorithm'],
+            'firewall':{
+              'P_VS_NP':'OPEN','D1':'EMPTY','branch_only_research':True,
+              'automatic_theorem_promotion':False,'automatic_p_equals_np_claim':False
+            }
+          }
+          seeds=merge_query_seeds(assoc,forge,6)
+          assert seeds[0]['source']=='JANUS_KEYMASTER_AUTONOMOUS_FORGE'
+          assert seeds[0]['authority']=='DISCOVERY_QUERY_ONLY'
+          print('TOPA_KEYMASTER_TARGETED_QUERY_SELFTEST=PASS')
+          PY
       - name: Run bounded internet research cycle
         run: |
           set -euo pipefail
@@ -48,7 +69,13 @@ jobs:
           assert x['authority']['proof'] is False
           assert x['authority']['fundamentum_mutation'] is False
           assert x['query_seed_count'] > 0
+          k=x['keymaster_forge']
+          assert k['query_is_evidence'] is False
+          assert k['query_grants_authority'] is False
+          if k['status']!='UNAVAILABLE':
+              assert k['targeted_query_count'] > 0
           print('TOPA_PNP_AUTORESEARCH_GATE=PASS')
+          print('TOPA_KEYMASTER_TARGETED_QUERIES=' + str(k['targeted_query_count']))
           PY
       - name: Persist isolated TOPA research state
         shell: bash
