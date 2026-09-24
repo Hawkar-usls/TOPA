@@ -51,6 +51,33 @@ def merge_query_seeds(assoc,forge,max_queries):
         if len(rows)>=max(1,max_queries): break
     return rows
 
+def read_jsonl(path):
+    if not path or not Path(path).exists(): return []
+    out=[]
+    for raw in Path(path).read_text(encoding="utf-8",errors="replace").splitlines():
+        raw=raw.strip()
+        if not raw: continue
+        try: value=json.loads(raw)
+        except json.JSONDecodeError: continue
+        if isinstance(value,dict): out.append(value)
+    return out
+
+def record_key(r):
+    provider=str(r.get("provider") or "").upper()
+    archive=str(r.get("archive_id") or "").strip().lower()
+    if archive: return ("ARCHIVE",provider,archive)
+    url=str(r.get("source_url") or "").strip().lower()
+    if url: return ("URL",url)
+    title=" ".join(str(r.get("title") or "").lower().split())
+    if title: return ("TITLE",title)
+    return ("SHA",sh(r))
+
+def merge_records(prior,current):
+    dedup={}
+    for row in list(prior)+list(current):
+        if isinstance(row,dict): dedup[record_key(row)]=row
+    return list(dedup.values())
+
 def canon(x):return json.dumps(x,ensure_ascii=False,sort_keys=True,separators=(",",":"))
 def sh(x):return hashlib.sha256(canon(x).encode()).hexdigest()
 def write(path,obj):
@@ -92,7 +119,7 @@ def arxiv_records(query,limit):
     return out,rc
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument("--out",required=True);ap.add_argument("--max-queries",type=int,default=6);ap.add_argument("--per-source",type=int,default=12);a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument("--out",required=True);ap.add_argument("--prior-records");ap.add_argument("--max-queries",type=int,default=6);ap.add_argument("--per-source",type=int,default=12);a=ap.parse_args()
     out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
     assoc=fetch_json(ASSOC_URL)
     try: forge=fetch_json(KEYMASTER_FORGE_URL)
@@ -113,11 +140,9 @@ def main():
             qr["openalex"]={"status":"UNAVAILABLE","error":type(e).__name__+":"+str(e)}
         query_receipts.append(qr)
         time.sleep(1.0)
-    dedup={}
-    for r in all_records:
-        k=(r.get("provider"),r.get("archive_id") or r.get("source_url") or sh(r))
-        dedup[k]=r
-    records=list(dedup.values())
+    prior_records=read_jsonl(a.prior_records) if a.prior_records else []
+    current_records=merge_records([],all_records)
+    records=merge_records(prior_records,current_records)
     nodes,edges=build_graph(records,semantic_threshold=0.12,topk=6)
     src=out/"source-records.jsonl"
     write_jsonl(src,records);write_jsonl(out/"spider-nodes.jsonl",nodes);write_jsonl(out/"spider-edges.jsonl",edges)
@@ -134,7 +159,9 @@ def main():
         "query_is_evidence":False,
         "query_grants_authority":False
       },
-      "record_count":len(records),"node_count":len(nodes),"edge_count":len(edges),
+      "record_count":len(records),"new_cycle_record_count":len(current_records),"prior_record_count":len(prior_records),
+      "corpus_merge_policy":"APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
+      "node_count":len(nodes),"edge_count":len(edges),
       "source_records_sha256":hashlib.sha256(src.read_bytes()).hexdigest(),
       "spider_receipt":sr,
       "authority":{"truth":False,"proof":False,"scientific_claim_promotion":False,"fundamentum_mutation":False},
