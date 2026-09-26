@@ -1,0 +1,328 @@
+{
+  "schema": "topa.uap_nuclear.open_access_maximal_sweep.v1",
+  "artifact_id": "TOPA-UAP-NUCLEAR-OPEN-ACCESS-MAXIMAL-SWEEP-2026-09-27-v1.0",
+  "created_date": "2026-09-27",
+  "status": "EXECUTED_OPEN_ACCESS_SWEEP__EVIDENCE_GRAPH_EXPANDED__NO_CAUSAL_ORIGIN_PROMOTION",
+  "purpose": "Re-sweep the JANUS nuclear/UAP lineage together with the strongest currently accessible official, archival, peer-reviewed, open-data, and contested research sources; expand the graph maximally while preserving positive, negative, contradictory, and unresolved evidence separately.",
+  "execution_mode": "TOOL_ASSISTED_TOPA_SOURCE_SPIDER__GITHUB_INTERNAL_LINEAGE_PLUS_PUBLIC_WEB",
+  "governing_laws": [
+    "DECLASSIFICATION_IS_PROVENANCE_NOT_TRUTH",
+    "REPORT_IS_NOT_EVENT_IDENTITY",
+    "UNRESOLVED_IS_NOT_EXTRAORDINARY",
+    "NUCLEAR_CONTEXT_IS_NOT_NUCLEAR_CAUSATION",
+    "UAP_LABEL_IS_NOT_NONHUMAN_ORIGIN",
+    "CORRELATION_IS_NOT_CAUSATION",
+    "OBSERVATION_OPPORTUNITY_MUST_BE_MODELED",
+    "REPORTING_POLICY_MUST_BE_MODELED",
+    "SENSOR_OUTPUT_REQUIRES_REPRESENTATION_CONTRACT",
+    "NEGATIVE_RESULTS_AND_COUNTEREVIDENCE_ARE_FIRST_CLASS",
+    "CONTESTED_DATASETS_MUST_NOT_BE_POOLED_AS_ONE_WITNESS"
+  ],
+  "internal_janus_lineage": [
+    {
+      "path": "data/JANUS-UAP-DOMAIN-INDEX-2026-08-15-v1.1.json",
+      "role": "current navigation snapshot",
+      "current_read": "POSS-I nuclear presence association is schedule-confounded in the dense open S0 cohort; no robust positive conditional rate signal; Blue Book exact-date layer shows no positive STARLIKE nuclear specificity; no common external trigger admitted."
+    },
+    {
+      "path": "data/JANUS-PALOMAR-JPFM-2E-SCHEDULE-CONFOUND-DECOMPOSITION-RUN-001.json",
+      "role": "executed Palomar schedule-control result",
+      "key_numbers": {
+        "study_days": 2718,
+        "observed_nights": 312,
+        "plates": 640,
+        "candidate_count": 122511,
+        "crude_candidate_rate_ratio_nuclear_vs_non_nuclear_observed_nights": 1.0118733658718984,
+        "schedule_shift_empirical_p_upper": 0.08314937454010302,
+        "conditional_nb_primary_p": 0.7373617539852626
+      },
+      "claim_ceiling": "SCHEDULE_CONFOUND_IDENTIFIED__NO_ROBUST_POSITIVE_RESIDUAL_RATE_SIGNAL"
+    },
+    {
+      "path": "registry/cosmology/JANUS-BLUEBOOK-EXACT-DATE-MATCHED-CONTROL-RESULT-v1.0.json",
+      "role": "executed human-report specificity control",
+      "key_numbers": {
+        "public_pages": 5144,
+        "unique_nara_naids": 5067,
+        "study_rows": 2091,
+        "STARLIKE_population": 82,
+        "plus_minus_1_STARLIKE_observed": 8,
+        "year_blocked_null_mean": 12.082,
+        "year_month_blocked_null_mean": 10.60922,
+        "STARLIKE_nuclear_OR": 0.8473022912047302,
+        "STARLIKE_nuclear_fisher_p": 0.8554544234900766
+      },
+      "claim_ceiling": "NO_POSITIVE_NUCLEAR_STARLIKE_SPECIFICITY__CLEAR_NONNUCLEAR_BASELINE__SOURCE_VALIDATION_OPEN"
+    },
+    {
+      "path": "registry/cosmology/JANUS-NUCLEAR-UAP-MANY-WORLDS-DECOHERENCE-CORRECTIVE-AUDIT-v1.1.json",
+      "role": "corrective nuclear/UAP audit",
+      "current_read": "UAP-nuclear association remains open and requires exposure-normalized reanalysis; quantum branching/fission ontology is not an observed UAP mechanism."
+    },
+    {
+      "path": "data/janus-meta-registry-v12.2-nuclear-attraction-analytic.json",
+      "role": "legacy historical Bayesian model",
+      "status": "HISTORICAL_CONTEXT_ONLY__NOT_CURRENT_AUTHORITY",
+      "warning": "Its expert likelihoods and strong labels predate current corrective controls and must not override them."
+    },
+    {
+      "path": "registry/cosmology/JANUS-UAP-DECLASSIFIED-RETROCAUSALITY-TACHYON-UKRAINE-DOSSIER-2026-08-27-v1.0.json",
+      "role": "declassified provenance graph",
+      "status": "RELATED_CONTEXT_ONLY__NO_EXOTIC_MECHANISM_PROMOTION"
+    }
+  ],
+  "external_source_graph": [
+    {
+      "id": "SRC_NARA_RG615",
+      "provenance_grade": "P0_OFFICIAL_ARCHIVE",
+      "title": "NARA Record Group 615: Unidentified Anomalous Phenomena Records Collection",
+      "url": "https://www.archives.gov/research/topics/uaps/rg-615",
+      "observed": "NARA is receiving rolling digital UAP records from federal agencies; current listed agencies include NRC, FAA, ODNI, OSD, NSA, State, FBI, Air Force, and CBP.",
+      "topa_value": "Canonical discovery/provenance layer; inclusion is not validation of extraordinary origin."
+    },
+    {
+      "id": "SRC_NARA_UAP_BULK",
+      "provenance_grade": "P0_OFFICIAL_ARCHIVE",
+      "title": "NARA UAP bulk downloads",
+      "url": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download",
+      "observed": "NARA exposes bulk electronic records including the NRC UAP-related series, FAA, ODNI and OSD, plus historical Project Blue Book and Air Intelligence collections.",
+      "topa_value": "Machine-ingestible future denominator and source-validation path."
+    },
+    {
+      "id": "SRC_PURSUE_DOE",
+      "provenance_grade": "P0_OFFICIAL_ARCHIVE",
+      "title": "PURSUE Department of Energy records",
+      "url": "https://www.war.gov/UFO/release/04/?agency=Department+of+Energy",
+      "observed": "Five DOE records are publicly indexed: Enhanced Pantex Imagery; James Tuck correspondence; Pajarito Astronomers invitation; Los Alamos Conference on Aerial Phenomena 1949; Pantex Unidentified Object Incident Report 2015.",
+      "topa_value": "Directly expands nuclear-site provenance beyond retrospective case lists."
+    },
+    {
+      "id": "SRC_PANTEX_2015",
+      "provenance_grade": "P0_PRIMARY_SECURITY_RECORD",
+      "title": "DOE-UAP-D005 Pantex Unidentified Object Incident Report, 2015",
+      "url": "https://www.war.gov/UFO/release/04/?agency=Department+of+Energy",
+      "observed": "Official PURSUE index establishes the DOE incident record. Public document transcriptions describe Ground Surveillance Radar detection, Protective Force response, visual pursuit and imagery analysis of an unidentified slow-moving object near Pantex.",
+      "classification": "DOCUMENTED_NUCLEAR_SITE_UNKNOWN_OBJECT_SECURITY_INCIDENT",
+      "does_not_establish": ["nonhuman origin", "nuclear attraction", "exotic propulsion"],
+      "next_forensic_gate": "Bind the original D005/D001 PDFs, radar frames, image-processing provenance, wind and known UAS/balloon controls into a dedicated case audit."
+    },
+    {
+      "id": "SRC_LOS_ALAMOS_1949",
+      "provenance_grade": "P0_PRIMARY_ARCHIVAL_DOCUMENT",
+      "title": "DOE-UAP-D004 Los Alamos Conference on Aerial Phenomena, 1949",
+      "url": "https://www.war.gov/UFO/search/UFO/release/04/",
+      "observed": "PURSUE indexes a 1949 Los Alamos aerial-phenomena conference. The surviving conference record concerns repeated green-fireball observations and competing hypotheses; no unique extraordinary attribution was established.",
+      "classification": "HISTORICAL_NUCLEAR_LAB_AERIAL_PHENOMENA_INSTITUTIONAL_CONCERN",
+      "does_not_establish": ["craft identity", "nonhuman origin", "nuclear causation"]
+    },
+    {
+      "id": "SRC_TUCK_1970S",
+      "provenance_grade": "P0_OFFICIAL_ARCHIVE_WITH_RETROSPECTIVE_WITNESS_CONTENT",
+      "title": "DOE-UAP-D002 James Tuck Correspondence",
+      "url": "https://www.war.gov/UFO/release/04/?agency=Department+of+Energy",
+      "observed": "Released correspondence preserves retrospective descriptions of green-light sightings near Los Alamos and points to Protective Force logs as the claimed contemporaneous record source.",
+      "limitation": "The correspondence itself is retrospective; the referenced security logs remain the higher-value target."
+    },
+    {
+      "id": "SRC_AARO_FY24_NUCLEAR_UAS",
+      "provenance_grade": "P0_OFFICIAL_REPORT",
+      "title": "AARO FY2024 Consolidated Annual Report",
+      "url": "https://www.dni.gov/files/ODNI/documents/assessments/DOD-AARO-Consolidated-Annual-Report-on-UAP-Nov2024.pdf",
+      "observed": "AARO received 18 reports near U.S. nuclear infrastructure, weapons and launch sites from nuclear-security/regulatory authorities; those authorities categorized all 18 as UAS. The report includes a recovered crashed UAS at D.C. Cook and repeated UAS flyovers at BWXT Lynchburg.",
+      "classification": "MODERN_NUCLEAR_SITE_UAS_BASELINE",
+      "importance": "Demonstrates that nuclear-site aerial-security reports can be numerous while explicitly not classified as UAP."
+    },
+    {
+      "id": "SRC_AARO_FY25_NUCLEAR_UAS",
+      "provenance_grade": "P0_OFFICIAL_REPORT_INDEX_PLUS_REPORT_TEXT",
+      "title": "AARO FY2025 Consolidated Annual Report",
+      "url": "https://www.aaro.mil/Congressional-Press-Products/",
+      "observed": "AARO's official index lists the FY2025 report added 2026-07-20. Report text states 50 NNSA/NRC UAS incidents near nuclear infrastructure/weapons/launch sites, +177.8% from 18 in FY2024; none were reported as UAP; 47 occurred between 1700 and 0500 local and quadcopters were the most reported morphology.",
+      "classification": "MODERN_NUCLEAR_SITE_UAS_BASELINE",
+      "importance": "A critical negative control against treating every nuclear-site aerial incursion as UAP."
+    },
+    {
+      "id": "SRC_NRC_DRONE_POLICY",
+      "provenance_grade": "P0_OFFICIAL_REGULATORY",
+      "title": "NRC Drones and Nuclear Power Plant Security",
+      "url": "https://www.nrc.gov/regulations-legislation/fact-sheets-brochures/drones-and-nuclear-power-plant-security",
+      "observed": "NRC states commercial UAS availability has produced numerous sightings near critical infrastructure and that regulations were updated in 2024 to require nuclear power plant licensees to report drone sightings.",
+      "topa_value": "Reporting-policy change point: modern raw counts across 2024 must not be interpreted without policy normalization."
+    },
+    {
+      "id": "SRC_NASA_UAP_REPORT",
+      "provenance_grade": "P0_OFFICIAL_SCIENCE_REPORT",
+      "title": "NASA UAP Independent Study Final Report",
+      "url": "https://www.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report-0.pdf",
+      "observed": "NASA emphasizes calibration, sensor metadata, multiple well-calibrated sensors, multispectral/hyperspectral data and clear evidence thresholds; apparent UAP can become sensor artifacts after calibration/metadata review.",
+      "topa_value": "Direct support for JANUS Representation Contract and detector-source separation."
+    },
+    {
+      "id": "SRC_MEDINA_2023",
+      "provenance_grade": "P1_PEER_REVIEWED_OPEN_ACCESS",
+      "title": "An environmental analysis of public UAP sightings and sky view potential",
+      "url": "https://doi.org/10.1038/s41598-023-49527-x",
+      "observed": "Over 98,000 public reports (2001-2020) show reporting covaries with sky-view opportunity, air traffic and military activity; authors explicitly frame opportunity-to-see as an important explanatory layer.",
+      "topa_value": "Strong confound model for spatial nuclear-site comparisons."
+    },
+    {
+      "id": "SRC_FRANCE_2015",
+      "provenance_grade": "P1_INSTITUTIONALLY_HOSTED_OPEN_STUDY",
+      "title": "Spatial Point Pattern Analysis of the Unidentified Aerial Phenomena in France",
+      "url": "https://www.cnes-geipan.fr/sites/default/files/2015-09-01_Spatial_Point_Pattern_Analysis_of_the_Unidentified.pdf",
+      "observed": "In an inhomogeneous spatial Poisson model, population density, factories with nuclear risk/contaminated land, and moisture were significant covariates of French UAP intensity; residual hotspots remained.",
+      "topa_value": "Independent non-U.S. spatial association worth prospective replication with modern reporting/opportunity controls.",
+      "does_not_establish": ["causation", "nonhuman origin", "attraction to nuclear material"]
+    },
+    {
+      "id": "SRC_SCU_2023",
+      "provenance_grade": "P2_OPEN_RESEARCH_DATASET_AND_REPORT",
+      "title": "UAP Pattern Recognition Study 1945-1975 US Military Atomic Warfare Complex",
+      "url": "https://zenodo.org/records/7295958",
+      "observed": "Open report and spreadsheet contain 590 selected historical UAP reports and compare atomic production/assembly/stockpile/deployment sites against civilian and non-atomic military controls; authors report elevated activity at atomic-site classes, especially a 1948-1952 window.",
+      "limitation": "Selected-source historical incident compilation; observation opportunity, archival completeness, reporting intensity and site-security differences remain major confound targets.",
+      "topa_value": "Rich case/location dataset suitable for independent denominator-aware reanalysis."
+    },
+    {
+      "id": "SRC_SCU_LIMINA_2025",
+      "provenance_grade": "P1_PEER_REVIEWED_SPECIALTY_JOURNAL",
+      "title": "UAP Indications Analysis 1945-1975 United States Atomic Warfare Complex",
+      "url": "https://limina.scholasticahq.com/article/131854-uap-indications-analysis-1945-1975-united-states-atomic-warfare-complex/attachment/270833.pdf",
+      "observed": "Peer-reviewed successor interprets patterns in the SCU historical case corpus using scenario indicators.",
+      "boundary": "Scenario ranking is downstream of the selected incident corpus and must not be treated as independent confirmation of the underlying association."
+    },
+    {
+      "id": "SRC_PALOMAR_2025",
+      "provenance_grade": "P1_PEER_REVIEWED_OPEN_ACCESS",
+      "title": "Bruehl & Villarroel 2025 POSS-I nuclear/UAP association",
+      "url": "https://doi.org/10.1038/s41598-025-21620-3",
+      "observed": "Authors report transient presence 45% more likely within +/-1 day of nuclear testing (p=.008), strongest at +1 day, and an 8.5% transient-count increase per additional UAP report on transient-positive days.",
+      "boundary": "Authors state association does not establish causality; later work disputes dataset and schedule interpretation."
+    },
+    {
+      "id": "SRC_PALOMAR_CRITIQUE_2026",
+      "provenance_grade": "P1_PEER_REVIEWED_OPEN_ACCESS",
+      "title": "Watters et al. 2026 Critical Evaluation",
+      "url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/critical-evaluation-of-studies-alleging-evidence-for-technosignatures-in-the-poss1e-photographic-plates/A19B440ADE54BB11973C46D2BA13FB01",
+      "observed": "The critique reports that the nuclear-test timing correlation becomes insignificant after normalization by observation days and is almost determined by the Palomar observing schedule; it also raises dataset-definition, star, scan-artifact and plate-defect concerns.",
+      "topa_relation": "Converges strongly with JANUS JPFM-2E schedule-confound result."
+    },
+    {
+      "id": "SRC_PALOMAR_RESPONSE_2026",
+      "provenance_grade": "P2_AUTHOR_RESPONSE_PREPRINT",
+      "title": "Villarroel et al. response to Watters et al.",
+      "url": "https://arxiv.org/abs/2602.15171",
+      "observed": "Authors argue the critique uses a reduced heterogeneous subset, conflates object-level validation with ensemble inference, is underpowered for some endpoints, and does not invalidate the original findings.",
+      "topa_value": "Preserves the live methodological dispute rather than prematurely selecting one side."
+    },
+    {
+      "id": "SRC_PALOMAR_REPLICATION_2026",
+      "provenance_grade": "P2_INDEPENDENT_ANALYSIS_PREPRINT",
+      "title": "Doherty 2026 Independent Replication",
+      "url": "https://arxiv.org/abs/2604.00056",
+      "observed": "Using the original author-provided dataset, the preprint reproduces RR=1.45, reports permutation p=.006 and related Earth-shadow findings.",
+      "boundary": "Independent analysis of the original dataset is not an independent dataset; dataset dependence remains central."
+    },
+    {
+      "id": "SRC_BLUEBOOK_NARA",
+      "provenance_grade": "P0_OFFICIAL_ARCHIVE",
+      "title": "NARA Project Blue Book records",
+      "url": "https://www.archives.gov/research/military/air-force/ufos",
+      "observed": "Blue Book case, administrative, OSI, photographic, motion-picture and sound records are declassified and available; NARA bulk downloads now expose large machine-readable collections.",
+      "topa_value": "Primary-source validation path for historical nuclear-site case claims and for JANUS's reconstructed public mirror."
+    }
+  ],
+  "evidence_channel_separation": {
+    "C1_NUCLEAR_SITE_SECURITY_INCURSION": "Modern UAS/unknown-object security records such as Pantex and NRC/NNSA reporting.",
+    "C2_HISTORICAL_NUCLEAR_LAB_AERIAL_REPORTING": "Los Alamos green-fireball conference and associated records.",
+    "C3_NUCLEAR_TEST_TEMPORAL_CORRELATION_PHOTOGRAPHIC": "POSS-I statistical branch; currently dataset- and observation-schedule-contested.",
+    "C4_NUCLEAR_COMPLEX_SPATIAL_REPORT_ASSOCIATION": "French spatial study and SCU historical site corpus.",
+    "C5_CLAIMED_WEAPONS_SYSTEM_INTERFERENCE": "Malmstrom/ICBM and similar testimony/document branches; requires direct maintenance/event records and causal attribution control.",
+    "C6_MODERN_NUCLEAR_UAS_BASELINE": "FY24/FY25 NNSA/NRC reports explicitly classified as UAS, not UAP.",
+    "C7_DETECTOR_AND_REPORTING_OPPORTUNITY": "NASA calibration/metadata, environmental sighting opportunity, observation schedules and reporting-policy changes.",
+    "C8_ORIGIN_AND_AGENCY": "Nonhuman/foreign/black-project/exotic-mechanism hypotheses; not inferable directly from C1-C7."
+  },
+  "cross_channel_laws": [
+    "NUCLEAR_CONTEXT != NUCLEAR_CAUSATION != UAP_IDENTITY != NONHUMAN_ORIGIN",
+    "DATASET_REPLICATION != INDEPENDENT_DATA_REPLICATION",
+    "UNKNOWN_OPERATOR != UNKNOWN_PHYSICS",
+    "UNIDENTIFIED_OBJECT != UAP_AFTER_CLASSIFICATION",
+    "SECURITY_REPORTING_INCREASE != EVENT_RATE_INCREASE_WITHOUT_POLICY_NORMALIZATION",
+    "SAME_SITE_PROXIMITY != SAME_CAUSAL_MECHANISM",
+    "TWO_RECORDS_FROM_ONE_SENSOR_PIPELINE != TWO_INDEPENDENT_WITNESSES"
+  ],
+  "conceptual_reporting_model": {
+    "status": "INFERENCE_MODEL_NOT_IDENTITY",
+    "formula": "OBSERVED_REPORT_RATE ~= EVENT_RATE * OBSERVATION_OPPORTUNITY * REPORTING_POLICY * SENSOR_CLASSIFICATION_PIPELINE",
+    "use": "Forces every future site/time correlation to model opportunity, policy and sensor/classifier changes before interpretation."
+  },
+  "strongest_positive_evidence_after_sweep": [
+    "There are genuine official records of unknown or initially unidentified aerial objects/phenomena at or near nuclear laboratories/facilities, including Los Alamos historical records and Pantex 2015.",
+    "Independent spatial/historical research corpora have reported statistical clustering/association with nuclear-risk or atomic-complex sites.",
+    "The 2025 peer-reviewed Palomar study reports a nuclear-test/transient temporal association, and an independent analysis of the same original dataset reproduces it."
+  ],
+  "strongest_counterevidence_or_controls": [
+    "JANUS open POSS-I reconstruction and the accepted 2026 Watters et al. critique identify observation-schedule confounding and no robust positive conditional rate signal.",
+    "JANUS exact-date Blue Book control does not reproduce positive nuclear STARLIKE specificity and demonstrates a clear non-nuclear baseline.",
+    "AARO FY24 and FY25 nuclear-site reports provide a large modern aerial-incursion baseline explicitly categorized as UAS rather than UAP.",
+    "NRC changed drone reporting requirements in 2024, creating a policy-driven discontinuity in modern nuclear-site counts.",
+    "NASA emphasizes that sparse metadata and sensor artifacts can prevent reliable physical interpretation."
+  ],
+  "dark_nodes_and_open_gates": [
+    {
+      "id": "DN_PANTEX_OPERATOR_ID",
+      "status": "OPEN",
+      "question": "Can the 2015 Pantex object be identified from original radar/video/image evidence, wind, trajectory and UAS/balloon controls?"
+    },
+    {
+      "id": "DN_LOS_ALAMOS_PROTECTIVE_FORCE_LOGS",
+      "status": "NOT_YET_BOUND",
+      "question": "Can the contemporaneous Protective Force logs referenced in later correspondence be located and matched to the 1948-1951 sightings?"
+    },
+    {
+      "id": "DN_PALOMAR_DATASET_IDENTITY",
+      "status": "CONTESTED",
+      "question": "Which results survive on independently reconstructed, plate-validated datasets with observation-opportunity normalization?"
+    },
+    {
+      "id": "DN_SCU_DENOMINATOR",
+      "status": "OPEN",
+      "question": "Do atomic-site excesses survive a complete opportunity denominator, archival completeness model, site security/reporting intensity and matched non-nuclear high-security controls?"
+    },
+    {
+      "id": "DN_FRENCH_REPLICATION",
+      "status": "OPEN",
+      "question": "Does the 2015 France nuclear-risk covariate survive modern GEIPAN data and explicit sky-view/reporting/site-density controls?"
+    },
+    {
+      "id": "DN_WEAPON_INTERFERENCE_CAUSAL_CHAIN",
+      "status": "OPEN",
+      "question": "Can claimed ICBM/interference cases be bound to contemporaneous technical logs, electrical fault records and independent sensor evidence rather than retrospective testimony alone?"
+    },
+    {
+      "id": "DN_NRC_RG615_MACHINE_INGEST",
+      "status": "READY",
+      "question": "Ingest NARA RG615 NRC bulk records and build event-level UAS/UAP/security taxonomy with reporting-policy timestamps."
+    }
+  ],
+  "next_experiments": [
+    "TOPA-N1: ingest NARA RG615 NRC bulk ZIP and extract date/site/object-class/reporting-source fields; preserve NULL and redaction states.",
+    "TOPA-N2: Pantex D005/D001 forensic bundle with original PDF pages, radar/image chain, trajectory, meteorology and UAS/balloon controls.",
+    "TOPA-N3: Los Alamos 1949/1948-1951 primary-source graph and targeted search for Protective Force logs.",
+    "TOPA-N4: prospective reanalysis of France/GEIPAN spatial nuclear-risk association on current dataset with opportunity covariates.",
+    "TOPA-N5: denominator-aware reanalysis of SCU 590-event atomic-complex dataset using matched high-security non-nuclear sites and time-varying archive/reporting opportunity.",
+    "TOPA-N6: three-representation Palomar benchmark: original author dataset, vetted critique dataset, JANUS open reconstruction; never pool them as one sample.",
+    "TOPA-N7: modern 2023-2026 nuclear-site UAS baseline with NRC 2024 reporting-rule change treated as explicit policy intervention."
+  ],
+  "overall_verdict": {
+    "nuclear_context_association": "OPEN__MULTIPLE_DOCUMENTED_AND_STATISTICAL_SIGNALS_BUT_STRONG_CONFOUND_AND_DATASET_DEPENDENCE",
+    "nuclear_causation": "NOT_ESTABLISHED",
+    "direct_nuclear_attraction": "NOT_ESTABLISHED",
+    "weapons_interference_by_uap": "NOT_ESTABLISHED_AS_GENERAL_CAUSAL_CLASS",
+    "nonhuman_origin": "NOT_ESTABLISHED",
+    "modern_nuclear_site_aerial_incursions": "ESTABLISHED__PREDOMINANTLY_REPORTED_AS_UAS_IN_AARO_NNSA_NRC_STREAM",
+    "historical_nuclear_site_unknown_reports": "ESTABLISHED_AS_ARCHIVAL_REPORTING_PHENOMENON",
+    "best_scientific_target": "DISTINGUISH_EVENT_RATE_FROM_DETECTION_AND_REPORTING_PIPELINES_USING_PRIMARY_RECORDS_AND_MATCHED_CONTROLS"
+  },
+  "canonical_seal": "THE NUCLEAR-UAP QUESTION GOT LARGER, NOT SIMPLER. OFFICIAL RECORDS CONFIRM THAT UNIDENTIFIED OR AERIAL-SECURITY EVENTS HAVE OCCURRED AROUND NUCLEAR SITES, WHILE MODERN OFFICIAL DATA ALSO SHOW A LARGE DRONE BASELINE AND STRONG REPORTING-POLICY EFFECTS. THE PALOMAR SIGNAL IS A LIVE DATASET/EXPOSURE DISPUTE, NOT A SETTLED NUCLEAR EFFECT. PRESERVE EVERY WITNESS, MODEL THE DETECTOR, MODEL THE DENOMINATOR, AND DO NOT LET NUCLEAR CONTEXT SILENTLY BECOME NUCLEAR CAUSATION."
+}
