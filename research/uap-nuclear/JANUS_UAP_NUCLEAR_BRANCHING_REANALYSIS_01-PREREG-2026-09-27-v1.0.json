@@ -1,0 +1,170 @@
+{
+  "schema": "janus.uap_nuclear_branching_reanalysis.prereg.v1",
+  "experiment_id": "JANUS_UAP_NUCLEAR_BRANCHING_REANALYSIS_01",
+  "created_date": "2026-09-27",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "research_question": "After reconstructing the historical nuclear-test/UAP/transient analysis as faithfully as public data allow, does any association remain after observation-opportunity normalization, matched controls, source-quality controls, reporting-policy controls, and frozen null models?",
+  "primary_firewall": [
+    "RESIDUAL_ASSOCIATION != CAUSATION",
+    "NUCLEAR_ASSOCIATION != UAP_IDENTITY",
+    "UAP_IDENTITY != NONHUMAN_ORIGIN",
+    "RESIDUAL_ASSOCIATION != QUANTUM_BRANCHING",
+    "NO CLAIM ABOUT MULTIPLE UNIVERSES MAY BE PROMOTED WITHOUT AN INDEPENDENT QUANTUM OBSERVABLE",
+    "SAME_DATASET_REANALYSIS != INDEPENDENT_DATASET_REPLICATION"
+  ],
+  "freeze_before_execution": {
+    "required": true,
+    "freeze_items": [
+      "historical input tables and exact hashes",
+      "historical analysis code or closest executable reconstruction",
+      "nuclear-event calendar definition",
+      "POSS-I observation/exposure calendar",
+      "UAP report source and deduplication rules",
+      "candidate/transient inclusion rules",
+      "primary and sensitivity windows",
+      "all covariates",
+      "all null models",
+      "all exclusion criteria",
+      "all endpoint definitions",
+      "multiplicity correction",
+      "stopping rules"
+    ]
+  },
+  "representation_contract": {
+    "target_invariant": "event-rate association after conditioning on observation/reporting opportunity",
+    "must_preserve": [
+      "calendar date",
+      "observation opportunity",
+      "event counts",
+      "source provenance",
+      "site/event class",
+      "reporting channel",
+      "uncertainty and missingness"
+    ],
+    "must_not_conflate": [
+      "no observation with observed zero",
+      "unknown object with extraordinary object",
+      "UAS report with UAP report",
+      "one event represented by multiple reports with multiple independent events",
+      "same-data replication with independent-data replication"
+    ],
+    "blocked_without_contract": "BLOCKED_NO_VALID_REPRESENTATION_CONTRACT"
+  },
+  "phase_0_recovery": {
+    "goal": "Recover the strongest available version of the historical data and code before any corrective analysis.",
+    "tasks": [
+      "Recover or reconstruct the original 1949-1957 daily master table used for the published POSS-I nuclear/UAP association.",
+      "Recover exact transient candidate table and plate/exposure metadata where available.",
+      "Recover exact above-ground nuclear-test calendar used by the historical analysis.",
+      "Recover exact UAP-report daily counts/source used by the historical analysis, including deduplication rules.",
+      "Recover original analysis code; if unavailable, reconstruct the published statistical specification line-by-line and mark deviations.",
+      "Hash every recovered input and preserve unavailable bytes as BLOCKED rather than substituting silently."
+    ],
+    "success_condition": "Historical result can be reproduced within declared numerical tolerance or every irreducible reconstruction gap is explicitly identified."
+  },
+  "phase_1_exact_replay": {
+    "goal": "Reproduce the old result without correction first.",
+    "primary_targets": [
+      "RR approximately 1.45 for transient presence within +/-1 day of nuclear testing as reported in the 2025 paper",
+      "reported p-value approximately 0.008 for the binary association",
+      "reported +1-day localization",
+      "reported 8.5% increase in transient count per additional UAP report on transient-positive days"
+    ],
+    "rule": "Failure to reproduce the historical result stops causal reinterpretation and triggers a reconstruction discrepancy audit."
+  },
+  "phase_2_observation_opportunity_normalization": {
+    "goal": "Separate physical-event rate from whether Palomar was observing and from how much it observed.",
+    "models": [
+      "calendar-day model with explicit observed-night indicator",
+      "observed-night-only rate model with exposure opportunity offset",
+      "plate-count and exposure-duration sensitivity",
+      "season/month/year controls",
+      "sky-position/galactic-latitude controls where available",
+      "lunar illumination and geomagnetic covariates where available"
+    ],
+    "primary_question": "Does the nuclear coefficient remain positive and stable after conditioning on actual observation opportunity?"
+  },
+  "phase_3_data_quality_and_artifact_controls": {
+    "tasks": [
+      "Plate-quality and scan-artifact screens.",
+      "Astrometric and morphology validation on frozen random samples.",
+      "Separate candidate-presence from candidate-count endpoints.",
+      "Do not remove suspicious records based on knowledge of nuclear dates.",
+      "Compare original author dataset, critique/vetted subset, and JANUS open reconstruction as separate representations rather than pooling them."
+    ]
+  },
+  "phase_4_human_report_controls": {
+    "tasks": [
+      "Exact-date Project Blue Book/NARA-linked test using frozen morphology labels.",
+      "Non-nuclear high-reporting positive-control epochs such as July 1952.",
+      "Matched pseudo-test date nulls blocked by year/month.",
+      "Separate human-report channel from photographic channel until both independently pass."
+    ],
+    "shared_trigger_gate": "No common physical trigger is admitted unless both channels independently survive their own frozen nulls."
+  },
+  "phase_5_modern_nuclear_site_baseline": {
+    "purpose": "Estimate how many modern nuclear-site aerial incidents are attributable to UAS/security/reporting processes rather than residual UAP.",
+    "sources": [
+      "AARO FY2024 nuclear-site UAS reports",
+      "AARO FY2025 nuclear-site UAS reports",
+      "NRC post-2024 drone-reporting policy",
+      "NARA RG615 NRC records"
+    ],
+    "required_policy_covariate": "NRC 2024 reporting-rule change",
+    "rule": "Raw post-policy report counts cannot be compared directly with earlier counts."
+  },
+  "phase_6_spatial_replication": {
+    "branches": [
+      {
+        "name": "FRANCE_GEIPAN",
+        "goal": "Re-test the published nuclear-risk-site covariate using updated GEIPAN data with population, sky-view, airport/air-traffic, military, moisture/weather and reporting-opportunity controls."
+      },
+      {
+        "name": "US_ATOMIC_COMPLEX_SCU",
+        "goal": "Reanalyse the open 590-event atomic-complex corpus with matched high-security non-nuclear controls, archival/reporting completeness, site operational dates, media intensity and observation opportunity."
+      }
+    ]
+  },
+  "null_models": [
+    "calendar circular shifts preserving nuclear-event spacing",
+    "year-blocked pseudo-test dates",
+    "year-month-blocked pseudo-test dates",
+    "matched non-nuclear high-security sites",
+    "matched military/non-nuclear facilities",
+    "observation-schedule-preserving permutations",
+    "reporting-opportunity-preserving permutations",
+    "negative-control morphologies and negative-control time windows"
+  ],
+  "primary_endpoint": {
+    "name": "RESIDUAL_NUCLEAR_ASSOCIATION_AFTER_OPPORTUNITY_NORMALIZATION",
+    "admission_rule": "A positive effect must survive the frozen primary model, predeclared matched/null controls, multiplicity handling, and source-quality sensitivity without changing window, dataset or covariates after seeing the result.",
+    "possible_verdicts": [
+      "NO_RESIDUAL_ASSOCIATION",
+      "RESIDUAL_ASSOCIATION_REPLICATED_WITHIN_SAME_DATASET_FAMILY",
+      "RESIDUAL_ASSOCIATION_REPLICATED_ACROSS_INDEPENDENT_DATASET",
+      "BLOCKED_BY_MISSING_PRIMARY_DATA",
+      "INCONCLUSIVE_POWER_OR_IDENTIFIABILITY"
+    ]
+  },
+  "quantum_branching_gate": {
+    "status": "CLOSED_BY_DEFAULT",
+    "required_before_opening": [
+      "an independently measurable quantum observable tied prospectively to the hypothesized mechanism",
+      "a quantitative prediction distinguishing branching/retrocausal hypothesis from conventional alternatives",
+      "independent replication with calibrated instrumentation",
+      "a causal model that cannot be reduced to observation/reporting artifacts"
+    ],
+    "current_state": "NO_INDEPENDENT_QUANTUM_OBSERVABLE_BOUND_TO_NUCLEAR_UAP_ASSOCIATION"
+  },
+  "planned_outputs": [
+    "immutable source manifest with SHA-256 hashes",
+    "historical replay receipt",
+    "opportunity-normalized model receipt",
+    "null-model/permutation receipt",
+    "human-report specificity receipt",
+    "modern nuclear UAS baseline receipt",
+    "spatial-replication receipts",
+    "analysis-of-analysis preserving all nulls, failures and unresolved branches"
+  ],
+  "canonical_seal": "FIRST REPRODUCE THE OLD SIGNAL. THEN TRY TO KILL IT WITH THE OBSERVATION SCHEDULE, MATCHED CONTROLS, DATA-QUALITY CHECKS, REPORTING POLICY, AND FROZEN NULLS. IF A RESIDUAL SURVIVES, CALL IT A RESIDUAL ASSOCIATION — NOT A UNIVERSE — UNTIL AN INDEPENDENT QUANTUM OBSERVABLE EXISTS."
+}
