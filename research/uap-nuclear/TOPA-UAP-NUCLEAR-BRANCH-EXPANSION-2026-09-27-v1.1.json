@@ -1,0 +1,185 @@
+{
+  "schema": "topa.uap_nuclear.branch_expansion.v1.1",
+  "artifact_id": "TOPA-UAP-NUCLEAR-BRANCH-EXPANSION-2026-09-27-v1.1",
+  "created_date": "2026-09-27",
+  "status": "EXECUTED_SOURCE_EXPANSION__NEXT_EXPERIMENTS_PREREG_READY__NO_CAUSAL_ORIGIN_PROMOTION",
+  "purpose": "Extend the JANUS/TOPA UAP x nuclear branch using current internal lineage plus fresh open-access primary, official, peer-reviewed and public-dataset sources, while turning the branch into a concrete sequence of falsifiable experiments.",
+  "parents": [
+    "research/uap-nuclear/TOPA-UAP-NUCLEAR-OPEN-ACCESS-MAXIMAL-SWEEP-2026-09-27-v1.0.json",
+    "research/uap-nuclear/JANUS_UAP_NUCLEAR_BRANCHING_REANALYSIS_01-PREREG-2026-09-27-v1.0.json"
+  ],
+  "governing_firewall": [
+    "UNIDENTIFIED != EXTRAORDINARY",
+    "NUCLEAR_CONTEXT != NUCLEAR_CAUSATION",
+    "REPORT_COUNT != EVENT_RATE_WITHOUT_DENOMINATOR",
+    "REPORTING_RULE_CHANGE != PHYSICAL_RATE_CHANGE",
+    "OFFICIAL_RELEASE != PHYSICAL_CONFIRMATION",
+    "CORRELATION != CAUSATION",
+    "SAME_ARCHIVE_REANALYSIS != INDEPENDENT_REPLICATION",
+    "RESIDUAL_ASSOCIATION != NONHUMAN_ORIGIN",
+    "RESIDUAL_ASSOCIATION != QUANTUM_BRANCHING",
+    "CONTROL_MUST_HAVE_POWER_TO_SAY_NO"
+  ],
+  "fresh_open_access_updates": [
+    {
+      "id": "NARA_RG615_ROLLING_GRAPH",
+      "grade": "P0_OFFICIAL_ARCHIVE",
+      "source": "https://www.archives.gov/research/topics/uaps/rg-615",
+      "observed": "NARA states RG 615 is a rolling UAP collection created under the FY2024 NDAA. As of the page reviewed 2026-09-21, listed series include NRC, FAA, ODNI, OSD, NSA, State, FBI, Air Force and CBP.",
+      "new_value": "The NRC series (NARA ID 488808322) is a machine-discovery target for building a primary-source nuclear-site event ledger rather than relying on anecdotal case lists."
+    },
+    {
+      "id": "PURSUE_DOE_PRIMARY_CASES",
+      "grade": "P0_OFFICIAL_RELEASE",
+      "source": "https://www.war.gov/UFO/release/04/?agency=Department+of+Energy",
+      "observed": "PURSUE currently indexes five DOE UAP-related records, including DOE-UAP-D004 Los Alamos Conference on Aerial Phenomena (1949) and DOE-UAP-D005 Pantex Unidentified Object Incident Report (2015). The release page explicitly says unresolved status can reflect insufficient data and does not itself establish origin.",
+      "new_value": "These are suitable for source-bound case forensics, not for population-rate inference by themselves."
+    },
+    {
+      "id": "PANTEX_2015_PRIMARY_PDF",
+      "grade": "P0_PRIMARY_INCIDENT_RECORD",
+      "source": "https://www.energy.gov/sites/default/files/2026-09/5%20-%20%28UCNI%29%20NNSA-2015-009581%20-%20COR-NPO-20%20SS-992015-642025.pdf",
+      "observed": "The released report describes Ground Surveillance Radar detection of an unknown slow-moving object on 2015-09-01, Protective Force ground confirmation and pursuit, multiple visual descriptions, GSR imagery and later Sandia image enhancement. The report states the object was non-threatening and remained over open/unpopulated areas before proceeding offsite.",
+      "measured_or_reported_features": [
+        "reported_speed approximately 10-15 mph",
+        "reported altitude approximately 100-200 ft in one witness account",
+        "reported size approximately 4 ft tall x 2 ft wide in one account",
+        "multiple inconsistent color descriptions",
+        "no unique propulsion/origin identification"
+      ],
+      "next_gate": "Bind radar/video/image provenance, timestamp geometry, weather/wind, balloon/UAS hypotheses and witness disagreement before any anomaly score."
+    },
+    {
+      "id": "NRC_2024_REPORTING_CHANGEPOINT",
+      "grade": "P0_OFFICIAL_REGULATORY",
+      "source": "https://www.nrc.gov/regulations-legislation/fact-sheets-brochures/drones-and-nuclear-power-plant-security",
+      "observed": "NRC states regulations were updated in 2024 to require nuclear power plant licensees to report drone sightings; reports are sent to NRC, FAA, FBI and local law enforcement.",
+      "new_law": "RAW_FY24_TO_FY25_NUCLEAR_UAS_COUNT_CHANGE_MUST_BE_POLICY_NORMALIZED",
+      "importance": "A reporting mandate is a direct denominator/pipeline change and can create apparent rate increases even if underlying physical activity does not change."
+    },
+    {
+      "id": "AARO_FY25_NUCLEAR_UAS_BASELINE",
+      "grade": "P0_OFFICIAL_REPORT",
+      "source": "AARO FY2025 Consolidated Annual Report, 26-P-0880, official AARO release 2026-07-20",
+      "observed": {
+        "reports_near_nuclear_infrastructure_weapons_launch_sites": 50,
+        "FY2024_comparison": 18,
+        "reported_percent_increase": 177.8,
+        "reported_as_UAP": 0,
+        "single_UAS_incidents": 33,
+        "multi_UAS_incidents": 17,
+        "between_1700_and_0500_local": 47,
+        "longest_reported_duration_hours_approx": 3
+      },
+      "interpretation": "A large modern nuclear-site aerial-activity baseline can exist while reporting authorities classify those events as UAS, not UAP. The 18->50 comparison is not a clean physical-rate trend because the NRC reporting regime changed in 2024."
+    },
+    {
+      "id": "NASA_SENSOR_CONTRACT",
+      "grade": "P0_OFFICIAL_SCIENCE_REPORT",
+      "source": "https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf",
+      "observed": "NASA emphasizes calibrated sensors, metadata, multiple sensors and the fact that some apparent UAP become sensor artifacts after calibration/metadata scrutiny.",
+      "TOPA_translation": "Every detector branch must carry a Representation Contract: what the sensor preserves, what artifacts it can create, and what independent witness can falsify a detector-internal explanation."
+    },
+    {
+      "id": "MEDINA_2023_OPPORTUNITY_MODEL",
+      "grade": "P1_PEER_REVIEWED_OPEN_ACCESS",
+      "source": "https://www.nature.com/articles/s41598-023-49527-x",
+      "observed": "A Bayesian analysis of more than 98,000 public UAP reports found credible spatial relationships consistent with opportunity-to-see and human-made airborne activity; air traffic and military activity were important contextual variables.",
+      "TOPA_translation": "Population, visibility, internet/reporting access, air traffic and military activity are mandatory covariates for any spatial nuclear-site comparison."
+    },
+    {
+      "id": "PALOMAR_2025_VS_2026_DISPUTE",
+      "grade": "P1_PEER_REVIEWED_CONTESTED_PAIR",
+      "positive_source": "https://www.nature.com/articles/s41598-025-21620-3",
+      "critical_source": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/critical-evaluation-of-studies-alleging-evidence-for-technosignatures-in-the-poss1e-photographic-plates/A19B440ADE54BB11973C46D2BA13FB01",
+      "author_response": "https://arxiv.org/abs/2602.15171",
+      "observed": "The 2025 paper reports a positive nuclear-test/transient association; the 2026 critique argues observation schedule and image/data-definition issues remove or weaken the signal; the original authors dispute parts of that critique.",
+      "TOPA_translation": "Do not choose a side by citation. Reproduce the old endpoint, then apply observation-opportunity and image-quality controls prospectively."
+    },
+    {
+      "id": "SCU_ATOMIC_COMPLEX_590",
+      "grade": "P2_OPEN_DATASET_AND_REPORT",
+      "source": "https://zenodo.org/records/7295958",
+      "observed": "The public package contains a report and spreadsheet built from 590 selected UAP reports from 1945-1975 and compares atomic production/assembly/stockpile/deployment sites with civilian and non-atomic military controls.",
+      "download_status_this_pass": "BLOCKED_BY_ZENODO_RATE_LIMIT_FOR_DIRECT_XLSX_FETCH",
+      "TOPA_translation": "High-value reanalysis target, but raw incident counts cannot be treated as rates until site-time observation/reporting opportunity is reconstructed."
+    }
+  ],
+  "internal_cross_checks_retained": {
+    "PALOMAR_JPFM_2E": {
+      "result": "In the JANUS open dense S0 cohort, binary ANY_CANDIDATE is identical to Palomar observed-night availability; conditional candidate-rate models do not show a robust positive nuclear enhancement.",
+      "status": "NEGATIVE_OR_NULL_CONTROL_PRESERVED"
+    },
+    "BLUE_BOOK_EXACT_DATE": {
+      "result": "No positive STARLIKE nuclear specificity in the reconstructed public Blue Book layer; strong non-nuclear baseline retained.",
+      "status": "NEGATIVE_CONTROL_PRESERVED"
+    }
+  },
+  "new_hidden_machine": {
+    "name": "REPORTING_PIPELINE_MACHINE",
+    "formula": "PHYSICAL_EVENT -> DETECTOR_OR_HUMAN -> REPORTING_RULE -> ARCHIVE -> ANALYST_COUNT",
+    "law": "COUNT_AT_ARCHIVE_OUTPUT != PHYSICAL_EVENT_RATE_UNLESS_PIPELINE_OPPORTUNITY_IS_MODELED",
+    "why_it_matters": "The 2024 NRC reporting requirement demonstrates a real intervention on the pipeline. A count jump after that point can be caused by reporting policy, physical event rate, or both."
+  },
+  "experiment_ladder": [
+    {
+      "id": "NUC-R1",
+      "name": "NRC_RG615_PRIMARY_LEDGER",
+      "status": "NEXT_HIGH_PRIORITY",
+      "goal": "Ingest NRC RG615 metadata/records into a deduplicated event ledger with event date, site, detector, reporting authority, stated classification, resolution status and source hash.",
+      "deliverable": "Primary-source event table plus explicit NO_RECORD != NO_EVENT firewall."
+    },
+    {
+      "id": "NUC-R2",
+      "name": "MODERN_POLICY_NORMALIZED_UAS_BASELINE",
+      "status": "DESIGN_READY",
+      "goal": "Estimate a modern nuclear-site aerial-incursion baseline while treating the 2024 NRC reporting requirement as a reporting-process changepoint.",
+      "required_denominators": ["site-years", "reporting-rule era", "facility class", "operating/reporting opportunity"],
+      "killer_question": "Does the FY24->FY25 increase survive a reporting-policy-aware denominator?"
+    },
+    {
+      "id": "NUC-R3",
+      "name": "PANTEX_MULTI_SENSOR_FORENSICS",
+      "status": "DESIGN_READY",
+      "goal": "Treat radar, visual witnesses and imagery as separate witnesses; test balloon/UAS/drift/geometry hypotheses before any extraordinary classification.",
+      "success": "A source-bounded causal ranking with disagreement preserved.",
+      "failure": "Insufficient metadata remains an allowed terminal state."
+    },
+    {
+      "id": "NUC-R4",
+      "name": "SCU_590_DENOMINATOR_REANALYSIS",
+      "status": "INPUT_ACQUISITION_BLOCKED_THIS_PASS",
+      "goal": "Reanalyze atomic versus control sites with explicit site-time denominators, population, military activity, reporting intensity and archival completeness.",
+      "primary_endpoint": "rate ratio or model coefficient for atomic-site class after matched/confound controls",
+      "hard_rule": "Selected historical case counts alone cannot define incidence."
+    },
+    {
+      "id": "NUC-R5",
+      "name": "JANUS_UAP_NUCLEAR_BRANCHING_REANALYSIS_01",
+      "status": "PREREGISTERED_NOT_EXECUTED",
+      "goal": "Recover and reproduce the historical positive Palomar result first, then apply schedule normalization, plate/image controls, pseudo-event nulls and independent human-report controls without tuning to the outcome."
+    },
+    {
+      "id": "NUC-R6",
+      "name": "CROSS_CHANNEL_RESIDUAL_TRIANGULATION",
+      "status": "FUTURE_AFTER_R1_R5",
+      "goal": "Ask whether a residual nuclear-context signal survives independently in photographic, human-report and security/UAS channels after each channel's own denominator and detector contract.",
+      "admission_rule": "No pooled extraordinary claim unless at least two independent channels survive their own preregistered nulls and share a prospectively defined timing/spatial feature."
+    }
+  ],
+  "what_we_get_if_this_branch_works": {
+    "minimum_success": "A clean map of which nuclear-UAP claims are archival facts, which are reporting-pipeline effects, which are unresolved case studies, and which survive controlled statistics.",
+    "medium_success": "A reproducible residual-association estimate after denominator, sensor, policy, military-activity and reporting-opportunity controls.",
+    "strong_success": "Independent residual signals in at least two separately measured channels with prospectively frozen spatial/temporal structure.",
+    "what_strong_success_would_still_not_mean": [
+      "nonhuman origin",
+      "nuclear attraction mechanism",
+      "retrocausality",
+      "quantum branching",
+      "technology identification"
+    ],
+    "true_next_scientific_gain": "If a residual survives, the branch transitions from folklore/correlation audit to mechanism discrimination: what physical or reporting process could generate the shared residual and what new observation would distinguish competing models?"
+  },
+  "current_branch_verdict": "THE_FIELD_CONTAINS_REAL_PRIMARY_RECORDS_AND_REAL_STATISTICAL_CLAIMS, BUT ALSO REAL_REPORTING_AND_OBSERVATION_CONFOUNDS. THE MOST VALUABLE NEXT MOVE IS NOT MORE ANECDOTES; IT IS PRIMARY-LEDGER INGESTION PLUS POLICY/DENOMINATOR-NORMALIZED REANALYSIS.",
+  "canonical_seal": "DON'T COUNT THE ARCHIVE AS IF IT WERE THE SKY. MODEL THE DETECTOR, THE REPORTING RULE, THE DENOMINATOR, AND THE NULL. THEN ASK WHAT IS LEFT."
+}
