@@ -1,0 +1,76 @@
+name: TOPA JANUS P-vs-NP Autoresearch Fast Lane
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/janus_pnp_autoresearch_fast.py'
+      - '.github/workflows/janus-pnp-autoresearch-fast.yml'
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: topa-janus-pnp-autoresearch-fast
+  cancel-in-progress: true
+
+jobs:
+  research-fast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify kernel
+        run: python -m py_compile tools/janus_pnp_autoresearch_fast.py
+      - name: Recover prior corpus
+        run: |
+          set -euo pipefail
+          : > /tmp/prior.jsonl
+          git fetch origin janus/pnp-autoresearch-state || true
+          if git rev-parse --verify origin/janus/pnp-autoresearch-state >/dev/null 2>&1; then
+            git show origin/janus/pnp-autoresearch-state:data/pnp-autoresearch/source-records.jsonl > /tmp/prior.jsonl 2>/dev/null || true
+          fi
+          echo "PRIOR=$(awk 'NF{n++} END{print n+0}' /tmp/prior.jsonl)"
+      - name: Research current Keymaster gap
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/out
+          python tools/janus_pnp_autoresearch_fast.py --out /tmp/out --prior-records /tmp/prior.jsonl --max-queries 6 --per-source 10
+          python - <<'PY'
+          import json
+          x=json.load(open('/tmp/out/LATEST.json'))
+          assert x['schema']=='janus.topa.pnp_autoresearch_cycle.v3'
+          assert x['record_count'] >= x['prior_record_count']
+          print('AUTORESEARCH=' + x['status'])
+          print('ACTIVE=' + str(x['autoreserch_active']))
+          print('NOVEL=' + str(x['novel_cycle_record_count']))
+          print('CORPUS=' + str(x['record_count']))
+          print('HEALTH=' + json.dumps(x['source_health'],sort_keys=True))
+          PY
+      - name: Persist new corpus
+        run: |
+          set -euo pipefail
+          git fetch origin janus/pnp-autoresearch-state || true
+          git switch -C janus/pnp-autoresearch-state origin/janus/pnp-autoresearch-state
+          mkdir -p data/pnp-autoresearch/history
+          stamp="$(date -u +%Y%m%dT%H%M%SZ)-fast"
+          cp /tmp/out/LATEST.json data/pnp-autoresearch/LATEST.json
+          cp /tmp/out/source-records.jsonl data/pnp-autoresearch/source-records.jsonl
+          cp /tmp/out/spider-receipt.json data/pnp-autoresearch/spider-receipt.json
+          cp /tmp/out/spider-nodes.jsonl data/pnp-autoresearch/spider-nodes.jsonl
+          cp /tmp/out/spider-edges.jsonl data/pnp-autoresearch/spider-edges.jsonl
+          cp /tmp/out/LATEST.json "data/pnp-autoresearch/history/${stamp}.json"
+          git config user.name 'janus-topa-fast[bot]'
+          git config user.email 'janus-topa-fast[bot]@users.noreply.github.com'
+          git add data/pnp-autoresearch
+          if git diff --cached --quiet; then echo NO_STATE_CHANGE; exit 0; fi
+          git commit -m "topa: fast P-vs-NP autoresearch ${stamp}"
+          git push origin HEAD:janus/pnp-autoresearch-state
