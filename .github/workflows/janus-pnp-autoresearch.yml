@@ -44,6 +44,7 @@ jobs:
           forge={
             'schema':'janus.keymaster.autonomous_forge.v1',
             'status':'NEW_CANDIDATE_ALGORITHM_PROPOSED',
+            'cycle_count':48,
             'keymaster_shadow_admission':False,
             'target':{'from_type':'A','to_type':'B'},
             'search_queries':['A B exact polynomial algorithm'],
@@ -52,7 +53,7 @@ jobs:
               'automatic_theorem_promotion':False,'automatic_p_equals_np_claim':False
             }
           }
-          seeds=merge_query_seeds(assoc,forge,6)
+          seeds=merge_query_seeds(assoc,forge,8)
           assert seeds[0]['source']=='JANUS_KEYMASTER_AUTONOMOUS_FORGE'
           assert seeds[0]['authority']=='DISCOVERY_QUERY_ONLY'
           old=[{'provider':'OPENALEX','archive_id':'X','title':'old'}]
@@ -92,14 +93,14 @@ jobs:
           python tools/janus_pnp_autoresearch.py \
             --out /tmp/pnp-autoresearch \
             --prior-records /tmp/pnp-prior-source-records.jsonl \
-            --max-queries 6 \
+            --max-queries 8 \
             --per-source 12
 
           python - <<'PY'
           import json
           from pathlib import Path
           x=json.loads(Path('/tmp/pnp-autoresearch/LATEST.json').read_text())
-          assert x['schema']=='janus.topa.pnp_autoresearch_cycle.v1'
+          assert x['schema'] in {'janus.topa.pnp_autoresearch_cycle.v1','janus.topa.pnp_autoresearch_cycle.v2'}
           assert x['authority']['truth'] is False
           assert x['authority']['proof'] is False
           assert x['authority']['fundamentum_mutation'] is False
@@ -116,6 +117,10 @@ jobs:
           print('TOPA_PRIOR_RECORDS=' + str(x['prior_record_count']))
           print('TOPA_NEW_RECORDS=' + str(x['new_cycle_record_count']))
           print('TOPA_MERGED_RECORDS=' + str(x['record_count']))
+          if x['schema'].endswith('.v2'):
+              print('TOPA_RETRIEVED_RECORDS=' + str(x['retrieved_cycle_record_count']))
+              print('TOPA_NOVEL_RECORDS=' + str(x['novel_cycle_record_count']))
+              print('TOPA_DISCOVERY_STATUS=' + x['status'])
           PY
 
       - name: Persist isolated TOPA research state
