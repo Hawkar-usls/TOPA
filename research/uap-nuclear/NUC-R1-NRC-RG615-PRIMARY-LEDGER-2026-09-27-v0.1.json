@@ -1,0 +1,72 @@
+{
+  "schema": "topa.uap_nuclear.nuc_r1_nrc_rg615_primary_ledger.v0.1",
+  "artifact_id": "NUC-R1-NRC-RG615-PRIMARY-LEDGER-2026-09-27-v0.1",
+  "created_date": "2026-09-27",
+  "status": "PARTIAL_EXECUTION__PRIMARY_SERIES_BOUND__DOCUMENT_LEVEL_TRANSCRIPTIONS_PENDING_BYTE_BIND",
+  "purpose": "Begin the NUC-R1 primary-source ledger from NARA RG615 NRC records, separating primary-series metadata from document-level text that is currently available only through public mirrors/OCR.",
+  "primary_series": {
+    "authority": "U.S. National Archives and Records Administration",
+    "record_group": 615,
+    "naid": 488808322,
+    "title": "Records from the Nuclear Regulatory Commission Relating to Unidentified Anomalous Phenomena",
+    "metadata_url": "https://catalog.archives.gov/medialz/bulk-downloads/uaps/JSON/catalog-export-488808322.json",
+    "bulk_zip_url": "https://catalog.archives.gov/medialz/bulk-downloads/uaps/zips/electronic-records/488808322.zip",
+    "item_count": 3,
+    "format": "3 portable document files (pdf)",
+    "access_restriction": "Unrestricted",
+    "coverage_start": "2015-10-01",
+    "coverage_end": "2023-12-04",
+    "nara_date_note": "Compiled in response to the 2024 NDAA; originating-agency records were created from October 1, 2015 to December 4, 2023.",
+    "bulk_download_page": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download",
+    "series_metadata_status": "PRIMARY_SOURCE_BOUND"
+  },
+  "provisional_document_ledger": [
+    {
+      "file_name": "Klukan_Oct_2015_Emails_re_Pilgrim_Drone_Spotting.pdf",
+      "date": "2015-10-01",
+      "content_source_status": "PUBLIC_MIRROR_OCR__PRIMARY_FILE_NAME_BOUND_TO_NARA_SERIES__PRIMARY_BYTES_NOT_FETCHED_THIS_PASS",
+      "reported_summary": "NRC email chain about an initially described possible drone/UFO near Pilgrim. The mirror transcript says local police and a state police helicopter could not identify the distant object; a weather balloon was considered; the event did not meet then-current security-incident reporting criteria and no SIDS report was made.",
+      "methodological_value": "Concrete example that an unresolved aerial observation can fail to enter a formal security-event denominator because of reporting criteria.",
+      "claim_ceiling": "REPORTING_PIPELINE_EXAMPLE__NOT_ANOMALOUS_ORIGIN_EVIDENCE"
+    },
+    {
+      "file_name": "UAP_BLUF_attachment-release_in_full.pdf",
+      "date_context": "2023 policy-development lineage",
+      "content_source_status": "PUBLIC_MIRROR_OCR__PRIMARY_FILE_NAME_BOUND_TO_NARA_SERIES__PRIMARY_BYTES_NOT_FETCHED_THIS_PASS",
+      "reported_summary": "The mirror transcript states NRC staff were considering updated flyover reporting guidance because the existing Security Incident Database had no UAP category or guidance for differentiating UAS from UAP, creating potential to under-report, confuse or ignore sightings. It also states a federal requirement for recurring UAP/UAS data delivery to AARO and recommends dedicated UAP guidance/category development.",
+      "methodological_value": "Direct evidence that classification/reporting rules are part of the observation pipeline and can alter apparent UAP/UAS counts independently of the physical sky.",
+      "claim_ceiling": "REPORTING_POLICY_AND_TAXONOMY_EVIDENCE__NOT_EVENT_RATE_EVIDENCE"
+    },
+    {
+      "file_name": "ML24234A061.pdf",
+      "date_context": "2023-2024 flyover-reporting proposal lineage",
+      "content_source_status": "PUBLIC_MIRROR_OCR__PRIMARY_FILE_NAME_BOUND_TO_NARA_SERIES__PRIMARY_BYTES_NOT_FETCHED_THIS_PASS",
+      "reported_summary": "Public mirror text identifies this as a Current & Future Flyover Reporting Guidance for SIDs proposal discussing AARO UAP reporting requirements.",
+      "methodological_value": "Policy implementation layer potentially linking nuclear-site observations to what is later visible in AARO annual statistics.",
+      "claim_ceiling": "POLICY_PIPELINE_DOCUMENT__PRIMARY_TEXT_VALIDATION_PENDING"
+    }
+  ],
+  "derived_reporting_pipeline_model": {
+    "formula": "AERIAL_EVENT -> LOCAL_DETECTION -> LOCAL_CLASSIFICATION -> SID_REPORTING_RULE -> NRC_AGGREGATION -> AARO_SUBMISSION -> ARCHIVE_COUNT",
+    "critical_consequence": "Any change in classification guidance or mandatory reporting can change archive counts without any change in physical event rate.",
+    "specific_falsifier_for_naive_trend": "If the 18-to-50 FY2024/FY2025 increase is largely explained by reporting-rule adoption/coverage changes, it cannot be used as evidence of increased anomalous activity."
+  },
+  "what_this_unlocks": [
+    "A real denominator problem can now be specified at the reporting-pipeline level instead of hand-waved as generic bias.",
+    "Historical and modern nuclear-site counts must be segmented by reporting regime, not pooled as one stationary process.",
+    "UAS and UAP categories cannot be assumed historically stable across NRC reporting eras.",
+    "A future site-level model can include reporting-era indicators and category-definition changes as explicit covariates."
+  ],
+  "next_actions": [
+    "Fetch/bind the three primary PDF bytes from the NARA bulk ZIP and compute SHA-256 for each.",
+    "Extract the exact policy dates and rule/guidance changes from primary text.",
+    "Build a timeline of NRC flyover/UAS/UAP reporting regimes from 2015 through FY2025.",
+    "Only then compare event/report counts across years.",
+    "Crosswalk NRC reporting categories to AARO FY2024/FY2025 nuclear-site UAS categories."
+  ],
+  "blockers": [
+    "Direct binary ZIP/PDF retrieval from NARA was unsupported by the current web transport in this pass.",
+    "Document-level text is therefore not yet primary-byte-bound and must remain lower authority than NARA series metadata."
+  ],
+  "canonical_seal": "THE SKY DID NOT CHANGE JUST BECAUSE THE REPORTING FORM CHANGED. MODEL THE FORM."
+}
