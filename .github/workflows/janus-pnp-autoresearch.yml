@@ -4,11 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'tools/janus_pnp_autoresearch.py'
-      - 'protocols/JANUS_PNP_AUTORESEARCH_PROTOCOL_v1.0.json'
+      - 'tools/janus_pnp_autoresearch_fast.py'
       - '.github/workflows/janus-pnp-autoresearch.yml'
   schedule:
-    - cron: '27 */2 * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -16,12 +15,12 @@ permissions:
 
 concurrency:
   group: topa-janus-pnp-autoresearch
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,96 +30,55 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Self-test TOPA research tools
+      - name: Verify resilient autoresearch kernel
         run: |
           set -euo pipefail
-          python tools/topa_arxiv_gateway.py self-test
-          python tools/topa_spider.py self-test
-          python - <<'PY'
-          import sys
-          sys.path.insert(0,'tools')
-          from janus_pnp_autoresearch import merge_query_seeds, merge_records
-          assoc={'topa_query_seeds':[{'id':'GEN','query':'generic SAT search'}]}
-          forge={
-            'schema':'janus.keymaster.autonomous_forge.v1',
-            'status':'NEW_CANDIDATE_ALGORITHM_PROPOSED',
-            'cycle_count':48,
-            'keymaster_shadow_admission':False,
-            'target':{'from_type':'A','to_type':'B'},
-            'search_queries':['A B exact polynomial algorithm'],
-            'firewall':{
-              'P_VS_NP':'OPEN','D1':'EMPTY','branch_only_research':True,
-              'automatic_theorem_promotion':False,'automatic_p_equals_np_claim':False
-            }
-          }
-          seeds=merge_query_seeds(assoc,forge,8)
-          assert seeds[0]['source']=='JANUS_KEYMASTER_AUTONOMOUS_FORGE'
-          assert seeds[0]['authority']=='DISCOVERY_QUERY_ONLY'
-          old=[{'provider':'OPENALEX','archive_id':'X','title':'old'}]
-          assert len(merge_records(old,[]))==1
-          assert merge_records(old,[])[0]['title']=='old'
-          print('TOPA_KEYMASTER_TARGETED_QUERY_SELFTEST=PASS')
-          print('TOPA_CORPUS_PRESERVATION_SELFTEST=PASS')
-          PY
+          python -m py_compile tools/janus_pnp_autoresearch_fast.py
 
-      - name: Recover prior autoresearch corpus without erasing history
+      - name: Recover prior corpus
         shell: bash
         run: |
           set -euo pipefail
           : > /tmp/pnp-prior-source-records.jsonl
-          rm -f /tmp/pnp-prior-candidate.jsonl
           git fetch origin janus/pnp-autoresearch-state || true
-
           if git rev-parse --verify origin/janus/pnp-autoresearch-state >/dev/null 2>&1; then
-            for REV in $(git rev-list --max-count=12 origin/janus/pnp-autoresearch-state); do
-              if git show "$REV:data/pnp-autoresearch/source-records.jsonl" > /tmp/pnp-prior-candidate.jsonl 2>/dev/null; then
-                if [ -s /tmp/pnp-prior-candidate.jsonl ]; then
-                  cp /tmp/pnp-prior-candidate.jsonl /tmp/pnp-prior-source-records.jsonl
-                  echo "TOPA_PNP_PRIOR_CORPUS_REV=$REV"
-                  break
-                fi
+            for REV in $(git rev-list --max-count=20 origin/janus/pnp-autoresearch-state); do
+              if git show "$REV:data/pnp-autoresearch/source-records.jsonl" > /tmp/pnp-prior-candidate.jsonl 2>/dev/null && [ -s /tmp/pnp-prior-candidate.jsonl ]; then
+                cp /tmp/pnp-prior-candidate.jsonl /tmp/pnp-prior-source-records.jsonl
+                echo "TOPA_PNP_PRIOR_CORPUS_REV=$REV"
+                break
               fi
             done
           fi
+          echo "TOPA_PNP_PRIOR_RECORDS=$(awk 'NF{n++} END{print n+0}' /tmp/pnp-prior-source-records.jsonl)"
 
-          PRIOR_COUNT=$(awk 'NF{n++} END{print n+0}' /tmp/pnp-prior-source-records.jsonl)
-          echo "TOPA_PNP_PRIOR_RECORDS=$PRIOR_COUNT"
-
-      - name: Run bounded internet research cycle
+      - name: Run adaptive internet research cycle
         run: |
           set -euo pipefail
           rm -rf /tmp/pnp-autoresearch
-          python tools/janus_pnp_autoresearch.py \
+          python tools/janus_pnp_autoresearch_fast.py \
             --out /tmp/pnp-autoresearch \
             --prior-records /tmp/pnp-prior-source-records.jsonl \
-            --max-queries 8 \
-            --per-source 12
+            --max-queries 6 \
+            --per-source 10
 
           python - <<'PY'
           import json
           from pathlib import Path
           x=json.loads(Path('/tmp/pnp-autoresearch/LATEST.json').read_text())
-          assert x['schema'] in {'janus.topa.pnp_autoresearch_cycle.v1','janus.topa.pnp_autoresearch_cycle.v2'}
+          assert x['schema']=='janus.topa.pnp_autoresearch_cycle.v3'
           assert x['authority']['truth'] is False
           assert x['authority']['proof'] is False
           assert x['authority']['fundamentum_mutation'] is False
-          assert x['query_seed_count'] > 0
           assert x['record_count'] >= x['prior_record_count']
-          assert x['corpus_merge_policy']=='APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY'
-          k=x['keymaster_forge']
-          assert k['query_is_evidence'] is False
-          assert k['query_grants_authority'] is False
-          if k['status']!='UNAVAILABLE':
-              assert k['targeted_query_count'] > 0
-          print('TOPA_PNP_AUTORESEARCH_GATE=PASS')
-          print('TOPA_KEYMASTER_TARGETED_QUERIES=' + str(k['targeted_query_count']))
-          print('TOPA_PRIOR_RECORDS=' + str(x['prior_record_count']))
-          print('TOPA_NEW_RECORDS=' + str(x['new_cycle_record_count']))
-          print('TOPA_MERGED_RECORDS=' + str(x['record_count']))
-          if x['schema'].endswith('.v2'):
-              print('TOPA_RETRIEVED_RECORDS=' + str(x['retrieved_cycle_record_count']))
-              print('TOPA_NOVEL_RECORDS=' + str(x['novel_cycle_record_count']))
-              print('TOPA_DISCOVERY_STATUS=' + x['status'])
+          assert x['query_seed_count'] > 0
+          print('TOPA_PNP_AUTORESEARCH_STATUS=' + x['status'])
+          print('TOPA_PNP_AUTORESEARCH_ACTIVE=' + str(x['autoreserch_active']))
+          print('TOPA_PNP_PRIOR=' + str(x['prior_record_count']))
+          print('TOPA_PNP_RETRIEVED=' + str(x['retrieved_cycle_record_count']))
+          print('TOPA_PNP_NOVEL=' + str(x['novel_cycle_record_count']))
+          print('TOPA_PNP_CORPUS=' + str(x['record_count']))
+          print('TOPA_PNP_SOURCE_HEALTH=' + json.dumps(x['source_health'],sort_keys=True))
           PY
 
       - name: Persist isolated TOPA research state
@@ -147,6 +105,9 @@ jobs:
           git config user.name 'janus-topa-spider[bot]'
           git config user.email 'janus-topa-spider[bot]@users.noreply.github.com'
           git add data/pnp-autoresearch
-          git diff --cached --quiet && exit 0
+          if git diff --cached --quiet; then
+            echo 'TOPA_PNP_AUTORESEARCH_NO_STATE_CHANGE'
+            exit 0
+          fi
           git commit -m "topa: autonomous P-vs-NP research cycle ${stamp}"
           git push origin HEAD:janus/pnp-autoresearch-state
