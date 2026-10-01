@@ -1,0 +1,146 @@
+{
+  "associative_memory": {
+    "source_commit": "af6a89051222e8abccaa9655eb4cfe05670d06ba",
+    "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
+  },
+  "authority": {
+    "fundamentum_mutation": false,
+    "proof": false,
+    "scientific_claim_promotion": false,
+    "truth": false
+  },
+  "autoreserch_active": true,
+  "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
+  "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
+  "duplicate_cycle_record_count": 87,
+  "keymaster_forge": {
+    "cycle_count": 76,
+    "query_grants_authority": false,
+    "query_is_evidence": false,
+    "state_sha256": "4e77c3c3f5318e7fd2f14cf8ad7b93c8066e53d248e2e2b732c2982eeefeec8a",
+    "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
+    "target": {
+      "barrier_penalty": 0,
+      "barriers": [],
+      "complete_path_edges_if_closed": 9,
+      "from_type": "BOOLEAN_XOR_AND_CHECK_CIRCUIT",
+      "lockpick_score": 80,
+      "proved_context_edges": 8,
+      "rank": 1,
+      "required_contract": {
+        "construction_poly": true,
+        "reconstruction_poly": true,
+        "semantics": "EXACT",
+        "state_poly": true,
+        "universal_scope": true,
+        "verification_poly": true
+      },
+      "to_type": "CNF_WITH_POLY_PREFIX_FACTOR_WIDTH_VTREE_ORDER"
+    },
+    "url": "https://raw.githubusercontent.com/Hawkar-usls/Janus-Demiurge/janus/autonomous-keymaster-lockpick/janus_model/autonomous-keymaster/KEYMASTER_AUTONOMOUS_FORGE_LATEST.json"
+  },
+  "new_cycle_record_count": 0,
+  "novel_cycle_record_count": 0,
+  "prior_record_count": 130,
+  "query_receipts": [
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 0,
+        "status": "PASS"
+      },
+      "query": "boolean xor and check circuit cnf with poly prefix factor width vtree order exact polynomial algorithm"
+    },
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 0,
+        "status": "PASS"
+      },
+      "query": "boolean xor and check circuit cnf with poly prefix factor width vtree order decomposition lower bound"
+    },
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "query": "independent transversal maximum degree two partitioned graph algorithm"
+    },
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "query": "multilinear monomial read twice Pi Sigma 3 Pi 2 algorithm"
+    },
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 2,
+        "status": "PASS"
+      },
+      "query": "XOR parity constraints knowledge compilation vtree width exact algorithm"
+    },
+    {
+      "crossref": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "openalex": {
+        "records": 10,
+        "status": "PASS"
+      },
+      "query": "Tseitin parity structured d-DNNF lower bounds treewidth"
+    }
+  ],
+  "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
+  "query_seed_count": 6,
+  "record_count": 130,
+  "retrieved_cycle_record_count": 87,
+  "schema": "janus.topa.pnp_autoresearch_cycle.v3",
+  "source_health": {
+    "crossref": {
+      "pass_queries": 6,
+      "records_retrieved": 60,
+      "unavailable_queries": 0
+    },
+    "openalex": {
+      "pass_queries": 6,
+      "records_retrieved": 32,
+      "unavailable_queries": 0
+    }
+  },
+  "source_records_sha256": "6b942f4c274181f94fc41c5b09e9cdd15b2e851a7c3242b961fcad97542c3f5d",
+  "spider_receipt": {
+    "documents": 130,
+    "edges": 0,
+    "laws": [
+      "GRAPH_EDGE_IS_NOT_CAUSATION",
+      "DISCOVERY_METADATA_IS_NOT_PROOF",
+      "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
+    ],
+    "nodes": 130,
+    "promotion_rule": "NO_AUTOMATIC_SCIENTIFIC_PROMOTION_FROM_DISCOVERY",
+    "schema": "hawkar.topa.spider.receipt.v1",
+    "status": "PASS"
+  },
+  "status": "PASS_STALLED_NO_NOVEL_SOURCES",
+  "targeted_query_count": 6
+}
