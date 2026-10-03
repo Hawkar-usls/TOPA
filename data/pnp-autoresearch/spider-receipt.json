@@ -1,12 +1,12 @@
 {
-  "documents": 138,
+  "documents": 140,
   "edges": 0,
   "laws": [
     "GRAPH_EDGE_IS_NOT_CAUSATION",
     "DISCOVERY_METADATA_IS_NOT_PROOF",
     "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
   ],
-  "nodes": 138,
+  "nodes": 140,
   "promotion_rule": "NO_AUTOMATIC_SCIENTIFIC_PROMOTION_FROM_DISCOVERY",
   "schema": "hawkar.topa.spider.receipt.v1",
   "status": "PASS"
