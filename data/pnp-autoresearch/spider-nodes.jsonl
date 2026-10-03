@@ -59,7 +59,7 @@
 {"id":"paper:58","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s00200-010-0136-y","title":"The lower bound on the second-order nonlinearity of a class of Boolean functions with high nonlinearity"}
 {"id":"paper:59","provider":"CROSSREF","source_url":"https://doi.org/10.1007/978-3-540-70918-3_27","title":"An Exponential Lower Bound for Prefix Gröbner Bases in Free Monoid Rings"}
 {"id":"paper:60","provider":"CROSSREF","source_url":"https://doi.org/10.1109/secon.1992.202301","title":"A parallel algorithm for maximum independent set of a circular-arc graph"}
-{"id":"paper:61","provider":"CROSSREF","source_url":"https://doi.org/10.46298/dmtcs.453","title":"Clique-transversal sets and weak 2-colorings in graphs of small maximum degree"}
+{"id":"paper:61","provider":"OPENALEX","source_url":"https://doi.org/10.46298/dmtcs.453","title":"Clique-transversal sets and weak 2-colorings in graphs of small maximum degree"}
 {"id":"paper:62","provider":"CROSSREF","source_url":"https://doi.org/10.1142/s1793830925501046","title":"On partitioning a planar graph into two forests of maximum degree at most three"}
 {"id":"paper:63","provider":"CROSSREF","source_url":"https://doi.org/10.1002/jgt.20384","title":"Packing two copies of a sparse graph into a graph with restrained maximum degree"}
 {"id":"paper:64","provider":"CROSSREF","source_url":"https://doi.org/10.1016/j.ejc.2013.07.016","title":"Linear hypergraphs with large transversal number and maximum degree two"}
@@ -130,3 +130,9 @@
 {"id":"paper:129","provider":"CROSSREF","source_url":"https://doi.org/10.32764/epic.v3i1","title":""}
 {"id":"paper:130","provider":"CROSSREF","source_url":"https://doi.org/10.32764/epic.v8i3","title":""}
 {"id":"paper:131","provider":"CROSSREF","source_url":"https://doi.org/10.1103/f7ss-6tl1","title":"Fast and exact approach for stabilizer Rényi entropy via the XOR-FWHT algorithm"}
+{"id":"paper:132","provider":"OPENALEX","source_url":"https://doi.org/10.1016/j.jctb.2007.02.003","title":"Independent transversals in locally sparse graphs"}
+{"id":"paper:133","provider":"OPENALEX","source_url":"https://doi.org/10.1002/jgt.22876","title":"Graphs of low average degree without independent transversals"}
+{"id":"paper:134","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.2309.12150","title":"Constructing graphs with no independent transversals"}
+{"id":"paper:135","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.2108.02520","title":"Rainbow independent sets in graphs with maximum degree two"}
+{"id":"paper:136","provider":"OPENALEX","source_url":"https://doi.org/10.1145/3474057","title":"Algorithms for Weighted Independent Transversals and Strong Colouring"}
+{"id":"paper:137","provider":"OPENALEX","source_url":"https://doi.org/10.1002/jgt.23085","title":"Degree criteria and stability for independent transversals"}
