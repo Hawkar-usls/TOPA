@@ -12,12 +12,12 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 85,
+  "duplicate_cycle_record_count": 82,
   "keymaster_forge": {
-    "cycle_count": 125,
+    "cycle_count": 126,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "331fc5e38ab379a27addf019600d0ff5d6f344e124330b545f00820bd87f973e",
+    "state_sha256": "0a8851156b95f9afe7068132d17725998581768a100cad80b8d925346e5dc794",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 0,
@@ -39,8 +39,8 @@
     },
     "url": "https://raw.githubusercontent.com/Hawkar-usls/Janus-Demiurge/janus/autonomous-keymaster-lockpick/janus_model/autonomous-keymaster/KEYMASTER_AUTONOMOUS_FORGE_LATEST.json"
   },
-  "new_cycle_record_count": 0,
-  "novel_cycle_record_count": 0,
+  "new_cycle_record_count": 3,
+  "novel_cycle_record_count": 3,
   "prior_record_count": 141,
   "query_receipts": [
     {
@@ -112,7 +112,7 @@
   ],
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
-  "record_count": 141,
+  "record_count": 144,
   "retrieved_cycle_record_count": 85,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
@@ -127,20 +127,20 @@
       "unavailable_queries": 0
     }
   },
-  "source_records_sha256": "9f0feeed1a0e9070a138f3343af395d242445703ebadd4f652543dec908e847d",
+  "source_records_sha256": "5d3322766aada101ea36dfcad1ef7b2ade847db3960d9769157a5a25588fa412",
   "spider_receipt": {
-    "documents": 141,
+    "documents": 144,
     "edges": 0,
     "laws": [
       "GRAPH_EDGE_IS_NOT_CAUSATION",
       "DISCOVERY_METADATA_IS_NOT_PROOF",
       "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
     ],
-    "nodes": 141,
+    "nodes": 144,
     "promotion_rule": "NO_AUTOMATIC_SCIENTIFIC_PROMOTION_FROM_DISCOVERY",
     "schema": "hawkar.topa.spider.receipt.v1",
     "status": "PASS"
   },
-  "status": "PASS_STALLED_NO_NOVEL_SOURCES",
+  "status": "PASS_NOVEL_SOURCES_ADDED",
   "targeted_query_count": 6
 }
