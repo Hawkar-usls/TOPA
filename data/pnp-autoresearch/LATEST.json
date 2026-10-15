@@ -12,7 +12,7 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 84,
+  "duplicate_cycle_record_count": 85,
   "keymaster_forge": {
     "cycle_count": 140,
     "query_grants_authority": false,
@@ -39,9 +39,9 @@
     },
     "url": "https://raw.githubusercontent.com/Hawkar-usls/Janus-Demiurge/janus/autonomous-keymaster-lockpick/janus_model/autonomous-keymaster/KEYMASTER_AUTONOMOUS_FORGE_LATEST.json"
   },
-  "new_cycle_record_count": 1,
-  "novel_cycle_record_count": 1,
-  "prior_record_count": 145,
+  "new_cycle_record_count": 0,
+  "novel_cycle_record_count": 0,
+  "prior_record_count": 146,
   "query_receipts": [
     {
       "crossref": {
@@ -141,6 +141,6 @@
     "schema": "hawkar.topa.spider.receipt.v1",
     "status": "PASS"
   },
-  "status": "PASS_NOVEL_SOURCES_ADDED",
+  "status": "PASS_STALLED_NO_NOVEL_SOURCES",
   "targeted_query_count": 6
 }
