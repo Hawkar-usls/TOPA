@@ -1,0 +1,43 @@
+name: JANUS TOPA JWST Strict-Science Training Gate
+
+on:
+  pull_request:
+    paths:
+      - 'research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json'
+      - '.github/workflows/jwst-mocss-topa-training.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  topa-evidence-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source, controls, and training contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          assert x['raw_social_claim']['provenance_channel'] == 'HEARSAY_REPORT'
+          assert x['status'] == 'SOURCE_BOUND_FACT_WITH_UNRESOLVED_PHYSICAL_IDENTITY'
+          assert x['world_truth'] is False
+          assert x['training_policy']['direct_gradient_training_eligible'] is False
+          assert x['training_policy']['automatic_claim_promotion'] is False
+          assert len(x['source_bound_claims']) >= 6
+          assert len(x['alternative_hypotheses']) >= 4
+          assert len(x['training_examples']) >= 6
+          assert all(y['status'] == 'HYPOTHESIS_ONLY' for y in x['alternative_hypotheses'])
+          assert x['reporting_audit']['status'] == 'OPEN_REQUIRES_METHOD_MATCH'
+          assert x['epistemic_gates'][2]['status'] == 'INSUFFICIENT_DATA'
+          assert x['epistemic_gates'][4]['status'] == 'UNRESOLVED'
+          print('PASS: source-bound TOPA training and falsification gates')
+          print('INDEPENDENT_MAST_REPLAY=NOT_EXECUTED')
+          print('SOURCE_IDENTITY=UNRESOLVED')
+          PY
