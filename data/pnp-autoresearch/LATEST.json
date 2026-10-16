@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "2ef3f81158bf9ef6077bcf4fb1e8ba7f0d2d5434",
+    "source_commit": "b2e0d84ea8e1b014ac28071885792d3527fd81ce",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -12,20 +12,33 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 84,
+  "duplicate_cycle_record_count": 69,
   "keymaster_forge": {
-    "cycle_count": 144,
+    "cycle_count": 156,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "85886e1e58385329850b920c57c743f90dd0bd452c9d7c1b988cde8f7174b740",
+    "state_sha256": "18ad593a7a42cbd6419fcdd0d414a81151e8599d2a8c5f748e8a5c36d0606d4f",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
-      "barrier_penalty": 0,
-      "barriers": [],
-      "complete_path_edges_if_closed": 9,
-      "from_type": "BOOLEAN_XOR_AND_CHECK_CIRCUIT",
-      "lockpick_score": 80,
-      "proved_context_edges": 8,
+      "barrier_penalty": 4,
+      "barriers": [
+        {
+          "authority": "Fundamentum uniform PP lift Siggers/edge barrier",
+          "id": "B_UNIFORM_PP_SIGGERS_EDGE",
+          "implied_blocked_route": {
+            "from_type": "SIGNED_OR3_CSP",
+            "to_type": "TRACTABLE_FIXED_TEMPLATE_CSP"
+          },
+          "inheritance": "COMPOSITIONAL_IMPLICATION",
+          "kind": "SCOPED_BLOCKER",
+          "penalty": 4,
+          "scope": "FIXED_FINITE_LOCAL_PP_CONSTRUCTION"
+        }
+      ],
+      "complete_path_edges_if_closed": 6,
+      "from_type": "THREE_SHEET_DISJUNCTIVE_CSP",
+      "lockpick_score": 46,
+      "proved_context_edges": 5,
       "rank": 1,
       "required_contract": {
         "construction_poly": true,
@@ -35,13 +48,13 @@
         "universal_scope": true,
         "verification_poly": true
       },
-      "to_type": "CNF_WITH_POLY_PREFIX_FACTOR_WIDTH_VTREE_ORDER"
+      "to_type": "EP_COMPACT_REPRESENTATION"
     },
     "url": "https://raw.githubusercontent.com/Hawkar-usls/Janus-Demiurge/janus/autonomous-keymaster-lockpick/janus_model/autonomous-keymaster/KEYMASTER_AUTONOMOUS_FORGE_LATEST.json"
   },
-  "new_cycle_record_count": 1,
-  "novel_cycle_record_count": 1,
-  "prior_record_count": 146,
+  "new_cycle_record_count": 18,
+  "novel_cycle_record_count": 18,
+  "prior_record_count": 147,
   "query_receipts": [
     {
       "crossref": {
@@ -52,7 +65,7 @@
         "records": 0,
         "status": "PASS"
       },
-      "query": "boolean xor and check circuit cnf with poly prefix factor width vtree order exact polynomial algorithm"
+      "query": "three sheet disjunctive csp ep compact representation exact polynomial algorithm"
     },
     {
       "crossref": {
@@ -63,7 +76,7 @@
         "records": 0,
         "status": "PASS"
       },
-      "query": "boolean xor and check circuit cnf with poly prefix factor width vtree order decomposition lower bound"
+      "query": "three sheet disjunctive csp ep compact representation decomposition lower bound"
     },
     {
       "crossref": {
@@ -112,8 +125,8 @@
   ],
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
-  "record_count": 147,
-  "retrieved_cycle_record_count": 85,
+  "record_count": 165,
+  "retrieved_cycle_record_count": 87,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
     "crossref": {
@@ -127,16 +140,16 @@
       "unavailable_queries": 0
     }
   },
-  "source_records_sha256": "3febc00d01715cf1f57319f33fb02804990cba125208436615bdcaf168c89c15",
+  "source_records_sha256": "909ee64d9a9a78dc813347b3eb1c8e80787629e4a7f938bd5c612537a34f8024",
   "spider_receipt": {
-    "documents": 147,
+    "documents": 165,
     "edges": 0,
     "laws": [
       "GRAPH_EDGE_IS_NOT_CAUSATION",
       "DISCOVERY_METADATA_IS_NOT_PROOF",
       "REPEATED_SAME_SOURCE_IS_NOT_INDEPENDENT_WITNESS"
     ],
-    "nodes": 147,
+    "nodes": 165,
     "promotion_rule": "NO_AUTOMATIC_SCIENTIFIC_PROMOTION_FROM_DISCOVERY",
     "schema": "hawkar.topa.spider.receipt.v1",
     "status": "PASS"
