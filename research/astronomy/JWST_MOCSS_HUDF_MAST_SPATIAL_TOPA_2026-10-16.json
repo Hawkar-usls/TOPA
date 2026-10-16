@@ -45,6 +45,13 @@
       "evidence_class": "PAPER_SOURCE_BOUND_NOT_INDEPENDENT_FIELD_MAP",
       "finding": "Direction on the celestial sphere is reported, but neither a spatial 16004-A emission map around the source nor a second independently confirmed position at this exact wavelength was produced.",
       "gate": "UNRESOLVED_SPATIAL_EXTENT"
+    },
+    {
+      "id": "I5",
+      "source": "Huberty et al. MOCSS methods and survey catalog, https://arxiv.org/html/2609.36003v1, Table 1",
+      "evidence_class": "SOURCE_BOUND_CATALOG_PLUS_INDEPENDENT_LINE_WAVELENGTH_ARITHMETIC",
+      "finding": "Screened the 23 other published MOCSS HUDF emitters and 41 representative transitions explicitly marked as lines of interest. None have their redshift-predicted observed transition at 16004 +/- 100 Angstrom; the nearest listed match is H-alpha of MOCSSHUDF1 at ~15722.2 Angstrom, 4.8 arcsec away.",
+      "gate": "PASS_PUBLISHED_CATALOG_SCREEN__NOT_A_COMPLETE_SKY_LINE_SEARCH"
     }
   ],
   "scientific_inferences": [
