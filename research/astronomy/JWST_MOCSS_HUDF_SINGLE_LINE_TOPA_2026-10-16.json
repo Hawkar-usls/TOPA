@@ -1,0 +1,147 @@
+{
+  "schema": "janus.topa.source_bound_training_case.v1",
+  "artifact_id": "TOPA-JWST-MOCSS-HUDF-SINGLE-LINE-2026-10-16-v1",
+  "case_id": "JWST-MOCSS-HUDF-16004A",
+  "created_date_local": "2026-10-16",
+  "repository": "Hawkar-usls/TOPA",
+  "mode": "TRAINING_AND_FALSIFICATION_DESIGN_ONLY",
+  "status": "SOURCE_BOUND_FACT_WITH_UNRESOLVED_PHYSICAL_IDENTITY",
+  "world_truth": false,
+  "policy": "protocols/TOPA_STRICT_SCIENCE_GATE_V1_0.json",
+  "question": "What does the 16004 Angstrom JWST/NIRSpec line actually establish, and which observations discriminate transient, galaxy, AGN, and instrumental hypotheses?",
+  "raw_social_claim": {
+    "language": "ru",
+    "text": "Телескоп засек сигнал из ниоткуда; ученые не знают, что это; сигнал появился дважды с интервалом три месяца; объект остается невидимым во всех иных случаях.",
+    "provenance_channel": "HEARSAY_REPORT",
+    "firsthand_status": "NO",
+    "screenshot_sha256": "d4f635453a14e62ebf0013e235c9f14316fbed02fdc74ff44cdecd6fb71aa8ce",
+    "provenance_boundary": "A social post and reused scientific figure are not new measurements or independent replication."
+  },
+  "source_ledger": [
+    {
+      "id": "S1",
+      "role": "PRIMARY_PUBLISHED_RESEARCH",
+      "title": "A Single Line Emitter Identified in an Unbiased Search with JWST/NIRSpec: Multiobject Coronagraphy for Slitless Spectroscopy",
+      "authors": "Huberty et al.",
+      "journal": "The Astrophysical Journal 1009, 117 (2026)",
+      "doi": "10.3847/1538-4357/ae9a94",
+      "url": "https://doi.org/10.3847/1538-4357/ae9a94",
+      "authority_boundary": "Source fact for what authors measured, processed, and argued; not independent raw-data replication by JANUS."
+    },
+    {
+      "id": "S2",
+      "role": "SAME_STUDY_PUBLIC_FULL_TEXT",
+      "arxiv_id": "2610.12553",
+      "url": "https://arxiv.org/html/2610.12553v1",
+      "authority_boundary": "Same research group and analysis as S1; counts as the same evidentiary origin."
+    },
+    {
+      "id": "S3",
+      "role": "PRIMARY_DATA_ARCHIVE_POINTER",
+      "archive": "MAST JWST-GO-3290",
+      "url": "https://doi.org/10.17909/tct8-jr92",
+      "authority_boundary": "Raw/archive location only; source frames have not been downloaded and independently reduced in this pass."
+    }
+  ],
+  "source_bound_claims": [
+    {
+      "id": "C1",
+      "claim": "Authors report a single emission line centered at 16004 +/- 1 Angstrom from RA 53.13127 deg, Dec -27.78908 deg (J2000).",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "locator": "S1, Section III.3, Figure 2"
+    },
+    {
+      "id": "C2",
+      "claim": "The reported combined flux is (2.5 +/- 0.3)e-18 erg/s/cm^2, line FWHM 13.2 +/- 2.0 Angstrom, with no identified JADES F150W imaging counterpart.",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "locator": "S1, Abstract, Table 2, Figure 3"
+    },
+    {
+      "id": "C3",
+      "claim": "Four coadds A-D derive from 16 NIRSpec exposures in two sky orientations across 2023-08-23/24 and 2023-11-19, separated by approximately 88 days.",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "locator": "S1, Table 1 and Table 2",
+      "caution": "Four stacks are not four independent telescopes or four independent astrophysical sources."
+    },
+    {
+      "id": "C4",
+      "claim": "The cited JADES F150W images were taken 2022-10-08 through 2022-10-10, about a year before the spectroscopy.",
+      "evidence_class": "SOURCE_FACT",
+      "status": "SOURCE_BOUND_FACT",
+      "locator": "S1, Section IV.4",
+      "caution": "The non-detection is not simultaneous with the line measurement."
+    },
+    {
+      "id": "C5",
+      "claim": "Observed-frame EW >= 7620 Angstrom holds under a persistent-source comparison with the older imaging; a transient interpretation relaxes the same-epoch spectroscopic lower bound to approximately 41 Angstrom.",
+      "evidence_class": "SOURCE_FACT",
+      "status": "CONDITIONAL",
+      "locator": "S1, Sections IV.1 and IV.4"
+    },
+    {
+      "id": "C6",
+      "claim": "The underlying emitter's redshift, astrophysical class, and physical mechanism remain unidentified.",
+      "evidence_class": "SOURCE_FACT",
+      "status": "UNRESOLVED",
+      "locator": "S1, Sections IV-V"
+    }
+  ],
+  "epistemic_gates": [
+    {"id":"G0_PAPER_IDENTITY","status":"SOURCE_BOUND_FACT","next":"Hash source PDF and full-text version for replay."},
+    {"id":"G1_SIGNAL_DETECTION_AS_REPORTED","status":"SOURCE_BOUND_FACT","next":"Independently reproduce line detection from MAST calibrated and uncalibrated exposures."},
+    {"id":"G2_INDEPENDENT_RAW_REDUCTION","status":"INSUFFICIENT_DATA","next":"Acquire raw exposures, CRDS context, masks, offsets, background products and extraction code."},
+    {"id":"G3_PERSISTENT_SOURCE_EW","status":"CONDITIONAL","next":"Obtain contemporaneous imaging or new repeated spectrum before imposing the 2022 continuum upper limit."},
+    {"id":"G4_PHYSICAL_IDENTITY","status":"UNRESOLVED","next":"Detect or constrain companion lines with new deep NIRSpec IFU spectroscopy."},
+    {"id":"G5_EXTRAORDINARY_OR_INTELLIGENT_SOURCE","status":"INSUFFICIENT_DATA","next":"No specific evidence, independent signature, or falsifiable extraordinary model supplied."}
+  ],
+  "alternative_hypotheses": [
+    {
+      "id": "H0_PIPELINE_OR_SELECTION_ARTIFACT",
+      "status": "HYPOTHESIS_ONLY",
+      "tests": ["Blind extraction in individual exposures and both orientations", "Detector-frame versus sky-frame consistency", "Background and CRDS alternative reductions", "Injection-recovery and look-elsewhere accounting"],
+      "do_not_overstate": "Two orientations strongly counter a simple fixed detector blemish, but not every calibration, cross-talk, persistence, or selection mechanism has been independently excluded."
+    },
+    {
+      "id": "H1_PERSISTENT_EXTREME_EMISSION_GALAXY",
+      "status": "HYPOTHESIS_ONLY",
+      "tests": ["Near-simultaneous continuum and line observations", "Search fixed-ratio [OIII] 4959 and [OII] doublet structure", "Check rest-frame EW and IGM transmission under each redshift"],
+      "do_not_overstate": "Previous image nondetection gives an extreme EW only if the source was already active at the imaging epoch."
+    },
+    {
+      "id": "H2_NEIGHBOR_ILLUMINATED_GAS_OR_AGN_ECHO",
+      "status": "HYPOTHESIS_ONLY",
+      "tests": ["IFU spatial morphology of extended line emission", "Spectra and photo-z constraints for three nearby cataloged galaxies", "Line ratios, spatial offset and light-travel geometry"]
+    },
+    {
+      "id": "H3_TRANSIENT_SUPERNOVA_OR_TDE",
+      "status": "HYPOTHESIS_ONLY",
+      "tests": ["Follow-up line-flux time series and contemporaneous continuum", "Pa-gamma 1.37 micron and other hydrogen-line limits under SN interpretation", "Search variable dusty AGN/TDE host and temporal evolution"],
+      "do_not_overstate": "Similar fluxes over 88 days do not rule out a long-lived transient."
+    }
+  ],
+  "reporting_audit": {
+    "source_internal_significance_values": ["8.4 sigma listed for combined fit in Table 2", "5.4 signal-to-noise stated in Section V conclusion"],
+    "status": "OPEN_REQUIRES_METHOD_MATCH",
+    "rule": "Do not reconcile numbers by invention; identify whether different estimators, extraction products or an editorial mismatch are responsible. Do not report a trial-corrected false-alarm probability without a defined search model."
+  },
+  "training_examples": [
+    {"prompt":"Four colored stacks prove four independent observatories saw the same signal.","expected_label":"REJECT_CONFLATION","reason":"Single instrument, 16 exposures combined into four stacks and two orientations."},
+    {"prompt":"No image counterpart in 2022 means the source was invisible at every wavelength in 2023.","expected_label":"REJECT_TEMPORAL_INFERENCE","reason":"Different epochs and finite filter sensitivity; no simultaneous multi-band non-detection established."},
+    {"prompt":"EW >= 7620 Angstrom excludes an ordinary transient.","expected_label":"REJECT_UNSTATED_PERSISTENCE","reason":"Large EW cross-epoch bound presumes persistent line when the 2022 image was taken."},
+    {"prompt":"An 8.4-sigma line proves an extraterrestrial communication.","expected_label":"REJECT_SEMANTIC_LEAP","reason":"Spectral line is not encoded communication and does not identify physical source."},
+    {"prompt":"No [OIII] 4959 visible rules out [OIII] 5007 beyond doubt.","expected_label":"REJECT_OVERCONFIDENT_NONDETECTION","reason":"Paper expects only approximately 2.9 sigma for secondary line, near its quoted 3-sigma sensitivity."},
+    {"prompt":"The scientifically correct output is unknown origin with targeted follow-up tests.","expected_label":"ACCEPT_UNRESOLVED_WITH_FALSIFIERS","reason":"Source-bound line reported, mechanism not established."}
+  ],
+  "training_policy": {
+    "retrieval_context_eligible": true,
+    "direct_gradient_training_eligible": false,
+    "automatic_claim_promotion": false,
+    "requires_independent_holdout_for_skill_promotion": true,
+    "preserve_negative_findings": true
+  },
+  "cosmos_companion": "Hawkar-usls/Janus-Cosmos:domains/space/JWST_MOCSS_HUDF_SINGLE_LINE_COSMOS_2026-10-16.json",
+  "next_action": "Reprocess MAST JWST-GO-3290 in source-frozen pipeline, then obtain new NIRSpec IFU or deep imaging at matching epoch."
+}

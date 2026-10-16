@@ -1,0 +1,69 @@
+{
+  "schema": "janus.topa.strict_science_addendum.v1",
+  "artifact_id": "TOPA-HUDF-16004A-MSA-16-EXPOSURE-IDENTITY-V1",
+  "case_id": "JWST-MOCSS-HUDF-16004A",
+  "date_utc": "2026-10-16",
+  "world_truth": false,
+  "paper": "https://arxiv.org/html/2610.12553v1",
+  "methods": "https://arxiv.org/html/2609.36003",
+  "cosmos_manifest": "Hawkar-usls/Janus-Cosmos:domains/space/MOCSS_16_EXPOSURE_MANIFEST_2026-10-16.json",
+  "cosmos_geometry_receipt": "Hawkar-usls/Janus-Cosmos:domains/space/MOCSS_16_EXPOSURE_GEOMETRY_RECEIPT_2026-10-16.json",
+  "training_focus": "Distinguish FITS header provenance, MSA geometry consistency, published line arithmetic, and actually independently re-extracted spectral maps",
+  "new_receipt_gates": {
+    "archive_16_long_exposures_identified": "PASS",
+    "detector_32_primary_headers_inspected": "PASS",
+    "msa_16_ids_confirmed_in_two_original_archive_tables": "PASS",
+    "published_OIII_4960_wavelength_consistency": "FAIL_PUBLISHED_15864_A_EXPECTATION__PREDICT_15850P79_A",
+    "actual_OIII_4960_line_detection": "NOT_PERFORMED",
+    "all_16_full_rate_sci_arrays_reduced": "NOT_PERFORMED",
+    "independent_16004_A_line_redetection": "NOT_PERFORMED",
+    "independent_spatial_extent": "NOT_PERFORMED",
+    "source_identity": "UNRESOLVED"
+  },
+  "physics_observations": [
+    {
+      "id": "PH1",
+      "class": "INDEPENDENT_ARCHIVE_METADATA",
+      "finding": "16 long exposure pairs have 32 separately inspected MAST FITS primary headers. 16 exposure MSAMETIDs independently match SHUTTER_INFO from two full archived MSA tables, each containing the metadata for eight dithers. The MSA table's signed int16 ids must be normalized modulo 65536 before comparison.",
+      "limitation": "A verified FITS association does not localize the 16004-A signal on the detector or sky."
+    },
+    {
+      "id": "PH2",
+      "class": "PRIMARY_PAPER_ARITHMETIC_CORRECTION",
+      "finding": "The discovery paper tests [O III] 4960 near 15864 A, but 16004*(4960.295/5008.239)=15850.79 A. Difference 13.21 A versus observed FWHM 13.2 A. Paper's quoted 3-sigma local flux limit at 15864 A cannot be promoted to a same-wavelength negative at 15850.79 A.",
+      "prediction_only": true
+    },
+    {
+      "id": "PH3",
+      "class": "SOURCE_BOUND_STATISTICAL_RECALCULATION",
+      "finding": "The published A/B/C/D fluxes fit a constant-line model with chi-squared=2.3835 (3 dof), survival probability=0.4967. This is no proof of permanence and does not rule out a slow supernova or TDE.",
+      "prediction_only": true
+    },
+    {
+      "id": "PH4",
+      "class": "CONDITIONAL_PROJECTION_GEOMETRY",
+      "finding": "JADES NW galaxy is 0.6352 arcsec at bearing 328.23 degrees from orphan; S galaxy is 1.0379 arcsec at 174.54 degrees. If both cloud and galaxies share Pa-beta z~0.249, projected separations are 2.55 and 4.17 kpc, requiring at least ~8.3 and ~13.6 thousand years of one-way light travel between illuminating source and cloud.",
+      "requires_common_spectroscopic_redshift": true,
+      "not_a_beam_length": true
+    }
+  ],
+  "scenario_comparison": [
+    {"scenario": "SN_IIN_PA_BETA", "promotion": "PROHIBITED", "test": "Pa-gamma around 1.365 micrometers, dust attenuation, same-z faint disk host, 2023 October F150W epoch"},
+    {"scenario": "TDE_DUSTY_BALMER", "promotion": "PROHIBITED", "test": "Resolved host nucleus, H-alpha/other-line measurements, light curve and line-width evolution"},
+    {"scenario": "NEIGHBOR_AGN_ILLUMINATED_GAS", "promotion": "PROHIBITED", "test": "3x3 arcsecond NIRSpec IFU covers orphan and three neighboring galaxies; require shared spectroscopic z, offsets and spatial line morphology"},
+    {"scenario": "OIII_5008_LOW_CONTINUUM", "promotion": "PROHIBITED", "test": "Re-extract the right 15850.79-A window independently, not the erroneous 15864-A paper check"}
+  ],
+  "training_antipatterns": [
+    {"claim": "We processed all 16 spectra and found the line", "label": "REJECT_FALSE_REEXTRACTION", "reason": "Only 32 RATE headers and 16 MSA IDs verified, while full stage-2 WCS line map remains absent."},
+    {"claim": "Archive does not contain calibrated products therefore there is no real emission", "label": "REJECT_ARCHIVE_COMPLETENESS_FALLACY", "reason": "Only two representative MAST product lists were queried and the paper performed custom calibrated extraction."},
+    {"claim": "Source paper says the [O III] 4960 line at 15864 A is missing, so oxygen is excluded", "label": "REJECT_WRONG_WAVELENGTH_NEGATIVE", "reason": "Vacuum rest-line ratio predicts 15850.79 A; expected flux ~0.83e-18 is also below the quoted 3-sigma depth."},
+    {"claim": "The NIRSpec grating draws a 4-kpc luminous streak toward the NW galaxy", "label": "REJECT_DETECTOR_BEAM_MISREAD", "reason": "Angular galaxy separation is conditional projected sky geometry, not a spatially mapped propagation path."},
+    {"claim": "A flat four-stack light curve rules out a transient", "label": "REJECT_WEAK_STATISTICAL_DISCRIMINATION", "reason": "p~0.50 under constant flux means no detected variability over 88 days; a months-long transient remains possible."}
+  ],
+  "policy": {
+    "proof_before_promotion": true,
+    "do_not_train_model_weights_from_single_receipt": true,
+    "append_only_evidence": true,
+    "preserve_unsolved_state": true
+  }
+}

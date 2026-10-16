@@ -1,0 +1,88 @@
+{
+  "schema": "janus.topa.strict_science_addendum.v1",
+  "artifact_id": "TOPA-HUDF-16004A-INDEPENDENT-MAST-SPATIAL-2026-10-16-v1",
+  "case_id": "JWST-MOCSS-HUDF-16004A",
+  "scope": "Direct archived image-pixel checks; bounded raw detector inspection; origin-direction and distance uncertainty; adversarial training cases",
+  "created_date_local": "2026-10-16",
+  "world_truth": false,
+  "base_record": "research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json",
+  "cosmos_receipt": "Hawkar-usls/Janus-Cosmos:domains/space/JWST_MOCSS_HUDF_MAST_INDEPENDENT_RECEIPT_2026-10-16.json",
+  "cosmos_spatial": "Hawkar-usls/Janus-Cosmos:domains/space/JWST_MOCSS_HUDF_ORIGIN_SPATIAL_TEST_2026-10-16.json",
+  "paper": "https://arxiv.org/html/2610.12553v1",
+  "archive": "https://doi.org/10.17909/tct8-jr92",
+  "independent_ledger": [
+    {
+      "id": "I1",
+      "source": "MAST CAOM program 3290 query, not paper summary",
+      "evidence_class": "INDEPENDENT_ARCHIVE_METADATA",
+      "finding": "80 catalogued observation-detector rows, of which 32 have exposure time above 8000 seconds, consistent with 16 long MOCSS exposures on two detectors; original NRS2 rate files from 2023-08-24 and 2023-11-19 downloaded and parsed.",
+      "gate": "PASS_ARCHIVE_PRODUCT_RETRIEVAL__NOT_A_LINE_REDETECTION"
+    },
+    {
+      "id": "I2",
+      "source": "Public calibrated JWST NIRCam F150W i2d FITS SCI image byte ranges, reprojected with FITS WCS to frozen RA=53.13127, Dec=-27.78908",
+      "evidence_class": "INDEPENDENT_ARCHIVE_PIXEL_MEASUREMENT",
+      "aperture_radius_arcsec": 0.12,
+      "local_empirical_noise_controls_per_epoch": 250,
+      "epochs": [
+        {"date": "2023-10-03", "net_aperture_njy": 0.55366, "local_empirical_sigma_njy": 0.96639, "reported_snr": 0.6421, "interleaved_between_positive_spectral_epochs": true},
+        {"date": "2025-10-06", "net_aperture_njy": -0.35825, "local_empirical_sigma_njy": 1.47898, "reported_snr": -0.1238},
+        {"date": "2026-10-10", "net_aperture_njy": -1.14337, "local_empirical_sigma_njy": 1.67895, "reported_snr": -0.7419}
+      ],
+      "gate": "PASS_DIAGNOSTIC_APERTURE_NONDETECTION__NOT_A_CERTIFIED_TOTAL_FLUX_LIMIT",
+      "caveats": ["No PSF aperture correction", "No WHT/ERR based formal uncertainty", "Blank-aperture empirical noise is not a calibrated trials-adjusted significance", "2023-10-03 imaging is not same-day as 2023-08-24 or 2023-11-19 spectroscopy"]
+    },
+    {
+      "id": "I3",
+      "source": "NIRCam i2d source catalogs from public MAST mosaics, with coordinate crossmatching",
+      "evidence_class": "INDEPENDENT_ARCHIVE_CATALOG_CHECK",
+      "finding": "No catalogued F150W source within 2 arcseconds in each of the three epochs; closest objects 3.65, 3.67, and 2.77 arcsec for 2023, 2025, and 2026 respectively.",
+      "gate": "PASS_CATALOG_NONMATCH__DO_NOT_EQUATE_WITH_FLUX_LIMIT"
+    },
+    {
+      "id": "I4",
+      "source": "Huberty et al., two MOCSS orientations / 16 exposures",
+      "evidence_class": "PAPER_SOURCE_BOUND_NOT_INDEPENDENT_FIELD_MAP",
+      "finding": "Direction on the celestial sphere is reported, but neither a spatial 16004-A emission map around the source nor a second independently confirmed position at this exact wavelength was produced.",
+      "gate": "UNRESOLVED_SPATIAL_EXTENT"
+    },
+    {
+      "id": "I5",
+      "source": "Huberty et al. MOCSS methods and survey catalog, https://arxiv.org/html/2609.36003v1, Table 1",
+      "evidence_class": "SOURCE_BOUND_CATALOG_PLUS_INDEPENDENT_LINE_WAVELENGTH_ARITHMETIC",
+      "finding": "Screened the 23 other published MOCSS HUDF emitters and 41 representative transitions explicitly marked as lines of interest. None have their redshift-predicted observed transition at 16004 +/- 100 Angstrom; the nearest listed match is H-alpha of MOCSSHUDF1 at ~15722.2 Angstrom, 4.8 arcsec away.",
+      "gate": "PASS_PUBLISHED_CATALOG_SCREEN__NOT_A_COMPLETE_SKY_LINE_SEARCH"
+    }
+  ],
+  "scientific_inferences": [
+    {"id": "F1", "claim": "The Oct 2023 imaging nondetection between two spectral epochs is an important temporal constraint on a continuously bright line emitter; at the paper's line-only equivalent F150W flux of about 5.5 nJy, detailed PSF-throughput accounting is required for quantitative rejection.", "status": "TENTATIVE_MODEL_TENSION"},
+    {"id": "F2", "claim": "No single rest-frame species and source distance can be inferred from lambda=16004 A alone; conditional Pa-beta, H-alpha, OIII, OII and Lyman-alpha redshift solutions span lookback times of roughly 3.0 to 13.4 Gyr.", "status": "DERIVED_CONDITIONAL"},
+    {"id": "F3", "claim": "Sky coordinates identify an incoming line of sight, not a beam propagation vector or the line's path length in the Universe. Slitless grating dispersion is not observed physical extension.", "status": "GEOMETRIC_CONSTRAINT"},
+    {"id": "F4", "claim": "If the 16004 A line is OIII 5008 A, the ~1:3 companion is expected at approximately 15850.8 A, not 15864 A (a mistake in the earlier context-only COSMOS draft). The present detector rate subset has not been re-extracted to set a companion-line limit.", "status": "CORRECTED_ARITHMETIC_NO_LINE_DETECTION"},
+    {"id": "F5", "claim": "The archive's current NIRCam observations at the position are not proof of a 2026 spectroscopic non-detection: broadband imaging and narrow-line spectroscopy test different quantities.", "status": "METHODOLOGICAL_BOUNDARY"}
+  ],
+  "origin_competition": [
+    {"id": "VARIABLE_SUPERNOVA_TDE_LINE", "status": "HYPOTHESIS_ONLY", "next_discriminator": "Co-observed continuum and spectral monitoring, Pa-gamma at ~1.366 micron for Pa-beta model and H-beta for H-alpha model; fit a duty cycle constrained by Oct 2023 nondetection."},
+    {"id": "NEIGHBOR_AGN_GAS_ECHO", "status": "HYPOTHESIS_ONLY", "next_discriminator": "IFU line map and spatially resolved ratios plus companion-galaxy redshifts; sky neighbors are only 0.64 to 1.04 arcsec from published line position."},
+    {"id": "PERSISTENT_HIGH_EW_GALAXY", "status": "HYPOTHESIS_ONLY", "next_discriminator": "Independent IFU multiple-line or continuum break solution; explain missing 2023 Oct F150W flux at the fixed position."},
+    {"id": "PIPELINE_BACKGROUND_ARTIFACT", "status": "HYPOTHESIS_ONLY", "next_discriminator": "Wavelength-registered 16-exposure re-extraction, negative control shutters, alternate background algorithm and injection-recovery."}
+  ],
+  "training_antipatterns": [
+    {"prompt": "No 2023 Oct F150W point means the Aug and Nov spectra are fakes.", "label": "REJECT_UNSUPPORTED_GLOBAL_REJECTION", "reason": "Different epochs/instruments; 0.12 arcsec photometry requires PSF and sky calibration, and line variability remains possible."},
+    {"prompt": "Two detector orientations show the direction of a laser traveling through the field.", "label": "REJECT_DETECTOR_SKY_CONFUSION", "reason": "Disperser orientations triangulate sky position and wavelength; detector spectral traces are not actual sky beams."},
+    {"prompt": "The line runs 132 gigaparsecs from us.", "label": "REJECT_LUMINOSITY_DISTANCE_AS_PATH_LENGTH", "reason": "132 Gpc is only the luminosity distance in a speculative Ly-alpha z~12.16 interpretation, not spatial extension or traversed distance."},
+    {"prompt": "The 2026 F150W nondetection proves the spectral emission line is gone.", "label": "REJECT_CROSS_MODAL_OVERREACH", "reason": "A broadband nondetection at a later epoch constrains continuum plus line under filter transmission and sensitivity; it is not a new spectrum."},
+    {"prompt": "An unexpected extra source with the same 16004A line has been discovered nearby.", "label": "REJECT_INVENTED_SPATIAL_REPLICATION", "reason": "No independent line sky map or same-wavelength off-source search has been performed."}
+  ],
+  "gates": {
+    "ARCHIVE_FILES_AND_WCS_PIXELS": "PARTIALLY_REPRODUCED",
+    "SAME_16004A_LINE_FROM_RAW_DETECTORS": "INSUFFICIENT_DATA",
+    "MID_EPOCH_F150W_APERTURE": "INDEPENDENT_DIAGNOSTIC_NONDETECTION",
+    "PERSISTENT_SOURCE_MODEL": "TENSION_REQUIRES_PSF_CALIBRATION",
+    "SPATIAL_EXTENSION_AND_MULTIPLE_POSITIONS": "INSUFFICIENT_DATA",
+    "PHYSICAL_DISTANCE": "CONDITIONAL_ON_LINE_ID",
+    "EXACT_SOURCE_IDENTITY": "UNRESOLVED",
+    "AUTOMATIC_CLAIM_PROMOTION": "FORBIDDEN"
+  },
+  "training_policy": {"source_bound_receipts_only": true, "model_weights_changed": false, "negative_results_preserved": true}
+}

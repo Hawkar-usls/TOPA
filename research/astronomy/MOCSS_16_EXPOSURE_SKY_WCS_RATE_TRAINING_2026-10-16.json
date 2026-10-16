@@ -1,0 +1,80 @@
+{
+  "schema": "janus-topa-hudf-wcs-grounded-evidence-v1",
+  "date_utc": "2026-10-16",
+  "training_mode": "evidence_artifact_only_no_model_weights_changed",
+  "world_truth": false,
+  "promotion_status": "RESEARCH_ONLY_NOT_AUTOMATIC_MODEL_TRAINING",
+  "case": "JWST GO-3290 MOCSS HUDF, unexplained 16004-A emission line",
+  "source_of_truth": {
+    "published": "https://arxiv.org/html/2610.12553v1",
+    "archive": "MAST JWST GO-3290, DOI 10.17909/tct8-jr92",
+    "cosmos_pr": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "cosmos_compact_machine_receipt": "domains/space/MOCSS_16_SKY_REGISTERED_RATE_RECEIPT_2026-10-16.json",
+    "cosmos_analysis": "domains/space/MOCSS_16_SKY_REGISTERED_RATE_RECHECK_2026-10-16.md"
+  },
+  "independent_replay": {
+    "original_rate_files": 32,
+    "original_msa_files": 2,
+    "exposures": 16,
+    "pipeline_version": "1.19.1",
+    "crds_context": "jwst_1413.pmap",
+    "detector_by_group": {"A": "NRS2", "B": "NRS2", "C": "NRS1", "D": "NRS1"},
+    "original_data_modified": false,
+    "raw_rate_only": true,
+    "independent_sky_registration_done": true,
+    "calibrated_flux_limits_done": false,
+    "physical_extent_measured": false,
+    "source_identification": "unknown"
+  },
+  "hypothesis_line_windows_angstrom": {
+    "detected_candidate": 16004.0,
+    "OIII_4960_if_5008_primary": 15850.7933,
+    "Pa_gamma_if_Pa_beta_primary": 13656.7483,
+    "published_OIII_partner_location": 15864.0,
+    "warning": "Published non-detection at 15864A cannot be treated as an injected-source-calibrated 3sigma constraint at 15850.8A."
+  },
+  "provisional_rate_contrast_not_snr": {
+    "unit": "local matched-filter residual over uncalibrated detector-column MAD; NOT Gaussian sigma",
+    "smooth_detector_background_robustness": "31/41/61-pixel median subtraction along dispersion; major instrumental gradient in August",
+    "groups": {
+      "A": {"16004A_range": [2.64, 3.28], "15850p8A_41px": -0.44, "Pa_gamma_41px": -0.62},
+      "B": {"16004A_range": [2.91, 3.82], "15850p8A_41px": -0.23, "Pa_gamma_41px": 2.04},
+      "C": {"16004A_range": [0.38, 1.02], "15850p8A_41px": 0.02, "Pa_gamma_41px": 1.59},
+      "D": {"16004A_range": [2.23, 2.49], "15850p8A_41px": -0.19, "Pa_gamma_41px": 1.62}
+    },
+    "positive_interpretation": "Pixel-space feature repeats near the WCS-predicted line in A, B and D under several high-pass scales.",
+    "negative_interpretation": "The data do not justify a 3-sigma detection, upper limit, Pa-gamma claim, transient variability or source identity."
+  },
+  "sky_field": {
+    "field_arcsec": [3.0, 3.0],
+    "two_dispersion_orientations_degrees_apart": 89,
+    "candidate_ra_dec_deg": [53.13127, -27.78908],
+    "neighbor_jades_offsets_east_north_arcsec": {
+      "NW": [-0.3344, 0.54],
+      "S": [0.0987, -1.0332],
+      "E": [1.0, -0.09]
+    },
+    "candidate_raw_map_relative_units": 2.284,
+    "companion_control_relative_units": -0.523,
+    "candidate_map_fraction_above": 0.051,
+    "why_not_p_value": "Multiple correlated spatial cells; source chosen from prior publication; detector high-pass and background unvalidated",
+    "other_sources_same_line_confirmed": false,
+    "direction_of_physical_propagation": null,
+    "distance_of_emission_path": null
+  },
+  "guarded_training_cases": [
+    {"question": "Does an emission-like 16004A spot repeating in raw WCS coadds prove the source is a TDE or type IIn SN?", "answer": "No. It is a reproducibility hint subject to detector flat/background and selection bias. The source type and variability remain unresolved."},
+    {"question": "Did an independent analysis test the oxygen companion at 15850.8A?", "answer": "Yes: geometry-projected raw-rate contrasts and field controls were tested. No science-grade calibrated flux upper limit was derived."},
+    {"question": "Does weak Pa-gamma contrast in B/C/D confirm redshifted Pa-beta?", "answer": "No. Controls are empirical and residuals are not independent significances; A is negative. Perform complete stage-2 reduction and injection limits."},
+    {"question": "Does the 3-arcsecond sky map establish a gas filament or directional beam?", "answer": "No. It only provides provisional spatial contrasts; there is no repeatable same-wavelength signal tracing the neighboring galaxy centers, and no measured physical length."},
+    {"question": "What would make the AGN-illuminated-cloud hypothesis testable?", "answer": "NIRSpec IFU calibrated 16004A and companion line maps, velocity field, source and JADES neighbor alignment, with a mosaic if emission extends beyond the 3x3 arcsecond field."}
+  ],
+  "release_gates": [
+    "NO_SOURCE_IDENTITY",
+    "NO_ASTROPHYSICAL_TRAIL_DISTANCE",
+    "NO_FORMAL_SIGNIFICANCE_FROM_UNCALIBRATED_RATE_CONTRAST",
+    "NO_FLUX_UPPER_LIMIT_FROM_UNCORRECTED_RAW_WINDOWS",
+    "NO_UNVERIFIED_PER_EXPOSURE_VARIABILITY",
+    "NO_MODEL_WEIGHTS_MUTATION"
+  ]
+}
