@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json'
+      - 'research/astronomy/JWST_MOCSS_HUDF_MAST_SPATIAL_TOPA_2026-10-16.json'
+      - 'research/astronomy/MOCSS_16_EXPOSURE_GEOMETRY_TRAINING_2026-10-16.json'
       - '.github/workflows/jwst-mocss-topa-training.yml'
   workflow_dispatch:
 
@@ -37,7 +39,24 @@ jobs:
           assert x['reporting_audit']['status'] == 'OPEN_REQUIRES_METHOD_MATCH'
           assert x['epistemic_gates'][2]['status'] == 'INSUFFICIENT_DATA'
           assert x['epistemic_gates'][4]['status'] == 'UNRESOLVED'
-          print('PASS: source-bound TOPA training and falsification gates')
-          print('INDEPENDENT_MAST_REPLAY=NOT_EXECUTED')
+
+          y = json.loads(Path('research/astronomy/MOCSS_16_EXPOSURE_GEOMETRY_TRAINING_2026-10-16.json').read_text())
+          assert y['world_truth'] is False
+          gates = y['new_receipt_gates']
+          assert gates['archive_16_long_exposures_identified'] == 'PASS'
+          assert gates['detector_32_primary_headers_inspected'] == 'PASS'
+          assert gates['msa_16_ids_confirmed_in_two_original_archive_tables'] == 'PASS'
+          assert gates['actual_OIII_4960_line_detection'] == 'NOT_PERFORMED'
+          assert gates['all_16_full_rate_sci_arrays_reduced'] == 'NOT_PERFORMED'
+          assert gates['independent_16004_A_line_redetection'] == 'NOT_PERFORMED'
+          assert gates['independent_spatial_extent'] == 'NOT_PERFORMED'
+          assert gates['source_identity'] == 'UNRESOLVED'
+          assert len(y['physics_observations']) >= 4
+          assert len(y['training_antipatterns']) >= 5
+          assert y['policy']['proof_before_promotion']
+          assert y['policy']['do_not_train_model_weights_from_single_receipt']
+          print('PASS: source-bound TOPA training and 16-exposure MSA association gates')
+          print('INDEPENDENT_MAST_HEADER_AND_MSA_REPLAY=VERIFIED')
+          print('INDEPENDENT_SPECTRAL_SKY_MAP=NOT_EXECUTED')
           print('SOURCE_IDENTITY=UNRESOLVED')
           PY
