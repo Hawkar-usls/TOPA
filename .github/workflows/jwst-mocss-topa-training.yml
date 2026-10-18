@@ -91,6 +91,17 @@ jobs:
           assert any(x['conditional_z'] < 2.5 for x in effects)
           assert any(x['conditional_z'] > 5 for x in effects)
           assert any('NOT a defensible calibrated exclusion' in r for r in sensitivity['scientific_inference_rules'])
+          measured = sensitivity['latest_measured_covariance_followup']
+          assert measured['status'] == 'ARCHIVAL_MATCHED_SKY_COVARIANCE_MEASURED_NOT_PURE_INSTRUMENT_NOISE'
+          assert measured['empirical_matched_sky_positions'] >= 90
+          assert measured['empirical_fixed_weight_sigma_njy'] > measured['previous_independent_sigma_njy']
+          assert measured['not_pure_detector_noise'] is True
+          assert measured['no_PSF_injection_or_empirical_point_source_throughput'] is True
+          assert measured['no_NIRSpec_stage2_flux'] is True
+          assert all(measured[k] is False for k in ('source_type_proven','source_redshift_measured','directed_trail_detected','world_truth'))
+          assert measured['training_update'] == 'EVIDENCE_CASE_ONLY_NOT_MODEL_WEIGHTS'
+          print('F150W_MATCHED_SKY_COVARIANCE=OBSERVED_BUT_NOT_PURE_NOISE')
+          print('PSF_INJECTION=NOT_DONE')
           print('F150W_COVARIANCE_SENSITIVITY=SCENARIOS_ONLY')
           print('PHYSICAL_VARIABILITY=UNCONFIRMED')
           print('MODEL_WEIGHTS_UNCHANGED=true')
