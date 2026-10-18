@@ -7,6 +7,7 @@ on:
       - 'research/astronomy/JWST_MOCSS_HUDF_MAST_SPATIAL_TOPA_2026-10-16.json'
       - 'research/astronomy/MOCSS_16_EXPOSURE_GEOMETRY_TRAINING_2026-10-16.json'
       - 'research/astronomy/MOCSS_16_EXPOSURE_SKY_WCS_RATE_TRAINING_2026-10-16.json'
+      - 'research/astronomy/NIRCAM_INTERLEAVED_VARIABILITY_TRAINING_2026-10-16.json'
       - '.github/workflows/jwst-mocss-topa-training.yml'
   workflow_dispatch:
 
@@ -77,5 +78,20 @@ jobs:
           assert 'NO_FORMAL_SIGNIFICANCE_FROM_UNCALIBRATED_RATE_CONTRAST' in z['release_gates']
           print('INDEPENDENT_32_RATE_WCS_SKY_PROJECTION=RESEARCH_RECEIPT')
           print('CALIBRATED_SPECTRAL_LINE_LIMITS=NOT_AVAILABLE')
+          print('MODEL_WEIGHTS_UNCHANGED=true')
+
+          sensitivity = json.loads(Path('research/astronomy/NIRCAM_INTERLEAVED_VARIABILITY_TRAINING_2026-10-16.json').read_text())
+          followup = sensitivity['latest_sensitivity_followup']
+          assert followup['as_of_utc'] == '2026-10-18'
+          assert abs(followup['propagated_spectral_prediction_sigma_njy'] - 0.66) < 1e-12
+          assert followup['injection_and_empirical_covariance_missing'] is True
+          assert all(followup[k] is False for k in ('promote_astrophysical_variability','promote_specific_classification','promote_redshift','promote_physical_trail','model_weights_mutated'))
+          effects = followup['conditional_effects']
+          assert len(effects) >= 4
+          assert any(x['conditional_z'] < 2.5 for x in effects)
+          assert any(x['conditional_z'] > 5 for x in effects)
+          assert any('NOT a defensible calibrated exclusion' in r for r in sensitivity['scientific_inference_rules'])
+          print('F150W_COVARIANCE_SENSITIVITY=SCENARIOS_ONLY')
+          print('PHYSICAL_VARIABILITY=UNCONFIRMED')
           print('MODEL_WEIGHTS_UNCHANGED=true')
           PY
