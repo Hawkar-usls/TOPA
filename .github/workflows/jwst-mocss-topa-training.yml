@@ -84,6 +84,14 @@ jobs:
           assert q['source_identity_or_redshift_proven'] is False
           assert q['training_status'] == 'RESEARCH_ONLY_NO_WEIGHTS_CHANGED'
           assert 'NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST' in z['release_gates']
+          falsegreen = z['stage2_failure_audit_2026_10_18']
+          assert falsegreen['old_green_was_scientifically_false_positive'] is True
+          assert falsegreen['old_workflow_conclusion'] == 'success'
+          assert falsegreen['calibrated_mocss_real_source_x1d_extracted'] is False
+          assert falsegreen['scientific_claim_promotion'] is False
+          assert falsegreen['virtual_background_shutter_is_source_model'] is False
+          assert 'NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION' in z['release_gates']
+          print('STAGE2_PILOT_OLD_GREEN=FALSE_POSITIVE_NOT_SCIENCE')
           print('NIRSPEC_THREE_LINE_CALIBRATION=AWAITING_REAL_X1D')
           real = z['real_detector_injection_followup_2026_10_18']
           assert real['status'] == 'ORIGINAL_JWST_RATE_FITS_SHA_VERIFIED_GAUSSIAN_INJECTION_LINEARITY_ONLY'
