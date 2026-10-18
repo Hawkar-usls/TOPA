@@ -116,14 +116,16 @@
     "The [OIII] 4960A line expected from the 16004A/5008A identification is near 15850.79A, not 15864A; re-extraction remains a priority.",
     "An error-propagated scenario calculation must carry the 12-percent NIRSpec line-flux uncertainty and explicitly stress correlated October F150W noise; 6.3–7.9 sigma from the earlier illustrative diagnostic is NOT a defensible calibrated exclusion or a universal sensitivity bound.",
     "The effective aperture factor includes source PSF, local annulus subtraction and blending, not merely an encircled-energy curve; empirical injection/recovery remains absent.",
-    "Do not infer PROVEN_VARIABLE or rule out constant emission before common-blank-sky covariance, PSF+annulus injection and stage-2 NIRSpec flux and astrometry have been measured."
+    "Do not infer PROVEN_VARIABLE or rule out constant emission before common-blank-sky covariance, PSF+annulus injection and stage-2 NIRSpec flux and astrometry have been measured.",
+    "The October 2023 cross-image covariance is now estimated from 95 matched sky apertures in four original JWST F150W SCI mosaics and their pinned SHA-256. Its fixed-weight sigma ~0.663 nJy is larger than ~0.521 nJy diagonal-only, but common astrophysical sky structure is not instrument noise."
   ],
   "cosmos_research_file": "domains/space/OCTOBER_2023_NIRCAM_TIME_DOMAIN_PHYSICAL_CONSTRAINT_2026-10-16.md",
   "cosmos_receipt_files": [
     "domains/space/NIRCAM_F150W_TIME_DOMAIN_RECEIPT_2026-10-16.json",
     "domains/space/NIRCAM_F150W_ASTROMETRY_RECEIPT_2026-10-16.json",
     "domains/space/JADES_DR4_MAST_COVERAGE_RECEIPT_2026-10-16.json",
-    "domains/space/NIRCAM_F150W_COVARIANCE_SENSITIVITY_2026-10-18.json"
+    "domains/space/NIRCAM_F150W_COVARIANCE_SENSITIVITY_2026-10-18.json",
+    "domains/space/NIRCAM_F150W_MATCHED_SKY_COVARIANCE_OBSERVED_2026-10-18.json"
   ],
   "latest_sensitivity_followup": {
     "as_of_utc": "2026-10-18",
@@ -169,5 +171,24 @@
     "promote_redshift": false,
     "promote_physical_trail": false,
     "model_weights_mutated": false
+  },
+  "latest_measured_covariance_followup": {
+    "as_of_utc": "2026-10-18",
+    "status": "ARCHIVAL_MATCHED_SKY_COVARIANCE_MEASURED_NOT_PURE_INSTRUMENT_NOISE",
+    "cosmos_receipt": "domains/space/NIRCAM_F150W_MATCHED_SKY_COVARIANCE_OBSERVED_2026-10-18.json",
+    "cosmos_workflow_run": "https://github.com/Hawkar-usls/Janus-Cosmos/actions/runs/39141250321",
+    "empirical_matched_sky_positions": 95,
+    "previous_independent_sigma_njy": 0.5208894025194579,
+    "empirical_fixed_weight_sigma_njy": 0.662980825637632,
+    "conditional_standardized_residual_not_significance_at_fraction_0p7": 4.419758503322051,
+    "not_pure_detector_noise": true,
+    "no_PSF_injection_or_empirical_point_source_throughput": true,
+    "no_NIRSpec_stage2_flux": true,
+    "source_type_proven": false,
+    "source_redshift_measured": false,
+    "directed_trail_detected": false,
+    "world_truth": false,
+    "training_update": "EVIDENCE_CASE_ONLY_NOT_MODEL_WEIGHTS",
+    "remaining_test": "Calibrated NIRCam PSF injection with actual mosaic-specific drizzle PSF; reprocess NIRSpec line/controls 16004, 15850.793,13656.748 Angstrom with Stage 2 and measured point-source throughput."
   }
 }
