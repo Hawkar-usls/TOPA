@@ -146,7 +146,8 @@
     "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST",
     "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION",
     "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION",
-    "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA"
+    "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA",
+    "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -284,5 +285,20 @@
     "gas_trail": null,
     "model_weights_changed": false,
     "scientific_rule": "Synthetic SOURCE_INFO geometry is a diagnostic of JWST slit metadata compatibility. It cannot create astrophysical photons, prove a 16004 Å emission source or provide a science-grade spectral flux. Only fully calibrated four-group custom-background 3-shutter extractions and realistic injection recovery can promote that."
+  },
+  "diagnostic_x1d_2026_10_19": {
+    "status": "TWO_REAL_ARCHIVE_GROUPS_B_D_DIAGNOSTIC_X1D_PASS_NOT_ASTROPHYSICAL_SPECTROPHOTOMETRY",
+    "cosmos_receipt": "domains/space/MOCSS_BD_DIAGNOSTIC_X1D_SUCCESS_2026-10-19.json",
+    "group_B_and_D_each_x1d_created": true,
+    "group_A_and_C_verified_x1d": false,
+    "source_in_original_mpt": false,
+    "source_info_synthetic": true,
+    "all_four_group_stack_photometry_done": false,
+    "open_shutter_background_and_throughput_validated": false,
+    "calibrated_astrophysical_line_fluxes": false,
+    "companion_lines_confirmed": false,
+    "classification_or_redshift_proven": false,
+    "model_weights_updated": false,
+    "rule": "Instrument pipeline creates a diagnostic 1D spectrum from an artificially source-labelled MSA. That is a software-compatibility observation, not a source detection, physically valid flux, line limit or redshift."
   }
 }
