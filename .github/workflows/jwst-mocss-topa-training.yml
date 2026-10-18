@@ -85,6 +85,15 @@ jobs:
           assert q['training_status'] == 'RESEARCH_ONLY_NO_WEIGHTS_CHANGED'
           assert 'NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST' in z['release_gates']
           print('NIRSPEC_THREE_LINE_CALIBRATION=AWAITING_REAL_X1D')
+          real = z['real_detector_injection_followup_2026_10_18']
+          assert real['status'] == 'ORIGINAL_JWST_RATE_FITS_SHA_VERIFIED_GAUSSIAN_INJECTION_LINEARITY_ONLY'
+          assert real['flux_calibrated'] is False
+          assert real['real_mocss_multi_dither_3_shutter_throughput'] is False
+          assert real['robust_astro_line_significance'] is False
+          assert real['model_weights_updated'] is False
+          assert real['source_identity'] is None and real['redshift'] is None and real['gas_trail'] is None
+          assert 'NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION' in z['release_gates']
+          print('REAL_NIRSPEC_RATE_INJECTION=ALGORITHM_LINEARITY_ONLY_NOT_SCIENCE_FLUX')
           print('INDEPENDENT_32_RATE_WCS_SKY_PROJECTION=RESEARCH_RECEIPT')
           print('CALIBRATED_SPECTRAL_LINE_LIMITS=NOT_AVAILABLE')
           print('MODEL_WEIGHTS_UNCHANGED=true')
