@@ -130,6 +130,10 @@
     {
       "question": "What would make the AGN-illuminated-cloud hypothesis testable?",
       "answer": "NIRSpec IFU calibrated 16004A and companion line maps, velocity field, source and JADES neighbor alignment, with a mosaic if emission extends beyond the 3x3 arcsecond field."
+    },
+    {
+      "question": "Does green GitHub Actions on the old Stage2 pilot prove independent MOCSS x1d flux was measured?",
+      "answer": "No: prior successful workflow saved an AttributeError from wrongly using .meta on a list returned by jwst Spec2Pipeline. The original MSA test slit was designated as background, not an astrophysical source; calibrated source x1d remains unverified."
     }
   ],
   "release_gates": [
@@ -140,7 +144,8 @@
     "NO_UNVERIFIED_PER_EXPOSURE_VARIABILITY",
     "NO_MODEL_WEIGHTS_MUTATION",
     "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST",
-    "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION"
+    "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION",
+    "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -211,5 +216,22 @@
     "gas_trail": null,
     "model_weights_updated": false,
     "source_of_truth": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31"
+  },
+  "stage2_failure_audit_2026_10_18": {
+    "status": "FALSE_GREEN_STAGE2_PILOT_DID_NOT_MEASURE_SCIENCE_FLUX",
+    "cosmos_receipt": "domains/space/MOCSS_STAGE2_LIST_RETURN_FAILURE_AUDIT_2026-10-18.json",
+    "prior_run_id": 39143330154,
+    "prior_run_artifact_id": 12142533598,
+    "model_returns": "Spec2Pipeline.process returns list[JWSTDataModel] under official jwst 1.19.1; old wrapper assumed .meta on list",
+    "old_exception": "AttributeError: 'list' object has no attribute 'meta'",
+    "old_workflow_conclusion": "success",
+    "old_green_was_scientifically_false_positive": true,
+    "repair_commit": "15c717e85c9711e3061cbd6db4aa3862d2012cce",
+    "new_run_id": 39150480150,
+    "new_run_accepted_flux": null,
+    "virtual_background_shutter_is_source_model": false,
+    "official_msa_source_metadata_needed": true,
+    "calibrated_mocss_real_source_x1d_extracted": false,
+    "scientific_claim_promotion": false
   }
 }
