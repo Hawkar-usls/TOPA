@@ -139,7 +139,8 @@
     "NO_FLUX_UPPER_LIMIT_FROM_UNCORRECTED_RAW_WINDOWS",
     "NO_UNVERIFIED_PER_EXPOSURE_VARIABILITY",
     "NO_MODEL_WEIGHTS_MUTATION",
-    "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST"
+    "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST",
+    "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -176,5 +177,39 @@
     },
     "science_rule": "Source class and distance cannot be promoted from predicted lines, high-pass RATE contrasts or synthetic fitter self-tests. Require pinned real x1d inputs with calibrated independent spectral extraction and injection-recovery.",
     "training_status": "RESEARCH_ONLY_NO_WEIGHTS_CHANGED"
+  },
+  "real_detector_injection_followup_2026_10_18": {
+    "status": "ORIGINAL_JWST_RATE_FITS_SHA_VERIFIED_GAUSSIAN_INJECTION_LINEARITY_ONLY",
+    "cosmos_receipt": "domains/space/MOCSS_THREE_LINE_REAL_RATE_INJECTION_2026-10-18.json",
+    "cosmos_action_run": 39143330148,
+    "exposures_by_group": {
+      "A": 1,
+      "B": 8,
+      "C": 10,
+      "D": 13
+    },
+    "tested_wavelengths_angstrom": [
+      16004,
+      15850.7933,
+      13656.7483
+    ],
+    "template_detector_sigma_x_y": [
+      1.15,
+      1.3
+    ],
+    "injected_peak_dn_per_s": [
+      0.01,
+      0.04,
+      0.12
+    ],
+    "unit_gain_injection_response": "ALGORITHMIC_TAUTOLOGY_FROM_MATCHED_SYNTHETIC_TEMPLATE",
+    "flux_calibrated": false,
+    "real_mocss_multi_dither_3_shutter_throughput": false,
+    "robust_astro_line_significance": false,
+    "source_identity": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_updated": false,
+    "source_of_truth": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31"
   }
 }
