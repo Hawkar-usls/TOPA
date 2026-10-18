@@ -91,6 +91,18 @@ jobs:
           assert falsegreen['scientific_claim_promotion'] is False
           assert falsegreen['virtual_background_shutter_is_source_model'] is False
           assert 'NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION' in z['release_gates']
+          geo = z['source_aware_three_shutter_followup_2026_10_18']
+          assert geo['original_rate_and_msa_sha256_checked'] is True
+          assert geo['source_inserted_in_test_copy_not_original_MPT'] is True
+          assert geo['source_detected_in_calibrated_2D'] is False
+          assert geo['actual_source_throughput_calibrated'] is False
+          assert geo['real_four_group_x1d_validated'] is False
+          assert geo['confirmed_companion_lines'] is False
+          assert geo['model_weights_changed'] is False
+          assert geo['source_redshift'] is None and geo['gas_trail'] is None
+          assert sorted(geo['groups']) == ['B','D']
+          assert 'NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA' in z['release_gates']
+          print('SOURCE_AWARE_3_SHUTTER=GEOMETRY_ONLY_NO_SCIENCE_X1D')
           print('STAGE2_PILOT_OLD_GREEN=FALSE_POSITIVE_NOT_SCIENCE')
           print('NIRSPEC_THREE_LINE_CALIBRATION=AWAITING_REAL_X1D')
           real = z['real_detector_injection_followup_2026_10_18']
