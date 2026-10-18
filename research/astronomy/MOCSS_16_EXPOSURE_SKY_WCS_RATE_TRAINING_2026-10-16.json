@@ -145,7 +145,8 @@
     "NO_MODEL_WEIGHTS_MUTATION",
     "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST",
     "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION",
-    "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION"
+    "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION",
+    "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -233,5 +234,55 @@
     "official_msa_source_metadata_needed": true,
     "calibrated_mocss_real_source_x1d_extracted": false,
     "scientific_claim_promotion": false
+  },
+  "source_aware_three_shutter_followup_2026_10_18": {
+    "status": "ARCHIVE_PINNED_B_AND_D_GEOMETRY_SOURCE_INFO_TEST_COPIES_PASS_NO_ASTROPHYSICAL_X1D",
+    "cosmos_research": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "centered_geometry_receipt": "domains/space/MOCSS_THREE_SHUTTER_SOURCE_AWARE_GEOMETRY_2026-10-18.json",
+    "wcs_position_geometry_receipt": "domains/space/MOCSS_TWO_PA_OFFCENTER_SOURCE_INFO_2026-10-18.json",
+    "centered_geometry_run_id": 39159440762,
+    "wcs_position_geometry_run_id": 39159808143,
+    "groups": {
+      "B": {
+        "exposure_index": 8,
+        "detector": "NRS2",
+        "shutter_quad": 2,
+        "row": 165,
+        "columns": [
+          92,
+          93,
+          94
+        ],
+        "source_fraction_xy": [
+          0.6854857284214204,
+          0.7574539661709843
+        ]
+      },
+      "D": {
+        "exposure_index": 13,
+        "detector": "NRS1",
+        "shutter_quad": 4,
+        "row": 246,
+        "columns": [
+          106,
+          107,
+          108
+        ],
+        "source_fraction_xy": [
+          0.2781984438413271,
+          0.3903103215248744
+        ]
+      }
+    },
+    "original_rate_and_msa_sha256_checked": true,
+    "source_inserted_in_test_copy_not_original_MPT": true,
+    "source_detected_in_calibrated_2D": false,
+    "actual_source_throughput_calibrated": false,
+    "real_four_group_x1d_validated": false,
+    "confirmed_companion_lines": false,
+    "source_redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "scientific_rule": "Synthetic SOURCE_INFO geometry is a diagnostic of JWST slit metadata compatibility. It cannot create astrophysical photons, prove a 16004 Å emission source or provide a science-grade spectral flux. Only fully calibrated four-group custom-background 3-shutter extractions and realistic injection recovery can promote that."
   }
 }
