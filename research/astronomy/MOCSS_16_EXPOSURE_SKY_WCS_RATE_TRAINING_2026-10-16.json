@@ -134,6 +134,10 @@
     {
       "question": "Does green GitHub Actions on the old Stage2 pilot prove independent MOCSS x1d flux was measured?",
       "answer": "No: prior successful workflow saved an AttributeError from wrongly using .meta on a list returned by jwst Spec2Pipeline. The original MSA test slit was designated as background, not an astrophysical source; calibrated source x1d remains unverified."
+    },
+    {
+      "question": "Does a 42-sigma-like formal x1d coefficient with wrong-axis three-column MSA prove the HUDF orphan line in group C?",
+      "answer": "No. The source MSA was synthetic; dispersion-adjacent shutters require three ROWS, not three columns; chi-square per degree-of-freedom ~1054 in C at 16004 Angstrom, and neighboring off-target templates also create large formal ratios. Science-grade full-row sky, 4-dither stacks, physical PSF-bar throughput, detector-level injections are absent."
     }
   ],
   "release_gates": [
@@ -147,7 +151,8 @@
     "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION",
     "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION",
     "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA",
-    "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D"
+    "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D",
+    "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -300,5 +305,33 @@
     "classification_or_redshift_proven": false,
     "model_weights_updated": false,
     "rule": "Instrument pipeline creates a diagnostic 1D spectrum from an artificially source-labelled MSA. That is a software-compatibility observation, not a source detection, physically valid flux, line limit or redshift."
+  },
+  "dispersion_axis_correction_and_four_x1d_nulls_2026_10_19": {
+    "status": "PRIOR_THREE_COLUMN_TEST_NOT_VALID_MOCSS_THROUGHPUT__THREE_ROW_ARCHIVAL_GEOMETRY_PASS__OFFLINE_X1D_SYSTEMATICS_OBSERVED",
+    "cosmos_corrected_physical_MSA_geometry": "domains/space/MOCSS_FOUR_GROUP_CORRECT_ROW_AXIS_GEOMETRY_2026-10-19.json",
+    "cosmos_axis_correction": "domains/space/MOCSS_DISPERSION_THREE_ROW_CORRECTION_2026-10-19.json",
+    "cosmos_real_x1d_diagnostic_nulls": "domains/space/MOCSS_FOUR_X1D_OFFLINE_NULL_STRESS_2026-10-19.json",
+    "original_rate_SHA_and_MSA_test_geometry_verified_groups": "ABCD",
+    "physical_three_dispersion_adjacent_rows_geometry_code_pass": true,
+    "old_three_neighboring_columns_valid_for_MOCSS_throughput": false,
+    "empirical_x1d_null_run_id": 39223778656,
+    "old_x1d_source_info_is_synthetic": true,
+    "off_line_control_spikes_observed": true,
+    "anomalous_chi2_C_16004_approx": 1054.47,
+    "strong_formal_peaks_not_science_sigma": true,
+    "one_dimensional_mismatched_gaussian_injection_is_NOT_physical_msa_transmission": true,
+    "pipeline_true_three_row_source_x1d_verified": false,
+    "real_full_row_background_subtraction_verified": false,
+    "all_16_exposure_mocss_calibrated_stack_done": false,
+    "source_flux_16004_calibrated": false,
+    "secondary_oiii_15850_calibrated": false,
+    "secondary_pa_gamma_13656_calibrated": false,
+    "redshift_proven": false,
+    "model_weights_changed": false,
+    "training_update": "CASE_EVIDENCE_ONLY__PRIOR_PHYSICAL_THROUGHPUT_INTERPRETATION_SUPERSEDED",
+    "sources": [
+      "https://jwst-docs.stsci.edu/jwst-near-infrared-spectrograph/nirspec-instrumentation/nirspec-micro-shutter-assembly",
+      "https://arxiv.org/html/2610.12553v1"
+    ]
   }
 }
