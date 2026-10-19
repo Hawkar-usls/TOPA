@@ -172,6 +172,26 @@ jobs:
           assert 'NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION' in z['release_gates']
           print('16_REAL_RATE_4_DITHER_POINT_WINDOWS=PASS_INSTRUMENT_DIAGNOSTIC')
           print('24_NATIVE_DETECTOR_RATE_INJECTIONS=PASS_GAUSSIAN_ONLY')
+          msa = z['original_msa_exact_16_exposure_plane_2026_10_19']
+          assert msa['original_SHA_RATE_count'] == 16
+          assert msa['original_SHA_MSA_count'] == 2
+          assert msa['num_binary_open_shutter_quadrant_masks'] == 64
+          assert msa['physical_mask_shape_per_quadrant'] == [365,171]
+          assert msa['MSA_original_id_AND_PATT_NUM_exactly_matched'] is True
+          assert msa['all_original_RATE_PATT_NUM_equal_one'] is True
+          assert msa['near_sky_source_center_marked_open_all16'] is True
+          assert msa['three_adjacent_dispersion_rows_marked_open_all_48'] is True
+          assert msa['this_is_only_MSA_plane_binary_mask_not_detector_illumination'] is True
+          for k in ('full_spectral_CRDS_WCS_to_detector_pixel_for_all_shutters',
+                    'full_background_with_shutter_leakage_and_sky_source_mask',
+                    'exact_author_4stack_mocss_calibration',
+                    'physical_dispersed_PSF_detector_injection','model_weights_changed'):
+              assert msa[k] is False
+          for k in ('science_flux_cgs','source_identity','redshift','directional_gas_trail'):
+              assert msa[k] is None
+          assert 'NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK' in z['release_gates']
+          print('ORIGINAL_MSA_CONFIGURATION=64_EXACT_SHUTTER_PLANE_MASKS_PASS')
+          print('DISPERSED_ILLUMINATION_PIXEL_MAP=NOT_YET_COMPUTED')
           print('PHYSICAL_MOCSS_LINE_FLUX_AND_COMPANION_RED_SHIFT=NOT_MEASURED')
           print('STPSF_MONO_PSF_OPTICAL_MASK_RATIO=DIAGNOSTIC_ONLY')
           print('THREE_LINE_SCIENCE_FLUX=BLOCKED_BY_BACKGROUND_AND_THROUGHPUT')
