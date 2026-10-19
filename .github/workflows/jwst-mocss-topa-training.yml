@@ -142,6 +142,18 @@ jobs:
               assert latest[k] is None
           assert 'NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES' in z['release_gates']
           print('CORRECT_MSA_THREE_ROW_DIAGNOSTIC_X1D=FOUR_GROUPS_SOFTWARE_PASS')
+          optics = z['stpsf_3lambda_optical_2026_10_19']
+          assert optics['status'].startswith('OFFICIAL_STPSF_2p1p0')
+          assert len(optics['waves_A']) == len(optics['optical_finite_fov_center_loss_fractions']) == 3
+          assert all(0 < f < .2 for f in optics['optical_finite_fov_center_loss_fractions'])
+          assert optics['this_is_not_directly_comparable_to_authors_throughput'] is True
+          assert optics['STPSF_simulated_dispersed_detector_source'] is False
+          assert optics['full_16_exposure_4_science_stacks_calibrated'] is False
+          assert optics['realistic_source_photon_conversion_and_photom_verified'] is False
+          assert optics['model_weights_changed'] is False
+          assert optics['line_identity'] is None and optics['redshift'] is None
+          assert 'NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO' in z['release_gates']
+          print('STPSF_MONO_PSF_OPTICAL_MASK_RATIO=DIAGNOSTIC_ONLY')
           print('THREE_LINE_SCIENCE_FLUX=BLOCKED_BY_BACKGROUND_AND_THROUGHPUT')
           print('CALIBRATED_A_B_C_D_EMISSION_LINE_FLUX=OPEN')
           print('B_D_DIAGNOSTIC_X1D=CREATED_BUT_NOT_ASTROPHYSICAL_FLUX')
