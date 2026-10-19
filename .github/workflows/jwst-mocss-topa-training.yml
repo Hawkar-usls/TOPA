@@ -191,6 +191,24 @@ jobs:
               assert msa[k] is None
           assert 'NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK' in z['release_gates']
           print('ORIGINAL_MSA_CONFIGURATION=64_EXACT_SHUTTER_PLANE_MASKS_PASS')
+          wcs16 = z['original_msa_crds_gwcs_all16_2026_10_19']
+          assert wcs16['upstream_run_id'] == 39243558142
+          assert wcs16['num_real_rate_SHA_checked'] == 16
+          assert wcs16['num_original_open_MSA_shutter_slit_centers'] == 48
+          assert wcs16['num_wave_center_wcs_coordinates_on_detector'] == 144
+          assert wcs16['used_original_open_shutter_sites'] is True
+          assert wcs16['test_MSA_background_slit_subsets_not_real_MPT_source'] is True
+          for key in ('all_open_shutter_pixel_illumination_weights_generated',
+                      'physical_dispersed_STPSF_plus_bar_shutter_transmission',
+                      'sky_throughput_leakage_corrected','author_complete_stage2_four_group_stacks',
+                      'model_weights_changed'):
+              assert wcs16[key] is False
+          for key in ('absolute_flux16004_cgs','OIII_15850_detection',
+                      'Pa_gamma_13656_detection','source_class','redshift','gas_trail'):
+              assert wcs16[key] is None
+          assert 'NO_LINE_DETECTION_FROM_CRDS_144_WCS_GEOMETRIC_CENTERS_ONLY' in z['release_gates']
+          print('ORIGINAL_CRDS_ALL16_OPEN_NEIGHBOR_SPECTRAL_GEOMETRY=144_ON_DETECTOR_PASS')
+          print('PHYSICAL_ILLUMINATION_BACKGROUND_AND_LINE_FLUX=OPEN')
           print('DISPERSED_ILLUMINATION_PIXEL_MAP=NOT_YET_COMPUTED')
           print('PHYSICAL_MOCSS_LINE_FLUX_AND_COMPANION_RED_SHIFT=NOT_MEASURED')
           print('STPSF_MONO_PSF_OPTICAL_MASK_RATIO=DIAGNOSTIC_ONLY')
