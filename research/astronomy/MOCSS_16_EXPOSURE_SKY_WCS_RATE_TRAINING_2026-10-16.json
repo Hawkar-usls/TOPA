@@ -156,7 +156,8 @@
     "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES",
     "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO",
     "NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION",
-    "NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK"
+    "NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK",
+    "NO_LINE_DETECTION_FROM_CRDS_144_WCS_GEOMETRIC_CENTERS_ONLY"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -455,5 +456,31 @@
     "directional_gas_trail": null,
     "model_weights_changed": false,
     "epistemic_constraint": "Three source-adjacent shutters marked open in each of the 16 real original MSA configurations establish aperture availability only, not source photons, physical throughput, line significance or distance. Full detector footprint projection remains to be performed."
+  },
+  "original_msa_crds_gwcs_all16_2026_10_19": {
+    "status": "ALL16_ORIGINAL_RATE_CRDS_GWCS_48_NEAR_OPEN_SHUTTER_SLITS_X_3_WAVELENGTHS_FINITE_ON_DETECTOR_144_CENTERS",
+    "upstream_run_id": 39243558142,
+    "cosmos_receipt": "domains/space/MOCSS_CRDS_GWCS_ALL16_OPEN_NEIGHBOR_FOOTPRINT_2026-10-19.json",
+    "cosmos_forward_model_gate": "domains/space/MOCSS_CRDS_WCS_FORWARD_ILLUMINATION_GATE_2026-10-19.json",
+    "instrument": "JWST NIRSpec",
+    "jwst_pipeline": "1.19.1",
+    "crds": "jwst_1413.pmap",
+    "num_real_rate_SHA_checked": 16,
+    "num_original_open_MSA_shutter_slit_centers": 48,
+    "num_wave_center_wcs_coordinates_on_detector": 144,
+    "used_original_open_shutter_sites": true,
+    "test_MSA_background_slit_subsets_not_real_MPT_source": true,
+    "all_open_shutter_pixel_illumination_weights_generated": false,
+    "physical_dispersed_STPSF_plus_bar_shutter_transmission": false,
+    "sky_throughput_leakage_corrected": false,
+    "author_complete_stage2_four_group_stacks": false,
+    "absolute_flux16004_cgs": null,
+    "OIII_15850_detection": null,
+    "Pa_gamma_13656_detection": null,
+    "source_class": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "scientific_ceiling": "The official CRDS/GWCS maps the original three nearby open shutter centers for all 16 original exposures to the detector at three wavelengths. These 144 positions are geometric predictions, not a photon/sky/throughput map. No physical calibrated emission line or redshift follows."
   }
 }
