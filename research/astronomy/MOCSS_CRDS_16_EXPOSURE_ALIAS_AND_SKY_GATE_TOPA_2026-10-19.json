@@ -1,7 +1,7 @@
 {
   "schema": "topa-mocss-16exposure-CRDS-spectral-alias-and-cross-orientation-review-v1",
   "created_date_utc": "2026-10-19",
-  "status": "GEOMETRIC_SPECTRAL_ALIAS_CONFIRMED_AUTHORS_DUAL_ORIENTATION_COMMON_SKY_GATE_NOT_INDEPENDENTLY_REPRODUCED",
+  "status": "GEOMETRIC_ALIAS_REPRODUCED_TWO_ORIENTATION_SKY_GATE_OPEN_NIRCAM_SPATIAL_NULL_REPRODUCED",
   "source": "JWST MOCSS HUDF 16004±1Å",
   "cosmos": {
     "repo": "Hawkar-usls/Janus-Cosmos",
@@ -70,9 +70,13 @@
     "claim_unique_alternate_host": false
   },
   "running_followup": {
-    "new_archive_nircam_spatial_scan_run_id": 39255670376,
-    "state_at_submission": "QUEUED",
-    "note": "Four original F150W 2023 i2d SCI strips + repeated offset-grid max-control statistic, not 16004A imaging line mapping"
+    "original_nircam_spatial_scan_run_id": 39255670376,
+    "original_result": "FAILED_BEFORE_DATA_DIRECTORY_CREATED",
+    "fixed_successful_nircam_spatial_scan_run_id": 39256147894,
+    "current_result": "SUCCESS",
+    "artifact_id": 12186849693,
+    "zip_sha256": "98ed0db2e0fb10b9774e13d0f2a79ce6dc620e432c474f04f5d831a42aac502f",
+    "science": "Real 4-epoch F150W broad-band aperture max scan 113 sky offsets within .45arcsec; 95 control-field maxima; no localized source or directional trail significance."
   },
   "independent_science_gates": [
     {
@@ -107,9 +111,19 @@
     {
       "name": "physical_emission_source_class_redshift_direction_trail",
       "status": "OPEN"
+    },
+    {
+      "name": "nircam_broadband_target_local_113_positions95_controls",
+      "status": "PASS_NULL_NOT_SIGNIFICANT",
+      "reason": "Original MAST F150W images, SHA-verified, full local 2D offset-grid scan fieldmax statistic; 86/95 sky control maxima exceed target maximum inside .45arcsec."
+    },
+    {
+      "name": "directional_nw_galaxy_trail_from_f150w",
+      "status": "NOT_DETECTED",
+      "reason": "NW .950nJy weak maximum aligns with galaxy sky PA but SE mirror .875nJy and 86/95 controls stronger; no line-specific spatial direction."
     }
   ],
-  "next_test": "Use original NIRSpec 2D measured line centroids in both 89-degree orientations plus all OPEN original shutters to reconstruct a single matching RA,Dec and wavelength. Exhaust alternative sky-host solutions before causal AGN gas-trail interpretations. Independent calibrated NIRSpec Stage2 with retried CRDS 1GB Sflat necessary.",
+  "next_test": "Independently validate common physical RA,Dec and lambda across both MOCSS angles with real 2D line centroids and all original OPEN shutters; compare original calibrated flux and companion lines. F150W no compact coeval candidate inside .45arcsec; test extended gas with larger apertures plus contamination masking.",
   "strict_no_inference": [
     "NO_NEW_ALTERNATIVE_HOST_CONFIRMED",
     "NO_NEIGHBOR_CONTAMINATION_DETECTED",
@@ -117,5 +131,19 @@
     "NO_DOPPLER_FROM_INSTRUMENT_ALIAS",
     "NO_REDSHIFT_PROOF",
     "NO_LINE_FLUX_CALIBRATED"
-  ]
+  ],
+  "nircam_spatial_null": {
+    "cosmos_repo_receipt": "domains/space/NIRCAM_F150W_LOCAL_OFFSETS_OBSERVED_2026-10-19.json",
+    "cosmos_report": "domains/space/NIRCAM_F150W_LOCAL_OFFSETS_INTERPRETATION_2026-10-19.md",
+    "max_0p15_arcsec_njy": 0.5019594172726292,
+    "max_0p45_arcsec_njy": 0.9504061140192013,
+    "control_fields_exceeding_target_max_0p45_arcsec": 86,
+    "control_field_total": 95,
+    "nw_direction_deg_east_of_north": 329.03624346792645,
+    "nearest_nw_galaxy_pa_deg_east_of_north": 328.2313551887452,
+    "opposite_se_max_njy": 0.875,
+    "weak_nw_minus_se_contrast_njy": 0.075,
+    "source_direction_verified": false,
+    "extended_gas_excluded": false
+  }
 }
