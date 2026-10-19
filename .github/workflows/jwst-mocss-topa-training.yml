@@ -111,6 +111,22 @@ jobs:
               'calibrated_astrophysical_line_fluxes','companion_lines_confirmed',
               'classification_or_redshift_proven','model_weights_updated'))
           assert 'NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D' in z['release_gates']
+          correction = z['dispersion_axis_correction_and_four_x1d_nulls_2026_10_19']
+          assert correction['physical_three_dispersion_adjacent_rows_geometry_code_pass'] is True
+          assert correction['old_three_neighboring_columns_valid_for_MOCSS_throughput'] is False
+          assert correction['off_line_control_spikes_observed'] is True
+          assert correction['anomalous_chi2_C_16004_approx'] > 1000
+          assert correction['strong_formal_peaks_not_science_sigma'] is True
+          assert correction['one_dimensional_mismatched_gaussian_injection_is_NOT_physical_msa_transmission'] is True
+          assert correction['pipeline_true_three_row_source_x1d_verified'] is False
+          for k in ('real_full_row_background_subtraction_verified','all_16_exposure_mocss_calibrated_stack_done',
+                    'source_flux_16004_calibrated','secondary_oiii_15850_calibrated',
+                    'secondary_pa_gamma_13656_calibrated','redshift_proven','model_weights_changed'):
+              assert correction[k] is False
+          assert 'NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO' in z['release_gates']
+          print('MOCSS_THREE_COLUMN_DIAGNOSTIC_X1D=PHYSICAL_AXIS_WRONG')
+          print('MOCSS_CORRECT_THREE_ROW_GEOMETRY=TESTED')
+          print('CALIBRATED_A_B_C_D_EMISSION_LINE_FLUX=OPEN')
           print('B_D_DIAGNOSTIC_X1D=CREATED_BUT_NOT_ASTROPHYSICAL_FLUX')
           print('SOURCE_AWARE_3_SHUTTER=GEOMETRY_ONLY_NO_SCIENCE_X1D')
           print('STAGE2_PILOT_OLD_GREEN=FALSE_POSITIVE_NOT_SCIENCE')
