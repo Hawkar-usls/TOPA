@@ -153,6 +153,26 @@ jobs:
           assert optics['model_weights_changed'] is False
           assert optics['line_identity'] is None and optics['redshift'] is None
           assert 'NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO' in z['release_gates']
+          actual16 = z['mocss_full_16_native_2d_injections_2026_10_19']
+          assert actual16['N_original_rate'] == 16 and actual16['N_original_msa'] == 2
+          assert actual16['source_original_rate_and_MSA_SHA_verified'] is True
+          assert actual16['source_pixel_native_original_RATE_2D_injection_executed'] is True
+          assert actual16['source_DN_per_sec_parametric_Gaussian_not_STPSF'] is True
+          assert actual16['N_injection_recovery_checks'] == 24
+          assert actual16['N_4_dither_stacks'] == 4
+          assert actual16['N_real_wavelength_windows_per_stack'] == 3
+          for key in ('scientific_background_illumination_open_shutter_projection_done',
+                      'full_2D_dispersion_and_astrophysical_calwebb_spec2_flux',
+                      'physical_source_focused_PSF_detector_model_injected',
+                      'absolute_line_flux_physical_cgs_measured',
+                      'secondary_lines_oiii_or_pa_gamma_confirmed','model_weights_changed'):
+              assert actual16[key] is False
+          for key in ('source_class','redshift','directed_trail'):
+              assert actual16[key] is None
+          assert 'NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION' in z['release_gates']
+          print('16_REAL_RATE_4_DITHER_POINT_WINDOWS=PASS_INSTRUMENT_DIAGNOSTIC')
+          print('24_NATIVE_DETECTOR_RATE_INJECTIONS=PASS_GAUSSIAN_ONLY')
+          print('PHYSICAL_MOCSS_LINE_FLUX_AND_COMPANION_RED_SHIFT=NOT_MEASURED')
           print('STPSF_MONO_PSF_OPTICAL_MASK_RATIO=DIAGNOSTIC_ONLY')
           print('THREE_LINE_SCIENCE_FLUX=BLOCKED_BY_BACKGROUND_AND_THROUGHPUT')
           print('CALIBRATED_A_B_C_D_EMISSION_LINE_FLUX=OPEN')
