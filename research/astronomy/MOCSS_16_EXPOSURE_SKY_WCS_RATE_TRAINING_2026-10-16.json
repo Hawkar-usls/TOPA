@@ -154,7 +154,8 @@
     "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D",
     "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO",
     "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES",
-    "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO"
+    "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO",
+    "NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -381,5 +382,41 @@
     "gas_trail": null,
     "model_weights_changed": false,
     "training_update": "EVIDENCE_CASE_ONLY_NO_MOCSS_PSF_FLUX_PROMOTION"
+  },
+  "mocss_full_16_native_2d_injections_2026_10_19": {
+    "status": "16_REAL_RATE_FOUR_4_DITHER_WCS_POINT_WINDOW_STACKS_GAUSSIAN_NATIVE_2D_INJECTIONS_REPRODUCED_NOT_VALID_ASTROPHYSICAL_FLUX",
+    "cosmos_checkpoint": "domains/space/MOCSS_FULL16_NATIVE_DETECTOR_2D_GAUSSIAN_INJECTION_2026-10-19.json",
+    "cosmos_stpsf_checkpoint": "domains/space/MOCSS_STPSF_OPTICAL_THREE_WAVELENGTHS_2026-10-19.json",
+    "original_all16_success_run": 39231058856,
+    "stpsf_success_run": 39229599393,
+    "N_original_rate": 16,
+    "N_original_msa": 2,
+    "source_original_rate_and_MSA_SHA_verified": true,
+    "source_pixel_native_original_RATE_2D_injection_executed": true,
+    "source_DN_per_sec_parametric_Gaussian_not_STPSF": true,
+    "N_injection_recovery_checks": 24,
+    "N_4_dither_stacks": 4,
+    "N_real_wavelength_windows_per_stack": 3,
+    "scientific_background_illumination_open_shutter_projection_done": false,
+    "full_2D_dispersion_and_astrophysical_calwebb_spec2_flux": false,
+    "physical_source_focused_PSF_detector_model_injected": false,
+    "absolute_line_flux_physical_cgs_measured": false,
+    "secondary_lines_oiii_or_pa_gamma_confirmed": false,
+    "source_class": null,
+    "redshift": null,
+    "directed_trail": null,
+    "model_weights_changed": false,
+    "raw_rate_primary_16004_center_relative_MAD_NOT_SIGMA": {
+      "A": 0.08425,
+      "B": 0.11648,
+      "C": 0.24294,
+      "D": 3.21955
+    },
+    "STPSF_centered_3shutter_loss_finite_FOV_NOT_SLIT_FLUX": {
+      "Pa_gamma": 0.07104456,
+      "OIII_4960": 0.08548421,
+      "primary": 0.0835171
+    },
+    "interpretation": "All 16 public original JWST RATE files and 2 MSA tables were SHA verified, row median background proxy applied, all 4 4-dither WCS narrow source windows stacked and 24 native detector Gaussian injection recoveries executed. But row-open illumination was only audited, not mapped to pixel; STPSF optical mask FOV tests are separate from the native Gaussian injection; the 2D source does not have a physically calibrated dispersed PSF or photon-to-flux conversion."
   }
 }
