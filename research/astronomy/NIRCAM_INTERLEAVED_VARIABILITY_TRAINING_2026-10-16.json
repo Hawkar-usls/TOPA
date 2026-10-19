@@ -1,0 +1,194 @@
+{
+  "schema_version": "janus_science_case_v1",
+  "case_id": "jwst-mocss-hudf-16004a-interleaved-nircam-time-domain-20261016",
+  "as_of_utc": "2026-10-16",
+  "research_status": "unresolved_physical_identification__new_variability_constraint",
+  "source": {
+    "ra_deg": 53.13127,
+    "dec_deg": -27.78908,
+    "observed_line_vacuum_A": 16004,
+    "author_line_flux_cgs": 2.5e-18,
+    "author_predicted_total_F150W_line_only_nJy": 5.5,
+    "author_spectroscopy_epochs": [
+      "2023-08-23",
+      "2023-08-24",
+      "2023-11-19"
+    ]
+  },
+  "new_public_archive_evidence": {
+    "independent_nircam_F150W_epoch_apertures": [
+      {
+        "date_utc": "2023-10-01",
+        "mosaic": "jw01180-o014_t023_nircam_clear-f150w_i2d.fits",
+        "flux_nJy": 0.4534,
+        "empirical_sigma_nJy": 1.0777
+      },
+      {
+        "date_utc": "2023-10-02",
+        "mosaic": "jw01180-o016_t013_nircam_clear-f150w_i2d.fits",
+        "flux_nJy": 0.3411,
+        "empirical_sigma_nJy": 0.9945
+      },
+      {
+        "date_utc": "2023-10-03",
+        "mosaic": "jw01180-o013_t011_nircam_clear-f150w_i2d.fits",
+        "flux_nJy": 0.5042,
+        "empirical_sigma_nJy": 0.9053
+      },
+      {
+        "date_utc": "2023-10-09",
+        "mosaic": "jw01180-o024_t020_nircam_clear-f150w_i2d.fits",
+        "flux_nJy": -0.5461,
+        "empirical_sigma_nJy": 1.2982
+      }
+    ],
+    "weighted_combined_flux_aperture_nJy": 0.278497,
+    "weighted_combined_empirical_sigma_nJy": 0.520889,
+    "aperture_radius_arcsec": 0.12,
+    "background_annulus_arcsec": [
+      0.24,
+      0.38
+    ],
+    "controls_per_epoch": 350,
+    "neighbor_positive_control_combined_aperture_nJy": {
+      "NW": 3.0302,
+      "East": 3.2555,
+      "South": 3.268
+    },
+    "astrometry_offset_search": {
+      "grid_spacing_arcsec": 0.025,
+      "radius_arcsec": 0.15,
+      "grid_positions": 113,
+      "max_uncorrected_snr": 0.884
+    },
+    "stsci_resampled_F150W_encircled_energy": {
+      "radius_50pct_arcsec": 0.051,
+      "radius_80pct_arcsec": 0.134
+    },
+    "illustrative_aperture_recovery_fraction_range": [
+      0.65,
+      0.8
+    ],
+    "predicted_line_only_aperture_nJy_range": [
+      3.575,
+      4.4
+    ],
+    "conditional_nominal_discrepancy_sigma_range": [
+      6.3,
+      7.9
+    ],
+    "is_a_formal_calibrated_exclusion_significance": false,
+    "conditional_nominal_line_flux_3sigma_limit_erg_s_cm2_for_70pct_EE": 1.2e-18,
+    "source_class_identified": false,
+    "measured_distance": false,
+    "directed_trail_detected": false
+  },
+  "jades_dr4_independent_crossmatch": {
+    "official_catalog": "https://jades.herts.ac.uk/DR4/Combined_DR4_external_v1.2.1.fits",
+    "number_of_spectroscopic_target_rows": 5190,
+    "number_of_target_centers_within_5_arcsec": 0,
+    "nearest_target_offset_arcsec": 5.282,
+    "nearest_target_spectroscopic_redshift": null,
+    "redshift_of_orphan_confirmed": false,
+    "archive_mast_1_arcsec_cone_spectroscopy_does_not_prove_active_MSA_slit_at_orphan": true
+  },
+  "physical_hypothesis_update": {
+    "continuously_bright_compact_gas": "strongly_disfavored_conditional_on_spectroscopic_flux_position_and_imaging_model",
+    "unresolved_intermittent_transient": "higher_priority_not_identified",
+    "dusty_type_IIn_Pabeta_z_0p248": "possible_but_missing_expected_Pagamma_and_unusual_temporal_shape",
+    "dusty_TDE_Halpha_z_1p438": "possible_but_narrow_line_and_interleaved_dark_epoch_need_model",
+    "variable_AGN_or_local_illuminated_knot": "possible_but_nonmonotonic_variability_disfavors_a_large_coherently_varying_cloud",
+    "instrumental_or_astrometric_spectral_issue": "still_requires_independent_full_spectral_extraction",
+    "source_distance": "unknown_without_transition_identification",
+    "gas_tail_bearing_and_extent": "unknown_no_calibrated_resolved_emission_line_map",
+    "conditional_variable_region_light_crossing_scale_pc": "R <= 0.033/(1+z) for coherent flux change within about 40 observed days"
+  },
+  "scientific_inference_rules": [
+    "Use all four interleaved October 2023 F150W epochs before claiming a constant 2023 emission line; four independent-date nondetections constrain persistence.",
+    "Do not compare total predicted 5.5 nJy with an uncorrected 0.12 arcsecond aperture without a PSF-recovery fraction.",
+    "Treat illustrative 6.3-7.9 sigma discrepancy as conditional diagnostic, NOT as finalized injected-source-calibrated significance.",
+    "A source non-detection in a 2022 image alone can be explained by onset before August 2023, whereas nondetections within October 2023 between August and November are a stronger constraint.",
+    "A photometric non-detection in October cannot by itself prove the nature, wavelength identity, or physical distance of the August/November emission line.",
+    "Positive recovery of three neighboring galaxies and no source in a 0.15 arcsecond coordinate grid disfavor trivial local sky-registration errors but do not prove perfect MOCSS astrometry.",
+    "No JADES DR4 NIRSpec target within 5 arcseconds means no spectroscopic redshift is established for the orphan or its three near-one-arcsecond neighbors by that catalogue.",
+    "Coherent month-scale variability conditionally limits the variable region's light-crossing size, not any surrounding static gas or alleged gas-trail length.",
+    "No known directed gas trail follows from source RA/Dec or from spectrograph dispersion; never invent its axis, terminal point, or distance.",
+    "The [OIII] 4960A line expected from the 16004A/5008A identification is near 15850.79A, not 15864A; re-extraction remains a priority.",
+    "An error-propagated scenario calculation must carry the 12-percent NIRSpec line-flux uncertainty and explicitly stress correlated October F150W noise; 6.3–7.9 sigma from the earlier illustrative diagnostic is NOT a defensible calibrated exclusion or a universal sensitivity bound.",
+    "The effective aperture factor includes source PSF, local annulus subtraction and blending, not merely an encircled-energy curve; empirical injection/recovery remains absent.",
+    "Do not infer PROVEN_VARIABLE or rule out constant emission before common-blank-sky covariance, PSF+annulus injection and stage-2 NIRSpec flux and astrometry have been measured.",
+    "The October 2023 cross-image covariance is now estimated from 95 matched sky apertures in four original JWST F150W SCI mosaics and their pinned SHA-256. Its fixed-weight sigma ~0.663 nJy is larger than ~0.521 nJy diagonal-only, but common astrophysical sky structure is not instrument noise."
+  ],
+  "cosmos_research_file": "domains/space/OCTOBER_2023_NIRCAM_TIME_DOMAIN_PHYSICAL_CONSTRAINT_2026-10-16.md",
+  "cosmos_receipt_files": [
+    "domains/space/NIRCAM_F150W_TIME_DOMAIN_RECEIPT_2026-10-16.json",
+    "domains/space/NIRCAM_F150W_ASTROMETRY_RECEIPT_2026-10-16.json",
+    "domains/space/JADES_DR4_MAST_COVERAGE_RECEIPT_2026-10-16.json",
+    "domains/space/NIRCAM_F150W_COVARIANCE_SENSITIVITY_2026-10-18.json",
+    "domains/space/NIRCAM_F150W_MATCHED_SKY_COVARIANCE_OBSERVED_2026-10-18.json"
+  ],
+  "latest_sensitivity_followup": {
+    "as_of_utc": "2026-10-18",
+    "reference_repository": "Hawkar-usls/Janus-Cosmos",
+    "reference_receipt": "domains/space/NIRCAM_F150W_COVARIANCE_SENSITIVITY_2026-10-18.json",
+    "reference_verifier": "tools/verify_nircam_f150w_covariance_sensitivity.py",
+    "epistemic_status": "ANALYTIC_HYPOTHESIS_SENSITIVITY_NOT_EMPIRICAL_PSF_OR_COVARIANCE",
+    "f150w_aperture_weighted_mean_njy": 0.278497167,
+    "f150w_nominal_sigma_njy": 0.520889403,
+    "published_spectral_flux_fractional_uncertainty": 0.12,
+    "modelled_f150w_total_line_prediction_njy": 5.5,
+    "propagated_spectral_prediction_sigma_njy": 0.66,
+    "conditional_effects": [
+      {
+        "effective_fraction": 0.7,
+        "pairwise_noise_correlation": 0,
+        "additional_systematic_njy": 0,
+        "conditional_z": 5.129596853
+      },
+      {
+        "effective_fraction": 0.7,
+        "pairwise_noise_correlation": 0.5,
+        "additional_systematic_njy": 0,
+        "conditional_z": 3.800845672
+      },
+      {
+        "effective_fraction": 0.7,
+        "pairwise_noise_correlation": 1,
+        "additional_systematic_njy": 0,
+        "conditional_z": 3.155372437
+      },
+      {
+        "effective_fraction": 0.5,
+        "pairwise_noise_correlation": 1,
+        "additional_systematic_njy": 0.5,
+        "conditional_z": 2.06922991
+      }
+    ],
+    "interpretation": "Previous 6.3–7.9 sigma estimate excluded the published spectral flux statistical uncertainty and assumed independent mosaics; updated conditional scenarios are materially less decisive. No final p-value or detection-exclusion significance has been measured.",
+    "injection_and_empirical_covariance_missing": true,
+    "promote_astrophysical_variability": false,
+    "promote_specific_classification": false,
+    "promote_redshift": false,
+    "promote_physical_trail": false,
+    "model_weights_mutated": false
+  },
+  "latest_measured_covariance_followup": {
+    "as_of_utc": "2026-10-18",
+    "status": "ARCHIVAL_MATCHED_SKY_COVARIANCE_MEASURED_NOT_PURE_INSTRUMENT_NOISE",
+    "cosmos_receipt": "domains/space/NIRCAM_F150W_MATCHED_SKY_COVARIANCE_OBSERVED_2026-10-18.json",
+    "cosmos_workflow_run": "https://github.com/Hawkar-usls/Janus-Cosmos/actions/runs/39141250321",
+    "empirical_matched_sky_positions": 95,
+    "previous_independent_sigma_njy": 0.5208894025194579,
+    "empirical_fixed_weight_sigma_njy": 0.662980825637632,
+    "conditional_standardized_residual_not_significance_at_fraction_0p7": 4.419758503322051,
+    "not_pure_detector_noise": true,
+    "no_PSF_injection_or_empirical_point_source_throughput": true,
+    "no_NIRSpec_stage2_flux": true,
+    "source_type_proven": false,
+    "source_redshift_measured": false,
+    "directed_trail_detected": false,
+    "world_truth": false,
+    "training_update": "EVIDENCE_CASE_ONLY_NOT_MODEL_WEIGHTS",
+    "remaining_test": "Calibrated NIRCam PSF injection with actual mosaic-specific drizzle PSF; reprocess NIRSpec line/controls 16004, 15850.793,13656.748 Angstrom with Stage 2 and measured point-source throughput."
+  }
+}

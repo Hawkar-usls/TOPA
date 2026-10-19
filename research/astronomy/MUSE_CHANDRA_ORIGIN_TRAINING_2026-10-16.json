@@ -1,0 +1,98 @@
+{
+  "schema_version": "janus_science_case_v1",
+  "case_id": "jwst-mocss-hudf-16004a-muse-dr2-chandra-20261016",
+  "as_of_utc": "2026-10-16",
+  "research_status": "unresolved_physical_identification",
+  "source": {
+    "ra_deg": 53.13127,
+    "dec_deg": -27.78908,
+    "observed_wavelength_A_vacuum": 16004.0,
+    "flux_cgs": 2.5e-18,
+    "spectroscopic_epoch": "2023-08 and 2023-11"
+  },
+  "new_public_archive_checks": {
+    "muse_hudf_dr2": {
+      "table": "J/A+A/670/A4/dr2-main",
+      "cone_radius_arcsec": 3.0,
+      "number_of_sources": 1,
+      "nearest_source": {
+        "id": 7974,
+        "catalog_ra_deg": 53.1318,
+        "catalog_dec_deg": -27.7893,
+        "separation_arcsec": 1.865,
+        "bearing_deg_east_of_north": 115.14,
+        "redshift_from_Lya": 5.98055818,
+        "redshift_error": 0.001298654,
+        "zconf": 1,
+        "zconf_max": 3,
+        "snr": 3.59216,
+        "status": "weak_low_redshift_confidence_different_position_not_orphan_redshift"
+      }
+    },
+    "chandra_7ms": {
+      "table": "J/ApJS/228/2/sources",
+      "cone_radius_arcsec": 10.0,
+      "number_of_sources": 2,
+      "sources": [
+        {
+          "ra_deg": 53.130646,
+          "dec_deg": -27.790217,
+          "separation_arcsec": 4.55,
+          "bearing_deg_east_of_north": 205.9,
+          "object_type": "AGN",
+          "spectroscopic_redshift": 0.666,
+          "orphan_association": "unconfirmed"
+        },
+        {
+          "ra_deg": 53.130445,
+          "dec_deg": -27.79112,
+          "separation_arcsec": 7.80,
+          "bearing_deg_east_of_north": 199.7,
+          "object_type": "AGN",
+          "adopted_photometric_redshift": 3.240,
+          "orphan_association": "unconfirmed"
+        }
+      ]
+    },
+    "muse_spectral_slice": {
+      "dataset": "MUSE UDF-MOSAIC 10-hour mosaic, 2014-2015",
+      "fits_url": "https://amused.univ-lyon1.fr/data/UDF/HUDF/download/DATACUBE_UDF-MOSAIC.fits",
+      "http_206_multipart_raw_sha256": "4c269e53562e4a7d851b91e21d757cf83cde5ebe11ea43d8a23a15e980de2424",
+      "raw_bytes": 5824700,
+      "original_spectral_channels_0indexed_inclusive": [2740, 2767],
+      "original_image_rows_0indexed_inclusive": [108, 162],
+      "data_type": "float32 big endian",
+      "wcs_source_pixel_xy0": [803.27710622, 134.34406148],
+      "if_Pabeta_z": 0.24821,
+      "expected_Halpha_air_A": 8191.7273351,
+      "orphan_aperture_window_flux_cgs_uncorrected": 3.368e-19,
+      "blank_control_count": 17,
+      "blank_control_median_flux_cgs": 1.4847757965326307e-19,
+      "blank_control_MAD_sigma_cgs": 2.0462085861593482e-19,
+      "orphan_excess_in_control_MAD_units": 0.9201,
+      "detection_claim": false,
+      "model_test": "no coherent strong Halpha counterpart detected at the MUSE epoch; a persistent unobscured case-B emitter at unchanged JWST Pa-beta flux is unsupported",
+      "critical_temporal_caveat": "MUSE sampled sky roughly eight years BEFORE 2023 JWST; no elimination of a new 2023 transient, recent illumination, or strong dust extinction",
+      "formal_upper_limit_calibrated": false,
+      "source_class_confirmed": false,
+      "trace_detected": false
+    }
+  },
+  "conditional_luminosity_distances_flat_LCDM_H0_70_Om_0_3": [
+    {"hypothesis": "H_I_Pa_beta", "z": 0.24821, "d_l_Gpc": 1.25},
+    {"hypothesis": "H_alpha", "z": 1.43792, "d_l_Gpc": 10.355},
+    {"hypothesis": "O_III_5008", "z": 2.19553, "d_l_Gpc": 17.416},
+    {"hypothesis": "Lyman_alpha", "z": 12.16476, "d_l_Gpc": 129.608}
+  ],
+  "scientific_inference_rules": [
+    "A redshift measured for a neighbor is NOT an orphan line redshift without spatial and transition evidence.",
+    "Do not claim association with a detected X-ray AGN across 4.55 or 7.80 arcseconds without matching 3D redshifts.",
+    "Do not claim an extended gas trail from one emission line at one sky position; 2D spectrograph dispersion is NOT physical gas propagation.",
+    "Separate diagnostic sky-local-MAD units from calibrated Gaussian detection significance.",
+    "A 2014-2015 MUSE line absence does NOT exclude a 2023 transient or recently illuminated gas.",
+    "Conditional cosmological luminosity distances are NOT measured distances to an unidentified 16004 Angstrom line.",
+    "Do not mark physical source, measured distance, or directed trail as solved without positive discriminating evidence."
+  ],
+  "cosmos_research_file": "domains/space/MUSE_ARCHIVAL_CROSSMATCH_AND_HALPHA_RECHECK_2026-10-16.md",
+  "cosmos_receipt_file": "domains/space/MUSE_DR2_HALPHA_SLICE_RECEIPT_2026-10-16.json"
+}

@@ -1,0 +1,259 @@
+name: JANUS TOPA JWST Strict-Science Training Gate
+
+on:
+  pull_request:
+    paths:
+      - 'research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json'
+      - 'research/astronomy/JWST_MOCSS_HUDF_MAST_SPATIAL_TOPA_2026-10-16.json'
+      - 'research/astronomy/MOCSS_16_EXPOSURE_GEOMETRY_TRAINING_2026-10-16.json'
+      - 'research/astronomy/MOCSS_16_EXPOSURE_SKY_WCS_RATE_TRAINING_2026-10-16.json'
+      - 'research/astronomy/NIRCAM_INTERLEAVED_VARIABILITY_TRAINING_2026-10-16.json'
+      - '.github/workflows/jwst-mocss-topa-training.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  topa-evidence-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate source, controls, and training contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/astronomy/JWST_MOCSS_HUDF_SINGLE_LINE_TOPA_2026-10-16.json')
+          x = json.loads(p.read_text(encoding='utf-8'))
+          assert x['raw_social_claim']['provenance_channel'] == 'HEARSAY_REPORT'
+          assert x['status'] == 'SOURCE_BOUND_FACT_WITH_UNRESOLVED_PHYSICAL_IDENTITY'
+          assert x['world_truth'] is False
+          assert x['training_policy']['direct_gradient_training_eligible'] is False
+          assert x['training_policy']['automatic_claim_promotion'] is False
+          assert len(x['source_bound_claims']) >= 6
+          assert len(x['alternative_hypotheses']) >= 4
+          assert len(x['training_examples']) >= 6
+          assert all(y['status'] == 'HYPOTHESIS_ONLY' for y in x['alternative_hypotheses'])
+          assert x['reporting_audit']['status'] == 'OPEN_REQUIRES_METHOD_MATCH'
+          assert x['epistemic_gates'][2]['status'] == 'INSUFFICIENT_DATA'
+          assert x['epistemic_gates'][4]['status'] == 'UNRESOLVED'
+
+          y = json.loads(Path('research/astronomy/MOCSS_16_EXPOSURE_GEOMETRY_TRAINING_2026-10-16.json').read_text())
+          assert y['world_truth'] is False
+          gates = y['new_receipt_gates']
+          assert gates['archive_16_long_exposures_identified'] == 'PASS'
+          assert gates['detector_32_primary_headers_inspected'] == 'PASS'
+          assert gates['msa_16_ids_confirmed_in_two_original_archive_tables'] == 'PASS'
+          assert gates['actual_OIII_4960_line_detection'] == 'NOT_PERFORMED'
+          assert gates['all_16_full_rate_sci_arrays_reduced'] == 'NOT_PERFORMED'
+          assert gates['independent_16004_A_line_redetection'] == 'NOT_PERFORMED'
+          assert gates['independent_spatial_extent'] == 'NOT_PERFORMED'
+          assert gates['source_identity'] == 'UNRESOLVED'
+          assert len(y['physics_observations']) >= 4
+          assert len(y['training_antipatterns']) >= 5
+          assert y['policy']['proof_before_promotion']
+          assert y['policy']['do_not_train_model_weights_from_single_receipt']
+          print('PASS: source-bound TOPA training and 16-exposure MSA association gates')
+          print('INDEPENDENT_MAST_HEADER_AND_MSA_REPLAY=VERIFIED')
+          print('INDEPENDENT_SPECTRAL_SKY_MAP=NOT_EXECUTED')
+          print('SOURCE_IDENTITY=UNRESOLVED')
+
+          z = json.loads(Path('research/astronomy/MOCSS_16_EXPOSURE_SKY_WCS_RATE_TRAINING_2026-10-16.json').read_text())
+          assert z['world_truth'] is False
+          assert z['promotion_status'] == 'RESEARCH_ONLY_NOT_AUTOMATIC_MODEL_TRAINING'
+          a = z['independent_replay']
+          assert a['original_rate_files'] == 32 and a['exposures'] == 16
+          assert a['independent_sky_registration_done'] is True
+          assert a['calibrated_flux_limits_done'] is False
+          assert a['physical_extent_measured'] is False
+          assert a['source_identification'] == 'unknown'
+          assert z['hypothesis_line_windows_angstrom']['OIII_4960_if_5008_primary'] == 15850.7933
+          assert z['sky_field']['distance_of_emission_path'] is None
+          assert z['sky_field']['direction_of_physical_propagation'] is None
+          assert len(z['guarded_training_cases']) >= 5
+          assert 'NO_FORMAL_SIGNIFICANCE_FROM_UNCALIBRATED_RATE_CONTRAST' in z['release_gates']
+          q = z['stage2_three_line_followup']
+          assert q['script_selftest_only'] is True
+          assert q['independent_calibrated_flux_16004_per_group_completed'] is False
+          assert q['oiii_4960_15850p793_measured'] is False
+          assert q['pa_gamma_13656p748_measured'] is False
+          assert q['source_identity_or_redshift_proven'] is False
+          assert q['training_status'] == 'RESEARCH_ONLY_NO_WEIGHTS_CHANGED'
+          assert 'NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST' in z['release_gates']
+          falsegreen = z['stage2_failure_audit_2026_10_18']
+          assert falsegreen['old_green_was_scientifically_false_positive'] is True
+          assert falsegreen['old_workflow_conclusion'] == 'success'
+          assert falsegreen['calibrated_mocss_real_source_x1d_extracted'] is False
+          assert falsegreen['scientific_claim_promotion'] is False
+          assert falsegreen['virtual_background_shutter_is_source_model'] is False
+          assert 'NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION' in z['release_gates']
+          geo = z['source_aware_three_shutter_followup_2026_10_18']
+          assert geo['original_rate_and_msa_sha256_checked'] is True
+          assert geo['source_inserted_in_test_copy_not_original_MPT'] is True
+          assert geo['source_detected_in_calibrated_2D'] is False
+          assert geo['actual_source_throughput_calibrated'] is False
+          assert geo['real_four_group_x1d_validated'] is False
+          assert geo['confirmed_companion_lines'] is False
+          assert geo['model_weights_changed'] is False
+          assert geo['source_redshift'] is None and geo['gas_trail'] is None
+          assert sorted(geo['groups']) == ['B','D']
+          assert 'NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA' in z['release_gates']
+          x1d = z['diagnostic_x1d_2026_10_19']
+          assert x1d['group_B_and_D_each_x1d_created'] is True
+          assert x1d['group_A_and_C_verified_x1d'] is False
+          assert all(x1d[k] is False for k in (
+              'source_in_original_mpt','all_four_group_stack_photometry_done',
+              'open_shutter_background_and_throughput_validated',
+              'calibrated_astrophysical_line_fluxes','companion_lines_confirmed',
+              'classification_or_redshift_proven','model_weights_updated'))
+          assert 'NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D' in z['release_gates']
+          correction = z['dispersion_axis_correction_and_four_x1d_nulls_2026_10_19']
+          assert correction['physical_three_dispersion_adjacent_rows_geometry_code_pass'] is True
+          assert correction['old_three_neighboring_columns_valid_for_MOCSS_throughput'] is False
+          assert correction['off_line_control_spikes_observed'] is True
+          assert correction['anomalous_chi2_C_16004_approx'] > 1000
+          assert correction['strong_formal_peaks_not_science_sigma'] is True
+          assert correction['one_dimensional_mismatched_gaussian_injection_is_NOT_physical_msa_transmission'] is True
+          assert correction['pipeline_true_three_row_source_x1d_verified'] is False
+          for k in ('real_full_row_background_subtraction_verified','all_16_exposure_mocss_calibrated_stack_done',
+                    'source_flux_16004_calibrated','secondary_oiii_15850_calibrated',
+                    'secondary_pa_gamma_13656_calibrated','redshift_proven','model_weights_changed'):
+              assert correction[k] is False
+          assert 'NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO' in z['release_gates']
+          print('MOCSS_THREE_COLUMN_DIAGNOSTIC_X1D=PHYSICAL_AXIS_WRONG')
+          print('MOCSS_CORRECT_THREE_ROW_GEOMETRY=TESTED')
+          latest = z['correct_three_dispersion_row_empirical_controls_2026_10_19']
+          assert latest['all_four_groups_correct_diagnostic_geometry_x1d'] is True
+          assert latest['B_D_and_A_C_3row_pipeline_created_x1d'] is True
+          assert latest['C_primary_reduced_chi2'] > 1000
+          assert latest['C_primary_fraction_neighbor_control_formal_abs_ge_3'] > 0.75
+          for k in ('all_four_groups_full_four_dither_stacks', 'source_MPT_is_original',
+                    'true_sky_row_background_subtracted',
+                    'monochromatic_STPSF_shutter_loss_measured',
+                    'detector_space_physical_injections_done',
+                    'correct_three_row_source_x1d_physical_significance_valid',
+                    'model_weights_changed'):
+              assert latest[k] is False
+          for k in ('secondary_OIII_detected','Pa_gamma_detected','source_type','redshift'):
+              assert latest[k] is None
+          assert 'NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES' in z['release_gates']
+          print('CORRECT_MSA_THREE_ROW_DIAGNOSTIC_X1D=FOUR_GROUPS_SOFTWARE_PASS')
+          optics = z['stpsf_3lambda_optical_2026_10_19']
+          assert optics['status'].startswith('OFFICIAL_STPSF_2p1p0')
+          assert len(optics['waves_A']) == len(optics['optical_finite_fov_center_loss_fractions']) == 3
+          assert all(0 < f < .2 for f in optics['optical_finite_fov_center_loss_fractions'])
+          assert optics['this_is_not_directly_comparable_to_authors_throughput'] is True
+          assert optics['STPSF_simulated_dispersed_detector_source'] is False
+          assert optics['full_16_exposure_4_science_stacks_calibrated'] is False
+          assert optics['realistic_source_photon_conversion_and_photom_verified'] is False
+          assert optics['model_weights_changed'] is False
+          assert optics['line_identity'] is None and optics['redshift'] is None
+          assert 'NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO' in z['release_gates']
+          actual16 = z['mocss_full_16_native_2d_injections_2026_10_19']
+          assert actual16['N_original_rate'] == 16 and actual16['N_original_msa'] == 2
+          assert actual16['source_original_rate_and_MSA_SHA_verified'] is True
+          assert actual16['source_pixel_native_original_RATE_2D_injection_executed'] is True
+          assert actual16['source_DN_per_sec_parametric_Gaussian_not_STPSF'] is True
+          assert actual16['N_injection_recovery_checks'] == 24
+          assert actual16['N_4_dither_stacks'] == 4
+          assert actual16['N_real_wavelength_windows_per_stack'] == 3
+          for key in ('scientific_background_illumination_open_shutter_projection_done',
+                      'full_2D_dispersion_and_astrophysical_calwebb_spec2_flux',
+                      'physical_source_focused_PSF_detector_model_injected',
+                      'absolute_line_flux_physical_cgs_measured',
+                      'secondary_lines_oiii_or_pa_gamma_confirmed','model_weights_changed'):
+              assert actual16[key] is False
+          for key in ('source_class','redshift','directed_trail'):
+              assert actual16[key] is None
+          assert 'NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION' in z['release_gates']
+          print('16_REAL_RATE_4_DITHER_POINT_WINDOWS=PASS_INSTRUMENT_DIAGNOSTIC')
+          print('24_NATIVE_DETECTOR_RATE_INJECTIONS=PASS_GAUSSIAN_ONLY')
+          msa = z['original_msa_exact_16_exposure_plane_2026_10_19']
+          assert msa['original_SHA_RATE_count'] == 16
+          assert msa['original_SHA_MSA_count'] == 2
+          assert msa['num_binary_open_shutter_quadrant_masks'] == 64
+          assert msa['physical_mask_shape_per_quadrant'] == [365,171]
+          assert msa['MSA_original_id_AND_PATT_NUM_exactly_matched'] is True
+          assert msa['all_original_RATE_PATT_NUM_equal_one'] is True
+          assert msa['near_sky_source_center_marked_open_all16'] is True
+          assert msa['three_adjacent_dispersion_rows_marked_open_all_48'] is True
+          assert msa['this_is_only_MSA_plane_binary_mask_not_detector_illumination'] is True
+          for k in ('full_spectral_CRDS_WCS_to_detector_pixel_for_all_shutters',
+                    'full_background_with_shutter_leakage_and_sky_source_mask',
+                    'exact_author_4stack_mocss_calibration',
+                    'physical_dispersed_PSF_detector_injection','model_weights_changed'):
+              assert msa[k] is False
+          for k in ('science_flux_cgs','source_identity','redshift','directional_gas_trail'):
+              assert msa[k] is None
+          assert 'NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK' in z['release_gates']
+          print('ORIGINAL_MSA_CONFIGURATION=64_EXACT_SHUTTER_PLANE_MASKS_PASS')
+          wcs16 = z['original_msa_crds_gwcs_all16_2026_10_19']
+          assert wcs16['upstream_run_id'] == 39243558142
+          assert wcs16['num_real_rate_SHA_checked'] == 16
+          assert wcs16['num_original_open_MSA_shutter_slit_centers'] == 48
+          assert wcs16['num_wave_center_wcs_coordinates_on_detector'] == 144
+          assert wcs16['used_original_open_shutter_sites'] is True
+          assert wcs16['test_MSA_background_slit_subsets_not_real_MPT_source'] is True
+          for key in ('all_open_shutter_pixel_illumination_weights_generated',
+                      'physical_dispersed_STPSF_plus_bar_shutter_transmission',
+                      'sky_throughput_leakage_corrected','author_complete_stage2_four_group_stacks',
+                      'model_weights_changed'):
+              assert wcs16[key] is False
+          for key in ('absolute_flux16004_cgs','OIII_15850_detection',
+                      'Pa_gamma_13656_detection','source_class','redshift','gas_trail'):
+              assert wcs16[key] is None
+          assert 'NO_LINE_DETECTION_FROM_CRDS_144_WCS_GEOMETRIC_CENTERS_ONLY' in z['release_gates']
+          print('ORIGINAL_CRDS_ALL16_OPEN_NEIGHBOR_SPECTRAL_GEOMETRY=144_ON_DETECTOR_PASS')
+          print('PHYSICAL_ILLUMINATION_BACKGROUND_AND_LINE_FLUX=OPEN')
+          print('DISPERSED_ILLUMINATION_PIXEL_MAP=NOT_YET_COMPUTED')
+          print('PHYSICAL_MOCSS_LINE_FLUX_AND_COMPANION_RED_SHIFT=NOT_MEASURED')
+          print('STPSF_MONO_PSF_OPTICAL_MASK_RATIO=DIAGNOSTIC_ONLY')
+          print('THREE_LINE_SCIENCE_FLUX=BLOCKED_BY_BACKGROUND_AND_THROUGHPUT')
+          print('CALIBRATED_A_B_C_D_EMISSION_LINE_FLUX=OPEN')
+          print('B_D_DIAGNOSTIC_X1D=CREATED_BUT_NOT_ASTROPHYSICAL_FLUX')
+          print('SOURCE_AWARE_3_SHUTTER=GEOMETRY_ONLY_NO_SCIENCE_X1D')
+          print('STAGE2_PILOT_OLD_GREEN=FALSE_POSITIVE_NOT_SCIENCE')
+          print('NIRSPEC_THREE_LINE_CALIBRATION=AWAITING_REAL_X1D')
+          real = z['real_detector_injection_followup_2026_10_18']
+          assert real['status'] == 'ORIGINAL_JWST_RATE_FITS_SHA_VERIFIED_GAUSSIAN_INJECTION_LINEARITY_ONLY'
+          assert real['flux_calibrated'] is False
+          assert real['real_mocss_multi_dither_3_shutter_throughput'] is False
+          assert real['robust_astro_line_significance'] is False
+          assert real['model_weights_updated'] is False
+          assert real['source_identity'] is None and real['redshift'] is None and real['gas_trail'] is None
+          assert 'NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION' in z['release_gates']
+          print('REAL_NIRSPEC_RATE_INJECTION=ALGORITHM_LINEARITY_ONLY_NOT_SCIENCE_FLUX')
+          print('INDEPENDENT_32_RATE_WCS_SKY_PROJECTION=RESEARCH_RECEIPT')
+          print('CALIBRATED_SPECTRAL_LINE_LIMITS=NOT_AVAILABLE')
+          print('MODEL_WEIGHTS_UNCHANGED=true')
+
+          sensitivity = json.loads(Path('research/astronomy/NIRCAM_INTERLEAVED_VARIABILITY_TRAINING_2026-10-16.json').read_text())
+          followup = sensitivity['latest_sensitivity_followup']
+          assert followup['as_of_utc'] == '2026-10-18'
+          assert abs(followup['propagated_spectral_prediction_sigma_njy'] - 0.66) < 1e-12
+          assert followup['injection_and_empirical_covariance_missing'] is True
+          assert all(followup[k] is False for k in ('promote_astrophysical_variability','promote_specific_classification','promote_redshift','promote_physical_trail','model_weights_mutated'))
+          effects = followup['conditional_effects']
+          assert len(effects) >= 4
+          assert any(x['conditional_z'] < 2.5 for x in effects)
+          assert any(x['conditional_z'] > 5 for x in effects)
+          assert any('NOT a defensible calibrated exclusion' in r for r in sensitivity['scientific_inference_rules'])
+          measured = sensitivity['latest_measured_covariance_followup']
+          assert measured['status'] == 'ARCHIVAL_MATCHED_SKY_COVARIANCE_MEASURED_NOT_PURE_INSTRUMENT_NOISE'
+          assert measured['empirical_matched_sky_positions'] >= 90
+          assert measured['empirical_fixed_weight_sigma_njy'] > measured['previous_independent_sigma_njy']
+          assert measured['not_pure_detector_noise'] is True
+          assert measured['no_PSF_injection_or_empirical_point_source_throughput'] is True
+          assert measured['no_NIRSpec_stage2_flux'] is True
+          assert all(measured[k] is False for k in ('source_type_proven','source_redshift_measured','directed_trail_detected','world_truth'))
+          assert measured['training_update'] == 'EVIDENCE_CASE_ONLY_NOT_MODEL_WEIGHTS'
+          print('F150W_MATCHED_SKY_COVARIANCE=OBSERVED_BUT_NOT_PURE_NOISE')
+          print('PSF_INJECTION=NOT_DONE')
+          print('F150W_COVARIANCE_SENSITIVITY=SCENARIOS_ONLY')
+          print('PHYSICAL_VARIABILITY=UNCONFIRMED')
+          print('MODEL_WEIGHTS_UNCHANGED=true')
+          PY

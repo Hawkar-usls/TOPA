@@ -1,0 +1,486 @@
+{
+  "schema": "janus-topa-hudf-wcs-grounded-evidence-v1",
+  "date_utc": "2026-10-16",
+  "training_mode": "evidence_artifact_only_no_model_weights_changed",
+  "world_truth": false,
+  "promotion_status": "RESEARCH_ONLY_NOT_AUTOMATIC_MODEL_TRAINING",
+  "case": "JWST GO-3290 MOCSS HUDF, unexplained 16004-A emission line",
+  "source_of_truth": {
+    "published": "https://arxiv.org/html/2610.12553v1",
+    "archive": "MAST JWST GO-3290, DOI 10.17909/tct8-jr92",
+    "cosmos_pr": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "cosmos_compact_machine_receipt": "domains/space/MOCSS_16_SKY_REGISTERED_RATE_RECEIPT_2026-10-16.json",
+    "cosmos_analysis": "domains/space/MOCSS_16_SKY_REGISTERED_RATE_RECHECK_2026-10-16.md"
+  },
+  "independent_replay": {
+    "original_rate_files": 32,
+    "original_msa_files": 2,
+    "exposures": 16,
+    "pipeline_version": "1.19.1",
+    "crds_context": "jwst_1413.pmap",
+    "detector_by_group": {
+      "A": "NRS2",
+      "B": "NRS2",
+      "C": "NRS1",
+      "D": "NRS1"
+    },
+    "original_data_modified": false,
+    "raw_rate_only": true,
+    "independent_sky_registration_done": true,
+    "calibrated_flux_limits_done": false,
+    "physical_extent_measured": false,
+    "source_identification": "unknown"
+  },
+  "hypothesis_line_windows_angstrom": {
+    "detected_candidate": 16004,
+    "OIII_4960_if_5008_primary": 15850.7933,
+    "Pa_gamma_if_Pa_beta_primary": 13656.7483,
+    "published_OIII_partner_location": 15864,
+    "warning": "Published non-detection at 15864A cannot be treated as an injected-source-calibrated 3sigma constraint at 15850.8A."
+  },
+  "provisional_rate_contrast_not_snr": {
+    "unit": "local matched-filter residual over uncalibrated detector-column MAD; NOT Gaussian sigma",
+    "smooth_detector_background_robustness": "31/41/61-pixel median subtraction along dispersion; major instrumental gradient in August",
+    "groups": {
+      "A": {
+        "16004A_range": [
+          2.64,
+          3.28
+        ],
+        "15850p8A_41px": -0.44,
+        "Pa_gamma_41px": -0.62
+      },
+      "B": {
+        "16004A_range": [
+          2.91,
+          3.82
+        ],
+        "15850p8A_41px": -0.23,
+        "Pa_gamma_41px": 2.04
+      },
+      "C": {
+        "16004A_range": [
+          0.38,
+          1.02
+        ],
+        "15850p8A_41px": 0.02,
+        "Pa_gamma_41px": 1.59
+      },
+      "D": {
+        "16004A_range": [
+          2.23,
+          2.49
+        ],
+        "15850p8A_41px": -0.19,
+        "Pa_gamma_41px": 1.62
+      }
+    },
+    "positive_interpretation": "Pixel-space feature repeats near the WCS-predicted line in A, B and D under several high-pass scales.",
+    "negative_interpretation": "The data do not justify a 3-sigma detection, upper limit, Pa-gamma claim, transient variability or source identity."
+  },
+  "sky_field": {
+    "field_arcsec": [
+      3,
+      3
+    ],
+    "two_dispersion_orientations_degrees_apart": 89,
+    "candidate_ra_dec_deg": [
+      53.13127,
+      -27.78908
+    ],
+    "neighbor_jades_offsets_east_north_arcsec": {
+      "NW": [
+        -0.3344,
+        0.54
+      ],
+      "S": [
+        0.0987,
+        -1.0332
+      ],
+      "E": [
+        1,
+        -0.09
+      ]
+    },
+    "candidate_raw_map_relative_units": 2.284,
+    "companion_control_relative_units": -0.523,
+    "candidate_map_fraction_above": 0.051,
+    "why_not_p_value": "Multiple correlated spatial cells; source chosen from prior publication; detector high-pass and background unvalidated",
+    "other_sources_same_line_confirmed": false,
+    "direction_of_physical_propagation": null,
+    "distance_of_emission_path": null
+  },
+  "guarded_training_cases": [
+    {
+      "question": "Does an emission-like 16004A spot repeating in raw WCS coadds prove the source is a TDE or type IIn SN?",
+      "answer": "No. It is a reproducibility hint subject to detector flat/background and selection bias. The source type and variability remain unresolved."
+    },
+    {
+      "question": "Did an independent analysis test the oxygen companion at 15850.8A?",
+      "answer": "Yes: geometry-projected raw-rate contrasts and field controls were tested. No science-grade calibrated flux upper limit was derived."
+    },
+    {
+      "question": "Does weak Pa-gamma contrast in B/C/D confirm redshifted Pa-beta?",
+      "answer": "No. Controls are empirical and residuals are not independent significances; A is negative. Perform complete stage-2 reduction and injection limits."
+    },
+    {
+      "question": "Does the 3-arcsecond sky map establish a gas filament or directional beam?",
+      "answer": "No. It only provides provisional spatial contrasts; there is no repeatable same-wavelength signal tracing the neighboring galaxy centers, and no measured physical length."
+    },
+    {
+      "question": "What would make the AGN-illuminated-cloud hypothesis testable?",
+      "answer": "NIRSpec IFU calibrated 16004A and companion line maps, velocity field, source and JADES neighbor alignment, with a mosaic if emission extends beyond the 3x3 arcsecond field."
+    },
+    {
+      "question": "Does green GitHub Actions on the old Stage2 pilot prove independent MOCSS x1d flux was measured?",
+      "answer": "No: prior successful workflow saved an AttributeError from wrongly using .meta on a list returned by jwst Spec2Pipeline. The original MSA test slit was designated as background, not an astrophysical source; calibrated source x1d remains unverified."
+    },
+    {
+      "question": "Does a 42-sigma-like formal x1d coefficient with wrong-axis three-column MSA prove the HUDF orphan line in group C?",
+      "answer": "No. The source MSA was synthetic; dispersion-adjacent shutters require three ROWS, not three columns; chi-square per degree-of-freedom ~1054 in C at 16004 Angstrom, and neighboring off-target templates also create large formal ratios. Science-grade full-row sky, 4-dither stacks, physical PSF-bar throughput, detector-level injections are absent."
+    }
+  ],
+  "release_gates": [
+    "NO_SOURCE_IDENTITY",
+    "NO_ASTROPHYSICAL_TRAIL_DISTANCE",
+    "NO_FORMAL_SIGNIFICANCE_FROM_UNCALIBRATED_RATE_CONTRAST",
+    "NO_FLUX_UPPER_LIMIT_FROM_UNCORRECTED_RAW_WINDOWS",
+    "NO_UNVERIFIED_PER_EXPOSURE_VARIABILITY",
+    "NO_MODEL_WEIGHTS_MUTATION",
+    "NO_PROMOTION_FROM_SYNTHETIC_CALIBRATED_X1D_FITTER_SELFTEST",
+    "NO_ASTROPHYSICAL_CALIBRATION_FROM_MATCHED_GAUSSIAN_RATE_INJECTION",
+    "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION",
+    "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA",
+    "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D",
+    "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO",
+    "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES",
+    "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO",
+    "NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION",
+    "NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK",
+    "NO_LINE_DETECTION_FROM_CRDS_144_WCS_GEOMETRIC_CENTERS_ONLY"
+  ],
+  "stage2_three_line_followup": {
+    "as_of_utc": "2026-10-18",
+    "source": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "cosmos_gate": "domains/space/MOCSS_THREE_LINE_CALIBRATION_GATE_2026-10-18.json",
+    "analysis_script": "tools/fit_mocss_calibrated_three_lines.py",
+    "script_selftest_only": true,
+    "independent_calibrated_flux_16004_per_group_completed": false,
+    "oiii_4960_15850p793_measured": false,
+    "pa_gamma_13656p748_measured": false,
+    "source_identity_or_redshift_proven": false,
+    "required_pipeline_reference": "jwst 1.19.1, CRDS jwst_1413.pmap, MOCSS-specific open-shutter calibration",
+    "published_author_group_flux_1e18_cgs": {
+      "A": [
+        2.3,
+        0.5
+      ],
+      "B": [
+        3.5,
+        0.6
+      ],
+      "C": [
+        2.9,
+        0.7
+      ],
+      "D": [
+        2.9,
+        1.2
+      ]
+    },
+    "hypothesis_fluxes_not_observed": {
+      "OIII_4960_if_primary_OIII_5008_cgs": 8.333333333333334e-19,
+      "Pa_gamma_if_primary_Pa_beta_CaseB_cgs": 1.5625e-18
+    },
+    "science_rule": "Source class and distance cannot be promoted from predicted lines, high-pass RATE contrasts or synthetic fitter self-tests. Require pinned real x1d inputs with calibrated independent spectral extraction and injection-recovery.",
+    "training_status": "RESEARCH_ONLY_NO_WEIGHTS_CHANGED"
+  },
+  "real_detector_injection_followup_2026_10_18": {
+    "status": "ORIGINAL_JWST_RATE_FITS_SHA_VERIFIED_GAUSSIAN_INJECTION_LINEARITY_ONLY",
+    "cosmos_receipt": "domains/space/MOCSS_THREE_LINE_REAL_RATE_INJECTION_2026-10-18.json",
+    "cosmos_action_run": 39143330148,
+    "exposures_by_group": {
+      "A": 1,
+      "B": 8,
+      "C": 10,
+      "D": 13
+    },
+    "tested_wavelengths_angstrom": [
+      16004,
+      15850.7933,
+      13656.7483
+    ],
+    "template_detector_sigma_x_y": [
+      1.15,
+      1.3
+    ],
+    "injected_peak_dn_per_s": [
+      0.01,
+      0.04,
+      0.12
+    ],
+    "unit_gain_injection_response": "ALGORITHMIC_TAUTOLOGY_FROM_MATCHED_SYNTHETIC_TEMPLATE",
+    "flux_calibrated": false,
+    "real_mocss_multi_dither_3_shutter_throughput": false,
+    "robust_astro_line_significance": false,
+    "source_identity": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_updated": false,
+    "source_of_truth": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31"
+  },
+  "stage2_failure_audit_2026_10_18": {
+    "status": "FALSE_GREEN_STAGE2_PILOT_DID_NOT_MEASURE_SCIENCE_FLUX",
+    "cosmos_receipt": "domains/space/MOCSS_STAGE2_LIST_RETURN_FAILURE_AUDIT_2026-10-18.json",
+    "prior_run_id": 39143330154,
+    "prior_run_artifact_id": 12142533598,
+    "model_returns": "Spec2Pipeline.process returns list[JWSTDataModel] under official jwst 1.19.1; old wrapper assumed .meta on list",
+    "old_exception": "AttributeError: 'list' object has no attribute 'meta'",
+    "old_workflow_conclusion": "success",
+    "old_green_was_scientifically_false_positive": true,
+    "repair_commit": "15c717e85c9711e3061cbd6db4aa3862d2012cce",
+    "new_run_id": 39150480150,
+    "new_run_accepted_flux": null,
+    "virtual_background_shutter_is_source_model": false,
+    "official_msa_source_metadata_needed": true,
+    "calibrated_mocss_real_source_x1d_extracted": false,
+    "scientific_claim_promotion": false
+  },
+  "source_aware_three_shutter_followup_2026_10_18": {
+    "status": "ARCHIVE_PINNED_B_AND_D_GEOMETRY_SOURCE_INFO_TEST_COPIES_PASS_NO_ASTROPHYSICAL_X1D",
+    "cosmos_research": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "centered_geometry_receipt": "domains/space/MOCSS_THREE_SHUTTER_SOURCE_AWARE_GEOMETRY_2026-10-18.json",
+    "wcs_position_geometry_receipt": "domains/space/MOCSS_TWO_PA_OFFCENTER_SOURCE_INFO_2026-10-18.json",
+    "centered_geometry_run_id": 39159440762,
+    "wcs_position_geometry_run_id": 39159808143,
+    "groups": {
+      "B": {
+        "exposure_index": 8,
+        "detector": "NRS2",
+        "shutter_quad": 2,
+        "row": 165,
+        "columns": [
+          92,
+          93,
+          94
+        ],
+        "source_fraction_xy": [
+          0.6854857284214204,
+          0.7574539661709843
+        ]
+      },
+      "D": {
+        "exposure_index": 13,
+        "detector": "NRS1",
+        "shutter_quad": 4,
+        "row": 246,
+        "columns": [
+          106,
+          107,
+          108
+        ],
+        "source_fraction_xy": [
+          0.2781984438413271,
+          0.3903103215248744
+        ]
+      }
+    },
+    "original_rate_and_msa_sha256_checked": true,
+    "source_inserted_in_test_copy_not_original_MPT": true,
+    "source_detected_in_calibrated_2D": false,
+    "actual_source_throughput_calibrated": false,
+    "real_four_group_x1d_validated": false,
+    "confirmed_companion_lines": false,
+    "source_redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "scientific_rule": "Synthetic SOURCE_INFO geometry is a diagnostic of JWST slit metadata compatibility. It cannot create astrophysical photons, prove a 16004 Å emission source or provide a science-grade spectral flux. Only fully calibrated four-group custom-background 3-shutter extractions and realistic injection recovery can promote that."
+  },
+  "diagnostic_x1d_2026_10_19": {
+    "status": "TWO_REAL_ARCHIVE_GROUPS_B_D_DIAGNOSTIC_X1D_PASS_NOT_ASTROPHYSICAL_SPECTROPHOTOMETRY",
+    "cosmos_receipt": "domains/space/MOCSS_BD_DIAGNOSTIC_X1D_SUCCESS_2026-10-19.json",
+    "group_B_and_D_each_x1d_created": true,
+    "group_A_and_C_verified_x1d": false,
+    "source_in_original_mpt": false,
+    "source_info_synthetic": true,
+    "all_four_group_stack_photometry_done": false,
+    "open_shutter_background_and_throughput_validated": false,
+    "calibrated_astrophysical_line_fluxes": false,
+    "companion_lines_confirmed": false,
+    "classification_or_redshift_proven": false,
+    "model_weights_updated": false,
+    "rule": "Instrument pipeline creates a diagnostic 1D spectrum from an artificially source-labelled MSA. That is a software-compatibility observation, not a source detection, physically valid flux, line limit or redshift."
+  },
+  "dispersion_axis_correction_and_four_x1d_nulls_2026_10_19": {
+    "status": "PRIOR_THREE_COLUMN_TEST_NOT_VALID_MOCSS_THROUGHPUT__THREE_ROW_ARCHIVAL_GEOMETRY_PASS__OFFLINE_X1D_SYSTEMATICS_OBSERVED",
+    "cosmos_corrected_physical_MSA_geometry": "domains/space/MOCSS_FOUR_GROUP_CORRECT_ROW_AXIS_GEOMETRY_2026-10-19.json",
+    "cosmos_axis_correction": "domains/space/MOCSS_DISPERSION_THREE_ROW_CORRECTION_2026-10-19.json",
+    "cosmos_real_x1d_diagnostic_nulls": "domains/space/MOCSS_FOUR_X1D_OFFLINE_NULL_STRESS_2026-10-19.json",
+    "original_rate_SHA_and_MSA_test_geometry_verified_groups": "ABCD",
+    "physical_three_dispersion_adjacent_rows_geometry_code_pass": true,
+    "old_three_neighboring_columns_valid_for_MOCSS_throughput": false,
+    "empirical_x1d_null_run_id": 39223778656,
+    "old_x1d_source_info_is_synthetic": true,
+    "off_line_control_spikes_observed": true,
+    "anomalous_chi2_C_16004_approx": 1054.47,
+    "strong_formal_peaks_not_science_sigma": true,
+    "one_dimensional_mismatched_gaussian_injection_is_NOT_physical_msa_transmission": true,
+    "pipeline_true_three_row_source_x1d_verified": false,
+    "real_full_row_background_subtraction_verified": false,
+    "all_16_exposure_mocss_calibrated_stack_done": false,
+    "source_flux_16004_calibrated": false,
+    "secondary_oiii_15850_calibrated": false,
+    "secondary_pa_gamma_13656_calibrated": false,
+    "redshift_proven": false,
+    "model_weights_changed": false,
+    "training_update": "CASE_EVIDENCE_ONLY__PRIOR_PHYSICAL_THROUGHPUT_INTERPRETATION_SUPERSEDED",
+    "sources": [
+      "https://jwst-docs.stsci.edu/jwst-near-infrared-spectrograph/nirspec-instrumentation/nirspec-micro-shutter-assembly",
+      "https://arxiv.org/html/2610.12553v1"
+    ]
+  },
+  "correct_three_dispersion_row_empirical_controls_2026_10_19": {
+    "status": "CORRECT_MSA_THREE_ROW_X1D_PRODUCED_ALL_FOUR_BUT_FORMAL_LINE_SIGNIFICANCE_REJECTED_BY_OFFLINE_CONTROLS",
+    "source_cosmos_receipt": "domains/space/MOCSS_CORRECT_ROW_FOUR_X1D_EMPIRICAL_NULLS_2026-10-19.json",
+    "source_run_id": 39225995639,
+    "all_four_groups_correct_diagnostic_geometry_x1d": true,
+    "all_four_groups_full_four_dither_stacks": false,
+    "source_MPT_is_original": false,
+    "true_sky_row_background_subtracted": false,
+    "monochromatic_STPSF_shutter_loss_measured": false,
+    "detector_space_physical_injections_done": false,
+    "B_D_and_A_C_3row_pipeline_created_x1d": true,
+    "C_primary_reduced_chi2": 1354.03,
+    "C_primary_fraction_neighbor_control_formal_abs_ge_3": 0.79,
+    "correct_three_row_source_x1d_physical_significance_valid": false,
+    "secondary_OIII_detected": null,
+    "Pa_gamma_detected": null,
+    "source_type": null,
+    "redshift": null,
+    "model_weights_changed": false,
+    "science_rule": "Four diagnostic x1d spectra and 1D artificial-line recovery do not establish astrophysical throughput, detection S/N, or redshift. Correct row axis only removes the previous wrong column orientation."
+  },
+  "stpsf_3lambda_optical_2026_10_19": {
+    "status": "OFFICIAL_STPSF_2p1p0_3_WAVELENGTH_MONO_PSF_FINITE_FOV_MSA_MASK_COMPARISON_NOT_PHYSICAL_LINE_FLUX",
+    "cosmos_json": "domains/space/MOCSS_STPSF_OPTICAL_THREE_WAVELENGTHS_2026-10-19.json",
+    "upstream_run_id": 39229599393,
+    "waves_A": [
+      13656.7483309,
+      15850.7932988,
+      16004
+    ],
+    "optical_finite_fov_center_loss_fractions": [
+      0.071044563306505,
+      0.08548420548479241,
+      0.08351710147982883
+    ],
+    "authors_reported_bar_loss_at_1p6_um_approx": 0.033,
+    "this_is_not_directly_comparable_to_authors_throughput": true,
+    "STPSF_simulated_dispersed_detector_source": false,
+    "full_16_exposure_4_science_stacks_calibrated": false,
+    "realistic_source_photon_conversion_and_photom_verified": false,
+    "line_identity": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "training_update": "EVIDENCE_CASE_ONLY_NO_MOCSS_PSF_FLUX_PROMOTION"
+  },
+  "mocss_full_16_native_2d_injections_2026_10_19": {
+    "status": "16_REAL_RATE_FOUR_4_DITHER_WCS_POINT_WINDOW_STACKS_GAUSSIAN_NATIVE_2D_INJECTIONS_REPRODUCED_NOT_VALID_ASTROPHYSICAL_FLUX",
+    "cosmos_checkpoint": "domains/space/MOCSS_FULL16_NATIVE_DETECTOR_2D_GAUSSIAN_INJECTION_2026-10-19.json",
+    "cosmos_stpsf_checkpoint": "domains/space/MOCSS_STPSF_OPTICAL_THREE_WAVELENGTHS_2026-10-19.json",
+    "original_all16_success_run": 39231058856,
+    "stpsf_success_run": 39229599393,
+    "N_original_rate": 16,
+    "N_original_msa": 2,
+    "source_original_rate_and_MSA_SHA_verified": true,
+    "source_pixel_native_original_RATE_2D_injection_executed": true,
+    "source_DN_per_sec_parametric_Gaussian_not_STPSF": true,
+    "N_injection_recovery_checks": 24,
+    "N_4_dither_stacks": 4,
+    "N_real_wavelength_windows_per_stack": 3,
+    "scientific_background_illumination_open_shutter_projection_done": false,
+    "full_2D_dispersion_and_astrophysical_calwebb_spec2_flux": false,
+    "physical_source_focused_PSF_detector_model_injected": false,
+    "absolute_line_flux_physical_cgs_measured": false,
+    "secondary_lines_oiii_or_pa_gamma_confirmed": false,
+    "source_class": null,
+    "redshift": null,
+    "directed_trail": null,
+    "model_weights_changed": false,
+    "raw_rate_primary_16004_center_relative_MAD_NOT_SIGMA": {
+      "A": 0.08425,
+      "B": 0.11648,
+      "C": 0.24294,
+      "D": 3.21955
+    },
+    "STPSF_centered_3shutter_loss_finite_FOV_NOT_SLIT_FLUX": {
+      "Pa_gamma": 0.07104456,
+      "OIII_4960": 0.08548421,
+      "primary": 0.0835171
+    },
+    "interpretation": "All 16 public original JWST RATE files and 2 MSA tables were SHA verified, row median background proxy applied, all 4 4-dither WCS narrow source windows stacked and 24 native detector Gaussian injection recoveries executed. But row-open illumination was only audited, not mapped to pixel; STPSF optical mask FOV tests are separate from the native Gaussian injection; the 2D source does not have a physically calibrated dispersed PSF or photon-to-flux conversion."
+  },
+  "original_msa_exact_16_exposure_plane_2026_10_19": {
+    "status": "ALL_16_ORIGINAL_MSA_PLANE_MASKS_RECONSTRUCTED_64_QUADRANTS_DISPERSED_DETECTOR_PROJECTION_STILL_MISSING",
+    "cosmos_json": "domains/space/MOCSS_ORIGINAL_MSA_16_EXPOSURE_TOPOLOGY_2026-10-19.json",
+    "upstream_run_id": 39237389277,
+    "original_SHA_RATE_count": 16,
+    "original_SHA_MSA_count": 2,
+    "num_binary_open_shutter_quadrant_masks": 64,
+    "physical_mask_shape_per_quadrant": [
+      365,
+      171
+    ],
+    "MSA_original_id_AND_PATT_NUM_exactly_matched": true,
+    "all_original_RATE_PATT_NUM_equal_one": true,
+    "original_dither_unique_MSA_configuration_ids": true,
+    "near_sky_source_center_marked_open_all16": true,
+    "three_adjacent_dispersion_rows_marked_open_all_48": true,
+    "MSA_global_open_fraction_range": [
+      0.905904029480093,
+      0.9251141552511416
+    ],
+    "source_nearby_MSA_row_open_fraction_range": [
+      0.9181286549707602,
+      0.9532163742690059
+    ],
+    "this_is_only_MSA_plane_binary_mask_not_detector_illumination": true,
+    "full_spectral_CRDS_WCS_to_detector_pixel_for_all_shutters": false,
+    "full_background_with_shutter_leakage_and_sky_source_mask": false,
+    "exact_author_4stack_mocss_calibration": false,
+    "physical_dispersed_PSF_detector_injection": false,
+    "science_flux_cgs": null,
+    "source_identity": null,
+    "redshift": null,
+    "directional_gas_trail": null,
+    "model_weights_changed": false,
+    "epistemic_constraint": "Three source-adjacent shutters marked open in each of the 16 real original MSA configurations establish aperture availability only, not source photons, physical throughput, line significance or distance. Full detector footprint projection remains to be performed."
+  },
+  "original_msa_crds_gwcs_all16_2026_10_19": {
+    "status": "ALL16_ORIGINAL_RATE_CRDS_GWCS_48_NEAR_OPEN_SHUTTER_SLITS_X_3_WAVELENGTHS_FINITE_ON_DETECTOR_144_CENTERS",
+    "upstream_run_id": 39243558142,
+    "cosmos_receipt": "domains/space/MOCSS_CRDS_GWCS_ALL16_OPEN_NEIGHBOR_FOOTPRINT_2026-10-19.json",
+    "cosmos_forward_model_gate": "domains/space/MOCSS_CRDS_WCS_FORWARD_ILLUMINATION_GATE_2026-10-19.json",
+    "instrument": "JWST NIRSpec",
+    "jwst_pipeline": "1.19.1",
+    "crds": "jwst_1413.pmap",
+    "num_real_rate_SHA_checked": 16,
+    "num_original_open_MSA_shutter_slit_centers": 48,
+    "num_wave_center_wcs_coordinates_on_detector": 144,
+    "used_original_open_shutter_sites": true,
+    "test_MSA_background_slit_subsets_not_real_MPT_source": true,
+    "all_open_shutter_pixel_illumination_weights_generated": false,
+    "physical_dispersed_STPSF_plus_bar_shutter_transmission": false,
+    "sky_throughput_leakage_corrected": false,
+    "author_complete_stage2_four_group_stacks": false,
+    "absolute_flux16004_cgs": null,
+    "OIII_15850_detection": null,
+    "Pa_gamma_13656_detection": null,
+    "source_class": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "scientific_ceiling": "The official CRDS/GWCS maps the original three nearby open shutter centers for all 16 original exposures to the detector at three wavelengths. These 144 positions are geometric predictions, not a photon/sky/throughput map. No physical calibrated emission line or redshift follows."
+  }
+}

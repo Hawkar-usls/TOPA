@@ -1,0 +1,173 @@
+{
+  "schema": "topa-mocss-16exposure-CRDS-spectral-alias-and-cross-orientation-review-v1",
+  "created_date_utc": "2026-10-19",
+  "status": "GEOMETRIC_ALIAS_REPRODUCED_TWO_ORIENTATION_SKY_GATE_OPEN_NIRCAM_SPATIAL_NULL_REPRODUCED",
+  "source": "JWST MOCSS HUDF 16004±1Å",
+  "cosmos": {
+    "repo": "Hawkar-usls/Janus-Cosmos",
+    "pr": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "receipt": "domains/space/MOCSS_CRDS_16RATE_ADJACENT_SHUTTER_ALIASES_2026-10-19.json",
+    "report": "domains/space/MOCSS_CRDS_SHUTTER_ALIAS_CROSS_ORIENTATION_AUDIT_2026-10-19.md",
+    "reproduction": "tools/analyze_mocss_crds_adjacent_shutter_aliases.py",
+    "official_wcs_run": "https://github.com/Hawkar-usls/Janus-Cosmos/actions/runs/39251950005"
+  },
+  "original_paper": {
+    "url": "https://arxiv.org/html/2610.12553v1",
+    "method_section": "III.2 Matching Emission Line Candidates in Different Orientations",
+    "critical_prior_art": "Authors already explained slitless wavelength-to-sky ambiguity and used two dispersion angles separated by ~89 degrees; common source-host shutter between orientations and line wavelength agreement within 6A is required."
+  },
+  "inputs": {
+    "original_sha_identified_rate_exposures": 16,
+    "virtual_background_source_not_original_MPT": true,
+    "real_open_MSA_geometry": true,
+    "official_jwst_version": "1.19.1",
+    "official_crds_context": "jwst_1413.pmap",
+    "original_artifact_zip_sha256s": {
+      "A": "b5a1d60dcc5680ad889f7027cbebd13739e33c67b8367b86bbe1460ade8fe680",
+      "B": "1fecd6dca98b556c78be86d0564a145673b07823cc45419c155d14903ca7cb25",
+      "C": "b3f8bcd48b7410a41d87f69b34a40657fc81850ad4882c3efb75e63bfdbd8aa3",
+      "D": "bd0279d59364d7317318c54d2365de458d4fcbc1f3ae4e2176c767d112417257"
+    }
+  },
+  "geometric_alias_per_single_orientation": {
+    "minus_row_predicted_lambda_A": {
+      "min": 15987.345130851207,
+      "median": 15987.381521252508,
+      "max": 15987.441884626767
+    },
+    "plus_row_predicted_lambda_A": {
+      "min": 16020.55669571593,
+      "median": 16020.61728657766,
+      "max": 16020.655185071151
+    },
+    "all32_wcs_y_residual_less_than_pixels": 0.016,
+    "real_neighbor_photon_flux_measured": false,
+    "not_doppler_shift": true
+  },
+  "cross_orientation": {
+    "comparison": [
+      {
+        "neighbor_relative_row_in_each_instrument_orientation": -1,
+        "orientation_1_AB_wavelength_median_A": 15987.34748818081,
+        "orientation_2_CD_wavelength_median_A": 15987.427292399014,
+        "absolute_wavelength_median_difference_A": 0.07980421820320771,
+        "wavelength_only_within_paper_6A_tolerance": true,
+        "same_physical_sky_location_between_orientations_proven": false,
+        "paper_already_tested_host_shutter_and_wavelength_cross_orientation": true
+      },
+      {
+        "neighbor_relative_row_in_each_instrument_orientation": 1,
+        "orientation_1_AB_wavelength_median_A": 16020.652720232758,
+        "orientation_2_CD_wavelength_median_A": 16020.570775039523,
+        "absolute_wavelength_median_difference_A": 0.08194519323478744,
+        "wavelength_only_within_paper_6A_tolerance": true,
+        "same_physical_sky_location_between_orientations_proven": false,
+        "paper_already_tested_host_shutter_and_wavelength_cross_orientation": true
+      }
+    ],
+    "common_exact_sky_host_reconstructed": false,
+    "author_published_gate_considered": true,
+    "claim_unique_alternate_host": false
+  },
+  "running_followup": {
+    "original_nircam_spatial_scan_run_id": 39255670376,
+    "original_result": "FAILED_BEFORE_DATA_DIRECTORY_CREATED",
+    "fixed_successful_nircam_spatial_scan_run_id": 39256147894,
+    "current_result": "SUCCESS",
+    "artifact_id": 12186849693,
+    "zip_sha256": "98ed0db2e0fb10b9774e13d0f2a79ce6dc620e432c474f04f5d831a42aac502f",
+    "science": "Real 4-epoch F150W broad-band aperture max scan 113 sky offsets within .45arcsec; 95 control-field maxima; no localized source or directional trail significance."
+  },
+  "independent_science_gates": [
+    {
+      "name": "crds_official_16exposure_geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "virtual_neighbor_traces_approximate_lambda_alias",
+      "status": "PASS_GEOMETRIC_ONLY"
+    },
+    {
+      "name": "real_original_16_MSA_OPEN_state",
+      "status": "PASS_FOR_SELECTED_3_SHUTTERS_EACH_EXPOSURE"
+    },
+    {
+      "name": "nearorthogonal_common_sky_source",
+      "status": "NOT_REPLICATED_NO_NEW_SOURCE_LOCATION"
+    },
+    {
+      "name": "full64_shutter_psf_and_flux",
+      "status": "OPEN"
+    },
+    {
+      "name": "source_aware_stage2",
+      "status": "PARTIALLY_BLOCKED_HTTP504_SFLAT_DOWNLOAD",
+      "evidence": "Workflow 39251949944 AC job failed fetching jwst_nirspec_sflat_0231.fits 1.0 GB, HTTP 504; BD completed. Network failure is not an astrophysical null."
+    },
+    {
+      "name": "nearby_galaxy_host_at_alias_positions",
+      "status": "NOT_MEASURED"
+    },
+    {
+      "name": "physical_emission_source_class_redshift_direction_trail",
+      "status": "OPEN"
+    },
+    {
+      "name": "nircam_broadband_target_local_113_positions95_controls",
+      "status": "PASS_NULL_NOT_SIGNIFICANT",
+      "reason": "Original MAST F150W images, SHA-verified, full local 2D offset-grid scan fieldmax statistic; 86/95 sky control maxima exceed target maximum inside .45arcsec."
+    },
+    {
+      "name": "directional_nw_galaxy_trail_from_f150w",
+      "status": "NOT_DETECTED",
+      "reason": "NW .950nJy weak maximum aligns with galaxy sky PA but SE mirror .875nJy and 86/95 controls stronger; no line-specific spatial direction."
+    },
+    {
+      "name": "gwcs_three_diagnostic_wavelength_windows_sampled",
+      "status": "PASS_GEOMETRIC_COVERAGE_ONLY",
+      "reason": "48/48 finite on-detector centers for each PaGamma, corrected OIII and 16004 windows, not flux sensitivity"
+    }
+  ],
+  "next_test": "Independently validate common physical RA,Dec and lambda across both MOCSS angles with real 2D line centroids and all original OPEN shutters; compare original calibrated flux and companion lines. F150W no compact coeval candidate inside .45arcsec; test extended gas with larger apertures plus contamination masking.",
+  "strict_no_inference": [
+    "NO_NEW_ALTERNATIVE_HOST_CONFIRMED",
+    "NO_NEIGHBOR_CONTAMINATION_DETECTED",
+    "NO_UNIQUE_PHYSICAL_DIRECTION",
+    "NO_DOPPLER_FROM_INSTRUMENT_ALIAS",
+    "NO_REDSHIFT_PROOF",
+    "NO_LINE_FLUX_CALIBRATED"
+  ],
+  "nircam_spatial_null": {
+    "cosmos_repo_receipt": "domains/space/NIRCAM_F150W_LOCAL_OFFSETS_OBSERVED_2026-10-19.json",
+    "cosmos_report": "domains/space/NIRCAM_F150W_LOCAL_OFFSETS_INTERPRETATION_2026-10-19.md",
+    "max_0p15_arcsec_njy": 0.5019594172726292,
+    "max_0p45_arcsec_njy": 0.9504061140192013,
+    "control_fields_exceeding_target_max_0p45_arcsec": 86,
+    "control_field_total": 95,
+    "nw_direction_deg_east_of_north": 329.03624346792645,
+    "nearest_nw_galaxy_pa_deg_east_of_north": 328.2313551887452,
+    "opposite_se_max_njy": 0.875,
+    "weak_nw_minus_se_contrast_njy": 0.075,
+    "source_direction_verified": false,
+    "extended_gas_excluded": false
+  },
+  "crds_three_line_window_footprint_gate": {
+    "status": "ALL_48_SAMPLES_FINITE_AND_ON_DETECTOR_EACH_WAVELENGTH",
+    "diagnostic_shutters": 48,
+    "exposures": 16,
+    "selected_open_shutter_traces_per_exposure": 3,
+    "wavelength_windows_angstrom": [
+      13656.7483309,
+      15850.7932988,
+      16004
+    ],
+    "count_with_finite_gwcs_detector_center": {
+      "16004": 48,
+      "13656.7483309": 48,
+      "15850.7932988": 48
+    },
+    "not_derived_from_calibrated_source_data": true,
+    "does_not_establish_line_detectability": true,
+    "strict_interpretation": "Detector footprint centers for all three wavelength windows exist on NRS2 in this virtual-background-source WCS probe; chip exclusion alone cannot be inferred for the sampled traces, but SNR, spectral background and throughput are not measured."
+  }
+}

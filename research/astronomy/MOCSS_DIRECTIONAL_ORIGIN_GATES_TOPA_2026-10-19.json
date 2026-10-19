@@ -1,0 +1,40 @@
+{
+  "schema": "janus-topa-mocss-source-direction-gates-v1",
+  "created_utc": "2026-10-19",
+  "object": "JWST MOCSS HUDF single-line 16004A",
+  "status": "TOPA_REVIEWED__CONDITIONAL_PHYSICAL_VECTORS__NO_BEAM_OR_SOURCE_IDENTITY",
+  "cosmos_evidence_paths": [
+    "domains/space/MOCSS_FOUR_STACK_NEIGHBOR_AZIMUTH_NULLS_2026-10-19.json",
+    "domains/space/MOCSS_NEIGHBOR_ILLUMINATION_DUST_RECOMBINATION_2026-10-19.json",
+    "domains/space/MOCSS_SOURCE_DIRECTION_RECHECK_2026-10-19.md"
+  ],
+  "real_input_provenance": {
+    "jwst_RATE_exposures": 16,
+    "upstream_action_run": 39230522837,
+    "artifact_id": 12176970014,
+    "rechecked_npz_sha256": "0b8974e9f761e111abce46d16e0db322f368fd67306b7e8920cfc92fefbe8190",
+    "number_preselected_neighbor_checks": 12,
+    "number_preselected_direction_by_radius_checks": 48,
+    "groups": "ABCD",
+    "azimuth_controls_per_check_CORRELATED": 72,
+    "model_is_full_MOCSS_physical_sky": false
+  },
+  "hypothesis_gates": {
+    "galaxy_neighbor_sky_line_feature_repeated_in_four_groups": false,
+    "spatially_coherent_line_filament_proven": false,
+    "source_ionizing_beam_direction_measured": false,
+    "sky_line_of_sight_RA_Dec_known": true,
+    "Pa_beta_redshift_0p249": "CONDITIONAL",
+    "NW_AGN_to_cloud_position_angle_148p23_deg": "CONDITIONAL_UNTESTED_ASSOCIATION",
+    "S_AGN_to_cloud_position_angle_354p54_deg": "CONDITIONAL_UNTESTED_ASSOCIATION",
+    "Pa_gamma_absence_requires_AV_at_least_5p35_under_CaseB_CCM": "CONDITIONAL_TO_PUBLISHED_GLOBAL_FLUX_LIMIT",
+    "October_2023_line_disappeared_and_returned": "NOT_PROVEN__F150W_PSF_AND_APERTURE_GATES_OPEN",
+    "high_ne_at_least_1p4e6_for_one_month_recombination": "CONDITIONAL_TO_REAL_FADING_AND_CASEB",
+    "stellar_explosion_Type_IIn_identified": false,
+    "AGN_illuminated_cloud_identified": false,
+    "true_source_distance_measured": false,
+    "directed_trail_physical_extent_measured": false
+  },
+  "review_principle": "Do not infer a causal astrophysical beam from observer line-of-sight, MOCSS dispersion traces, uncorrected 2D RATE azimuthal MADs or photometric redshift proximity. Keep dense dusty transient and offset AGN gas as hypotheses, not discoveries.",
+  "needed_to_close": "Actual shutter-illumination-aware MOCSS stage-2 four-stack spectroscopy, independent Pa_gamma and 15850.793A calibrated windows, injection/PSF-corrected October 2023 F150W variability, common neighbor spectroscopic redshift, and IFU resolved sky morphology."
+}

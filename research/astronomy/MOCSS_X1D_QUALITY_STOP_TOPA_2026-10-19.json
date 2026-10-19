@@ -1,0 +1,37 @@
+{
+  "schema": "janus.topa.real_fits_calibration_quality_stop.v1",
+  "case_id": "JWST-MOCSS-HUDF-16004A",
+  "date_utc": "2026-10-19",
+  "training_mode": "EMPIRICAL_FALSE_CONFIDENCE_FALSIFIER",
+  "instrument": "JWST/NIRSpec G140M/F100LP",
+  "input": "Four real-archive RATE-derived diagnostic x1d FITS from GitHub Actions 39172038085, copied synthetic SOURCE_INFO; NOT authentic MOCSS background or point source extraction",
+  "data_artifacts": {
+    "original_archive_workflow_run": "https://github.com/Hawkar-usls/Janus-Cosmos/actions/runs/39172038085",
+    "cosmos_immutable_quality_receipt": "https://github.com/Hawkar-usls/Janus-Cosmos/blob/research/jwst-mocss-hudf-16004a-cosmos-2026-10-16/domains/space/MOCSS_FOUR_X1D_CONTROL_QUALITY_2026-10-19.json",
+    "full_reproduction_script": "https://github.com/Hawkar-usls/Janus-Cosmos/blob/research/jwst-mocss-hudf-16004a-cosmos-2026-10-16/tools/stress_mocss_four_x1d_offline_and_injection.py"
+  },
+  "frozen_quality_findings": {
+    "position_angle_dither_groups": ["A", "B", "C", "D"],
+    "three_target_wavelengths_A": [16004.0, 15850.793, 13656.748],
+    "total_target_windows": 12,
+    "bad_reduced_chi_square_above_3_count": 6,
+    "diagnostic_fits_with_formal_abs_coefficient_ratio_ge_5_but_bad_fit": [
+      {"group": "B", "line": "Pa_gamma", "formal_ratio": 5.261, "reduced_chi2": 107.476},
+      {"group": "C", "line": "16004", "formal_ratio": 42.18, "reduced_chi2": 1054.474},
+      {"group": "D", "line": "OIII_4960", "formal_ratio": -15.289, "reduced_chi2": 70.541}
+    ],
+    "overlapping_off_line_controls_tested": 256,
+    "off_line_controls_with_formal_abs_ratio_ge_3": 112,
+    "largest_off_line_formal_abs_ratio": 106.249
+  },
+  "critical_interpretation": "Formal template amplitude/error is NOT a significance statistic: source/shutter geometry is artificial; custom MOCSS background, noise covariance and morphology are not reproduced; off-line windows may also contain real astrophysical spectra, and many overlap.",
+  "science_gates": {
+    "diagnostic_quality_reproduction": "PASS",
+    "physical_16004_line_confirmed_by_this_extraction": "NO",
+    "oiii_companion_confirmed": "NO",
+    "pagamma_companion_confirmed": "NO",
+    "source_redshift_or_distance": "OPEN",
+    "directional_gas_trail": "OPEN"
+  },
+  "next_falsifier": "Repeat full MOCSS open-MSA dispersion-ROW aperture reconstruction with four-dither background controls and an empirically measured LSF; never promote diagnostic x1d apparent significance."
+}
