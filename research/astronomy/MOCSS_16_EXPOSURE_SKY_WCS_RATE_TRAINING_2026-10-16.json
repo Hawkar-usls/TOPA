@@ -153,7 +153,8 @@
     "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA",
     "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D",
     "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO",
-    "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES"
+    "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES",
+    "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -355,5 +356,30 @@
     "redshift": null,
     "model_weights_changed": false,
     "science_rule": "Four diagnostic x1d spectra and 1D artificial-line recovery do not establish astrophysical throughput, detection S/N, or redshift. Correct row axis only removes the previous wrong column orientation."
+  },
+  "stpsf_3lambda_optical_2026_10_19": {
+    "status": "OFFICIAL_STPSF_2p1p0_3_WAVELENGTH_MONO_PSF_FINITE_FOV_MSA_MASK_COMPARISON_NOT_PHYSICAL_LINE_FLUX",
+    "cosmos_json": "domains/space/MOCSS_STPSF_OPTICAL_THREE_WAVELENGTHS_2026-10-19.json",
+    "upstream_run_id": 39229599393,
+    "waves_A": [
+      13656.7483309,
+      15850.7932988,
+      16004
+    ],
+    "optical_finite_fov_center_loss_fractions": [
+      0.071044563306505,
+      0.08548420548479241,
+      0.08351710147982883
+    ],
+    "authors_reported_bar_loss_at_1p6_um_approx": 0.033,
+    "this_is_not_directly_comparable_to_authors_throughput": true,
+    "STPSF_simulated_dispersed_detector_source": false,
+    "full_16_exposure_4_science_stacks_calibrated": false,
+    "realistic_source_photon_conversion_and_photom_verified": false,
+    "line_identity": null,
+    "redshift": null,
+    "gas_trail": null,
+    "model_weights_changed": false,
+    "training_update": "EVIDENCE_CASE_ONLY_NO_MOCSS_PSF_FLUX_PROMOTION"
   }
 }
