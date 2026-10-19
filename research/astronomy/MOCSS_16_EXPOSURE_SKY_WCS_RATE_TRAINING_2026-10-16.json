@@ -152,7 +152,8 @@
     "NO_STAGE2_CALIBRATION_PROOF_FROM_SUCCESS_WITH_CAUGHT_EXCEPTION",
     "NO_LINE_OR_SOURCE_DETECTION_FROM_SYNTHETIC_SOURCE_INFO_MSA",
     "NO_ASTROPHYSICAL_DETECTION_FROM_DIAGNOSTIC_X1D",
-    "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO"
+    "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO",
+    "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -333,5 +334,26 @@
       "https://jwst-docs.stsci.edu/jwst-near-infrared-spectrograph/nirspec-instrumentation/nirspec-micro-shutter-assembly",
       "https://arxiv.org/html/2610.12553v1"
     ]
+  },
+  "correct_three_dispersion_row_empirical_controls_2026_10_19": {
+    "status": "CORRECT_MSA_THREE_ROW_X1D_PRODUCED_ALL_FOUR_BUT_FORMAL_LINE_SIGNIFICANCE_REJECTED_BY_OFFLINE_CONTROLS",
+    "source_cosmos_receipt": "domains/space/MOCSS_CORRECT_ROW_FOUR_X1D_EMPIRICAL_NULLS_2026-10-19.json",
+    "source_run_id": 39225995639,
+    "all_four_groups_correct_diagnostic_geometry_x1d": true,
+    "all_four_groups_full_four_dither_stacks": false,
+    "source_MPT_is_original": false,
+    "true_sky_row_background_subtracted": false,
+    "monochromatic_STPSF_shutter_loss_measured": false,
+    "detector_space_physical_injections_done": false,
+    "B_D_and_A_C_3row_pipeline_created_x1d": true,
+    "C_primary_reduced_chi2": 1354.03,
+    "C_primary_fraction_neighbor_control_formal_abs_ge_3": 0.79,
+    "correct_three_row_source_x1d_physical_significance_valid": false,
+    "secondary_OIII_detected": null,
+    "Pa_gamma_detected": null,
+    "source_type": null,
+    "redshift": null,
+    "model_weights_changed": false,
+    "science_rule": "Four diagnostic x1d spectra and 1D artificial-line recovery do not establish astrophysical throughput, detection S/N, or redshift. Correct row axis only removes the previous wrong column orientation."
   }
 }
