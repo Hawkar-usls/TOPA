@@ -155,7 +155,8 @@
     "NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO",
     "NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES",
     "NO_FLUX_CALIBRATION_FROM_STPSF_FINITE_FOV_OPTICAL_MASK_RATIO",
-    "NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION"
+    "NO_ASTROPHYSICAL_LINE_FLUX_FROM_RAW_16STACK_ROW_MEDIAN_OR_GAUSSIAN_NATIVE_INJECTION",
+    "NO_DETECTOR_ILLUMINATION_CALIBRATION_FROM_BINARY_MSA_APERTURE_PLANE_MASK"
   ],
   "stage2_three_line_followup": {
     "as_of_utc": "2026-10-18",
@@ -418,5 +419,41 @@
       "primary": 0.0835171
     },
     "interpretation": "All 16 public original JWST RATE files and 2 MSA tables were SHA verified, row median background proxy applied, all 4 4-dither WCS narrow source windows stacked and 24 native detector Gaussian injection recoveries executed. But row-open illumination was only audited, not mapped to pixel; STPSF optical mask FOV tests are separate from the native Gaussian injection; the 2D source does not have a physically calibrated dispersed PSF or photon-to-flux conversion."
+  },
+  "original_msa_exact_16_exposure_plane_2026_10_19": {
+    "status": "ALL_16_ORIGINAL_MSA_PLANE_MASKS_RECONSTRUCTED_64_QUADRANTS_DISPERSED_DETECTOR_PROJECTION_STILL_MISSING",
+    "cosmos_json": "domains/space/MOCSS_ORIGINAL_MSA_16_EXPOSURE_TOPOLOGY_2026-10-19.json",
+    "upstream_run_id": 39237389277,
+    "original_SHA_RATE_count": 16,
+    "original_SHA_MSA_count": 2,
+    "num_binary_open_shutter_quadrant_masks": 64,
+    "physical_mask_shape_per_quadrant": [
+      365,
+      171
+    ],
+    "MSA_original_id_AND_PATT_NUM_exactly_matched": true,
+    "all_original_RATE_PATT_NUM_equal_one": true,
+    "original_dither_unique_MSA_configuration_ids": true,
+    "near_sky_source_center_marked_open_all16": true,
+    "three_adjacent_dispersion_rows_marked_open_all_48": true,
+    "MSA_global_open_fraction_range": [
+      0.905904029480093,
+      0.9251141552511416
+    ],
+    "source_nearby_MSA_row_open_fraction_range": [
+      0.9181286549707602,
+      0.9532163742690059
+    ],
+    "this_is_only_MSA_plane_binary_mask_not_detector_illumination": true,
+    "full_spectral_CRDS_WCS_to_detector_pixel_for_all_shutters": false,
+    "full_background_with_shutter_leakage_and_sky_source_mask": false,
+    "exact_author_4stack_mocss_calibration": false,
+    "physical_dispersed_PSF_detector_injection": false,
+    "science_flux_cgs": null,
+    "source_identity": null,
+    "redshift": null,
+    "directional_gas_trail": null,
+    "model_weights_changed": false,
+    "epistemic_constraint": "Three source-adjacent shutters marked open in each of the 16 real original MSA configurations establish aperture availability only, not source photons, physical throughput, line significance or distance. Full detector footprint projection remains to be performed."
   }
 }
