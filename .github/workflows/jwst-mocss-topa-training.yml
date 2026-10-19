@@ -126,6 +126,23 @@ jobs:
           assert 'NO_SCIENTIFIC_LINE_DETECTION_FROM_THREE_COLUMN_MSA_OR_X1D_OFFLINE_FORMAL_RATIO' in z['release_gates']
           print('MOCSS_THREE_COLUMN_DIAGNOSTIC_X1D=PHYSICAL_AXIS_WRONG')
           print('MOCSS_CORRECT_THREE_ROW_GEOMETRY=TESTED')
+          latest = z['correct_three_dispersion_row_empirical_controls_2026_10_19']
+          assert latest['all_four_groups_correct_diagnostic_geometry_x1d'] is True
+          assert latest['B_D_and_A_C_3row_pipeline_created_x1d'] is True
+          assert latest['C_primary_reduced_chi2'] > 1000
+          assert latest['C_primary_fraction_neighbor_control_formal_abs_ge_3'] > 0.75
+          for k in ('all_four_groups_full_four_dither_stacks', 'source_MPT_is_original',
+                    'true_sky_row_background_subtracted',
+                    'monochromatic_STPSF_shutter_loss_measured',
+                    'detector_space_physical_injections_done',
+                    'correct_three_row_source_x1d_physical_significance_valid',
+                    'model_weights_changed'):
+              assert latest[k] is False
+          for k in ('secondary_OIII_detected','Pa_gamma_detected','source_type','redshift'):
+              assert latest[k] is None
+          assert 'NO_FLUX_PROMOTION_AFTER_THREE_ROW_X1D_BAD_CHI2_AND_OFFLINE_SPIKES' in z['release_gates']
+          print('CORRECT_MSA_THREE_ROW_DIAGNOSTIC_X1D=FOUR_GROUPS_SOFTWARE_PASS')
+          print('THREE_LINE_SCIENCE_FLUX=BLOCKED_BY_BACKGROUND_AND_THROUGHPUT')
           print('CALIBRATED_A_B_C_D_EMISSION_LINE_FLUX=OPEN')
           print('B_D_DIAGNOSTIC_X1D=CREATED_BUT_NOT_ASTROPHYSICAL_FLUX')
           print('SOURCE_AWARE_3_SHUTTER=GEOMETRY_ONLY_NO_SCIENCE_X1D')
