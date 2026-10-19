@@ -1,0 +1,35 @@
+{
+  "schema": "janus.topa.conditional_instrument_profile_discriminant.v1",
+  "case_id": "JWST-MOCSS-HUDF-16004A",
+  "date_utc": "2026-10-19",
+  "domain": "ASTRONOMY",
+  "mode": "CONDITIONAL_FALSIFICATION_CALCULATION",
+  "source_measurement": "Huberty et al. 2026 published single-Gaussian FWHM 13.2 +/- 2.0 Angstrom at observed 16004 Angstrom",
+  "hypothesis": "[O II] 3727.092/3729.875 Angstrom vacuum, z approximately 3.292",
+  "derived_nonobservational_constraints": {
+    "doublet_separation_observed_A_approx": 11.945,
+    "physically_limited_intensity_ratio_3729_over_3726": [0.35, 1.5],
+    "minimum_doublet_second_moment_equivalent_width_A_range": [12.33, 14.06],
+    "if_gaussian_effective_R_1500_predicted_composite_width_A_range": [16.30, 17.65],
+    "note": "Width is a second-moment Gaussian equivalent of a two-line blend, not a fit to the real observed line profile. The listed 0.35-1.5 ratios follow density limits; the physical conditional numbers are not likelihoods."
+  },
+  "provenance": {
+    "analysis": "https://github.com/Hawkar-usls/Janus-Cosmos/blob/research/jwst-mocss-hudf-16004a-cosmos-2026-10-16/domains/space/MOCSS_OII_PROFILE_LSF_SENSITIVITY_2026-10-19.json",
+    "reproducer": "https://github.com/Hawkar-usls/Janus-Cosmos/blob/research/jwst-mocss-hudf-16004a-cosmos-2026-10-16/tools/check_mocss_oii_doublet_width.py",
+    "original_line_observation": "https://arxiv.org/abs/2610.12553",
+    "doublet_density_ratio": "https://arxiv.org/abs/astro-ph/0510099",
+    "atomic_wavelength_reference": "https://physics.nist.gov/PhysRefData/ASD/lines_form.html"
+  },
+  "temporal_caveat": "Published observed EW > 7620 A uses noncontemporaneous continuum imaging, so rest-frame EW > about 1775 A applies only if the source persisted. Not a bound on a transient emitter.",
+  "limits": {
+    "actual_local_mocss_lsf_calibrated": false,
+    "actual_original_a_b_c_d_profiles_recovered": false,
+    "oii_falsified": false,
+    "oii_identified": false,
+    "redshift_measured": false,
+    "source_distance_measured": false,
+    "beam_or_gas_trail_measured": false
+  },
+  "training_trigger": "Compare empirical effective LSF from control emission-line source at ~1.60 micron with a direct convolved doublet likelihood in independently calibrated A-D source spectra.",
+  "scientific_gate": "CONDITIONAL_LSF_SENSITIVITY_ONLY__NO_PHYSICAL_IDENTIFICATION"
+}
