@@ -1,0 +1,166 @@
+{
+  "schema": "topa-mocss-independent-nircam-analytic-psf-injection-review-v1",
+  "date_utc": "2026-10-19",
+  "status": "TOPA_CONDITIONAL_POINT_SOURCE_TENSION_EXTENDED_GAS_AND_ASTROMETRY_OPEN",
+  "target_line_wavelength_angstrom": 16004,
+  "target_ra_dec_deg": [
+    53.13127,
+    -27.78908
+  ],
+  "upstream": {
+    "repository": "Hawkar-usls/Janus-Cosmos",
+    "pr_url": "https://github.com/Hawkar-usls/Janus-Cosmos/pull/31",
+    "script": "tools/inject_nircam_f150w_empirical_psf_brackets.py",
+    "script_sha256": "966c630111a15e5124211ce3a83bf63b70112a807281cbd6acb593b86cb03ce1",
+    "receipt": "domains/space/NIRCAM_F150W_PSF_INJECTION_OBSERVED_2026-10-19.json",
+    "receipt_sha256": "0141e562d52b3485abff5c048863155405bc7029ddfd63581842a5b3b4ae144a",
+    "interpretation": "domains/space/NIRCAM_F150W_PSF_INJECTION_INTERPRETATION_2026-10-19.md",
+    "official_psf_ee_source": "https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-performance/nircam-point-spread-functions"
+  },
+  "inputs": [
+    {
+      "product": "jw01180-o014_t023_nircam_clear-f150w_i2d.fits",
+      "utc_date": "2023-10-01",
+      "original_sci_subset_sha256": "6cb9a632f1304baee322e17a39e7d7de0001b1f4140a7e1d24c0261e71df89b3"
+    },
+    {
+      "product": "jw01180-o016_t013_nircam_clear-f150w_i2d.fits",
+      "utc_date": "2023-10-02",
+      "original_sci_subset_sha256": "688546072ff3580bda934cd3113b25734bc015bbcdc76a5286f1a45668db655d"
+    },
+    {
+      "product": "jw01180-o013_t011_nircam_clear-f150w_i2d.fits",
+      "utc_date": "2023-10-03",
+      "original_sci_subset_sha256": "66890a937ce87b0035c5ba8b4364ffe329ed606bdaee4885d032686b2e95f3fb"
+    },
+    {
+      "product": "jw01180-o024_t020_nircam_clear-f150w_i2d.fits",
+      "utc_date": "2023-10-09",
+      "original_sci_subset_sha256": "567130cdcec20e7ed80866c0a95d46fbb04901b03ef422bb49a9281ea9b95d91"
+    }
+  ],
+  "pixel_method": {
+    "original_mast_pixel_sha256_checked": true,
+    "image_files_mutated": false,
+    "sky_aperture_radius_arcsec": 0.12,
+    "local_background_annulus_arcsec": [
+      0.24,
+      0.38
+    ],
+    "subpixel_grid": [
+      7,
+      7
+    ],
+    "official_i2d_f150w_ee50_radius_arcsec": 0.051,
+    "official_i2d_f150w_ee80_radius_arcsec": 0.134,
+    "matched_sky_controls": 95,
+    "matched_sky_covariance_sigma_njy": 0.6629810259046014,
+    "actual_target_background_subtracted_matched_sky_weighted_njy": 0.370979798701665,
+    "predicted_total_f150w_line_flux_from_paper_njy_accepted_conditionally": 5.5,
+    "spectroscopy_calibrated_independently": false
+  },
+  "point_source_models": {
+    "moffat": {
+      "aperture_recovery_fraction": 0.7634883392033839,
+      "persistent_5p5_njy_aperture_expected": 4.199185865618611,
+      "matched_control_injections_inconsistent_with_actual_target": 95,
+      "matched_control_injections_total": 95,
+      "diagnostic_covariance_and_model_uncertainty_ratio_not_significance": 5.04259350977414,
+      "offset_0p05_arcsec_median_fraction": 0.7248223091443653,
+      "offset_0p15_arcsec_median_fraction": 0.12614343902999564
+    },
+    "two_gaussian": {
+      "aperture_recovery_fraction": 0.7676091216448211,
+      "persistent_5p5_njy_aperture_expected": 4.221850169046516,
+      "matched_control_injections_inconsistent_with_actual_target": 95,
+      "matched_control_injections_total": 95,
+      "diagnostic_covariance_and_model_uncertainty_ratio_not_significance": 5.059793323908929,
+      "offset_0p05_arcsec_median_fraction": 0.7344792751364501,
+      "offset_0p15_arcsec_median_fraction": 0.1362205665299387
+    }
+  },
+  "extended_source_two_gaussian_5p5_njy": [
+    {
+      "intrinsic_fwhm_arcsec": 0,
+      "recovered_fraction": 0.7676091216448211,
+      "aperture_njy": 4.221850169046516
+    },
+    {
+      "intrinsic_fwhm_arcsec": 0.07064460135092848,
+      "recovered_fraction": 0.7416972042968832,
+      "aperture_njy": 4.079334623632858
+    },
+    {
+      "intrinsic_fwhm_arcsec": 0.14128920270185696,
+      "recovered_fraction": 0.5948809042565029,
+      "aperture_njy": 3.271844973410766
+    },
+    {
+      "intrinsic_fwhm_arcsec": 0.23548200450309495,
+      "recovered_fraction": 0.3525516270150208,
+      "aperture_njy": 1.9390339485826142
+    },
+    {
+      "intrinsic_fwhm_arcsec": 0.3532230067546424,
+      "recovered_fraction": 0.16433584568805035,
+      "aperture_njy": 0.903847151284277
+    },
+    {
+      "intrinsic_fwhm_arcsec": 0.4709640090061899,
+      "recovered_fraction": 0.08126983563792028,
+      "aperture_njy": 0.4469840960085616
+    }
+  ],
+  "audit_gates": [
+    {
+      "id": "archival-integrity",
+      "status": "PASS",
+      "reason": "Four original i2d SCI strips independently hashed against pinned MAST byte-range receipt"
+    },
+    {
+      "id": "image-estimator-replay",
+      "status": "PASS",
+      "reason": "Exact 0.12 arcsec aperture and 0.24-0.38 arcsec median annulus; matched covariance reproduces original 0.663 nJy"
+    },
+    {
+      "id": "point-source-persistence",
+      "status": "CONDITIONAL_TENSION",
+      "reason": "Both anchored analytic PSFs recover ~76-77% of point-source flux; 95 matched control injections all exceed real target at assumed total 5.5 nJy"
+    },
+    {
+      "id": "relative-astrometry",
+      "status": "OPEN",
+      "reason": "Offset 0.15 arcsec collapses point-source recovery to ~13%; independent NIRSpec to NIRCam registration not yet solved"
+    },
+    {
+      "id": "extended-ionized-cloud",
+      "status": "REMAINS_VIABLE",
+      "reason": "Intrinsic Gaussian FWHM ~0.35 arcsec yields <1nJy in aperture at same integrated 5.5nJy; requires spatially integrated analysis"
+    },
+    {
+      "id": "physical-class-distance-direction",
+      "status": "NOT_IDENTIFIED",
+      "reason": "No unique PaBeta, PaGamma match, redshift, host, AGN causal cone, propagation PA, filament extent, or true speed established"
+    },
+    {
+      "id": "nirspec-flux-calibration",
+      "status": "OPEN",
+      "reason": "Published spectral flux and synthetic F150W brightness assumed, not independently rederived from 16 calibrated spec2 exposures"
+    }
+  ],
+  "strict_prohibitions": [
+    "NO_FORMAL_5_SIGMA_CLAIM",
+    "NO_CLASS_PROOF",
+    "NO_REDSHIFT_PROOF",
+    "NO_JET_DIRECTION",
+    "NO_PULSAR_REVERSAL",
+    "NO_AGN_ILLUMINATED_CLOUD_EXCLUSION",
+    "NO_INTRINSIC_VARIABILITY_PROOF"
+  ],
+  "next_discriminating_actions": [
+    "Finish independent source-aware 16/16 NIRSpec GWCS and calibrated Level-2 line flux and companions at 15850.793Å and PaGamma predicted location.",
+    "Register NIRSpec MOS shutter footprints with four actual NIRCam i2d WCS frames using nearby bright reference sources.",
+    "Recover NIRCam diffuse-source flux using matched-filter sizes 0.1–0.5 arcsec, larger sky-annuli and contamination masks.",
+    "Check spatial line morphology and offsets across NIRSpec 16 exposures; future IFU mosaics only after archival tests."
+  ]
+}
