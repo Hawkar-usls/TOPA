@@ -1,0 +1,34 @@
+{
+  "schema": "janus.topa.rowan_independent_replay_source_link.v1",
+  "sourceAuthority": "Hawkar-usls/janus-meta-registry",
+  "readOnlyReference": {
+    "canonical": "data/rowan/CANONICAL_STATE.json",
+    "pipeline": "data/rowan/health/PIPELINE_STATE.json",
+    "coordination": "data/rowan/coordination/LATEST_COORDINATION_STATE.json",
+    "model": "data/rowan/learned/SHADOW-BBC1-abac9057873ac3c4.json",
+    "independentWithinAssayAudit": "data/rowan/topa/TOPA-SHADOW-86ca72205cc89a03.json",
+    "latestProviderReceipt": "data/rowan/receipts/ROWAN-S2-40520611650-41bfb593f4b8f926.json"
+  },
+  "creationSnapshot": {
+    "completedPilotMutants": 8,
+    "run": 40520611650,
+    "readCurrentCanonicalBeforeAnyInference": true
+  },
+  "meaning": {
+    "numericalCodeReplay": "PASS_RECONSTRUCTED_ON_PUBLIC_PROCESSED_CORPUS",
+    "publicProcessedAssay": "NOT_INDEPENDENT_WETLAB",
+    "newProteinExternalHoldout": "NOT_VERIFIED",
+    "modelPromotedToProduction": false,
+    "sourceCollectionAuthorizesMoreRowanSpend": false
+  },
+  "authority": {
+    "newRowanJobs": false,
+    "rowanCreditsSpend": false,
+    "changeTranceptionWeights": false,
+    "promoteShadowWeights": false,
+    "inferBiologicalCausality": false,
+    "overwriteSourceReceipts": false,
+    "autoPublishNewScientificClaims": false
+  },
+  "role": "INDEPENDENT_NUMERICAL_REPLAY_AND_FALSIFICATION_NOT_SECOND_ORIGINAL_DATASET"
+}
