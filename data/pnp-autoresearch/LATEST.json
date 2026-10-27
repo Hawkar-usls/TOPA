@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "5f0e55ca22787aa532c5f4fc5a56e2cad9a98aac",
+    "source_commit": "db9c9a0043fb196fd712fc2fa025cc05ad1c45a4",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -12,12 +12,12 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 87,
+  "duplicate_cycle_record_count": 70,
   "keymaster_forge": {
-    "cycle_count": 229,
+    "cycle_count": 230,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "de40630e036569839bdb14c098adb11effd3a3f78629d5a362e71e3b00367483",
+    "state_sha256": "d7f12cf4673baa9303c6e164a159984bc788f8435626746984bcc27aa4318360",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -95,8 +95,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 10,
-        "status": "PASS"
+        "error": "HTTPError:HTTP Error 429: Too Many Requests",
+        "status": "UNAVAILABLE"
       },
       "query": "multilinear monomial read twice Pi Sigma 3 Pi 2 algorithm"
     },
@@ -117,8 +117,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 10,
-        "status": "PASS"
+        "error": "HTTPError:HTTP Error 429: Too Many Requests",
+        "status": "UNAVAILABLE"
       },
       "query": "Tseitin parity structured d-DNNF lower bounds treewidth"
     }
@@ -126,7 +126,7 @@
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
   "record_count": 166,
-  "retrieved_cycle_record_count": 87,
+  "retrieved_cycle_record_count": 70,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
     "crossref": {
@@ -135,9 +135,9 @@
       "unavailable_queries": 0
     },
     "openalex": {
-      "pass_queries": 6,
-      "records_retrieved": 32,
-      "unavailable_queries": 0
+      "pass_queries": 4,
+      "records_retrieved": 12,
+      "unavailable_queries": 2
     }
   },
   "source_records_sha256": "c603a837d665f79df68fc50a6f0cfab83ccead6d659bad3422b5b9d50892e492",
