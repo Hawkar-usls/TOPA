@@ -1,0 +1,24 @@
+name: TOPA Rowan Independent Evidence Link Contract
+on:
+  pull_request:
+    paths:
+      - '.janus/ROWAN_INDEPENDENT_SOURCE_LINK.json'
+      - 'tests/test_rowan_independent_source_link.py'
+      - '.github/workflows/topa-rowan-source-link.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.janus/ROWAN_INDEPENDENT_SOURCE_LINK.json'
+      - 'tests/test_rowan_independent_source_link.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_rowan_independent_source_link.py -v
