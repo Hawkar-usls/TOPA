@@ -100,7 +100,7 @@
 {"id":"paper:99","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s00037-021-00216-z","title":"Correction to: Near-Optimal Lower Bounds on Regular Resolution Refutations of Tseitin Formulas for All Constant-Degree Graphs"}
 {"id":"paper:100","provider":"OPENALEX","source_url":"https://doi.org/10.1613/jair.1.13521","title":"Characterizing Tseitin-Formulas with Short Regular Resolution Refutations"}
 {"id":"paper:101","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.1701.04626","title":"Circuit Treewidth, Sentential Decision, and Query Compilation"}
-{"id":"paper:102","provider":"OPENALEX","source_url":"https://doi.org/10.4230/lipics.sat.2022.6","title":"Lower Bounds on Intermediate Results in Bottom-Up Knowledge Compilation"}
+{"id":"paper:102","provider":"OPENALEX","source_url":"https://doi.org/10.4230/lipics.sat.2022.6","title":"Tight Bounds for Tseitin Formulas"}
 {"id":"paper:103","provider":"OPENALEX","source_url":"https://doi.org/10.1609/aaai.v36i5.20496","title":"Lower Bounds on Intermediate Results in Bottom-Up Knowledge Compilation"}
 {"id":"paper:104","provider":"OPENALEX","source_url":"https://doi.org/10.24963/ijcai.2024/367","title":"Compilation and Fast Model Counting beyond CNF"}
 {"id":"paper:105","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.2103.09609","title":"Characterizing Tseitin-formulas with short regular resolution refutations"}
@@ -164,3 +164,4 @@
 {"id":"paper:163","provider":"CROSSREF","source_url":"https://doi.org/10.18288/1994-5124-2022-3-44-73","title":"Monetary Policy for a Resource-Rich Economy and the Zero Lower Bound"}
 {"id":"paper:164","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s13675-017-0088-0","title":"Pseudo basic steps: bound improvement guarantees from Lagrangian decomposition in convex disjunctive programming"}
 {"id":"paper:165","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s00037-021-00213-2","title":"Near-Optimal Lower Bounds on Regular Resolution Refutations of Tseitin Formulas for All Constant-Degree Graphs"}
+{"id":"paper:166","provider":"CROSSREF","source_url":"https://doi.org/10.32764/epic.v4i4","title":""}
