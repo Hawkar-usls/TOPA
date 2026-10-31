@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "1d8493199f12f3bd414e2486a9c13efc1d369dc6",
+    "source_commit": "db90d02489875416074d5e234b0250d5396687a6",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -12,12 +12,12 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 87,
+  "duplicate_cycle_record_count": 86,
   "keymaster_forge": {
-    "cycle_count": 247,
+    "cycle_count": 248,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "0858db56f55834fd05f0ffd25bf7d61c2f2482663226fa074a8bd5d4886dca8d",
+    "state_sha256": "adcfaca7b557b34116cc31777b6636b69e60a4be5b3b2ed0b3ef56a3715fa351",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -95,7 +95,7 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 10,
+        "records": 9,
         "status": "PASS"
       },
       "query": "multilinear monomial read twice Pi Sigma 3 Pi 2 algorithm"
@@ -117,7 +117,7 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 10,
+        "records": 9,
         "status": "PASS"
       },
       "query": "Tseitin parity structured d-DNNF lower bounds treewidth"
@@ -126,7 +126,7 @@
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
   "record_count": 167,
-  "retrieved_cycle_record_count": 87,
+  "retrieved_cycle_record_count": 86,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
     "crossref": {
@@ -136,11 +136,11 @@
     },
     "openalex": {
       "pass_queries": 6,
-      "records_retrieved": 32,
+      "records_retrieved": 30,
       "unavailable_queries": 0
     }
   },
-  "source_records_sha256": "489932ae7028623127ec778029d962d1142d830d247d6d8e66b94220a871c0e1",
+  "source_records_sha256": "c0d12c28fb6152ddcb4935c651b04235547549c4fc229f2fdc73db5cbf1f6c04",
   "spider_receipt": {
     "documents": 167,
     "edges": 0,
