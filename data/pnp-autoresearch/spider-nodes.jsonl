@@ -165,3 +165,7 @@
 {"id":"paper:164","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s13675-017-0088-0","title":"Pseudo basic steps: bound improvement guarantees from Lagrangian decomposition in convex disjunctive programming"}
 {"id":"paper:165","provider":"CROSSREF","source_url":"https://doi.org/10.1007/s00037-021-00213-2","title":"Near-Optimal Lower Bounds on Regular Resolution Refutations of Tseitin Formulas for All Constant-Degree Graphs"}
 {"id":"paper:166","provider":"CROSSREF","source_url":"https://doi.org/10.32764/epic.v4i4","title":""}
+{"id":"paper:167","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.2502.19682","title":"Independent transversal blow-up of graphs"}
+{"id":"paper:168","provider":"OPENALEX","source_url":"https://doi.org/10.48550/arxiv.2504.03950","title":"Number of independent transversals in multipartite graphs"}
+{"id":"paper:169","provider":"OPENALEX","source_url":"https://doi.org/10.70675/10b79942z0379z46a4zbb33z9331f6eae3db","title":"Des fonctions difficiles en compilation de connaissances : bornes inférieures et applications"}
+{"id":"paper:170","provider":"OPENALEX","source_url":"https://doi.org/10.1007/978-3-319-04921-2_33","title":"On SAT Representations of XOR Constraints"}
