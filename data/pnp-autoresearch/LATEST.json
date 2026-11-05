@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "0b011f4cf2cb29a1a97e3c2031f94f20944ac7a0",
+    "source_commit": "c4f503ab82338f0f4234498705eb1d1752cf68b1",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -12,12 +12,12 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 59,
+  "duplicate_cycle_record_count": 77,
   "keymaster_forge": {
-    "cycle_count": 265,
+    "cycle_count": 266,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "7faeea61431dc752884d60c4a1b3929500b4968b3545de888d7f388e0afd2c98",
+    "state_sha256": "752282f31c26bd843d2616888363cd33a211d5f9cd0c866c83f7223aebb818f9",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -62,8 +62,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 0,
-        "status": "PASS"
+        "error": "HTTPError:HTTP Error 429: Too Many Requests",
+        "status": "UNAVAILABLE"
       },
       "query": "three sheet disjunctive csp ep compact representation exact polynomial algorithm"
     },
@@ -84,8 +84,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 10,
+        "status": "PASS"
       },
       "query": "independent transversal maximum degree two partitioned graph algorithm"
     },
@@ -95,8 +95,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 9,
+        "status": "PASS"
       },
       "query": "multilinear monomial read twice Pi Sigma 3 Pi 2 algorithm"
     },
@@ -126,7 +126,7 @@
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
   "record_count": 171,
-  "retrieved_cycle_record_count": 59,
+  "retrieved_cycle_record_count": 77,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
     "crossref": {
@@ -135,12 +135,12 @@
       "unavailable_queries": 0
     },
     "openalex": {
-      "pass_queries": 1,
-      "records_retrieved": 0,
-      "unavailable_queries": 5
+      "pass_queries": 2,
+      "records_retrieved": 19,
+      "unavailable_queries": 4
     }
   },
-  "source_records_sha256": "8126cd87116359aa8bae8c2643237c2d4772295a601909a7ce2453070abf54d1",
+  "source_records_sha256": "5e9fa22095e4364fff58029dd3ada9d5d078e42cd1ee4bc42c2d3a491842a133",
   "spider_receipt": {
     "documents": 171,
     "edges": 0,
