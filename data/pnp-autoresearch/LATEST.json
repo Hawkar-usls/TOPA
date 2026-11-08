@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "ee36e547782763d0181ad0336684f1fd54445fe4",
+    "source_commit": "8db05504f584b91bd014a23447c8129dea986564",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -14,10 +14,10 @@
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
   "duplicate_cycle_record_count": 87,
   "keymaster_forge": {
-    "cycle_count": 278,
+    "cycle_count": 279,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "a874bbd9903c40135398156a940025951f7ef5734d228a2dbf5378f4d0361f08",
+    "state_sha256": "33b88b709028e6cfa52590cd1052db9357a82235195f0c74dd41172fc83946c9",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -73,8 +73,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "records": 0,
-        "status": "PASS"
+        "error": "HTTPError:HTTP Error 503: Service Unavailable",
+        "status": "UNAVAILABLE"
       },
       "query": "three sheet disjunctive csp ep compact representation decomposition lower bound"
     },
@@ -135,9 +135,9 @@
       "unavailable_queries": 0
     },
     "openalex": {
-      "pass_queries": 6,
+      "pass_queries": 5,
       "records_retrieved": 31,
-      "unavailable_queries": 0
+      "unavailable_queries": 1
     }
   },
   "source_records_sha256": "f6bcd1762ac6bee4f8974c9f3926158166d7eb0d8aee60db36af844d3391a6a2",
