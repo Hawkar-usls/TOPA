@@ -62,8 +62,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 0,
+        "status": "PASS"
       },
       "query": "three sheet disjunctive csp ep compact representation exact polynomial algorithm"
     },
@@ -135,9 +135,9 @@
       "unavailable_queries": 0
     },
     "openalex": {
-      "pass_queries": 5,
+      "pass_queries": 6,
       "records_retrieved": 31,
-      "unavailable_queries": 1
+      "unavailable_queries": 0
     }
   },
   "source_records_sha256": "dce229e4f7e70436d0e19ec5a10391d0563d6e3f82bb38209b40634cf5359d22",
