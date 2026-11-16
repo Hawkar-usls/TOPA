@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "c2f2573985f48e0b454b3ccbfc66ef4a38f9de82",
+    "source_commit": "cc18c3796494b87fe521810ed0ca3510fa22dcf3",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -12,12 +12,12 @@
   "autoreserch_active": true,
   "claim_ceiling": "DISCOVERY_AND_CANDIDATE_RELATIONS_ONLY__NO_PNP_CLAIM_PROMOTION",
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
-  "duplicate_cycle_record_count": 70,
+  "duplicate_cycle_record_count": 87,
   "keymaster_forge": {
-    "cycle_count": 307,
+    "cycle_count": 308,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "5ea291260f497504ffaf5666d72c27c626a6e800e4d4accbc91577158ac50424",
+    "state_sha256": "ce1605ae2127ee3ba52c0c0d9436649fa9ce508385c09a2826334661aaf87d74",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -62,8 +62,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 0,
+        "status": "PASS"
       },
       "query": "three sheet disjunctive csp ep compact representation exact polynomial algorithm"
     },
@@ -73,8 +73,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 0,
+        "status": "PASS"
       },
       "query": "three sheet disjunctive csp ep compact representation decomposition lower bound"
     },
@@ -84,8 +84,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 10,
+        "status": "PASS"
       },
       "query": "independent transversal maximum degree two partitioned graph algorithm"
     },
@@ -117,8 +117,8 @@
         "status": "PASS"
       },
       "openalex": {
-        "error": "HTTPError:HTTP Error 429: Too Many Requests",
-        "status": "UNAVAILABLE"
+        "records": 10,
+        "status": "PASS"
       },
       "query": "Tseitin parity structured d-DNNF lower bounds treewidth"
     }
@@ -126,7 +126,7 @@
   "query_rotation": "ADAPTIVE_BY_FORGE_CYCLE",
   "query_seed_count": 6,
   "record_count": 173,
-  "retrieved_cycle_record_count": 70,
+  "retrieved_cycle_record_count": 87,
   "schema": "janus.topa.pnp_autoresearch_cycle.v3",
   "source_health": {
     "crossref": {
@@ -135,12 +135,12 @@
       "unavailable_queries": 0
     },
     "openalex": {
-      "pass_queries": 2,
-      "records_retrieved": 11,
-      "unavailable_queries": 4
+      "pass_queries": 6,
+      "records_retrieved": 31,
+      "unavailable_queries": 0
     }
   },
-  "source_records_sha256": "70f96c5ccd71cdf9fd90e815012534d2e6c0b39add9425f70bc875a7d5f04cba",
+  "source_records_sha256": "dce229e4f7e70436d0e19ec5a10391d0563d6e3f82bb38209b40634cf5359d22",
   "spider_receipt": {
     "documents": 173,
     "edges": 0,
