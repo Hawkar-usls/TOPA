@@ -14,10 +14,10 @@
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
   "duplicate_cycle_record_count": 88,
   "keymaster_forge": {
-    "cycle_count": 324,
+    "cycle_count": 325,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "65b7f8333ac5cad292f0169bc94f6459bdac2afdbd34634be0835e78a16a9d80",
+    "state_sha256": "d46f648bb0fca636060f9e640de776b93762846eafa908ceddb6df6a8b66e56d",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
