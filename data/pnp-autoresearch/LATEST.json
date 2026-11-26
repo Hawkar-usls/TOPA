@@ -14,10 +14,10 @@
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
   "duplicate_cycle_record_count": 88,
   "keymaster_forge": {
-    "cycle_count": 337,
+    "cycle_count": 338,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "50a39a7b6a19fd3bd7753cee3a3fb630339fbb9d274ed78f279c42c42a3aab8d",
+    "state_sha256": "c0972475940229d82dd27f265a34c947dd3647019d818deeecf2ee512e9c8453",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
@@ -140,7 +140,7 @@
       "unavailable_queries": 0
     }
   },
-  "source_records_sha256": "9f0dea6e0494634c18d0400a762d0cae9d88763430c44db0cb3dc18fdcc0f068",
+  "source_records_sha256": "9257d49ba05eed3d19635b176f662c7f4aac49ea3a57dc98e9a70bd1c38c15c5",
   "spider_receipt": {
     "documents": 176,
     "edges": 0,
