@@ -1,6 +1,6 @@
 {
   "associative_memory": {
-    "source_commit": "0eab011e0d935abcce4b0dc8b72aa04ed0e424bc",
+    "source_commit": "660d2adbe47da619dcabb7b033f30774c10754c0",
     "url": "https://raw.githubusercontent.com/Hawkar-usls/iNaiHR/janus/fundamentum-associative-memory/data/fundamentum-associative/ASSOCIATIONS.json"
   },
   "authority": {
@@ -14,10 +14,10 @@
   "corpus_merge_policy": "APPEND_MERGE_HARD_DEDUPE__EMPTY_CYCLE_DOES_NOT_ERASE_HISTORY",
   "duplicate_cycle_record_count": 88,
   "keymaster_forge": {
-    "cycle_count": 339,
+    "cycle_count": 340,
     "query_grants_authority": false,
     "query_is_evidence": false,
-    "state_sha256": "9a07398fc48cdb7aca4847b938c87b5eb9f9f6ef251d62bb40958d92eefc241a",
+    "state_sha256": "9a4c0ce15aae543cf6fedd862ca124e06ad7998d50c6575b2f6d3ddcdb30a608",
     "status": "SEARCHED_NO_NOVEL_FALLBACK_CANDIDATE",
     "target": {
       "barrier_penalty": 4,
